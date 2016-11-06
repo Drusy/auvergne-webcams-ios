@@ -54,3 +54,32 @@ iOS application displaying the content of the Webcams available in Auvergne - Fr
 - **XML list:** http://m.webcam-hd.com/xml/histo/chastreix-sancy_lac-chambon.xml
 - **1280w:** http://srv13.trinum.com/ibox/ftpcam/1280_chastreix-sancy_lac-chambon.jpg
 - **Full size:** http://srv13.trinum.com/ibox/ftpcam/mega_chastreix-sancy_lac-chambon.jpg
+
+## Clermont-Ferrand
+
+### Cathédrale 
+
+- **Film LD:**
+ http://filmspv.viewsurf.com/clermontferrand4/14/11/media_1478453166.mp4
+- **Film HD:** http://filmspv.viewsurf.com/clermontferrand4/14/10/media_1478453166.mp4
+
+### Jaude
+
+- **Film LD:** http://films.viewsurf.com/clermontferrand4/1/2/media_1478454004.mp4
+- **Film HD:** http://films.viewsurf.com/clermontferrand4/1/1/media_1478454004.mp4
+
+### Place de la Victoire
+
+- **640w:** http://films.viewsurf.com/clermontferrandvictoire/640_h264/clermontferrandvictoire_20161105_0705.mp4
+
+### Mont Juzet
+
+- **640w:** http://filmspv.viewsurf.com/clermontferrand4/10/9/media_1478454544.mp4
+
+### Mont du Forez
+
+- **640w:** http://filmspv.viewsurf.com/clermontferrand4/7/7/media_1478454485.mp4
+
+### Puy de Dome
+
+- **640w:** http://filmspv.viewsurf.com/clermontferrand4/3/5/media_1478454725.mp4
