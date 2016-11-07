@@ -1,0 +1,10 @@
+framework module Siren {
+  umbrella header "Siren.h"
+
+  export *
+  module * { export * }
+}
+
+module Siren.Swift {
+    header "Siren-Swift.h"
+}

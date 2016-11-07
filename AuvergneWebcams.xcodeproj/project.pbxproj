@@ -1,0 +1,556 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F93C760D1DD11577005DEE66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93C760C1DD11577005DEE66 /* AppDelegate.swift */; };
+		F93C760F1DD11577005DEE66 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93C760E1DD11577005DEE66 /* ViewController.swift */; };
+		F93C76121DD11577005DEE66 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F93C76101DD11577005DEE66 /* Main.storyboard */; };
+		F93C76141DD11577005DEE66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F93C76131DD11577005DEE66 /* Assets.xcassets */; };
+		F93C76171DD11577005DEE66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F93C76151DD11577005DEE66 /* LaunchScreen.storyboard */; };
+		F93C76221DD11577005DEE66 /* AuvergneWebcamsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93C76211DD11577005DEE66 /* AuvergneWebcamsTests.swift */; };
+		F93C76411DD11AF0005DEE66 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F93C76391DD11ACE005DEE66 /* Kingfisher.framework */; };
+		F93C76421DD11AF0005DEE66 /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F93C76391DD11ACE005DEE66 /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F93C76431DD11AF0005DEE66 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F93C763A1DD11ACE005DEE66 /* Reachability.framework */; };
+		F93C76441DD11AF0005DEE66 /* Reachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F93C763A1DD11ACE005DEE66 /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F93C76451DD11AF0005DEE66 /* Siren.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F93C763B1DD11ACE005DEE66 /* Siren.framework */; };
+		F93C76461DD11AF0005DEE66 /* Siren.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F93C763B1DD11ACE005DEE66 /* Siren.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F93C76471DD11AF0005DEE66 /* SwiftyUserDefaults.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F93C763C1DD11ACE005DEE66 /* SwiftyUserDefaults.framework */; };
+		F93C76481DD11AF0005DEE66 /* SwiftyUserDefaults.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F93C763C1DD11ACE005DEE66 /* SwiftyUserDefaults.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F93C761E1DD11577005DEE66 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F93C76011DD11577005DEE66 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F93C76081DD11577005DEE66;
+			remoteInfo = AuvergneWebcams;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F93C76491DD11AF1005DEE66 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F93C76461DD11AF0005DEE66 /* Siren.framework in Embed Frameworks */,
+				F93C76481DD11AF0005DEE66 /* SwiftyUserDefaults.framework in Embed Frameworks */,
+				F93C76421DD11AF0005DEE66 /* Kingfisher.framework in Embed Frameworks */,
+				F93C76441DD11AF0005DEE66 /* Reachability.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		F93C76091DD11577005DEE66 /* AuvergneWebcams.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AuvergneWebcams.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F93C760C1DD11577005DEE66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F93C760E1DD11577005DEE66 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F93C76111DD11577005DEE66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F93C76131DD11577005DEE66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F93C76161DD11577005DEE66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F93C76181DD11577005DEE66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F93C761D1DD11577005DEE66 /* AuvergneWebcamsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuvergneWebcamsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F93C76211DD11577005DEE66 /* AuvergneWebcamsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuvergneWebcamsTests.swift; sourceTree = "<group>"; };
+		F93C76231DD11577005DEE66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F93C762F1DD115EB005DEE66 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		F93C76301DD115EB005DEE66 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		F93C76321DD1175E005DEE66 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		F93C76341DD117DD005DEE66 /* scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = scripts; sourceTree = "<group>"; };
+		F93C76361DD1189A005DEE66 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		F93C76371DD118A2005DEE66 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		F93C76381DD11915005DEE66 /* Cartfile.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
+		F93C76391DD11ACE005DEE66 /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
+		F93C763A1DD11ACE005DEE66 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = Carthage/Build/iOS/Reachability.framework; sourceTree = "<group>"; };
+		F93C763B1DD11ACE005DEE66 /* Siren.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Siren.framework; path = Carthage/Build/iOS/Siren.framework; sourceTree = "<group>"; };
+		F93C763C1DD11ACE005DEE66 /* SwiftyUserDefaults.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyUserDefaults.framework; path = Carthage/Build/iOS/SwiftyUserDefaults.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F93C76061DD11577005DEE66 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F93C76451DD11AF0005DEE66 /* Siren.framework in Frameworks */,
+				F93C76471DD11AF0005DEE66 /* SwiftyUserDefaults.framework in Frameworks */,
+				F93C76411DD11AF0005DEE66 /* Kingfisher.framework in Frameworks */,
+				F93C76431DD11AF0005DEE66 /* Reachability.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F93C761A1DD11577005DEE66 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F93C76001DD11577005DEE66 = {
+			isa = PBXGroup;
+			children = (
+				F93C76351DD11892005DEE66 /* doc */,
+				F93C76341DD117DD005DEE66 /* scripts */,
+				F93C76311DD1169C005DEE66 /* Carthage */,
+				F93C760B1DD11577005DEE66 /* AuvergneWebcams */,
+				F93C76201DD11577005DEE66 /* AuvergneWebcamsTests */,
+				F93C760A1DD11577005DEE66 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F93C760A1DD11577005DEE66 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F93C76091DD11577005DEE66 /* AuvergneWebcams.app */,
+				F93C761D1DD11577005DEE66 /* AuvergneWebcamsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F93C760B1DD11577005DEE66 /* AuvergneWebcams */ = {
+			isa = PBXGroup;
+			children = (
+				F93C762C1DD1159B005DEE66 /* Classes */,
+				F93C762D1DD115A0005DEE66 /* Resources */,
+				F93C762E1DD115B0005DEE66 /* Supporting Files */,
+			);
+			path = AuvergneWebcams;
+			sourceTree = "<group>";
+		};
+		F93C76201DD11577005DEE66 /* AuvergneWebcamsTests */ = {
+			isa = PBXGroup;
+			children = (
+				F93C76211DD11577005DEE66 /* AuvergneWebcamsTests.swift */,
+				F93C76231DD11577005DEE66 /* Info.plist */,
+			);
+			path = AuvergneWebcamsTests;
+			sourceTree = "<group>";
+		};
+		F93C762C1DD1159B005DEE66 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F93C760C1DD11577005DEE66 /* AppDelegate.swift */,
+				F93C760E1DD11577005DEE66 /* ViewController.swift */,
+				F93C76101DD11577005DEE66 /* Main.storyboard */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		F93C762D1DD115A0005DEE66 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F93C76131DD11577005DEE66 /* Assets.xcassets */,
+				F93C76151DD11577005DEE66 /* LaunchScreen.storyboard */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		F93C762E1DD115B0005DEE66 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F93C762F1DD115EB005DEE66 /* Debug.xcconfig */,
+				F93C76301DD115EB005DEE66 /* Release.xcconfig */,
+				F93C76181DD11577005DEE66 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F93C76311DD1169C005DEE66 /* Carthage */ = {
+			isa = PBXGroup;
+			children = (
+				F93C76381DD11915005DEE66 /* Cartfile.resolved */,
+				F93C76321DD1175E005DEE66 /* Cartfile */,
+				F93C76391DD11ACE005DEE66 /* Kingfisher.framework */,
+				F93C763A1DD11ACE005DEE66 /* Reachability.framework */,
+				F93C763B1DD11ACE005DEE66 /* Siren.framework */,
+				F93C763C1DD11ACE005DEE66 /* SwiftyUserDefaults.framework */,
+			);
+			name = Carthage;
+			sourceTree = "<group>";
+		};
+		F93C76351DD11892005DEE66 /* doc */ = {
+			isa = PBXGroup;
+			children = (
+				F93C76371DD118A2005DEE66 /* LICENSE */,
+				F93C76361DD1189A005DEE66 /* README.md */,
+			);
+			name = doc;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F93C76081DD11577005DEE66 /* AuvergneWebcams */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F93C76261DD11577005DEE66 /* Build configuration list for PBXNativeTarget "AuvergneWebcams" */;
+			buildPhases = (
+				F93C76051DD11577005DEE66 /* Sources */,
+				F93C76061DD11577005DEE66 /* Frameworks */,
+				F93C76071DD11577005DEE66 /* Resources */,
+				F93C76491DD11AF1005DEE66 /* Embed Frameworks */,
+				F93C764A1DD11AF5005DEE66 /* Carthage */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AuvergneWebcams;
+			productName = AuvergneWebcams;
+			productReference = F93C76091DD11577005DEE66 /* AuvergneWebcams.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F93C761C1DD11577005DEE66 /* AuvergneWebcamsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F93C76291DD11577005DEE66 /* Build configuration list for PBXNativeTarget "AuvergneWebcamsTests" */;
+			buildPhases = (
+				F93C76191DD11577005DEE66 /* Sources */,
+				F93C761A1DD11577005DEE66 /* Frameworks */,
+				F93C761B1DD11577005DEE66 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F93C761F1DD11577005DEE66 /* PBXTargetDependency */,
+			);
+			name = AuvergneWebcamsTests;
+			productName = AuvergneWebcamsTests;
+			productReference = F93C761D1DD11577005DEE66 /* AuvergneWebcamsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F93C76011DD11577005DEE66 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0810;
+				LastUpgradeCheck = 0810;
+				TargetAttributes = {
+					F93C76081DD11577005DEE66 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = QH6KR5PAQ7;
+						ProvisioningStyle = Automatic;
+					};
+					F93C761C1DD11577005DEE66 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = QH6KR5PAQ7;
+						ProvisioningStyle = Automatic;
+						TestTargetID = F93C76081DD11577005DEE66;
+					};
+				};
+			};
+			buildConfigurationList = F93C76041DD11577005DEE66 /* Build configuration list for PBXProject "AuvergneWebcams" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F93C76001DD11577005DEE66;
+			productRefGroup = F93C760A1DD11577005DEE66 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F93C76081DD11577005DEE66 /* AuvergneWebcams */,
+				F93C761C1DD11577005DEE66 /* AuvergneWebcamsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F93C76071DD11577005DEE66 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F93C76171DD11577005DEE66 /* LaunchScreen.storyboard in Resources */,
+				F93C76141DD11577005DEE66 /* Assets.xcassets in Resources */,
+				F93C76121DD11577005DEE66 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F93C761B1DD11577005DEE66 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F93C764A1DD11AF5005DEE66 /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Siren.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyUserDefaults.framework",
+			);
+			name = Carthage;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "# Embedded binaries only when archiving\nif [ \"$ACTION\" == \"install\" ] ; then\n    /usr/local/bin/carthage copy-frameworks\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F93C76051DD11577005DEE66 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F93C760F1DD11577005DEE66 /* ViewController.swift in Sources */,
+				F93C760D1DD11577005DEE66 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F93C76191DD11577005DEE66 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F93C76221DD11577005DEE66 /* AuvergneWebcamsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F93C761F1DD11577005DEE66 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F93C76081DD11577005DEE66 /* AuvergneWebcams */;
+			targetProxy = F93C761E1DD11577005DEE66 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F93C76101DD11577005DEE66 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F93C76111DD11577005DEE66 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F93C76151DD11577005DEE66 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F93C76161DD11577005DEE66 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F93C76241DD11577005DEE66 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F93C762F1DD115EB005DEE66 /* Debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F93C76251DD11577005DEE66 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F93C76301DD115EB005DEE66 /* Release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F93C76271DD11577005DEE66 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F93C762F1DD115EB005DEE66 /* Debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = QH6KR5PAQ7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = AuvergneWebcams/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = fr.openium.AuvergneWebcams;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		F93C76281DD11577005DEE66 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F93C76301DD115EB005DEE66 /* Release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = QH6KR5PAQ7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = AuvergneWebcams/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = fr.openium.AuvergneWebcams;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		F93C762A1DD11577005DEE66 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F93C762F1DD115EB005DEE66 /* Debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = QH6KR5PAQ7;
+				INFOPLIST_FILE = AuvergneWebcamsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = fr.openium.AuvergneWebcamsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AuvergneWebcams.app/AuvergneWebcams";
+			};
+			name = Debug;
+		};
+		F93C762B1DD11577005DEE66 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F93C76301DD115EB005DEE66 /* Release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = QH6KR5PAQ7;
+				INFOPLIST_FILE = AuvergneWebcamsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = fr.openium.AuvergneWebcamsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AuvergneWebcams.app/AuvergneWebcams";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F93C76041DD11577005DEE66 /* Build configuration list for PBXProject "AuvergneWebcams" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F93C76241DD11577005DEE66 /* Debug */,
+				F93C76251DD11577005DEE66 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F93C76261DD11577005DEE66 /* Build configuration list for PBXNativeTarget "AuvergneWebcams" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F93C76271DD11577005DEE66 /* Debug */,
+				F93C76281DD11577005DEE66 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F93C76291DD11577005DEE66 /* Build configuration list for PBXNativeTarget "AuvergneWebcamsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F93C762A1DD11577005DEE66 /* Debug */,
+				F93C762B1DD11577005DEE66 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F93C76011DD11577005DEE66 /* Project object */;
+}
