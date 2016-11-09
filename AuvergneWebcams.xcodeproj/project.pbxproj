@@ -8,8 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F93C760D1DD11577005DEE66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93C760C1DD11577005DEE66 /* AppDelegate.swift */; };
-		F93C760F1DD11577005DEE66 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93C760E1DD11577005DEE66 /* ViewController.swift */; };
-		F93C76121DD11577005DEE66 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F93C76101DD11577005DEE66 /* Main.storyboard */; };
+		F93C760F1DD11577005DEE66 /* WebcamOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93C760E1DD11577005DEE66 /* WebcamOverviewViewController.swift */; };
 		F93C76141DD11577005DEE66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F93C76131DD11577005DEE66 /* Assets.xcassets */; };
 		F93C76171DD11577005DEE66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F93C76151DD11577005DEE66 /* LaunchScreen.storyboard */; };
 		F93C76221DD11577005DEE66 /* AuvergneWebcamsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93C76211DD11577005DEE66 /* AuvergneWebcamsTests.swift */; };
@@ -21,6 +20,34 @@
 		F93C76461DD11AF0005DEE66 /* Siren.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F93C763B1DD11ACE005DEE66 /* Siren.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F93C76471DD11AF0005DEE66 /* SwiftyUserDefaults.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F93C763C1DD11ACE005DEE66 /* SwiftyUserDefaults.framework */; };
 		F93C76481DD11AF0005DEE66 /* SwiftyUserDefaults.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F93C763C1DD11ACE005DEE66 /* SwiftyUserDefaults.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F9F5AC5E1DD31C9100D9FF83 /* AbstractViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5AC5C1DD31C9100D9FF83 /* AbstractViewController.swift */; };
+		F9F5AC5F1DD31C9100D9FF83 /* AbstractViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9F5AC5D1DD31C9100D9FF83 /* AbstractViewController.xib */; };
+		F9F5AC6C1DD32AF200D9FF83 /* AbstractArrayViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5AC691DD32AF200D9FF83 /* AbstractArrayViewProvider.swift */; };
+		F9F5AC6D1DD32AF200D9FF83 /* AbstractEnumeratableViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5AC6A1DD32AF200D9FF83 /* AbstractEnumeratableViewProvider.swift */; };
+		F9F5AC6E1DD32AF200D9FF83 /* AbstractViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5AC6B1DD32AF200D9FF83 /* AbstractViewProvider.swift */; };
+		F9F5AC731DD33B6800D9FF83 /* Webcam.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5AC721DD33B6800D9FF83 /* Webcam.swift */; };
+		F9F5AC761DD33B8200D9FF83 /* WebcamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5AC741DD33B8200D9FF83 /* WebcamCollectionViewCell.swift */; };
+		F9F5AC771DD33B8200D9FF83 /* WebcamCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9F5AC751DD33B8200D9FF83 /* WebcamCollectionViewCell.xib */; };
+		F9F5AC791DD33CF000D9FF83 /* WebcamViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5AC781DD33CF000D9FF83 /* WebcamViewProvider.swift */; };
+		F9F5AC8A1DD344CC00D9FF83 /* Open Sans 300.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9F5AC7C1DD344CC00D9FF83 /* Open Sans 300.ttf */; };
+		F9F5AC8B1DD344CC00D9FF83 /* Open Sans 300italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9F5AC7D1DD344CC00D9FF83 /* Open Sans 300italic.ttf */; };
+		F9F5AC8C1DD344CC00D9FF83 /* Open Sans 600.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9F5AC7E1DD344CC00D9FF83 /* Open Sans 600.ttf */; };
+		F9F5AC8D1DD344CC00D9FF83 /* Open Sans 600italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9F5AC7F1DD344CC00D9FF83 /* Open Sans 600italic.ttf */; };
+		F9F5AC8E1DD344CC00D9FF83 /* Open Sans 700.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9F5AC801DD344CC00D9FF83 /* Open Sans 700.ttf */; };
+		F9F5AC8F1DD344CC00D9FF83 /* Open Sans 700italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9F5AC811DD344CC00D9FF83 /* Open Sans 700italic.ttf */; };
+		F9F5AC901DD344CC00D9FF83 /* Open Sans 800.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9F5AC821DD344CC00D9FF83 /* Open Sans 800.ttf */; };
+		F9F5AC911DD344CC00D9FF83 /* Open Sans 800italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9F5AC831DD344CC00D9FF83 /* Open Sans 800italic.ttf */; };
+		F9F5AC921DD344CC00D9FF83 /* Open Sans Condensed 300.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9F5AC841DD344CC00D9FF83 /* Open Sans Condensed 300.ttf */; };
+		F9F5AC931DD344CC00D9FF83 /* Open Sans Condensed 300italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9F5AC851DD344CC00D9FF83 /* Open Sans Condensed 300italic.ttf */; };
+		F9F5AC941DD344CC00D9FF83 /* Open Sans italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9F5AC861DD344CC00D9FF83 /* Open Sans italic.ttf */; };
+		F9F5AC951DD344CC00D9FF83 /* Open Sans regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9F5AC871DD344CC00D9FF83 /* Open Sans regular.ttf */; };
+		F9F5AC961DD344CC00D9FF83 /* Open Sans Condensed 700.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9F5AC891DD344CC00D9FF83 /* Open Sans Condensed 700.ttf */; };
+		F9F5AC981DD34C8B00D9FF83 /* WebcamSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5AC971DD34C8B00D9FF83 /* WebcamSection.swift */; };
+		F9F5AC9B1DD34EF300D9FF83 /* WebcamSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5AC991DD34EF300D9FF83 /* WebcamSectionHeaderView.swift */; };
+		F9F5AC9C1DD34EF300D9FF83 /* WebcamSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9F5AC9A1DD34EF300D9FF83 /* WebcamSectionHeaderView.xib */; };
+		F9F5AC9E1DD35C0100D9FF83 /* WebcamOverviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9F5AC9D1DD35C0100D9FF83 /* WebcamOverviewViewController.xib */; };
+		F9F5ACA21DD35DDD00D9FF83 /* WebcamDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5ACA01DD35DDD00D9FF83 /* WebcamDetailViewController.swift */; };
+		F9F5ACA31DD35DDD00D9FF83 /* WebcamDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9F5ACA11DD35DDD00D9FF83 /* WebcamDetailViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,8 +80,7 @@
 /* Begin PBXFileReference section */
 		F93C76091DD11577005DEE66 /* AuvergneWebcams.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AuvergneWebcams.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F93C760C1DD11577005DEE66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F93C760E1DD11577005DEE66 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F93C76111DD11577005DEE66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F93C760E1DD11577005DEE66 /* WebcamOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebcamOverviewViewController.swift; sourceTree = "<group>"; };
 		F93C76131DD11577005DEE66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F93C76161DD11577005DEE66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F93C76181DD11577005DEE66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -72,6 +98,34 @@
 		F93C763A1DD11ACE005DEE66 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = Carthage/Build/iOS/Reachability.framework; sourceTree = "<group>"; };
 		F93C763B1DD11ACE005DEE66 /* Siren.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Siren.framework; path = Carthage/Build/iOS/Siren.framework; sourceTree = "<group>"; };
 		F93C763C1DD11ACE005DEE66 /* SwiftyUserDefaults.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyUserDefaults.framework; path = Carthage/Build/iOS/SwiftyUserDefaults.framework; sourceTree = "<group>"; };
+		F9F5AC5C1DD31C9100D9FF83 /* AbstractViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractViewController.swift; sourceTree = "<group>"; };
+		F9F5AC5D1DD31C9100D9FF83 /* AbstractViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbstractViewController.xib; sourceTree = "<group>"; };
+		F9F5AC691DD32AF200D9FF83 /* AbstractArrayViewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractArrayViewProvider.swift; sourceTree = "<group>"; };
+		F9F5AC6A1DD32AF200D9FF83 /* AbstractEnumeratableViewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractEnumeratableViewProvider.swift; sourceTree = "<group>"; };
+		F9F5AC6B1DD32AF200D9FF83 /* AbstractViewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractViewProvider.swift; sourceTree = "<group>"; };
+		F9F5AC721DD33B6800D9FF83 /* Webcam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Webcam.swift; sourceTree = "<group>"; };
+		F9F5AC741DD33B8200D9FF83 /* WebcamCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebcamCollectionViewCell.swift; sourceTree = "<group>"; };
+		F9F5AC751DD33B8200D9FF83 /* WebcamCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebcamCollectionViewCell.xib; sourceTree = "<group>"; };
+		F9F5AC781DD33CF000D9FF83 /* WebcamViewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebcamViewProvider.swift; sourceTree = "<group>"; };
+		F9F5AC7C1DD344CC00D9FF83 /* Open Sans 300.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Open Sans 300.ttf"; sourceTree = "<group>"; };
+		F9F5AC7D1DD344CC00D9FF83 /* Open Sans 300italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Open Sans 300italic.ttf"; sourceTree = "<group>"; };
+		F9F5AC7E1DD344CC00D9FF83 /* Open Sans 600.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Open Sans 600.ttf"; sourceTree = "<group>"; };
+		F9F5AC7F1DD344CC00D9FF83 /* Open Sans 600italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Open Sans 600italic.ttf"; sourceTree = "<group>"; };
+		F9F5AC801DD344CC00D9FF83 /* Open Sans 700.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Open Sans 700.ttf"; sourceTree = "<group>"; };
+		F9F5AC811DD344CC00D9FF83 /* Open Sans 700italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Open Sans 700italic.ttf"; sourceTree = "<group>"; };
+		F9F5AC821DD344CC00D9FF83 /* Open Sans 800.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Open Sans 800.ttf"; sourceTree = "<group>"; };
+		F9F5AC831DD344CC00D9FF83 /* Open Sans 800italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Open Sans 800italic.ttf"; sourceTree = "<group>"; };
+		F9F5AC841DD344CC00D9FF83 /* Open Sans Condensed 300.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Open Sans Condensed 300.ttf"; sourceTree = "<group>"; };
+		F9F5AC851DD344CC00D9FF83 /* Open Sans Condensed 300italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Open Sans Condensed 300italic.ttf"; sourceTree = "<group>"; };
+		F9F5AC861DD344CC00D9FF83 /* Open Sans italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Open Sans italic.ttf"; sourceTree = "<group>"; };
+		F9F5AC871DD344CC00D9FF83 /* Open Sans regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Open Sans regular.ttf"; sourceTree = "<group>"; };
+		F9F5AC891DD344CC00D9FF83 /* Open Sans Condensed 700.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Open Sans Condensed 700.ttf"; sourceTree = "<group>"; };
+		F9F5AC971DD34C8B00D9FF83 /* WebcamSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebcamSection.swift; sourceTree = "<group>"; };
+		F9F5AC991DD34EF300D9FF83 /* WebcamSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebcamSectionHeaderView.swift; sourceTree = "<group>"; };
+		F9F5AC9A1DD34EF300D9FF83 /* WebcamSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebcamSectionHeaderView.xib; sourceTree = "<group>"; };
+		F9F5AC9D1DD35C0100D9FF83 /* WebcamOverviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebcamOverviewViewController.xib; sourceTree = "<group>"; };
+		F9F5ACA01DD35DDD00D9FF83 /* WebcamDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebcamDetailViewController.swift; sourceTree = "<group>"; };
+		F9F5ACA11DD35DDD00D9FF83 /* WebcamDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebcamDetailViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,8 +194,9 @@
 			isa = PBXGroup;
 			children = (
 				F93C760C1DD11577005DEE66 /* AppDelegate.swift */,
-				F93C760E1DD11577005DEE66 /* ViewController.swift */,
-				F93C76101DD11577005DEE66 /* Main.storyboard */,
+				F9F5AC591DD3196E00D9FF83 /* Controllers */,
+				F9F5AC5A1DD3197300D9FF83 /* Views */,
+				F9F5AC711DD33B5300D9FF83 /* Model */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -149,6 +204,7 @@
 		F93C762D1DD115A0005DEE66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F9F5AC7A1DD344CC00D9FF83 /* fonts */,
 				F93C76131DD11577005DEE66 /* Assets.xcassets */,
 				F93C76151DD11577005DEE66 /* LaunchScreen.storyboard */,
 			);
@@ -185,6 +241,119 @@
 				F93C76361DD1189A005DEE66 /* README.md */,
 			);
 			name = doc;
+			sourceTree = "<group>";
+		};
+		F9F5AC591DD3196E00D9FF83 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F9F5AC5B1DD31C7D00D9FF83 /* Abstract */,
+				F9F5AC701DD32C9A00D9FF83 /* Main */,
+				F9F5AC9F1DD35D9200D9FF83 /* Details */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		F9F5AC5A1DD3197300D9FF83 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F9F5AC681DD32AEC00D9FF83 /* Providers */,
+				F9F5AC6F1DD32C8A00D9FF83 /* Webcam */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		F9F5AC5B1DD31C7D00D9FF83 /* Abstract */ = {
+			isa = PBXGroup;
+			children = (
+				F9F5AC5C1DD31C9100D9FF83 /* AbstractViewController.swift */,
+				F9F5AC5D1DD31C9100D9FF83 /* AbstractViewController.xib */,
+			);
+			name = Abstract;
+			sourceTree = "<group>";
+		};
+		F9F5AC681DD32AEC00D9FF83 /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				F9F5AC691DD32AF200D9FF83 /* AbstractArrayViewProvider.swift */,
+				F9F5AC6A1DD32AF200D9FF83 /* AbstractEnumeratableViewProvider.swift */,
+				F9F5AC6B1DD32AF200D9FF83 /* AbstractViewProvider.swift */,
+			);
+			name = Providers;
+			sourceTree = "<group>";
+		};
+		F9F5AC6F1DD32C8A00D9FF83 /* Webcam */ = {
+			isa = PBXGroup;
+			children = (
+				F9F5AC781DD33CF000D9FF83 /* WebcamViewProvider.swift */,
+				F9F5AC741DD33B8200D9FF83 /* WebcamCollectionViewCell.swift */,
+				F9F5AC751DD33B8200D9FF83 /* WebcamCollectionViewCell.xib */,
+				F9F5AC991DD34EF300D9FF83 /* WebcamSectionHeaderView.swift */,
+				F9F5AC9A1DD34EF300D9FF83 /* WebcamSectionHeaderView.xib */,
+			);
+			name = Webcam;
+			sourceTree = "<group>";
+		};
+		F9F5AC701DD32C9A00D9FF83 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				F93C760E1DD11577005DEE66 /* WebcamOverviewViewController.swift */,
+				F9F5AC9D1DD35C0100D9FF83 /* WebcamOverviewViewController.xib */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		F9F5AC711DD33B5300D9FF83 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F9F5AC721DD33B6800D9FF83 /* Webcam.swift */,
+				F9F5AC971DD34C8B00D9FF83 /* WebcamSection.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		F9F5AC7A1DD344CC00D9FF83 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F9F5AC7B1DD344CC00D9FF83 /* Open Sans */,
+				F9F5AC881DD344CC00D9FF83 /* Open Sans Condensed */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		F9F5AC7B1DD344CC00D9FF83 /* Open Sans */ = {
+			isa = PBXGroup;
+			children = (
+				F9F5AC7C1DD344CC00D9FF83 /* Open Sans 300.ttf */,
+				F9F5AC7D1DD344CC00D9FF83 /* Open Sans 300italic.ttf */,
+				F9F5AC7E1DD344CC00D9FF83 /* Open Sans 600.ttf */,
+				F9F5AC7F1DD344CC00D9FF83 /* Open Sans 600italic.ttf */,
+				F9F5AC801DD344CC00D9FF83 /* Open Sans 700.ttf */,
+				F9F5AC811DD344CC00D9FF83 /* Open Sans 700italic.ttf */,
+				F9F5AC821DD344CC00D9FF83 /* Open Sans 800.ttf */,
+				F9F5AC831DD344CC00D9FF83 /* Open Sans 800italic.ttf */,
+				F9F5AC841DD344CC00D9FF83 /* Open Sans Condensed 300.ttf */,
+				F9F5AC851DD344CC00D9FF83 /* Open Sans Condensed 300italic.ttf */,
+				F9F5AC861DD344CC00D9FF83 /* Open Sans italic.ttf */,
+				F9F5AC871DD344CC00D9FF83 /* Open Sans regular.ttf */,
+			);
+			path = "Open Sans";
+			sourceTree = "<group>";
+		};
+		F9F5AC881DD344CC00D9FF83 /* Open Sans Condensed */ = {
+			isa = PBXGroup;
+			children = (
+				F9F5AC891DD344CC00D9FF83 /* Open Sans Condensed 700.ttf */,
+			);
+			path = "Open Sans Condensed";
+			sourceTree = "<group>";
+		};
+		F9F5AC9F1DD35D9200D9FF83 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				F9F5ACA01DD35DDD00D9FF83 /* WebcamDetailViewController.swift */,
+				F9F5ACA11DD35DDD00D9FF83 /* WebcamDetailViewController.xib */,
+			);
+			name = Details;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,9 +442,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9F5ACA31DD35DDD00D9FF83 /* WebcamDetailViewController.xib in Resources */,
+				F9F5AC921DD344CC00D9FF83 /* Open Sans Condensed 300.ttf in Resources */,
+				F9F5AC901DD344CC00D9FF83 /* Open Sans 800.ttf in Resources */,
+				F9F5AC8B1DD344CC00D9FF83 /* Open Sans 300italic.ttf in Resources */,
+				F9F5AC951DD344CC00D9FF83 /* Open Sans regular.ttf in Resources */,
 				F93C76171DD11577005DEE66 /* LaunchScreen.storyboard in Resources */,
+				F9F5AC8C1DD344CC00D9FF83 /* Open Sans 600.ttf in Resources */,
+				F9F5AC771DD33B8200D9FF83 /* WebcamCollectionViewCell.xib in Resources */,
 				F93C76141DD11577005DEE66 /* Assets.xcassets in Resources */,
-				F93C76121DD11577005DEE66 /* Main.storyboard in Resources */,
+				F9F5AC8E1DD344CC00D9FF83 /* Open Sans 700.ttf in Resources */,
+				F9F5AC8A1DD344CC00D9FF83 /* Open Sans 300.ttf in Resources */,
+				F9F5AC931DD344CC00D9FF83 /* Open Sans Condensed 300italic.ttf in Resources */,
+				F9F5AC9E1DD35C0100D9FF83 /* WebcamOverviewViewController.xib in Resources */,
+				F9F5AC5F1DD31C9100D9FF83 /* AbstractViewController.xib in Resources */,
+				F9F5AC911DD344CC00D9FF83 /* Open Sans 800italic.ttf in Resources */,
+				F9F5AC8F1DD344CC00D9FF83 /* Open Sans 700italic.ttf in Resources */,
+				F9F5AC961DD344CC00D9FF83 /* Open Sans Condensed 700.ttf in Resources */,
+				F9F5AC9C1DD34EF300D9FF83 /* WebcamSectionHeaderView.xib in Resources */,
+				F9F5AC941DD344CC00D9FF83 /* Open Sans italic.ttf in Resources */,
+				F9F5AC8D1DD344CC00D9FF83 /* Open Sans 600italic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,8 +500,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F93C760F1DD11577005DEE66 /* ViewController.swift in Sources */,
+				F9F5AC981DD34C8B00D9FF83 /* WebcamSection.swift in Sources */,
+				F93C760F1DD11577005DEE66 /* WebcamOverviewViewController.swift in Sources */,
+				F9F5AC731DD33B6800D9FF83 /* Webcam.swift in Sources */,
+				F9F5AC9B1DD34EF300D9FF83 /* WebcamSectionHeaderView.swift in Sources */,
+				F9F5ACA21DD35DDD00D9FF83 /* WebcamDetailViewController.swift in Sources */,
+				F9F5AC791DD33CF000D9FF83 /* WebcamViewProvider.swift in Sources */,
+				F9F5AC6E1DD32AF200D9FF83 /* AbstractViewProvider.swift in Sources */,
+				F9F5AC5E1DD31C9100D9FF83 /* AbstractViewController.swift in Sources */,
 				F93C760D1DD11577005DEE66 /* AppDelegate.swift in Sources */,
+				F9F5AC6D1DD32AF200D9FF83 /* AbstractEnumeratableViewProvider.swift in Sources */,
+				F9F5AC6C1DD32AF200D9FF83 /* AbstractArrayViewProvider.swift in Sources */,
+				F9F5AC761DD33B8200D9FF83 /* WebcamCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,14 +534,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		F93C76101DD11577005DEE66 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F93C76111DD11577005DEE66 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		F93C76151DD11577005DEE66 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

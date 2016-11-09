@@ -20,16 +20,39 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Open Sans regular.ttf</string>
+		<string>Open Sans italic.ttf</string>
+		<string>Open Sans 300.ttf</string>
+		<string>Open Sans 300italic.ttf</string>
+		<string>Open Sans 700.ttf</string>
+		<string>Open Sans 700italic.ttf</string>
+		<string>Open Sans 600.ttf</string>
+		<string>Open Sans 600italic.ttf</string>
+		<string>Open Sans 800.ttf</string>
+		<string>Open Sans 800italic.ttf</string>
+		<string>Open Sans Condensed 300.ttf</string>
+		<string>Open Sans Condensed 300italic.ttf</string>
+		<string>Open Sans Condensed 700.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIRequiresFullScreen</key>
+	<false/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

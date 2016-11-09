@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Open Sans Condensed 700.ttf">
+            <string>OpenSans-CondensedBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="WebcamCollectionViewCell" customModule="AuvergneWebcams" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="259" height="150"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="259" height="150"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TPw-O1-eae">
+                        <rect key="frame" x="0.0" y="0.0" width="259" height="150"/>
+                    </imageView>
+                    <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qee-8K-JRH">
+                        <rect key="frame" x="0.0" y="0.0" width="259" height="150"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Webcam" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G9X-p0-hmN">
+                        <rect key="frame" x="8" y="118.5" width="243" height="23.5"/>
+                        <fontDescription key="fontDescription" name="OpenSans-CondensedBold" family="Open Sans Condensed" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="TPw-O1-eae" secondAttribute="trailing" id="81U-NF-fHd"/>
+                <constraint firstAttribute="bottom" secondItem="G9X-p0-hmN" secondAttribute="bottom" constant="8" id="GP9-IX-LWH"/>
+                <constraint firstItem="G9X-p0-hmN" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="NsG-f2-eAc"/>
+                <constraint firstItem="TPw-O1-eae" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="QAw-qo-fsD"/>
+                <constraint firstAttribute="bottom" secondItem="qee-8K-JRH" secondAttribute="bottom" id="Qsm-NK-Wkl"/>
+                <constraint firstItem="TPw-O1-eae" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="WsL-zm-J56"/>
+                <constraint firstItem="qee-8K-JRH" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="cbV-vB-7vN"/>
+                <constraint firstAttribute="trailing" secondItem="qee-8K-JRH" secondAttribute="trailing" id="dgk-jh-GCc"/>
+                <constraint firstAttribute="bottom" secondItem="TPw-O1-eae" secondAttribute="bottom" id="ge5-du-6Ls"/>
+                <constraint firstAttribute="trailing" secondItem="G9X-p0-hmN" secondAttribute="trailing" constant="8" id="naJ-hN-1K2"/>
+                <constraint firstItem="qee-8K-JRH" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="zBB-Mw-6J0"/>
+            </constraints>
+            <size key="customSize" width="260" height="124"/>
+            <connections>
+                <outlet property="imageView" destination="TPw-O1-eae" id="lDo-W9-ayy"/>
+                <outlet property="titleLabel" destination="G9X-p0-hmN" id="wFf-Ie-vFj"/>
+            </connections>
+            <point key="canvasLocation" x="-220" y="-85"/>
+        </collectionViewCell>
+    </objects>
+</document>
