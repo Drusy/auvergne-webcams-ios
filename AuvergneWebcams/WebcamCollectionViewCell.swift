@@ -21,6 +21,7 @@ class WebcamCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
+        imageView.kf.cancelDownloadTask()
         imageView.image = nil
     }
 }
@@ -40,7 +41,14 @@ extension WebcamCollectionViewCell: ConfigurableCell {
         if let image = item.preferedImage(), let url = URL(string: image) {
             imageView.kf.indicatorType = .activity
             imageView.kf.indicator?.view.tintColor = UIColor.white
-            imageView.kf.setImage(with: url)
+            imageView.kf.setImage(with: url,
+                                  placeholder: nil,
+                                  options: nil,
+                                  progressBlock: nil) { image, error, cacheType, url in
+                                    guard let image = image else { return }
+                                    
+                                    item.image = image
+            }
         }
     
         titleLabel.text = item.title

@@ -6,7 +6,7 @@
 //
 //
 
-import Foundation
+import UIKit
 
 class Webcam {
     
@@ -14,6 +14,8 @@ class Webcam {
     var imageHD: String?
     var imageLD: String?
     var video: String?
+    
+    var image: UIImage?
     
     // MARK: -
     

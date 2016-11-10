@@ -27,6 +27,7 @@ class WebcamOverviewViewController: AbstractViewController {
                                                             style: .plain,
                                                             target: self,
                                                             action: #selector(onRefreshTouched))
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         let objects = [
             Webcam.pddWebcams(),
