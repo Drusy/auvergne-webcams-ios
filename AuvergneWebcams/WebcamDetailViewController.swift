@@ -75,7 +75,7 @@ class WebcamDetailViewController: AbstractViewController {
         let heightScale = scrollViewSize.height / imageViewSize.height
         
         scrollView.minimumZoomScale = min(widthScale, heightScale)
-        scrollView.zoomScale = 1.0
+        scrollView.zoomScale = max(widthScale, heightScale)
     }
     
     func setupGestureRecognizer() {
