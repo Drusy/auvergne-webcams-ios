@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,6 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        ImageCache.default.maxCachePeriodInSecond = Webcam.refreshInterval
+        ImageCache.default.cleanExpiredDiskCache()
         
         let webcamOverview = WebcamOverviewViewController()
         let navigationController = NavigationController(rootViewController: webcamOverview)

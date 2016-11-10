@@ -10,12 +10,19 @@ import UIKit
 
 class Webcam {
     
+    static let refreshInterval: TimeInterval = 60 * 10
+    
+    var lastUpdate: NSDate?
     var title: String?
     var imageHD: String?
     var imageLD: String?
     var video: String?
     
-    var image: UIImage?
+    var image: UIImage? {
+        didSet {
+            lastUpdate = NSDate()
+        }
+    }
     
     // MARK: -
     

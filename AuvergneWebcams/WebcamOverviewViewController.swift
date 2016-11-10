@@ -7,13 +7,16 @@
 //
 
 import UIKit
+import Kingfisher
 
 class WebcamOverviewViewController: AbstractViewController {
 
     @IBOutlet var collectionView: UICollectionView!
     
     var webcamProvider: WebcamsViewProvider?
-    
+    var refreshTimer: Timer?
+    var lastUpdate: TimeInterval?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,7 +29,7 @@ class WebcamOverviewViewController: AbstractViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "refresh-icon"),
                                                             style: .plain,
                                                             target: self,
-                                                            action: #selector(onRefreshTouched))
+                                                            action: #selector(refresh))
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         let objects = [
@@ -48,10 +51,47 @@ class WebcamOverviewViewController: AbstractViewController {
         }
     }
     
-    // MARK: - 
-    
-    func onRefreshTouched() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        refreshTimer = Timer.scheduledTimer(timeInterval: Webcam.refreshInterval,
+                                            target: self,
+                                            selector: #selector(refresh),
+                                            userInfo: nil,
+                                            repeats: true)
+        
+        let now = NSDate().timeIntervalSinceReferenceDate
+        if let lastUpdate = lastUpdate {
+            let interval = now - lastUpdate
+            if interval > Webcam.refreshInterval {
+                refresh()
+            }
+        } else {
+            lastUpdate = now
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        refreshTimer?.invalidate()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+        flowLayout.invalidateLayout()
+    }
+    
+    // MARK: -
+    
+    func refresh() {
+        ImageCache.default.clearDiskCache()
+        ImageCache.default.clearMemoryCache()
+        
+        collectionView.reloadData()
+        lastUpdate = NSDate().timeIntervalSinceReferenceDate
     }
     
     func onSettingsTouched() {
