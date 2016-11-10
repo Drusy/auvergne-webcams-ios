@@ -25,12 +25,36 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TPw-O1-eae">
                         <rect key="frame" x="0.0" y="0.0" width="259" height="150"/>
                     </imageView>
-                    <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qee-8K-JRH">
+                    <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qee-8K-JRH">
                         <rect key="frame" x="0.0" y="0.0" width="259" height="150"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Webcam" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G9X-p0-hmN">
-                        <rect key="frame" x="8" y="118.5" width="243" height="23.5"/>
+                    <visualEffectView opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kb1-Df-sBe">
+                        <rect key="frame" x="0.0" y="105" width="259" height="45"/>
+                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ZM4-fN-2WC">
+                            <rect key="frame" x="0.0" y="0.0" width="259" height="45"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vRa-yG-cNj">
+                                    <rect key="frame" x="0.0" y="0.0" width="259" height="45"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="VEA-T2-iMH">
+                                        <rect key="frame" x="0.0" y="0.0" width="259" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </view>
+                                    <vibrancyEffect>
+                                        <blurEffect style="light"/>
+                                    </vibrancyEffect>
+                                </visualEffectView>
+                            </subviews>
+                        </view>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="g1e-AN-ujS"/>
+                        </constraints>
+                        <blurEffect style="dark"/>
+                    </visualEffectView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Webcam" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="G9X-p0-hmN">
+                        <rect key="frame" x="8" y="105" width="243" height="45"/>
                         <fontDescription key="fontDescription" name="OpenSans-CondensedBold" family="Open Sans Condensed" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -39,15 +63,19 @@
             </view>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="TPw-O1-eae" secondAttribute="trailing" id="81U-NF-fHd"/>
-                <constraint firstAttribute="bottom" secondItem="G9X-p0-hmN" secondAttribute="bottom" constant="8" id="GP9-IX-LWH"/>
-                <constraint firstItem="G9X-p0-hmN" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="NsG-f2-eAc"/>
+                <constraint firstItem="G9X-p0-hmN" firstAttribute="top" secondItem="Kb1-Df-sBe" secondAttribute="top" id="EJO-qZ-hxg"/>
+                <constraint firstItem="G9X-p0-hmN" firstAttribute="bottom" secondItem="Kb1-Df-sBe" secondAttribute="bottom" id="KIc-sO-iMs"/>
+                <constraint firstAttribute="trailing" secondItem="Kb1-Df-sBe" secondAttribute="trailing" id="Naw-ya-KEd"/>
                 <constraint firstItem="TPw-O1-eae" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="QAw-qo-fsD"/>
                 <constraint firstAttribute="bottom" secondItem="qee-8K-JRH" secondAttribute="bottom" id="Qsm-NK-Wkl"/>
+                <constraint firstAttribute="bottom" secondItem="Kb1-Df-sBe" secondAttribute="bottom" id="Ss7-eo-Fak"/>
                 <constraint firstItem="TPw-O1-eae" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="WsL-zm-J56"/>
+                <constraint firstItem="G9X-p0-hmN" firstAttribute="trailing" secondItem="Kb1-Df-sBe" secondAttribute="trailing" constant="-8" id="akY-r0-sYF"/>
                 <constraint firstItem="qee-8K-JRH" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="cbV-vB-7vN"/>
                 <constraint firstAttribute="trailing" secondItem="qee-8K-JRH" secondAttribute="trailing" id="dgk-jh-GCc"/>
                 <constraint firstAttribute="bottom" secondItem="TPw-O1-eae" secondAttribute="bottom" id="ge5-du-6Ls"/>
-                <constraint firstAttribute="trailing" secondItem="G9X-p0-hmN" secondAttribute="trailing" constant="8" id="naJ-hN-1K2"/>
+                <constraint firstItem="G9X-p0-hmN" firstAttribute="leading" secondItem="Kb1-Df-sBe" secondAttribute="leading" constant="8" id="lEw-la-k3k"/>
+                <constraint firstItem="Kb1-Df-sBe" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="mKQ-w6-w3u"/>
                 <constraint firstItem="qee-8K-JRH" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="zBB-Mw-6J0"/>
             </constraints>
             <size key="customSize" width="260" height="124"/>
@@ -55,7 +83,7 @@
                 <outlet property="imageView" destination="TPw-O1-eae" id="lDo-W9-ayy"/>
                 <outlet property="titleLabel" destination="G9X-p0-hmN" id="wFf-Ie-vFj"/>
             </connections>
-            <point key="canvasLocation" x="-220" y="-85"/>
+            <point key="canvasLocation" x="-220.5" y="-85"/>
         </collectionViewCell>
     </objects>
 </document>

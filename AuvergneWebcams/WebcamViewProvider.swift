@@ -11,7 +11,7 @@ import UIKit
 class WebcamsViewProvider: AbstractArrayViewProvider<Webcam, WebcamCollectionViewCell>, UICollectionViewDelegateFlowLayout {
 
     static let cellHeight: CGFloat = 150
-    static let sectionHeight: CGFloat = 75
+    static let sectionHeight: CGFloat = 50
     
     // MARK: -
     

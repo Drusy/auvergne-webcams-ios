@@ -20,6 +20,8 @@
 		F93C76461DD11AF0005DEE66 /* Siren.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F93C763B1DD11ACE005DEE66 /* Siren.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F93C76471DD11AF0005DEE66 /* SwiftyUserDefaults.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F93C763C1DD11ACE005DEE66 /* SwiftyUserDefaults.framework */; };
 		F93C76481DD11AF0005DEE66 /* SwiftyUserDefaults.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F93C763C1DD11ACE005DEE66 /* SwiftyUserDefaults.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F94FEEAD1DD4764100586F54 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94FEEAC1DD4764100586F54 /* NavigationController.swift */; };
+		F94FEEB01DD4765A00586F54 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94FEEAF1DD4765A00586F54 /* UIFontExtension.swift */; };
 		F9F5AC5E1DD31C9100D9FF83 /* AbstractViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5AC5C1DD31C9100D9FF83 /* AbstractViewController.swift */; };
 		F9F5AC5F1DD31C9100D9FF83 /* AbstractViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9F5AC5D1DD31C9100D9FF83 /* AbstractViewController.xib */; };
 		F9F5AC6C1DD32AF200D9FF83 /* AbstractArrayViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5AC691DD32AF200D9FF83 /* AbstractArrayViewProvider.swift */; };
@@ -98,6 +100,8 @@
 		F93C763A1DD11ACE005DEE66 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = Carthage/Build/iOS/Reachability.framework; sourceTree = "<group>"; };
 		F93C763B1DD11ACE005DEE66 /* Siren.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Siren.framework; path = Carthage/Build/iOS/Siren.framework; sourceTree = "<group>"; };
 		F93C763C1DD11ACE005DEE66 /* SwiftyUserDefaults.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyUserDefaults.framework; path = Carthage/Build/iOS/SwiftyUserDefaults.framework; sourceTree = "<group>"; };
+		F94FEEAC1DD4764100586F54 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		F94FEEAF1DD4765A00586F54 /* UIFontExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		F9F5AC5C1DD31C9100D9FF83 /* AbstractViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractViewController.swift; sourceTree = "<group>"; };
 		F9F5AC5D1DD31C9100D9FF83 /* AbstractViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbstractViewController.xib; sourceTree = "<group>"; };
 		F9F5AC691DD32AF200D9FF83 /* AbstractArrayViewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractArrayViewProvider.swift; sourceTree = "<group>"; };
@@ -243,10 +247,28 @@
 			name = doc;
 			sourceTree = "<group>";
 		};
+		F94FEEAB1DD4763900586F54 /* Containers */ = {
+			isa = PBXGroup;
+			children = (
+				F94FEEAC1DD4764100586F54 /* NavigationController.swift */,
+			);
+			name = Containers;
+			sourceTree = "<group>";
+		};
+		F94FEEAE1DD4764A00586F54 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F94FEEAF1DD4765A00586F54 /* UIFontExtension.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		F9F5AC591DD3196E00D9FF83 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				F9F5AC5B1DD31C7D00D9FF83 /* Abstract */,
+				F94FEEAE1DD4764A00586F54 /* Extensions */,
+				F94FEEAB1DD4763900586F54 /* Containers */,
 				F9F5AC701DD32C9A00D9FF83 /* Main */,
 				F9F5AC9F1DD35D9200D9FF83 /* Details */,
 			);
@@ -508,7 +530,9 @@
 				F9F5AC791DD33CF000D9FF83 /* WebcamViewProvider.swift in Sources */,
 				F9F5AC6E1DD32AF200D9FF83 /* AbstractViewProvider.swift in Sources */,
 				F9F5AC5E1DD31C9100D9FF83 /* AbstractViewController.swift in Sources */,
+				F94FEEAD1DD4764100586F54 /* NavigationController.swift in Sources */,
 				F93C760D1DD11577005DEE66 /* AppDelegate.swift in Sources */,
+				F94FEEB01DD4765A00586F54 /* UIFontExtension.swift in Sources */,
 				F9F5AC6D1DD32AF200D9FF83 /* AbstractEnumeratableViewProvider.swift in Sources */,
 				F9F5AC6C1DD32AF200D9FF83 /* AbstractArrayViewProvider.swift in Sources */,
 				F9F5AC761DD33B8200D9FF83 /* WebcamCollectionViewCell.swift in Sources */,

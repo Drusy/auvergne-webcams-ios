@@ -19,6 +19,15 @@ class WebcamOverviewViewController: AbstractViewController {
         
 //        automaticallyAdjustsScrollViewInsets = false
         
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "settings-icon"),
+                                                           style: .plain,
+                                                           target: self,
+                                                           action: #selector(onSettingsTouched))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "refresh-icon"),
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(onRefreshTouched))
+        
         let objects = [
             Webcam.pddWebcams(),
             Webcam.sancyWebcams()
@@ -36,6 +45,16 @@ class WebcamOverviewViewController: AbstractViewController {
             let detail = WebcamDetailViewController(webcam: webcam)
             self?.navigationController?.pushViewController(detail, animated: true)
         }
+    }
+    
+    // MARK: - 
+    
+    func onRefreshTouched() {
+        
+    }
+    
+    func onSettingsTouched() {
+        
     }
     
     // MARK: -

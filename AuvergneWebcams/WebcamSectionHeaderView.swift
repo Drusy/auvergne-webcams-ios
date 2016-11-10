@@ -31,7 +31,7 @@ class WebcamSectionHeaderView: UICollectionReusableView {
     func configure(with item: WebcamSection, atIndexPath indexPath: IndexPath) {
         let evenSection: Bool = (indexPath.section % 2) == 0
 
-        sectionTitle.text = item.title
+        sectionTitle.text = item.title?.uppercased()
         sectionTitle.textAlignment = evenSection ? .left : .right
         
         leftSectionIcon.isHidden = !evenSection
