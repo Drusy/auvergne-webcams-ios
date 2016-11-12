@@ -10,7 +10,11 @@ import UIKit
 
 class Webcam {
     
+    #if DEBUG
+    static let refreshInterval: TimeInterval = 60 * 1
+    #else
     static let refreshInterval: TimeInterval = 60 * 10
+    #endif
     
     var lastUpdate: NSDate?
     var title: String?

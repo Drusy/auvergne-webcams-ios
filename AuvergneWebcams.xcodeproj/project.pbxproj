@@ -22,8 +22,8 @@
 		F93C76481DD11AF0005DEE66 /* SwiftyUserDefaults.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F93C763C1DD11ACE005DEE66 /* SwiftyUserDefaults.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F94FEEAD1DD4764100586F54 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94FEEAC1DD4764100586F54 /* NavigationController.swift */; };
 		F94FEEB01DD4765A00586F54 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94FEEAF1DD4765A00586F54 /* UIFontExtension.swift */; };
+		F9BE03091DD7817C0063275B /* AbstractRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE03081DD7817C0063275B /* AbstractRefreshViewController.swift */; };
 		F9F5AC5E1DD31C9100D9FF83 /* AbstractViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5AC5C1DD31C9100D9FF83 /* AbstractViewController.swift */; };
-		F9F5AC5F1DD31C9100D9FF83 /* AbstractViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9F5AC5D1DD31C9100D9FF83 /* AbstractViewController.xib */; };
 		F9F5AC6C1DD32AF200D9FF83 /* AbstractArrayViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5AC691DD32AF200D9FF83 /* AbstractArrayViewProvider.swift */; };
 		F9F5AC6D1DD32AF200D9FF83 /* AbstractEnumeratableViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5AC6A1DD32AF200D9FF83 /* AbstractEnumeratableViewProvider.swift */; };
 		F9F5AC6E1DD32AF200D9FF83 /* AbstractViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5AC6B1DD32AF200D9FF83 /* AbstractViewProvider.swift */; };
@@ -102,8 +102,8 @@
 		F93C763C1DD11ACE005DEE66 /* SwiftyUserDefaults.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyUserDefaults.framework; path = Carthage/Build/iOS/SwiftyUserDefaults.framework; sourceTree = "<group>"; };
 		F94FEEAC1DD4764100586F54 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		F94FEEAF1DD4765A00586F54 /* UIFontExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
+		F9BE03081DD7817C0063275B /* AbstractRefreshViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractRefreshViewController.swift; sourceTree = "<group>"; };
 		F9F5AC5C1DD31C9100D9FF83 /* AbstractViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractViewController.swift; sourceTree = "<group>"; };
-		F9F5AC5D1DD31C9100D9FF83 /* AbstractViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbstractViewController.xib; sourceTree = "<group>"; };
 		F9F5AC691DD32AF200D9FF83 /* AbstractArrayViewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractArrayViewProvider.swift; sourceTree = "<group>"; };
 		F9F5AC6A1DD32AF200D9FF83 /* AbstractEnumeratableViewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractEnumeratableViewProvider.swift; sourceTree = "<group>"; };
 		F9F5AC6B1DD32AF200D9FF83 /* AbstractViewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractViewProvider.swift; sourceTree = "<group>"; };
@@ -288,7 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				F9F5AC5C1DD31C9100D9FF83 /* AbstractViewController.swift */,
-				F9F5AC5D1DD31C9100D9FF83 /* AbstractViewController.xib */,
+				F9BE03081DD7817C0063275B /* AbstractRefreshViewController.swift */,
 			);
 			name = Abstract;
 			sourceTree = "<group>";
@@ -477,7 +477,6 @@
 				F9F5AC8A1DD344CC00D9FF83 /* Open Sans 300.ttf in Resources */,
 				F9F5AC931DD344CC00D9FF83 /* Open Sans Condensed 300italic.ttf in Resources */,
 				F9F5AC9E1DD35C0100D9FF83 /* WebcamOverviewViewController.xib in Resources */,
-				F9F5AC5F1DD31C9100D9FF83 /* AbstractViewController.xib in Resources */,
 				F9F5AC911DD344CC00D9FF83 /* Open Sans 800italic.ttf in Resources */,
 				F9F5AC8F1DD344CC00D9FF83 /* Open Sans 700italic.ttf in Resources */,
 				F9F5AC961DD344CC00D9FF83 /* Open Sans Condensed 700.ttf in Resources */,
@@ -535,6 +534,7 @@
 				F94FEEB01DD4765A00586F54 /* UIFontExtension.swift in Sources */,
 				F9F5AC6D1DD32AF200D9FF83 /* AbstractEnumeratableViewProvider.swift in Sources */,
 				F9F5AC6C1DD32AF200D9FF83 /* AbstractArrayViewProvider.swift in Sources */,
+				F9BE03091DD7817C0063275B /* AbstractRefreshViewController.swift in Sources */,
 				F9F5AC761DD33B8200D9FF83 /* WebcamCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
