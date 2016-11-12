@@ -11,7 +11,7 @@ import UIKit
 class WebcamsViewProvider: AbstractArrayViewProvider<Webcam, WebcamCollectionViewCell>, UICollectionViewDelegateFlowLayout {
 
     static let cellHeight: CGFloat = 150
-    static let sectionHeight: CGFloat = 50
+    static let sectionHeight: CGFloat = 70
     
     // MARK: -
     
@@ -41,6 +41,14 @@ class WebcamsViewProvider: AbstractArrayViewProvider<Webcam, WebcamCollectionVie
         width = ((collectionView.frame.size.width - offset) / 2)
         
         return CGSize(width: width, height: WebcamsViewProvider.cellHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if section == (numberOfSections() - 1) {
+            return UIEdgeInsets(top: 0, left: 0, bottom: 5, right: 0)
+        }
+        
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {

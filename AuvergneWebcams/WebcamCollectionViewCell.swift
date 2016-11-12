@@ -24,6 +24,12 @@ class WebcamCollectionViewCell: UICollectionViewCell {
         imageView.kf.cancelDownloadTask()
         imageView.image = nil
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        imageView.kf.indicator?.view.layoutIfNeeded()
+    }
 }
 
 extension WebcamCollectionViewCell: ConfigurableCell {
@@ -39,8 +45,10 @@ extension WebcamCollectionViewCell: ConfigurableCell {
     
     func configure(with item: Webcam) {
         if let image = item.preferedImage(), let url = URL(string: image) {
-            imageView.kf.indicatorType = .activity
-            imageView.kf.indicator?.view.tintColor = UIColor.white
+            let indicator = KFIndicator(.white)
+            
+//            imageView.kf.indicatorType = .activity
+            imageView.kf.indicatorType = .custom(indicator: indicator)
             imageView.kf.setImage(with: url,
                                   placeholder: nil,
                                   options: nil,
