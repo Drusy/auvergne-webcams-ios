@@ -47,16 +47,8 @@ extension WebcamCollectionViewCell: ConfigurableCell {
         if let image = item.preferedImage(), let url = URL(string: image) {
             let indicator = KFIndicator(.white)
             
-//            imageView.kf.indicatorType = .activity
             imageView.kf.indicatorType = .custom(indicator: indicator)
-            imageView.kf.setImage(with: url,
-                                  placeholder: nil,
-                                  options: nil,
-                                  progressBlock: nil) { image, error, cacheType, url in
-                                    guard let image = image else { return }
-                                    
-                                    item.image = image
-            }
+            imageView.kf.setImage(with: url)
         }
     
         titleLabel.text = item.title

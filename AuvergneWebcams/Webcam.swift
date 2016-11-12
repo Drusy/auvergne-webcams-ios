@@ -22,12 +22,6 @@ class Webcam {
     var imageLD: String?
     var video: String?
     
-    var image: UIImage? {
-        didSet {
-            lastUpdate = NSDate()
-        }
-    }
-    
     // MARK: -
     
     func preferedImage() -> String? {

@@ -58,7 +58,7 @@ class WebcamOverviewViewController: AbstractRefreshViewController {
     
     // MARK: -
     
-    override func refresh() {
+    override func refresh(force: Bool) {
         ImageCache.default.clearDiskCache()
         ImageCache.default.clearMemoryCache()
         

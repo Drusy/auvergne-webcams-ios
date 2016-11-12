@@ -51,7 +51,7 @@ class AbstractRefreshViewController: AbstractViewController {
         if let lastUpdate = lastUpdate {
             let interval = now - lastUpdate
             if interval > Webcam.refreshInterval {
-                refresh()
+                refresh(force: true)
             }
         } else {
             lastUpdate = now
@@ -74,7 +74,7 @@ class AbstractRefreshViewController: AbstractViewController {
     
     // MARK: -
     
-    func refresh() {
+    @objc func refresh(force: Bool = false) {
         
     }
 }
