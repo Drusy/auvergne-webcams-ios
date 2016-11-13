@@ -24,6 +24,12 @@
 		F94FEEB01DD4765A00586F54 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94FEEAF1DD4765A00586F54 /* UIFontExtension.swift */; };
 		F9BE03091DD7817C0063275B /* AbstractRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE03081DD7817C0063275B /* AbstractRefreshViewController.swift */; };
 		F9BE030C1DD78E4B0063275B /* KFIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE030B1DD78E4B0063275B /* KFIndicator.swift */; };
+		F9BE030F1DD8AC1B0063275B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE030D1DD8AC1B0063275B /* SettingsViewController.swift */; };
+		F9BE03101DD8AC1B0063275B /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9BE030E1DD8AC1B0063275B /* SettingsViewController.xib */; };
+		F9BE03121DD8AF960063275B /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9BE03111DD8AF8E0063275B /* Eureka.framework */; };
+		F9BE03131DD8AF960063275B /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9BE03111DD8AF8E0063275B /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F9BE03171DD8AFEE0063275B /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE03151DD8AFEE0063275B /* AboutViewController.swift */; };
+		F9BE03181DD8AFEE0063275B /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9BE03161DD8AFEE0063275B /* AboutViewController.xib */; };
 		F9F5AC5E1DD31C9100D9FF83 /* AbstractViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5AC5C1DD31C9100D9FF83 /* AbstractViewController.swift */; };
 		F9F5AC6C1DD32AF200D9FF83 /* AbstractArrayViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5AC691DD32AF200D9FF83 /* AbstractArrayViewProvider.swift */; };
 		F9F5AC6D1DD32AF200D9FF83 /* AbstractEnumeratableViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5AC6A1DD32AF200D9FF83 /* AbstractEnumeratableViewProvider.swift */; };
@@ -74,6 +80,7 @@
 				F93C76481DD11AF0005DEE66 /* SwiftyUserDefaults.framework in Embed Frameworks */,
 				F93C76421DD11AF0005DEE66 /* Kingfisher.framework in Embed Frameworks */,
 				F93C76441DD11AF0005DEE66 /* Reachability.framework in Embed Frameworks */,
+				F9BE03131DD8AF960063275B /* Eureka.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -105,6 +112,11 @@
 		F94FEEAF1DD4765A00586F54 /* UIFontExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		F9BE03081DD7817C0063275B /* AbstractRefreshViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractRefreshViewController.swift; sourceTree = "<group>"; };
 		F9BE030B1DD78E4B0063275B /* KFIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KFIndicator.swift; sourceTree = "<group>"; };
+		F9BE030D1DD8AC1B0063275B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		F9BE030E1DD8AC1B0063275B /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		F9BE03111DD8AF8E0063275B /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
+		F9BE03151DD8AFEE0063275B /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		F9BE03161DD8AFEE0063275B /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
 		F9F5AC5C1DD31C9100D9FF83 /* AbstractViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractViewController.swift; sourceTree = "<group>"; };
 		F9F5AC691DD32AF200D9FF83 /* AbstractArrayViewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractArrayViewProvider.swift; sourceTree = "<group>"; };
 		F9F5AC6A1DD32AF200D9FF83 /* AbstractEnumeratableViewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractEnumeratableViewProvider.swift; sourceTree = "<group>"; };
@@ -143,6 +155,7 @@
 				F93C76471DD11AF0005DEE66 /* SwiftyUserDefaults.framework in Frameworks */,
 				F93C76411DD11AF0005DEE66 /* Kingfisher.framework in Frameworks */,
 				F93C76431DD11AF0005DEE66 /* Reachability.framework in Frameworks */,
+				F9BE03121DD8AF960063275B /* Eureka.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,6 +245,7 @@
 			children = (
 				F93C76381DD11915005DEE66 /* Cartfile.resolved */,
 				F93C76321DD1175E005DEE66 /* Cartfile */,
+				F9BE03111DD8AF8E0063275B /* Eureka.framework */,
 				F93C76391DD11ACE005DEE66 /* Kingfisher.framework */,
 				F93C763A1DD11ACE005DEE66 /* Reachability.framework */,
 				F93C763B1DD11ACE005DEE66 /* Siren.framework */,
@@ -273,6 +287,17 @@
 			name = KingFisher;
 			sourceTree = "<group>";
 		};
+		F9BE03141DD8AFD40063275B /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				F9BE030D1DD8AC1B0063275B /* SettingsViewController.swift */,
+				F9BE030E1DD8AC1B0063275B /* SettingsViewController.xib */,
+				F9BE03151DD8AFEE0063275B /* AboutViewController.swift */,
+				F9BE03161DD8AFEE0063275B /* AboutViewController.xib */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 		F9F5AC591DD3196E00D9FF83 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -281,6 +306,7 @@
 				F94FEEAB1DD4763900586F54 /* Containers */,
 				F9F5AC701DD32C9A00D9FF83 /* Main */,
 				F9F5AC9F1DD35D9200D9FF83 /* Details */,
+				F9BE03141DD8AFD40063275B /* Settings */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -476,6 +502,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9F5ACA31DD35DDD00D9FF83 /* WebcamDetailViewController.xib in Resources */,
+				F9BE03181DD8AFEE0063275B /* AboutViewController.xib in Resources */,
 				F9F5AC921DD344CC00D9FF83 /* Open Sans Condensed 300.ttf in Resources */,
 				F9F5AC901DD344CC00D9FF83 /* Open Sans 800.ttf in Resources */,
 				F9F5AC8B1DD344CC00D9FF83 /* Open Sans 300italic.ttf in Resources */,
@@ -494,6 +521,7 @@
 				F9F5AC9C1DD34EF300D9FF83 /* WebcamSectionHeaderView.xib in Resources */,
 				F9F5AC941DD344CC00D9FF83 /* Open Sans italic.ttf in Resources */,
 				F9F5AC8D1DD344CC00D9FF83 /* Open Sans 600italic.ttf in Resources */,
+				F9BE03101DD8AC1B0063275B /* SettingsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,6 +545,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Siren.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftyUserDefaults.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Eureka.framework",
 			);
 			name = Carthage;
 			outputPaths = (
@@ -544,6 +573,8 @@
 				F93C760D1DD11577005DEE66 /* AppDelegate.swift in Sources */,
 				F9BE030C1DD78E4B0063275B /* KFIndicator.swift in Sources */,
 				F94FEEB01DD4765A00586F54 /* UIFontExtension.swift in Sources */,
+				F9BE03171DD8AFEE0063275B /* AboutViewController.swift in Sources */,
+				F9BE030F1DD8AC1B0063275B /* SettingsViewController.swift in Sources */,
 				F9F5AC6D1DD32AF200D9FF83 /* AbstractEnumeratableViewProvider.swift in Sources */,
 				F9F5AC6C1DD32AF200D9FF83 /* AbstractArrayViewProvider.swift in Sources */,
 				F9BE03091DD7817C0063275B /* AbstractRefreshViewController.swift in Sources */,

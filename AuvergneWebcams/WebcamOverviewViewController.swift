@@ -67,7 +67,12 @@ class WebcamOverviewViewController: AbstractRefreshViewController {
     }
     
     func onSettingsTouched() {
+        let settingsVC = SettingsViewController()
+        let navigationVC = NavigationController(rootViewController: settingsVC)
         
+        navigationVC.modalPresentationStyle = .overCurrentContext
+        
+        present(navigationVC, animated: true, completion: nil)
     }
     
     // MARK: -
