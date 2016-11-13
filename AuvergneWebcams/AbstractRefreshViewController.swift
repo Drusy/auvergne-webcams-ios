@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyUserDefaults
 
 class AbstractRefreshViewController: AbstractViewController {
 
@@ -50,7 +51,7 @@ class AbstractRefreshViewController: AbstractViewController {
         let now = NSDate().timeIntervalSinceReferenceDate
         if let lastUpdate = lastUpdate {
             let interval = now - lastUpdate
-            if interval > Webcam.refreshInterval {
+            if interval > Defaults[.autorefreshInterval] as TimeInterval {
                 refresh(force: true)
             }
         } else {
@@ -65,7 +66,7 @@ class AbstractRefreshViewController: AbstractViewController {
     @objc private func startRefreshing() {
         refreshIfNeeded()
         
-        refreshTimer = Timer.scheduledTimer(timeInterval: Webcam.refreshInterval,
+        refreshTimer = Timer.scheduledTimer(timeInterval: Defaults[.autorefreshInterval],
                                             target: self,
                                             selector: #selector(refresh),
                                             userInfo: nil,

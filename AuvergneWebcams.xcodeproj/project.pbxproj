@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F9022D9E1DD90032006AF146 /* SwiftiumKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9022D9D1DD90018006AF146 /* SwiftiumKit.framework */; };
+		F9022D9F1DD90032006AF146 /* SwiftiumKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9022D9D1DD90018006AF146 /* SwiftiumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F9022DA11DD90601006AF146 /* DefaultsKeyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9022DA01DD90601006AF146 /* DefaultsKeyExtension.swift */; };
 		F93C760D1DD11577005DEE66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93C760C1DD11577005DEE66 /* AppDelegate.swift */; };
 		F93C760F1DD11577005DEE66 /* WebcamOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93C760E1DD11577005DEE66 /* WebcamOverviewViewController.swift */; };
 		F93C76141DD11577005DEE66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F93C76131DD11577005DEE66 /* Assets.xcassets */; };
@@ -81,6 +84,7 @@
 				F93C76421DD11AF0005DEE66 /* Kingfisher.framework in Embed Frameworks */,
 				F93C76441DD11AF0005DEE66 /* Reachability.framework in Embed Frameworks */,
 				F9BE03131DD8AF960063275B /* Eureka.framework in Embed Frameworks */,
+				F9022D9F1DD90032006AF146 /* SwiftiumKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -88,6 +92,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F9022D9D1DD90018006AF146 /* SwiftiumKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftiumKit.framework; path = Carthage/Build/iOS/SwiftiumKit.framework; sourceTree = "<group>"; };
+		F9022DA01DD90601006AF146 /* DefaultsKeyExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsKeyExtension.swift; sourceTree = "<group>"; };
 		F93C76091DD11577005DEE66 /* AuvergneWebcams.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AuvergneWebcams.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F93C760C1DD11577005DEE66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F93C760E1DD11577005DEE66 /* WebcamOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebcamOverviewViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +162,7 @@
 				F93C76411DD11AF0005DEE66 /* Kingfisher.framework in Frameworks */,
 				F93C76431DD11AF0005DEE66 /* Reachability.framework in Frameworks */,
 				F9BE03121DD8AF960063275B /* Eureka.framework in Frameworks */,
+				F9022D9E1DD90032006AF146 /* SwiftiumKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,8 +250,9 @@
 		F93C76311DD1169C005DEE66 /* Carthage */ = {
 			isa = PBXGroup;
 			children = (
-				F93C76381DD11915005DEE66 /* Cartfile.resolved */,
 				F93C76321DD1175E005DEE66 /* Cartfile */,
+				F93C76381DD11915005DEE66 /* Cartfile.resolved */,
+				F9022D9D1DD90018006AF146 /* SwiftiumKit.framework */,
 				F9BE03111DD8AF8E0063275B /* Eureka.framework */,
 				F93C76391DD11ACE005DEE66 /* Kingfisher.framework */,
 				F93C763A1DD11ACE005DEE66 /* Reachability.framework */,
@@ -274,6 +282,7 @@
 		F94FEEAE1DD4764A00586F54 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				F9022DA01DD90601006AF146 /* DefaultsKeyExtension.swift */,
 				F94FEEAF1DD4765A00586F54 /* UIFontExtension.swift */,
 			);
 			name = Extensions;
@@ -546,6 +555,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Siren.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftyUserDefaults.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Eureka.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftiumKit.framework",
 			);
 			name = Carthage;
 			outputPaths = (
@@ -563,6 +573,7 @@
 			files = (
 				F9F5AC981DD34C8B00D9FF83 /* WebcamSection.swift in Sources */,
 				F93C760F1DD11577005DEE66 /* WebcamOverviewViewController.swift in Sources */,
+				F9022DA11DD90601006AF146 /* DefaultsKeyExtension.swift in Sources */,
 				F9F5AC731DD33B6800D9FF83 /* Webcam.swift in Sources */,
 				F9F5AC9B1DD34EF300D9FF83 /* WebcamSectionHeaderView.swift in Sources */,
 				F9F5ACA21DD35DDD00D9FF83 /* WebcamDetailViewController.swift in Sources */,

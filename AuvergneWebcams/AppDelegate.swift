@@ -9,6 +9,7 @@
 import UIKit
 import Kingfisher
 import Siren
+import SwiftyUserDefaults
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,8 +18,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        // Defaults
+        if !Defaults[.firstConfigurationDone] {
+            Defaults[.firstConfigurationDone] = true
+            
+            // Defaults settings
+            Defaults[.shouldAutorefresh] = true
+            Defaults[.isDarkTheme] = true
+            Defaults[.autorefreshInterval] = Webcam.refreshInterval
+        }
+        
         // Cache
-        ImageCache.default.maxCachePeriodInSecond = Webcam.refreshInterval
+        let autorefreshInterval = Defaults[.autorefreshInterval]
+        ImageCache.default.maxCachePeriodInSecond = autorefreshInterval as TimeInterval
         ImageCache.default.cleanExpiredDiskCache()
         
         // Update
