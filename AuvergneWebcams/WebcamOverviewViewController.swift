@@ -58,14 +58,6 @@ class WebcamOverviewViewController: AbstractRefreshViewController {
     
     // MARK: -
     
-    override func refresh(force: Bool) {
-        ImageCache.default.clearDiskCache()
-        ImageCache.default.clearMemoryCache()
-        
-        collectionView.reloadData()
-        lastUpdate = NSDate().timeIntervalSinceReferenceDate
-    }
-    
     func onSettingsTouched() {
         let settingsVC = SettingsViewController()
         let navigationVC = NavigationController(rootViewController: settingsVC)
@@ -76,6 +68,20 @@ class WebcamOverviewViewController: AbstractRefreshViewController {
     }
     
     // MARK: -
+    
+    override func style() {
+        super.style()
+        
+        view.backgroundColor = ThemeUtils.backgroundColor()
+    }
+    
+    override func refresh(force: Bool) {
+        ImageCache.default.clearDiskCache()
+        ImageCache.default.clearMemoryCache()
+        
+        collectionView.reloadData()
+        lastUpdate = NSDate().timeIntervalSinceReferenceDate
+    }
     
     override func translate() {
         super.translate()

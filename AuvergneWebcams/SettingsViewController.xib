@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsViewController" customModule="AuvergneWebcams" customModuleProvider="target">
             <connections>
+                <outlet property="blurView" destination="bM9-c9-9Bd" id="TFi-n0-kaG"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

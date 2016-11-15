@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyUserDefaults
 
 class NavigationController: UINavigationController {
     
@@ -15,18 +16,18 @@ class NavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(style),
+                                               name: NSNotification.Name(rawValue: SettingsViewController.kSettingsDidUpdateTheme),
+                                               object: nil)
+        
         navigationBar.isTranslucent = true
-        navigationBar.barStyle = .black
-        navigationBar.tintColor = UIColor.white
-      
-//        let attributes = [
-//            NSForegroundColorAttributeName: UIColor.white,
-//            NSFontAttributeName: UIFont.openSansCondensedFont(withSize: 20)
-//        ]
-//        navigationBar.titleTextAttributes = attributes
-//        
-//        UINavigationBar.appearance().titleTextAttributes = attributes
-//        UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: .normal)
+        
+        style()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,10 +50,35 @@ class NavigationController: UINavigationController {
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return UIStatusBarStyle.lightContent
+        if Defaults[.isDarkTheme] {
+            return .lightContent
+        } else {
+            return .default
+        }
     }
     
     // MARK: -
+    
+    func style() {
+        setNeedsStatusBarAppearanceUpdate()
+        
+        if Defaults[.isDarkTheme] {
+            navigationBar.barStyle = .black
+            navigationBar.tintColor = UIColor.white
+        } else {
+            navigationBar.barStyle = .default
+            navigationBar.tintColor = UIColor.black
+        }
+        
+        //        let attributes = [
+        //            NSForegroundColorAttributeName: UIColor.white,
+        //            NSFontAttributeName: UIFont.openSansCondensedFont(withSize: 20)
+        //        ]
+        //        navigationBar.titleTextAttributes = attributes
+        //
+        //        UINavigationBar.appearance().titleTextAttributes = attributes
+        //        UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: .normal)
+    }
     
     func update() {
         if self.topViewController != nil && self.topViewController!.responds(to: #selector(update)) {

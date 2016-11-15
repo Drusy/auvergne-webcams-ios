@@ -80,6 +80,7 @@
             </constraints>
             <size key="customSize" width="260" height="124"/>
             <connections>
+                <outlet property="blurView" destination="Kb1-Df-sBe" id="i7z-cQ-g5Q"/>
                 <outlet property="imageView" destination="TPw-O1-eae" id="lDo-W9-ayy"/>
                 <outlet property="titleLabel" destination="G9X-p0-hmN" id="wFf-Ie-vFj"/>
             </connections>

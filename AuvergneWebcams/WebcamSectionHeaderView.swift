@@ -16,6 +16,18 @@ class WebcamSectionHeaderView: UICollectionReusableView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(style),
+                                               name: NSNotification.Name(rawValue: SettingsViewController.kSettingsDidUpdateTheme),
+                                               object: nil)
+        style()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: NSNotification.Name(rawValue: SettingsViewController.kSettingsDidUpdateTheme),
+                                                  object: nil)
     }
     
     // MARK: -
@@ -39,5 +51,10 @@ class WebcamSectionHeaderView: UICollectionReusableView {
         
         leftSectionIcon.image = item.image
         rightSectionIcon.image = item.image
+    }
+    
+    func style() {
+        sectionTitle.textColor = ThemeUtils.tintColor()
+        backgroundColor = ThemeUtils.backgroundColor()
     }
 }

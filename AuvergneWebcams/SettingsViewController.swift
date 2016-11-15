@@ -21,8 +21,11 @@ enum SettingTag: String {
 }
 
 class SettingsViewController: FormViewController {
+    static let kSettingsDidUpdateTheme = "SettingsDidUpdateTheme"
     
     private var foregroundNotification: Any?
+    
+    @IBOutlet var blurView: UIVisualEffectView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +35,18 @@ class SettingsViewController: FormViewController {
                                                            target: self,
                                                            action: #selector(close))
         
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(style),
+                                               name: NSNotification.Name(rawValue: SettingsViewController.kSettingsDidUpdateTheme),
+                                               object: nil)
+        
         setupForm()
         style()
         translate()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func viewWillLayoutSubviews() {
@@ -53,13 +65,14 @@ class SettingsViewController: FormViewController {
         let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
         let build = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
         
-        form
-            +++ Section("General")
+        form =
+            Section("General")
             <<< SwitchRow(SettingTag.theme.rawValue) {
                 $0.title = "Thème sombre"
                 $0.value = Defaults[.isDarkTheme]
             }.onChange { row in
                 Defaults[.isDarkTheme] = row.value ?? false
+                NotificationCenter.default.post(name: Notification.Name(rawValue: SettingsViewController.kSettingsDidUpdateTheme), object: self)
             }
             <<< SwitchRow(SettingTag.autoRefresh.rawValue) {
                 $0.title = "Rafraîchissement automatique"
@@ -69,7 +82,7 @@ class SettingsViewController: FormViewController {
             }
             <<< IntRow(SettingTag.autoRefreshDelay.rawValue) {
                 $0.title = "Délai de rafraîchissement (minutes)"
-                $0.value = Int(Defaults[.autorefreshInterval])
+                $0.value = Int(Defaults[.autorefreshInterval] / 60)
                 $0.hidden = Condition.function([SettingTag.autoRefresh.rawValue], { form in
                     return !((form.rowBy(tag: SettingTag.autoRefresh.rawValue) as? SwitchRow)?.value ?? false)
                 })
@@ -78,18 +91,15 @@ class SettingsViewController: FormViewController {
                 $0.add(rule: RuleSmallerOrEqualThan(max: 120))
                 $0.add(rule: RuleRequired())
             }.cellSetup { cell, row in
-                cell.backgroundColor = UIColor.clear
             }.cellUpdate { cell, row in
-                cell.textLabel?.numberOfLines = 0
-                cell.textLabel?.textColor = UIColor.lightGray
-                cell.textField.textColor = UIColor.lightGray
+
             }.onChange { row in
                 
             }.onCellHighlightChanged { cell, row in
                 row.validate()
                 
                 if row.isValid {
-                    Defaults[.autorefreshInterval] = Double(row.value ?? 0)
+                    Defaults[.autorefreshInterval] = Double(row.value ?? 0) * 60
                 } else {
                     let message = "Le délai de rafraîchissement doit être suppérieur à 0 et inférieur à 120"
                     let alertController = UIAlertController(title: "Erreur",
@@ -147,33 +157,58 @@ class SettingsViewController: FormViewController {
     }
     
     func style() {
+        let tintColor: UIColor = ThemeUtils.tintColor()
+        
+        if Defaults[.isDarkTheme] {
+            blurView.effect = UIBlurEffect(style: .dark)
+        } else {
+            blurView.effect = UIBlurEffect(style: .extraLight)
+        }
+        
         tableView?.separatorStyle = .none
         tableView?.backgroundColor = UIColor.clear
-        tableView?.tintColor = UIColor.lightGray
+        tableView?.tintColor = tintColor
+        
+        IntRow.defaultCellUpdate = { cell, row in
+            cell.backgroundColor = UIColor.clear
+            cell.textLabel?.numberOfLines = 0
+            cell.textLabel?.textColor = tintColor
+            cell.textField.textColor = tintColor
+            cell.accessoryType = .disclosureIndicator
+        }
         
         LabelRow.defaultCellSetup = { cell, row in
             cell.backgroundColor = UIColor.clear
-            cell.accessoryType = .disclosureIndicator
+            cell.textLabel?.numberOfLines = 0
         }
         LabelRow.defaultCellUpdate = { cell, row in
-            cell.textLabel?.numberOfLines = 0
-            cell.textLabel?.textColor = UIColor.lightGray
+            cell.textLabel?.textColor = tintColor
+            cell.accessoryType = .disclosureIndicator
         }
         
         SwitchRow.defaultCellSetup = { cell, row in
             cell.backgroundColor = UIColor.clear
-            cell.switchControl?.tintColor = UIColor.lightGray
-//            cell.switchControl?.thumbTintColor = UIColor.lightGray
-            cell.switchControl?.onTintColor = UIColor.lightGray
+            cell.textLabel?.numberOfLines = 0
         }
         SwitchRow.defaultCellUpdate = { cell, row in
-            cell.textLabel?.numberOfLines = 0
-            cell.textLabel?.textColor = UIColor.lightGray
+            cell.switchControl?.tintColor = tintColor
+            cell.switchControl?.onTintColor = tintColor
+            cell.textLabel?.textColor = tintColor
         }
+        
+//        tableView?.reloadData()
+        setupForm()
+        setNeedsStatusBarAppearanceUpdate()
     }
     
     func close() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - UITableViewDelegate
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.prepareDisclosureIndicator()
     }
 }
 

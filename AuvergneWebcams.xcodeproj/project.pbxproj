@@ -25,6 +25,8 @@
 		F93C76481DD11AF0005DEE66 /* SwiftyUserDefaults.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F93C763C1DD11ACE005DEE66 /* SwiftyUserDefaults.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F94FEEAD1DD4764100586F54 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94FEEAC1DD4764100586F54 /* NavigationController.swift */; };
 		F94FEEB01DD4765A00586F54 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94FEEAF1DD4765A00586F54 /* UIFontExtension.swift */; };
+		F96276191DDB6A5D0090A9AB /* UITableViewCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96276181DDB6A5D0090A9AB /* UITableViewCellExtension.swift */; };
+		F962761C1DDB6BD80090A9AB /* ThemeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F962761B1DDB6BD80090A9AB /* ThemeUtils.swift */; };
 		F9BE03091DD7817C0063275B /* AbstractRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE03081DD7817C0063275B /* AbstractRefreshViewController.swift */; };
 		F9BE030C1DD78E4B0063275B /* KFIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE030B1DD78E4B0063275B /* KFIndicator.swift */; };
 		F9BE030F1DD8AC1B0063275B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE030D1DD8AC1B0063275B /* SettingsViewController.swift */; };
@@ -116,6 +118,8 @@
 		F93C763C1DD11ACE005DEE66 /* SwiftyUserDefaults.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyUserDefaults.framework; path = Carthage/Build/iOS/SwiftyUserDefaults.framework; sourceTree = "<group>"; };
 		F94FEEAC1DD4764100586F54 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		F94FEEAF1DD4765A00586F54 /* UIFontExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
+		F96276181DDB6A5D0090A9AB /* UITableViewCellExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtension.swift; sourceTree = "<group>"; };
+		F962761B1DDB6BD80090A9AB /* ThemeUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeUtils.swift; sourceTree = "<group>"; };
 		F9BE03081DD7817C0063275B /* AbstractRefreshViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractRefreshViewController.swift; sourceTree = "<group>"; };
 		F9BE030B1DD78E4B0063275B /* KFIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KFIndicator.swift; sourceTree = "<group>"; };
 		F9BE030D1DD8AC1B0063275B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -223,6 +227,7 @@
 				F9F5AC591DD3196E00D9FF83 /* Controllers */,
 				F9F5AC5A1DD3197300D9FF83 /* Views */,
 				F9F5AC711DD33B5300D9FF83 /* Model */,
+				F962761A1DDB6BCD0090A9AB /* Utils */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -284,8 +289,17 @@
 			children = (
 				F9022DA01DD90601006AF146 /* DefaultsKeyExtension.swift */,
 				F94FEEAF1DD4765A00586F54 /* UIFontExtension.swift */,
+				F96276181DDB6A5D0090A9AB /* UITableViewCellExtension.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		F962761A1DDB6BCD0090A9AB /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				F962761B1DDB6BD80090A9AB /* ThemeUtils.swift */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		F9BE030A1DD78E330063275B /* KingFisher */ = {
@@ -578,10 +592,12 @@
 				F9F5AC9B1DD34EF300D9FF83 /* WebcamSectionHeaderView.swift in Sources */,
 				F9F5ACA21DD35DDD00D9FF83 /* WebcamDetailViewController.swift in Sources */,
 				F9F5AC791DD33CF000D9FF83 /* WebcamViewProvider.swift in Sources */,
+				F96276191DDB6A5D0090A9AB /* UITableViewCellExtension.swift in Sources */,
 				F9F5AC6E1DD32AF200D9FF83 /* AbstractViewProvider.swift in Sources */,
 				F9F5AC5E1DD31C9100D9FF83 /* AbstractViewController.swift in Sources */,
 				F94FEEAD1DD4764100586F54 /* NavigationController.swift in Sources */,
 				F93C760D1DD11577005DEE66 /* AppDelegate.swift in Sources */,
+				F962761C1DDB6BD80090A9AB /* ThemeUtils.swift in Sources */,
 				F9BE030C1DD78E4B0063275B /* KFIndicator.swift in Sources */,
 				F94FEEB01DD4765A00586F54 /* UIFontExtension.swift in Sources */,
 				F9BE03171DD8AFEE0063275B /* AboutViewController.swift in Sources */,
