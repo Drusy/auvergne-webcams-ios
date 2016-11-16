@@ -8,8 +8,11 @@
 //
 
 import UIKit
+import Reachability
 
 class AbstractViewController: UIViewController {
+
+    let reachability = Reachability()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +34,10 @@ class AbstractViewController: UIViewController {
     }
 
     // MARK: -
+    
+    func isReachable() -> Bool {
+        return (reachability == nil || (reachability != nil && reachability!.isReachable))
+    }
     
     func style() {
         

@@ -51,6 +51,10 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         refresh()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
@@ -64,7 +68,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     // MARK: - 
     
     func forceRefresh() {
-        refresh(force: true)
+        refresh(force: isReachable())
     }
     
     override func refresh(force: Bool = false) {
@@ -80,9 +84,19 @@ class WebcamDetailViewController: AbstractRefreshViewController {
                                    placeholder: nil,
                                    options: options,
                                    progressBlock: nil) { [weak self] image, error, cacheType, url in
-                                    guard let image = image else { return }
                                     
-                                    self?.set(image: image)
+                                    if let error = error {
+                                        print("ERROR: \(error.code) - \(error.localizedDescription)")
+                                        
+                                        if error.code != -999 {
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                                                print("Retrying to download \(url) ...")
+                                                self?.refresh(force: force)
+                                            }
+                                        }
+                                    } else if let image = image {
+                                        self?.set(image: image)
+                                    }
             }
         }
     }

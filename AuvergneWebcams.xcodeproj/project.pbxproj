@@ -10,6 +10,8 @@
 		F9022D9E1DD90032006AF146 /* SwiftiumKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9022D9D1DD90018006AF146 /* SwiftiumKit.framework */; };
 		F9022D9F1DD90032006AF146 /* SwiftiumKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9022D9D1DD90018006AF146 /* SwiftiumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F9022DA11DD90601006AF146 /* DefaultsKeyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9022DA01DD90601006AF146 /* DefaultsKeyExtension.swift */; };
+		F911BBEB1DDC6066000C022B /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F911BBEA1DDC6066000C022B /* Fabric.framework */; };
+		F911BBEE1DDC6097000C022B /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F911BBED1DDC6097000C022B /* Crashlytics.framework */; };
 		F93C760D1DD11577005DEE66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93C760C1DD11577005DEE66 /* AppDelegate.swift */; };
 		F93C760F1DD11577005DEE66 /* WebcamOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93C760E1DD11577005DEE66 /* WebcamOverviewViewController.swift */; };
 		F93C76141DD11577005DEE66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F93C76131DD11577005DEE66 /* Assets.xcassets */; };
@@ -96,6 +98,8 @@
 /* Begin PBXFileReference section */
 		F9022D9D1DD90018006AF146 /* SwiftiumKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftiumKit.framework; path = Carthage/Build/iOS/SwiftiumKit.framework; sourceTree = "<group>"; };
 		F9022DA01DD90601006AF146 /* DefaultsKeyExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsKeyExtension.swift; sourceTree = "<group>"; };
+		F911BBEA1DDC6066000C022B /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		F911BBED1DDC6097000C022B /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		F93C76091DD11577005DEE66 /* AuvergneWebcams.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AuvergneWebcams.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F93C760C1DD11577005DEE66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F93C760E1DD11577005DEE66 /* WebcamOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebcamOverviewViewController.swift; sourceTree = "<group>"; };
@@ -161,7 +165,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F911BBEB1DDC6066000C022B /* Fabric.framework in Frameworks */,
 				F93C76451DD11AF0005DEE66 /* Siren.framework in Frameworks */,
+				F911BBEE1DDC6097000C022B /* Crashlytics.framework in Frameworks */,
 				F93C76471DD11AF0005DEE66 /* SwiftyUserDefaults.framework in Frameworks */,
 				F93C76411DD11AF0005DEE66 /* Kingfisher.framework in Frameworks */,
 				F93C76431DD11AF0005DEE66 /* Reachability.framework in Frameworks */,
@@ -180,11 +186,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F911BBE81DDC6066000C022B /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				F911BBE91DDC6066000C022B /* Fabric */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		F911BBE91DDC6066000C022B /* Fabric */ = {
+			isa = PBXGroup;
+			children = (
+				F911BBED1DDC6097000C022B /* Crashlytics.framework */,
+				F911BBEA1DDC6066000C022B /* Fabric.framework */,
+			);
+			path = Fabric;
+			sourceTree = "<group>";
+		};
 		F93C76001DD11577005DEE66 = {
 			isa = PBXGroup;
 			children = (
 				F93C76351DD11892005DEE66 /* doc */,
 				F93C76341DD117DD005DEE66 /* scripts */,
+				F911BBE81DDC6066000C022B /* Vendor */,
 				F93C76311DD1169C005DEE66 /* Carthage */,
 				F93C760B1DD11577005DEE66 /* AuvergneWebcams */,
 				F93C76201DD11577005DEE66 /* AuvergneWebcamsTests */,
@@ -450,6 +474,7 @@
 				F93C76071DD11577005DEE66 /* Resources */,
 				F93C76491DD11AF1005DEE66 /* Embed Frameworks */,
 				F93C764A1DD11AF5005DEE66 /* Carthage */,
+				F911BBEC1DDC6074000C022B /* Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -558,6 +583,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		F911BBEC1DDC6074000C022B /* Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Crashlytics;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Vendor/Fabric/Fabric.framework/run 7cc7cb6974a476c88eaefd8f8f18727ed0ba945a 45a74e44b233b172c82468f5cdb077f34a90c4f4bc9b4e87161041a9347f1375";
+		};
 		F93C764A1DD11AF5005DEE66 /* Carthage */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -663,7 +702,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -743,6 +782,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Vendor/Fabric",
 				);
 				INFOPLIST_FILE = AuvergneWebcams/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -761,6 +801,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Vendor/Fabric",
 				);
 				INFOPLIST_FILE = AuvergneWebcams/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

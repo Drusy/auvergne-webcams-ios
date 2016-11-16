@@ -34,9 +34,9 @@ class WebcamCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        
-        imageView.kf.cancelDownloadTask()
-        imageView.image = nil
+
+//        imageView.kf.cancelDownloadTask()
+//        imageView.image = nil
     }
     
     override func layoutSubviews() {
@@ -59,7 +59,18 @@ extension WebcamCollectionViewCell: ConfigurableCell {
     
     func configure(with item: Webcam) {
         if let image = item.preferedImage(), let url = URL(string: image) {
-            imageView.kf.setImage(with: url)
+            imageView.kf.setImage(with: url) { [weak self] (image, error, cacheType, imageUrl) in
+                if let error = error {
+                    print("ERROR: \(error.code) - \(error.localizedDescription)")
+                    
+                    if error.code != -999 {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                            print("Retrying to download \(imageUrl) ...")
+                            self?.configure(with: item)
+                        }
+                    }
+                }
+            }
         }
     
         titleLabel.text = item.title

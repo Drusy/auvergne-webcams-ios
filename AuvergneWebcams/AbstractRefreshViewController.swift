@@ -48,14 +48,17 @@ class AbstractRefreshViewController: AbstractViewController {
     // MARK: - 
     
     @objc private func refreshIfNeeded() {
-        let now = NSDate().timeIntervalSinceReferenceDate
-        if let lastUpdate = lastUpdate {
-            let interval = now - lastUpdate
-            if interval > Defaults[.autorefreshInterval] as TimeInterval {
-                refresh(force: true)
+        if isReachable() {
+            let now = NSDate().timeIntervalSinceReferenceDate
+            if let lastUpdate = lastUpdate {
+                let interval = now - lastUpdate
+                if interval > Defaults[.autorefreshInterval] as TimeInterval {
+                    refresh(force: true)
+                }
+            } else {
+                lastUpdate = now
             }
-        } else {
-            lastUpdate = now
+
         }
     }
     
@@ -68,12 +71,18 @@ class AbstractRefreshViewController: AbstractViewController {
         
         refreshTimer = Timer.scheduledTimer(timeInterval: Defaults[.autorefreshInterval],
                                             target: self,
-                                            selector: #selector(refresh),
+                                            selector: #selector(timerRefresh),
                                             userInfo: nil,
                                             repeats: true)
     }
     
     // MARK: -
+    
+    @objc fileprivate func timerRefresh() {
+        if isReachable() {
+            refresh()
+        }
+    }
     
     @objc func refresh(force: Bool = false) {
         

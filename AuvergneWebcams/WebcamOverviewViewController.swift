@@ -76,8 +76,10 @@ class WebcamOverviewViewController: AbstractRefreshViewController {
     }
     
     override func refresh(force: Bool) {
-        ImageCache.default.clearDiskCache()
-        ImageCache.default.clearMemoryCache()
+        if isReachable() {
+            ImageCache.default.clearDiskCache()
+            ImageCache.default.clearMemoryCache()
+        }
         
         collectionView.reloadData()
         lastUpdate = NSDate().timeIntervalSinceReferenceDate
