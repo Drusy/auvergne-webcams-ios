@@ -1,5 +1,5 @@
 github "xmartlabs/Eureka" "7e30cec8c3288c4f1128008a4bcb90dafc6ec17b"
-github "onevcat/Kingfisher" "3.2.0"
+github "onevcat/Kingfisher" "3.2.1"
 github "ashleymills/Reachability.swift" "v3"
 github "ArtSabintsev/Siren" "1.0.3"
 github "Openium/SwiftiumKit" "v1.4.0"

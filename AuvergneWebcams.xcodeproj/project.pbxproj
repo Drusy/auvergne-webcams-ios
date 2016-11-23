@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F900E4CD1DE5DBA300B017BB /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F900E4CC1DE5DBA300B017BB /* NotificationNameExtension.swift */; };
 		F9022D9E1DD90032006AF146 /* SwiftiumKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9022D9D1DD90018006AF146 /* SwiftiumKit.framework */; };
 		F9022D9F1DD90032006AF146 /* SwiftiumKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9022D9D1DD90018006AF146 /* SwiftiumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F9022DA11DD90601006AF146 /* DefaultsKeyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9022DA01DD90601006AF146 /* DefaultsKeyExtension.swift */; };
@@ -96,6 +97,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F900E4CC1DE5DBA300B017BB /* NotificationNameExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		F9022D9D1DD90018006AF146 /* SwiftiumKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftiumKit.framework; path = Carthage/Build/iOS/SwiftiumKit.framework; sourceTree = "<group>"; };
 		F9022DA01DD90601006AF146 /* DefaultsKeyExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsKeyExtension.swift; sourceTree = "<group>"; };
 		F911BBEA1DDC6066000C022B /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 				F9022DA01DD90601006AF146 /* DefaultsKeyExtension.swift */,
 				F94FEEAF1DD4765A00586F54 /* UIFontExtension.swift */,
 				F96276181DDB6A5D0090A9AB /* UITableViewCellExtension.swift */,
+				F900E4CC1DE5DBA300B017BB /* NotificationNameExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -326,12 +329,12 @@
 			name = Utils;
 			sourceTree = "<group>";
 		};
-		F9BE030A1DD78E330063275B /* KingFisher */ = {
+		F9BE030A1DD78E330063275B /* Kingfisher */ = {
 			isa = PBXGroup;
 			children = (
 				F9BE030B1DD78E4B0063275B /* KFIndicator.swift */,
 			);
-			name = KingFisher;
+			name = Kingfisher;
 			sourceTree = "<group>";
 		};
 		F9BE03141DD8AFD40063275B /* Settings */ = {
@@ -361,7 +364,7 @@
 		F9F5AC5A1DD3197300D9FF83 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F9BE030A1DD78E330063275B /* KingFisher */,
+				F9BE030A1DD78E330063275B /* Kingfisher */,
 				F9F5AC681DD32AEC00D9FF83 /* Providers */,
 				F9F5AC6F1DD32C8A00D9FF83 /* Webcam */,
 			);
@@ -631,6 +634,7 @@
 				F9F5AC9B1DD34EF300D9FF83 /* WebcamSectionHeaderView.swift in Sources */,
 				F9F5ACA21DD35DDD00D9FF83 /* WebcamDetailViewController.swift in Sources */,
 				F9F5AC791DD33CF000D9FF83 /* WebcamViewProvider.swift in Sources */,
+				F900E4CD1DE5DBA300B017BB /* NotificationNameExtension.swift in Sources */,
 				F96276191DDB6A5D0090A9AB /* UITableViewCellExtension.swift in Sources */,
 				F9F5AC6E1DD32AF200D9FF83 /* AbstractViewProvider.swift in Sources */,
 				F9F5AC5E1DD31C9100D9FF83 /* AbstractViewController.swift in Sources */,

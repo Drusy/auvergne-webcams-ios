@@ -29,8 +29,14 @@ class AbstractRefreshViewController: AbstractViewController {
                                                selector: #selector(stopRefreshing),
                                                name: NSNotification.Name.UIApplicationWillResignActive,
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(autorefreshSettingsUpdated),
+                                               name: NSNotification.Name.SettingsDidUpdateAutorefresh,
+                                               object: nil)
         
-        startRefreshing()
+        if Defaults[.shouldAutorefresh] {
+            startRefreshing()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -42,6 +48,9 @@ class AbstractRefreshViewController: AbstractViewController {
                                                   object: nil)
         NotificationCenter.default.removeObserver(self,
                                                   name: NSNotification.Name.UIApplicationWillResignActive,
+                                                  object: nil)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: NSNotification.Name.SettingsDidUpdateAutorefresh,
                                                   object: nil)
     }
     
@@ -74,6 +83,14 @@ class AbstractRefreshViewController: AbstractViewController {
                                             selector: #selector(timerRefresh),
                                             userInfo: nil,
                                             repeats: true)
+    }
+    
+    @objc func autorefreshSettingsUpdated() {
+        if Defaults[.shouldAutorefresh] {
+            startRefreshing()
+        } else {
+            stopRefreshing()
+        }
     }
     
     // MARK: -

@@ -10,26 +10,49 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WebcamDetailViewController" customModule="AuvergneWebcams" customModuleProvider="target">
             <connections>
-                <outlet property="scrollView" destination="bvu-ed-4CW" id="0ZR-3z-4JC"/>
-                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="activityIndicator" destination="Dfe-5o-EYq" id="WmR-cf-ffj"/>
+                <outlet property="imageConstraintBottom" destination="u10-y6-drJ" id="XUB-cB-ruw"/>
+                <outlet property="imageConstraintLeft" destination="J9C-6K-IhY" id="JaI-7C-Q7c"/>
+                <outlet property="imageConstraintRight" destination="Lut-8q-m9Y" id="6ZU-dm-kAJ"/>
+                <outlet property="imageConstraintTop" destination="9ju-b9-uok" id="Bjm-nb-gP7"/>
+                <outlet property="imageView" destination="Ye9-IQ-EMw" id="b6K-xW-1D2"/>
+                <outlet property="scrollView" destination="Klp-uj-ffW" id="K2S-3d-DjK"/>
+                <outlet property="view" destination="bzQ-8u-T1z" id="Uv9-TZ-Mdb"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+        <view contentMode="scaleToFill" id="bzQ-8u-T1z">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bvu-ed-4CW">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="3" translatesAutoresizingMaskIntoConstraints="NO" id="Klp-uj-ffW">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="100" placeholderIntrinsicHeight="100" translatesAutoresizingMaskIntoConstraints="NO" id="Ye9-IQ-EMw">
+                            <rect key="frame" x="150" y="150" width="100" height="100"/>
+                        </imageView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="Ye9-IQ-EMw" firstAttribute="top" secondItem="Klp-uj-ffW" secondAttribute="top" constant="150" id="9ju-b9-uok"/>
+                        <constraint firstItem="Ye9-IQ-EMw" firstAttribute="leading" secondItem="Klp-uj-ffW" secondAttribute="leading" constant="150" id="J9C-6K-IhY"/>
+                        <constraint firstItem="Ye9-IQ-EMw" firstAttribute="trailing" secondItem="Klp-uj-ffW" secondAttribute="trailing" constant="-1" id="Lut-8q-m9Y" userLabel="Horizontal Space - (-1) - Scroll View - Image View"/>
+                        <constraint firstItem="Ye9-IQ-EMw" firstAttribute="bottom" secondItem="Klp-uj-ffW" secondAttribute="bottom" constant="-1" id="u10-y6-drJ"/>
+                    </constraints>
                 </scrollView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Dfe-5o-EYq">
+                    <rect key="frame" x="177" y="323" width="20" height="20"/>
+                </activityIndicatorView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="bvu-ed-4CW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2jL-Mh-Jta"/>
-                <constraint firstItem="bvu-ed-4CW" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="8e5-Vu-qa8"/>
-                <constraint firstAttribute="bottom" secondItem="bvu-ed-4CW" secondAttribute="bottom" id="Zte-t2-0EZ"/>
-                <constraint firstAttribute="trailing" secondItem="bvu-ed-4CW" secondAttribute="trailing" id="ime-7P-pc7"/>
+                <constraint firstItem="Dfe-5o-EYq" firstAttribute="centerY" secondItem="bzQ-8u-T1z" secondAttribute="centerY" id="97O-BE-UqF"/>
+                <constraint firstItem="Klp-uj-ffW" firstAttribute="top" secondItem="bzQ-8u-T1z" secondAttribute="top" id="Ace-EA-Ps0"/>
+                <constraint firstAttribute="bottom" secondItem="Klp-uj-ffW" secondAttribute="bottom" id="Efn-gw-RYj"/>
+                <constraint firstAttribute="trailing" secondItem="Klp-uj-ffW" secondAttribute="trailing" id="M0o-io-9Ng"/>
+                <constraint firstItem="Klp-uj-ffW" firstAttribute="leading" secondItem="bzQ-8u-T1z" secondAttribute="leading" id="c3H-KN-Hkf"/>
+                <constraint firstItem="Dfe-5o-EYq" firstAttribute="centerX" secondItem="bzQ-8u-T1z" secondAttribute="centerX" id="w8X-UT-cMa"/>
             </constraints>
+            <point key="canvasLocation" x="-177" y="29"/>
         </view>
     </objects>
 </document>

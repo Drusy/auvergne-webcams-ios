@@ -19,7 +19,7 @@ class AbstractViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(style),
-                                               name: NSNotification.Name(rawValue: SettingsViewController.kSettingsDidUpdateTheme),
+                                               name: NSNotification.Name.SettingsDidUpdateTheme,
                                                object: nil)
 
         translate()
@@ -29,7 +29,7 @@ class AbstractViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self,
-                                                  name: NSNotification.Name(rawValue: SettingsViewController.kSettingsDidUpdateTheme),
+                                                  name: NSNotification.Name.SettingsDidUpdateTheme,
                                                   object: nil)
     }
 

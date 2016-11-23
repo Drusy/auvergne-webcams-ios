@@ -12,8 +12,16 @@ import Kingfisher
 class WebcamDetailViewController: AbstractRefreshViewController {
 
     @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet var imageView: UIImageView!
     
-    var imageView: UIImageView?
+    @IBOutlet weak var imageConstraintTop: NSLayoutConstraint!
+    @IBOutlet weak var imageConstraintRight: NSLayoutConstraint!
+    @IBOutlet weak var imageConstraintLeft: NSLayoutConstraint!
+    @IBOutlet weak var imageConstraintBottom: NSLayoutConstraint!
+    
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
+    
+    var lastZoomScale: CGFloat = -1
     var webcam: Webcam
     var isDataLoaded: Bool = false
     
@@ -29,40 +37,44 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        automaticallyAdjustsScrollViewInsets = false
+        view.bounds = UIScreen.main.bounds
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "refresh-icon"),
                                                             style: .plain,
                                                             target: self,
                                                             action: #selector(forceRefresh))
         
         // Prepare indicator
-        imageView = UIImageView(frame: view.bounds)
-        
-        scrollView = UIScrollView(frame: view.bounds)
+        scrollView.layoutIfNeeded()
+        scrollView.delegate = self
         scrollView.backgroundColor = UIColor.black
-        scrollView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        scrollView.addSubview(imageView!)
-        view.addSubview(scrollView)
         
         // Tap to zoom
         setupGestureRecognizer()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         // Load image
         refresh()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        if isDataLoaded {
-            setZoomScale()
-        } else {
-            resetScrollviewInsets()
+        updateConstraints()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        let transition: (UIViewControllerTransitionCoordinatorContext) -> Void = { [weak self] _ in
+            self?.updateZoom()
         }
+        
+        coordinator.animate(alongsideTransition: transition,
+                            completion: nil)
     }
     
     // MARK: - 
@@ -73,29 +85,32 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     
     override func refresh(force: Bool = false) {
         if let image = webcam.preferedImage(), let url = URL(string: image) {
-            let indicator = KFIndicator(.white)
             let options: KingfisherOptionsInfo = force ? [.forceRefresh] : []
             
             isDataLoaded = false
-            resetScrollviewInsets()
 
-            imageView?.kf.indicatorType = .custom(indicator: indicator)
+            activityIndicator.startAnimating()
             imageView?.kf.setImage(with: url,
                                    placeholder: nil,
                                    options: options,
                                    progressBlock: nil) { [weak self] image, error, cacheType, url in
+                                    guard let strongSelf = self else { return }
                                     
                                     if let error = error {
                                         print("ERROR: \(error.code) - \(error.localizedDescription)")
                                         
                                         if error.code != -999 {
                                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                                                guard let strongSelf = self else { return }
+
                                                 print("Retrying to download \(url) ...")
-                                                self?.refresh(force: force)
+                                                strongSelf.refresh(force: force)
                                             }
                                         }
-                                    } else if let image = image {
-                                        self?.set(image: image)
+                                    } else {
+                                        strongSelf.activityIndicator.stopAnimating()
+                                        strongSelf.isDataLoaded = true
+                                        strongSelf.updateZoom()
                                     }
             }
         }
@@ -112,45 +127,6 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     }
     
     // MARK: -
-    
-    func set(image: UIImage) {
-        let bounds = CGRect(origin: CGPoint(x: 0, y: 0),
-                            size: image.size)
-        
-        isDataLoaded = true
-        imageView?.frame = bounds
-        
-        scrollView.contentSize = bounds.size
-        scrollView.contentOffset = CGPoint(x: image.size.height / 2, y: image.size.width / 2)
-        scrollView.delegate = self
-        
-        setZoomScale()
-    }
-    
-    func resetScrollviewInsets() {
-        scrollView.zoomScale = 1
-        scrollView.minimumZoomScale = 1
-        scrollView.maximumZoomScale = 1
-        scrollView.contentSize = view.bounds.size
-        scrollView.contentOffset = CGPoint(x: 0, y: 0)
-        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        scrollView?.layoutIfNeeded()
-        
-        imageView?.frame = view.bounds
-        imageView?.layoutIfNeeded()
-    }
-    
-    func setZoomScale() {
-        guard let imageView = imageView else { return }
-        
-        let imageViewSize = imageView.bounds.size
-        let scrollViewSize = scrollView.bounds.size
-        let widthScale = scrollViewSize.width / imageViewSize.width
-        let heightScale = scrollViewSize.height / imageViewSize.height
-        
-        scrollView.minimumZoomScale = min(widthScale, heightScale)
-        scrollView.zoomScale = max(widthScale, heightScale)
-    }
     
     func setupGestureRecognizer() {
         let doubleTap = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap))
@@ -170,6 +146,61 @@ class WebcamDetailViewController: AbstractRefreshViewController {
             scrollView.setZoomScale(zoom, animated: true)
         }
     }
+    
+    func updateConstraints() {
+        guard let image = imageView.image else { return }
+        
+        let imageWidth = image.size.width
+        let imageHeight = image.size.height
+        
+        let viewWidth = view.bounds.size.width
+        let viewHeight = view.bounds.size.height
+        
+        let hPadding = max(0, (viewWidth - scrollView.zoomScale * imageWidth) / 2)
+        let vPadding = max(0, (viewHeight - scrollView.zoomScale * imageHeight) / 2)
+        
+        imageConstraintLeft.constant = hPadding
+        imageConstraintRight.constant = hPadding
+        
+        imageConstraintTop.constant = vPadding
+        imageConstraintBottom.constant = vPadding
+        
+        scrollView.layoutIfNeeded()
+        view.layoutIfNeeded()
+    }
+    
+    func updateZoom() {
+        if let image = imageView.image {
+            let scrollViewSize = scrollView.bounds.size
+            let widthScale = scrollViewSize.width / image.size.width
+            let heightScale = scrollViewSize.height / image.size.height
+            let minZoom = min(1, min(widthScale, heightScale))
+
+            scrollView.maximumZoomScale = 1
+            scrollView.minimumZoomScale = minZoom
+            scrollView.zoomScale = minZoom
+            
+            DispatchQueue.main.async { [weak self] in
+                guard let strongSelf = self else { return }
+                
+                let initialZoomScale = max(widthScale, heightScale)
+                if initialZoomScale <= strongSelf.scrollView.maximumZoomScale &&
+                   initialZoomScale >= strongSelf.scrollView.minimumZoomScale {
+                    
+                    UIView.animate(withDuration: 1,
+                                   delay: 0,
+                                   options: .beginFromCurrentState,
+                                   animations: { [weak self] in
+                                    guard let strongSelf = self else { return }
+
+                                    strongSelf.scrollView.setZoomScale(initialZoomScale, animated: false)
+                        },
+                                   completion: nil)
+                    strongSelf.lastZoomScale = minZoom
+                }
+            }
+        }
+    }
 }
 
 extension WebcamDetailViewController: UIScrollViewDelegate {
@@ -178,15 +209,6 @@ extension WebcamDetailViewController: UIScrollViewDelegate {
     }
     
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        guard isDataLoaded == true else { return }
-        guard let imageView = imageView else { return }
-        
-        let imageViewSize = imageView.frame.size
-        let scrollViewSize = scrollView.bounds.size
-        
-        let verticalPadding = imageViewSize.height < scrollViewSize.height ? (scrollViewSize.height - imageViewSize.height) / 2 : 0
-        let horizontalPadding = imageViewSize.width < scrollViewSize.width ? (scrollViewSize.width - imageViewSize.width) / 2 : 0
-        
-        scrollView.contentInset = UIEdgeInsets(top: verticalPadding, left: horizontalPadding, bottom: verticalPadding, right: horizontalPadding)
+        updateConstraints()
     }
 }

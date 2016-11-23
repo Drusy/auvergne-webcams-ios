@@ -18,7 +18,7 @@ class NavigationController: UINavigationController {
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(style),
-                                               name: NSNotification.Name(rawValue: SettingsViewController.kSettingsDidUpdateTheme),
+                                               name: NSNotification.Name.SettingsDidUpdateTheme,
                                                object: nil)
         
         navigationBar.isTranslucent = true

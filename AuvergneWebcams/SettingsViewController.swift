@@ -20,9 +20,7 @@ enum SettingTag: String {
     case rateApp
 }
 
-class SettingsViewController: FormViewController {
-    static let kSettingsDidUpdateTheme = "SettingsDidUpdateTheme"
-    
+class SettingsViewController: FormViewController {    
     private var foregroundNotification: Any?
     
     @IBOutlet var blurView: UIVisualEffectView!
@@ -37,7 +35,7 @@ class SettingsViewController: FormViewController {
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(style),
-                                               name: NSNotification.Name(rawValue: SettingsViewController.kSettingsDidUpdateTheme),
+                                               name: NSNotification.Name.SettingsDidUpdateTheme,
                                                object: nil)
         
         setupForm()
@@ -72,13 +70,16 @@ class SettingsViewController: FormViewController {
                 $0.value = Defaults[.isDarkTheme]
             }.onChange { row in
                 Defaults[.isDarkTheme] = row.value ?? false
-                NotificationCenter.default.post(name: Notification.Name(rawValue: SettingsViewController.kSettingsDidUpdateTheme), object: self)
+                NotificationCenter.default.post(name: NSNotification.Name.SettingsDidUpdateTheme,
+                                                object: self)
             }
             <<< SwitchRow(SettingTag.autoRefresh.rawValue) {
                 $0.title = "Rafraîchissement automatique"
                 $0.value = Defaults[.shouldAutorefresh]
             }.onChange { row in
                 Defaults[.shouldAutorefresh] = row.value ?? false
+                NotificationCenter.default.post(name: NSNotification.Name.SettingsDidUpdateAutorefresh,
+                                                object: self)
             }
             <<< IntRow(SettingTag.autoRefreshDelay.rawValue) {
                 $0.title = "Délai de rafraîchissement (minutes)"
