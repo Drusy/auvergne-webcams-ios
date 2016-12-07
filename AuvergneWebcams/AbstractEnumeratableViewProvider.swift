@@ -12,7 +12,7 @@ class AbstractEnumeratableViewProvider<Item: Any, Cell: ConfigurableCell, Enumer
 where Cell.Item == Item, Enumerator.Iterator.Element == Item, Enumerator.Index == Int, Enumerator.IndexDistance == Int {
     
     fileprivate var sections: [WebcamSection]?
-    fileprivate var objects: [Enumerator]?
+    fileprivate var objectsBySections: [Enumerator]?
     
     // MARK: -
     
@@ -22,7 +22,7 @@ where Cell.Item == Item, Enumerator.Iterator.Element == Item, Enumerator.Index =
         }
         
         self.sections = sections
-        self.objects = objects
+        self.objectsBySections = objects
         
         tableView?.reloadData()
         collectionView?.reloadData()
@@ -36,11 +36,8 @@ where Cell.Item == Item, Enumerator.Iterator.Element == Item, Enumerator.Index =
     // MARK: - Override
     
     override func numberOfObjects(in section: Int)  -> Int {
-        if let objects = objects?[section] {
-            return objects.count
-        }
-        
-        return 0
+        guard let objects = objectsBySections?[section] else { return 0}
+        return objects.count
     }
     
     override func numberOfSections() -> Int {
@@ -48,7 +45,7 @@ where Cell.Item == Item, Enumerator.Iterator.Element == Item, Enumerator.Index =
     }
     
     override func object(at indexPath: IndexPath) -> Item? {
-        guard let objects: Enumerator = objects?[indexPath.section] else { return nil}
+        guard let objects: Enumerator = objectsBySections?[indexPath.section] else { return nil }
         return objects[indexPath.row]
     }
 }

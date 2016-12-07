@@ -138,7 +138,7 @@ class SettingsViewController: FormViewController {
     // MARK: -
     
     func rateApp() {
-        guard let url = URL(string : "itms-apps://itunes.apple.com/app/xxxxxxx") else { return }
+        guard let url = URL(string : "itms-apps://itunes.apple.com/app/1183930829") else { return }
         UIApplication.shared.openURL(url)
     }
     
