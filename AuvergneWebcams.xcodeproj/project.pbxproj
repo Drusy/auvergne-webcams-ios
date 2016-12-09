@@ -26,6 +26,10 @@
 		F93C76461DD11AF0005DEE66 /* Siren.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F93C763B1DD11ACE005DEE66 /* Siren.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F93C76471DD11AF0005DEE66 /* SwiftyUserDefaults.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F93C763C1DD11ACE005DEE66 /* SwiftyUserDefaults.framework */; };
 		F93C76481DD11AF0005DEE66 /* SwiftyUserDefaults.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F93C763C1DD11ACE005DEE66 /* SwiftyUserDefaults.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F94D7CE51DFABF6000460CCD /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94D7CE31DFABF6000460CCD /* AboutViewController.swift */; };
+		F94D7CE61DFABF6000460CCD /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94D7CE41DFABF6000460CCD /* AboutViewController.xib */; };
+		F94D7CE91DFAE50200460CCD /* ActiveLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F94D7CE71DFAE4FC00460CCD /* ActiveLabel.framework */; };
+		F94D7CEA1DFAE50200460CCD /* ActiveLabel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F94D7CE71DFAE4FC00460CCD /* ActiveLabel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F94FEEAD1DD4764100586F54 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94FEEAC1DD4764100586F54 /* NavigationController.swift */; };
 		F94FEEB01DD4765A00586F54 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94FEEAF1DD4765A00586F54 /* UIFontExtension.swift */; };
 		F96276191DDB6A5D0090A9AB /* UITableViewCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96276181DDB6A5D0090A9AB /* UITableViewCellExtension.swift */; };
@@ -36,8 +40,6 @@
 		F9BE03101DD8AC1B0063275B /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9BE030E1DD8AC1B0063275B /* SettingsViewController.xib */; };
 		F9BE03121DD8AF960063275B /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9BE03111DD8AF8E0063275B /* Eureka.framework */; };
 		F9BE03131DD8AF960063275B /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9BE03111DD8AF8E0063275B /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F9BE03171DD8AFEE0063275B /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE03151DD8AFEE0063275B /* AboutViewController.swift */; };
-		F9BE03181DD8AFEE0063275B /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9BE03161DD8AFEE0063275B /* AboutViewController.xib */; };
 		F9F5AC5E1DD31C9100D9FF83 /* AbstractViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5AC5C1DD31C9100D9FF83 /* AbstractViewController.swift */; };
 		F9F5AC6C1DD32AF200D9FF83 /* AbstractArrayViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5AC691DD32AF200D9FF83 /* AbstractArrayViewProvider.swift */; };
 		F9F5AC6D1DD32AF200D9FF83 /* AbstractEnumeratableViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5AC6A1DD32AF200D9FF83 /* AbstractEnumeratableViewProvider.swift */; };
@@ -86,6 +88,7 @@
 			files = (
 				F93C76461DD11AF0005DEE66 /* Siren.framework in Embed Frameworks */,
 				F93C76481DD11AF0005DEE66 /* SwiftyUserDefaults.framework in Embed Frameworks */,
+				F94D7CEA1DFAE50200460CCD /* ActiveLabel.framework in Embed Frameworks */,
 				F93C76421DD11AF0005DEE66 /* Kingfisher.framework in Embed Frameworks */,
 				F93C76441DD11AF0005DEE66 /* Reachability.framework in Embed Frameworks */,
 				F9BE03131DD8AF960063275B /* Eureka.framework in Embed Frameworks */,
@@ -122,6 +125,9 @@
 		F93C763A1DD11ACE005DEE66 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = Carthage/Build/iOS/Reachability.framework; sourceTree = "<group>"; };
 		F93C763B1DD11ACE005DEE66 /* Siren.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Siren.framework; path = Carthage/Build/iOS/Siren.framework; sourceTree = "<group>"; };
 		F93C763C1DD11ACE005DEE66 /* SwiftyUserDefaults.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyUserDefaults.framework; path = Carthage/Build/iOS/SwiftyUserDefaults.framework; sourceTree = "<group>"; };
+		F94D7CE31DFABF6000460CCD /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		F94D7CE41DFABF6000460CCD /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
+		F94D7CE71DFAE4FC00460CCD /* ActiveLabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ActiveLabel.framework; path = Carthage/Build/iOS/ActiveLabel.framework; sourceTree = "<group>"; };
 		F94FEEAC1DD4764100586F54 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		F94FEEAF1DD4765A00586F54 /* UIFontExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		F96276181DDB6A5D0090A9AB /* UITableViewCellExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtension.swift; sourceTree = "<group>"; };
@@ -131,8 +137,6 @@
 		F9BE030D1DD8AC1B0063275B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F9BE030E1DD8AC1B0063275B /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		F9BE03111DD8AF8E0063275B /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
-		F9BE03151DD8AFEE0063275B /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
-		F9BE03161DD8AFEE0063275B /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
 		F9F5AC5C1DD31C9100D9FF83 /* AbstractViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractViewController.swift; sourceTree = "<group>"; };
 		F9F5AC691DD32AF200D9FF83 /* AbstractArrayViewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractArrayViewProvider.swift; sourceTree = "<group>"; };
 		F9F5AC6A1DD32AF200D9FF83 /* AbstractEnumeratableViewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractEnumeratableViewProvider.swift; sourceTree = "<group>"; };
@@ -174,6 +178,7 @@
 				F93C76411DD11AF0005DEE66 /* Kingfisher.framework in Frameworks */,
 				F93C76431DD11AF0005DEE66 /* Reachability.framework in Frameworks */,
 				F9BE03121DD8AF960063275B /* Eureka.framework in Frameworks */,
+				F94D7CE91DFAE50200460CCD /* ActiveLabel.framework in Frameworks */,
 				F9022D9E1DD90032006AF146 /* SwiftiumKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,6 +288,7 @@
 			children = (
 				F93C76321DD1175E005DEE66 /* Cartfile */,
 				F93C76381DD11915005DEE66 /* Cartfile.resolved */,
+				F94D7CE71DFAE4FC00460CCD /* ActiveLabel.framework */,
 				F9022D9D1DD90018006AF146 /* SwiftiumKit.framework */,
 				F9BE03111DD8AF8E0063275B /* Eureka.framework */,
 				F93C76391DD11ACE005DEE66 /* Kingfisher.framework */,
@@ -342,8 +348,8 @@
 			children = (
 				F9BE030D1DD8AC1B0063275B /* SettingsViewController.swift */,
 				F9BE030E1DD8AC1B0063275B /* SettingsViewController.xib */,
-				F9BE03151DD8AFEE0063275B /* AboutViewController.swift */,
-				F9BE03161DD8AFEE0063275B /* AboutViewController.xib */,
+				F94D7CE31DFABF6000460CCD /* AboutViewController.swift */,
+				F94D7CE41DFABF6000460CCD /* AboutViewController.xib */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -553,7 +559,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9F5ACA31DD35DDD00D9FF83 /* WebcamDetailViewController.xib in Resources */,
-				F9BE03181DD8AFEE0063275B /* AboutViewController.xib in Resources */,
+				F94D7CE61DFABF6000460CCD /* AboutViewController.xib in Resources */,
 				F9F5AC921DD344CC00D9FF83 /* Open Sans Condensed 300.ttf in Resources */,
 				F9F5AC901DD344CC00D9FF83 /* Open Sans 800.ttf in Resources */,
 				F9F5AC8B1DD344CC00D9FF83 /* Open Sans 300italic.ttf in Resources */,
@@ -612,6 +618,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftyUserDefaults.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Eureka.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftiumKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ActiveLabel.framework",
 			);
 			name = Carthage;
 			outputPaths = (
@@ -629,6 +636,7 @@
 			files = (
 				F9F5AC981DD34C8B00D9FF83 /* WebcamSection.swift in Sources */,
 				F93C760F1DD11577005DEE66 /* WebcamOverviewViewController.swift in Sources */,
+				F94D7CE51DFABF6000460CCD /* AboutViewController.swift in Sources */,
 				F9022DA11DD90601006AF146 /* DefaultsKeyExtension.swift in Sources */,
 				F9F5AC731DD33B6800D9FF83 /* Webcam.swift in Sources */,
 				F9F5AC9B1DD34EF300D9FF83 /* WebcamSectionHeaderView.swift in Sources */,
@@ -643,7 +651,6 @@
 				F962761C1DDB6BD80090A9AB /* ThemeUtils.swift in Sources */,
 				F9BE030C1DD78E4B0063275B /* KFIndicator.swift in Sources */,
 				F94FEEB01DD4765A00586F54 /* UIFontExtension.swift in Sources */,
-				F9BE03171DD8AFEE0063275B /* AboutViewController.swift in Sources */,
 				F9BE030F1DD8AC1B0063275B /* SettingsViewController.swift in Sources */,
 				F9F5AC6D1DD32AF200D9FF83 /* AbstractEnumeratableViewProvider.swift in Sources */,
 				F9F5AC6C1DD32AF200D9FF83 /* AbstractArrayViewProvider.swift in Sources */,

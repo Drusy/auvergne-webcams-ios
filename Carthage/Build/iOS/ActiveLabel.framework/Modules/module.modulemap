@@ -1,0 +1,10 @@
+framework module ActiveLabel {
+  umbrella header "ActiveLabel.h"
+
+  export *
+  module * { export * }
+}
+
+module ActiveLabel.Swift {
+    header "ActiveLabel-Swift.h"
+}

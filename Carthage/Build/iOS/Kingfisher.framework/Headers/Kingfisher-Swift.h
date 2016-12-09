@@ -176,69 +176,6 @@ SWIFT_CLASS("_TtC10Kingfisher17AnimatedImageView")
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 @end
 
-@class NSURLSessionConfiguration;
-@class OS_dispatch_queue;
-
-/**
-  \code
-  ImageDownloader
-  \endcode represents a downloading manager for requesting the image with a URL from server.
-*/
-SWIFT_CLASS("_TtC10Kingfisher15ImageDownloader")
-@interface ImageDownloader : NSObject
-/**
-  The duration before the download is timeout. Default is 15 seconds.
-*/
-@property (nonatomic) NSTimeInterval downloadTimeout;
-/**
-  A set of trusted hosts when receiving server trust challenges. A challenge with host name contained in this set will be ignored.
-  You can use this set to specify the self-signed site. It only will be used if you don’t specify the \code
-  authenticationChallengeResponder
-  \endcode.
-  If \code
-  authenticationChallengeResponder
-  \endcode is set, this property will be ignored and the implemention of \code
-  authenticationChallengeResponder
-  \endcode will be used instead.
-*/
-@property (nonatomic, copy) NSSet<NSString *> * _Nullable trustedHosts;
-/**
-  Use this to set supply a configuration for the downloader. By default, NSURLSessionConfiguration.ephemeralSessionConfiguration() will be used.
-  You could change the configuration before a downloaing task starts. A configuration without persistent storage for caches is requsted for downloader working correctly.
-*/
-@property (nonatomic, strong) NSURLSessionConfiguration * _Nonnull sessionConfiguration;
-/**
-  Whether the download requests should use pipeling or not. Default is false.
-*/
-@property (nonatomic) BOOL requestsUsePipeling;
-@property (nonatomic, readonly, strong) OS_dispatch_queue * _Nonnull barrierQueue;
-@property (nonatomic, readonly, strong) OS_dispatch_queue * _Nonnull processQueue;
-/**
-  The default downloader.
-*/
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong, getter=default) ImageDownloader * _Nonnull default_;)
-+ (ImageDownloader * _Nonnull)default;
-/**
-  Init a downloader with name.
-  \param name The name for the downloader. It should not be empty.
-
-
-  returns:
-  The downloader object.
-*/
-- (nonnull instancetype)initWithName:(NSString * _Nonnull)name OBJC_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)init SWIFT_UNAVAILABLE;
-@end
-
-
-@interface ImageDownloader (SWIFT_EXTENSION(Kingfisher))
-@end
-
-
-@interface ImageDownloader (SWIFT_EXTENSION(Kingfisher))
-- (void)cleanFor:(NSURL * _Nonnull)url;
-@end
-
 @class NSURLSession;
 @class NSURLSessionDataTask;
 @class NSURLResponse;
@@ -248,7 +185,6 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong, getter=defau
 
 SWIFT_CLASS("_TtC10Kingfisher29ImageDownloaderSessionHandler")
 @interface ImageDownloaderSessionHandler : NSObject <NSURLSessionDataDelegate>
-@property (nonatomic, strong) ImageDownloader * _Nullable downloadHolder;
 - (void)URLSession:(NSURLSession * _Nonnull)session dataTask:(NSURLSessionDataTask * _Nonnull)dataTask didReceiveResponse:(NSURLResponse * _Nonnull)response completionHandler:(void (^ _Nonnull)(NSURLSessionResponseDisposition))completionHandler;
 - (void)URLSession:(NSURLSession * _Nonnull)session dataTask:(NSURLSessionDataTask * _Nonnull)dataTask didReceiveData:(NSData * _Nonnull)data;
 - (void)URLSession:(NSURLSession * _Nonnull)session task:(NSURLSessionTask * _Nonnull)task didCompleteWithError:(NSError * _Nullable)error;
@@ -422,6 +358,11 @@ SWIFT_CLASS("_TtC10Kingfisher29ImageDownloaderSessionHandler")
 
 
 @interface UIImageView (SWIFT_EXTENSION(Kingfisher))
+- (BOOL)shouldPreloadAllGIF;
+@end
+
+
+@interface UIImageView (SWIFT_EXTENSION(Kingfisher))
 @end
 
 
@@ -435,7 +376,6 @@ SWIFT_CLASS("_TtC10Kingfisher29ImageDownloaderSessionHandler")
   Get the image URL binded to this image view.
 */
 @property (nonatomic, readonly, copy) NSURL * _Nullable kf_webURL;
-- (BOOL)shouldPreloadAllGIF;
 @end
 
 #pragma clang diagnostic pop

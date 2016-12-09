@@ -152,7 +152,7 @@ class SettingsViewController: FormViewController {
     }
     
     func showOpeniumWebsite() {
-        guard let url = URL(string : "http://openium.fr") else { return }
+        guard let url = URL(string : "https://openium.fr") else { return }
         let svc = SFSafariViewController(url: url)
         present(svc, animated: true, completion: nil)
     }

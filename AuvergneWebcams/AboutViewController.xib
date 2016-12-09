@@ -1,12 +1,24 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11761" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Open Sans Condensed 700.ttf">
+            <string>OpenSans-CondensedBold</string>
+        </array>
+        <array key="Open Sans regular.ttf">
+            <string>OpenSans</string>
+        </array>
+    </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AboutViewController" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AboutViewController" customModule="AuvergneWebcams" customModuleProvider="target">
             <connections>
+                <outlet property="activeDescriptionLabel" destination="9Vq-kb-CUG" id="sg8-Vp-Aa4"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -14,7 +26,80 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pGQ-T4-1xW">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pz9-og-f5t">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="668"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sancy-landscape" translatesAutoresizingMaskIntoConstraints="NO" id="ajF-hu-P0q">
+                                    <rect key="frame" x="67" y="24" width="240" height="150"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="150" id="Aec-du-TIo"/>
+                                        <constraint firstAttribute="width" constant="240" id="kTR-3p-ugL"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Vq-kb-CUG" customClass="ActiveLabel" customModule="ActiveLabel">
+                                    <rect key="frame" x="8" y="243" width="359" height="409"/>
+                                    <mutableString key="text">Auvergne Webcams vous permet d'observer vos volcans favoris à tout moment via votre smartphone.
+
+Ni Auvergne Webcams ni Openium ne sont propriétaires des images et flux vidéos présentés. Pour plus d'information, rendez-vous sur https://github.com/Drusy/auvergne-webcams-ios/blob/master/README.md
+
+Sancy Webcams
+http://www.sancy.com/pratique/webcams
+
+Puy de Dôme
+http://wwwobs.univ-bpclermont.fr/opgc/webcam.php
+
+Produit en 🇫🇷 par @Drusy chez @Openium
+Design par @LesPirates ☠️
+Icônes par @FlatIcons et @Freepik</mutableString>
+                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auvergne Webcams" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nZ-ya-nux">
+                                    <rect key="frame" x="8" y="190" width="359" height="29"/>
+                                    <fontDescription key="fontDescription" name="OpenSans-CondensedBold" family="Open Sans Condensed" pointSize="21"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="9Vq-kb-CUG" firstAttribute="leading" secondItem="Pz9-og-f5t" secondAttribute="leading" constant="8" id="4Kr-aC-2kx"/>
+                                <constraint firstItem="ajF-hu-P0q" firstAttribute="top" secondItem="Pz9-og-f5t" secondAttribute="top" constant="24" id="4pB-XH-697"/>
+                                <constraint firstAttribute="bottom" secondItem="9Vq-kb-CUG" secondAttribute="bottom" constant="16" id="FB4-YE-Xjl"/>
+                                <constraint firstAttribute="trailing" secondItem="4nZ-ya-nux" secondAttribute="trailing" constant="8" id="Skg-Jj-x0U"/>
+                                <constraint firstItem="9Vq-kb-CUG" firstAttribute="top" secondItem="4nZ-ya-nux" secondAttribute="bottom" constant="24" id="TiE-z2-Ukd"/>
+                                <constraint firstItem="4nZ-ya-nux" firstAttribute="top" secondItem="ajF-hu-P0q" secondAttribute="bottom" constant="16" id="pkV-Ci-H4F"/>
+                                <constraint firstItem="4nZ-ya-nux" firstAttribute="leading" secondItem="Pz9-og-f5t" secondAttribute="leading" constant="8" id="rYP-ob-d18"/>
+                                <constraint firstItem="ajF-hu-P0q" firstAttribute="centerX" secondItem="Pz9-og-f5t" secondAttribute="centerX" id="ucB-St-cNN"/>
+                                <constraint firstAttribute="trailing" secondItem="9Vq-kb-CUG" secondAttribute="trailing" constant="8" id="vQC-xC-iUB"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Pz9-og-f5t" secondAttribute="trailing" id="Upd-ok-3jd"/>
+                        <constraint firstItem="Pz9-og-f5t" firstAttribute="top" secondItem="pGQ-T4-1xW" secondAttribute="top" id="bh6-7Z-ciy"/>
+                        <constraint firstItem="Pz9-og-f5t" firstAttribute="width" secondItem="pGQ-T4-1xW" secondAttribute="width" id="j9N-Zy-CsU"/>
+                        <constraint firstItem="Pz9-og-f5t" firstAttribute="leading" secondItem="pGQ-T4-1xW" secondAttribute="leading" id="lCB-TO-lEB"/>
+                        <constraint firstAttribute="bottom" secondItem="Pz9-og-f5t" secondAttribute="bottom" id="wQO-a5-8JV"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="pGQ-T4-1xW" secondAttribute="bottom" id="3JS-BW-cmU"/>
+                <constraint firstItem="pGQ-T4-1xW" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="UbV-vK-HLn"/>
+                <constraint firstAttribute="trailing" secondItem="pGQ-T4-1xW" secondAttribute="trailing" id="fxe-fk-JI1"/>
+                <constraint firstItem="pGQ-T4-1xW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="reF-dF-3yr"/>
+            </constraints>
+            <point key="canvasLocation" x="34.5" y="114.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="sancy-landscape" width="300" height="300"/>
+    </resources>
 </document>

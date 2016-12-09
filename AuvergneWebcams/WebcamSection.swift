@@ -18,7 +18,7 @@ class WebcamSection {
         let section = WebcamSection()
         
         section.title = "Puy de Dôme"
-        section.image = UIImage(named: "pdd-landscape")
+        section.image = UIImage(named: "sancy-landscape")
         
         return section
     }
@@ -27,7 +27,7 @@ class WebcamSection {
         let section = WebcamSection()
         
         section.title = "Puy de Sancy"
-        section.image = UIImage(named: "sancy-landscape")
+        section.image = UIImage(named: "goal-landscape")
         
         return section
     }
