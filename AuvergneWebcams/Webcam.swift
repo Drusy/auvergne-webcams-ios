@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyUserDefaults
 
 class Webcam {
     
@@ -25,7 +26,11 @@ class Webcam {
     // MARK: -
     
     func preferedImage() -> String? {
-        return imageHD ?? imageLD
+        if Defaults[.prefersHighQuality] {
+            return imageHD ?? imageLD
+        } else {
+            return imageLD ?? imageHD
+        }
     }
     
     // MARK: - Webcam groups

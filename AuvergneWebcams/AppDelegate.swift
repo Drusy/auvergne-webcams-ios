@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Defaults settings
             Defaults[.shouldAutorefresh] = true
             Defaults[.isDarkTheme] = true
+            Defaults[.prefersHighQuality] = true
             Defaults[.autorefreshInterval] = Webcam.refreshInterval
         }
         

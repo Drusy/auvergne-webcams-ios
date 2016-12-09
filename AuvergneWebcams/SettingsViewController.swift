@@ -18,6 +18,7 @@ enum SettingTag: String {
     case about
     case openium
     case rateApp
+    case quality
 }
 
 class SettingsViewController: FormViewController {    
@@ -115,6 +116,14 @@ class SettingsViewController: FormViewController {
                     row.value = Int(Defaults[.autorefreshInterval])
                     row.updateCell()
                 }
+            }
+            <<< SwitchRow(SettingTag.quality.rawValue) {
+                $0.title = "Haute qualité"
+                $0.value = Defaults[.prefersHighQuality]
+                }.onChange { row in
+                    Defaults[.prefersHighQuality] = row.value ?? false
+                    NotificationCenter.default.post(name: NSNotification.Name.SettingsDidUpdateQuality,
+                                                    object: self)
             }
             
             +++ Section(header: "Auvergne Webcams", footer: "Version \(version) (\(build))")

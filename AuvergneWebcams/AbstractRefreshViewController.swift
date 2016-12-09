@@ -33,6 +33,10 @@ class AbstractRefreshViewController: AbstractViewController {
                                                selector: #selector(autorefreshSettingsUpdated),
                                                name: NSNotification.Name.SettingsDidUpdateAutorefresh,
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(qualitySettingsUpdated),
+                                               name: NSNotification.Name.SettingsDidUpdateQuality,
+                                               object: nil)
         
         if Defaults[.shouldAutorefresh] {
             startRefreshing()
@@ -51,6 +55,9 @@ class AbstractRefreshViewController: AbstractViewController {
                                                   object: nil)
         NotificationCenter.default.removeObserver(self,
                                                   name: NSNotification.Name.SettingsDidUpdateAutorefresh,
+                                                  object: nil)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: NSNotification.Name.SettingsDidUpdateQuality,
                                                   object: nil)
     }
     
@@ -91,6 +98,10 @@ class AbstractRefreshViewController: AbstractViewController {
         } else {
             stopRefreshing()
         }
+    }
+    
+    @objc func qualitySettingsUpdated() {
+        refresh()
     }
     
     // MARK: -

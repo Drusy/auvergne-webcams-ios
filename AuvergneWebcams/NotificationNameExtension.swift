@@ -11,4 +11,5 @@ import Foundation
 extension NSNotification.Name {
     static let SettingsDidUpdateTheme = NSNotification.Name("AWSettingsDidUpdateTheme")
     static let SettingsDidUpdateAutorefresh = NSNotification.Name("AWSettingsDidUpdateAutorefresh")
+    static let SettingsDidUpdateQuality = NSNotification.Name("AWSettingsDidUpdateQuality")
 }
