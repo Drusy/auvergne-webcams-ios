@@ -9,6 +9,25 @@ iOS application displaying the content of the Webcams available in Auvergne - Fr
 - **Vue depuis le sommet du puy de Dôme:** http://wwwobs.univ-bpclermont.fr/opgc/webcampdd.jpg
 - **Vue du puy de Dôme depuis le campus des Cézeaux:** http://wwwobs.univ-bpclermont.fr/opgc/webcamcez.jpg
 
+## Le Lioran
+
+**Source**: http://www.lelioran.com/webcam.html
+
+### Centre station
+
+- **1280w:** http://srv02.trinum.com/ibox/ftpcam/1280_lioran_station.jpg
+- **Full size:** http://www.trinum.com/ibox/ftpcam/mega_lioran_station.jpg
+
+### Sommet de la station
+
+- **1280w:** http://srv02.trinum.com/ibox/ftpcam/1280_lioran_sommet-domaine.jpg
+- **Full size:** http://srv02.trinum.com/ibox/ftpcam/mega_lioran_sommet-domaine.jpg
+
+### Font d'Alagnon
+
+- **1280w:** http://srv04.trinum.com/ibox/ftpcam/1280_lioran_font-d-alagnon.jpg
+- **Full size:** http://srv04.trinum.com/ibox/ftpcam/mega_lioran_font-d-alagnon.jpg
+
 ## Sancy
 
 **Source**: http://www.sancy.com/pratique/webcams

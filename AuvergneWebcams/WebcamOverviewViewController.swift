@@ -32,12 +32,14 @@ class WebcamOverviewViewController: AbstractRefreshViewController {
         
         let objects = [
             Webcam.pddWebcams(),
-            Webcam.sancyWebcams()
+            Webcam.sancyWebcams(),
+            Webcam.lioranWebcams()
         ]
         
         let sections = [
             WebcamSection.pddSection(),
-            WebcamSection.sancySection()
+            WebcamSection.sancySection(),
+            WebcamSection.lioranSection()
         ]
         
         webcamProvider = WebcamsViewProvider(collectionView: collectionView)

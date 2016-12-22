@@ -31,4 +31,13 @@ class WebcamSection {
         
         return section
     }
+    
+    static func lioranSection() -> WebcamSection {
+        let section = WebcamSection()
+        
+        section.title = "Le Lioran"
+        section.image = UIImage(named: "lioran-landscape")
+        
+        return section
+    }
 }

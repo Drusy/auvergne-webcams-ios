@@ -54,6 +54,46 @@ class Webcam {
         ]
     }
     
+    static func lioranWebcams() -> [Webcam] {
+        return [
+            ll_sommet(),
+            ll_station(),
+            ll_alagnon()
+        ]
+    }
+    
+    // MARK: - Le Lioran
+    
+    fileprivate static func ll_station() -> Webcam {
+        let webcam = Webcam()
+        
+        webcam.title = "Centre station"
+        webcam.imageLD = "http://srv02.trinum.com/ibox/ftpcam/1280_lioran_station.jpg"
+        webcam.imageHD = "http://www.trinum.com/ibox/ftpcam/mega_lioran_station.jpg"
+        
+        return webcam
+    }
+    
+    fileprivate static func ll_sommet() -> Webcam {
+        let webcam = Webcam()
+        
+        webcam.title = "Sommet de la station"
+        webcam.imageLD = "http://srv02.trinum.com/ibox/ftpcam/1280_lioran_sommet-domaine.jpg"
+        webcam.imageHD = "http://srv02.trinum.com/ibox/ftpcam/mega_lioran_sommet-domaine.jpg"
+        
+        return webcam
+    }
+    
+    fileprivate static func ll_alagnon() -> Webcam {
+        let webcam = Webcam()
+        
+        webcam.title = "Font d'Alagnon"
+        webcam.imageLD = "http://srv04.trinum.com/ibox/ftpcam/1280_lioran_font-d-alagnon.jpg"
+        webcam.imageHD = "http://srv04.trinum.com/ibox/ftpcam/mega_lioran_font-d-alagnon.jpg"
+        
+        return webcam
+    }
+    
     // MARK: - Puy de Sancy
     
     fileprivate static func md_bas() -> Webcam {
