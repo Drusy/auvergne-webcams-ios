@@ -27,6 +27,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     var lastZoomScale: CGFloat = -1
     var webcam: Webcam
     var isDataLoaded: Bool = false
+    var shareBarButtonItem: UIBarButtonItem!
     
     init(webcam: Webcam) {
         self.webcam = webcam
@@ -42,18 +43,23 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         
         automaticallyAdjustsScrollViewInsets = false
         view.bounds = UIScreen.main.bounds
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "refresh-icon"),
-                                                            style: .plain,
-                                                            target: self,
-                                                            action: #selector(forceRefresh))
         
+        let refreshIcon =  UIBarButtonItem(image: UIImage(named: "refresh-icon"),
+                                           style: .plain,
+                                           target: self,
+                                           action: #selector(forceRefresh))
+        shareBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(actionTouched))
+        
+        navigationItem.rightBarButtonItems = [refreshIcon, shareBarButtonItem]
+            
         // Prepare indicator
         scrollView.layoutIfNeeded()
         scrollView.delegate = self
         scrollView.backgroundColor = UIColor.black
         
         brokenConnectionView.isHidden = true
-        
+        shareBarButtonItem.isEnabled = false
+
         // Tap to zoom
         setupGestureRecognizer()
     }
@@ -84,6 +90,64 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     
     // MARK: - 
     
+    func actionTouched() {
+        let alertController = UIAlertController(title: self.title,
+                                                message: nil,
+                                                preferredStyle: .actionSheet)
+        
+        let shareAction = UIAlertAction(title: "Partager",
+                                            style: .default,
+                                            handler: { [weak self] _ in
+                                                guard let strongSelf = self else { return }
+                                                
+                                                strongSelf.share(strongSelf.title,
+                                                                 image: strongSelf.imageView.image,
+                                                                 fromBarButton: strongSelf.shareBarButtonItem)
+        })
+        
+        let saveAction = UIAlertAction(title: "Sauvegarder",
+                                          style: .default,
+                                          handler: { [weak self] _ in
+                                            guard let strongSelf = self else { return }
+                                            guard let image = self?.imageView.image else { return }
+
+                                            UIImageWriteToSavedPhotosAlbum(image,
+                                                                           strongSelf,
+                                                                           #selector(strongSelf.image(_:didFinishSavingWithError:contextInfo:)),
+                                                                           nil)
+        })
+        
+        let cancelAction = UIAlertAction(title: "Annuler",
+                                         style: .cancel,
+                                         handler: nil)
+        
+        alertController.addAction(shareAction)
+        alertController.addAction(saveAction)
+        alertController.addAction(cancelAction)
+        
+        alertController.popoverPresentationController?.barButtonItem = shareBarButtonItem
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        
+        if let error = error {
+            let ac = UIAlertController(title: "Erreur",
+                                       message: error.localizedDescription,
+                                       preferredStyle: .alert)
+            ac.addAction(okAction)
+            present(ac, animated: true)
+        } else {
+            let ac = UIAlertController(title: title,
+                                       message: "Image sauvegardée dans la bibliothèque",
+                                       preferredStyle: .alert)
+            ac.addAction(okAction)
+            present(ac, animated: true)
+        }
+    }
+    
     func forceRefresh() {
         refresh(force: isReachable())
     }
@@ -93,6 +157,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
             let options: KingfisherOptionsInfo = force ? [.forceRefresh] : []
             
             brokenConnectionView.isHidden = true
+            shareBarButtonItem.isEnabled = false
             isDataLoaded = false
 
             activityIndicator.startAnimating()
@@ -118,6 +183,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
                                         }
                                     } else {
                                         strongSelf.activityIndicator.stopAnimating()
+                                        strongSelf.shareBarButtonItem.isEnabled = true
                                         strongSelf.isDataLoaded = true
                                         strongSelf.updateZoom()
                                     }
