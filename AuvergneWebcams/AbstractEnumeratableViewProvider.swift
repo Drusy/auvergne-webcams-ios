@@ -1,8 +1,8 @@
 //
 //  AbstractEnumeratableViewProvider.swift
-//  MyRallyEnginneer
+//  AuvergneWebcams
 //
-//  Created by Richard Bergoin on 27/10/2016.
+//  Created by Drusy on 27/10/2016.
 //  Copyright © 2016 Openium. All rights reserved.
 //
 

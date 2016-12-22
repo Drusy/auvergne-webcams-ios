@@ -9,12 +9,16 @@
 import UIKit
 import Kingfisher
 import SwiftyUserDefaults
+import Reachability
 
 class WebcamCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var blurView: UIVisualEffectView!
+    @IBOutlet var brokenConnectionImage: UIImageView!
+    @IBOutlet var brokenConnectionView: UIView!
+    @IBOutlet var brokenConnectionLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -59,15 +63,22 @@ extension WebcamCollectionViewCell: ConfigurableCell {
     
     func configure(with item: Webcam) {
         if let image = item.preferedImage(), let url = URL(string: image) {
+            brokenConnectionView.isHidden = true
+
             imageView.kf.setImage(with: url) { [weak self] (image, error, cacheType, imageUrl) in
                 if let error = error {
                     print("ERROR: \(error.code) - \(error.localizedDescription)")
                     
-                    if error.code != -999 {
+                    let reachability = Reachability()
+                    let isReachable = (reachability == nil || (reachability != nil && reachability!.isReachable))
+
+                    if error.code != -999 && isReachable {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
                             print("Retrying to download \(imageUrl) ...")
                             self?.configure(with: item)
                         }
+                    } else {
+                        self?.brokenConnectionView.isHidden = false
                     }
                 }
             }
@@ -79,14 +90,17 @@ extension WebcamCollectionViewCell: ConfigurableCell {
     func style() {
         let style: UIActivityIndicatorViewStyle
         backgroundColor = ThemeUtils.backgroundColor()
+        brokenConnectionLabel.textColor = ThemeUtils.tintColor()
 //        titleLabel.textColor = ThemeUtils.tintColor()
         
         if Defaults[.isDarkTheme] {
             style = .white
             blurView.effect = UIBlurEffect(style: .dark)
+            brokenConnectionImage.image = UIImage(named: "wifi-broken-white-small")
         } else {
             style = .gray
             blurView.effect = UIBlurEffect(style: .light)
+            brokenConnectionImage.image = UIImage(named: "wifi-broken-black-small")
         }
         
         let indicator = KFIndicator(style)

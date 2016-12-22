@@ -8,11 +8,14 @@
 
 import UIKit
 import Kingfisher
+import Reachability
+import SwiftyUserDefaults
 
 class WebcamDetailViewController: AbstractRefreshViewController {
 
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet var brokenConnectionView: UIView!
     
     @IBOutlet weak var imageConstraintTop: NSLayoutConstraint!
     @IBOutlet weak var imageConstraintRight: NSLayoutConstraint!
@@ -48,6 +51,8 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         scrollView.layoutIfNeeded()
         scrollView.delegate = self
         scrollView.backgroundColor = UIColor.black
+        
+        brokenConnectionView.isHidden = true
         
         // Tap to zoom
         setupGestureRecognizer()
@@ -87,6 +92,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         if let image = webcam.preferedImage(), let url = URL(string: image) {
             let options: KingfisherOptionsInfo = force ? [.forceRefresh] : []
             
+            brokenConnectionView.isHidden = true
             isDataLoaded = false
 
             activityIndicator.startAnimating()
@@ -99,13 +105,16 @@ class WebcamDetailViewController: AbstractRefreshViewController {
                                     if let error = error {
                                         print("ERROR: \(error.code) - \(error.localizedDescription)")
                                         
-                                        if error.code != -999 {
+                                        if error.code != -999 && strongSelf.isReachable() {
                                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
                                                 guard let strongSelf = self else { return }
 
                                                 print("Retrying to download \(url) ...")
                                                 strongSelf.refresh(force: force)
                                             }
+                                        } else {
+                                            strongSelf.activityIndicator.stopAnimating()
+                                            strongSelf.brokenConnectionView.isHidden = false
                                         }
                                     } else {
                                         strongSelf.activityIndicator.stopAnimating()

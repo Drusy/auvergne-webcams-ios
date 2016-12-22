@@ -1,9 +1,9 @@
 //
 //  UIFontExtension.swift
-//  MichelinDDI
+//  AuvergneWebcams
 //
 //  Created by Drusy on 09/10/2016.
-//  Copyright © 2016 Michelin. All rights reserved.
+//  Copyright © 2016 Openium. All rights reserved.
 //
 
 import UIKit
