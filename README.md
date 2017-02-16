@@ -2,6 +2,8 @@
 
 iOS application displaying the content of the Webcams available in Auvergne - France
 
+![Auvergne Webcams - Home Mockups](resources/mockup/mockup-home.png)
+
 ## Puy de dome
 
 **Source:** http://wwwobs.univ-bpclermont.fr/opgc/webcam.php
