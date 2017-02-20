@@ -22,6 +22,7 @@ class WebcamCarouselTableViewCell: UITableViewCell, ConfigurableCell {
     @IBOutlet var sectionImageView: UIImageView!
     @IBOutlet var sectionTitleLabel: UILabel!
     @IBOutlet var webcamCountLabel: UILabel!
+    @IBOutlet var webcamCountArrowImageView: UIImageView!
     @IBOutlet var webcamTitleLabel: UILabel!
     @IBOutlet var separatorView: UIView!
     
@@ -42,6 +43,14 @@ class WebcamCarouselTableViewCell: UITableViewCell, ConfigurableCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        super.setHighlighted(highlighted, animated: animated)
+        
+        if let selectedWebcamView = carousel.currentItemView as? WebcamView {
+            selectedWebcamView.isHighlighted = highlighted
+        }
     }
     
     override func prepareForReuse() {
@@ -92,11 +101,31 @@ class WebcamCarouselTableViewCell: UITableViewCell, ConfigurableCell {
         }
     }
     
+    fileprivate func setWebcamCount(highlighted: Bool) {
+        let color = highlighted ? UIColor.awBlue : UIColor.awLightGray
+        
+        webcamCountLabel.textColor = color
+        webcamCountArrowImageView.image = webcamCountArrowImageView.image?.colorizedImage(withColor: color)
+    }
+    
     // MARK: - IBActions
+    
+    @IBAction func onSectionTouchedDragExit(_ sender: Any) {
+        setWebcamCount(highlighted: false)
+    }
+    
+    @IBAction func onSectionTouchedCancel(_ sender: Any) {
+        setWebcamCount(highlighted: false)
+    }
+    
+    @IBAction func onSectionTouchedDown(_ sender: Any) {
+        setWebcamCount(highlighted: true)
+    }
     
     @IBAction func onSectionTouched(_ sender: Any) {
         guard let section = section else { return }
         
+        setWebcamCount(highlighted: false)
         delegate?.webcamCarousel(tableViewCell: self, didSelectSection: section)
     }
 }

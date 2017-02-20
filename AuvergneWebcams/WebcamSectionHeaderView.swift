@@ -17,7 +17,7 @@ class WebcamSectionHeaderView: UICollectionReusableView {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
- 
+     
     static func identifier() -> String {
         return String(describing: WebcamSectionHeaderView.self)
     }

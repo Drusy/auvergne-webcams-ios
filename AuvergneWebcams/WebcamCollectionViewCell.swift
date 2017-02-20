@@ -13,6 +13,12 @@ class WebcamCollectionViewCell: UICollectionViewCell, ConfigurableCell {
     
     let webcamView = WebcamSectionedView.loadFromXib()
     
+    override var isHighlighted: Bool {
+        didSet {
+            webcamView.isHighlighted = isHighlighted
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         

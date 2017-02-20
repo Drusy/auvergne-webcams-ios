@@ -54,16 +54,24 @@
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5ju-fM-G0p">
                             <rect key="frame" x="0.0" y="0.0" width="514" height="289"/>
                         </imageView>
+                        <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ktB-zU-qjb">
+                            <rect key="frame" x="0.5" y="0.5" width="512" height="287"/>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="5ju-fM-G0p" firstAttribute="top" secondItem="gKN-Se-vdo" secondAttribute="top" id="1VM-Ve-ZS2"/>
+                        <constraint firstItem="ktB-zU-qjb" firstAttribute="height" secondItem="5ju-fM-G0p" secondAttribute="height" constant="-2" id="2St-RF-lo8"/>
                         <constraint firstItem="5ju-fM-G0p" firstAttribute="leading" secondItem="gKN-Se-vdo" secondAttribute="leading" id="6gq-pm-JWM"/>
                         <constraint firstAttribute="bottom" secondItem="SSA-vm-epb" secondAttribute="bottom" id="7m6-38-89O"/>
                         <constraint firstItem="SSA-vm-epb" firstAttribute="leading" secondItem="gKN-Se-vdo" secondAttribute="leading" id="BO2-p1-DpV"/>
                         <constraint firstAttribute="trailing" secondItem="5ju-fM-G0p" secondAttribute="trailing" id="DvM-tK-Fag"/>
+                        <constraint firstItem="ktB-zU-qjb" firstAttribute="centerY" secondItem="5ju-fM-G0p" secondAttribute="centerY" id="NjO-cN-4ra"/>
                         <constraint firstItem="SSA-vm-epb" firstAttribute="top" secondItem="gKN-Se-vdo" secondAttribute="top" id="afo-UW-IOD"/>
                         <constraint firstAttribute="trailing" secondItem="SSA-vm-epb" secondAttribute="trailing" id="keQ-sK-mv2"/>
+                        <constraint firstItem="ktB-zU-qjb" firstAttribute="width" secondItem="5ju-fM-G0p" secondAttribute="width" constant="-2" id="t2g-OJ-6ce"/>
+                        <constraint firstItem="ktB-zU-qjb" firstAttribute="centerX" secondItem="5ju-fM-G0p" secondAttribute="centerX" id="tLm-3u-6YP"/>
                         <constraint firstAttribute="bottom" secondItem="5ju-fM-G0p" secondAttribute="bottom" id="v7p-cg-q8Y"/>
                     </constraints>
                 </view>
@@ -91,6 +99,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="imageView" destination="5ju-fM-G0p" id="9a0-ME-5tf"/>
+                <outlet property="imageViewHighlightOverlayView" destination="ktB-zU-qjb" id="HIm-0v-rOV"/>
                 <outlet property="noDataView" destination="SSA-vm-epb" id="nhw-l0-URT"/>
                 <outlet property="shadowView" destination="gKN-Se-vdo" id="76O-QH-glk"/>
                 <outlet property="webcamTitleLabel" destination="8Sm-IR-S9e" id="wC5-Iv-trp"/>

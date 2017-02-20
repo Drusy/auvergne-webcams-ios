@@ -112,7 +112,7 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
         title = "Auvergne Webcams"
         searchTextField.attributedPlaceholder = "Rechercher une webcam"
             .withFont(UIFont.proximaNovaLightItalic(withSize: 16))
-            .withTextColor(UIColor(rgb: 0x9B9B9B))
+            .withTextColor(UIColor.awLightGray)
     }
     
     override func update() {

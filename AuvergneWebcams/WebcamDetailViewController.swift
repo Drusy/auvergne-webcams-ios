@@ -68,7 +68,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         // Load image
         refresh()
     }
-    
+
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
@@ -78,7 +78,15 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        lastUpdateViewTopConstraint.constant = topLayoutGuide.length
+        if let navigationController = navigationController {
+            var height = navigationController.navigationBar.bounds.height
+            
+            if !UIApplication.shared.isStatusBarHidden {
+                height += UIApplication.shared.statusBarFrame.height
+            }
+            
+            lastUpdateViewTopConstraint.constant = height
+        }
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

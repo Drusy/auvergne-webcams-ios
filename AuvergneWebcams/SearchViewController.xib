@@ -96,7 +96,7 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="7VT-vc-kw0" secondAttribute="trailing" id="0aE-i6-Bjh"/>
                 <constraint firstAttribute="trailing" secondItem="ibI-iQ-H3S" secondAttribute="trailing" constant="24" id="HJz-eu-Mbc"/>
-                <constraint firstAttribute="bottom" secondItem="zgs-YF-15P" secondAttribute="bottom" id="Jec-wm-H9Y"/>
+                <constraint firstAttribute="bottom" secondItem="zgs-YF-15P" secondAttribute="bottom" id="Jec-wm-H9Y" customClass="KeyboardLayoutConstraint" customModule="AuvergneWebcams" customModuleProvider="target"/>
                 <constraint firstItem="ibI-iQ-H3S" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="24" id="PEX-Qz-cZF"/>
                 <constraint firstItem="ibI-iQ-H3S" firstAttribute="top" secondItem="7VT-vc-kw0" secondAttribute="bottom" constant="24" id="StM-NF-niT"/>
                 <constraint firstItem="7VT-vc-kw0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="UEk-Jt-Rco"/>

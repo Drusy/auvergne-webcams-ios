@@ -50,4 +50,8 @@ extension UIFont {
     static func proximaNovaRegular(withSize size: CGFloat) -> UIFont {
         return UIFont(name: "ProximaNova-Regular", size: size)!
     }
+    
+    static func proximaNovaRegularItalic(withSize size: CGFloat) -> UIFont {
+        return UIFont(name: "ProximaNova-RegularIt", size: size)!
+    }
 }

@@ -79,6 +79,10 @@
 		F963AB7B1E5A6E8300ED5A8B /* DateFormatterCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F963AB7A1E5A6E8300ED5A8B /* DateFormatterCache.swift */; };
 		F9ACD1C21E5A834A004E5BFF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ACD1C01E5A834A004E5BFF /* SearchViewController.swift */; };
 		F9ACD1C31E5A834A004E5BFF /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9ACD1C11E5A834A004E5BFF /* SearchViewController.xib */; };
+		F9ACD1C61E5B08D6004E5BFF /* KeyboardLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ACD1C51E5B08D6004E5BFF /* KeyboardLayoutConstraint.swift */; };
+		F9ACD1C81E5B0E37004E5BFF /* CGSizeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ACD1C71E5B0E37004E5BFF /* CGSizeExtension.swift */; };
+		F9ACD1CA1E5B2130004E5BFF /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ACD1C91E5B2130004E5BFF /* UIColorExtension.swift */; };
+		F9ACD1CC1E5B227A004E5BFF /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ACD1CB1E5B227A004E5BFF /* UIImageExtension.swift */; };
 		F9BE03091DD7817C0063275B /* AbstractRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE03081DD7817C0063275B /* AbstractRefreshViewController.swift */; };
 		F9BE030C1DD78E4B0063275B /* KFIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE030B1DD78E4B0063275B /* KFIndicator.swift */; };
 		F9BE030F1DD8AC1B0063275B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE030D1DD8AC1B0063275B /* SettingsViewController.swift */; };
@@ -215,6 +219,10 @@
 		F963AB7A1E5A6E8300ED5A8B /* DateFormatterCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatterCache.swift; sourceTree = "<group>"; };
 		F9ACD1C01E5A834A004E5BFF /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		F9ACD1C11E5A834A004E5BFF /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
+		F9ACD1C51E5B08D6004E5BFF /* KeyboardLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardLayoutConstraint.swift; sourceTree = "<group>"; };
+		F9ACD1C71E5B0E37004E5BFF /* CGSizeExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGSizeExtension.swift; sourceTree = "<group>"; };
+		F9ACD1C91E5B2130004E5BFF /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		F9ACD1CB1E5B227A004E5BFF /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		F9BE03081DD7817C0063275B /* AbstractRefreshViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractRefreshViewController.swift; sourceTree = "<group>"; };
 		F9BE030B1DD78E4B0063275B /* KFIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KFIndicator.swift; sourceTree = "<group>"; };
 		F9BE030D1DD8AC1B0063275B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -406,11 +414,14 @@
 		F94FEEAE1DD4764A00586F54 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				F9ACD1CB1E5B227A004E5BFF /* UIImageExtension.swift */,
 				F963AB371E59E54300ED5A8B /* UIViewExtension.swift */,
 				F9022DA01DD90601006AF146 /* DefaultsKeyExtension.swift */,
 				F94FEEAF1DD4765A00586F54 /* UIFontExtension.swift */,
 				F96276181DDB6A5D0090A9AB /* UITableViewCellExtension.swift */,
 				F900E4CC1DE5DBA300B017BB /* NotificationNameExtension.swift */,
+				F9ACD1C71E5B0E37004E5BFF /* CGSizeExtension.swift */,
+				F9ACD1C91E5B2130004E5BFF /* UIColorExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -479,6 +490,14 @@
 			name = Utils;
 			sourceTree = "<group>";
 		};
+		F9ACD1C41E5B08C8004E5BFF /* Constraint */ = {
+			isa = PBXGroup;
+			children = (
+				F9ACD1C51E5B08D6004E5BFF /* KeyboardLayoutConstraint.swift */,
+			);
+			name = Constraint;
+			sourceTree = "<group>";
+		};
 		F9BE030A1DD78E330063275B /* Kingfisher */ = {
 			isa = PBXGroup;
 			children = (
@@ -502,6 +521,7 @@
 			isa = PBXGroup;
 			children = (
 				F9F5AC5B1DD31C7D00D9FF83 /* Abstract */,
+				F9ACD1C41E5B08C8004E5BFF /* Constraint */,
 				F94FEEAE1DD4764A00586F54 /* Extensions */,
 				F94FEEAB1DD4763900586F54 /* Containers */,
 				F963AB101E59BDD500ED5A8B /* Loading */,
@@ -826,6 +846,7 @@
 			files = (
 				F963AB211E59CE6300ED5A8B /* WebcamCarouselTableViewCell.swift in Sources */,
 				F9F5AC981DD34C8B00D9FF83 /* WebcamSection.swift in Sources */,
+				F9ACD1C81E5B0E37004E5BFF /* CGSizeExtension.swift in Sources */,
 				F963AB681E5A60F300ED5A8B /* WebcamSectionViewProvider.swift in Sources */,
 				F963AB6B1E5A611600ED5A8B /* WebcamCollectionViewCell.swift in Sources */,
 				F963AB321E59D07800ED5A8B /* AbstractArrayViewProvider.swift in Sources */,
@@ -843,8 +864,11 @@
 				F96276191DDB6A5D0090A9AB /* UITableViewCellExtension.swift in Sources */,
 				F9F5AC5E1DD31C9100D9FF83 /* AbstractViewController.swift in Sources */,
 				F94FEEAD1DD4764100586F54 /* NavigationController.swift in Sources */,
+				F9ACD1C61E5B08D6004E5BFF /* KeyboardLayoutConstraint.swift in Sources */,
 				F963AB131E59BDF900ED5A8B /* LoadingViewController.swift in Sources */,
 				F93C760D1DD11577005DEE66 /* AppDelegate.swift in Sources */,
+				F9ACD1CC1E5B227A004E5BFF /* UIImageExtension.swift in Sources */,
+				F9ACD1CA1E5B2130004E5BFF /* UIColorExtension.swift in Sources */,
 				F963AB361E59D07800ED5A8B /* AbstractViewProvider.swift in Sources */,
 				F963AB701E5A635800ED5A8B /* WebcamSectionHeaderView.swift in Sources */,
 				F9BE030C1DD78E4B0063275B /* KFIndicator.swift in Sources */,

@@ -22,7 +22,7 @@ class AboutViewController: AbstractViewController {
             label.enabledTypes = [.url, .mention]
 
             // Mention
-            label.mentionColor = UIColor(rgb: 0x52A4FF)
+            label.mentionColor = UIColor.awBlue
             label.handleMentionTap{ [weak self] mention in
                 var url: URL?
                 
@@ -49,7 +49,7 @@ class AboutViewController: AbstractViewController {
             }
             
             // Urls
-            label.URLColor = UIColor(rgb: 0x52A4FF)
+            label.URLColor = UIColor.awBlue
             label.handleURLTap { [weak self] url in
                 let svc = SFSafariViewController(url: url)
                 if #available(iOS 10.0, *) {

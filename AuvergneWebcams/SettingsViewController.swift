@@ -202,7 +202,7 @@ class SettingsViewController: FormViewController {
         }
         SwitchRow.defaultCellUpdate = { cell, row in
             cell.switchControl?.tintColor = tintColor
-            cell.switchControl?.onTintColor = UIColor(rgb: 0x52A4FF)
+            cell.switchControl?.onTintColor = UIColor.awBlue
             cell.textLabel?.textColor = tintColor
         }
         

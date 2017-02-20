@@ -29,6 +29,7 @@ class SearchViewController: AbstractViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        collectionView.alwaysBounceVertical = true
         provider.itemSelectionHandler = { [weak self] webcam, indexPath in
             let webcamDetail = WebcamDetailViewController(webcam: webcam)
             self?.navigationController?.pushViewController(webcamDetail, animated: true)
@@ -41,7 +42,15 @@ class SearchViewController: AbstractViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        searchViewTopConstraint.constant = topLayoutGuide.length
+        if let navigationController = navigationController {
+            var height = navigationController.navigationBar.bounds.height
+            
+            if !UIApplication.shared.isStatusBarHidden {
+                height += UIApplication.shared.statusBarFrame.height
+            }
+            
+            searchViewTopConstraint.constant = height
+        }
     }
     
     // MARK: - 
@@ -52,7 +61,7 @@ class SearchViewController: AbstractViewController {
         title = "Rechercher"
         searchTextField.attributedPlaceholder = "Rechercher une webcam"
             .withFont(UIFont.proximaNovaLightItalic(withSize: 16))
-            .withTextColor(UIColor(rgb: 0x9B9B9B))
+            .withTextColor(UIColor.awLightGray)
     }
     
     func search(text: String?) {
@@ -90,7 +99,7 @@ class SearchViewController: AbstractViewController {
                 .withTextColor(UIColor.white)
             let attributedSearchText = searchText
                 .withFont(UIFont.proximaNovaSemiBoldItalic(withSize: 16))
-                .withTextColor(UIColor(rgb: 0x52A4FF))
+                .withTextColor(UIColor.awBlue)
             
             searchLabel.attributedText = attributedResultText + attributedSearchText
         } else {

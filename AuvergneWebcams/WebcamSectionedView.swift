@@ -20,8 +20,8 @@ class WebcamSectionedView: AbstractWebcamView {
         
         return webcamView
     }
-    
-    // MARK: - 
+
+    // MARK: -
     
     override func awakeFromNib() {
         super.awakeFromNib()
