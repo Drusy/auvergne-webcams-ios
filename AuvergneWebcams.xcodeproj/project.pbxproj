@@ -16,7 +16,6 @@
 		F93C760D1DD11577005DEE66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93C760C1DD11577005DEE66 /* AppDelegate.swift */; };
 		F93C76141DD11577005DEE66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F93C76131DD11577005DEE66 /* Assets.xcassets */; };
 		F93C76171DD11577005DEE66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F93C76151DD11577005DEE66 /* LaunchScreen.storyboard */; };
-		F93C76221DD11577005DEE66 /* AuvergneWebcamsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93C76211DD11577005DEE66 /* AuvergneWebcamsTests.swift */; };
 		F93C76411DD11AF0005DEE66 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F93C76391DD11ACE005DEE66 /* Kingfisher.framework */; };
 		F93C76421DD11AF0005DEE66 /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F93C76391DD11ACE005DEE66 /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F93C76431DD11AF0005DEE66 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F93C763A1DD11ACE005DEE66 /* Reachability.framework */; };
@@ -83,6 +82,11 @@
 		F9ACD1C81E5B0E37004E5BFF /* CGSizeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ACD1C71E5B0E37004E5BFF /* CGSizeExtension.swift */; };
 		F9ACD1CA1E5B2130004E5BFF /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ACD1C91E5B2130004E5BFF /* UIColorExtension.swift */; };
 		F9ACD1CC1E5B227A004E5BFF /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ACD1CB1E5B227A004E5BFF /* UIImageExtension.swift */; };
+		F9ACD1CF1E5B3FBF004E5BFF /* OpeniumTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ACD1CE1E5B3FBF004E5BFF /* OpeniumTestingKit.framework */; };
+		F9ACD1D51E5B4039004E5BFF /* AbstractTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ACD1D31E5B4039004E5BFF /* AbstractTests.swift */; };
+		F9ACD1D61E5B4039004E5BFF /* AbstractViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ACD1D41E5B4039004E5BFF /* AbstractViewControllerTests.swift */; };
+		F9ACD1D91E5B4097004E5BFF /* WebcamCarouselViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ACD1D81E5B4097004E5BFF /* WebcamCarouselViewControllerTests.swift */; };
+		F9ACD1DA1E5B40EE004E5BFF /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F963AB3C1E59E7FC00ED5A8B /* RealmSwift.framework */; };
 		F9BE03091DD7817C0063275B /* AbstractRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE03081DD7817C0063275B /* AbstractRefreshViewController.swift */; };
 		F9BE030C1DD78E4B0063275B /* KFIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE030B1DD78E4B0063275B /* KFIndicator.swift */; };
 		F9BE030F1DD8AC1B0063275B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE030D1DD8AC1B0063275B /* SettingsViewController.swift */; };
@@ -156,7 +160,6 @@
 		F93C76161DD11577005DEE66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F93C76181DD11577005DEE66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F93C761D1DD11577005DEE66 /* AuvergneWebcamsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuvergneWebcamsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F93C76211DD11577005DEE66 /* AuvergneWebcamsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuvergneWebcamsTests.swift; sourceTree = "<group>"; };
 		F93C76231DD11577005DEE66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F93C762F1DD115EB005DEE66 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		F93C76301DD115EB005DEE66 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
@@ -223,6 +226,10 @@
 		F9ACD1C71E5B0E37004E5BFF /* CGSizeExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGSizeExtension.swift; sourceTree = "<group>"; };
 		F9ACD1C91E5B2130004E5BFF /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		F9ACD1CB1E5B227A004E5BFF /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		F9ACD1CE1E5B3FBF004E5BFF /* OpeniumTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpeniumTestingKit.framework; sourceTree = "<group>"; };
+		F9ACD1D31E5B4039004E5BFF /* AbstractTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractTests.swift; sourceTree = "<group>"; };
+		F9ACD1D41E5B4039004E5BFF /* AbstractViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractViewControllerTests.swift; sourceTree = "<group>"; };
+		F9ACD1D81E5B4097004E5BFF /* WebcamCarouselViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebcamCarouselViewControllerTests.swift; sourceTree = "<group>"; };
 		F9BE03081DD7817C0063275B /* AbstractRefreshViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractRefreshViewController.swift; sourceTree = "<group>"; };
 		F9BE030B1DD78E4B0063275B /* KFIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KFIndicator.swift; sourceTree = "<group>"; };
 		F9BE030D1DD8AC1B0063275B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -274,6 +281,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9ACD1DA1E5B40EE004E5BFF /* RealmSwift.framework in Frameworks */,
+				F9ACD1CF1E5B3FBF004E5BFF /* OpeniumTestingKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +292,7 @@
 		F911BBE81DDC6066000C022B /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				F9ACD1CD1E5B3FBF004E5BFF /* OpeniumTestingKit */,
 				F963AB5B1E5A2F7D00ED5A8B /* SwiftyAttributes */,
 				F963AB151E59C05100ED5A8B /* iCarousel */,
 				F911BBE91DDC6066000C022B /* Fabric */,
@@ -334,8 +344,8 @@
 		F93C76201DD11577005DEE66 /* AuvergneWebcamsTests */ = {
 			isa = PBXGroup;
 			children = (
-				F93C76211DD11577005DEE66 /* AuvergneWebcamsTests.swift */,
-				F93C76231DD11577005DEE66 /* Info.plist */,
+				F9ACD1D01E5B400A004E5BFF /* Classes */,
+				F9ACD1D11E5B400E004E5BFF /* Resources */,
 			);
 			path = AuvergneWebcamsTests;
 			sourceTree = "<group>";
@@ -496,6 +506,48 @@
 				F9ACD1C51E5B08D6004E5BFF /* KeyboardLayoutConstraint.swift */,
 			);
 			name = Constraint;
+			sourceTree = "<group>";
+		};
+		F9ACD1CD1E5B3FBF004E5BFF /* OpeniumTestingKit */ = {
+			isa = PBXGroup;
+			children = (
+				F9ACD1CE1E5B3FBF004E5BFF /* OpeniumTestingKit.framework */,
+			);
+			path = OpeniumTestingKit;
+			sourceTree = "<group>";
+		};
+		F9ACD1D01E5B400A004E5BFF /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F9ACD1D21E5B4034004E5BFF /* Abstract */,
+				F9ACD1D71E5B408F004E5BFF /* Controllers */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		F9ACD1D11E5B400E004E5BFF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F93C76231DD11577005DEE66 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		F9ACD1D21E5B4034004E5BFF /* Abstract */ = {
+			isa = PBXGroup;
+			children = (
+				F9ACD1D31E5B4039004E5BFF /* AbstractTests.swift */,
+				F9ACD1D41E5B4039004E5BFF /* AbstractViewControllerTests.swift */,
+			);
+			name = Abstract;
+			sourceTree = "<group>";
+		};
+		F9ACD1D71E5B408F004E5BFF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F9ACD1D81E5B4097004E5BFF /* WebcamCarouselViewControllerTests.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		F9BE030A1DD78E330063275B /* Kingfisher */ = {
@@ -888,7 +940,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F93C76221DD11577005DEE66 /* AuvergneWebcamsTests.swift in Sources */,
+				F9ACD1D61E5B4039004E5BFF /* AbstractViewControllerTests.swift in Sources */,
+				F9ACD1D51E5B4039004E5BFF /* AbstractTests.swift in Sources */,
+				F9ACD1D91E5B4097004E5BFF /* WebcamCarouselViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1056,8 +1110,19 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = QH6KR5PAQ7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor/OpeniumTestingKit",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = AuvergneWebcamsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+					"-framework",
+					IOKit,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = fr.openium.AuvergneWebcamsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -1072,8 +1137,19 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = QH6KR5PAQ7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor/OpeniumTestingKit",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = AuvergneWebcamsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+					"-framework",
+					IOKit,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = fr.openium.AuvergneWebcamsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;

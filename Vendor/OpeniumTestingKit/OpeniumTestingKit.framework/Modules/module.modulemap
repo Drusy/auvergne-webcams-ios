@@ -1,0 +1,6 @@
+framework module OpeniumTestingKit {
+    umbrella header "OpeniumTestingKit.h"
+    
+    export *
+    module * { export * }
+}
