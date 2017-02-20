@@ -31,7 +31,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pz9-og-f5t">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="668"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sancy-landscape" translatesAutoresizingMaskIntoConstraints="NO" id="ajF-hu-P0q">
                                     <rect key="frame" x="67" y="24" width="240" height="150"/>
@@ -41,7 +41,7 @@
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Vq-kb-CUG" customClass="ActiveLabel" customModule="ActiveLabel">
-                                    <rect key="frame" x="8" y="243" width="359" height="409"/>
+                                    <rect key="frame" x="8" y="243" width="359" height="470"/>
                                     <mutableString key="text">Auvergne Webcams vous permet d'observer vos volcans favoris à tout moment via votre smartphone.
 
 Ni Auvergne Webcams ni Openium ne sont propriétaires des images et flux vidéos présentés. Pour plus d'information, rendez-vous sur https://github.com/Drusy/auvergne-webcams-ios/blob/master/README.md
@@ -51,6 +51,9 @@ http://www.sancy.com/pratique/webcams
 
 Puy de Dôme
 http://wwwobs.univ-bpclermont.fr/opgc/webcam.php
+
+Le Lioran
+http://www.lelioran.com/webcam.html
 
 Produit en 🇫🇷 par @Drusy chez @Openium
 Design par @Mathilde chez @LesPirates ☠️
