@@ -16,18 +16,20 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var brokenConnectionView: UIView!
+    @IBOutlet var shareButton: UIButton!
     
     @IBOutlet weak var imageConstraintTop: NSLayoutConstraint!
     @IBOutlet weak var imageConstraintRight: NSLayoutConstraint!
     @IBOutlet weak var imageConstraintLeft: NSLayoutConstraint!
     @IBOutlet weak var imageConstraintBottom: NSLayoutConstraint!
-    
+    @IBOutlet var lastUpdateViewTopConstraint: NSLayoutConstraint!
+
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet var lastUpdateLabel: UILabel!
     
     var lastZoomScale: CGFloat = -1
     var webcam: Webcam
     var isDataLoaded: Bool = false
-    var shareBarButtonItem: UIBarButtonItem!
     
     init(webcam: Webcam) {
         self.webcam = webcam
@@ -44,24 +46,20 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         automaticallyAdjustsScrollViewInsets = false
         view.bounds = UIScreen.main.bounds
         
-        let refreshIcon =  UIBarButtonItem(image: UIImage(named: "refresh-icon"),
+        navigationItem.rightBarButtonItem =  UIBarButtonItem(image: UIImage(named: "refresh-icon"),
                                            style: .plain,
                                            target: self,
                                            action: #selector(forceRefresh))
-        shareBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(actionTouched))
         
-        navigationItem.rightBarButtonItems = [refreshIcon, shareBarButtonItem]
-            
         // Prepare indicator
         scrollView.layoutIfNeeded()
         scrollView.delegate = self
-        scrollView.backgroundColor = UIColor.black
         
         brokenConnectionView.isHidden = true
-        shareBarButtonItem.isEnabled = false
+        shareButton.isEnabled = false
 
-        // Tap to zoom
         setupGestureRecognizer()
+        updateLastUpdateLabel()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -77,6 +75,12 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         updateConstraints()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        lastUpdateViewTopConstraint.constant = topLayoutGuide.length
+    }
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
@@ -90,7 +94,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     
     // MARK: - 
     
-    func actionTouched() {
+    @IBAction func onShareTouched(_ sender: Any) {
         let alertController = UIAlertController(title: self.title,
                                                 message: nil,
                                                 preferredStyle: .actionSheet)
@@ -102,7 +106,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
                                                 
                                                 strongSelf.share(strongSelf.title,
                                                                  image: strongSelf.imageView.image,
-                                                                 fromBarButton: strongSelf.shareBarButtonItem)
+                                                                 fromView: strongSelf.shareButton)
         })
         
         let saveAction = UIAlertAction(title: "Sauvegarder",
@@ -125,7 +129,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         alertController.addAction(saveAction)
         alertController.addAction(cancelAction)
         
-        alertController.popoverPresentationController?.barButtonItem = shareBarButtonItem
+        alertController.popoverPresentationController?.sourceView = shareButton
         
         present(alertController, animated: true, completion: nil)
     }
@@ -157,7 +161,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
             let options: KingfisherOptionsInfo = force ? [.forceRefresh] : []
             
             brokenConnectionView.isHidden = true
-            shareBarButtonItem.isEnabled = false
+            shareButton.isEnabled = false
             isDataLoaded = false
 
             activityIndicator.startAnimating()
@@ -178,12 +182,16 @@ class WebcamDetailViewController: AbstractRefreshViewController {
                                                 strongSelf.refresh(force: force)
                                             }
                                         } else {
+                                            strongSelf.webcam.lastUpdate = Date()
+                                            strongSelf.updateLastUpdateLabel()
                                             strongSelf.activityIndicator.stopAnimating()
                                             strongSelf.brokenConnectionView.isHidden = false
                                         }
                                     } else {
+                                        strongSelf.webcam.lastUpdate = Date()
+                                        strongSelf.updateLastUpdateLabel()
                                         strongSelf.activityIndicator.stopAnimating()
-                                        strongSelf.shareBarButtonItem.isEnabled = true
+                                        strongSelf.shareButton.isEnabled = true
                                         strongSelf.isDataLoaded = true
                                         strongSelf.updateZoom()
                                     }
@@ -242,6 +250,15 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         
         scrollView.layoutIfNeeded()
         view.layoutIfNeeded()
+    }
+    
+    func updateLastUpdateLabel() {
+        if let date = webcam.lastUpdate {
+            let dateFormatter = DateFormatterCache.shared.dateFormatter(withFormat: "'Mise à jour le' dd.MM.YY à HH'h'mm")
+            lastUpdateLabel.text = dateFormatter.string(from: date)
+        } else {
+            lastUpdateLabel.text = nil
+        }
     }
     
     func updateZoom() {

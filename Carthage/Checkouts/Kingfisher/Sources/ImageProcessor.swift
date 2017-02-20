@@ -4,7 +4,7 @@
 //
 //  Created by Wei Wang on 2016/08/26.
 //
-//  Copyright (c) 2016 Wei Wang <onevcat@gmail.com>
+//  Copyright (c) 2017 Wei Wang <onevcat@gmail.com>
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -69,7 +69,7 @@ typealias ProcessorImp = ((ImageProcessItem, KingfisherOptionsInfo) -> Image?)
 public extension ImageProcessor {
     
     /// Append an `ImageProcessor` to another. The identifier of the new `ImageProcessor` 
-    /// will be "\(self.identifier)|>\(another.identifier)>".
+    /// will be "\(self.identifier)|>\(another.identifier)".
     ///
     /// - parameter another: An `ImageProcessor` you want to append to `self`.
     ///
@@ -116,7 +116,11 @@ public struct DefaultImageProcessor: ImageProcessor {
         case .image(let image):
             return image
         case .data(let data):
-            return Kingfisher<Image>.image(data: data, scale: options.scaleFactor, preloadAllGIFData: options.preloadAllGIFData)
+            return Kingfisher<Image>.image(
+                data: data,
+                scale: options.scaleFactor,
+                preloadAllGIFData: options.preloadAllGIFData,
+                onlyFirstFrame: options.onlyLoadFirstFrame)
         }
     }
 }
@@ -154,7 +158,7 @@ public struct RoundCornerImageProcessor: ImageProcessor {
         switch item {
         case .image(let image):
             let size = targetSize ?? image.kf.size
-            return image.kf.image(withRoundRadius: cornerRadius, fit: size, scale: options.scaleFactor)
+            return image.kf.image(withRoundRadius: cornerRadius, fit: size)
         case .data(_):
             return (DefaultImageProcessor.default >> self).process(item: item, options: options)
         }

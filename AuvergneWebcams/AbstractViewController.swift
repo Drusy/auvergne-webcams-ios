@@ -16,21 +16,12 @@ class AbstractViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(style),
-                                               name: NSNotification.Name.SettingsDidUpdateTheme,
-                                               object: nil)
+
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 
         translate()
         update()
         style()
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self,
-                                                  name: NSNotification.Name.SettingsDidUpdateTheme,
-                                                  object: nil)
     }
 
     // MARK: - Overridable
@@ -53,7 +44,7 @@ class AbstractViewController: UIViewController {
         return (reachability == nil || (reachability != nil && reachability!.isReachable))
     }
     
-    func share(_ title: String? = nil, link: String? = nil, image: UIImage? = nil, fromBarButton barButton: UIBarButtonItem? = nil) {
+    func share(_ title: String? = nil, link: String? = nil, image: UIImage? = nil, fromView view: UIView? = nil) {
         var items = [Any]()
         
         if let title = title {
@@ -71,7 +62,7 @@ class AbstractViewController: UIViewController {
         }
         
         let activityController = UIActivityViewController(activityItems: items, applicationActivities: nil)
-        activityController.popoverPresentationController?.barButtonItem = barButton
+        activityController.popoverPresentationController?.sourceView = view
 
         if let title = title {
             activityController.setValue(title, forKey: "subject")

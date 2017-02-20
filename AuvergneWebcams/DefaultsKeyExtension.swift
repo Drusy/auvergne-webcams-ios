@@ -10,7 +10,6 @@ import SwiftyUserDefaults
 
 extension DefaultsKeys {
     static let firstConfigurationDone = DefaultsKey<Bool>("firstConfigurationDone")
-    static let isDarkTheme = DefaultsKey<Bool>("darkTheme")
     static let shouldAutorefresh = DefaultsKey<Bool>("autorefresh")
     static let prefersHighQuality = DefaultsKey<Bool>("quality")
     static let autorefreshInterval = DefaultsKey<Double>("autorefreshInterval")

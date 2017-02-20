@@ -1,8 +1,8 @@
 //
-//  AbstractEnumeratableViewProvider.swift
-//  AuvergneWebcams
+//  AbstractViewProviders.swift
+//  Koboo
 //
-//  Created by Drusy on 27/10/2016.
+//  Created by Richard Bergoin on 26/10/2016.
 //  Copyright © 2016 Openium. All rights reserved.
 //
 
@@ -32,7 +32,7 @@ extension ConfigurableCell {
  */
 class AbstractViewProvider<Item: Any, Cell: ConfigurableCell>: NSObject, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate where Cell.Item == Item {
  
-    typealias ItemSelectionHandler = (_ item: Item) -> Void
+    typealias ItemSelectionHandler = (_ item: Item, _ indexPath: IndexPath) -> Void
     
     var emptyView: UIView? {
         didSet {
@@ -42,6 +42,7 @@ class AbstractViewProvider<Item: Any, Cell: ConfigurableCell>: NSObject, UITable
     var tableView: UITableView?
     var collectionView: UICollectionView?
     var itemSelectionHandler: ItemSelectionHandler?
+    var additionalCellConfigurationCustomizer: ((_ cell: Cell, _ item: Item) -> Void)?
     
     init(tableView: UITableView) {
         self.tableView = tableView
@@ -78,14 +79,14 @@ class AbstractViewProvider<Item: Any, Cell: ConfigurableCell>: NSObject, UITable
     // MARK: to be overrided
     
     func numberOfSections() -> Int {
-        fatalError("numberOfSections must be overrided")
+        return 1
     }
 
     func numberOfObjects(in section: Int)  -> Int {
         fatalError("numberOfObjectsInSection must be overrided")
     }
-
-    func object(at indexPath: IndexPath) -> Item? {
+    
+    func object(at indexPath: IndexPath) -> Item {
         fatalError("objectAtIndexPath must be overrided")
     }
     
@@ -113,7 +114,7 @@ class AbstractViewProvider<Item: Any, Cell: ConfigurableCell>: NSObject, UITable
                 
                 parentView.addSubview(emptyView)
                 parentView.bringSubview(toFront: emptyView)
-
+                
                 emptyView.translatesAutoresizingMaskIntoConstraints = false
                 
                 let topConstraint = NSLayoutConstraint(
@@ -168,12 +169,21 @@ class AbstractViewProvider<Item: Any, Cell: ConfigurableCell>: NSObject, UITable
             emptyView.isHidden = true
         }
     }
-
+    
     func manageEmptyView(_ visibleElements: Int) {
         if visibleElements == 0 {
             showEmptyView()
         } else {
             hideEmptyView()
+        }
+    }
+    
+    // MARK: -
+    
+    func configure(cell: Cell, item: Item) {
+        cell.configure(with: item)
+        if let additionalCellConfigurationCustomizer = additionalCellConfigurationCustomizer {
+            additionalCellConfigurationCustomizer(cell, item)
         }
     }
     
@@ -193,17 +203,15 @@ class AbstractViewProvider<Item: Any, Cell: ConfigurableCell>: NSObject, UITable
         let cellIdentifier = identifier(indexPath) ?? Cell.identifier()
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
-        if let item = object(at: indexPath) {
-            let configurableCell = cell as! Cell
-            configurableCell.configure(with: item)
-        }
+        let item = object(at: indexPath)
+        configure(cell: cell as! Cell, item: item)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let item = object(at: indexPath) else { return }
-        itemSelectionHandler?(item)
+        let item = object(at: indexPath)
+        itemSelectionHandler?(item, indexPath)
     }
 
     // MARK: - UICollectionViewDataSource
@@ -220,16 +228,14 @@ class AbstractViewProvider<Item: Any, Cell: ConfigurableCell>: NSObject, UITable
         let cellIdentifier = identifier(indexPath) ?? Cell.identifier()
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)
         
-        if let item = object(at: indexPath) {
-            let configurableCell = cell as! Cell
-            configurableCell.configure(with: item)
-        }
+        let item = object(at: indexPath)
+        configure(cell: cell as! Cell, item: item)
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let item = object(at: indexPath) else { return }
-        itemSelectionHandler?(item)
+        let item = object(at: indexPath)
+        itemSelectionHandler?(item, indexPath)
     }
 }

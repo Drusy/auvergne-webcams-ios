@@ -2,6 +2,79 @@
 
 -----
 
+## [3.4.0 - Spring is here](https://github.com/onevcat/Kingfisher/releases/tag/3.4.0) (2017-02-11)
+
+#### Add
+* Use the `onlyLoadFirstFrame` option to load only the first frame from a GIF file. It will be useful when you want to display a static preview of the first frame from a GIF image. By doing so, you could save huge ammount of memory. [#591](https://github.com/onevcat/Kingfisher/pull/591)
+
+#### Fix
+* Now `cancel` on a `RetrieveImageTask` will work properly even when the downloading not started for `UIButton` and `NSButton` too. [#580](https://github.com/onevcat/Kingfisher/pull/580)
+* Progress block of extensions setting methods will not be called multiple times if you set another task while the previous one still in downloading. [#583](https://github.com/onevcat/Kingfisher/pull/583)
+* Image cache will work properly when `ImagePrefetcher` trying to prefetch images with an `ImageProcessor`. Now the fetched and processed images could be retrieved correctly. [#590](https://github.com/onevcat/Kingfisher/pull/590)
+
+---
+
+## [3.3.4 - Cancellation means a new start!](https://github.com/onevcat/Kingfisher/releases/tag/3.3.4) (2017-02-04)
+
+#### Fix
+* Now `cancel` on a `RetrieveImageTask` will work properly even when the downloading not started. [#578](https://github.com/onevcat/Kingfisher/pull/578)
+* Use modern float constant of pi. [#576](https://github.com/onevcat/Kingfisher/pull/576)
+
+---
+
+## [3.3.3 - Xcode 8.0 is not dead yet](https://github.com/onevcat/Kingfisher/releases/tag/3.3.3) (2017-01-30)
+
+#### Fix
+* A type inference to make Kingfisher compiles on Xcode 8.0 again. [#572](https://github.com/onevcat/Kingfisher/issues/572)
+
+---
+
+## [3.3.2 - Upside Down](https://github.com/onevcat/Kingfisher/releases/tag/3.3.2) (2017-01-23)
+
+#### Fix
+* An issue which causes the background decoded images drawn upside down.
+
+---
+
+## [3.3.1 - Lunar Eve](https://github.com/onevcat/Kingfisher/releases/tag/3.3.1) (2017-01-21)
+
+#### Add
+* Expose default `pngRepresentation`, `jpegRepresentation` and `gifRepresentation` as public. [#560](https://github.com/onevcat/Kingfisher/pull/560)
+* Support unlimited disk cache duration. [#566](https://github.com/onevcat/Kingfisher/pull/566)
+
+#### Fix
+* A mismatch of CG image component when creating `CGContext` for blur filter. [#567](https://github.com/onevcat/Kingfisher/pull/567)
+* Remove test images from repo to keep slim. [#568](https://github.com/onevcat/Kingfisher/pull/568)
+
+---
+
+## [3.3.0 - Lunar Eve](https://github.com/onevcat/Kingfisher/releases/tag/3.3.0) (2017-01-21)
+
+#### Add
+* Expose default `pngRepresentation`, `jpegRepresentation` and `gifRepresentation` as public. [#560](https://github.com/onevcat/Kingfisher/pull/560)
+* Support unlimited disk cache duration. [#566](https://github.com/onevcat/Kingfisher/pull/566)
+
+#### Fix
+* A mismatch of CG image component when creating `CGContext` for blur filter. [#567](https://github.com/onevcat/Kingfisher/pull/567)
+* Remove test images from repo to keep slim. [#568](https://github.com/onevcat/Kingfisher/pull/568)
+
+---
+
+## [3.2.4 - Love SPM again](https://github.com/onevcat/Kingfisher/releases/tag/3.2.4) (2016-12-22)
+
+#### Fix
+* A problem that causes framework cannot be compiled by Swift Package Manager. [#547](https://github.com/onevcat/Kingfisher/issues/547)
+* Removed an unused parameter from round corner image API. [#548](https://github.com/onevcat/Kingfisher/issues/548)
+
+---
+
+## [3.2.3 - LI ZHENG](https://github.com/onevcat/Kingfisher/releases/tag/3.2.3) (2016-12-20)
+
+#### Fix
+* An issue which caused processed images igoring exif orientation information. [#535](https://github.com/onevcat/Kingfisher/issues/535)
+
+---
+
 ## [3.2.2 - Faster GIF](https://github.com/onevcat/Kingfisher/releases/tag/3.2.2) (2016-12-02)
 
 #### Fix

@@ -15,14 +15,7 @@ class NavigationController: UINavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(style),
-                                               name: NSNotification.Name.SettingsDidUpdateTheme,
-                                               object: nil)
-        
-        navigationBar.isTranslucent = true
-        
+
         style()
     }
     
@@ -50,34 +43,28 @@ class NavigationController: UINavigationController {
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        if Defaults[.isDarkTheme] {
-            return .lightContent
-        } else {
-            return .default
-        }
+        return .lightContent
     }
     
     // MARK: -
     
     func style() {
+        let color = UIColor.white
+        
+        let attributes: [String : Any] = [
+            NSForegroundColorAttributeName: color,
+            NSFontAttributeName: UIFont.proximaNovaSemiBold(withSize: 17)
+        ]
+        
+        navigationBar.titleTextAttributes = attributes
+        navigationBar.tintColor = color
+        navigationBar.isTranslucent = true
+        navigationBar.barStyle = .black
+        
+        UINavigationBar.appearance().titleTextAttributes = attributes
+        UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: .normal)
+        
         setNeedsStatusBarAppearanceUpdate()
-        
-        if Defaults[.isDarkTheme] {
-            navigationBar.barStyle = .black
-            navigationBar.tintColor = UIColor.white
-        } else {
-            navigationBar.barStyle = .default
-            navigationBar.tintColor = UIColor.black
-        }
-        
-        //        let attributes = [
-        //            NSForegroundColorAttributeName: UIColor.white,
-        //            NSFontAttributeName: UIFont.openSansCondensedFont(withSize: 20)
-        //        ]
-        //        navigationBar.titleTextAttributes = attributes
-        //
-        //        UINavigationBar.appearance().titleTextAttributes = attributes
-        //        UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: .normal)
     }
     
     func update() {

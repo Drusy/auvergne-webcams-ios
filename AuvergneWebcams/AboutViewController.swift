@@ -9,6 +9,7 @@
 import UIKit
 import ActiveLabel
 import SafariServices
+import SwiftiumKit
 
 class AboutViewController: AbstractViewController {
 
@@ -21,7 +22,7 @@ class AboutViewController: AbstractViewController {
             label.enabledTypes = [.url, .mention]
 
             // Mention
-            label.mentionColor = UIColor(rgb: 0x7a1f1f)
+            label.mentionColor = UIColor(rgb: 0x52A4FF)
             label.handleMentionTap{ [weak self] mention in
                 var url: URL?
                 
@@ -39,14 +40,22 @@ class AboutViewController: AbstractViewController {
                 
                 if let url = url {
                     let svc = SFSafariViewController(url: url)
+                    if #available(iOS 10.0, *) {
+                        svc.preferredBarTintColor = UIColor(rgb: 0x303030)
+                        svc.preferredControlTintColor = UIColor.white
+                    }
                     self?.present(svc, animated: true, completion: nil)
                 }
             }
             
             // Urls
-            label.URLColor = UIColor(rgb: 0x1f517a)
+            label.URLColor = UIColor(rgb: 0x52A4FF)
             label.handleURLTap { [weak self] url in
                 let svc = SFSafariViewController(url: url)
+                if #available(iOS 10.0, *) {
+                    svc.preferredBarTintColor = UIColor(rgb: 0x303030)
+                    svc.preferredControlTintColor = UIColor.white
+                }
                 self?.present(svc, animated: true, completion: nil)
             }
         }

@@ -74,7 +74,6 @@ class AbstractRefreshViewController: AbstractViewController {
             } else {
                 lastUpdate = now
             }
-
         }
     }
     

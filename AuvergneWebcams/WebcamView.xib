@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="ProximaNova-Sbold.otf">
+            <string>ProximaNova-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="WebcamView" customModule="AuvergneWebcams" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="248"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qAv-LI-nUL">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="248"/>
+                    <color key="backgroundColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m7F-54-nap">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="248"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi-broken-white" translatesAutoresizingMaskIntoConstraints="NO" id="63B-Fi-W6a">
+                            <rect key="frame" x="137" y="81" width="100" height="87"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aucune connexion" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.59999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="BWJ-yz-nSU">
+                            <rect key="frame" x="8" y="184" width="359" height="17"/>
+                            <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="BWJ-yz-nSU" firstAttribute="top" secondItem="63B-Fi-W6a" secondAttribute="bottom" constant="16" id="ASi-GX-cdq"/>
+                        <constraint firstAttribute="trailing" secondItem="BWJ-yz-nSU" secondAttribute="trailing" constant="8" id="WQx-S7-Hh9"/>
+                        <constraint firstItem="63B-Fi-W6a" firstAttribute="centerY" secondItem="m7F-54-nap" secondAttribute="centerY" id="YAS-oS-O6k"/>
+                        <constraint firstItem="63B-Fi-W6a" firstAttribute="centerX" secondItem="m7F-54-nap" secondAttribute="centerX" id="gQQ-eE-LWh"/>
+                        <constraint firstItem="BWJ-yz-nSU" firstAttribute="leading" secondItem="m7F-54-nap" secondAttribute="leading" constant="8" id="kWY-KF-X1K"/>
+                    </constraints>
+                </view>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tei-zY-oAI">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="248"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="qAv-LI-nUL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="4KQ-4g-cmD"/>
+                <constraint firstAttribute="bottom" secondItem="qAv-LI-nUL" secondAttribute="bottom" id="6lu-RO-HL4"/>
+                <constraint firstItem="Tei-zY-oAI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="8fe-TU-e7l"/>
+                <constraint firstAttribute="trailing" secondItem="m7F-54-nap" secondAttribute="trailing" id="Eby-Yo-spL"/>
+                <constraint firstItem="Tei-zY-oAI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="JrF-PZ-Wcp"/>
+                <constraint firstItem="qAv-LI-nUL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="M6n-YP-V3p"/>
+                <constraint firstAttribute="trailing" secondItem="Tei-zY-oAI" secondAttribute="trailing" id="QeO-aN-wF8"/>
+                <constraint firstItem="m7F-54-nap" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="X5q-zQ-neg"/>
+                <constraint firstAttribute="bottom" secondItem="m7F-54-nap" secondAttribute="bottom" id="mfF-lu-gWn"/>
+                <constraint firstItem="m7F-54-nap" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="pwK-bc-dt3"/>
+                <constraint firstAttribute="trailing" secondItem="qAv-LI-nUL" secondAttribute="trailing" id="sHE-Q0-af3"/>
+                <constraint firstAttribute="bottom" secondItem="Tei-zY-oAI" secondAttribute="bottom" id="zQa-3q-d69"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="imageView" destination="Tei-zY-oAI" id="ouC-cb-5Hd"/>
+                <outlet property="noDataView" destination="m7F-54-nap" id="lp6-Jz-AZk"/>
+            </connections>
+            <point key="canvasLocation" x="-83.5" y="-47"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="wifi-broken-white" width="100" height="87"/>
+    </resources>
+</document>

@@ -4,7 +4,7 @@
 //
 //  Created by Wei Wang on 15/10/24.
 //
-//  Copyright (c) 2016 Wei Wang <onevcat@gmail.com>
+//  Copyright (c) 2017 Wei Wang <onevcat@gmail.com>
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -104,5 +104,15 @@ class ImageExtensionTests: XCTestCase {
 #endif
         XCTAssertEqual(image.kf.duration, image.kf.duration)
         XCTAssertEqual(image.kf.images!.count, image.kf.images!.count)
+    }
+    
+    func testLoadOnlyFirstFrame() {
+        let image = Kingfisher<Image>.animated(with: testImageGIFData,
+                                               scale: 1.0,
+                                               duration: 0.0,
+                                               preloadAll: true,
+                                               onlyFirstFrame: true)!
+        XCTAssertNotNil(image, "The image should be initiated.")
+        XCTAssertNil(image.kf.images, "The image should be nil")
     }
 }

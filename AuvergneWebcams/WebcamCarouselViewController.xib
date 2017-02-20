@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="ProximaNova-RegularItalic.otf">
+            <string>ProximaNova-RegularIt</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WebcamCarouselViewController" customModule="AuvergneWebcams" customModuleProvider="target">
+            <connections>
+                <outlet property="clearSearchButton" destination="tat-Ku-icg" id="Kjo-1I-c0O"/>
+                <outlet property="searchTextField" destination="GtY-6N-GgW" id="nd1-Wm-UEQ"/>
+                <outlet property="tableView" destination="X3S-Lg-qvX" id="aaD-hQ-Z9a"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="X3S-Lg-qvX">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <view key="tableHeaderView" contentMode="scaleToFill" id="g5w-Z2-RUO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search-icon" translatesAutoresizingMaskIntoConstraints="NO" id="1z1-uH-WTO">
+                                <rect key="frame" x="16" y="14.5" width="22" height="21"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GtY-6N-GgW">
+                                <rect key="frame" x="54" y="8" width="259" height="34"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="ProximaNova-RegularIt" family="Proxima Nova" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="search"/>
+                                <connections>
+                                    <action selector="onEditingDidBegin:" destination="-1" eventType="editingDidBegin" id="WSf-jM-jjz"/>
+                                    <action selector="onEditingDidEnd:" destination="-1" eventType="editingDidEnd" id="Tmb-rP-Tnb"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tat-Ku-icg">
+                                <rect key="frame" x="329" y="10" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="NGq-nE-YTw"/>
+                                    <constraint firstAttribute="height" constant="30" id="Yrq-2t-10P"/>
+                                </constraints>
+                                <state key="normal" image="close-icon"/>
+                                <connections>
+                                    <action selector="onClearSearchTouched:" destination="-1" eventType="touchUpInside" id="EjE-Po-9Li"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W0U-cL-M4q">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="onSearchTouched:" destination="-1" eventType="touchUpInside" id="iQL-16-iaL"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.37647058823529411" green="0.37647058823529411" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="W0U-cL-M4q" firstAttribute="leading" secondItem="g5w-Z2-RUO" secondAttribute="leading" id="2zL-Oe-2LR"/>
+                            <constraint firstItem="W0U-cL-M4q" firstAttribute="top" secondItem="g5w-Z2-RUO" secondAttribute="top" id="43i-Q3-qus"/>
+                            <constraint firstItem="1z1-uH-WTO" firstAttribute="centerY" secondItem="g5w-Z2-RUO" secondAttribute="centerY" id="51Y-0x-QPU"/>
+                            <constraint firstAttribute="trailing" secondItem="W0U-cL-M4q" secondAttribute="trailing" id="O4i-kk-2AJ"/>
+                            <constraint firstItem="1z1-uH-WTO" firstAttribute="leading" secondItem="g5w-Z2-RUO" secondAttribute="leading" constant="16" id="UU7-pD-pQT"/>
+                            <constraint firstItem="tat-Ku-icg" firstAttribute="centerY" secondItem="g5w-Z2-RUO" secondAttribute="centerY" id="ZPj-De-H5i"/>
+                            <constraint firstAttribute="trailing" secondItem="tat-Ku-icg" secondAttribute="trailing" constant="16" id="bWg-HR-bBj"/>
+                            <constraint firstItem="tat-Ku-icg" firstAttribute="leading" secondItem="GtY-6N-GgW" secondAttribute="trailing" constant="16" id="g1C-WI-UAX"/>
+                            <constraint firstAttribute="bottom" secondItem="GtY-6N-GgW" secondAttribute="bottom" constant="8" id="gIQ-B4-W9z"/>
+                            <constraint firstAttribute="bottom" secondItem="W0U-cL-M4q" secondAttribute="bottom" id="haa-sJ-CUr"/>
+                            <constraint firstItem="GtY-6N-GgW" firstAttribute="leading" secondItem="1z1-uH-WTO" secondAttribute="trailing" constant="16" id="r82-FE-VIe"/>
+                            <constraint firstItem="GtY-6N-GgW" firstAttribute="top" secondItem="g5w-Z2-RUO" secondAttribute="top" constant="8" id="zKJ-j3-ZbV"/>
+                        </constraints>
+                    </view>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="0.18823529411764706" green="0.18823529411764706" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="X3S-Lg-qvX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0vK-Tp-NYG"/>
+                <constraint firstItem="X3S-Lg-qvX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="6c1-fC-a0w"/>
+                <constraint firstAttribute="trailing" secondItem="X3S-Lg-qvX" secondAttribute="trailing" id="kAD-h2-96I"/>
+                <constraint firstAttribute="bottom" secondItem="X3S-Lg-qvX" secondAttribute="bottom" id="oas-d5-009"/>
+            </constraints>
+            <point key="canvasLocation" x="-356.5" y="-20.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="close-icon" width="17" height="17"/>
+        <image name="search-icon" width="22" height="21"/>
+    </resources>
+</document>

@@ -49,8 +49,8 @@ iOS application displaying the content of the Webcams available in Auvergne - Fr
 ### Super Besse - Ecole (Bas)
 
 - **XML list:** http://m.webcam-hd.com/xml/histo/superbesse_ecole.xml
-- **1280w:** http://srv13.trinum.com/ibox/ftpcam/1280_superbesse_ecole.jpg
-- **Full size:** http://srv13.trinum.com/ibox/ftpcam/mega_superbesse_ecole.jpg
+- **1280w:** http://srv14.trinum.com/ibox/ftpcam/1280_superbesse_ecole.jpg
+- **Full size:** http://srv14.trinum.com/ibox/ftpcam/mega_superbesse_ecole.jpg
 
 ### Super Besse - Tyrolienne (Haut)
 
@@ -73,8 +73,8 @@ iOS application displaying the content of the Webcams available in Auvergne - Fr
 ### Sancy - Lac Chambon
 
 - **XML list:** http://m.webcam-hd.com/xml/histo/chastreix-sancy_lac-chambon.xml
-- **1280w:** http://srv13.trinum.com/ibox/ftpcam/1280_chastreix-sancy_lac-chambon.jpg
-- **Full size:** http://srv13.trinum.com/ibox/ftpcam/mega_chastreix-sancy_lac-chambon.jpg
+- **1280w:** http://srv14.trinum.com/ibox/ftpcam/1280_chastreix-sancy_lac-chambon.jpg
+- **Full size:** http://srv14.trinum.com/ibox/ftpcam/mega_chastreix-sancy_lac-chambon.jpg
 
 ## Clermont-Ferrand
 

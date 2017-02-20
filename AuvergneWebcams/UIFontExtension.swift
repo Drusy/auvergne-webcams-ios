@@ -34,4 +34,20 @@ extension UIFont {
     static func openSansItalicFont(withSize size: CGFloat) -> UIFont {
         return UIFont(name: "OpenSans-Italic", size: size)!
     }
+    
+    static func proximaNovaSemiBold(withSize size: CGFloat) -> UIFont {
+        return UIFont(name: "ProximaNova-Semibold", size: size)!
+    }
+    
+    static func proximaNovaSemiBoldItalic(withSize size: CGFloat) -> UIFont {
+        return UIFont(name: "ProximaNova-SemiboldIt", size: size)!
+    }
+
+    static func proximaNovaLightItalic(withSize size: CGFloat) -> UIFont {
+        return UIFont(name: "ProximaNova-LightIt", size: size)!
+    }
+    
+    static func proximaNovaRegular(withSize size: CGFloat) -> UIFont {
+        return UIFont(name: "ProximaNova-Regular", size: size)!
+    }
 }

@@ -33,12 +33,7 @@ class SettingsViewController: FormViewController {
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(close))
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(style),
-                                               name: NSNotification.Name.SettingsDidUpdateTheme,
-                                               object: nil)
-        
+
         setupForm()
         style()
         translate()
@@ -65,15 +60,7 @@ class SettingsViewController: FormViewController {
         let build = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
         
         form =
-            Section("General")
-            <<< SwitchRow(SettingTag.theme.rawValue) {
-                $0.title = "Thème sombre"
-                $0.value = Defaults[.isDarkTheme]
-            }.onChange { row in
-                Defaults[.isDarkTheme] = row.value ?? false
-                NotificationCenter.default.post(name: NSNotification.Name.SettingsDidUpdateTheme,
-                                                object: self)
-            }
+            Section("Général")
             <<< SwitchRow(SettingTag.autoRefresh.rawValue) {
                 $0.title = "Rafraîchissement automatique"
                 $0.value = Defaults[.shouldAutorefresh]
@@ -138,6 +125,11 @@ class SettingsViewController: FormViewController {
                 self.showOpeniumWebsite()
             }
             <<< LabelRow() {
+                $0.title = "Les Pirates"
+            }.onCellSelection { _, _ in
+                self.showLesPiratesWebsite()
+            }
+            <<< LabelRow() {
                 $0.title = "Noter l'application"
             }.onCellSelection { _, _ in
                 self.rateApp()
@@ -151,9 +143,23 @@ class SettingsViewController: FormViewController {
         UIApplication.shared.openURL(url)
     }
     
+    func showLesPiratesWebsite() {
+        guard let url = URL(string : "http://agencelespirates.com") else { return }
+        let svc = SFSafariViewController(url: url)
+        if #available(iOS 10.0, *) {
+            svc.preferredBarTintColor = UIColor(rgb: 0x303030)
+            svc.preferredControlTintColor = UIColor.white
+        }
+        present(svc, animated: true, completion: nil)
+    }
+    
     func showOpeniumWebsite() {
         guard let url = URL(string : "https://openium.fr") else { return }
         let svc = SFSafariViewController(url: url)
+        if #available(iOS 10.0, *) {
+            svc.preferredBarTintColor = UIColor(rgb: 0x303030)
+            svc.preferredControlTintColor = UIColor.white
+        }
         present(svc, animated: true, completion: nil)
     }
     
@@ -167,13 +173,7 @@ class SettingsViewController: FormViewController {
     }
     
     func style() {
-        let tintColor: UIColor = ThemeUtils.tintColor()
-        
-        if Defaults[.isDarkTheme] {
-            blurView.effect = UIBlurEffect(style: .dark)
-        } else {
-            blurView.effect = UIBlurEffect(style: .extraLight)
-        }
+        let tintColor: UIColor = UIColor.white
         
         tableView?.separatorStyle = .none
         tableView?.backgroundColor = UIColor.clear
@@ -202,11 +202,10 @@ class SettingsViewController: FormViewController {
         }
         SwitchRow.defaultCellUpdate = { cell, row in
             cell.switchControl?.tintColor = tintColor
-            cell.switchControl?.onTintColor = tintColor
+            cell.switchControl?.onTintColor = UIColor(rgb: 0x52A4FF)
             cell.textLabel?.textColor = tintColor
         }
         
-//        tableView?.reloadData()
         setupForm()
         setNeedsStatusBarAppearanceUpdate()
     }
