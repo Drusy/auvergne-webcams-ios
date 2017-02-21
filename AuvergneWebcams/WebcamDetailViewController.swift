@@ -60,6 +60,8 @@ class WebcamDetailViewController: AbstractRefreshViewController {
 
         setupGestureRecognizer()
         updateLastUpdateLabel()
+        
+        AnalyticsManager.logEvent(showWebcam: webcam)
     }
     
     override func viewDidAppear(_ animated: Bool) {

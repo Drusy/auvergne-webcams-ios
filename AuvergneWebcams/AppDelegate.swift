@@ -13,6 +13,7 @@ import SwiftyUserDefaults
 import Fabric
 import Crashlytics
 import AlamofireNetworkActivityIndicator
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -49,6 +50,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Defaults[.autorefreshInterval] = Webcam.refreshInterval
         }
         
+        // Firebase
+        FIRApp.configure()
+        AnalyticsManager.logUserProperties()
+
         // Cache
         let autorefreshInterval = Defaults[.autorefreshInterval]
         ImageCache.default.maxCachePeriodInSecond = autorefreshInterval as TimeInterval
@@ -80,6 +85,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         Siren.sharedInstance.checkVersion(checkType: .daily)
+        
+        AnalyticsManager.logEventAppOpen()
+        AnalyticsManager.logUserProperties()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {

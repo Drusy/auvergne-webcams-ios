@@ -89,6 +89,18 @@
 		F9ACD1DA1E5B40EE004E5BFF /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F963AB3C1E59E7FC00ED5A8B /* RealmSwift.framework */; };
 		F9ACD1DE1E5C3A2E004E5BFF /* AlamofireNetworkActivityIndicator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ACD1DD1E5C3A27004E5BFF /* AlamofireNetworkActivityIndicator.framework */; };
 		F9ACD1DF1E5C3A2E004E5BFF /* AlamofireNetworkActivityIndicator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9ACD1DD1E5C3A27004E5BFF /* AlamofireNetworkActivityIndicator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F9ACD1E11E5C951C004E5BFF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F9ACD1E01E5C951C004E5BFF /* GoogleService-Info.plist */; };
+		F9ACD1E91E5C9B88004E5BFF /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ACD1E41E5C9B83004E5BFF /* FirebaseAnalytics.framework */; };
+		F9ACD1EB1E5C9B88004E5BFF /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ACD1E51E5C9B83004E5BFF /* FirebaseInstanceID.framework */; };
+		F9ACD1ED1E5C9B88004E5BFF /* GoogleInterchangeUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ACD1E61E5C9B83004E5BFF /* GoogleInterchangeUtilities.framework */; };
+		F9ACD1EF1E5C9B88004E5BFF /* GoogleSymbolUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ACD1E71E5C9B83004E5BFF /* GoogleSymbolUtilities.framework */; };
+		F9ACD1F11E5C9B88004E5BFF /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ACD1E81E5C9B83004E5BFF /* GoogleUtilities.framework */; };
+		F9ACD1F81E5C9DD8004E5BFF /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ACD1F71E5C9DD8004E5BFF /* libsqlite3.tbd */; };
+		F9ACD1FA1E5C9DF5004E5BFF /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ACD1F91E5C9DF5004E5BFF /* AddressBook.framework */; };
+		F9ACD1FE1E5CA4B3004E5BFF /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ACD1F31E5C9C2A004E5BFF /* Firebase.framework */; };
+		F9ACD1FF1E5CA4B3004E5BFF /* Firebase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9ACD1F31E5C9C2A004E5BFF /* Firebase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F9ACD2011E5CA8D8004E5BFF /* FIRAnalyticsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ACD2001E5CA8D8004E5BFF /* FIRAnalyticsExtension.swift */; };
+		F9ACD2031E5CAAD5004E5BFF /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ACD2021E5CAAD5004E5BFF /* AnalyticsManager.swift */; };
 		F9BE03091DD7817C0063275B /* AbstractRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE03081DD7817C0063275B /* AbstractRefreshViewController.swift */; };
 		F9BE030C1DD78E4B0063275B /* KFIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE030B1DD78E4B0063275B /* KFIndicator.swift */; };
 		F9BE030F1DD8AC1B0063275B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE030D1DD8AC1B0063275B /* SettingsViewController.swift */; };
@@ -135,6 +147,7 @@
 				F93C76461DD11AF0005DEE66 /* Siren.framework in Embed Frameworks */,
 				F93C76481DD11AF0005DEE66 /* SwiftyUserDefaults.framework in Embed Frameworks */,
 				F94D7CEA1DFAE50200460CCD /* ActiveLabel.framework in Embed Frameworks */,
+				F9ACD1FF1E5CA4B3004E5BFF /* Firebase.framework in Embed Frameworks */,
 				F9ACD1DF1E5C3A2E004E5BFF /* AlamofireNetworkActivityIndicator.framework in Embed Frameworks */,
 				F93C76421DD11AF0005DEE66 /* Kingfisher.framework in Embed Frameworks */,
 				F963AB421E59E80900ED5A8B /* Realm.framework in Embed Frameworks */,
@@ -234,6 +247,17 @@
 		F9ACD1D41E5B4039004E5BFF /* AbstractViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractViewControllerTests.swift; sourceTree = "<group>"; };
 		F9ACD1D81E5B4097004E5BFF /* WebcamCarouselViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebcamCarouselViewControllerTests.swift; sourceTree = "<group>"; };
 		F9ACD1DD1E5C3A27004E5BFF /* AlamofireNetworkActivityIndicator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireNetworkActivityIndicator.framework; path = Carthage/Build/iOS/AlamofireNetworkActivityIndicator.framework; sourceTree = "<group>"; };
+		F9ACD1E01E5C951C004E5BFF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F9ACD1E41E5C9B83004E5BFF /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = Carthage/Build/iOS/FirebaseAnalytics.framework; sourceTree = "<group>"; };
+		F9ACD1E51E5C9B83004E5BFF /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseInstanceID.framework; path = Carthage/Build/iOS/FirebaseInstanceID.framework; sourceTree = "<group>"; };
+		F9ACD1E61E5C9B83004E5BFF /* GoogleInterchangeUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleInterchangeUtilities.framework; path = Carthage/Build/iOS/GoogleInterchangeUtilities.framework; sourceTree = "<group>"; };
+		F9ACD1E71E5C9B83004E5BFF /* GoogleSymbolUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSymbolUtilities.framework; path = Carthage/Build/iOS/GoogleSymbolUtilities.framework; sourceTree = "<group>"; };
+		F9ACD1E81E5C9B83004E5BFF /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleUtilities.framework; path = Carthage/Build/iOS/GoogleUtilities.framework; sourceTree = "<group>"; };
+		F9ACD1F31E5C9C2A004E5BFF /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Firebase.framework; path = Carthage/Build/iOS/Firebase.framework; sourceTree = "<group>"; };
+		F9ACD1F71E5C9DD8004E5BFF /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		F9ACD1F91E5C9DF5004E5BFF /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		F9ACD2001E5CA8D8004E5BFF /* FIRAnalyticsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIRAnalyticsExtension.swift; sourceTree = "<group>"; };
+		F9ACD2021E5CAAD5004E5BFF /* AnalyticsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		F9BE03081DD7817C0063275B /* AbstractRefreshViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractRefreshViewController.swift; sourceTree = "<group>"; };
 		F9BE030B1DD78E4B0063275B /* KFIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KFIndicator.swift; sourceTree = "<group>"; };
 		F9BE030D1DD8AC1B0063275B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -264,20 +288,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9ACD1FA1E5C9DF5004E5BFF /* AddressBook.framework in Frameworks */,
+				F9ACD1F81E5C9DD8004E5BFF /* libsqlite3.tbd in Frameworks */,
+				F9ACD1E91E5C9B88004E5BFF /* FirebaseAnalytics.framework in Frameworks */,
 				F963AB431E59E80900ED5A8B /* RealmSwift.framework in Frameworks */,
 				F963AB411E59E80900ED5A8B /* Realm.framework in Frameworks */,
 				F9ACD1DE1E5C3A2E004E5BFF /* AlamofireNetworkActivityIndicator.framework in Frameworks */,
+				F9ACD1EF1E5C9B88004E5BFF /* GoogleSymbolUtilities.framework in Frameworks */,
 				F911BBEB1DDC6066000C022B /* Fabric.framework in Frameworks */,
 				F963AB3F1E59E80900ED5A8B /* AlamofireObjectMapper.framework in Frameworks */,
 				F93C76451DD11AF0005DEE66 /* Siren.framework in Frameworks */,
 				F911BBEE1DDC6097000C022B /* Crashlytics.framework in Frameworks */,
 				F963AB461E5A152100ED5A8B /* ObjectMapper.framework in Frameworks */,
+				F9ACD1FE1E5CA4B3004E5BFF /* Firebase.framework in Frameworks */,
+				F9ACD1ED1E5C9B88004E5BFF /* GoogleInterchangeUtilities.framework in Frameworks */,
 				F963AB3D1E59E80900ED5A8B /* Alamofire.framework in Frameworks */,
 				F93C76471DD11AF0005DEE66 /* SwiftyUserDefaults.framework in Frameworks */,
 				F93C76411DD11AF0005DEE66 /* Kingfisher.framework in Frameworks */,
+				F9ACD1EB1E5C9B88004E5BFF /* FirebaseInstanceID.framework in Frameworks */,
 				F93C76431DD11AF0005DEE66 /* Reachability.framework in Frameworks */,
 				F9BE03121DD8AF960063275B /* Eureka.framework in Frameworks */,
 				F94D7CE91DFAE50200460CCD /* ActiveLabel.framework in Frameworks */,
+				F9ACD1F11E5C9B88004E5BFF /* GoogleUtilities.framework in Frameworks */,
 				F9022D9E1DD90032006AF146 /* SwiftiumKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,6 +352,7 @@
 				F93C76351DD11892005DEE66 /* doc */,
 				F93C76341DD117DD005DEE66 /* scripts */,
 				F911BBE81DDC6066000C022B /* Vendor */,
+				F9ACD1F61E5C9DD8004E5BFF /* Frameworks */,
 				F93C76311DD1169C005DEE66 /* Carthage */,
 				F93C760B1DD11577005DEE66 /* AuvergneWebcams */,
 				F93C76201DD11577005DEE66 /* AuvergneWebcamsTests */,
@@ -359,6 +392,8 @@
 			isa = PBXGroup;
 			children = (
 				F93C760C1DD11577005DEE66 /* AppDelegate.swift */,
+				F94FEEAE1DD4764A00586F54 /* Extensions */,
+				F9ACD1C41E5B08C8004E5BFF /* Constraint */,
 				F9F5AC591DD3196E00D9FF83 /* Controllers */,
 				F9F5AC5A1DD3197300D9FF83 /* Views */,
 				F9F5AC711DD33B5300D9FF83 /* Model */,
@@ -383,6 +418,7 @@
 				F93C762F1DD115EB005DEE66 /* Debug.xcconfig */,
 				F93C76301DD115EB005DEE66 /* Release.xcconfig */,
 				F93C76181DD11577005DEE66 /* Info.plist */,
+				F9ACD1E01E5C951C004E5BFF /* GoogleService-Info.plist */,
 				F963AB1A1E59C6EA00ED5A8B /* Bridging-Header.h */,
 			);
 			name = "Supporting Files";
@@ -393,6 +429,7 @@
 			children = (
 				F93C76321DD1175E005DEE66 /* Cartfile */,
 				F93C76381DD11915005DEE66 /* Cartfile.resolved */,
+				F9ACD1E31E5C9B74004E5BFF /* Firebase */,
 				F9ACD1DD1E5C3A27004E5BFF /* AlamofireNetworkActivityIndicator.framework */,
 				F963AB451E5A151900ED5A8B /* ObjectMapper.framework */,
 				F963AB391E59E7FC00ED5A8B /* Alamofire.framework */,
@@ -438,6 +475,7 @@
 				F900E4CC1DE5DBA300B017BB /* NotificationNameExtension.swift */,
 				F9ACD1C71E5B0E37004E5BFF /* CGSizeExtension.swift */,
 				F9ACD1C91E5B2130004E5BFF /* UIColorExtension.swift */,
+				F9ACD2001E5CA8D8004E5BFF /* FIRAnalyticsExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -502,6 +540,7 @@
 			isa = PBXGroup;
 			children = (
 				F963AB7A1E5A6E8300ED5A8B /* DateFormatterCache.swift */,
+				F9ACD2021E5CAAD5004E5BFF /* AnalyticsManager.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -556,6 +595,28 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		F9ACD1E31E5C9B74004E5BFF /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				F9ACD1F31E5C9C2A004E5BFF /* Firebase.framework */,
+				F9ACD1E41E5C9B83004E5BFF /* FirebaseAnalytics.framework */,
+				F9ACD1E51E5C9B83004E5BFF /* FirebaseInstanceID.framework */,
+				F9ACD1E61E5C9B83004E5BFF /* GoogleInterchangeUtilities.framework */,
+				F9ACD1E71E5C9B83004E5BFF /* GoogleSymbolUtilities.framework */,
+				F9ACD1E81E5C9B83004E5BFF /* GoogleUtilities.framework */,
+			);
+			name = Firebase;
+			sourceTree = "<group>";
+		};
+		F9ACD1F61E5C9DD8004E5BFF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F9ACD1F91E5C9DF5004E5BFF /* AddressBook.framework */,
+				F9ACD1F71E5C9DD8004E5BFF /* libsqlite3.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F9BE030A1DD78E330063275B /* Kingfisher */ = {
 			isa = PBXGroup;
 			children = (
@@ -579,8 +640,6 @@
 			isa = PBXGroup;
 			children = (
 				F9F5AC5B1DD31C7D00D9FF83 /* Abstract */,
-				F9ACD1C41E5B08C8004E5BFF /* Constraint */,
-				F94FEEAE1DD4764A00586F54 /* Extensions */,
 				F94FEEAB1DD4763900586F54 /* Containers */,
 				F963AB101E59BDD500ED5A8B /* Loading */,
 				F9F5AC701DD32C9A00D9FF83 /* Main */,
@@ -795,6 +854,7 @@
 				F9F5AC901DD344CC00D9FF83 /* Open Sans 800.ttf in Resources */,
 				F9F5AC8B1DD344CC00D9FF83 /* Open Sans 300italic.ttf in Resources */,
 				F963AB581E5A172500ED5A8B /* ProximaNova-RegularItalic.otf in Resources */,
+				F9ACD1E11E5C951C004E5BFF /* GoogleService-Info.plist in Resources */,
 				F963AB141E59BDF900ED5A8B /* LoadingViewController.xib in Resources */,
 				F9F5AC951DD344CC00D9FF83 /* Open Sans regular.ttf in Resources */,
 				F963AB561E5A172500ED5A8B /* ProximaNova-LightItalic.otf in Resources */,
@@ -872,6 +932,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ObjectMapper.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/AlamofireNetworkActivityIndicator.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Firebase.framework",
 			);
 			name = Carthage;
 			outputPaths = (
@@ -923,12 +984,14 @@
 				F96276191DDB6A5D0090A9AB /* UITableViewCellExtension.swift in Sources */,
 				F9F5AC5E1DD31C9100D9FF83 /* AbstractViewController.swift in Sources */,
 				F94FEEAD1DD4764100586F54 /* NavigationController.swift in Sources */,
+				F9ACD2011E5CA8D8004E5BFF /* FIRAnalyticsExtension.swift in Sources */,
 				F9ACD1C61E5B08D6004E5BFF /* KeyboardLayoutConstraint.swift in Sources */,
 				F963AB131E59BDF900ED5A8B /* LoadingViewController.swift in Sources */,
 				F93C760D1DD11577005DEE66 /* AppDelegate.swift in Sources */,
 				F9ACD1CC1E5B227A004E5BFF /* UIImageExtension.swift in Sources */,
 				F9ACD1CA1E5B2130004E5BFF /* UIColorExtension.swift in Sources */,
 				F963AB361E59D07800ED5A8B /* AbstractViewProvider.swift in Sources */,
+				F9ACD2031E5CAAD5004E5BFF /* AnalyticsManager.swift in Sources */,
 				F963AB701E5A635800ED5A8B /* WebcamSectionHeaderView.swift in Sources */,
 				F9BE030C1DD78E4B0063275B /* KFIndicator.swift in Sources */,
 				F94FEEB01DD4765A00586F54 /* UIFontExtension.swift in Sources */,
@@ -1074,6 +1137,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F93C762F1DD115EB005DEE66 /* Debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = QH6KR5PAQ7;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1094,6 +1158,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F93C76301DD115EB005DEE66 /* Release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = QH6KR5PAQ7;
 				FRAMEWORK_SEARCH_PATHS = (

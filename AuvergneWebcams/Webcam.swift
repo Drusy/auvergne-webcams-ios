@@ -75,7 +75,7 @@ class Webcam {
             "lioran",
             "auvergne",
             "station",
-            "sky"
+            "ski"
         ]
         
         return webcam
@@ -91,7 +91,7 @@ class Webcam {
             "lioran",
             "auvergne",
             "station",
-            "sky",
+            "ski",
             "sommet"
         ]
         
@@ -108,7 +108,7 @@ class Webcam {
             "lioran",
             "auvergne",
             "station",
-            "sky"
+            "ski"
         ]
         
         return webcam
@@ -127,7 +127,7 @@ class Webcam {
             "mot dore",
             "auvergne",
             "station",
-            "sky"
+            "ski"
         ]
         
         return webcam
@@ -144,7 +144,7 @@ class Webcam {
             "mot dore",
             "auvergne",
             "station",
-            "sky"
+            "ski"
         ]
     
         return webcam
@@ -161,7 +161,7 @@ class Webcam {
             "super besse",
             "auvergne",
             "station",
-            "sky"
+            "ski"
         ]
         
         return webcam
@@ -178,7 +178,7 @@ class Webcam {
             "super besse",
             "auvergne",
             "station",
-            "sky"
+            "ski"
         ]
         
         return webcam
@@ -195,7 +195,7 @@ class Webcam {
             "super besse",
             "auvergne",
             "station",
-            "sky"
+            "ski"
         ]
         
         return webcam
@@ -212,7 +212,7 @@ class Webcam {
             "charstreix",
             "auvergne",
             "station",
-            "sky"
+            "ski"
         ]
         
         return webcam
@@ -229,7 +229,7 @@ class Webcam {
             "lac chambon",
             "auvergne",
             "station",
-            "sky"
+            "ski"
         ]
         
         return webcam

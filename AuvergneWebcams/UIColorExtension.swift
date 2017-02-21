@@ -10,11 +10,6 @@ import UIKit
 import SwiftiumKit
 
 extension UIColor {
-    static var awBlue: UIColor {
-        return UIColor(rgb: 0x52A4FF)
-    }
-    
-    static var awLightGray: UIColor {
-        return UIColor(rgb: 0x9B9B9B)
-    }
+    static let awBlue = UIColor(rgb: 0x52A4FF)
+    static let awLightGray = UIColor(rgb: 0x9B9B9B)
 }

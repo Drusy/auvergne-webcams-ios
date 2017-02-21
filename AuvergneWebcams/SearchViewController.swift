@@ -116,6 +116,9 @@ class SearchViewController: AbstractViewController {
     }
     
     @IBAction func onEditingDidEnd(_ sender: Any) {
+        guard let text = searchTextField.text, !text.isEmpty else { return }
+        
+        AnalyticsManager.logEvent(searchText: text)
     }
     
     @IBAction func onSearchEditingChanged(_ sender: Any) {

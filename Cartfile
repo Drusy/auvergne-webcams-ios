@@ -11,4 +11,5 @@ github "Hearst-DD/ObjectMapper" == 2.2.3
 github "realm/realm-cocoa" ~> 2.0
 github "Alamofire/AlamofireNetworkActivityIndicator" ~> 2.1.0
 github "ninjaprox/NVActivityIndicatorView" == 3.0
+github "soheilbm/Firebase" ~> 3.7
 

@@ -63,6 +63,16 @@ class AbstractViewController: UIViewController {
         
         let activityController = UIActivityViewController(activityItems: items, applicationActivities: nil)
         activityController.popoverPresentationController?.sourceView = view
+        
+        activityController.completionWithItemsHandler = { (activityType: UIActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
+            guard let title = title else { return }
+            
+            let completedAsString = completed ? "completed" : "canceled"
+            let activity: String = activityType?.rawValue ?? "unknown"
+            let type = "\(activity)-\(completedAsString)"
+            
+            AnalyticsManager.logEvent(shareName: title, forType: type)
+        }
 
         if let title = title {
             activityController.setValue(title, forKey: "subject")

@@ -42,6 +42,8 @@ class WebcamSectionViewController: AbstractRefreshViewController {
             let webcamDetail = WebcamDetailViewController(webcam: webcam)
             self?.navigationController?.pushViewController(webcamDetail, animated: true)
         }
+        
+        AnalyticsManager.logEvent(showSection: section)
     }
     
     override func viewWillLayoutSubviews() {
