@@ -87,6 +87,8 @@
 		F9ACD1D61E5B4039004E5BFF /* AbstractViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ACD1D41E5B4039004E5BFF /* AbstractViewControllerTests.swift */; };
 		F9ACD1D91E5B4097004E5BFF /* WebcamCarouselViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ACD1D81E5B4097004E5BFF /* WebcamCarouselViewControllerTests.swift */; };
 		F9ACD1DA1E5B40EE004E5BFF /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F963AB3C1E59E7FC00ED5A8B /* RealmSwift.framework */; };
+		F9ACD1DE1E5C3A2E004E5BFF /* AlamofireNetworkActivityIndicator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ACD1DD1E5C3A27004E5BFF /* AlamofireNetworkActivityIndicator.framework */; };
+		F9ACD1DF1E5C3A2E004E5BFF /* AlamofireNetworkActivityIndicator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9ACD1DD1E5C3A27004E5BFF /* AlamofireNetworkActivityIndicator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F9BE03091DD7817C0063275B /* AbstractRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE03081DD7817C0063275B /* AbstractRefreshViewController.swift */; };
 		F9BE030C1DD78E4B0063275B /* KFIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE030B1DD78E4B0063275B /* KFIndicator.swift */; };
 		F9BE030F1DD8AC1B0063275B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE030D1DD8AC1B0063275B /* SettingsViewController.swift */; };
@@ -133,6 +135,7 @@
 				F93C76461DD11AF0005DEE66 /* Siren.framework in Embed Frameworks */,
 				F93C76481DD11AF0005DEE66 /* SwiftyUserDefaults.framework in Embed Frameworks */,
 				F94D7CEA1DFAE50200460CCD /* ActiveLabel.framework in Embed Frameworks */,
+				F9ACD1DF1E5C3A2E004E5BFF /* AlamofireNetworkActivityIndicator.framework in Embed Frameworks */,
 				F93C76421DD11AF0005DEE66 /* Kingfisher.framework in Embed Frameworks */,
 				F963AB421E59E80900ED5A8B /* Realm.framework in Embed Frameworks */,
 				F963AB401E59E80900ED5A8B /* AlamofireObjectMapper.framework in Embed Frameworks */,
@@ -230,6 +233,7 @@
 		F9ACD1D31E5B4039004E5BFF /* AbstractTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractTests.swift; sourceTree = "<group>"; };
 		F9ACD1D41E5B4039004E5BFF /* AbstractViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractViewControllerTests.swift; sourceTree = "<group>"; };
 		F9ACD1D81E5B4097004E5BFF /* WebcamCarouselViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebcamCarouselViewControllerTests.swift; sourceTree = "<group>"; };
+		F9ACD1DD1E5C3A27004E5BFF /* AlamofireNetworkActivityIndicator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireNetworkActivityIndicator.framework; path = Carthage/Build/iOS/AlamofireNetworkActivityIndicator.framework; sourceTree = "<group>"; };
 		F9BE03081DD7817C0063275B /* AbstractRefreshViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractRefreshViewController.swift; sourceTree = "<group>"; };
 		F9BE030B1DD78E4B0063275B /* KFIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KFIndicator.swift; sourceTree = "<group>"; };
 		F9BE030D1DD8AC1B0063275B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -262,6 +266,7 @@
 			files = (
 				F963AB431E59E80900ED5A8B /* RealmSwift.framework in Frameworks */,
 				F963AB411E59E80900ED5A8B /* Realm.framework in Frameworks */,
+				F9ACD1DE1E5C3A2E004E5BFF /* AlamofireNetworkActivityIndicator.framework in Frameworks */,
 				F911BBEB1DDC6066000C022B /* Fabric.framework in Frameworks */,
 				F963AB3F1E59E80900ED5A8B /* AlamofireObjectMapper.framework in Frameworks */,
 				F93C76451DD11AF0005DEE66 /* Siren.framework in Frameworks */,
@@ -388,6 +393,7 @@
 			children = (
 				F93C76321DD1175E005DEE66 /* Cartfile */,
 				F93C76381DD11915005DEE66 /* Cartfile.resolved */,
+				F9ACD1DD1E5C3A27004E5BFF /* AlamofireNetworkActivityIndicator.framework */,
 				F963AB451E5A151900ED5A8B /* ObjectMapper.framework */,
 				F963AB391E59E7FC00ED5A8B /* Alamofire.framework */,
 				F963AB3A1E59E7FC00ED5A8B /* AlamofireObjectMapper.framework */,
@@ -481,9 +487,9 @@
 		F963AB721E5A684100ED5A8B /* Webcam Section */ = {
 			isa = PBXGroup;
 			children = (
+				F963AB671E5A60F300ED5A8B /* WebcamSectionViewProvider.swift */,
 				F963AB6E1E5A635800ED5A8B /* WebcamSectionHeaderView.swift */,
 				F963AB6F1E5A635800ED5A8B /* WebcamSectionHeaderView.xib */,
-				F963AB671E5A60F300ED5A8B /* WebcamSectionViewProvider.swift */,
 				F963AB691E5A611600ED5A8B /* WebcamCollectionViewCell.swift */,
 				F963AB6A1E5A611600ED5A8B /* WebcamCollectionViewCell.xib */,
 				F963AB731E5A692E00ED5A8B /* WebcamSectionedView.swift */,
@@ -865,6 +871,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ObjectMapper.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/AlamofireNetworkActivityIndicator.framework",
 			);
 			name = Carthage;
 			outputPaths = (

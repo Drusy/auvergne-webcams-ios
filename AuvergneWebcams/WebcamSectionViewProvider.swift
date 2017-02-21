@@ -94,4 +94,28 @@ class WebcamSectionViewProvider: AbstractArrayViewProvider<Webcam, WebcamCollect
         
         return complementary
     }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: IndexPath) {
+        guard shouldAnimateCellDisplay else { return }
+        
+        let translation: CGAffineTransform
+        var multiplier: CGFloat = -1
+        
+        if let visibleIndexPath = collectionView.indexPathsForVisibleItems.first, visibleIndexPath.row < indexPath.row {
+            multiplier = 1
+        }
+        
+        translation = CGAffineTransform(translationX: 0, y: 75 * multiplier)
+
+        
+        // Initial state
+        cell.alpha = 0
+        cell.transform = translation
+        
+        // Animated final state
+        UIView.animate(withDuration: 0.5) {
+            cell.layer.transform = CATransform3DIdentity
+            cell.alpha = 1
+        }
+    }
 }

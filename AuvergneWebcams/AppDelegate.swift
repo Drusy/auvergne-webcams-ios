@@ -12,6 +12,7 @@ import Siren
 import SwiftyUserDefaults
 import Fabric
 import Crashlytics
+import AlamofireNetworkActivityIndicator
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -34,6 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #if DEBUG
             UIFont.printFonts()
         #endif
+        
+        // Alamofire
+        NetworkActivityIndicatorManager.shared.isEnabled = true
 
         // Defaults
         if !Defaults[.firstConfigurationDone] {

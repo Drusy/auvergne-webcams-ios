@@ -11,10 +11,18 @@ import Foundation
 class AbstractCollectionViewProvider<Item: Any, Cell: ConfigurableCell, Enumerator: Collection>: AbstractViewProvider<Item, Cell>
 where Cell.Item == Item, Enumerator.Iterator.Element == Item, Enumerator.Index == Int, Enumerator.IndexDistance == Int {
     
+    var shouldAnimateCellDisplay = true
+    
     var objects: Enumerator? {
         didSet {
+            shouldAnimateCellDisplay = false
+            
             tableView?.reloadData()
             collectionView?.reloadData()
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+                self?.shouldAnimateCellDisplay = true
+            }
         }
     }
     

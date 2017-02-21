@@ -32,7 +32,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7VT-vc-kw0">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="50"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search-icon" translatesAutoresizingMaskIntoConstraints="NO" id="xhU-OK-csh">
                             <rect key="frame" x="16" y="14.5" width="22" height="21"/>
@@ -76,13 +76,13 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aucun résultat" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ibI-iQ-H3S">
-                    <rect key="frame" x="24" y="74" width="327" height="17"/>
+                    <rect key="frame" x="24" y="138" width="327" height="17"/>
                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="zgs-YF-15P">
-                    <rect key="frame" x="0.0" y="115" width="375" height="552"/>
+                    <rect key="frame" x="0.0" y="179" width="375" height="488"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="QIE-jS-Zp7">
                         <size key="itemSize" width="50" height="50"/>
@@ -99,12 +99,14 @@
                 <constraint firstAttribute="bottom" secondItem="zgs-YF-15P" secondAttribute="bottom" id="Jec-wm-H9Y" customClass="KeyboardLayoutConstraint" customModule="AuvergneWebcams" customModuleProvider="target"/>
                 <constraint firstItem="ibI-iQ-H3S" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="24" id="PEX-Qz-cZF"/>
                 <constraint firstItem="ibI-iQ-H3S" firstAttribute="top" secondItem="7VT-vc-kw0" secondAttribute="bottom" constant="24" id="StM-NF-niT"/>
-                <constraint firstItem="7VT-vc-kw0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="UEk-Jt-Rco"/>
+                <constraint firstItem="7VT-vc-kw0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="UEk-Jt-Rco"/>
                 <constraint firstItem="zgs-YF-15P" firstAttribute="top" secondItem="ibI-iQ-H3S" secondAttribute="bottom" constant="24" id="dD6-gT-D3S"/>
                 <constraint firstAttribute="trailing" secondItem="zgs-YF-15P" secondAttribute="trailing" id="eaB-mU-A07"/>
                 <constraint firstItem="7VT-vc-kw0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hkW-q8-c9d"/>
                 <constraint firstItem="zgs-YF-15P" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nTC-Wp-40I"/>
             </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+            <point key="canvasLocation" x="-261" y="67"/>
         </view>
     </objects>
     <resources>

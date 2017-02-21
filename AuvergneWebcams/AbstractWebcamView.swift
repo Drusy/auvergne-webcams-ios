@@ -10,14 +10,48 @@ import UIKit
 import Reachability
 import Kingfisher
 
+public struct CGSizeProxy {
+    fileprivate let base: CGSize
+    init(proxy: CGSize) {
+        base = proxy
+    }
+}
+
+extension CGSize {
+    public typealias CompatibleType = CGSizeProxy
+    public var kf: CGSizeProxy {
+        return CGSizeProxy(proxy: self)
+    }
+}
+
+extension CGSizeProxy {
+    func constrained(_ size: CGSize) -> CGSize {
+        let aspectWidth = round(aspectRatio * size.height)
+        let aspectHeight = round(size.width / aspectRatio)
+        
+        return aspectWidth > size.width ? CGSize(width: size.width, height: aspectHeight) : CGSize(width: aspectWidth, height: size.height)
+    }
+    
+    func filling(_ size: CGSize) -> CGSize {
+        let aspectWidth = round(aspectRatio * size.height)
+        let aspectHeight = round(size.width / aspectRatio)
+        
+        return aspectWidth < size.width ? CGSize(width: size.width, height: aspectHeight) : CGSize(width: aspectWidth, height: size.height)
+    }
+    
+    private var aspectRatio: CGFloat {
+        return base.height == 0.0 ? 1.0 : base.width / base.height
+    }
+}
+
 /// Processor for resizing images. Only CG-based images are supported in macOS.
 struct ResizingContentModeImageProcessor: ImageProcessor {
-    enum ContentMode {
+    public enum ContentMode {
         case none
         case aspectFit
         case aspectFill
     }
-
+    
     public let identifier: String
     
     /// Target size of output image should be.
@@ -48,9 +82,9 @@ struct ResizingContentModeImageProcessor: ImageProcessor {
             case .none:
                 size = targetSize
             case .aspectFill:
-                size = CGSize.aspectFill(aspectRatio: image.size, minimumSize: targetSize)
+                size = image.size.kf.filling(targetSize)
             case .aspectFit:
-                size = CGSize.aspectFit(aspectRatio: image.size, boundingSize: targetSize)
+                size = image.size.kf.constrained(targetSize)
             }
             
             return image.kf.resize(to: size)
