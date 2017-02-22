@@ -164,7 +164,8 @@ class WebcamDetailViewController: AbstractRefreshViewController {
                                                 mailComposerVC.setSubject("Signaler un problème - Webcam \(title)")
                                                 mailComposerVC.setMessageBody("La webcam \(title) (\(strongSelf.webcam.uid)) ne fonctionne pas.",
                                                                               isHTML: false)
- 
+                                                
+                                                strongSelf.present(mailComposerVC, animated: true, completion: nil)
                                                 AnalyticsManager.logEvent(button: "report_webcam_error")
             })
             alertController.addAction(reportAction)
