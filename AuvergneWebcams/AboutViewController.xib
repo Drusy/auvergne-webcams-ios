@@ -24,24 +24,24 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="902"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pGQ-T4-1xW">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="902"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pz9-og-f5t">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="831.5"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sancy-landscape" translatesAutoresizingMaskIntoConstraints="NO" id="ajF-hu-P0q">
-                                    <rect key="frame" x="67" y="24" width="240" height="150"/>
+                                    <rect key="frame" x="112" y="24" width="150" height="150"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="150" id="Aec-du-TIo"/>
-                                        <constraint firstAttribute="width" constant="240" id="kTR-3p-ugL"/>
+                                        <constraint firstAttribute="width" constant="150" id="kTR-3p-ugL"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Vq-kb-CUG" customClass="ActiveLabel" customModule="ActiveLabel">
-                                    <rect key="frame" x="8" y="243" width="359" height="470"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Vq-kb-CUG" customClass="ActiveLabel" customModule="ActiveLabel">
+                                    <rect key="frame" x="24" y="251" width="327" height="490.5"/>
                                     <mutableString key="text">Auvergne Webcams vous permet d'observer vos volcans favoris à tout moment via votre smartphone.
 
 Ni Auvergne Webcams ni Openium ne sont propriétaires des images et flux vidéos présentés. Pour plus d'information, rendez-vous sur https://github.com/Drusy/auvergne-webcams-ios/blob/master/README.md
@@ -63,23 +63,59 @@ Icônes par @FlatIcons et @Freepik</mutableString>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auvergne Webcams" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nZ-ya-nux">
-                                    <rect key="frame" x="8" y="190" width="359" height="29"/>
+                                    <rect key="frame" x="8" y="198" width="359" height="29"/>
                                     <fontDescription key="fontDescription" name="OpenSans-CondensedBold" family="Open Sans Condensed" pointSize="21"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="openium" translatesAutoresizingMaskIntoConstraints="NO" id="Rwf-O2-sKW">
+                                    <rect key="frame" x="24" y="765.5" width="327" height="50"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="NaA-Qb-THx"/>
+                                    </constraints>
+                                </imageView>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pdd-landscape" translatesAutoresizingMaskIntoConstraints="NO" id="0pB-fj-QBU">
+                                    <rect key="frame" x="52" y="14" width="50" height="50"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="4P2-RP-N0m"/>
+                                        <constraint firstAttribute="width" constant="50" id="InM-la-W87"/>
+                                    </constraints>
+                                </imageView>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="goal-landscape" translatesAutoresizingMaskIntoConstraints="NO" id="LCN-h1-0m7">
+                                    <rect key="frame" x="29.5" y="121.5" width="65" height="65"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="65" id="1eC-EG-tLc"/>
+                                        <constraint firstAttribute="height" constant="65" id="Ysn-Og-88b"/>
+                                    </constraints>
+                                </imageView>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lioran-landscape" translatesAutoresizingMaskIntoConstraints="NO" id="wVq-1g-WrJ">
+                                    <rect key="frame" x="285" y="54" width="75" height="75"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="75" id="MUK-it-7Tz"/>
+                                        <constraint firstAttribute="height" constant="75" id="uIl-zR-qCJ"/>
+                                    </constraints>
+                                </imageView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstItem="9Vq-kb-CUG" firstAttribute="leading" secondItem="Pz9-og-f5t" secondAttribute="leading" constant="8" id="4Kr-aC-2kx"/>
+                                <constraint firstItem="LCN-h1-0m7" firstAttribute="centerY" secondItem="ajF-hu-P0q" secondAttribute="centerY" constant="55" id="0Ke-zR-V9k"/>
+                                <constraint firstItem="9Vq-kb-CUG" firstAttribute="leading" secondItem="Pz9-og-f5t" secondAttribute="leading" constant="24" id="4Kr-aC-2kx"/>
                                 <constraint firstItem="ajF-hu-P0q" firstAttribute="top" secondItem="Pz9-og-f5t" secondAttribute="top" constant="24" id="4pB-XH-697"/>
-                                <constraint firstAttribute="bottom" secondItem="9Vq-kb-CUG" secondAttribute="bottom" constant="16" id="FB4-YE-Xjl"/>
+                                <constraint firstAttribute="trailing" secondItem="Rwf-O2-sKW" secondAttribute="trailing" constant="24" id="8h6-zX-WO5"/>
+                                <constraint firstItem="0pB-fj-QBU" firstAttribute="centerX" secondItem="ajF-hu-P0q" secondAttribute="centerX" constant="-110" id="CdN-3m-vuF"/>
+                                <constraint firstAttribute="bottom" secondItem="Rwf-O2-sKW" secondAttribute="bottom" constant="16" id="IAh-Dr-qN9"/>
+                                <constraint firstItem="wVq-1g-WrJ" firstAttribute="centerY" secondItem="ajF-hu-P0q" secondAttribute="centerY" constant="-8" id="NMf-W1-Gtq"/>
+                                <constraint firstItem="wVq-1g-WrJ" firstAttribute="centerX" secondItem="ajF-hu-P0q" secondAttribute="centerX" constant="135" id="PHb-Vl-f3q"/>
                                 <constraint firstAttribute="trailing" secondItem="4nZ-ya-nux" secondAttribute="trailing" constant="8" id="Skg-Jj-x0U"/>
+                                <constraint firstItem="LCN-h1-0m7" firstAttribute="centerX" secondItem="ajF-hu-P0q" secondAttribute="centerX" constant="-125" id="SvM-Lt-Isl"/>
                                 <constraint firstItem="9Vq-kb-CUG" firstAttribute="top" secondItem="4nZ-ya-nux" secondAttribute="bottom" constant="24" id="TiE-z2-Ukd"/>
-                                <constraint firstItem="4nZ-ya-nux" firstAttribute="top" secondItem="ajF-hu-P0q" secondAttribute="bottom" constant="16" id="pkV-Ci-H4F"/>
+                                <constraint firstItem="Rwf-O2-sKW" firstAttribute="leading" secondItem="Pz9-og-f5t" secondAttribute="leading" constant="24" id="lKP-pa-F0i"/>
+                                <constraint firstItem="4nZ-ya-nux" firstAttribute="top" secondItem="ajF-hu-P0q" secondAttribute="bottom" constant="24" id="pkV-Ci-H4F"/>
+                                <constraint firstItem="Rwf-O2-sKW" firstAttribute="top" secondItem="9Vq-kb-CUG" secondAttribute="bottom" constant="24" id="qD9-vX-8F8"/>
                                 <constraint firstItem="4nZ-ya-nux" firstAttribute="leading" secondItem="Pz9-og-f5t" secondAttribute="leading" constant="8" id="rYP-ob-d18"/>
                                 <constraint firstItem="ajF-hu-P0q" firstAttribute="centerX" secondItem="Pz9-og-f5t" secondAttribute="centerX" id="ucB-St-cNN"/>
-                                <constraint firstAttribute="trailing" secondItem="9Vq-kb-CUG" secondAttribute="trailing" constant="8" id="vQC-xC-iUB"/>
+                                <constraint firstAttribute="trailing" secondItem="9Vq-kb-CUG" secondAttribute="trailing" constant="24" id="vQC-xC-iUB"/>
+                                <constraint firstItem="0pB-fj-QBU" firstAttribute="centerY" secondItem="ajF-hu-P0q" secondAttribute="centerY" constant="-60" id="y1d-0g-IxF"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -100,10 +136,15 @@ Icônes par @FlatIcons et @Freepik</mutableString>
                 <constraint firstAttribute="trailing" secondItem="pGQ-T4-1xW" secondAttribute="trailing" id="fxe-fk-JI1"/>
                 <constraint firstItem="pGQ-T4-1xW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="reF-dF-3yr"/>
             </constraints>
-            <point key="canvasLocation" x="34.5" y="114.5"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="5.5" y="227"/>
         </view>
     </objects>
     <resources>
+        <image name="goal-landscape" width="300" height="300"/>
+        <image name="lioran-landscape" width="300" height="300"/>
+        <image name="openium" width="241" height="65"/>
+        <image name="pdd-landscape" width="300" height="300"/>
         <image name="sancy-landscape" width="300" height="300"/>
     </resources>
 </document>
