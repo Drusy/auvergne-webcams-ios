@@ -141,6 +141,7 @@ class SettingsViewController: FormViewController {
     func rateApp() {
         guard let url = URL(string : "itms-apps://itunes.apple.com/app/1183930829") else { return }
         UIApplication.shared.openURL(url)
+        AnalyticsManager.logEvent(button: "rate_app")
     }
     
     func showLesPiratesWebsite() {
@@ -151,6 +152,7 @@ class SettingsViewController: FormViewController {
             svc.preferredControlTintColor = UIColor.white
         }
         present(svc, animated: true, completion: nil)
+        AnalyticsManager.logEvent(button: "website_lespirates")
     }
     
     func showOpeniumWebsite() {
@@ -161,11 +163,13 @@ class SettingsViewController: FormViewController {
             svc.preferredControlTintColor = UIColor.white
         }
         present(svc, animated: true, completion: nil)
+        AnalyticsManager.logEvent(button: "website_openium")
     }
     
     func showAbout() {
         let avc = AboutViewController()
         navigationController?.pushViewController(avc, animated: true)
+        AnalyticsManager.logEvent(button: "about")
     }
     
     func translate() {

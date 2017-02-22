@@ -12,15 +12,7 @@ import FirebaseAnalytics
 import SwiftyUserDefaults
 
 class AnalyticsManager {
-    
-    // TODO: Refresh
-    // TODO: Settings
-    // TODO: About
-    // TODO: Save
-    // TODO: Openium
-    // TODO: Pirates
-    // TODO: Noter l'app
-    
+        
     // MARK: - Events
     
     static func logEvent(shareName name: String, forType type: String) {

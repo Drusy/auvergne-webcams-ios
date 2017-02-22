@@ -10,6 +10,7 @@ import UIKit
 import Kingfisher
 import Reachability
 import SwiftyUserDefaults
+import MessageUI
 
 class WebcamDetailViewController: AbstractRefreshViewController {
 
@@ -105,7 +106,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     // MARK: - 
     
     @IBAction func onShareTouched(_ sender: Any) {
-        let alertController = UIAlertController(title: self.title,
+        let alertController = UIAlertController(title: title,
                                                 message: nil,
                                                 preferredStyle: .actionSheet)
         
@@ -129,6 +130,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
                                                                            strongSelf,
                                                                            #selector(strongSelf.image(_:didFinishSavingWithError:contextInfo:)),
                                                                            nil)
+                                            AnalyticsManager.logEvent(button: "save_webcam")
         })
         
         let cancelAction = UIAlertAction(title: "Annuler",
@@ -138,6 +140,27 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         alertController.addAction(shareAction)
         alertController.addAction(saveAction)
         alertController.addAction(cancelAction)
+        
+        if MFMailComposeViewController.canSendMail() {
+            let reportAction = UIAlertAction(title: "Signaler un problème",
+                                             style: .destructive,
+                                             handler: { [weak self] _ in
+                                                guard let strongSelf = self else { return }
+                                                
+                                                let mailComposerVC = MFMailComposeViewController()
+                                                let title = strongSelf.title ?? ""
+                                                
+                                                mailComposerVC.mailComposeDelegate = self
+                                                mailComposerVC.setToRecipients(["k.renella@openium.fr"])
+                                                mailComposerVC.setSubject("Signaler un problème - Webcam \(title)")
+                                                mailComposerVC.setMessageBody("La webcam \(title) (\(strongSelf.webcam.uid)) ne fonctionne pas.",
+                                                                              isHTML: false)
+                                                
+                                                strongSelf.present(mailComposerVC, animated: true, completion: nil)
+                                                AnalyticsManager.logEvent(button: "report_webcam_error")
+            })
+            alertController.addAction(reportAction)
+        }
         
         alertController.popoverPresentationController?.sourceView = shareButton
         
@@ -164,6 +187,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     
     func forceRefresh() {
         refresh(force: isReachable())
+        AnalyticsManager.logEvent(button: "webcam_detail_refresh")
     }
     
     override func refresh(force: Bool = false) {
@@ -304,6 +328,16 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         }
     }
 }
+
+// MARK: MFMailComposeViewControllerDelegate
+
+extension WebcamDetailViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - UIScrollViewDelegate
 
 extension WebcamDetailViewController: UIScrollViewDelegate {
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {

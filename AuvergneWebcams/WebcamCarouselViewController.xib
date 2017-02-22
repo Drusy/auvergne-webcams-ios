@@ -43,10 +43,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="ProximaNova-RegularIt" family="Proxima Nova" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="search"/>
-                                <connections>
-                                    <action selector="onEditingDidBegin:" destination="-1" eventType="editingDidBegin" id="WSf-jM-jjz"/>
-                                    <action selector="onEditingDidEnd:" destination="-1" eventType="editingDidEnd" id="Tmb-rP-Tnb"/>
-                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tat-Ku-icg">
                                 <rect key="frame" x="329" y="10" width="30" height="30"/>

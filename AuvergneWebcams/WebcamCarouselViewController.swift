@@ -51,7 +51,7 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "refresh-icon"),
                                                             style: .plain,
                                                             target: self,
-                                                            action: #selector(refresh))
+                                                            action: #selector(onRefreshTouched))
         
         clearSearchButton.isHidden = true
         
@@ -81,22 +81,11 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
     
     // MARK: -
     
-    func onSettingsTouched() {
-        let settingsVC = SettingsViewController()
-        let navigationVC = NavigationController(rootViewController: settingsVC)
-        
-        navigationVC.modalPresentationStyle = .overCurrentContext
-        
-        present(navigationVC, animated: true, completion: nil)
-    }
-    
-    // MARK: -
-    
     override func style() {
         super.style()
     }
     
-    override func refresh(force: Bool) {
+    override func refresh(force: Bool = false) {
         if isReachable() {
             ImageCache.default.clearDiskCache()
             ImageCache.default.clearMemoryCache()
@@ -121,18 +110,25 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
     
     // MARK: - IBActions
     
+    func onRefreshTouched() {
+        refresh()
+        AnalyticsManager.logEvent(button: "home_refresh")
+    }
+    
+    func onSettingsTouched() {
+        let settingsVC = SettingsViewController()
+        let navigationVC = NavigationController(rootViewController: settingsVC)
+        
+        navigationVC.modalPresentationStyle = .overCurrentContext
+        
+        present(navigationVC, animated: true, completion: nil)
+        AnalyticsManager.logEvent(button: "settings")
+    }
+    
     @IBAction func onSearchTouched(_ sender: Any) {
         let searchVC = SearchViewController()
         navigationController?.pushViewController(searchVC, animated: true)
-    }
-    
-    @IBAction func onEditingDidBegin(_ sender: Any) {
-        tableView.setContentOffset(CGPoint(x: 0, y: -tableView.contentInset.top), animated: false)
-        
-        clearSearchButton.isHidden = false
-    }
-    
-    @IBAction func onEditingDidEnd(_ sender: Any) {
+        AnalyticsManager.logEvent(button: "search")
     }
 }
 
