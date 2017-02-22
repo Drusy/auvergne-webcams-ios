@@ -107,6 +107,7 @@
 		F9BE03101DD8AC1B0063275B /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9BE030E1DD8AC1B0063275B /* SettingsViewController.xib */; };
 		F9BE03121DD8AF960063275B /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9BE03111DD8AF8E0063275B /* Eureka.framework */; };
 		F9BE03131DD8AF960063275B /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9BE03111DD8AF8E0063275B /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F9E858341E5D90D700F7C40D /* MailComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E858331E5D90D700F7C40D /* MailComposeViewController.swift */; };
 		F9F5AC5E1DD31C9100D9FF83 /* AbstractViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5AC5C1DD31C9100D9FF83 /* AbstractViewController.swift */; };
 		F9F5AC731DD33B6800D9FF83 /* Webcam.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5AC721DD33B6800D9FF83 /* Webcam.swift */; };
 		F9F5AC8A1DD344CC00D9FF83 /* Open Sans 300.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9F5AC7C1DD344CC00D9FF83 /* Open Sans 300.ttf */; };
@@ -263,6 +264,7 @@
 		F9BE030D1DD8AC1B0063275B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F9BE030E1DD8AC1B0063275B /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		F9BE03111DD8AF8E0063275B /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
+		F9E858331E5D90D700F7C40D /* MailComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailComposeViewController.swift; sourceTree = "<group>"; };
 		F9F5AC5C1DD31C9100D9FF83 /* AbstractViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractViewController.swift; sourceTree = "<group>"; };
 		F9F5AC721DD33B6800D9FF83 /* Webcam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Webcam.swift; sourceTree = "<group>"; };
 		F9F5AC7C1DD344CC00D9FF83 /* Open Sans 300.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Open Sans 300.ttf"; sourceTree = "<group>"; };
@@ -756,6 +758,7 @@
 			children = (
 				F9F5ACA01DD35DDD00D9FF83 /* WebcamDetailViewController.swift */,
 				F9F5ACA11DD35DDD00D9FF83 /* WebcamDetailViewController.xib */,
+				F9E858331E5D90D700F7C40D /* MailComposeViewController.swift */,
 			);
 			name = Details;
 			sourceTree = "<group>";
@@ -982,6 +985,7 @@
 				F900E4CD1DE5DBA300B017BB /* NotificationNameExtension.swift in Sources */,
 				F963AB5F1E5A3C8400ED5A8B /* WebcamView.swift in Sources */,
 				F96276191DDB6A5D0090A9AB /* UITableViewCellExtension.swift in Sources */,
+				F9E858341E5D90D700F7C40D /* MailComposeViewController.swift in Sources */,
 				F9F5AC5E1DD31C9100D9FF83 /* AbstractViewController.swift in Sources */,
 				F94FEEAD1DD4764100586F54 /* NavigationController.swift in Sources */,
 				F9ACD2011E5CA8D8004E5BFF /* FIRAnalyticsExtension.swift in Sources */,

@@ -147,16 +147,24 @@ class WebcamDetailViewController: AbstractRefreshViewController {
                                              handler: { [weak self] _ in
                                                 guard let strongSelf = self else { return }
                                                 
-                                                let mailComposerVC = MFMailComposeViewController()
+                                                let mailComposerVC = MailComposeViewController()
                                                 let title = strongSelf.title ?? ""
+                                                let attributes: [String : Any] = [
+                                                    NSForegroundColorAttributeName: UIColor.white,
+                                                    NSFontAttributeName: UIFont.proximaNovaSemiBold(withSize: 17)
+                                                ]
                                                 
+                                                mailComposerVC.navigationBar.titleTextAttributes = attributes
+                                                mailComposerVC.navigationBar.barStyle = .black
+                                                mailComposerVC.navigationBar.isTranslucent = true
+                                                mailComposerVC.navigationBar.tintColor = UIColor.white
+                                                mailComposerVC.navigationBar.barTintColor = UIColor.black
                                                 mailComposerVC.mailComposeDelegate = self
                                                 mailComposerVC.setToRecipients(["k.renella@openium.fr"])
                                                 mailComposerVC.setSubject("Signaler un problème - Webcam \(title)")
                                                 mailComposerVC.setMessageBody("La webcam \(title) (\(strongSelf.webcam.uid)) ne fonctionne pas.",
                                                                               isHTML: false)
-                                                
-                                                strongSelf.present(mailComposerVC, animated: true, completion: nil)
+ 
                                                 AnalyticsManager.logEvent(button: "report_webcam_error")
             })
             alertController.addAction(reportAction)
