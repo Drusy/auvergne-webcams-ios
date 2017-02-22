@@ -5,11 +5,12 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="ProximaNova-Sbold.otf">
-            <string>ProximaNova-Semibold</string>
+        <array key="ProximaNova-SboldItalic.otf">
+            <string>ProximaNova-SemiboldIt</string>
         </array>
     </customFonts>
     <objects>
@@ -26,12 +27,15 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m7F-54-nap">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="248"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi-broken-white" translatesAutoresizingMaskIntoConstraints="NO" id="63B-Fi-W6a">
-                            <rect key="frame" x="137" y="81" width="100" height="87"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi-broken-white" translatesAutoresizingMaskIntoConstraints="NO" id="63B-Fi-W6a">
+                            <rect key="frame" x="137" y="70.5" width="100" height="70"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="70" id="k74-zf-r4V"/>
+                            </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aucune connexion" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.59999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="BWJ-yz-nSU">
-                            <rect key="frame" x="8" y="184" width="359" height="17"/>
-                            <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="17"/>
+                            <rect key="frame" x="8" y="156.5" width="359" height="16"/>
+                            <fontDescription key="fontDescription" name="ProximaNova-SemiboldIt" family="Proxima Nova" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -40,7 +44,7 @@
                     <constraints>
                         <constraint firstItem="BWJ-yz-nSU" firstAttribute="top" secondItem="63B-Fi-W6a" secondAttribute="bottom" constant="16" id="ASi-GX-cdq"/>
                         <constraint firstAttribute="trailing" secondItem="BWJ-yz-nSU" secondAttribute="trailing" constant="8" id="WQx-S7-Hh9"/>
-                        <constraint firstItem="63B-Fi-W6a" firstAttribute="centerY" secondItem="m7F-54-nap" secondAttribute="centerY" id="YAS-oS-O6k"/>
+                        <constraint firstItem="63B-Fi-W6a" firstAttribute="centerY" secondItem="m7F-54-nap" secondAttribute="centerY" multiplier="85%" id="YAS-oS-O6k"/>
                         <constraint firstItem="63B-Fi-W6a" firstAttribute="centerX" secondItem="m7F-54-nap" secondAttribute="centerX" id="gQQ-eE-LWh"/>
                         <constraint firstItem="BWJ-yz-nSU" firstAttribute="leading" secondItem="m7F-54-nap" secondAttribute="leading" constant="8" id="kWY-KF-X1K"/>
                     </constraints>

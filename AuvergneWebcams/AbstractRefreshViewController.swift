@@ -8,11 +8,13 @@
 
 import UIKit
 import SwiftyUserDefaults
+import Reachability
 
 class AbstractRefreshViewController: AbstractViewController {
 
     var refreshTimer: Timer?
     var lastUpdate: TimeInterval?
+    var lastReachabilityStatus: Reachability.NetworkStatus =  Reachability.NetworkStatus.notReachable
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +23,10 @@ class AbstractRefreshViewController: AbstractViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(reachabilityChanged),
+                                               name: ReachabilityChangedNotification,
+                                               object: reachability)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(startRefreshing),
                                                name: NSNotification.Name.UIApplicationDidBecomeActive,
@@ -38,6 +44,12 @@ class AbstractRefreshViewController: AbstractViewController {
                                                name: NSNotification.Name.SettingsDidUpdateQuality,
                                                object: nil)
         
+        
+        if let reachability = reachability {
+            lastReachabilityStatus = reachability.currentReachabilityStatus
+            try? reachability.startNotifier()
+        }
+        
         if Defaults[.shouldAutorefresh] {
             startRefreshing()
         }
@@ -47,6 +59,11 @@ class AbstractRefreshViewController: AbstractViewController {
         super.viewWillAppear(animated)
         
         stopRefreshing()
+        reachability?.stopNotifier()
+        
+        NotificationCenter.default.removeObserver(self,
+                                                  name: ReachabilityChangedNotification,
+                                                  object: reachability)
         NotificationCenter.default.removeObserver(self,
                                                   name: NSNotification.Name.UIApplicationDidBecomeActive,
                                                   object: nil)
@@ -62,6 +79,15 @@ class AbstractRefreshViewController: AbstractViewController {
     }
     
     // MARK: - 
+    
+    func reachabilityChanged(notification: NSNotification) {
+        guard let reachability = notification.object as? Reachability else { return }
+
+        if lastReachabilityStatus == .notReachable && reachability.isReachable {
+            refresh()
+        }
+        lastReachabilityStatus = reachability.currentReachabilityStatus
+    }
     
     @objc private func refreshIfNeeded() {
         if isReachable() {
