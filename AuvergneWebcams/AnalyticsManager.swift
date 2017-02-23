@@ -15,7 +15,6 @@ class AnalyticsManager {
         
     // MARK: - Events
     
-    // TODO: Remove Debug
     static func logEvent(shareName name: String, forType type: String) {
         let parameters = [
             kFIRParameterItemID: name as NSObject,

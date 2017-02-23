@@ -51,8 +51,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // Firebase
-        FIRApp.configure()
-        AnalyticsManager.logUserProperties()
+        #if !DEBUG
+            FIRApp.configure()
+            AnalyticsManager.logUserProperties()
+        #endif
 
         // Cache
         let autorefreshInterval = Defaults[.autorefreshInterval]
@@ -85,8 +87,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillEnterForeground(_ application: UIApplication) {
         Siren.sharedInstance.checkVersion(checkType: .daily)
         
-        AnalyticsManager.logEventAppOpen()
-        AnalyticsManager.logUserProperties()
+        #if !DEBUG
+            AnalyticsManager.logEventAppOpen()
+            AnalyticsManager.logUserProperties()
+        #endif
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
