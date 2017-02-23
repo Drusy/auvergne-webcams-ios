@@ -13,7 +13,7 @@ protocol WebcamCarouselViewProviderDelegate: class {
     func webcamCarousel(viewProvider: WebcamCarouselViewProvider, scrollViewDidScroll scrollView: UIScrollView)
 }
 
-class WebcamCarouselViewProvider: AbstractArrayViewProvider<WebcamSection, WebcamCarouselTableViewCell> {
+class WebcamCarouselViewProvider: AbstractRealmResultsViewProvider<WebcamSection, WebcamCarouselTableViewCell> {
     weak var delegate: WebcamCarouselViewProviderDelegate?
     
     func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
@@ -59,11 +59,7 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
         
         clearSearchButton.isHidden = true
         
-        provider.objects = [
-            WebcamSection.pddSection(),
-            WebcamSection.sancySection(),
-            WebcamSection.lioranSection()
-        ]
+        provider.objects = realm.objects(WebcamSection.self).sorted(byKeyPath: #keyPath(WebcamSection.order), ascending: true)
         provider.additionalCellConfigurationCustomizer = { [weak self](cell: WebcamCarouselTableViewCell, item: WebcamSection) in
             guard let lastObject = self?.provider.objects?.last else { return }
             
@@ -129,28 +125,30 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
         navigationController?.view.layer.mask?.add(transformAnimation, forKey: transformAnimation.keyPath)
         loadingAnimationImageView.layer.add(transformAnimation, forKey: transformAnimation.keyPath)
         
-        UIView.animate(withDuration: 0.2,
-                       delay: 0.35,
-                       options: .curveEaseIn,
-                       animations: { [weak self] in
-                        self?.loadingAnimationView.alpha = 0.0
+        UIView.animate(
+            withDuration: 0.2,
+            delay: 0.35,
+            options: .curveEaseIn,
+            animations: { [weak self] in
+                self?.loadingAnimationView.alpha = 0.0
             },
-                       completion: nil)
+            completion: nil)
         
-        UIView.animate(withDuration: 0.25,
-                       delay: 0.3,
-                       options: [],
-                       animations: { [weak self] in
-                        self?.navigationController?.view.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
-        },
-                       completion: { [weak self] finished in
-                        UIView.animate(withDuration: 0.3,
-                                       delay: 0.0,
-                                       options: UIViewAnimationOptions.curveEaseInOut,
-                                       animations: {
-                                        self?.navigationController?.view.transform = .identity
-                        },
-                                       completion: nil)
+        UIView.animate(
+            withDuration: 0.25,
+            delay: 0.3,
+            options: [],
+            animations: { [weak self] in
+                self?.navigationController?.view.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+            },
+            completion: { [weak self] finished in
+                UIView.animate(withDuration: 0.3,
+                               delay: 0.0,
+                               options: UIViewAnimationOptions.curveEaseInOut,
+                               animations: {
+                                self?.navigationController?.view.transform = .identity
+                },
+                               completion: nil)
         })
     }
     

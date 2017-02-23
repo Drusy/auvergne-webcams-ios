@@ -181,11 +181,8 @@ class AbstractWebcamView: UIView {
                             self?.configure(withWebcam: webcam)
                         }
                     } else {
-                        webcam.lastUpdate = Date()
                         self?.noDataView.isHidden = false
                     }
-                } else {
-                    webcam.lastUpdate = Date()
                 }
             }
         } else {

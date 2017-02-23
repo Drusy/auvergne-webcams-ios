@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchViewController: AbstractViewController {
+class SearchViewController: AbstractRealmViewController {
 
     @IBOutlet var searchViewTopConstraint: NSLayoutConstraint!
     @IBOutlet var clearSearchButton: UIButton!
@@ -69,11 +69,11 @@ class SearchViewController: AbstractViewController {
         if let searchText = text, !searchText.isEmpty {
             clearSearchButton.isHidden = false
             
-            let webcams = Webcam.pddWebcams() + Webcam.sancyWebcams() + Webcam.lioranWebcams()
+            let webcams = Array(realm.objects(Webcam.self).sorted(byKeyPath: #keyPath(Webcam.title), ascending: true))
             let searchResult = webcams.filter { webcam in
                 let title = webcam.title ?? ""
-                let tags = webcam.tags.filter { tag in
-                    return tag.localizedCaseInsensitiveContains(searchText)
+                let tags = webcam.tags.filter { (webcamTag: WebcamTag) -> Bool in
+                    return webcamTag.tag.localizedCaseInsensitiveContains(searchText)
                 }
                 
                 if !tags.isEmpty {

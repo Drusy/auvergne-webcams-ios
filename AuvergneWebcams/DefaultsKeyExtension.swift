@@ -13,4 +13,5 @@ extension DefaultsKeys {
     static let shouldAutorefresh = DefaultsKey<Bool>("autorefresh")
     static let prefersHighQuality = DefaultsKey<Bool>("quality")
     static let autorefreshInterval = DefaultsKey<Double>("autorefreshInterval")
+    static let currentVersion = DefaultsKey<String>("currentVersion")
 }

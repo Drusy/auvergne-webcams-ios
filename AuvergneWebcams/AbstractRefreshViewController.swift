@@ -10,12 +10,12 @@ import UIKit
 import SwiftyUserDefaults
 import Reachability
 
-class AbstractRefreshViewController: AbstractViewController {
+class AbstractRefreshViewController: AbstractRealmViewController {
 
     var refreshTimer: Timer?
     var lastUpdate: TimeInterval?
     var lastReachabilityStatus: Reachability.NetworkStatus =  Reachability.NetworkStatus.notReachable
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

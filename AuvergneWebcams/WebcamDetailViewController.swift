@@ -47,10 +47,15 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         automaticallyAdjustsScrollViewInsets = false
         view.bounds = UIScreen.main.bounds
         
-        navigationItem.rightBarButtonItem =  UIBarButtonItem(image: UIImage(named: "refresh-icon"),
-                                           style: .plain,
-                                           target: self,
-                                           action: #selector(forceRefresh))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "refresh-icon"),
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(forceRefresh))
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(onDownloadManagerDidUpdateWebcam),
+                                               name: Notification.Name.downloadManagerDidUpdateWebcam,
+                                               object: nil)
         
         // Prepare indicator
         scrollView.layoutIfNeeded()
@@ -63,6 +68,12 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         updateLastUpdateLabel()
         
         AnalyticsManager.logEvent(showWebcam: webcam)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: Notification.Name.downloadManagerDidUpdateWebcam,
+                                                  object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -201,43 +212,44 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     
     override func refresh(force: Bool = false) {
         if let image = webcam.preferedImage(), let url = URL(string: image) {
-            let options: KingfisherOptionsInfo = force ? [.forceRefresh] : []
+            var options: KingfisherOptionsInfo = []
+            
+            if force {
+                options.append(.forceRefresh)
+            }
             
             brokenConnectionView.isHidden = true
             shareButton.isEnabled = false
             isDataLoaded = false
-
+            
             activityIndicator.startAnimating()
-            imageView?.kf.setImage(with: url,
-                                   placeholder: nil,
-                                   options: options,
-                                   progressBlock: nil) { [weak self] image, error, cacheType, url in
-                                    guard let strongSelf = self else { return }
-                                    
-                                    if let error = error {
-                                        print("ERROR: \(error.code) - \(error.localizedDescription)")
-                                        
-                                        if error.code != -999 && strongSelf.isReachable() {
-                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-                                                guard let strongSelf = self else { return }
-
-                                                print("Retrying to download \(url) ...")
-                                                strongSelf.refresh(force: force)
-                                            }
-                                        } else {
-                                            strongSelf.webcam.lastUpdate = Date()
-                                            strongSelf.updateLastUpdateLabel()
-                                            strongSelf.activityIndicator.stopAnimating()
-                                            strongSelf.brokenConnectionView.isHidden = false
-                                        }
-                                    } else {
-                                        strongSelf.webcam.lastUpdate = Date()
-                                        strongSelf.updateLastUpdateLabel()
-                                        strongSelf.activityIndicator.stopAnimating()
-                                        strongSelf.shareButton.isEnabled = true
-                                        strongSelf.isDataLoaded = true
-                                        strongSelf.updateZoom()
-                                    }
+            imageView?.kf.setImage(
+                with: url,
+                placeholder: nil,
+                options: options,
+                progressBlock: nil) { [weak self] image, error, cacheType, url in
+                    guard let strongSelf = self else { return }
+                    
+                    if let error = error {
+                        print("ERROR: \(error.code) - \(error.localizedDescription)")
+                        
+                        if error.code != -999 && strongSelf.isReachable() {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                                guard let strongSelf = self else { return }
+                                
+                                print("Retrying to download \(url) ...")
+                                strongSelf.refresh(force: force)
+                            }
+                        } else {
+                            strongSelf.activityIndicator.stopAnimating()
+                            strongSelf.brokenConnectionView.isHidden = false
+                        }
+                    } else {
+                        strongSelf.activityIndicator.stopAnimating()
+                        strongSelf.shareButton.isEnabled = true
+                        strongSelf.isDataLoaded = true
+                        strongSelf.updateZoom()
+                    }
             }
         }
     }
@@ -250,6 +262,14 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     
     override func update() {
         super.update()
+    }
+    
+    // MARK: - Notification Center
+    
+    func onDownloadManagerDidUpdateWebcam(notification: Notification) {
+        guard let webcam = notification.object as? Webcam, webcam == self.webcam else { return }
+        
+        updateLastUpdateLabel()
     }
     
     // MARK: -

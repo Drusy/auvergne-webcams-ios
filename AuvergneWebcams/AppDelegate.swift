@@ -14,6 +14,7 @@ import Fabric
 import Crashlytics
 import AlamofireNetworkActivityIndicator
 import Firebase
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -41,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NetworkActivityIndicatorManager.shared.isEnabled = true
 
         // Defaults
+        let version = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
         if !Defaults[.firstConfigurationDone] {
             Defaults[.firstConfigurationDone] = true
             
@@ -48,6 +50,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Defaults[.shouldAutorefresh] = true
             Defaults[.prefersHighQuality] = true
             Defaults[.autorefreshInterval] = Webcam.refreshInterval
+            Defaults[.currentVersion] = version
+        }
+        
+        // Realm
+        let didPerformMigration = deleteRealmIfMigrationNeeded()
+//        performRealmMigration()
+        #if DEBUG
+            printRealmPath()
+        #endif
+        
+        // Database init
+        if didPerformMigration || Defaults[.currentVersion] != version {
+            DownloadManager.shared.bootstrapRealmData()
+        }
+        
+        // Current version
+        if Defaults[.currentVersion] != version {
+            Defaults[.currentVersion] = version
         }
         
         // Firebase
@@ -99,6 +119,58 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    
+    // MARK: - Realm
+    
+    func printRealmPath() {
+        let realm = try? Realm()
+        
+        print("\(realm?.configuration.fileURL?.path)");
+    }
+    
+    func deleteRealmIfMigrationNeeded() -> Bool {
+        var didPerformMigration = false
+        
+        do {
+            _ = try Realm()
+        } catch {
+            print("Realm schema mismatch, deleting realm")
+            
+            Realm.Configuration.defaultConfiguration.deleteRealmIfMigrationNeeded = true
+            _ = try! Realm()
+            didPerformMigration = true
+        }
+        
+        return didPerformMigration
+    }
+    
+    func performRealmMigration() -> Void {
+        // Inside your application(application:didFinishLaunchingWithOptions:)
+        
+        let config = Realm.Configuration(
+            // Set the new schema version. This must be greater than the previously used
+            // version (if you've never set a schema version before, the version is 0).
+            schemaVersion: 0,
+            
+            // Set the block which will be called automatically when opening a Realm with
+            // a schema version lower than the one set above
+            migrationBlock: { migration, oldSchemaVersion in
+                // We haven’t migrated anything yet, so oldSchemaVersion == 0
+                if (oldSchemaVersion < 1) {
+                    // Nothing to do!
+                    // Realm will automatically detect new properties and removed properties
+                    // And will update the schema on disk automatically
+                }
+        })
+        
+        // Tell Realm to use this new configuration object for the default Realm
+        Realm.Configuration.defaultConfiguration = config
+        
+        // Now that we've told Realm how to handle the schema change, opening the file
+        // will automatically perform the migration
+        _ = try? Realm()
     }
 }
 

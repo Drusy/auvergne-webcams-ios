@@ -11,12 +11,11 @@ import Foundation
 class DateFormatterCache {
     static var shared = DateFormatterCache()
     
-    var locale = Locale(identifier: "fr_FR")
-    
+    var defaultLocale = Locale(identifier: "fr_FR")
     var formatDateFormatters = [String: DateFormatter]()
     var styleDateFormatters = [NSNumber: DateFormatter]()
     
-    func dateFormatter(withFormat format: String) -> DateFormatter {
+    func dateFormatter(withFormat format: String, locale: Locale? = nil) -> DateFormatter {
         if let formatter = formatDateFormatters[format] {
             return formatter
         }
@@ -24,14 +23,14 @@ class DateFormatterCache {
         let formatter = DateFormatter()
         
         formatter.dateFormat = format
-        formatter.locale = self.locale
+        formatter.locale = locale ?? defaultLocale
         
         formatDateFormatters[format] = formatter
         
         return formatter
     }
     
-    func dateFormatter(withStyle style: DateFormatter.Style) -> DateFormatter {
+    func dateFormatter(withStyle style: DateFormatter.Style, locale: Locale? = nil) -> DateFormatter {
         if let formatter = styleDateFormatters[NSNumber(value: style.rawValue)] {
             return formatter
         }
@@ -39,7 +38,7 @@ class DateFormatterCache {
         let formatter = DateFormatter()
         
         formatter.dateStyle = style
-        formatter.locale = self.locale
+        formatter.locale = locale ?? defaultLocale
         
         styleDateFormatters[NSNumber(value: style.rawValue)] = formatter
         

@@ -107,6 +107,10 @@
 		F9BE03101DD8AC1B0063275B /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9BE030E1DD8AC1B0063275B /* SettingsViewController.xib */; };
 		F9BE03121DD8AF960063275B /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9BE03111DD8AF8E0063275B /* Eureka.framework */; };
 		F9BE03131DD8AF960063275B /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9BE03111DD8AF8E0063275B /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F9C747F81E5F88DE0018B5CC /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C747F71E5F88DE0018B5CC /* DownloadManager.swift */; };
+		F9C747FA1E5F8B6C0018B5CC /* WebcamTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C747F91E5F8B6C0018B5CC /* WebcamTag.swift */; };
+		F9C747FC1E5F92480018B5CC /* AbstractRealmViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C747FB1E5F92480018B5CC /* AbstractRealmViewProvider.swift */; };
+		F9C747FE1E5F9B330018B5CC /* AbstractRealmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C747FD1E5F9B330018B5CC /* AbstractRealmViewController.swift */; };
 		F9E858341E5D90D700F7C40D /* MailComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E858331E5D90D700F7C40D /* MailComposeViewController.swift */; };
 		F9F5AC5E1DD31C9100D9FF83 /* AbstractViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5AC5C1DD31C9100D9FF83 /* AbstractViewController.swift */; };
 		F9F5AC731DD33B6800D9FF83 /* Webcam.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5AC721DD33B6800D9FF83 /* Webcam.swift */; };
@@ -264,6 +268,10 @@
 		F9BE030D1DD8AC1B0063275B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F9BE030E1DD8AC1B0063275B /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		F9BE03111DD8AF8E0063275B /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
+		F9C747F71E5F88DE0018B5CC /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
+		F9C747F91E5F8B6C0018B5CC /* WebcamTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebcamTag.swift; sourceTree = "<group>"; };
+		F9C747FB1E5F92480018B5CC /* AbstractRealmViewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractRealmViewProvider.swift; sourceTree = "<group>"; };
+		F9C747FD1E5F9B330018B5CC /* AbstractRealmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractRealmViewController.swift; sourceTree = "<group>"; };
 		F9E858331E5D90D700F7C40D /* MailComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailComposeViewController.swift; sourceTree = "<group>"; };
 		F9E858351E5DA85F00F7C40D /* AuvergneWebcams.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AuvergneWebcams.entitlements; sourceTree = "<group>"; };
 		F9F5AC5C1DD31C9100D9FF83 /* AbstractViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractViewController.swift; sourceTree = "<group>"; };
@@ -545,6 +553,7 @@
 			children = (
 				F963AB7A1E5A6E8300ED5A8B /* DateFormatterCache.swift */,
 				F9ACD2021E5CAAD5004E5BFF /* AnalyticsManager.swift */,
+				F9C747F71E5F88DE0018B5CC /* DownloadManager.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -669,6 +678,7 @@
 			children = (
 				F9F5AC5C1DD31C9100D9FF83 /* AbstractViewController.swift */,
 				F9BE03081DD7817C0063275B /* AbstractRefreshViewController.swift */,
+				F9C747FD1E5F9B330018B5CC /* AbstractRealmViewController.swift */,
 			);
 			name = Abstract;
 			sourceTree = "<group>";
@@ -680,6 +690,7 @@
 				F963AB2D1E59D07800ED5A8B /* AbstractArrayViewProvider.swift */,
 				F963AB2E1E59D07800ED5A8B /* AbstractEnumeratableViewProvider.swift */,
 				F963AB301E59D07800ED5A8B /* AbstractSectionedEnumeratableViewProvider.swift */,
+				F9C747FB1E5F92480018B5CC /* AbstractRealmViewProvider.swift */,
 				F963AB311E59D07800ED5A8B /* AbstractViewProvider.swift */,
 			);
 			name = Abstract;
@@ -712,6 +723,7 @@
 		F9F5AC711DD33B5300D9FF83 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F9C747F91E5F8B6C0018B5CC /* WebcamTag.swift */,
 				F9F5AC721DD33B6800D9FF83 /* Webcam.swift */,
 				F9F5AC971DD34C8B00D9FF83 /* WebcamSection.swift */,
 			);
@@ -982,6 +994,7 @@
 				F963AB321E59D07800ED5A8B /* AbstractArrayViewProvider.swift in Sources */,
 				F94D7CE51DFABF6000460CCD /* AboutViewController.swift in Sources */,
 				F9022DA11DD90601006AF146 /* DefaultsKeyExtension.swift in Sources */,
+				F9C747FA1E5F8B6C0018B5CC /* WebcamTag.swift in Sources */,
 				F963AB651E5A5DA800ED5A8B /* WebcamSectionViewController.swift in Sources */,
 				F9F5AC731DD33B6800D9FF83 /* Webcam.swift in Sources */,
 				F963AB381E59E54300ED5A8B /* UIViewExtension.swift in Sources */,
@@ -996,10 +1009,12 @@
 				F9F5AC5E1DD31C9100D9FF83 /* AbstractViewController.swift in Sources */,
 				F94FEEAD1DD4764100586F54 /* NavigationController.swift in Sources */,
 				F9ACD2011E5CA8D8004E5BFF /* FIRAnalyticsExtension.swift in Sources */,
+				F9C747F81E5F88DE0018B5CC /* DownloadManager.swift in Sources */,
 				F9ACD1C61E5B08D6004E5BFF /* KeyboardLayoutConstraint.swift in Sources */,
 				F963AB131E59BDF900ED5A8B /* LoadingViewController.swift in Sources */,
 				F93C760D1DD11577005DEE66 /* AppDelegate.swift in Sources */,
 				F9ACD1CC1E5B227A004E5BFF /* UIImageExtension.swift in Sources */,
+				F9C747FE1E5F9B330018B5CC /* AbstractRealmViewController.swift in Sources */,
 				F9ACD1CA1E5B2130004E5BFF /* UIColorExtension.swift in Sources */,
 				F963AB361E59D07800ED5A8B /* AbstractViewProvider.swift in Sources */,
 				F9ACD2031E5CAAD5004E5BFF /* AnalyticsManager.swift in Sources */,
@@ -1013,6 +1028,7 @@
 				F963AB351E59D07800ED5A8B /* AbstractSectionedEnumeratableViewProvider.swift in Sources */,
 				F963AB5D1E5A2F7D00ED5A8B /* SwiftyAttributes.swift in Sources */,
 				F9BE03091DD7817C0063275B /* AbstractRefreshViewController.swift in Sources */,
+				F9C747FC1E5F92480018B5CC /* AbstractRealmViewProvider.swift in Sources */,
 				F963AB331E59D07800ED5A8B /* AbstractEnumeratableViewProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
