@@ -9,7 +9,7 @@
 import UIKit
 
 protocol LoadingViewControllerDelegate: class {
-    func didFinishLoading(_ : LoadingViewController)
+    func didFinishLoading(_: LoadingViewController)
 }
 
 class LoadingViewController: AbstractViewController {
@@ -20,12 +20,15 @@ class LoadingViewController: AbstractViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        refresh()
     }
     
     // MARK: -
     
     func refresh() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+        loadingImageView.alpha = 1
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
             self?.endLoading()
         }
     }

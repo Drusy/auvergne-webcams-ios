@@ -63,11 +63,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Siren.sharedInstance.alertType = .skip
         Siren.sharedInstance.checkVersion(checkType: .immediately)
         
-        let navigationController = NavigationController(rootViewController: mainViewController)
-        
         // Setup Window
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = navigationController
+        window?.backgroundColor = UIColor.awDarkGray
+        window?.rootViewController = loadingViewController
         window?.makeKeyAndVisible()
 
         return true
@@ -103,7 +102,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: LoadingViewControllerDelegate {
     func didFinishLoading(_: LoadingViewController) {
-        
+        let navigationController = NavigationController(rootViewController: mainViewController)
+        window?.rootViewController = navigationController
     }
 }
 

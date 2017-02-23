@@ -16,6 +16,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WebcamCarouselViewController" customModule="AuvergneWebcams" customModuleProvider="target">
             <connections>
                 <outlet property="clearSearchButton" destination="tat-Ku-icg" id="Kjo-1I-c0O"/>
+                <outlet property="loadingAnimationImageView" destination="RHR-ry-wez" id="mfd-Ln-wXC"/>
+                <outlet property="loadingAnimationView" destination="MSD-P7-rKX" id="NXP-Sb-Ftr"/>
                 <outlet property="searchTextField" destination="GtY-6N-GgW" id="nd1-Wm-UEQ"/>
                 <outlet property="tableView" destination="X3S-Lg-qvX" id="aaD-hQ-Z9a"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -80,19 +82,37 @@
                         </constraints>
                     </view>
                 </tableView>
+                <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MSD-P7-rKX">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sancy-landscape" translatesAutoresizingMaskIntoConstraints="NO" id="RHR-ry-wez">
+                            <rect key="frame" x="38" y="184" width="300" height="300"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="RHR-ry-wez" firstAttribute="centerY" secondItem="MSD-P7-rKX" secondAttribute="centerY" id="hOH-Iy-CMv"/>
+                        <constraint firstItem="RHR-ry-wez" firstAttribute="centerX" secondItem="MSD-P7-rKX" secondAttribute="centerX" id="kDx-3b-wwj"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.18823529411764706" green="0.18823529411764706" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="X3S-Lg-qvX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0vK-Tp-NYG"/>
                 <constraint firstItem="X3S-Lg-qvX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="6c1-fC-a0w"/>
+                <constraint firstItem="MSD-P7-rKX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="XmW-Uo-hje"/>
+                <constraint firstItem="MSD-P7-rKX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="k0W-35-6pj"/>
                 <constraint firstAttribute="trailing" secondItem="X3S-Lg-qvX" secondAttribute="trailing" id="kAD-h2-96I"/>
                 <constraint firstAttribute="bottom" secondItem="X3S-Lg-qvX" secondAttribute="bottom" id="oas-d5-009"/>
+                <constraint firstAttribute="trailing" secondItem="MSD-P7-rKX" secondAttribute="trailing" id="wQB-mc-pRK"/>
+                <constraint firstAttribute="bottom" secondItem="MSD-P7-rKX" secondAttribute="bottom" id="zOR-6Y-Y9D"/>
             </constraints>
             <point key="canvasLocation" x="-356.5" y="-20.5"/>
         </view>
     </objects>
     <resources>
         <image name="close-icon" width="17" height="17"/>
+        <image name="sancy-landscape" width="300" height="300"/>
         <image name="search-icon" width="22" height="21"/>
     </resources>
 </document>

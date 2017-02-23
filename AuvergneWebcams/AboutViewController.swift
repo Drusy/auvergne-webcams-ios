@@ -41,7 +41,7 @@ class AboutViewController: AbstractViewController {
                 if let url = url {
                     let svc = SFSafariViewController(url: url)
                     if #available(iOS 10.0, *) {
-                        svc.preferredBarTintColor = UIColor(rgb: 0x303030)
+                        svc.preferredBarTintColor = UIColor.awDarkGray
                         svc.preferredControlTintColor = UIColor.white
                     }
                     self?.present(svc, animated: true, completion: nil)
@@ -53,7 +53,7 @@ class AboutViewController: AbstractViewController {
             label.handleURLTap { [weak self] url in
                 let svc = SFSafariViewController(url: url)
                 if #available(iOS 10.0, *) {
-                    svc.preferredBarTintColor = UIColor(rgb: 0x303030)
+                    svc.preferredBarTintColor = UIColor.awDarkGray
                     svc.preferredControlTintColor = UIColor.white
                 }
                 self?.present(svc, animated: true, completion: nil)

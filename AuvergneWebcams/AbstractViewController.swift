@@ -23,6 +23,14 @@ class AbstractViewController: UIViewController {
         update()
         style()
     }
+    
+    override var prefersStatusBarHidden: Bool {
+        return false
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 
     // MARK: - Overridable
     

@@ -148,7 +148,7 @@ class SettingsViewController: FormViewController {
         guard let url = URL(string : "http://agencelespirates.com") else { return }
         let svc = SFSafariViewController(url: url)
         if #available(iOS 10.0, *) {
-            svc.preferredBarTintColor = UIColor(rgb: 0x303030)
+            svc.preferredBarTintColor = UIColor.awDarkGray
             svc.preferredControlTintColor = UIColor.white
         }
         present(svc, animated: true, completion: nil)
@@ -159,7 +159,7 @@ class SettingsViewController: FormViewController {
         guard let url = URL(string : "https://openium.fr") else { return }
         let svc = SFSafariViewController(url: url)
         if #available(iOS 10.0, *) {
-            svc.preferredBarTintColor = UIColor(rgb: 0x303030)
+            svc.preferredBarTintColor = UIColor.awDarkGray
             svc.preferredControlTintColor = UIColor.white
         }
         present(svc, animated: true, completion: nil)
