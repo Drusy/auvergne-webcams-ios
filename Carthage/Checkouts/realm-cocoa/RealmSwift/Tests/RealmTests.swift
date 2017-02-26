@@ -90,7 +90,7 @@ class RealmTests: TestCase {
 
     func testFilePermissionDenied() {
         autoreleasepool {
-            let _ = try! Realm(fileURL: testRealmURL())
+            _ = try! Realm(fileURL: testRealmURL())
         }
 
         // Make Realm at test path temporarily unreadable
@@ -811,6 +811,25 @@ class RealmTests: TestCase {
         dispatchSyncNewThread {
             let otherThreadRealm = try! Realm()
             XCTAssertFalse(realm == otherThreadRealm)
+        }
+    }
+
+    func testCatchSpecificErrors() {
+        do {
+            _ = try Realm(configuration: Realm.Configuration(fileURL: URL(fileURLWithPath: "/dev/null/foo")))
+            XCTFail("Error should be thrown")
+        } catch Realm.Error.fileAccess {
+            // Success to catch the error
+        } catch {
+            XCTFail("Failed to brigde RLMError to Realm.Error")
+        }
+        do {
+            _ = try Realm(configuration: Realm.Configuration(fileURL: defaultRealmURL(), readOnly: true))
+            XCTFail("Error should be thrown")
+        } catch Realm.Error.fileNotFound {
+            // Success to catch the error
+        } catch {
+            XCTFail("Failed to brigde RLMError to Realm.Error")
         }
     }
 }

@@ -1,3 +1,42 @@
+2.4.3 Release notes (2017-02-20)
+=============================================================
+
+### API Breaking Changes
+
+* None.
+
+### Enhancements
+
+* Avoid copying copy-on-write data structures, which can grow the file, when the
+  write does not actually change existing values.
+* Improve performance of deleting all objects in an RLMResults.
+* Reduce the number of files opened per thread-specific Realm on macOS.
+* Improve startup performance with large numbers of `RLMObject`/`Object`
+  subclasses.
+
+### Bugfixes
+
+* Fix synchronized Realms not downloading remote changes when an access token
+  expires and there are no local changes to upload.
+* Fix an issue where values set on a Realm object using `setValue(value:, forKey:)`
+  that were not themselves Realm objects were not properly converted into Realm
+  objects or checked for validity.
+* Fix an issue where `-[RLMSyncUser sessionForURL:]` could erronenously return a
+  non-nil value when passed in an invalid URL.
+* `SyncSession.Progress.fractionTransferred` now returns 1 if there are no
+  transferrable bytes.
+* Fix sync progress notifications registered on background threads by always
+  dispatching on a dedicated background queue.
+* Fix compilation issues with Xcode 8.3 beta 2.
+* Fix incorrect sync progress notification values for Realms originally created
+  using a version of Realm prior to 2.3.0.
+* Fix LLDB integration to be able to display summaries of `RLMResults` once more.
+* Reject Swift properties with names which cause them to fall in to ARC method
+  families rather than crashing when they are accessed.
+* Fix sorting by key path when the declared property order doesn't match the order
+  of properties in the Realm file, which can happen when properties are added in
+  different schema versions.
+
 2.4.2 Release notes (2017-01-30)
 =============================================================
 

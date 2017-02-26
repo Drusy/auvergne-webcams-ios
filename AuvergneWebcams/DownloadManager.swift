@@ -9,6 +9,7 @@
 import Foundation
 import Kingfisher
 import RealmSwift
+import ObjectMapper
 
 extension Notification.Name {
     static let downloadManagerDidUpdateWebcam = Notification.Name("downloadManagerDidUpdateWebcam")
@@ -26,13 +27,13 @@ class DownloadManager {
     // MARK: - 
     
     func bootstrapRealmData() {
-        let sections = [
-            WebcamSection.pddSection(),
-            WebcamSection.sancySection(),
-            WebcamSection.lioranSection()
-        ]
-        try! realm.write {
-            realm.add(sections, update: true)
+        let path = Bundle.main.path(forResource: "auvergne-webcams", ofType: "json")
+        if let json = try? String(contentsOfFile: path!, encoding: String.Encoding.utf8) {
+            if let webcamSectionsResponse = Mapper<WebcamSectionResponse>().map(JSONString: json) {
+                try! realm.write {
+                    realm.add(webcamSectionsResponse.sections, update: true)
+                }
+            }
         }
     }
 }

@@ -1,9 +1,9 @@
 //
 //  AbstractTests.swift
-//  Koboo
+//  AuvergneWebcams
 //
 //  Created by Drusy on 07/02/2017.
-//  Copyright © 2017 Koboo. All rights reserved.
+//  Copyright © 2017 AuvergneWebcams. All rights reserved.
 //
 
 import XCTest
@@ -29,10 +29,12 @@ class AbstractTests: XCTestCase {
     
     // MARK: -
     
-    func jsonString(ofFile file: String, handler: (_ content: String) -> Void) {
+    func jsonString(ofFile file: String, handler: ((_ content: String) -> Void)? = nil) -> String {
         let path = Bundle(for: AbstractTests.self).path(forResource: file, ofType: "json")
         let json = try! String(contentsOfFile: path!, encoding: String.Encoding.utf8)
         
-        handler(json)
+        handler?(json)
+        
+        return json
     }
 }

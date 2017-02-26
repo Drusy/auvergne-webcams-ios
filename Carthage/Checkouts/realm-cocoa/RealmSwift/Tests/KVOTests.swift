@@ -26,7 +26,6 @@ func nextPrimaryKey() -> Int {
 }
 
 class KVOObject: Object {
-    // swiftlint:disable:next variable_name
     dynamic var pk = nextPrimaryKey() // primary key for equality
     dynamic var ignored: Int = 0
 
@@ -90,9 +89,11 @@ class KVOTests: TestCase {
         let actualOld = changeDictionary![NSKeyValueChangeKey.oldKey]! as? T
         let actualNew = changeDictionary![NSKeyValueChangeKey.newKey]! as? T
 
-        XCTAssert(old == actualOld, "Old value: expected \(old), got \(actualOld)",
+        XCTAssert(old == actualOld,
+                  "Old value: expected \(String(describing: old)), got \(String(describing: actualOld))",
                   file: fileName, line: lineNumber)
-        XCTAssert(new == actualNew, "New value: expected \(new), got \(actualNew)",
+        XCTAssert(new == actualNew,
+                  "New value: expected \(String(describing: new)), got \(String(describing: actualNew))",
                   file: fileName, line: lineNumber)
 
         changeDictionary = nil

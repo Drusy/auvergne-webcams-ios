@@ -1,3 +1,3 @@
 #!/bin/bash
 
-carthage update --platform iOS --no-use-binaries
+carthage update $1 --platform iOS --no-use-binaries

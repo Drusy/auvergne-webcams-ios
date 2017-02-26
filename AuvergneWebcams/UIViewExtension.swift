@@ -1,9 +1,9 @@
 //
 //  UIViewExtension.swift
-//  Koboo
+//  AuvergneWebcams
 //
 //  Created by Drusy on 11/01/2017.
-//  Copyright © 2017 Koboo. All rights reserved.
+//  Copyright © 2017 AuvergneWebcams. All rights reserved.
 //
 
 import Foundation

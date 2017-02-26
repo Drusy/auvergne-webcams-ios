@@ -50,7 +50,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Defaults[.shouldAutorefresh] = true
             Defaults[.prefersHighQuality] = true
             Defaults[.autorefreshInterval] = Webcam.refreshInterval
-            Defaults[.currentVersion] = version
         }
         
         // Realm

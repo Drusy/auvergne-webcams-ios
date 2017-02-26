@@ -1,9 +1,9 @@
 //
 //  StringObject.swift
-//  MichelinDDI
+//  AuvergneWebcams
 //
 //  Created by Drusy on 07/10/2016.
-//  Copyright © 2016 Michelin. All rights reserved.
+//  Copyright © 2016 AuvergneWebcams. All rights reserved.
 //
 
 import Foundation

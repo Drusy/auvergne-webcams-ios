@@ -45,44 +45,6 @@ class WebcamSection: Object, Mappable {
         return #keyPath(WebcamSection.uid)
     }
     
-    // MARK: -
-    
-    static func pddSection() -> WebcamSection {
-        let section = WebcamSection()
-        
-        section.uid = 1
-        section.order = 1
-        section.title = "Puy de Dôme"
-        section.imageName = "sancy-landscape"
-        section.webcams.append(contentsOf: Webcam.pddWebcams())
-        
-        return section
-    }
-    
-    static func sancySection() -> WebcamSection {
-        let section = WebcamSection()
-        
-        section.uid = 2
-        section.order = 2
-        section.title = "Puy de Sancy"
-        section.imageName = "goal-landscape"
-        section.webcams.append(contentsOf: Webcam.sancyWebcams())
-
-        return section
-    }
-    
-    static func lioranSection() -> WebcamSection {
-        let section = WebcamSection()
-        
-        section.uid = 3
-        section.order = 3
-        section.title = "Le Lioran"
-        section.imageName = "lioran-landscape"
-        section.webcams.append(contentsOf: Webcam.lioranWebcams())
-        
-        return section
-    }
-    
     // MARK: - 
     
     func webcamCountLabel() -> String {

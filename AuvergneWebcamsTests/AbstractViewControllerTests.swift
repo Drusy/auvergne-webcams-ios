@@ -1,9 +1,9 @@
 //
 //  AbstractViewControllerTests.swift
-//  rives-de-moselle
+//  AuvergneWebcams
 //
 //  Created by Drusy on 18/08/2016.
-//  Copyright © 2016 Clément Samson. All rights reserved.
+//  Copyright © 2016 AuvergneWebcams. All rights reserved.
 //
 
 import XCTest

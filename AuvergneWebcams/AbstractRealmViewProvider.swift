@@ -1,6 +1,6 @@
 //
 //  AbstractViewProvider.swift
-//  Koboo
+//  AuvergneWebcams
 //
 //  Created by Drusy on 07/05/2016.
 //  Copyright © 2016 Openium. All rights reserved.
