@@ -113,8 +113,9 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
         let finalBounds = NSValue(cgRect: CGRect(x: 0, y: 0,
                                                  width: loadingAnimationImageView.bounds.width * 5,
                                                  height: loadingAnimationImageView.bounds.height * 5))
+        let duration: TimeInterval = 1
         
-        transformAnimation.duration = 1
+        transformAnimation.duration = duration
         transformAnimation.delegate = self
         transformAnimation.values = [initalBounds, secondBounds, finalBounds]
         transformAnimation.keyTimes = [0, 0.5, 1]
@@ -126,8 +127,8 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
         loadingAnimationImageView.layer.add(transformAnimation, forKey: transformAnimation.keyPath)
         
         UIView.animate(
-            withDuration: 0.2,
-            delay: 0.35,
+            withDuration: duration * 0.2,
+            delay: duration * 0.35,
             options: .curveEaseIn,
             animations: { [weak self] in
                 self?.loadingAnimationView.alpha = 0.0
@@ -135,8 +136,8 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
             completion: nil)
         
         UIView.animate(
-            withDuration: 0.25,
-            delay: 0.3,
+            withDuration: duration * 0.25,
+            delay: duration * 0.3,
             options: [],
             animations: { [weak self] in
                 self?.navigationController?.view.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)

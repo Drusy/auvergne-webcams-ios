@@ -85,7 +85,7 @@
                 <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MSD-P7-rKX">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sancy-landscape" translatesAutoresizingMaskIntoConstraints="NO" id="RHR-ry-wez">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sancy-landscape-cloudless" translatesAutoresizingMaskIntoConstraints="NO" id="RHR-ry-wez">
                             <rect key="frame" x="38" y="184" width="300" height="300"/>
                         </imageView>
                     </subviews>
@@ -112,7 +112,7 @@
     </objects>
     <resources>
         <image name="close-icon" width="17" height="17"/>
-        <image name="sancy-landscape" width="300" height="300"/>
+        <image name="sancy-landscape-cloudless" width="300" height="300"/>
         <image name="search-icon" width="22" height="21"/>
     </resources>
 </document>

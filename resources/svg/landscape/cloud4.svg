@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="85px" height="33px" viewBox="0 0 85 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="mountains-1" transform="translate(-355.000000, -132.000000)" fill-rule="nonzero" fill="#FFFFFF">
+            <g id="Group">
+                <path d="M355.042,164.924 C355.042,152.413 365.184,142.271 377.695,142.271 C379.583,142.271 381.389,142.57 383.142,143.005 C389.053,136.622 397.434,132.563 406.82,132.563 C424.693,132.563 439.181,147.052 439.181,164.924 L355.042,164.924 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

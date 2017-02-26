@@ -14,21 +14,90 @@ protocol LoadingViewControllerDelegate: class {
 
 class LoadingViewController: AbstractViewController {
 
-    @IBOutlet var loadingImageView: UIImageView!
+    @IBOutlet weak var loadingImageView: UIImageView!
+    
+    @IBOutlet var cloudsCollectionImageViews: [UIImageView]!
+    @IBOutlet weak var cloudOneImageView: UIImageView!
+    @IBOutlet weak var cloudTwoImageView: UIImageView!
+    @IBOutlet weak var cloudThreeImageView: UIImageView!
+    @IBOutlet weak var cloudFourImageView: UIImageView!
+    @IBOutlet weak var cloudFiveImageView: UIImageView!
+    @IBOutlet weak var cloudSixImageView: UIImageView!
+    @IBOutlet weak var cloudSevenImageView: UIImageView!
+    @IBOutlet weak var loadingLabel: UILabel!
     
     weak var delegate: LoadingViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        showClouds()
+        animateClouds()
         refresh()
     }
     
     // MARK: -
     
+    func showClouds() {
+        cloudsCollectionImageViews.forEach { cloudImageView in
+            cloudImageView.applyShadow(opacity: 0.15,
+                                       radius: 2,
+                                       color: UIColor.black,
+                                       offset: CGSize(width: 1, height: 1))
+            cloudImageView.alpha = 0.0
+        }
+        
+        UIView.animate(
+            withDuration: 1,
+            delay: 0,
+            options: [],
+            animations: { [weak self] in
+                self?.cloudsCollectionImageViews.forEach { cloudImageView in
+                    cloudImageView.alpha = 1.0
+                }
+            },
+            completion: nil)
+    }
+    
+    func animateClouds() {
+        let options: UIViewAnimationOptions = [.autoreverse, .curveEaseInOut, .repeat]
+        let baseDuration: TimeInterval = 12
+        
+        UIView.animate(
+            withDuration: baseDuration,
+            delay: 0,
+            options: options,
+            animations: { [weak self] in
+                self?.cloudOneImageView.transform = CGAffineTransform(translationX: 100, y: 0)
+//                self?.cloudFourImageView.transform = CGAffineTransform(translationX: 50, y: 0)
+                self?.cloudFiveImageView.transform = CGAffineTransform(translationX: -100, y: 0)
+//                self?.cloudSevenImageView.transform = CGAffineTransform(translationX: -175, y: 0)
+        },
+            completion: nil)
+        
+        UIView.animate(
+            withDuration: baseDuration / 1.25,
+            delay: 0,
+            options: options,
+            animations: { [weak self] in
+                self?.cloudTwoImageView.transform = CGAffineTransform(translationX: 150, y: 0)
+                self?.cloudSixImageView.transform = CGAffineTransform(translationX: -150, y: 0)
+
+            },
+            completion: nil)
+        
+//        UIView.animate(
+//            withDuration: baseDuration / 1.5,
+//            delay: 0,
+//            options: options,
+//            animations: { [weak self] in
+//                self?.cloudThreeImageView.transform = CGAffineTransform(translationX: 150, y: 0)
+//            },
+//            completion: nil)
+    }
+    
     func refresh() {
-        loadingImageView.alpha = 1
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
             self?.endLoading()
         }
     }
@@ -36,6 +105,20 @@ class LoadingViewController: AbstractViewController {
     // MARK: - 
     
     fileprivate func endLoading() {
-        delegate?.didFinishLoading(self)
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0,
+            options: [.beginFromCurrentState],
+            animations: { [weak self] in
+                self?.cloudsCollectionImageViews.forEach { cloudImageView in
+                    cloudImageView.alpha = 0.0
+                }
+                self?.loadingLabel.alpha = 0.0
+        },
+            completion: { [weak self] finished in
+                guard let strongSelf = self else { return }
+                
+                strongSelf.delegate?.didFinishLoading(strongSelf)
+        })
     }
 }
