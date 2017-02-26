@@ -160,7 +160,7 @@ class AbstractWebcamView: UIView {
     func configure(withWebcam webcam: Webcam) {
         noDataView.isHidden = true
         
-        if let image = webcam.preferedImage(), let url = URL(string: image) {
+        if let image = webcam.preferredImage(), let url = URL(string: image) {
             noDataView.isHidden = true
             imageView.layoutIfNeeded()
             

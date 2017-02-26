@@ -48,7 +48,7 @@ class WebcamTests: AbstractTests {
     
     // MARK: - Model
     
-    func testWebcamPreferedImage_lowQuality() {
+    func testWebcamPreferredImage_lowQuality() {
         // Given
         let webcam = Webcam()
         webcam.imageHD = "HD"
@@ -56,13 +56,39 @@ class WebcamTests: AbstractTests {
         
         // When
         Defaults[.prefersHighQuality] = false
-        let preferedImage = webcam.preferedImage()
+        let preferredImage = webcam.preferredImage()
         
         // Expect
-        XCTAssertEqual(preferedImage, "LD")
+        XCTAssertEqual(preferredImage, "LD")
     }
     
-    func testWebcamPreferedImage_highQuality() {
+    func testWebcamPreferredImage_lowQualityPreferredButEmpty_shouldGetHighQuality() {
+        // Given
+        let webcam = Webcam()
+        webcam.imageHD = "HD"
+        
+        // When
+        Defaults[.prefersHighQuality] = false
+        let preferredImage = webcam.preferredImage()
+        
+        // Expect
+        XCTAssertEqual(preferredImage, "HD")
+    }
+    
+    func testWebcamPreferredImage_highQualityPreferredButEmpty_shouldGetLowQuality() {
+        // Given
+        let webcam = Webcam()
+        webcam.imageLD = "LD"
+        
+        // When
+        Defaults[.prefersHighQuality] = true
+        let preferredImage = webcam.preferredImage()
+        
+        // Expect
+        XCTAssertEqual(preferredImage, "LD")
+    }
+    
+    func testWebcamPreferredImage_highQuality() {
         // Given
         let webcam = Webcam()
         webcam.imageHD = "HD"
@@ -70,9 +96,9 @@ class WebcamTests: AbstractTests {
         
         // When
         Defaults[.prefersHighQuality] = true
-        let preferedImage = webcam.preferedImage()
+        let preferredImage = webcam.preferredImage()
         
         // Expect
-        XCTAssertEqual(preferedImage, "HD")
+        XCTAssertEqual(preferredImage, "HD")
     }
 }

@@ -61,7 +61,7 @@ class Webcam: Object, Mappable {
         }
     }
     
-    func preferedImage() -> String? {
+    func preferredImage() -> String? {
         if Defaults[.prefersHighQuality] {
             return imageHD ?? imageLD
         } else {

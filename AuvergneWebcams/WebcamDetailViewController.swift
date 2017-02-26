@@ -211,7 +211,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     }
     
     override func refresh(force: Bool = false) {
-        if let image = webcam.preferedImage(), let url = URL(string: image) {
+        if let image = webcam.preferredImage(), let url = URL(string: image) {
             var options: KingfisherOptionsInfo = []
             
             if force {
