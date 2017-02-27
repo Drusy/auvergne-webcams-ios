@@ -62,6 +62,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Database init
         if didPerformMigration || Defaults[.currentVersion] != version {
             DownloadManager.shared.bootstrapRealmData()
+        } else {
+            // Let's init the download manager proxy
+            _ = DownloadManager.shared
         }
         
         // Current version
