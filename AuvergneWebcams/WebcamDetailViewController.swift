@@ -24,6 +24,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     @IBOutlet weak var imageConstraintLeft: NSLayoutConstraint!
     @IBOutlet weak var imageConstraintBottom: NSLayoutConstraint!
     @IBOutlet var lastUpdateViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet var lastUpdateView: UIView!
 
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var lastUpdateLabel: UILabel!
@@ -31,6 +32,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     var lastZoomScale: CGFloat = -1
     var webcam: Webcam
     var isDataLoaded: Bool = false
+    var shouldSetupInitialZoom: Bool = true
     
     init(webcam: Webcam) {
         self.webcam = webcam
@@ -282,14 +284,25 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     
     func handleDoubleTap(recognizer: UITapGestureRecognizer) {
         guard isDataLoaded == true else { return }
-        
-        if (scrollView.zoomScale == scrollView.maximumZoomScale) {
+        let zoomOffset: CGFloat = (scrollView.maximumZoomScale - scrollView.minimumZoomScale) / 2
+
+        if (scrollView.zoomScale >= zoomOffset) {
             scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
         } else {
-            let offset: CGFloat = (scrollView.maximumZoomScale - scrollView.minimumZoomScale) / 4
-            let zoom = min(scrollView.maximumZoomScale, scrollView.zoomScale + offset)
+            let zoom = min(scrollView.maximumZoomScale, scrollView.zoomScale + zoomOffset)
+            let pointInView = recognizer.location(in: imageView)
             
-            scrollView.setZoomScale(zoom, animated: true)
+            let scrollViewSize = scrollView.bounds.size
+            let width: CGFloat = scrollViewSize.width / zoom
+            let height: CGFloat = scrollViewSize.height / zoom
+            let originX: CGFloat = pointInView.x - (width / 2.0)
+            let originY: CGFloat = pointInView.y - (height / 2.0)
+            let rectToZoomTo = CGRect(x: originX,
+                                      y: originY,
+                                      width: width,
+                                      height: height)
+            
+            scrollView.zoom(to: rectToZoomTo, animated: true)
         }
     }
     
@@ -303,7 +316,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         let viewHeight = view.bounds.size.height
         
         let hPadding = max(0, (viewWidth - scrollView.zoomScale * imageWidth) / 2)
-        let vPadding = max(0, (viewHeight - scrollView.zoomScale * imageHeight) / 2)
+        let vPadding = max(0, (viewHeight - scrollView.zoomScale * imageHeight) / 2 + lastUpdateView.bounds.height)
         
         imageConstraintLeft.constant = hPadding
         imageConstraintRight.constant = hPadding
@@ -333,27 +346,40 @@ class WebcamDetailViewController: AbstractRefreshViewController {
 
             scrollView.maximumZoomScale = 1
             scrollView.minimumZoomScale = minZoom
-            scrollView.zoomScale = minZoom
             
-            DispatchQueue.main.async { [weak self] in
-                guard let strongSelf = self else { return }
-                
-                let initialZoomScale = max(widthScale, heightScale)
-                if initialZoomScale <= strongSelf.scrollView.maximumZoomScale &&
-                   initialZoomScale >= strongSelf.scrollView.minimumZoomScale {
+            if shouldSetupInitialZoom || scrollView.zoomScale < minZoom {
+                scrollView.zoomScale = minZoom
+            }
+            
+            if shouldSetupInitialZoom {
+                DispatchQueue.main.async { [weak self] in
+                    guard let strongSelf = self else { return }
                     
-                    UIView.animate(withDuration: 1,
-                                   delay: 0,
-                                   options: .beginFromCurrentState,
-                                   animations: { [weak self] in
-                                    guard let strongSelf = self else { return }
-
-                                    strongSelf.scrollView.setZoomScale(initialZoomScale, animated: false)
-                        },
-                                   completion: nil)
-                    strongSelf.lastZoomScale = minZoom
+                    let initialZoomScale: CGFloat
+                    if UIApplication.shared.statusBarOrientation == .portrait {
+                        initialZoomScale = max(strongSelf.scrollView.minimumZoomScale, max(widthScale, heightScale) / 2)
+                    } else {
+                        initialZoomScale = max(widthScale, heightScale)
+                    }
+                    
+                    if initialZoomScale <= strongSelf.scrollView.maximumZoomScale &&
+                        initialZoomScale >= strongSelf.scrollView.minimumZoomScale {
+                        
+                        UIView.animate(withDuration: 1,
+                                       delay: 0,
+                                       options: .beginFromCurrentState,
+                                       animations: { [weak self] in
+                                        guard let strongSelf = self else { return }
+                                        
+                                        strongSelf.scrollView.setZoomScale(initialZoomScale, animated: false)
+                            },
+                                       completion: nil)
+                        strongSelf.lastZoomScale = minZoom
+                    }
                 }
             }
+            
+            shouldSetupInitialZoom = false
         }
     }
 }
