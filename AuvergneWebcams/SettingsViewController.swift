@@ -21,8 +21,7 @@ enum SettingTag: String {
     case quality
 }
 
-class SettingsViewController: FormViewController {    
-    private var foregroundNotification: Any?
+class SettingsViewController: FormViewController {
     
     @IBOutlet var blurView: UIVisualEffectView!
     

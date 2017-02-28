@@ -11,6 +11,7 @@ import Kingfisher
 import Reachability
 import SwiftyUserDefaults
 import MessageUI
+import NVActivityIndicatorView
 
 class WebcamDetailViewController: AbstractRefreshViewController {
 
@@ -26,7 +27,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     @IBOutlet var lastUpdateViewTopConstraint: NSLayoutConstraint!
     @IBOutlet var lastUpdateView: UIView!
 
-    @IBOutlet var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet var nvActivityIndicatorView: NVActivityIndicatorView!
     @IBOutlet var lastUpdateLabel: UILabel!
     
     var lastZoomScale: CGFloat = -1
@@ -68,6 +69,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
 
         setupGestureRecognizer()
         updateLastUpdateLabel()
+        refresh()
         
         AnalyticsManager.logEvent(showWebcam: webcam)
     }
@@ -76,13 +78,6 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         NotificationCenter.default.removeObserver(self,
                                                   name: Notification.Name.downloadManagerDidUpdateWebcam,
                                                   object: nil)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        // Load image
-        refresh()
     }
 
     override func viewWillLayoutSubviews() {
@@ -215,6 +210,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     override func refresh(force: Bool = false) {
         if let image = webcam.preferredImage(), let url = URL(string: image) {
             var options: KingfisherOptionsInfo = []
+            let currentContentOffset: CGPoint = scrollView.contentOffset
             
             if force {
                 options.append(.forceRefresh)
@@ -222,9 +218,10 @@ class WebcamDetailViewController: AbstractRefreshViewController {
             
             brokenConnectionView.isHidden = true
             shareButton.isEnabled = false
+            navigationItem.rightBarButtonItem?.isEnabled = false
             isDataLoaded = false
+            nvActivityIndicatorView.startAnimating()
             
-            activityIndicator.startAnimating()
             imageView?.kf.setImage(
                 with: url,
                 placeholder: nil,
@@ -243,17 +240,28 @@ class WebcamDetailViewController: AbstractRefreshViewController {
                                 strongSelf.refresh(force: force)
                             }
                         } else {
-                            strongSelf.activityIndicator.stopAnimating()
+                            strongSelf.nvActivityIndicatorView.startAnimating()
                             strongSelf.brokenConnectionView.isHidden = false
                         }
                     } else {
-                        strongSelf.activityIndicator.stopAnimating()
+                        strongSelf.nvActivityIndicatorView.stopAnimating()
                         strongSelf.shareButton.isEnabled = true
+                        strongSelf.navigationItem.rightBarButtonItem?.isEnabled = true
                         strongSelf.isDataLoaded = true
-                        strongSelf.updateZoom()
+                        strongSelf.updateZoom(andRestore: currentContentOffset)
                     }
             }
         }
+    }
+    
+    override func style() {
+        super.style()
+        
+//        nvActivityIndicatorView.color = UIColor.white.withAlphaComponent(0.9)
+//        nvActivityIndicatorView.color = UIColor.awLightGray
+        nvActivityIndicatorView.color = UIColor.awBlue
+        nvActivityIndicatorView.type = .ballGridPulse
+        
     }
     
     override func translate() {
@@ -286,9 +294,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         guard isDataLoaded == true else { return }
         let zoomOffset: CGFloat = (scrollView.maximumZoomScale - scrollView.minimumZoomScale) / 2
 
-        if (scrollView.zoomScale >= zoomOffset) {
-            scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
-        } else {
+        if (scrollView.zoomScale == scrollView.minimumZoomScale || scrollView.zoomScale < zoomOffset) {
             let zoom = min(scrollView.maximumZoomScale, scrollView.zoomScale + zoomOffset)
             let pointInView = recognizer.location(in: imageView)
             
@@ -303,6 +309,8 @@ class WebcamDetailViewController: AbstractRefreshViewController {
                                       height: height)
             
             scrollView.zoom(to: rectToZoomTo, animated: true)
+        } else {
+            scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
         }
     }
     
@@ -337,7 +345,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         }
     }
     
-    func updateZoom() {
+    func updateZoom(andRestore contentOffset: CGPoint? = nil) {
         if let image = imageView.image {
             let scrollViewSize = scrollView.bounds.size
             let widthScale = scrollViewSize.width / image.size.width
@@ -377,6 +385,8 @@ class WebcamDetailViewController: AbstractRefreshViewController {
                         strongSelf.lastZoomScale = minZoom
                     }
                 }
+            } else if let contentOffset = contentOffset {
+                scrollView.contentOffset = contentOffset
             }
             
             shouldSetupInitialZoom = false

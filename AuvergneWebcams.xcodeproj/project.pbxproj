@@ -107,6 +107,8 @@
 		F9ACD1FF1E5CA4B3004E5BFF /* Firebase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9ACD1F31E5C9C2A004E5BFF /* Firebase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F9ACD2011E5CA8D8004E5BFF /* FIRAnalyticsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ACD2001E5CA8D8004E5BFF /* FIRAnalyticsExtension.swift */; };
 		F9ACD2031E5CAAD5004E5BFF /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ACD2021E5CAAD5004E5BFF /* AnalyticsManager.swift */; };
+		F9B1E5FC1E65656100829FE8 /* NVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B1E5FB1E65652A00829FE8 /* NVActivityIndicatorView.framework */; };
+		F9B1E5FD1E65656100829FE8 /* NVActivityIndicatorView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B1E5FB1E65652A00829FE8 /* NVActivityIndicatorView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F9BE03091DD7817C0063275B /* AbstractRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE03081DD7817C0063275B /* AbstractRefreshViewController.swift */; };
 		F9BE030C1DD78E4B0063275B /* KFIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE030B1DD78E4B0063275B /* KFIndicator.swift */; };
 		F9BE030F1DD8AC1B0063275B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE030D1DD8AC1B0063275B /* SettingsViewController.swift */; };
@@ -169,6 +171,7 @@
 				F9BE03131DD8AF960063275B /* Eureka.framework in Embed Frameworks */,
 				F9022D9F1DD90032006AF146 /* SwiftiumKit.framework in Embed Frameworks */,
 				F963AB3E1E59E80900ED5A8B /* Alamofire.framework in Embed Frameworks */,
+				F9B1E5FD1E65656100829FE8 /* NVActivityIndicatorView.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,6 +278,7 @@
 		F9ACD1F91E5C9DF5004E5BFF /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		F9ACD2001E5CA8D8004E5BFF /* FIRAnalyticsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIRAnalyticsExtension.swift; sourceTree = "<group>"; };
 		F9ACD2021E5CAAD5004E5BFF /* AnalyticsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
+		F9B1E5FB1E65652A00829FE8 /* NVActivityIndicatorView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NVActivityIndicatorView.framework; path = Carthage/Build/iOS/NVActivityIndicatorView.framework; sourceTree = "<group>"; };
 		F9BE03081DD7817C0063275B /* AbstractRefreshViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractRefreshViewController.swift; sourceTree = "<group>"; };
 		F9BE030B1DD78E4B0063275B /* KFIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KFIndicator.swift; sourceTree = "<group>"; };
 		F9BE030D1DD8AC1B0063275B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -313,6 +317,7 @@
 			files = (
 				F9ACD1FA1E5C9DF5004E5BFF /* AddressBook.framework in Frameworks */,
 				F9ACD1F81E5C9DD8004E5BFF /* libsqlite3.tbd in Frameworks */,
+				F9B1E5FC1E65656100829FE8 /* NVActivityIndicatorView.framework in Frameworks */,
 				F9ACD1E91E5C9B88004E5BFF /* FirebaseAnalytics.framework in Frameworks */,
 				F963AB431E59E80900ED5A8B /* RealmSwift.framework in Frameworks */,
 				F963AB411E59E80900ED5A8B /* Realm.framework in Frameworks */,
@@ -456,6 +461,7 @@
 				F93C76381DD11915005DEE66 /* Cartfile.resolved */,
 				F9ACD1E31E5C9B74004E5BFF /* Firebase */,
 				F9ACD1DD1E5C3A27004E5BFF /* AlamofireNetworkActivityIndicator.framework */,
+				F9B1E5FB1E65652A00829FE8 /* NVActivityIndicatorView.framework */,
 				F963AB451E5A151900ED5A8B /* ObjectMapper.framework */,
 				F963AB391E59E7FC00ED5A8B /* Alamofire.framework */,
 				F963AB3A1E59E7FC00ED5A8B /* AlamofireObjectMapper.framework */,
@@ -1000,6 +1006,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/ObjectMapper.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/AlamofireNetworkActivityIndicator.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Firebase.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/NVActivityIndicatorView.framework",
 			);
 			name = Carthage;
 			outputPaths = (

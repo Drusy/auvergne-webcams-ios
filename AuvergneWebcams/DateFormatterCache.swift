@@ -12,10 +12,11 @@ class DateFormatterCache {
     static var shared = DateFormatterCache()
     
     var defaultLocale = Locale(identifier: "fr_FR")
+    var defaultTimeZone = TimeZone.current
     var formatDateFormatters = [String: DateFormatter]()
     var styleDateFormatters = [NSNumber: DateFormatter]()
     
-    func dateFormatter(withFormat format: String, locale: Locale? = nil) -> DateFormatter {
+    func dateFormatter(withFormat format: String, locale: Locale? = nil, timeZone: TimeZone? = nil) -> DateFormatter {
         if let formatter = formatDateFormatters[format] {
             return formatter
         }
@@ -24,6 +25,7 @@ class DateFormatterCache {
         
         formatter.dateFormat = format
         formatter.locale = locale ?? defaultLocale
+        formatter.timeZone = timeZone ?? defaultTimeZone
         
         formatDateFormatters[format] = formatter
         

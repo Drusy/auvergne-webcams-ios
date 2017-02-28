@@ -49,7 +49,9 @@ extension DownloadManager: ImageDownloaderDelegate {
                                                                        #keyPath(Webcam.imageHD), url.absoluteString,
                                                                        #keyPath(Webcam.imageLD), url.absoluteString).first else { return }
             
-            let dateFormatter = DateFormatterCache.shared.dateFormatter(withFormat: "E, d MMM yyyy HH:mm:ss 'GMT'", locale: Locale(identifier: "en_US"))
+            let dateFormatter = DateFormatterCache.shared.dateFormatter(withFormat: "E, d MMM yyyy HH:mm:ss 'GMT'",
+                                                                        locale: Locale(identifier: "en_US"),
+                                                                        timeZone: TimeZone(abbreviation: "GMT"))
             if let date = dateFormatter.date(from: lastModifiedString) {
                 try? self?.realm.write {
                     webcam.lastUpdate = date
