@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import Crashlytics
 
 protocol LoadingViewControllerDelegate: class {
     func didFinishLoading(_: LoadingViewController)
 }
 
-class LoadingViewController: AbstractViewController {
+class LoadingViewController: AbstractRealmViewController {
 
     @IBOutlet weak var loadingImageView: UIImageView!
     
@@ -27,6 +28,9 @@ class LoadingViewController: AbstractViewController {
     @IBOutlet weak var loadingLabel: UILabel!
     
     weak var delegate: LoadingViewControllerDelegate?
+    
+    var loadingEnded = false
+    var webcamQueryEnded = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,9 +73,7 @@ class LoadingViewController: AbstractViewController {
             options: options,
             animations: { [weak self] in
                 self?.cloudOneImageView.transform = CGAffineTransform(translationX: 100, y: 0)
-//                self?.cloudFourImageView.transform = CGAffineTransform(translationX: 50, y: 0)
                 self?.cloudFiveImageView.transform = CGAffineTransform(translationX: -100, y: 0)
-//                self?.cloudSevenImageView.transform = CGAffineTransform(translationX: -175, y: 0)
         },
             completion: nil)
         
@@ -85,26 +87,43 @@ class LoadingViewController: AbstractViewController {
 
             },
             completion: nil)
-        
-//        UIView.animate(
-//            withDuration: baseDuration / 1.5,
-//            delay: 0,
-//            options: options,
-//            animations: { [weak self] in
-//                self?.cloudThreeImageView.transform = CGAffineTransform(translationX: 150, y: 0)
-//            },
-//            completion: nil)
     }
     
     func refresh() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+            self?.loadingEnded = true
             self?.endLoading()
+        }
+        
+        ApiRequest.startQuery(forType: WebcamSectionResponse.self, parameters: nil) { [weak self] response in
+            guard let strongSelf = self else { return }
+            
+            if let error = response.error {
+                Crashlytics.sharedInstance().recordError(error)
+                print(error.localizedDescription)
+            } else if let webcamSectionResponse = response.result.value {
+                // Delete all sections & webcams
+                let sections = strongSelf.realm.objects(WebcamSection.self)
+                let webcams = strongSelf.realm.objects(Webcam.self)
+                
+                try! strongSelf.realm.write {
+                    strongSelf.realm.delete(sections)
+                    strongSelf.realm.delete(webcams)
+                    
+                    strongSelf.realm.add(webcamSectionResponse.sections, update: true)
+                }
+            }
+            
+            strongSelf.webcamQueryEnded = true
+            strongSelf.endLoading()
         }
     }
     
     // MARK: - 
     
     fileprivate func endLoading() {
+        guard loadingEnded && webcamQueryEnded else { return }
+        
         UIView.animate(
             withDuration: 0.5,
             delay: 0,
