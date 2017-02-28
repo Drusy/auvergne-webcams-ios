@@ -27,7 +27,7 @@ class DownloadManager {
     // MARK: - 
     
     func bootstrapRealmData() {
-        let path = Bundle.main.path(forResource: "auvergne-webcams", ofType: "json")
+        let path = Bundle.main.path(forResource: "webcams-config", ofType: "json")
         if let json = try? String(contentsOfFile: path!, encoding: String.Encoding.utf8) {
             if let webcamSectionsResponse = Mapper<WebcamSectionResponse>().map(JSONString: json) {
                 try! realm.write {
