@@ -30,7 +30,34 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gKN-Se-vdo">
                     <rect key="frame" x="9" y="8" width="514" height="289"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SSA-vm-epb">
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q7F-f9-IB0">
+                            <rect key="frame" x="0.0" y="0.0" width="514" height="289"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera-broken-white" translatesAutoresizingMaskIntoConstraints="NO" id="LIX-pV-caf">
+                                    <rect key="frame" x="206.5" y="73.5" width="100" height="70"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="70" id="bAj-Ai-O1K"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.60000002384185791" translatesAutoresizingMaskIntoConstraints="NO" id="0hQ-qL-cVO">
+                                    <rect key="frame" x="8" y="159.5" width="498" height="32"/>
+                                    <string key="text">Impossible de charger
+la caméra</string>
+                                    <fontDescription key="fontDescription" name="ProximaNova-SemiboldIt" family="Proxima Nova" pointSize="16"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="0hQ-qL-cVO" firstAttribute="top" secondItem="LIX-pV-caf" secondAttribute="bottom" constant="16" id="E3C-W2-HVy"/>
+                                <constraint firstItem="0hQ-qL-cVO" firstAttribute="leading" secondItem="Q7F-f9-IB0" secondAttribute="leading" constant="8" id="ICX-Yb-Q7s"/>
+                                <constraint firstAttribute="trailing" secondItem="0hQ-qL-cVO" secondAttribute="trailing" constant="8" id="inS-Dd-eWm"/>
+                                <constraint firstItem="LIX-pV-caf" firstAttribute="centerX" secondItem="Q7F-f9-IB0" secondAttribute="centerX" id="u6O-fB-qnl"/>
+                                <constraint firstItem="LIX-pV-caf" firstAttribute="centerY" secondItem="Q7F-f9-IB0" secondAttribute="centerY" multiplier="75%" id="yze-iP-AxF"/>
+                            </constraints>
+                        </view>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SSA-vm-epb">
                             <rect key="frame" x="0.0" y="0.0" width="514" height="289"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi-broken-white" translatesAutoresizingMaskIntoConstraints="NO" id="mMU-G3-Dcw">
@@ -46,7 +73,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="anW-68-JBN" firstAttribute="leading" secondItem="SSA-vm-epb" secondAttribute="leading" constant="8" id="3GQ-6S-lbr"/>
                                 <constraint firstItem="mMU-G3-Dcw" firstAttribute="centerY" secondItem="SSA-vm-epb" secondAttribute="centerY" multiplier="85%" id="AGp-EX-vkM"/>
@@ -72,11 +99,15 @@
                         <constraint firstItem="SSA-vm-epb" firstAttribute="leading" secondItem="gKN-Se-vdo" secondAttribute="leading" id="BO2-p1-DpV"/>
                         <constraint firstAttribute="trailing" secondItem="5ju-fM-G0p" secondAttribute="trailing" id="DvM-tK-Fag"/>
                         <constraint firstItem="ktB-zU-qjb" firstAttribute="centerY" secondItem="5ju-fM-G0p" secondAttribute="centerY" id="NjO-cN-4ra"/>
+                        <constraint firstItem="Q7F-f9-IB0" firstAttribute="leading" secondItem="gKN-Se-vdo" secondAttribute="leading" id="YoL-l8-AGu"/>
+                        <constraint firstItem="Q7F-f9-IB0" firstAttribute="top" secondItem="gKN-Se-vdo" secondAttribute="top" id="Z34-xt-exo"/>
                         <constraint firstItem="SSA-vm-epb" firstAttribute="top" secondItem="gKN-Se-vdo" secondAttribute="top" id="afo-UW-IOD"/>
+                        <constraint firstAttribute="bottom" secondItem="Q7F-f9-IB0" secondAttribute="bottom" id="eXx-da-vOh"/>
                         <constraint firstAttribute="trailing" secondItem="SSA-vm-epb" secondAttribute="trailing" id="keQ-sK-mv2"/>
                         <constraint firstItem="ktB-zU-qjb" firstAttribute="width" secondItem="5ju-fM-G0p" secondAttribute="width" constant="-2" id="t2g-OJ-6ce"/>
                         <constraint firstItem="ktB-zU-qjb" firstAttribute="centerX" secondItem="5ju-fM-G0p" secondAttribute="centerX" id="tLm-3u-6YP"/>
                         <constraint firstAttribute="bottom" secondItem="5ju-fM-G0p" secondAttribute="bottom" id="v7p-cg-q8Y"/>
+                        <constraint firstAttribute="trailing" secondItem="Q7F-f9-IB0" secondAttribute="trailing" id="wd7-3S-R5m"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sommet du Puy de Dôme" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Sm-IR-S9e">
@@ -102,6 +133,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="brokenCameraView" destination="Q7F-f9-IB0" id="ZL3-xl-dcz"/>
                 <outlet property="imageView" destination="5ju-fM-G0p" id="9a0-ME-5tf"/>
                 <outlet property="imageViewHighlightOverlayView" destination="ktB-zU-qjb" id="HIm-0v-rOV"/>
                 <outlet property="noDataView" destination="SSA-vm-epb" id="nhw-l0-URT"/>
@@ -112,6 +144,7 @@
         </view>
     </objects>
     <resources>
+        <image name="camera-broken-white" width="100" height="86"/>
         <image name="wifi-broken-white" width="100" height="87"/>
     </resources>
 </document>

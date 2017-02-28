@@ -18,6 +18,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WebcamDetailViewController" customModule="AuvergneWebcams" customModuleProvider="target">
             <connections>
+                <outlet property="brokenCameraView" destination="noP-jA-NZQ" id="qwe-kK-7g6"/>
                 <outlet property="brokenConnectionView" destination="45a-Ea-bzN" id="yTp-Yf-dFS"/>
                 <outlet property="imageConstraintBottom" destination="u10-y6-drJ" id="XUB-cB-ruw"/>
                 <outlet property="imageConstraintLeft" destination="J9C-6K-IhY" id="JaI-7C-Q7c"/>
@@ -96,14 +97,14 @@
                         <constraint firstAttribute="bottom" secondItem="9VQ-3z-j1Y" secondAttribute="bottom" id="w3g-pa-IzT"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="45a-Ea-bzN">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="45a-Ea-bzN">
                     <rect key="frame" x="0.0" y="114" width="375" height="553"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi-broken-white" translatesAutoresizingMaskIntoConstraints="NO" id="gy6-29-jrA">
-                            <rect key="frame" x="138" y="203" width="100" height="87"/>
+                            <rect key="frame" x="138" y="193" width="100" height="87"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aucune connexion" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.59999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="ony-jr-bNx">
-                            <rect key="frame" x="8" y="306" width="359" height="17"/>
+                            <rect key="frame" x="8" y="304" width="359" height="17"/>
                             <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -111,11 +112,48 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="ony-jr-bNx" firstAttribute="top" secondItem="gy6-29-jrA" secondAttribute="bottom" constant="16" id="5VE-uh-aE6"/>
-                        <constraint firstItem="gy6-29-jrA" firstAttribute="centerY" secondItem="45a-Ea-bzN" secondAttribute="centerY" constant="-30" id="DLx-OI-mYs"/>
+                        <constraint firstItem="ony-jr-bNx" firstAttribute="top" secondItem="gy6-29-jrA" secondAttribute="bottom" constant="24" id="5VE-uh-aE6"/>
+                        <constraint firstItem="gy6-29-jrA" firstAttribute="centerY" secondItem="45a-Ea-bzN" secondAttribute="centerY" constant="-40" id="DLx-OI-mYs"/>
                         <constraint firstAttribute="trailing" secondItem="ony-jr-bNx" secondAttribute="trailing" constant="8" id="NIp-nw-rXz"/>
                         <constraint firstItem="gy6-29-jrA" firstAttribute="centerX" secondItem="45a-Ea-bzN" secondAttribute="centerX" id="VDs-Fl-RTA"/>
                         <constraint firstItem="ony-jr-bNx" firstAttribute="leading" secondItem="45a-Ea-bzN" secondAttribute="leading" constant="8" id="xSP-44-D71"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="noP-jA-NZQ">
+                    <rect key="frame" x="0.0" y="114" width="375" height="553"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera-broken-white" translatesAutoresizingMaskIntoConstraints="NO" id="xXS-JL-M3G">
+                            <rect key="frame" x="138" y="158.5" width="100" height="86"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qVI-tw-7Cv">
+                            <rect key="frame" x="40" y="268.5" width="295" height="85"/>
+                            <string key="text">La webcam ne semble pas fonctionnelle
+
+Touchez l'écran pour signaler 
+la caméra</string>
+                            <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PaS-PF-01Q">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="553"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="onBrokenCameraTouched:" destination="-1" eventType="touchUpInside" id="Fml-7H-jVd"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="PaS-PF-01Q" secondAttribute="trailing" id="6cR-43-LBC"/>
+                        <constraint firstItem="qVI-tw-7Cv" firstAttribute="top" secondItem="xXS-JL-M3G" secondAttribute="bottom" constant="24" id="OaJ-Lv-T5i"/>
+                        <constraint firstItem="PaS-PF-01Q" firstAttribute="top" secondItem="noP-jA-NZQ" secondAttribute="top" id="QVl-He-R4x"/>
+                        <constraint firstItem="qVI-tw-7Cv" firstAttribute="leading" secondItem="noP-jA-NZQ" secondAttribute="leading" constant="40" id="Tnf-qj-G4I"/>
+                        <constraint firstItem="xXS-JL-M3G" firstAttribute="centerX" secondItem="noP-jA-NZQ" secondAttribute="centerX" id="dL8-FR-Z2x"/>
+                        <constraint firstAttribute="bottom" secondItem="PaS-PF-01Q" secondAttribute="bottom" id="ijz-xp-4xl"/>
+                        <constraint firstAttribute="trailing" secondItem="qVI-tw-7Cv" secondAttribute="trailing" constant="40" id="l1e-eL-Z52"/>
+                        <constraint firstItem="xXS-JL-M3G" firstAttribute="centerY" secondItem="noP-jA-NZQ" secondAttribute="centerY" constant="-75" id="rrd-jX-qhU"/>
+                        <constraint firstItem="PaS-PF-01Q" firstAttribute="leading" secondItem="noP-jA-NZQ" secondAttribute="leading" id="x3d-Oy-SAY"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w8W-mG-JP9" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
@@ -130,9 +168,11 @@
             <color key="backgroundColor" red="0.18823529411764706" green="0.18823529411764706" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="w8W-mG-JP9" firstAttribute="centerX" secondItem="bzQ-8u-T1z" secondAttribute="centerX" id="3O1-8s-RVR"/>
+                <constraint firstAttribute="bottom" secondItem="noP-jA-NZQ" secondAttribute="bottom" id="5uR-w5-pWB"/>
                 <constraint firstItem="Klp-uj-ffW" firstAttribute="top" secondItem="bzQ-8u-T1z" secondAttribute="top" id="Ace-EA-Ps0"/>
                 <constraint firstAttribute="trailing" secondItem="45a-Ea-bzN" secondAttribute="trailing" id="D9D-9X-9ob"/>
                 <constraint firstAttribute="bottom" secondItem="Klp-uj-ffW" secondAttribute="bottom" id="Efn-gw-RYj"/>
+                <constraint firstAttribute="trailing" secondItem="noP-jA-NZQ" secondAttribute="trailing" id="LJx-FC-fL1"/>
                 <constraint firstAttribute="trailing" secondItem="Klp-uj-ffW" secondAttribute="trailing" id="M0o-io-9Ng"/>
                 <constraint firstItem="w8W-mG-JP9" firstAttribute="centerY" secondItem="bzQ-8u-T1z" secondAttribute="centerY" constant="50" id="WeV-li-vDb"/>
                 <constraint firstItem="23i-9c-sEh" firstAttribute="top" secondItem="bzQ-8u-T1z" secondAttribute="top" constant="64" id="YrO-B0-Zqu"/>
@@ -140,14 +180,17 @@
                 <constraint firstItem="23i-9c-sEh" firstAttribute="leading" secondItem="bzQ-8u-T1z" secondAttribute="leading" id="bEm-KU-QTU"/>
                 <constraint firstItem="Klp-uj-ffW" firstAttribute="leading" secondItem="bzQ-8u-T1z" secondAttribute="leading" id="c3H-KN-Hkf"/>
                 <constraint firstItem="45a-Ea-bzN" firstAttribute="top" secondItem="23i-9c-sEh" secondAttribute="bottom" id="d9S-dt-Tlf"/>
+                <constraint firstItem="noP-jA-NZQ" firstAttribute="leading" secondItem="bzQ-8u-T1z" secondAttribute="leading" id="jjj-Ca-r7q"/>
                 <constraint firstAttribute="trailing" secondItem="23i-9c-sEh" secondAttribute="trailing" id="jzY-zM-hnG"/>
                 <constraint firstAttribute="bottom" secondItem="45a-Ea-bzN" secondAttribute="bottom" id="sfZ-8Z-7QS"/>
+                <constraint firstItem="noP-jA-NZQ" firstAttribute="top" secondItem="23i-9c-sEh" secondAttribute="bottom" id="wT1-Rz-U0p"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
             <point key="canvasLocation" x="-326.5" y="-101.5"/>
         </view>
     </objects>
     <resources>
+        <image name="camera-broken-white" width="100" height="86"/>
         <image name="share-icon" width="16" height="20"/>
         <image name="wifi-broken-white" width="100" height="87"/>
     </resources>

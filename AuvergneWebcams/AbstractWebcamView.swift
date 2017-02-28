@@ -97,21 +97,15 @@ struct ResizingContentModeImageProcessor: ImageProcessor {
 class AbstractWebcamView: UIView {
     
     @IBOutlet var noDataView: UIView!
+    @IBOutlet var brokenCameraView: UIView!
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var imageViewHighlightOverlayView: UIView!
+    
+    var retryCount = Webcam.retryCount
     
     var isHighlighted: Bool = false {
         didSet {
             let duration: TimeInterval = 0.2
-            
-            // Shadow animation
-//            let anim = CABasicAnimation(keyPath: "shadowColor")
-//            anim.fromValue = isHighlighted ? UIColor.black.cgColor : UIColor.awBlue.cgColor
-//            anim.toValue = isHighlighted ? UIColor.awBlue.cgColor : UIColor.black.cgColor
-//            anim.duration = duration
-//            anim.isRemovedOnCompletion = false
-//            anim.fillMode = kCAFillModeForwards
-//            shadowView.layer.add(anim, forKey: anim.keyPath)
             
             // Border animation
             let anim = CABasicAnimation(keyPath: "borderWidth")
@@ -162,13 +156,17 @@ class AbstractWebcamView: UIView {
         
         if let image = webcam.preferredImage(), let url = URL(string: image) {
             noDataView.isHidden = true
+            brokenCameraView.isHidden = true
             imageView.layoutIfNeeded()
             
             let scale = UIScreen.main.scale
             let targetSize = CGSize(width: imageView.bounds.width * scale,
                                     height: imageView.bounds.height * scale)
             let processor = ResizingContentModeImageProcessor(targetSize: targetSize, contentMode: .aspectFill)
+            
             imageView.kf.setImage(with: url, options: [.processor(processor)]) { [weak self] (image, error, cacheType, imageUrl) in
+                guard let strongSelf = self else { return }
+                
                 if let error = error {
                     print("ERROR: \(error.code) - \(error.localizedDescription)")
                     
@@ -176,12 +174,21 @@ class AbstractWebcamView: UIView {
                     let isReachable = (reachability == nil || (reachability != nil && reachability!.isReachable))
                     
                     if error.code != -999 && isReachable {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-                            print("Retrying to download \(imageUrl) ...")
-                            self?.configure(withWebcam: webcam)
+                        
+                        if strongSelf.retryCount > 0 {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                                guard let strongSelf = self else { return }
+
+                                print("Retrying to download \(imageUrl) ...")
+                                strongSelf.retryCount -= 1
+                                strongSelf.configure(withWebcam: webcam)
+                            }
+                        } else {
+                            strongSelf.brokenCameraView.isHidden = false
                         }
                     } else {
-                        self?.noDataView.isHidden = false
+                        strongSelf.retryCount = Webcam.retryCount
+                        strongSelf.noDataView.isHidden = false
                     }
                 }
             }

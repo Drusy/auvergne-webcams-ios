@@ -12,12 +12,14 @@ import SwiftyUserDefaults
 import RealmSwift
 
 class Webcam: Object, Mappable {
-
+    
     #if DEBUG
-    static let refreshInterval: TimeInterval = 60 * 1
+        static let refreshInterval: TimeInterval = 60 * 1
     #else
-    static let refreshInterval: TimeInterval = 60 * 10
+        static let refreshInterval: TimeInterval = 60 * 10
     #endif
+    
+    static let retryCount: Int = 3
     
     dynamic var uid: Int = 0
     dynamic var lastUpdate: Date?
@@ -50,7 +52,7 @@ class Webcam: Object, Mappable {
     override static func primaryKey() -> String? {
         return #keyPath(Webcam.uid)
     }
-
+    
     // MARK: -
     
     func setTags(from arrayString: [String]) {

@@ -18,6 +18,8 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var brokenConnectionView: UIView!
+    @IBOutlet var brokenCameraView: UIView!
+    
     @IBOutlet var shareButton: UIButton!
     
     @IBOutlet weak var imageConstraintTop: NSLayoutConstraint!
@@ -34,6 +36,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     var webcam: Webcam
     var isDataLoaded: Bool = false
     var shouldSetupInitialZoom: Bool = true
+    var retryCount: Int = Webcam.retryCount
     
     init(webcam: Webcam) {
         self.webcam = webcam
@@ -111,7 +114,11 @@ class WebcamDetailViewController: AbstractRefreshViewController {
                             completion: nil)
     }
     
-    // MARK: - 
+    // MARK: - IBActions
+    
+    @IBAction func onBrokenCameraTouched(_ sender: Any) {
+        reportBrokenCamera()
+    }
     
     @IBAction func onShareTouched(_ sender: Any) {
         let alertController = UIAlertController(title: title,
@@ -150,31 +157,12 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         alertController.addAction(cancelAction)
         
         if MFMailComposeViewController.canSendMail() {
-            let reportAction = UIAlertAction(title: "Signaler un problème",
-                                             style: .destructive,
-                                             handler: { [weak self] _ in
-                                                guard let strongSelf = self else { return }
-                                                
-                                                let mailComposerVC = MailComposeViewController()
-                                                let title = strongSelf.title ?? ""
-                                                let attributes: [String : Any] = [
-                                                    NSForegroundColorAttributeName: UIColor.white,
-                                                    NSFontAttributeName: UIFont.proximaNovaSemiBold(withSize: 17)
-                                                ]
-                                                
-                                                mailComposerVC.navigationBar.titleTextAttributes = attributes
-                                                mailComposerVC.navigationBar.barStyle = .black
-                                                mailComposerVC.navigationBar.isTranslucent = true
-                                                mailComposerVC.navigationBar.tintColor = UIColor.white
-                                                mailComposerVC.navigationBar.barTintColor = UIColor.black
-                                                mailComposerVC.mailComposeDelegate = self
-                                                mailComposerVC.setToRecipients(["auvergnewebcams@openium.fr"])
-                                                mailComposerVC.setSubject("Signaler un problème - Webcam \(title)")
-                                                mailComposerVC.setMessageBody("La webcam \(title) (\(strongSelf.webcam.uid)) ne fonctionne pas.",
-                                                                              isHTML: false)
-                                                
-                                                strongSelf.present(mailComposerVC, animated: true, completion: nil)
-                                                AnalyticsManager.logEvent(button: "report_webcam_error")
+            let reportAction = UIAlertAction(
+                title: "Signaler un problème",
+                style: .destructive,
+                handler: { [weak self] _ in
+                    self?.reportBrokenCamera()
+                    
             })
             alertController.addAction(reportAction)
         }
@@ -203,6 +191,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     }
     
     func forceRefresh() {
+        retryCount = Webcam.retryCount
         refresh(force: isReachable())
         AnalyticsManager.logEvent(button: "webcam_detail_refresh")
     }
@@ -217,10 +206,14 @@ class WebcamDetailViewController: AbstractRefreshViewController {
             }
             
             brokenConnectionView.isHidden = true
+            brokenCameraView.isHidden = true
             shareButton.isEnabled = false
             navigationItem.rightBarButtonItem?.isEnabled = false
             isDataLoaded = false
-            nvActivityIndicatorView.startAnimating()
+            if !nvActivityIndicatorView.isAnimating {
+                nvActivityIndicatorView.startAnimating()
+            }
+            nvActivityIndicatorView.isHidden = false
             
             imageView?.kf.setImage(
                 with: url,
@@ -233,18 +226,30 @@ class WebcamDetailViewController: AbstractRefreshViewController {
                         print("ERROR: \(error.code) - \(error.localizedDescription)")
                         
                         if error.code != -999 && strongSelf.isReachable() {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-                                guard let strongSelf = self else { return }
-                                
-                                print("Retrying to download \(url) ...")
-                                strongSelf.refresh(force: force)
+                            
+                            if strongSelf.retryCount > 0 {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                                    guard let strongSelf = self else { return }
+                                    
+                                    print("Retrying to download \(url) ...")
+                                    strongSelf.retryCount -= 1
+                                    strongSelf.refresh(force: force)
+                                }
+                            } else {
+                                strongSelf.nvActivityIndicatorView.stopAnimating()
+                                strongSelf.nvActivityIndicatorView.isHidden = true
+                                strongSelf.brokenCameraView.isHidden = false
+                                strongSelf.navigationItem.rightBarButtonItem?.isEnabled = true
                             }
                         } else {
-                            strongSelf.nvActivityIndicatorView.startAnimating()
+                            strongSelf.nvActivityIndicatorView.stopAnimating()
+                            strongSelf.nvActivityIndicatorView.isHidden = true
                             strongSelf.brokenConnectionView.isHidden = false
                         }
                     } else {
+                        strongSelf.retryCount = Webcam.retryCount
                         strongSelf.nvActivityIndicatorView.stopAnimating()
+                        strongSelf.nvActivityIndicatorView.isHidden = true
                         strongSelf.shareButton.isEnabled = true
                         strongSelf.navigationItem.rightBarButtonItem?.isEnabled = true
                         strongSelf.isDataLoaded = true
@@ -257,9 +262,9 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     override func style() {
         super.style()
         
-//        nvActivityIndicatorView.color = UIColor.white.withAlphaComponent(0.9)
+        nvActivityIndicatorView.color = UIColor.white.withAlphaComponent(0.9)
 //        nvActivityIndicatorView.color = UIColor.awLightGray
-        nvActivityIndicatorView.color = UIColor.awBlue
+//        nvActivityIndicatorView.color = UIColor.awBlue
         nvActivityIndicatorView.type = .ballGridPulse
         
     }
@@ -283,6 +288,43 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     }
     
     // MARK: -
+    
+    func reportBrokenCamera() {
+        guard MFMailComposeViewController.canSendMail() else {
+            let alertController = UIAlertController(title: self.title,
+                                                    message: "Aucun compte email n'est configuré",
+                                                    preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK",
+                                         style: .cancel,
+                                         handler: nil)
+            
+            alertController.addAction(okAction)
+            present(alertController, animated: true, completion: nil)
+            
+            return
+        }
+        
+        let mailComposerVC = MailComposeViewController()
+        let title = self.title ?? ""
+        let attributes: [String : Any] = [
+            NSForegroundColorAttributeName: UIColor.white,
+            NSFontAttributeName: UIFont.proximaNovaSemiBold(withSize: 17)
+        ]
+        
+        mailComposerVC.navigationBar.titleTextAttributes = attributes
+        mailComposerVC.navigationBar.barStyle = .black
+        mailComposerVC.navigationBar.isTranslucent = true
+        mailComposerVC.navigationBar.tintColor = UIColor.white
+        mailComposerVC.navigationBar.barTintColor = UIColor.black
+        mailComposerVC.mailComposeDelegate = self
+        mailComposerVC.setToRecipients(["auvergnewebcams@openium.fr"])
+        mailComposerVC.setSubject("Signaler un problème - Webcam \(title)")
+        mailComposerVC.setMessageBody("La webcam \(title) (\(webcam.uid)) ne fonctionne pas.",
+            isHTML: false)
+        
+        present(mailComposerVC, animated: true, completion: nil)
+        AnalyticsManager.logEvent(button: "report_webcam_error")
+    }
     
     func setupGestureRecognizer() {
         let doubleTap = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap))
