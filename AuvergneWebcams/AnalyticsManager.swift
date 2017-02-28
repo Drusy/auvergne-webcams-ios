@@ -10,27 +10,61 @@ import UIKit
 import Firebase
 import FirebaseAnalytics
 import SwiftyUserDefaults
+import Crashlytics
 
 class AnalyticsManager {
+    
+    // MARK: - Private
+    
+    fileprivate static func logEvent(withName name: String, parameters: [String: NSObject]?) {
+        #if !DEBUG
+            FIRAnalytics.logEvent(withName: kFIREventShare,
+                                  parameters: parameters)
         
+            Answers.logContentView(withName: name,
+                                   contentType: parameters?[kFIRParameterContentType] as? String,
+                                   contentId: parameters?[kFIRParameterItemID] as? String,
+                                   customAttributes: nil)
+        #endif
+    }
+    
+    fileprivate static func logShare(withName name: String, forType type: String) {
+        #if !DEBUG
+            Answers.logShare(withMethod: type,
+                             contentName: name,
+                             contentType: nil,
+                             contentId: nil,
+                             customAttributes: nil)
+            
+            let parameters = [
+                kFIRParameterItemID: name as NSObject,
+                kFIRParameterContentType: type as NSObject
+            ]
+            FIRAnalytics.logEvent(withName: kFIREventShare,
+                                  parameters: parameters)
+        #endif
+    }
+    
+    fileprivate static func logSearch(withText text: String) {
+        #if !DEBUG
+            Answers.logSearch(withQuery: text, customAttributes: nil)
+            
+            let parameters = [
+                kFIRParameterSearchTerm: text as NSObject
+            ]
+            FIRAnalytics.logEvent(withName: kFIREventSearch,
+                                      parameters: parameters)
+        #endif
+    }
+    
     // MARK: - Events
     
     static func logEvent(shareName name: String, forType type: String) {
-        let parameters = [
-            kFIRParameterItemID: name as NSObject,
-            kFIRParameterContentType: type as NSObject
-        ]
-        FIRAnalytics.logEvent(withName: kFIREventShare,
-                              parameters: parameters)
+        AnalyticsManager.logShare(withName: name, forType: type)
     }
     
     static func logEvent(searchText text: String) {
-        
-        let parameters = [
-            kFIRParameterSearchTerm: text as NSObject
-        ]
-        FIRAnalytics.logEvent(withName: kFIREventSearch,
-                              parameters: parameters)
+        AnalyticsManager.logSearch(withText: text)
     }
     
     static func logEvent(showSection section: WebcamSection) {
@@ -39,8 +73,8 @@ class AnalyticsManager {
         let parameters = [
             kFIRParameterItemCategory: sectionName as NSObject
         ]
-        FIRAnalytics.logEvent(withName: kFIREventViewItemList,
-                              parameters: parameters)
+        AnalyticsManager.logEvent(withName: kFIREventViewItemList,
+                                  parameters: parameters)
     }
     
     static func logEvent(showWebcam webcam: Webcam) {
@@ -50,8 +84,8 @@ class AnalyticsManager {
             kFIRParameterContentType: "webcam" as NSObject,
             kFIRParameterItemID: webcamName as NSObject
         ]
-        FIRAnalytics.logEvent(withName: kFIREventSelectContent,
-                              parameters: parameters)
+        AnalyticsManager.logEvent(withName: kFIREventSelectContent,
+                                  parameters: parameters)
     }
     
     static func logEvent(screenName screen: String) {
@@ -59,8 +93,8 @@ class AnalyticsManager {
             kFIRParameterContentType: "screen" as NSObject,
             kFIRParameterItemID: screen as NSObject
         ]
-        FIRAnalytics.logEvent(withName: kFIREventSelectContent,
-                              parameters: parameters)
+        AnalyticsManager.logEvent(withName: kFIREventSelectContent,
+                                  parameters: parameters)
     }
     
     static func logEvent(button: String) {
@@ -68,24 +102,26 @@ class AnalyticsManager {
             kFIRParameterContentType: "button" as NSObject,
             kFIRParameterItemID: button as NSObject
         ]
-        FIRAnalytics.logEvent(withName: kFIREventSelectContent,
-                              parameters: parameters)
+        AnalyticsManager.logEvent(withName: kFIREventSelectContent,
+                                  parameters: parameters)
     }
     
     static func logEventAppOpen() {
-        FIRAnalytics.logEvent(withName: kFIREventAppOpen,
-                              parameters: nil)
+        AnalyticsManager.logEvent(withName: kFIREventAppOpen,
+                                  parameters: nil)
     }
     
     // MARK: - User Properties
     
     static func logUserProperties() {
-        let refresh = Defaults[.shouldAutorefresh] ? "true" : "false"
-        let refreshInterval = String(format: "%d", Defaults[.autorefreshInterval])
-        let quality = Defaults[.prefersHighQuality] ? "high" : "low"
-        
-        FIRAnalytics.setUserPropertyString(refresh, forName: FIRAnalytics.refreshUserProperty)
-        FIRAnalytics.setUserPropertyString(refreshInterval, forName: FIRAnalytics.refreshIntervalUserProperty)
-        FIRAnalytics.setUserPropertyString(quality, forName: FIRAnalytics.webcamQualityUserProperty)
+        #if !DEBUG
+            let refresh = Defaults[.shouldAutorefresh] ? "true" : "false"
+            let refreshInterval = String(format: "%d", Defaults[.autorefreshInterval])
+            let quality = Defaults[.prefersHighQuality] ? "high" : "low"
+            
+            FIRAnalytics.setUserPropertyString(refresh, forName: FIRAnalytics.refreshUserProperty)
+            FIRAnalytics.setUserPropertyString(refreshInterval, forName: FIRAnalytics.refreshIntervalUserProperty)
+            FIRAnalytics.setUserPropertyString(quality, forName: FIRAnalytics.webcamQualityUserProperty)
+        #endif
     }
 }

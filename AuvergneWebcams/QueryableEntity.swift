@@ -43,7 +43,7 @@ class QueryableEntity: NSObject, Queryable {
     class var webServiceMethod: HTTPMethod { return .get }
     class var webServiceScheme: String { return "https" }
     class var webServiceFragment: String { return "/Drusy" }
-    class var webServicePath: String { return "/auvergne-webcams-ios/master" }
+    class var webServicePath: String { return "/auvergne-webcams-ios/master/resources/config/" }
     class var webServiceLastSegmentPath: String { preconditionFailure("This method must be overridden") }
     class var isSecured: Bool { return false }
     class var webServiceHost: String { return "raw.githubusercontent.com" }

@@ -34,6 +34,6 @@ class WebcamSectionResponse: QueryableEntity {
     // MARK: - Queryable
     
     override class var webServiceLastSegmentPath: String {
-        return "/resources/config/aw-config.json"
+        return "aw-config.json"
     }
 }

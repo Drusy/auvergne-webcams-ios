@@ -54,7 +54,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Realm
         let didPerformMigration = deleteRealmIfMigrationNeeded()
-//        performRealmMigration()
         #if DEBUG
             printRealmPath()
         #endif
@@ -73,10 +72,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // Firebase
-        #if !DEBUG
-            FIRApp.configure()
-            AnalyticsManager.logUserProperties()
-        #endif
+        FIRApp.configure()
+        AnalyticsManager.logUserProperties()
 
         // Cache
         let autorefreshInterval = Defaults[.autorefreshInterval]
