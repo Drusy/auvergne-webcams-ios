@@ -26,7 +26,7 @@ protocol Queryable: StaticMappable {
     static func parameters() -> [String: Any]?
 }
 
-class QueryableEntity: NSObject, Queryable {
+class QueryableEntity: Queryable {
 
     // MARK: - StaticMappable
     

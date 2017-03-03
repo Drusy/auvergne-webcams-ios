@@ -15,7 +15,9 @@
                         "puy de dome",
                         "auvergne",
                         "volcan"
-                    ]
+                    ],
+                    "latitude": 45.7720912,
+                    "longitude": 2.9631456
                 },
                 {
                     "uid": 2,
@@ -26,7 +28,9 @@
                         "puy de dome",
                         "auvergne",
                         "volcan"
-                    ]
+                    ],
+                    "latitude": 45.7600552,
+                    "longitude": 3.1048833
                 }
             ]
         },
