@@ -9,8 +9,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="ProximaNova-SboldItalic.otf">
-            <string>ProximaNova-SemiboldIt</string>
+        <array key="ProximaNova-Regular.otf">
+            <string>ProximaNova-Regular</string>
         </array>
     </customFonts>
     <objects>
@@ -27,15 +27,15 @@
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m7F-54-nap">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="248"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi-broken-white" translatesAutoresizingMaskIntoConstraints="NO" id="63B-Fi-W6a">
-                            <rect key="frame" x="137" y="70.5" width="100" height="70"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi-off" translatesAutoresizingMaskIntoConstraints="NO" id="63B-Fi-W6a">
+                            <rect key="frame" x="137" y="71" width="100" height="70"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="70" id="k74-zf-r4V"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aucune connexion" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.59999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="BWJ-yz-nSU">
-                            <rect key="frame" x="8" y="156.5" width="359" height="16"/>
-                            <fontDescription key="fontDescription" name="ProximaNova-SemiboldIt" family="Proxima Nova" pointSize="16"/>
+                            <rect key="frame" x="8" y="157" width="359" height="16"/>
+                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -52,7 +52,7 @@
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HPb-IG-0PK">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="248"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera-broken-white" translatesAutoresizingMaskIntoConstraints="NO" id="gMR-bd-QzE">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera-broken" translatesAutoresizingMaskIntoConstraints="NO" id="gMR-bd-QzE">
                             <rect key="frame" x="137" y="58" width="100" height="70"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="70" id="xbo-tc-RFz"/>
@@ -60,9 +60,9 @@
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.60000002384185791" translatesAutoresizingMaskIntoConstraints="NO" id="smx-bg-uB2">
                             <rect key="frame" x="8" y="144" width="359" height="32"/>
-                            <string key="text">Impossible de charger
-la caméra</string>
-                            <fontDescription key="fontDescription" name="ProximaNova-SemiboldIt" family="Proxima Nova" pointSize="16"/>
+                            <string key="text">La webcam ne semble
+pas fonctionnelle</string>
+                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -80,7 +80,7 @@ la caméra</string>
                     <rect key="frame" x="0.0" y="0.0" width="375" height="248"/>
                 </imageView>
                 <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qTL-4z-ndV">
-                    <rect key="frame" x="0.5" y="1" width="373" height="246"/>
+                    <rect key="frame" x="1" y="1" width="373" height="246"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </subviews>
@@ -118,7 +118,7 @@ la caméra</string>
         </view>
     </objects>
     <resources>
-        <image name="camera-broken-white" width="100" height="86"/>
-        <image name="wifi-broken-white" width="100" height="87"/>
+        <image name="camera-broken" width="100" height="100"/>
+        <image name="wifi-off" width="100" height="100"/>
     </resources>
 </document>

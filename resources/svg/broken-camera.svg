@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>Icone</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Auvergne-Webcam-No-Webcam" transform="translate(-139.000000, -184.000000)">
+            <g id="Content" transform="translate(79.000000, 184.000000)">
+                <g id="Icone" transform="translate(60.000000, 0.000000)">
+                    <circle id="Oval" fill="#52A4FF" cx="50" cy="50" r="50"></circle>
+                    <g id="Picto-Webcam" transform="translate(32.000000, 28.000000)" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M27.8137437,18.2246914 C27.8137437,13.1594356 23.6453349,9.05361552 18.5028649,9.05361552 C13.3603949,9.05361552 9.19198606,13.1594356 9.19198606,18.2246914 C9.19198606,23.2899471 13.3603949,27.3957672 18.5028649,27.3957672 C23.6453349,27.3957672 27.8137437,23.2899471 27.8137437,18.2246914 Z" id="Stroke-1"></path>
+                        <path d="M36.647619,18.2246914 C36.647619,8.35449735 28.5235192,0.35308642 18.5028649,0.35308642 C8.48221061,0.35308642 0.358110724,8.35449735 0.358110724,18.2246914 C0.358110724,25.617284 4.9154278,31.9608466 11.4129888,34.6797178 L3.22371274,43.8564374 L33.782017,43.8564374 L25.592741,34.6797178 C32.090302,31.9608466 36.647619,25.617284 36.647619,18.2246914 Z" id="Stroke-3"></path>
+                    </g>
+                    <path d="M29.5,66.5 L70.0030863,25.9969137" id="Line" stroke="#52A4FF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M29.5,66.5 L70.0030863,25.9969137" id="Line" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
