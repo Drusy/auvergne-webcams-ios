@@ -16,11 +16,12 @@ import SwiftiumKit
 
 class ApiRequest {
     
-    static func startStringQuery<T: Queryable>(forType type: T.Type, parameters: [String: Any]? = nil, handler: ((DataResponse<String>) -> Void)? = nil) {
+    @discardableResult
+    static func startStringQuery<T: Queryable>(forType type: T.Type, parameters: [String: Any]? = nil, handler: ((DataResponse<String>) -> Void)? = nil) -> Request {
         let request = startRequest(forType: type, parameters: parameters)
+        
         request.responseString { response in
             print("Request: \(response.request)")
-            //                print("Response: \(response.response)")
             
             if let statusCode = response.response?.statusCode {
                 print("Status code: \(statusCode)")
@@ -35,22 +36,29 @@ class ApiRequest {
             handler?(response)
         }
         
+        return request
     }
     
-    static func startDataQuery<T: Queryable>(forType type: T.Type, parameters: [String: Any]? = nil, handler: ((DataResponse<Data>) -> Void)? = nil) {
+    @discardableResult
+    static func startDataQuery<T: Queryable>(forType type: T.Type, parameters: [String: Any]? = nil, handler: ((DataResponse<Data>) -> Void)? = nil) -> Request {
         let request = startRequest(forType: type, parameters: parameters)
+        
         request.responseData { (response: DataResponse<Data>) in
             handler?(response)
         }
         
+        return request
     }
     
-    static func startQuery<T: Queryable>(forType type: T.Type, parameters: [String: Any]? = nil, handler: ((DataResponse<T>) -> Void)? = nil) {
+    @discardableResult
+    static func startQuery<T: Queryable>(forType type: T.Type, parameters: [String: Any]? = nil, handler: ((DataResponse<T>) -> Void)? = nil) -> Request {
         let request = startRequest(forType: type, parameters: parameters)
         
         request.responseObject { (response: DataResponse<T>) in
             handler?(response)
         }
+        
+        return request
     }
     
     // MARK: - Private
@@ -66,7 +74,7 @@ class ApiRequest {
         
         urlComponents.scheme = queryableType.webServiceScheme
         urlComponents.host = queryableType.webServiceHost
-        urlComponents.path = "\(queryableType.webServiceFragment)\(queryableType.webServicePath)\(queryableType.webServiceLastSegmentPath)"
+        urlComponents.path = "\(queryableType.webServicePath)\(queryableType.webServiceLastSegmentPath)"
         
         let webServiceURL: String = try! urlComponents.asURL().absoluteString
         

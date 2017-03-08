@@ -5,6 +5,8 @@
             "order": 1,
             "title": "Puy de Dôme",
             "imageName": "sancy-landscape",
+            "latitude": 45.7720912,
+            "longitude": 2.9631456,
             "webcams": [
                 {
                     "uid": 1,
@@ -15,9 +17,7 @@
                         "puy de dome",
                         "auvergne",
                         "volcan"
-                    ],
-                    "latitude": 45.7720912,
-                    "longitude": 2.9631456
+                    ]
                 },
                 {
                     "uid": 2,
@@ -28,9 +28,7 @@
                         "puy de dome",
                         "auvergne",
                         "volcan"
-                    ],
-                    "latitude": 45.7600552,
-                    "longitude": 3.1048833
+                    ]
                 }
             ]
         },
@@ -39,6 +37,8 @@
             "order": 2,
             "title": "Puy de Sancy",
             "imageName": "goal-landscape",
+            "latitude": 45.5498761,
+            "longitude": 2.7791934,
             "webcams": [
                 {
                     "uid": 3,
@@ -138,6 +138,8 @@
             "order": 3,
             "title": "Le Lioran",
             "imageName": "lioran-landscape",
+            "latitude": 45.083,
+            "longitude": 2.75,
             "webcams": [
                 {
                     "uid": 10,

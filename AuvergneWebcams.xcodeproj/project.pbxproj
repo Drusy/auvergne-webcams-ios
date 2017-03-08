@@ -83,6 +83,9 @@
 		F99984211E62DCE8007D95AC /* WebcamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99984201E62DCE8007D95AC /* WebcamTests.swift */; };
 		F99984241E62DDC4007D95AC /* webcam.json in Resources */ = {isa = PBXBuildFile; fileRef = F99984231E62DDC4007D95AC /* webcam.json */; };
 		F99984261E62DDFA007D95AC /* sections.json in Resources */ = {isa = PBXBuildFile; fileRef = F99984251E62DDFA007D95AC /* sections.json */; };
+		F9A7A8F81E6ECA0C00CFFF94 /* OpenWeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7A8F71E6ECA0C00CFFF94 /* OpenWeatherResponse.swift */; };
+		F9A7A8FD1E6ECF3F00CFFF94 /* OpenTemperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7A8FB1E6ECF3F00CFFF94 /* OpenTemperature.swift */; };
+		F9A7A8FE1E6ECF3F00CFFF94 /* OpenWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7A8FC1E6ECF3F00CFFF94 /* OpenWeather.swift */; };
 		F9ACD1C21E5A834A004E5BFF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ACD1C01E5A834A004E5BFF /* SearchViewController.swift */; };
 		F9ACD1C31E5A834A004E5BFF /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9ACD1C11E5A834A004E5BFF /* SearchViewController.xib */; };
 		F9ACD1C61E5B08D6004E5BFF /* KeyboardLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ACD1C51E5B08D6004E5BFF /* KeyboardLayoutConstraint.swift */; };
@@ -111,7 +114,7 @@
 		F9B1E5FC1E65656100829FE8 /* NVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B1E5FB1E65652A00829FE8 /* NVActivityIndicatorView.framework */; };
 		F9B1E5FD1E65656100829FE8 /* NVActivityIndicatorView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B1E5FB1E65652A00829FE8 /* NVActivityIndicatorView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F9B1E61B1E66128C00829FE8 /* ApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B1E61A1E66128C00829FE8 /* ApiRequest.swift */; };
-		F9B1E61D1E6612E500829FE8 /* QueryableEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B1E61C1E6612E500829FE8 /* QueryableEntity.swift */; };
+		F9B1E61D1E6612E500829FE8 /* Queryable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B1E61C1E6612E500829FE8 /* Queryable.swift */; };
 		F9BE03091DD7817C0063275B /* AbstractRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE03081DD7817C0063275B /* AbstractRefreshViewController.swift */; };
 		F9BE030C1DD78E4B0063275B /* KFIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE030B1DD78E4B0063275B /* KFIndicator.swift */; };
 		F9BE030F1DD8AC1B0063275B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE030D1DD8AC1B0063275B /* SettingsViewController.swift */; };
@@ -260,6 +263,9 @@
 		F99984201E62DCE8007D95AC /* WebcamTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebcamTests.swift; sourceTree = "<group>"; };
 		F99984231E62DDC4007D95AC /* webcam.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = webcam.json; sourceTree = "<group>"; };
 		F99984251E62DDFA007D95AC /* sections.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sections.json; sourceTree = "<group>"; };
+		F9A7A8F71E6ECA0C00CFFF94 /* OpenWeatherResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenWeatherResponse.swift; sourceTree = "<group>"; };
+		F9A7A8FB1E6ECF3F00CFFF94 /* OpenTemperature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenTemperature.swift; sourceTree = "<group>"; };
+		F9A7A8FC1E6ECF3F00CFFF94 /* OpenWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenWeather.swift; sourceTree = "<group>"; };
 		F9ACD1C01E5A834A004E5BFF /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		F9ACD1C11E5A834A004E5BFF /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		F9ACD1C51E5B08D6004E5BFF /* KeyboardLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardLayoutConstraint.swift; sourceTree = "<group>"; };
@@ -284,7 +290,7 @@
 		F9ACD2021E5CAAD5004E5BFF /* AnalyticsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		F9B1E5FB1E65652A00829FE8 /* NVActivityIndicatorView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NVActivityIndicatorView.framework; path = Carthage/Build/iOS/NVActivityIndicatorView.framework; sourceTree = "<group>"; };
 		F9B1E61A1E66128C00829FE8 /* ApiRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiRequest.swift; sourceTree = "<group>"; };
-		F9B1E61C1E6612E500829FE8 /* QueryableEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryableEntity.swift; sourceTree = "<group>"; };
+		F9B1E61C1E6612E500829FE8 /* Queryable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queryable.swift; sourceTree = "<group>"; };
 		F9BE03081DD7817C0063275B /* AbstractRefreshViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractRefreshViewController.swift; sourceTree = "<group>"; };
 		F9BE030B1DD78E4B0063275B /* KFIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KFIndicator.swift; sourceTree = "<group>"; };
 		F9BE030D1DD8AC1B0063275B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -611,6 +617,24 @@
 			name = json;
 			sourceTree = "<group>";
 		};
+		F9A7A8F91E6ECA4700CFFF94 /* Queryable */ = {
+			isa = PBXGroup;
+			children = (
+				F9B1E61C1E6612E500829FE8 /* Queryable.swift */,
+				F9B1E61A1E66128C00829FE8 /* ApiRequest.swift */,
+			);
+			name = Queryable;
+			sourceTree = "<group>";
+		};
+		F9A7A8FA1E6ECA4E00CFFF94 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				F999841B1E62D631007D95AC /* WebcamSectionResponse.swift */,
+				F9A7A8F71E6ECA0C00CFFF94 /* OpenWeatherResponse.swift */,
+			);
+			name = Response;
+			sourceTree = "<group>";
+		};
 		F9ACD1C41E5B08C8004E5BFF /* Constraint */ = {
 			isa = PBXGroup;
 			children = (
@@ -688,8 +712,8 @@
 		F9B1E6191E66127E00829FE8 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				F9B1E61C1E6612E500829FE8 /* QueryableEntity.swift */,
-				F9B1E61A1E66128C00829FE8 /* ApiRequest.swift */,
+				F9A7A8F91E6ECA4700CFFF94 /* Queryable */,
+				F9A7A8FA1E6ECA4E00CFFF94 /* Response */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -787,10 +811,11 @@
 		F9F5AC711DD33B5300D9FF83 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F9A7A8FB1E6ECF3F00CFFF94 /* OpenTemperature.swift */,
+				F9A7A8FC1E6ECF3F00CFFF94 /* OpenWeather.swift */,
 				F9C747F91E5F8B6C0018B5CC /* WebcamTag.swift */,
 				F9F5AC721DD33B6800D9FF83 /* Webcam.swift */,
 				F9F5AC971DD34C8B00D9FF83 /* WebcamSection.swift */,
-				F999841B1E62D631007D95AC /* WebcamSectionResponse.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1080,16 +1105,19 @@
 				F9E858341E5D90D700F7C40D /* MailComposeViewController.swift in Sources */,
 				F9F5AC5E1DD31C9100D9FF83 /* AbstractViewController.swift in Sources */,
 				F94FEEAD1DD4764100586F54 /* NavigationController.swift in Sources */,
-				F9B1E61D1E6612E500829FE8 /* QueryableEntity.swift in Sources */,
+				F9B1E61D1E6612E500829FE8 /* Queryable.swift in Sources */,
 				F9ACD2011E5CA8D8004E5BFF /* FIRAnalyticsExtension.swift in Sources */,
 				F9C747F81E5F88DE0018B5CC /* DownloadManager.swift in Sources */,
 				F9ACD1C61E5B08D6004E5BFF /* KeyboardLayoutConstraint.swift in Sources */,
 				F963AB131E59BDF900ED5A8B /* LoadingViewController.swift in Sources */,
 				F93C760D1DD11577005DEE66 /* AppDelegate.swift in Sources */,
 				F9ACD1CC1E5B227A004E5BFF /* UIImageExtension.swift in Sources */,
+				F9A7A8FD1E6ECF3F00CFFF94 /* OpenTemperature.swift in Sources */,
+				F9A7A8FE1E6ECF3F00CFFF94 /* OpenWeather.swift in Sources */,
 				F9C747FE1E5F9B330018B5CC /* AbstractRealmViewController.swift in Sources */,
 				F9ACD1CA1E5B2130004E5BFF /* UIColorExtension.swift in Sources */,
 				F963AB361E59D07800ED5A8B /* AbstractViewProvider.swift in Sources */,
+				F9A7A8F81E6ECA0C00CFFF94 /* OpenWeatherResponse.swift in Sources */,
 				F9ACD2031E5CAAD5004E5BFF /* AnalyticsManager.swift in Sources */,
 				F963AB701E5A635800ED5A8B /* WebcamSectionHeaderView.swift in Sources */,
 				F9BE030C1DD78E4B0063275B /* KFIndicator.swift in Sources */,

@@ -27,11 +27,8 @@ class Webcam: Object, Mappable {
     dynamic var imageHD: String?
     dynamic var imageLD: String?
     dynamic var video: String?
-    dynamic var latitude: Double = -1
-    dynamic var longitude: Double = -1
     
     // Interval data
-    dynamic var weatherUpdate: Date?
     dynamic var lastUpdate: Date?
 
     var tags = List<WebcamTag>()
@@ -50,15 +47,12 @@ class Webcam: Object, Mappable {
         imageHD <- map["imageHD"]
         imageLD <- map["imageLD"]
         video <- map["video"]
-        latitude <- map["latitude"]
-        longitude <- map["longitude"]
         
         tagsArray <- map["tags"]
         setTags(from: tagsArray)
         
         let realm = try? Realm()
         if let webcam = realm?.object(ofType: Webcam.self, forPrimaryKey: uid) {
-            weatherUpdate = webcam.weatherUpdate
             lastUpdate = webcam.lastUpdate
         }
     }

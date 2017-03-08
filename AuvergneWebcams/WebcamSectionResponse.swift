@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-class WebcamSectionResponse: QueryableEntity {
+class WebcamSectionResponse: Queryable {
 
     var sections = [WebcamSection]()
     
@@ -19,21 +19,13 @@ class WebcamSectionResponse: QueryableEntity {
         self.init()
     }
     
-    override func mapping(map: Map) {
-        super.mapping(map: map)
-        
+    func mapping(map: Map) {
         sections <- map["sections"]
-    }
-    
-    // MARK: - Mappable
-    
-    override class func objectForMapping(map: Map) -> BaseMappable? {
-        return WebcamSectionResponse()
     }
     
     // MARK: - Queryable
     
-    override class var webServiceLastSegmentPath: String {
+    class var webServiceLastSegmentPath: String {
         return "aw-config.json"
     }
 }

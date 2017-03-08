@@ -93,13 +93,10 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         super.viewDidLayoutSubviews()
         
         if let navigationController = navigationController {
-            var height = navigationController.navigationBar.bounds.height
+            let navigationBarHeight = navigationController.navigationBar.bounds.height
+            let navigationBarY = navigationController.navigationBar.frame.origin.y
             
-            if !UIApplication.shared.isStatusBarHidden {
-                height += UIApplication.shared.statusBarFrame.height
-            }
-            
-            lastUpdateViewTopConstraint.constant = height
+            lastUpdateViewTopConstraint.constant = navigationBarY + navigationBarHeight
         }
     }
     
