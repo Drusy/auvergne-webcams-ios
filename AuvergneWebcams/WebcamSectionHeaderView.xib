@@ -13,6 +13,9 @@
         <array key="ProximaNova-Bold.otf">
             <string>ProximaNova-Bold</string>
         </array>
+        <array key="ProximaNova-Regular.otf">
+            <string>ProximaNova-Regular</string>
+        </array>
         <array key="ProximaNova-RegularItalic.otf">
             <string>ProximaNova-RegularIt</string>
         </array>
@@ -27,47 +30,76 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="atG-ck-aZM">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sancy-landscape" translatesAutoresizingMaskIntoConstraints="NO" id="d7j-0b-fMq">
-                            <rect key="frame" x="16" y="19" width="50" height="50"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="50" id="Vf3-7X-KmN"/>
-                                <constraint firstAttribute="width" secondItem="d7j-0b-fMq" secondAttribute="height" multiplier="100%" id="Z6s-Vu-XXp"/>
-                            </constraints>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PUY DE DÔME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXG-K3-Q8y">
-                            <rect key="frame" x="82" y="23" width="230" height="20"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="20" id="wi4-nL-vsN"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="ProximaNova-Bold" family="Proxima Nova" pointSize="17"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 webcams" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iT-Qr-aR9">
-                            <rect key="frame" x="82" y="52.5" width="230" height="13"/>
-                            <fontDescription key="fontDescription" name="ProximaNova-RegularIt" family="Proxima Nova" pointSize="13"/>
-                            <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vWt-Fe-xa0">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Swr-3o-KTR" userLabel="WeatherView">
+                            <rect key="frame" x="220" y="0.0" width="100" height="88"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weather-cloudy" translatesAutoresizingMaskIntoConstraints="NO" id="17o-lw-1lN">
+                                    <rect key="frame" x="18.5" y="33" width="25" height="22"/>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-13°C" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B4y-XQ-vEg">
+                                    <rect key="frame" x="55.5" y="37" width="28.5" height="13"/>
+                                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="13"/>
+                                    <color key="textColor" red="0.32156862749999998" green="0.64313725489999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        </button>
+                            <constraints>
+                                <constraint firstItem="17o-lw-1lN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Swr-3o-KTR" secondAttribute="leading" constant="8" id="DDP-7Q-bkn"/>
+                                <constraint firstItem="17o-lw-1lN" firstAttribute="centerY" secondItem="Swr-3o-KTR" secondAttribute="centerY" id="XUN-5W-7Kn"/>
+                                <constraint firstAttribute="trailing" secondItem="B4y-XQ-vEg" secondAttribute="trailing" constant="16" id="gMX-3H-7Sj"/>
+                                <constraint firstItem="B4y-XQ-vEg" firstAttribute="centerY" secondItem="Swr-3o-KTR" secondAttribute="centerY" id="nJM-LV-bMs"/>
+                                <constraint firstAttribute="width" constant="100" id="nNI-ih-GFP"/>
+                                <constraint firstItem="B4y-XQ-vEg" firstAttribute="leading" secondItem="17o-lw-1lN" secondAttribute="trailing" constant="12" id="um4-jz-IvN"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vqp-jV-jIE" userLabel="ContentView">
+                            <rect key="frame" x="0.0" y="0.0" width="220" height="88"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sancy-landscape" translatesAutoresizingMaskIntoConstraints="NO" id="kUa-Sw-Jy7">
+                                    <rect key="frame" x="16" y="19" width="50" height="50"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="50" id="b8O-io-vYH"/>
+                                        <constraint firstAttribute="width" secondItem="kUa-Sw-Jy7" secondAttribute="height" multiplier="100%" id="xbB-wm-fAq"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PUY DE DÔME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="btd-5A-nnC">
+                                    <rect key="frame" x="82" y="22.5" width="122" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="20" id="8qO-g2-Y4S"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="ProximaNova-Bold" family="Proxima Nova" pointSize="17"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 webcams" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4N5-eB-2HF">
+                                    <rect key="frame" x="82" y="51.5" width="66" height="13"/>
+                                    <fontDescription key="fontDescription" name="ProximaNova-RegularIt" family="Proxima Nova" pointSize="13"/>
+                                    <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="btd-5A-nnC" secondAttribute="trailing" constant="16" id="08j-NQ-LQg"/>
+                                <constraint firstItem="kUa-Sw-Jy7" firstAttribute="centerY" secondItem="Vqp-jV-jIE" secondAttribute="centerY" id="0H0-wK-d3m"/>
+                                <constraint firstItem="kUa-Sw-Jy7" firstAttribute="leading" secondItem="Vqp-jV-jIE" secondAttribute="leading" constant="16" id="8Cy-Eh-Car"/>
+                                <constraint firstItem="btd-5A-nnC" firstAttribute="leading" secondItem="kUa-Sw-Jy7" secondAttribute="trailing" constant="16" id="OXc-DP-6uO"/>
+                                <constraint firstItem="4N5-eB-2HF" firstAttribute="leading" secondItem="btd-5A-nnC" secondAttribute="leading" id="TDS-fC-gIh"/>
+                                <constraint firstItem="4N5-eB-2HF" firstAttribute="top" secondItem="btd-5A-nnC" secondAttribute="bottom" constant="9" id="aPo-RZ-a9K"/>
+                                <constraint firstItem="btd-5A-nnC" firstAttribute="centerY" secondItem="Vqp-jV-jIE" secondAttribute="centerY" multiplier="75%" id="qrV-Md-lX4"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="7iT-Qr-aR9" firstAttribute="trailing" secondItem="wXG-K3-Q8y" secondAttribute="trailing" id="2YK-Vp-vMd"/>
-                        <constraint firstAttribute="bottom" secondItem="vWt-Fe-xa0" secondAttribute="bottom" id="53P-Be-S5X"/>
-                        <constraint firstAttribute="trailing" secondItem="wXG-K3-Q8y" secondAttribute="trailing" constant="8" id="92b-ly-cDa"/>
-                        <constraint firstItem="d7j-0b-fMq" firstAttribute="centerY" secondItem="atG-ck-aZM" secondAttribute="centerY" id="Afr-ex-zZ1"/>
-                        <constraint firstItem="7iT-Qr-aR9" firstAttribute="top" secondItem="wXG-K3-Q8y" secondAttribute="bottom" constant="9.5" id="FTb-5L-Mnb"/>
-                        <constraint firstItem="d7j-0b-fMq" firstAttribute="leading" secondItem="atG-ck-aZM" secondAttribute="leading" constant="16" id="GDB-mT-VZh"/>
-                        <constraint firstItem="wXG-K3-Q8y" firstAttribute="leading" secondItem="d7j-0b-fMq" secondAttribute="trailing" constant="16" id="Jyj-GC-9jd"/>
-                        <constraint firstItem="vWt-Fe-xa0" firstAttribute="leading" secondItem="atG-ck-aZM" secondAttribute="leading" id="QGf-Da-Lsv"/>
-                        <constraint firstItem="vWt-Fe-xa0" firstAttribute="top" secondItem="atG-ck-aZM" secondAttribute="top" id="ei7-V0-h8b"/>
-                        <constraint firstItem="7iT-Qr-aR9" firstAttribute="leading" secondItem="wXG-K3-Q8y" secondAttribute="leading" id="kHJ-Ip-ItZ"/>
-                        <constraint firstItem="wXG-K3-Q8y" firstAttribute="centerY" secondItem="atG-ck-aZM" secondAttribute="centerY" multiplier="75%" id="lU5-cG-8RX"/>
-                        <constraint firstAttribute="trailing" secondItem="vWt-Fe-xa0" secondAttribute="trailing" id="ppA-1D-mD1"/>
+                        <constraint firstItem="Vqp-jV-jIE" firstAttribute="leading" secondItem="atG-ck-aZM" secondAttribute="leading" id="1mg-s8-0c0"/>
+                        <constraint firstAttribute="bottom" secondItem="Swr-3o-KTR" secondAttribute="bottom" id="8bK-Sx-flS"/>
+                        <constraint firstItem="Swr-3o-KTR" firstAttribute="top" secondItem="atG-ck-aZM" secondAttribute="top" id="Dtx-B0-as7"/>
+                        <constraint firstAttribute="trailing" secondItem="Swr-3o-KTR" secondAttribute="trailing" id="ISk-Ka-Sfw"/>
+                        <constraint firstItem="Swr-3o-KTR" firstAttribute="leading" secondItem="Vqp-jV-jIE" secondAttribute="trailing" id="YI3-8C-Zne"/>
+                        <constraint firstItem="Vqp-jV-jIE" firstAttribute="top" secondItem="atG-ck-aZM" secondAttribute="top" id="Ybz-oQ-MCr"/>
+                        <constraint firstAttribute="bottom" secondItem="Vqp-jV-jIE" secondAttribute="bottom" id="epo-9t-bXM"/>
                     </constraints>
                 </view>
             </subviews>
@@ -78,14 +110,18 @@
                 <constraint firstAttribute="trailing" secondItem="atG-ck-aZM" secondAttribute="trailing" id="sOC-hn-nQJ"/>
             </constraints>
             <connections>
-                <outlet property="sectionImageView" destination="d7j-0b-fMq" id="xVc-d1-iIr"/>
-                <outlet property="sectionTitleLabel" destination="wXG-K3-Q8y" id="9tc-1p-WlU"/>
-                <outlet property="webcamCountLabel" destination="7iT-Qr-aR9" id="Zxt-0Y-zYi"/>
+                <outlet property="sectionImageView" destination="kUa-Sw-Jy7" id="z9W-YW-zhq"/>
+                <outlet property="sectionTitleLabel" destination="btd-5A-nnC" id="ooB-I0-BwB"/>
+                <outlet property="temperatureLabel" destination="B4y-XQ-vEg" id="7MV-UW-TZE"/>
+                <outlet property="weatherImageView" destination="17o-lw-1lN" id="oss-nF-80M"/>
+                <outlet property="weatherView" destination="Swr-3o-KTR" id="EzS-gv-Ml8"/>
+                <outlet property="webcamCountLabel" destination="4N5-eB-2HF" id="Kvj-Fs-rbR"/>
             </connections>
-            <point key="canvasLocation" x="-317" y="24"/>
+            <point key="canvasLocation" x="-427" y="-57"/>
         </collectionReusableView>
     </objects>
     <resources>
         <image name="sancy-landscape" width="300" height="300"/>
+        <image name="weather-cloudy" width="25" height="22"/>
     </resources>
 </document>

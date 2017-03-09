@@ -56,6 +56,8 @@ class WebcamSection: Object, Mappable {
         let realm = try? Realm()
         if let section = realm?.object(ofType: WebcamSection.self, forPrimaryKey: uid) {
             lastWeatherUpdate = section.lastWeatherUpdate
+            temperature = section.temperature
+            weatherID = section.weatherID
         }
         
         webcams.append(contentsOf: webcamsArray)
@@ -92,8 +94,10 @@ class WebcamSection: Object, Mappable {
                     let realm = try? Realm()
                     
                     try? realm?.write {
+                        strongSelf.lastWeatherUpdate = Date()
+                        
                         if let openWeatherTemperature = openWeatherResponse.temperature?.temperature {
-                            strongSelf.temperature = openWeatherTemperature
+                            strongSelf.temperature = openWeatherTemperature - 273.15
                         }
                         
                         if let openWeatherIconId = openWeatherResponse.weathers.first?.id {
@@ -119,7 +123,7 @@ class WebcamSection: Object, Mappable {
             image = UIImage(named: "weather-snow")
         } else if weatherID == 800 {
             image = UIImage(named: "weather-sun")
-        } else if weatherID > 800 && weatherID < 900 {
+        } else if weatherID == 801 || weatherID == 802 || weatherID == 803 {
             image = UIImage(named: "weather-cloudy")
         } else {
             image = UIImage(named: "weather-cloud")

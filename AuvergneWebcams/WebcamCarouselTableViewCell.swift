@@ -29,6 +29,7 @@ class WebcamCarouselTableViewCell: UITableViewCell, ConfigurableCell {
     @IBOutlet var weatherImageView: UIImageView!
     @IBOutlet var temperatureLabel: UILabel!
     
+    
     let portraitWidthRatio: CGFloat = 0.75
     let landscapeWidthRatio: CGFloat = 0.5
     
@@ -104,26 +105,22 @@ class WebcamCarouselTableViewCell: UITableViewCell, ConfigurableCell {
         let interval = Date().timeIntervalSinceReferenceDate - lastWeatherUpdate
         
         if interval < WebcamSection.weatherAcceptanceInterval  {
-            displayWeather()
+            displayWeather(for: item)
         }
         
         item.refreshWeatherIfNeeded { [weak self] section, error in
-            guard section == item else { return }
-            
             if error == nil {
-                self?.displayWeather()
+                self?.displayWeather(for: section)
             }
         }
     }
     
-    func displayWeather() {
-        guard let section = section else { return }
-        
+    func displayWeather(for section: WebcamSection) {
         weatherImageView.image = section.weatherImage()
-        temperatureLabel.text = String(format: "%0d", section.temperature)
+        temperatureLabel.text = String(format: "%.0f°C", section.temperature)
         
         UIView.animate(
-            withDuration: 1,
+            withDuration: 0.3,
             delay: 0,
             options: [.beginFromCurrentState],
             animations: { [weak self] in

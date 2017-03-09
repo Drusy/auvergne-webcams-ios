@@ -28,7 +28,7 @@ class OpenWeatherResponse: Queryable {
     // MARK: - Queryable
     
     class var webServiceScheme: String {
-        return "https"
+        return "http"
     }
     
     class var webServicePath: String {

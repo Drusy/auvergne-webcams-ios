@@ -30,7 +30,7 @@ extension Queryable {
     static var encoding: ParameterEncoding { return URLEncoding.default }
     static var webServiceMethod: HTTPMethod { return .get }
     static var webServiceScheme: String { return "https" }
-    static var webServicePath: String { return "/Drusy/auvergne-webcams-ios/master/resources/config/" }
+    static var webServicePath: String { return "/Drusy/auvergne-webcams-ios/master/resources/json/" }
     static var webServiceLastSegmentPath: String { preconditionFailure("This method must be overridden") }
     static var isSecured: Bool { return false }
     static var webServiceHost: String { return "raw.githubusercontent.com" }
