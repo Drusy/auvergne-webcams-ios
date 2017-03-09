@@ -19,19 +19,17 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var brokenConnectionView: UIView!
     @IBOutlet var brokenCameraView: UIView!
-    
     @IBOutlet var shareButton: UIButton!
-    
-    @IBOutlet weak var imageConstraintTop: NSLayoutConstraint!
-    @IBOutlet weak var imageConstraintRight: NSLayoutConstraint!
-    @IBOutlet weak var imageConstraintLeft: NSLayoutConstraint!
-    @IBOutlet weak var imageConstraintBottom: NSLayoutConstraint!
+    @IBOutlet var imageConstraintTop: NSLayoutConstraint!
+    @IBOutlet var imageConstraintRight: NSLayoutConstraint!
+    @IBOutlet var imageConstraintLeft: NSLayoutConstraint!
+    @IBOutlet var imageConstraintBottom: NSLayoutConstraint!
     @IBOutlet var lastUpdateViewTopConstraint: NSLayoutConstraint!
     @IBOutlet var lastUpdateView: UIView!
-
     @IBOutlet var nvActivityIndicatorView: NVActivityIndicatorView!
     @IBOutlet var lastUpdateLabel: UILabel!
-    
+    @IBOutlet var lowQualityView: UIVisualEffectView!
+
     var lastZoomScale: CGFloat = -1
     var webcam: Webcam
     var isDataLoaded: Bool = false
@@ -274,6 +272,8 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     
     override func update() {
         super.update()
+
+        lowQualityView.isHidden = !webcam.lowQualityOnly
     }
     
     // MARK: - Notification Center
@@ -363,7 +363,8 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         let viewHeight = view.bounds.size.height
         
         let hPadding = max(0, (viewWidth - scrollView.zoomScale * imageWidth) / 2)
-        let vPadding = max(0, (viewHeight - scrollView.zoomScale * imageHeight) / 2 + lastUpdateView.bounds.height)
+        let complementaryVPadding = webcam.lowQualityOnly ? lastUpdateView.bounds.height / 2 : lastUpdateView.bounds.height
+        let vPadding = max(0, (viewHeight - scrollView.zoomScale * imageHeight) / 2 + complementaryVPadding)
         
         imageConstraintLeft.constant = hPadding
         imageConstraintRight.constant = hPadding

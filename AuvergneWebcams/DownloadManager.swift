@@ -24,9 +24,22 @@ class DownloadManager {
         ImageDownloader.default.delegate = self
     }
     
-    // MARK: - 
+    // MARK: -
+    
+    func bootstrapRealmDevelopmentData() {
+        print(">>> Bootstraping developement configuration JSON")
+        let path = Bundle.main.path(forResource: "aw-config-dev", ofType: "json")
+        if let json = try? String(contentsOfFile: path!, encoding: String.Encoding.utf8) {
+            if let webcamSectionsResponse = Mapper<WebcamSectionResponse>().map(JSONString: json) {
+                try! realm.write {
+                    realm.add(webcamSectionsResponse.sections, update: true)
+                }
+            }
+        }
+    }
     
     func bootstrapRealmData() {
+        print(">>> Bootstraping configuration JSON")
         let path = Bundle.main.path(forResource: "aw-config", ofType: "json")
         if let json = try? String(contentsOfFile: path!, encoding: String.Encoding.utf8) {
             if let webcamSectionsResponse = Mapper<WebcamSectionResponse>().map(JSONString: json) {

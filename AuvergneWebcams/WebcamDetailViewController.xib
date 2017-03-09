@@ -29,6 +29,7 @@
                 <outlet property="lastUpdateLabel" destination="kBl-e3-yhb" id="9k8-ZV-IKK"/>
                 <outlet property="lastUpdateView" destination="23i-9c-sEh" id="VE0-26-ob7"/>
                 <outlet property="lastUpdateViewTopConstraint" destination="YrO-B0-Zqu" id="Goq-Or-gGd"/>
+                <outlet property="lowQualityView" destination="xbm-8v-qFA" id="IjB-yY-uZe"/>
                 <outlet property="nvActivityIndicatorView" destination="w8W-mG-JP9" id="TOd-SA-WIc"/>
                 <outlet property="scrollView" destination="Klp-uj-ffW" id="K2S-3d-DjK"/>
                 <outlet property="shareButton" destination="aTh-fe-vNr" id="ixg-7g-JS7"/>
@@ -67,7 +68,7 @@
                             <blurEffect style="dark"/>
                         </visualEffectView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mise à jour le 15.02.17 à 17h42" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kBl-e3-yhb">
-                            <rect key="frame" x="54" y="17.5" width="267" height="15"/>
+                            <rect key="frame" x="54" y="18" width="267" height="15"/>
                             <fontDescription key="fontDescription" name="ProximaNova-RegularIt" family="Proxima Nova" pointSize="15"/>
                             <color key="textColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -102,10 +103,10 @@
                     <rect key="frame" x="0.0" y="114" width="375" height="553"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera-broken" translatesAutoresizingMaskIntoConstraints="NO" id="xXS-JL-M3G">
-                            <rect key="frame" x="138" y="129.5" width="100" height="100"/>
+                            <rect key="frame" x="138" y="130" width="100" height="100"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qVI-tw-7Cv">
-                            <rect key="frame" x="40" y="269.5" width="295" height="102"/>
+                            <rect key="frame" x="40" y="270" width="295" height="102"/>
                             <attributedString key="attributedText">
                                 <fragment>
                                     <string key="content">La webcam ne semble
@@ -156,10 +157,10 @@ pour signaler la caméra</string>
                     <rect key="frame" x="0.0" y="114" width="375" height="553"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi-off" translatesAutoresizingMaskIntoConstraints="NO" id="gy6-29-jrA">
-                            <rect key="frame" x="138" y="157.5" width="100" height="100"/>
+                            <rect key="frame" x="138" y="158" width="100" height="100"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aucune connexion" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.59999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="ony-jr-bNx">
-                            <rect key="frame" x="8" y="289.5" width="359" height="17"/>
+                            <rect key="frame" x="8" y="290" width="359" height="17"/>
                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -182,6 +183,31 @@ pour signaler la caméra</string>
                         <constraint firstAttribute="width" constant="50" id="qqO-Kv-Rs1"/>
                     </constraints>
                 </view>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xbm-8v-qFA">
+                    <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="k6K-5X-75B">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cette webcam est disponible en basse qualité uniquement" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ys2-KW-i07">
+                                <rect key="frame" x="40" y="0.0" width="295" height="50"/>
+                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="15"/>
+                                <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="ys2-KW-i07" secondAttribute="bottom" id="GpC-Og-PUU"/>
+                            <constraint firstAttribute="trailing" secondItem="ys2-KW-i07" secondAttribute="trailing" constant="40" id="Iih-PY-w8B"/>
+                            <constraint firstItem="ys2-KW-i07" firstAttribute="top" secondItem="k6K-5X-75B" secondAttribute="top" id="hoP-wr-9JR"/>
+                            <constraint firstItem="ys2-KW-i07" firstAttribute="leading" secondItem="k6K-5X-75B" secondAttribute="leading" constant="40" id="uMy-6Y-eE0"/>
+                        </constraints>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="SMb-o4-dS0"/>
+                    </constraints>
+                    <blurEffect style="dark"/>
+                </visualEffectView>
             </subviews>
             <color key="backgroundColor" red="0.18823529411764706" green="0.18823529411764706" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -190,9 +216,12 @@ pour signaler la caméra</string>
                 <constraint firstItem="Klp-uj-ffW" firstAttribute="top" secondItem="bzQ-8u-T1z" secondAttribute="top" id="Ace-EA-Ps0"/>
                 <constraint firstAttribute="trailing" secondItem="45a-Ea-bzN" secondAttribute="trailing" id="D9D-9X-9ob"/>
                 <constraint firstAttribute="bottom" secondItem="Klp-uj-ffW" secondAttribute="bottom" id="Efn-gw-RYj"/>
+                <constraint firstAttribute="bottom" secondItem="xbm-8v-qFA" secondAttribute="bottom" id="IqT-ru-uOW"/>
+                <constraint firstItem="xbm-8v-qFA" firstAttribute="leading" secondItem="bzQ-8u-T1z" secondAttribute="leading" id="J93-gm-Dbv"/>
                 <constraint firstAttribute="trailing" secondItem="noP-jA-NZQ" secondAttribute="trailing" id="LJx-FC-fL1"/>
                 <constraint firstAttribute="trailing" secondItem="Klp-uj-ffW" secondAttribute="trailing" id="M0o-io-9Ng"/>
                 <constraint firstItem="w8W-mG-JP9" firstAttribute="centerY" secondItem="bzQ-8u-T1z" secondAttribute="centerY" constant="50" id="WeV-li-vDb"/>
+                <constraint firstAttribute="trailing" secondItem="xbm-8v-qFA" secondAttribute="trailing" id="Y7p-Ir-2at"/>
                 <constraint firstItem="23i-9c-sEh" firstAttribute="top" secondItem="bzQ-8u-T1z" secondAttribute="top" constant="64" id="YrO-B0-Zqu"/>
                 <constraint firstItem="45a-Ea-bzN" firstAttribute="leading" secondItem="bzQ-8u-T1z" secondAttribute="leading" id="Zi0-Yl-i2s"/>
                 <constraint firstItem="23i-9c-sEh" firstAttribute="leading" secondItem="bzQ-8u-T1z" secondAttribute="leading" id="bEm-KU-QTU"/>

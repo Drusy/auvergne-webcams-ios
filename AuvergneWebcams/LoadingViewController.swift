@@ -37,7 +37,18 @@ class LoadingViewController: AbstractRealmViewController {
         
         showClouds()
         animateClouds()
-        refresh()
+        
+        #if DEBUG && true
+            DownloadManager.shared.bootstrapRealmDevelopmentData()
+            webcamQueryEnded = true
+        #else
+            refresh()
+        #endif
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+            self?.loadingEnded = true
+            self?.endLoading()
+        }
     }
     
     // MARK: -
@@ -90,11 +101,6 @@ class LoadingViewController: AbstractRealmViewController {
     }
     
     func refresh() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-            self?.loadingEnded = true
-            self?.endLoading()
-        }
-        
         ApiRequest.startQuery(forType: WebcamSectionResponse.self, parameters: nil) { [weak self] response in
             guard let strongSelf = self else { return }
             

@@ -83,6 +83,7 @@
 		F99984211E62DCE8007D95AC /* WebcamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99984201E62DCE8007D95AC /* WebcamTests.swift */; };
 		F99984241E62DDC4007D95AC /* webcam.json in Resources */ = {isa = PBXBuildFile; fileRef = F99984231E62DDC4007D95AC /* webcam.json */; };
 		F99984261E62DDFA007D95AC /* sections.json in Resources */ = {isa = PBXBuildFile; fileRef = F99984251E62DDFA007D95AC /* sections.json */; };
+		F99F37611E71C0810058AFB3 /* aw-config-dev.json in Resources */ = {isa = PBXBuildFile; fileRef = F99F37601E71C0810058AFB3 /* aw-config-dev.json */; };
 		F9A7A8F81E6ECA0C00CFFF94 /* OpenWeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7A8F71E6ECA0C00CFFF94 /* OpenWeatherResponse.swift */; };
 		F9A7A8FD1E6ECF3F00CFFF94 /* OpenTemperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7A8FB1E6ECF3F00CFFF94 /* OpenTemperature.swift */; };
 		F9A7A8FE1E6ECF3F00CFFF94 /* OpenWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7A8FC1E6ECF3F00CFFF94 /* OpenWeather.swift */; };
@@ -263,6 +264,7 @@
 		F99984201E62DCE8007D95AC /* WebcamTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebcamTests.swift; sourceTree = "<group>"; };
 		F99984231E62DDC4007D95AC /* webcam.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = webcam.json; sourceTree = "<group>"; };
 		F99984251E62DDFA007D95AC /* sections.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sections.json; sourceTree = "<group>"; };
+		F99F37601E71C0810058AFB3 /* aw-config-dev.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "aw-config-dev.json"; path = "resources/json/aw-config-dev.json"; sourceTree = SOURCE_ROOT; };
 		F9A7A8F71E6ECA0C00CFFF94 /* OpenWeatherResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenWeatherResponse.swift; sourceTree = "<group>"; };
 		F9A7A8FB1E6ECF3F00CFFF94 /* OpenTemperature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenTemperature.swift; sourceTree = "<group>"; };
 		F9A7A8FC1E6ECF3F00CFFF94 /* OpenWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenWeather.swift; sourceTree = "<group>"; };
@@ -595,6 +597,7 @@
 			isa = PBXGroup;
 			children = (
 				F9147FC11E66149C000C78CA /* aw-config.json */,
+				F99F37601E71C0810058AFB3 /* aw-config-dev.json */,
 			);
 			name = json;
 			sourceTree = "<group>";
@@ -967,6 +970,7 @@
 				F9F5AC8B1DD344CC00D9FF83 /* Open Sans 300italic.ttf in Resources */,
 				F963AB581E5A172500ED5A8B /* ProximaNova-RegularItalic.otf in Resources */,
 				F9ACD1E11E5C951C004E5BFF /* GoogleService-Info.plist in Resources */,
+				F99F37611E71C0810058AFB3 /* aw-config-dev.json in Resources */,
 				F963AB141E59BDF900ED5A8B /* LoadingViewController.xib in Resources */,
 				F9F5AC951DD344CC00D9FF83 /* Open Sans regular.ttf in Resources */,
 				F963AB561E5A172500ED5A8B /* ProximaNova-LightItalic.otf in Resources */,

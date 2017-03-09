@@ -28,6 +28,7 @@ class Webcam: Object, Mappable {
     dynamic var imageHD: String?
     dynamic var imageLD: String?
     dynamic var video: String?
+    dynamic var lowQualityOnly: Bool = false
     
     // Interval data
     dynamic var lastUpdate: Date?
@@ -49,6 +50,7 @@ class Webcam: Object, Mappable {
         imageHD <- map["imageHD"]
         imageLD <- map["imageLD"]
         video <- map["video"]
+        lowQualityOnly <- map["lowQualityOnly"]
         
         tagsArray <- map["tags"]
         setTags(from: tagsArray)
