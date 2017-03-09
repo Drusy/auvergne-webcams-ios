@@ -9,10 +9,12 @@
 import Foundation
 import ObjectMapper
 import RealmSwift
+import Crashlytics
 
 class WebcamSection: Object, Mappable {
     
-    static let weatherRefreshInterval: TimeInterval = 60 * 10
+    static let weatherRefreshInterval: TimeInterval = 60 * 30 // 30mn
+    static let weatherAcceptanceInterval: TimeInterval = 60 * 60 * 2 // 2h
     
     // Update from WS
     dynamic var uid: Int = 0
@@ -65,7 +67,7 @@ class WebcamSection: Object, Mappable {
     
     // MARK: - 
     
-    func refreshWeatherIfNeeded() {
+    func refreshWeatherIfNeeded(handler: @escaping ((WebcamSection, Error?) -> Void)) {
         guard latitude != -1, longitude != -1 else { return }
         
         let lastWeatherRefreshInterval = lastWeatherUpdate?.timeIntervalSinceReferenceDate ?? 0
@@ -80,16 +82,26 @@ class WebcamSection: Object, Mappable {
             ]
             
             ApiRequest.startQuery(forType: OpenWeatherResponse.self, parameters: parameters) { [weak self] response in
+                guard let strongSelf = self else { return }
+                
                 if let error = response.result.error {
                     print(error.localizedDescription)
+                    Crashlytics.sharedInstance().recordError(error)
+                    handler(strongSelf, error)
                 } else if let openWeatherResponse = response.result.value {
-                    if let openWeatherTemperature = openWeatherResponse.temperature?.temperature {
-                        self?.temperature = openWeatherTemperature
+                    let realm = try? Realm()
+                    
+                    try? realm?.write {
+                        if let openWeatherTemperature = openWeatherResponse.temperature?.temperature {
+                            strongSelf.temperature = openWeatherTemperature
+                        }
+                        
+                        if let openWeatherIconId = openWeatherResponse.weathers.first?.id {
+                            strongSelf.weatherID = openWeatherIconId
+                        }
                     }
                     
-                    if let openWeatherIconId = openWeatherResponse.weathers.first?.id {
-                        self?.weatherID = openWeatherIconId
-                    }
+                    handler(strongSelf, nil)
                 }
             }
         }

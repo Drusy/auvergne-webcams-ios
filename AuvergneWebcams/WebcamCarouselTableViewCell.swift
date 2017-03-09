@@ -25,6 +25,9 @@ class WebcamCarouselTableViewCell: UITableViewCell, ConfigurableCell {
     @IBOutlet var webcamCountArrowImageView: UIImageView!
     @IBOutlet var webcamTitleLabel: UILabel!
     @IBOutlet var separatorView: UIView!
+    @IBOutlet var weatherView: UIView!
+    @IBOutlet var weatherImageView: UIImageView!
+    @IBOutlet var temperatureLabel: UILabel!
     
     let portraitWidthRatio: CGFloat = 0.75
     let landscapeWidthRatio: CGFloat = 0.5
@@ -83,14 +86,50 @@ class WebcamCarouselTableViewCell: UITableViewCell, ConfigurableCell {
         
         section = item
         
+        // Configure Carousel
         carousel.delegate = self
         carousel.dataSource = self
         carousel.reloadData()
         
+        // Configure header
         sectionImageView.image = item.image
         sectionTitleLabel.text = item.title?.uppercased()
         webcamTitleLabel.text = item.webcams.first?.title
         webcamCountLabel.text = item.webcamCountLabel()
+        
+        // Configure Weather
+        weatherView.alpha = 0
+        
+        let lastWeatherUpdate = item.lastWeatherUpdate?.timeIntervalSinceReferenceDate ?? 0
+        let interval = Date().timeIntervalSinceReferenceDate - lastWeatherUpdate
+        
+        if interval < WebcamSection.weatherAcceptanceInterval  {
+            displayWeather()
+        }
+        
+        item.refreshWeatherIfNeeded { [weak self] section, error in
+            guard section == item else { return }
+            
+            if error == nil {
+                self?.displayWeather()
+            }
+        }
+    }
+    
+    func displayWeather() {
+        guard let section = section else { return }
+        
+        weatherImageView.image = section.weatherImage()
+        temperatureLabel.text = String(format: "%0d", section.temperature)
+        
+        UIView.animate(
+            withDuration: 1,
+            delay: 0,
+            options: [.beginFromCurrentState],
+            animations: { [weak self] in
+                self?.weatherView.alpha = 1
+        },
+            completion: nil)
     }
     
     func widthRatio() -> CGFloat {
