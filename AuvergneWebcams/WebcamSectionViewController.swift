@@ -37,7 +37,7 @@ class WebcamSectionViewController: AbstractRefreshViewController {
                                                             action: #selector(refresh))
         
         provider.section = section
-        provider.objects = Array(section.webcams)
+        provider.objects = Array(section.sortedWebcams())
         provider.itemSelectionHandler = { [weak self] webcam, indexPath in
             let webcamDetail = WebcamDetailViewController(webcam: webcam)
             self?.navigationController?.pushViewController(webcamDetail, animated: true)

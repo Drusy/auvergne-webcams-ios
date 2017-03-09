@@ -10,6 +10,7 @@
             "webcams": [
                 {
                     "uid": 1,
+                    "order": 2,
                     "title": "Sommet du Puy de Dôme",
                     "imageLD": "http://wwwobs.univ-bpclermont.fr/opgc/webcampdd.jpg",
                     "imageHD": null,
@@ -21,6 +22,7 @@
                 },
                 {
                     "uid": 2,
+                    "order": 1,
                     "title": "Campus des Cézeaux",
                     "imageLD": "http://wwwobs.univ-bpclermont.fr/opgc/webcamcez.jpg",
                     "imageHD": null,
@@ -42,6 +44,7 @@
             "webcams": [
                 {
                     "uid": 3,
+                    "order": 1,
                     "title": "Mont Dore - Bas de la station",
                     "imageLD": "http://srv02.trinum.com/ibox/ftpcam/1280_mont-dore_bas-station.jpg",
                     "imageHD": "http://srv02.trinum.com/ibox/ftpcam/mega_mont-dore_bas-station.jpg",
@@ -55,6 +58,7 @@
                 },
                 {
                     "uid": 4,
+                    "order": 2,
                     "title": "Mont Dore - Sommet",
                     "imageLD": "http://www.trinum.com/ibox/ftpcam/1280_mont-dore_sommet.jpg",
                     "imageHD": "http://www.trinum.com/ibox/ftpcam/mega_mont-dore_sommet.jpg",
@@ -68,6 +72,7 @@
                 },
                 {
                     "uid": 5,
+                    "order": 3,
                     "title": "Super Besse - Ecole (Bas)",
                     "imageLD": "http://srv14.trinum.com/ibox/ftpcam/1280_superbesse_ecole.jpg",
                     "imageHD": "http://srv14.trinum.com/ibox/ftpcam/mega_superbesse_ecole.jpg",
@@ -81,6 +86,7 @@
                 },
                 {
                     "uid": 6,
+                    "order": 4,
                     "title": "Super Besse - Tyrolienne (Haut)",
                     "imageLD": "http://srv06.trinum.com/ibox/ftpcam/1280_superbesse_superbesse-haut.jpg",
                     "imageHD": "http://srv06.trinum.com/ibox/ftpcam/mega_superbesse_superbesse-haut.jpg",
@@ -94,6 +100,7 @@
                 },
                 {
                     "uid": 7,
+                    "order": 5,
                     "title": "Super Besse - Front de neige",
                     "imageLD": "http://srv05.trinum.com/ibox/ftpcam/1280_superbesseM.jpg",
                     "imageHD": "http://srv05.trinum.com/ibox/ftpcam/mega_superbesseM.jpg",
@@ -107,6 +114,7 @@
                 },
                 {
                     "uid": 8,
+                    "order": 6,
                     "title": "Sancy - Station Chastreix",
                     "imageLD": "http://srv02.trinum.com/ibox/ftpcam/1280_chastreix-sancy_station.jpg",
                     "imageHD": "http://srv02.trinum.com/ibox/ftpcam/mega_chastreix-sancy_station.jpg",
@@ -120,6 +128,7 @@
                 },
                 {
                     "uid": 9,
+                    "order": 7,
                     "title": "Sancy - Lac Chambon",
                     "imageLD": "http://srv14.trinum.com/ibox/ftpcam/1280_chastreix-sancy_lac-chambon.jpg",
                     "imageHD": "http://srv14.trinum.com/ibox/ftpcam/mega_chastreix-sancy_lac-chambon.jpg",
@@ -143,6 +152,7 @@
             "webcams": [
                 {
                     "uid": 10,
+                    "order": 1,
                     "title": "Sommet de la station",
                     "imageLD": "http://srv02.trinum.com/ibox/ftpcam/1280_lioran_sommet-domaine.jpg",
                     "imageHD": "http://srv02.trinum.com/ibox/ftpcam/mega_lioran_sommet-domaine.jpg",
@@ -156,6 +166,7 @@
                 },
                 {
                     "uid": 11,
+                    "order": 2,
                     "title": "Font d'Alagnon",
                     "imageLD": "http://srv04.trinum.com/ibox/ftpcam/1280_lioran_font-d-alagnon.jpg",
                     "imageHD": "http://srv04.trinum.com/ibox/ftpcam/mega_lioran_font-d-alagnon.jpg",
@@ -168,6 +179,7 @@
                 },
                 {
                     "uid": 12,
+                    "order": 3,
                     "title": "Centre station",
                     "imageLD": "http://srv02.trinum.com/ibox/ftpcam/1280_lioran_station.jpg",
                     "imageHD": "http://www.trinum.com/ibox/ftpcam/mega_lioran_station.jpg",

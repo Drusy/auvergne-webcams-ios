@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import RealmSwift
 
 protocol WebcamCarouselTableViewCellDelegate: class {
     func webcamCarousel(tableViewCell: WebcamCarouselTableViewCell, didSelectSection section: WebcamSection)
@@ -29,11 +30,11 @@ class WebcamCarouselTableViewCell: UITableViewCell, ConfigurableCell {
     @IBOutlet var weatherImageView: UIImageView!
     @IBOutlet var temperatureLabel: UILabel!
     
-    
     let portraitWidthRatio: CGFloat = 0.75
     let landscapeWidthRatio: CGFloat = 0.5
     
     var section: WebcamSection?
+    var webcams: Results<Webcam>?
     
     weak var delegate: WebcamCarouselTableViewCellDelegate?
     
@@ -61,6 +62,7 @@ class WebcamCarouselTableViewCell: UITableViewCell, ConfigurableCell {
         super.prepareForReuse()
         
         section = nil
+        webcams = nil
         delegate = nil
         
         carousel.delegate = nil
@@ -86,6 +88,7 @@ class WebcamCarouselTableViewCell: UITableViewCell, ConfigurableCell {
         carousel.layoutIfNeeded()
         
         section = item
+        webcams = item.sortedWebcams()
         
         // Configure Carousel
         carousel.delegate = self
@@ -95,7 +98,7 @@ class WebcamCarouselTableViewCell: UITableViewCell, ConfigurableCell {
         // Configure header
         sectionImageView.image = item.image
         sectionTitleLabel.text = item.title?.uppercased()
-        webcamTitleLabel.text = item.webcams.first?.title
+        webcamTitleLabel.text = webcams?.first?.title
         webcamCountLabel.text = item.webcamCountLabel()
         
         // Configure Weather
@@ -169,37 +172,37 @@ class WebcamCarouselTableViewCell: UITableViewCell, ConfigurableCell {
 extension WebcamCarouselTableViewCell: iCarouselDelegate, iCarouselDataSource {
     
     func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
-        guard let section = section else { return }
-        let webcam = section.webcams[index % section.webcams.count]
+        guard let webcams = webcams else { return }
+        let webcam = webcams[index % webcams.count]
         
         delegate?.webcamCarousel(tableViewCell: self, didSelectWebcam: webcam)
     }
     
     func carouselCurrentItemIndexDidChange(_ carousel: iCarousel) {
-        guard let section = section else { return }
-        let webcam = section.webcams[carousel.currentItemIndex % section.webcams.count]
+        guard let webcams = webcams else { return }
+        let webcam = webcams[carousel.currentItemIndex % webcams.count]
         
         webcamTitleLabel.text = webcam.title
     }
     
     func numberOfItems(in carousel: iCarousel) -> Int {
-        guard let section = section else { return 0 }
+        guard let webcams = webcams else { return 0 }
         
         // One element is managed by turning off the wrap option
         // Two elements /!\ needs the be doubled (prevent crash using modulo) to fill the circle rotary
-        if section.webcams.count == 2 {
+        if webcams.count == 2 {
             return 4
         }
         
         // More than 2 elements are managed natively
-        return section.webcams.count
+        return webcams.count
     }
     
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
-        guard let section = section else { return UIView() }
-        
+        guard let webcams = webcams else { return UIView() }
+
         var webcamView: WebcamView
-        let webcam = section.webcams[index % section.webcams.count]
+        let webcam = webcams[index % webcams.count]
         let width: CGFloat = UIScreen.main.bounds.width * widthRatio()
         let height: CGFloat = min(width * 0.55, carousel.bounds.height)
         
@@ -220,7 +223,7 @@ extension WebcamCarouselTableViewCell: iCarouselDelegate, iCarouselDataSource {
     }
     
     func carousel(_ carousel: iCarousel, valueFor option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
-        let count = section?.webcams.count ?? 0
+        let count = webcams?.count ?? 0
         
         switch option {
         case .wrap:

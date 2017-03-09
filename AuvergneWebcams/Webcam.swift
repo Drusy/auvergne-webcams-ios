@@ -23,6 +23,7 @@ class Webcam: Object, Mappable {
     
     // Update from WS
     dynamic var uid: Int = 0
+    dynamic var order: Int = 0
     dynamic var title: String?
     dynamic var imageHD: String?
     dynamic var imageLD: String?
@@ -43,6 +44,7 @@ class Webcam: Object, Mappable {
         var tagsArray = [String]()
         
         uid <- map["uid"]
+        order <- map["order"]
         title <- map["title"]
         imageHD <- map["imageHD"]
         imageLD <- map["imageLD"]

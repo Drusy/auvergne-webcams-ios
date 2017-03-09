@@ -29,7 +29,7 @@ class WebcamSection: Object, Mappable {
     dynamic var temperature: Double = 0
     dynamic var weatherID: Int = 0
 
-    var webcams = List<Webcam>()
+    fileprivate var webcams = List<Webcam>()
     var image: UIImage? {
         guard let name = imageName else { return nil }
         
@@ -68,6 +68,10 @@ class WebcamSection: Object, Mappable {
     }
     
     // MARK: - 
+    
+    func sortedWebcams() -> Results<Webcam> {
+        return webcams.sorted(byKeyPath: #keyPath(Webcam.order), ascending: true)
+    }
     
     func refreshWeatherIfNeeded(handler: @escaping ((WebcamSection, Error?) -> Void)) {
         guard latitude != -1, longitude != -1 else { return }
