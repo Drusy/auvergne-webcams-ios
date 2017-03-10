@@ -11,6 +11,18 @@ import ObjectMapper
 import RealmSwift
 import Crashlytics
 
+class FavoriteWebcamSection: WebcamSection {
+    var favoriteWebcams: Results<Webcam>?
+    
+    required convenience init?(map: Map) {
+        self.init()
+    }
+
+    override func sortedWebcams() -> Results<Webcam> {
+        return favoriteWebcams ?? super.sortedWebcams()
+    }
+}
+
 class WebcamSection: Object, Mappable {
     
     static let weatherRefreshInterval: TimeInterval = 60 * 30 // 30mn
@@ -29,7 +41,7 @@ class WebcamSection: Object, Mappable {
     dynamic var temperature: Double = 0
     dynamic var weatherID: Int = 0
 
-    fileprivate var webcams = List<Webcam>()
+    var webcams = List<Webcam>()
     var image: UIImage? {
         guard let name = imageName else { return nil }
         
@@ -137,10 +149,11 @@ class WebcamSection: Object, Mappable {
     }
     
     func webcamCountLabel() -> String {
-        if webcams.count == 1 {
+        let count = sortedWebcams().count
+        if count == 1 {
             return "1 webcam"
         } else {
-            return "\(webcams.count) webcams"
+            return "\(count) webcams"
         }
     }
 }

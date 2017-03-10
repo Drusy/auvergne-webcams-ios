@@ -30,7 +30,8 @@ class Webcam: Object, Mappable {
     dynamic var video: String?
     dynamic var lowQualityOnly: Bool = false
     
-    // Interval data
+    // Internal data
+    dynamic var favorite: Bool = false
     dynamic var lastUpdate: Date?
 
     var tags = List<WebcamTag>()
@@ -58,6 +59,7 @@ class Webcam: Object, Mappable {
         let realm = try? Realm()
         if let webcam = realm?.object(ofType: Webcam.self, forPrimaryKey: uid) {
             lastUpdate = webcam.lastUpdate
+            favorite = webcam.favorite
         }
     }
     

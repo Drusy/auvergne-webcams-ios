@@ -8,12 +8,13 @@
 
 import UIKit
 import Kingfisher
+import RealmSwift
 
 protocol WebcamCarouselViewProviderDelegate: class {
     func webcamCarousel(viewProvider: WebcamCarouselViewProvider, scrollViewDidScroll scrollView: UIScrollView)
 }
 
-class WebcamCarouselViewProvider: AbstractRealmResultsViewProvider<WebcamSection, WebcamCarouselTableViewCell> {
+class WebcamCarouselViewProvider: AbstractArrayViewProvider<WebcamSection, WebcamCarouselTableViewCell> {
     weak var delegate: WebcamCarouselViewProviderDelegate?
     
     func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
@@ -31,7 +32,6 @@ class WebcamCarouselViewProvider: AbstractRealmResultsViewProvider<WebcamSection
 
 class WebcamCarouselViewController: AbstractRefreshViewController {
     
-    @IBOutlet var clearSearchButton: UIButton!
     @IBOutlet var tableView: UITableView!
     @IBOutlet var searchTextField: UITextField!
     @IBOutlet var loadingAnimationView: UIView!
@@ -47,7 +47,7 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "settings-icon"),
                                                            style: .plain,
                                                            target: self,
@@ -57,15 +57,19 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
                                                             target: self,
                                                             action: #selector(onRefreshTouched))
         
-        clearSearchButton.isHidden = true
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(onFavoriteWebcamDidUpdate),
+                                               name: Notification.Name.favoriteWebcamDidUpdate,
+                                               object: nil)
         
-        provider.objects = realm.objects(WebcamSection.self).sorted(byKeyPath: #keyPath(WebcamSection.order), ascending: true)
         provider.additionalCellConfigurationCustomizer = { [weak self](cell: WebcamCarouselTableViewCell, item: WebcamSection) in
             guard let lastObject = self?.provider.objects?.last else { return }
             
             cell.set(isLast: item == lastObject)
             cell.set(delegate: self)
         }
+        
+        update()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -87,6 +91,12 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
         
         coordinator.animate(alongsideTransition: transition,
                             completion: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: Notification.Name.favoriteWebcamDidUpdate,
+                                                  object: nil)
     }
     
     // MARK: -
@@ -178,9 +188,30 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
     
     override func update() {
         super.update()
+        
+        var sectionsArray = Array(realm.objects(WebcamSection.self).sorted(byKeyPath: #keyPath(WebcamSection.order), ascending: true))
+        let favoriteWebcams = realm.objects(Webcam.self).filter("%K == true", #keyPath(Webcam.favorite)).sorted(byKeyPath: #keyPath(Webcam.title))
+        
+        if !favoriteWebcams.isEmpty {
+            let favoriteSection = FavoriteWebcamSection()
+            
+            favoriteSection.uid = -1
+            favoriteSection.order = -1
+            favoriteSection.title = "Favoris"
+            favoriteSection.imageName = "favorite-landscape"
+            favoriteSection.favoriteWebcams = favoriteWebcams
+            
+            sectionsArray.insert(favoriteSection, at: 0)
+        }
+        
+        provider.objects = sectionsArray
     }
     
     // MARK: - IBActions
+    
+    func onFavoriteWebcamDidUpdate(notification: Notification) {
+        update()
+    }
     
     func onRefreshTouched() {
         refresh()
@@ -208,9 +239,7 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
 
 extension WebcamCarouselViewController: WebcamCarouselViewProviderDelegate {
     func webcamCarousel(viewProvider: WebcamCarouselViewProvider, scrollViewDidScroll scrollView: UIScrollView) {
-        if searchTextField.isEditing {
-            searchTextField.endEditing(true)
-        }
+
     }
 }
 

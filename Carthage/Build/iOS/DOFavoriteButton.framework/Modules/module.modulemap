@@ -1,0 +1,10 @@
+framework module DOFavoriteButton {
+  umbrella header "DOFavoriteButton.h"
+
+  export *
+  module * { export * }
+}
+
+module DOFavoriteButton.Swift {
+    header "DOFavoriteButton-Swift.h"
+}

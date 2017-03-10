@@ -11,10 +11,6 @@ import Kingfisher
 import RealmSwift
 import ObjectMapper
 
-extension Notification.Name {
-    static let downloadManagerDidUpdateWebcam = Notification.Name("downloadManagerDidUpdateWebcam")
-}
-
 class DownloadManager {
     static let shared = DownloadManager()
     

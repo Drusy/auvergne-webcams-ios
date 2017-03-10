@@ -21,6 +21,7 @@
             <connections>
                 <outlet property="brokenCameraView" destination="noP-jA-NZQ" id="qwe-kK-7g6"/>
                 <outlet property="brokenConnectionView" destination="45a-Ea-bzN" id="yTp-Yf-dFS"/>
+                <outlet property="favoriteButton" destination="OoY-ZV-P4A" id="wIQ-sM-8Hw"/>
                 <outlet property="imageConstraintBottom" destination="u10-y6-drJ" id="XUB-cB-ruw"/>
                 <outlet property="imageConstraintLeft" destination="J9C-6K-IhY" id="JaI-7C-Q7c"/>
                 <outlet property="imageConstraintRight" destination="Lut-8q-m9Y" id="6ZU-dm-kAJ"/>
@@ -64,38 +65,61 @@
                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="mkx-t6-7E8">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OoY-ZV-P4A" customClass="DOFavoriteButton" customModule="DOFavoriteButton">
+                                        <rect key="frame" x="12" y="5" width="40" height="40"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="aPt-4c-VLd"/>
+                                            <constraint firstAttribute="width" constant="40" id="l8y-8D-Erl"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onFavoriteTouched:" destination="-1" eventType="touchUpInside" id="eVJ-0U-u49"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mise à jour le 15.02.17 à 17h42" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kBl-e3-yhb">
+                                        <rect key="frame" x="60" y="17" width="261" height="15"/>
+                                        <fontDescription key="fontDescription" name="ProximaNova-RegularIt" family="Proxima Nova" pointSize="15"/>
+                                        <color key="textColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aTh-fe-vNr">
+                                        <rect key="frame" x="329" y="10" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="FEN-Ef-z5u"/>
+                                            <constraint firstAttribute="width" constant="30" id="xho-7t-JRJ"/>
+                                        </constraints>
+                                        <state key="normal" image="share-icon"/>
+                                        <connections>
+                                            <action selector="onShareTouched:" destination="-1" eventType="touchUpInside" id="Eet-mT-JWc"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="kBl-e3-yhb" firstAttribute="centerY" secondItem="mkx-t6-7E8" secondAttribute="centerY" id="02v-oa-wz3"/>
+                                    <constraint firstAttribute="trailing" secondItem="aTh-fe-vNr" secondAttribute="trailing" constant="16" id="C69-eU-vhk"/>
+                                    <constraint firstItem="aTh-fe-vNr" firstAttribute="leading" secondItem="kBl-e3-yhb" secondAttribute="trailing" constant="8" id="XYN-Gm-KR4"/>
+                                    <constraint firstItem="kBl-e3-yhb" firstAttribute="leading" secondItem="OoY-ZV-P4A" secondAttribute="trailing" constant="8" id="XvI-Ci-1mo"/>
+                                    <constraint firstItem="OoY-ZV-P4A" firstAttribute="centerY" secondItem="mkx-t6-7E8" secondAttribute="centerY" id="frl-o9-Oyy"/>
+                                    <constraint firstItem="OoY-ZV-P4A" firstAttribute="leading" secondItem="mkx-t6-7E8" secondAttribute="leading" constant="12" id="lop-5Z-hWc"/>
+                                    <constraint firstItem="aTh-fe-vNr" firstAttribute="centerY" secondItem="mkx-t6-7E8" secondAttribute="centerY" id="naq-8O-JUe"/>
+                                </constraints>
                             </view>
                             <blurEffect style="dark"/>
                         </visualEffectView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mise à jour le 15.02.17 à 17h42" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kBl-e3-yhb">
-                            <rect key="frame" x="54" y="18" width="267" height="15"/>
-                            <fontDescription key="fontDescription" name="ProximaNova-RegularIt" family="Proxima Nova" pointSize="15"/>
-                            <color key="textColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aTh-fe-vNr">
-                            <rect key="frame" x="329" y="10" width="30" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="FEN-Ef-z5u"/>
-                                <constraint firstAttribute="width" constant="30" id="xho-7t-JRJ"/>
-                            </constraints>
-                            <state key="normal" image="share-icon"/>
-                            <connections>
-                                <action selector="onShareTouched:" destination="-1" eventType="touchUpInside" id="Eet-mT-JWc"/>
-                            </connections>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="kBl-e3-yhb" firstAttribute="centerY" secondItem="23i-9c-sEh" secondAttribute="centerY" id="7be-q1-WzA"/>
+                        <constraint firstItem="9VQ-3z-j1Y" firstAttribute="centerY" secondItem="23i-9c-sEh" secondAttribute="centerY" id="0CI-d1-nCc"/>
                         <constraint firstItem="9VQ-3z-j1Y" firstAttribute="top" secondItem="23i-9c-sEh" secondAttribute="top" id="8nr-fT-zFA"/>
-                        <constraint firstItem="aTh-fe-vNr" firstAttribute="centerY" secondItem="23i-9c-sEh" secondAttribute="centerY" id="FAQ-E4-YAx"/>
-                        <constraint firstItem="kBl-e3-yhb" firstAttribute="leading" secondItem="23i-9c-sEh" secondAttribute="leading" constant="54" id="Yhd-bJ-9ZI"/>
                         <constraint firstAttribute="height" constant="50" id="buT-GW-GFy"/>
-                        <constraint firstAttribute="trailing" secondItem="aTh-fe-vNr" secondAttribute="trailing" constant="16" id="dIk-hx-wPd"/>
                         <constraint firstAttribute="trailing" secondItem="9VQ-3z-j1Y" secondAttribute="trailing" id="erA-Sy-hRP"/>
                         <constraint firstItem="9VQ-3z-j1Y" firstAttribute="leading" secondItem="23i-9c-sEh" secondAttribute="leading" id="iqN-3z-wgb"/>
-                        <constraint firstItem="aTh-fe-vNr" firstAttribute="leading" secondItem="kBl-e3-yhb" secondAttribute="trailing" constant="8" id="uTl-XR-Gvz"/>
                         <constraint firstAttribute="bottom" secondItem="9VQ-3z-j1Y" secondAttribute="bottom" id="w3g-pa-IzT"/>
                     </constraints>
                 </view>

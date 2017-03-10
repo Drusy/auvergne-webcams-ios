@@ -12,6 +12,7 @@ import Reachability
 import SwiftyUserDefaults
 import MessageUI
 import NVActivityIndicatorView
+import DOFavoriteButton
 
 class WebcamDetailViewController: AbstractRefreshViewController {
 
@@ -29,6 +30,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     @IBOutlet var nvActivityIndicatorView: NVActivityIndicatorView!
     @IBOutlet var lastUpdateLabel: UILabel!
     @IBOutlet var lowQualityView: UIVisualEffectView!
+    @IBOutlet var favoriteButton: DOFavoriteButton!
 
     var lastZoomScale: CGFloat = -1
     var webcam: Webcam
@@ -60,6 +62,15 @@ class WebcamDetailViewController: AbstractRefreshViewController {
                                                selector: #selector(onDownloadManagerDidUpdateWebcam),
                                                name: Notification.Name.downloadManagerDidUpdateWebcam,
                                                object: nil)
+        
+        // Favorite button
+        favoriteButton.image = UIImage(named: "star-icon")
+        favoriteButton.imageColorOn = UIColor.awBlue
+        favoriteButton.imageColorOff = UIColor.awLightGray
+        favoriteButton.duration = 1
+        favoriteButton.lineColor = UIColor.awBlue
+        favoriteButton.circleColor = UIColor.awBlue
+        favoriteButton.isSelected = webcam.favorite
         
         // Prepare indicator
         scrollView.layoutIfNeeded()
@@ -110,6 +121,19 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     }
     
     // MARK: - IBActions
+    
+    @IBAction func onFavoriteTouched(_ sender: DOFavoriteButton) {
+        if sender.isSelected {
+            sender.deselect()
+        } else {
+            sender.select()
+        }
+        
+        try? realm.write {
+            webcam.favorite = sender.isSelected
+        }
+        NotificationCenter.default.post(name: Foundation.Notification.Name.favoriteWebcamDidUpdate, object: webcam)
+    }
     
     @IBAction func onBrokenCameraTouched(_ sender: Any) {
         reportBrokenCamera()

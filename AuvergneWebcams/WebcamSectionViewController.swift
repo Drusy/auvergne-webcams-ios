@@ -36,13 +36,17 @@ class WebcamSectionViewController: AbstractRefreshViewController {
                                                             target: self,
                                                             action: #selector(refresh))
         
-        provider.section = section
-        provider.objects = Array(section.sortedWebcams())
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(onFavoriteWebcamDidUpdate),
+                                               name: Notification.Name.favoriteWebcamDidUpdate,
+                                               object: nil)
+        
         provider.itemSelectionHandler = { [weak self] webcam, indexPath in
             let webcamDetail = WebcamDetailViewController(webcam: webcam)
             self?.navigationController?.pushViewController(webcamDetail, animated: true)
         }
         
+        update()
         AnalyticsManager.logEvent(showSection: section)
     }
     
@@ -51,6 +55,18 @@ class WebcamSectionViewController: AbstractRefreshViewController {
         
         guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
         flowLayout.invalidateLayout()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: Notification.Name.favoriteWebcamDidUpdate,
+                                                  object: nil)
+    }
+    
+    // MARK: - Actions
+    
+    func onFavoriteWebcamDidUpdate(notification: Notification) {
+        update()
     }
     
     // MARK: -
@@ -77,5 +93,18 @@ class WebcamSectionViewController: AbstractRefreshViewController {
     
     override func update() {
         super.update()
+        
+        let webcams = Array(section.sortedWebcams())
+        
+        provider.section = section
+        provider.objects = webcams
+        
+        if let navigationController = navigationController {
+            if let index = navigationController.viewControllers.index(of: self), webcams.isEmpty {
+                navigationController.viewControllers.remove(at: index)
+            } else if !navigationController.viewControllers.contains(self), !webcams.isEmpty {
+                navigationController.viewControllers.insert(self, at: 1)
+            }
+        }
     }
 }

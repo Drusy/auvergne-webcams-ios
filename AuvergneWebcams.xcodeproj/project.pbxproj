@@ -84,6 +84,9 @@
 		F99984241E62DDC4007D95AC /* webcam.json in Resources */ = {isa = PBXBuildFile; fileRef = F99984231E62DDC4007D95AC /* webcam.json */; };
 		F99984261E62DDFA007D95AC /* sections.json in Resources */ = {isa = PBXBuildFile; fileRef = F99984251E62DDFA007D95AC /* sections.json */; };
 		F99F37611E71C0810058AFB3 /* aw-config-dev.json in Resources */ = {isa = PBXBuildFile; fileRef = F99F37601E71C0810058AFB3 /* aw-config-dev.json */; };
+		F99F37641E7296AB0058AFB3 /* DOFavoriteButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F99F37621E72969E0058AFB3 /* DOFavoriteButton.framework */; };
+		F99F37651E7296AB0058AFB3 /* DOFavoriteButton.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F99F37621E72969E0058AFB3 /* DOFavoriteButton.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F99F37721E72B2960058AFB3 /* NotificationNameExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99F37711E72B2960058AFB3 /* NotificationNameExtensions.swift */; };
 		F9A7A8F81E6ECA0C00CFFF94 /* OpenWeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7A8F71E6ECA0C00CFFF94 /* OpenWeatherResponse.swift */; };
 		F9A7A8FD1E6ECF3F00CFFF94 /* OpenTemperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7A8FB1E6ECF3F00CFFF94 /* OpenTemperature.swift */; };
 		F9A7A8FE1E6ECF3F00CFFF94 /* OpenWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7A8FC1E6ECF3F00CFFF94 /* OpenWeather.swift */; };
@@ -169,6 +172,7 @@
 				F94D7CEA1DFAE50200460CCD /* ActiveLabel.framework in Embed Frameworks */,
 				F9ACD1FF1E5CA4B3004E5BFF /* Firebase.framework in Embed Frameworks */,
 				F9ACD1DF1E5C3A2E004E5BFF /* AlamofireNetworkActivityIndicator.framework in Embed Frameworks */,
+				F99F37651E7296AB0058AFB3 /* DOFavoriteButton.framework in Embed Frameworks */,
 				F93C76421DD11AF0005DEE66 /* Kingfisher.framework in Embed Frameworks */,
 				F963AB421E59E80900ED5A8B /* Realm.framework in Embed Frameworks */,
 				F963AB401E59E80900ED5A8B /* AlamofireObjectMapper.framework in Embed Frameworks */,
@@ -265,6 +269,8 @@
 		F99984231E62DDC4007D95AC /* webcam.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = webcam.json; sourceTree = "<group>"; };
 		F99984251E62DDFA007D95AC /* sections.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sections.json; sourceTree = "<group>"; };
 		F99F37601E71C0810058AFB3 /* aw-config-dev.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "aw-config-dev.json"; path = "resources/json/aw-config-dev.json"; sourceTree = SOURCE_ROOT; };
+		F99F37621E72969E0058AFB3 /* DOFavoriteButton.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DOFavoriteButton.framework; path = Carthage/Build/iOS/DOFavoriteButton.framework; sourceTree = "<group>"; };
+		F99F37711E72B2960058AFB3 /* NotificationNameExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNameExtensions.swift; sourceTree = "<group>"; };
 		F9A7A8F71E6ECA0C00CFFF94 /* OpenWeatherResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenWeatherResponse.swift; sourceTree = "<group>"; };
 		F9A7A8FB1E6ECF3F00CFFF94 /* OpenTemperature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenTemperature.swift; sourceTree = "<group>"; };
 		F9A7A8FC1E6ECF3F00CFFF94 /* OpenWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenWeather.swift; sourceTree = "<group>"; };
@@ -334,6 +340,7 @@
 				F9B1E5FC1E65656100829FE8 /* NVActivityIndicatorView.framework in Frameworks */,
 				F9ACD1E91E5C9B88004E5BFF /* FirebaseAnalytics.framework in Frameworks */,
 				F963AB431E59E80900ED5A8B /* RealmSwift.framework in Frameworks */,
+				F99F37641E7296AB0058AFB3 /* DOFavoriteButton.framework in Frameworks */,
 				F963AB411E59E80900ED5A8B /* Realm.framework in Frameworks */,
 				F9ACD1DE1E5C3A2E004E5BFF /* AlamofireNetworkActivityIndicator.framework in Frameworks */,
 				F9ACD1EF1E5C9B88004E5BFF /* GoogleSymbolUtilities.framework in Frameworks */,
@@ -488,6 +495,7 @@
 				F93C76391DD11ACE005DEE66 /* Kingfisher.framework */,
 				F93C763A1DD11ACE005DEE66 /* Reachability.framework */,
 				F93C763B1DD11ACE005DEE66 /* Siren.framework */,
+				F99F37621E72969E0058AFB3 /* DOFavoriteButton.framework */,
 				F93C763C1DD11ACE005DEE66 /* SwiftyUserDefaults.framework */,
 			);
 			name = Carthage;
@@ -523,6 +531,7 @@
 				F9ACD1C71E5B0E37004E5BFF /* CGSizeExtension.swift */,
 				F9ACD1C91E5B2130004E5BFF /* UIColorExtension.swift */,
 				F9ACD2001E5CA8D8004E5BFF /* FIRAnalyticsExtension.swift */,
+				F99F37711E72B2960058AFB3 /* NotificationNameExtensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1053,6 +1062,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/AlamofireNetworkActivityIndicator.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Firebase.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/NVActivityIndicatorView.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/DOFavoriteButton.framework",
 			);
 			name = Carthage;
 			outputPaths = (
@@ -1110,6 +1120,7 @@
 				F9F5AC5E1DD31C9100D9FF83 /* AbstractViewController.swift in Sources */,
 				F94FEEAD1DD4764100586F54 /* NavigationController.swift in Sources */,
 				F9B1E61D1E6612E500829FE8 /* Queryable.swift in Sources */,
+				F99F37721E72B2960058AFB3 /* NotificationNameExtensions.swift in Sources */,
 				F9ACD2011E5CA8D8004E5BFF /* FIRAnalyticsExtension.swift in Sources */,
 				F9C747F81E5F88DE0018B5CC /* DownloadManager.swift in Sources */,
 				F9ACD1C61E5B08D6004E5BFF /* KeyboardLayoutConstraint.swift in Sources */,

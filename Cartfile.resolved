@@ -1,5 +1,6 @@
 github "optonaut/ActiveLabel.swift" "0.7.0"
 github "Alamofire/Alamofire" "4.3.0"
+github "okmr-d/DOFavoriteButton" "43c65253d4c14e596a511354ca0e0aac0ec2bd5c"
 github "xmartlabs/Eureka" "7e30cec8c3288c4f1128008a4bcb90dafc6ec17b"
 github "soheilbm/Firebase" "3.7.1"
 github "onevcat/Kingfisher" "3.4.0"
