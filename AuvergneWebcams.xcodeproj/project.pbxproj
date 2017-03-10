@@ -87,6 +87,7 @@
 		F99F37641E7296AB0058AFB3 /* DOFavoriteButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F99F37621E72969E0058AFB3 /* DOFavoriteButton.framework */; };
 		F99F37651E7296AB0058AFB3 /* DOFavoriteButton.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F99F37621E72969E0058AFB3 /* DOFavoriteButton.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F99F37721E72B2960058AFB3 /* NotificationNameExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99F37711E72B2960058AFB3 /* NotificationNameExtensions.swift */; };
+		F99F37741E72C7A90058AFB3 /* CollectionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99F37731E72C7A90058AFB3 /* CollectionExtensions.swift */; };
 		F9A7A8F81E6ECA0C00CFFF94 /* OpenWeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7A8F71E6ECA0C00CFFF94 /* OpenWeatherResponse.swift */; };
 		F9A7A8FD1E6ECF3F00CFFF94 /* OpenTemperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7A8FB1E6ECF3F00CFFF94 /* OpenTemperature.swift */; };
 		F9A7A8FE1E6ECF3F00CFFF94 /* OpenWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7A8FC1E6ECF3F00CFFF94 /* OpenWeather.swift */; };
@@ -271,6 +272,7 @@
 		F99F37601E71C0810058AFB3 /* aw-config-dev.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "aw-config-dev.json"; path = "resources/json/aw-config-dev.json"; sourceTree = SOURCE_ROOT; };
 		F99F37621E72969E0058AFB3 /* DOFavoriteButton.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DOFavoriteButton.framework; path = Carthage/Build/iOS/DOFavoriteButton.framework; sourceTree = "<group>"; };
 		F99F37711E72B2960058AFB3 /* NotificationNameExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNameExtensions.swift; sourceTree = "<group>"; };
+		F99F37731E72C7A90058AFB3 /* CollectionExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionExtensions.swift; sourceTree = "<group>"; };
 		F9A7A8F71E6ECA0C00CFFF94 /* OpenWeatherResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenWeatherResponse.swift; sourceTree = "<group>"; };
 		F9A7A8FB1E6ECF3F00CFFF94 /* OpenTemperature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenTemperature.swift; sourceTree = "<group>"; };
 		F9A7A8FC1E6ECF3F00CFFF94 /* OpenWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenWeather.swift; sourceTree = "<group>"; };
@@ -532,6 +534,7 @@
 				F9ACD1C91E5B2130004E5BFF /* UIColorExtension.swift */,
 				F9ACD2001E5CA8D8004E5BFF /* FIRAnalyticsExtension.swift */,
 				F99F37711E72B2960058AFB3 /* NotificationNameExtensions.swift */,
+				F99F37731E72C7A90058AFB3 /* CollectionExtensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1106,6 +1109,7 @@
 				F9C747FA1E5F8B6C0018B5CC /* WebcamTag.swift in Sources */,
 				F963AB651E5A5DA800ED5A8B /* WebcamSectionViewController.swift in Sources */,
 				F9B1E61B1E66128C00829FE8 /* ApiRequest.swift in Sources */,
+				F99F37741E72C7A90058AFB3 /* CollectionExtensions.swift in Sources */,
 				F9F5AC731DD33B6800D9FF83 /* Webcam.swift in Sources */,
 				F963AB381E59E54300ED5A8B /* UIViewExtension.swift in Sources */,
 				F963AB741E5A692E00ED5A8B /* WebcamSectionedView.swift in Sources */,

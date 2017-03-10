@@ -96,9 +96,11 @@ class WebcamCarouselTableViewCell: UITableViewCell, ConfigurableCell {
         carousel.reloadData()
         
         // Configure header
+        let currentWebcam = webcams?[safe: carousel.currentItemIndex] ?? webcams?.first
+
         sectionImageView.image = item.image
         sectionTitleLabel.text = item.title?.uppercased()
-        webcamTitleLabel.text = webcams?.first?.title
+        webcamTitleLabel.text = currentWebcam?.title
         webcamCountLabel.text = item.webcamCountLabel()
         
         // Configure Weather
