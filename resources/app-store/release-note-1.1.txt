@@ -1,0 +1,22 @@
+L'app des Auvergnats est là :)
+
+TL;DR
+• Il est désormais possible de gérer vos favoris.
+• Appréciez vos webcams à travers un nouveau design.
+• Un aperçu de la météo est disponible sur les sections appropriées.
+• De nouvelles webcams sont disponibles.
+• Corrections et améliorations mineures.
+
+NOUVEAUTÉS
+• Nous avons entièrement redesigné l'application pour un visuel plus agréable et une expérience utilisateur plus adaptée.
+• Nous avons ajouté toutes les webcams des routes du Puy de Dôme connues.
+• Vous pouvez désormais définir une webcam en tant que favori. Vous pouvez changer ce paramètre sur le détail de chaque webcam. Lorsque vous avez au moins un favori, un nouveau carrousel apparaîtra sur l'écran d'accueil.
+• Certaines sections représente une zone géographique particulière. Lorsque nous le pouvons, nous afficherons la météo de la zone en question.
+• Un label sera présent sur chaque webcam avec une qualité réduite. En effet, certaines caméras sont disponibles uniquement en basse définition, notamment les webcams des routes du Puy de Dôme.
+
+CORRECTIONS
+• Amélioration globale de la stabilité et de l'affichage des carrousels
+
+De nombreuses autres améliorations sont prévues et vous pourrez bientôt trouver des variantes de l'application pour d'autres villes, régions et pays, stay tuned !
+
+Nous sommes à l'écoute de vos commentaires, n'hésitez pas à nous envoyer un email à auvergnewebcams@openium.fr afin de nous donner votre avis !
