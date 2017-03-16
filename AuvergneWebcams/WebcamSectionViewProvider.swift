@@ -113,9 +113,13 @@ class WebcamSectionViewProvider: AbstractArrayViewProvider<Webcam, WebcamCollect
         cell.transform = translation
         
         // Animated final state
-        UIView.animate(withDuration: 0.5) {
-            cell.layer.transform = CATransform3DIdentity
-            cell.alpha = 1
-        }
+        UIView.animate(
+            withDuration: 0.5, delay: 0,
+            options: [.allowUserInteraction],
+            animations: {
+                cell.layer.transform = CATransform3DIdentity
+                cell.alpha = 1
+        },
+            completion: nil)
     }
 }
