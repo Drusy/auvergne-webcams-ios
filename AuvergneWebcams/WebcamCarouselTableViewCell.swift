@@ -44,6 +44,9 @@ class WebcamCarouselTableViewCell: UITableViewCell, ConfigurableCell {
         carousel.type = .rotary
         carousel.perspective = -0.0015
         carousel.decelerationRate = 0.5
+        
+        carousel.delegate = self
+        carousel.dataSource = self
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -65,8 +68,11 @@ class WebcamCarouselTableViewCell: UITableViewCell, ConfigurableCell {
         webcams = nil
         delegate = nil
         
-        carousel.delegate = nil
-        carousel.dataSource = nil
+        carousel.visibleItemViews.forEach { view in
+            guard let webcamView = view as? WebcamView else { return }
+            
+            WebcamViewPool.shared.give(view: webcamView)
+        }
     }
     
     // MARK: - ConfigurableCell
@@ -91,9 +97,18 @@ class WebcamCarouselTableViewCell: UITableViewCell, ConfigurableCell {
         webcams = item.sortedWebcams()
         
         // Configure Carousel
-        carousel.delegate = self
-        carousel.dataSource = self
         carousel.reloadData()
+        
+        carousel.alpha = 0
+        UIView.animate(
+            withDuration: 0.2,
+            delay: 0.2,
+            options: [.allowUserInteraction],
+            animations: { [weak self] in
+                self?.carousel.alpha = 1
+                
+        },
+            completion: nil)
         
         // Configure header
         let currentWebcam = webcams?[safe: carousel.currentItemIndex] ?? webcams?.first
@@ -206,12 +221,12 @@ extension WebcamCarouselTableViewCell: iCarouselDelegate, iCarouselDataSource {
         var webcamView: WebcamView
         let webcam = webcams[index % webcams.count]
         let width: CGFloat = UIScreen.main.bounds.width * widthRatio()
-        let height: CGFloat = min(width * 0.55, carousel.bounds.height)
+        let height: CGFloat = min(width * 0.55, carousel.bounds.height * 0.95)
         
         if let view = view as? WebcamView {
             webcamView = view
         } else {
-            webcamView = WebcamView.loadFromXib()
+            webcamView = WebcamViewPool.shared.take()
         }
         
         webcamView.frame = CGRect(x: 0, y: 0, width: width, height: height)

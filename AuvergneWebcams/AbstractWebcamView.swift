@@ -139,13 +139,13 @@ class AbstractWebcamView: UIView {
         
         imageViewHighlightOverlayView.alpha = 0
         imageView.kf.indicatorType = .custom(indicator: KFIndicator(.white))
+        imageView.layer.borderWidth = 0
+        imageView.layer.borderColor = UIColor.awBlue.withAlphaComponent(0.3).cgColor
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        imageView.layer.borderWidth = 0
-        imageView.layer.borderColor = UIColor.awBlue.withAlphaComponent(0.3).cgColor
+
         imageView.kf.indicator?.view.layoutIfNeeded()
     }
     

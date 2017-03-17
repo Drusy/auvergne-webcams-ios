@@ -33,13 +33,19 @@ extension UIView {
     func applyShadow(opacity: Float = 0.25,
                      radius: CGFloat = 4,
                      color: UIColor = UIColor.black,
-                     offset: CGSize = CGSize(width: 1, height: 1)) {
+                     offset: CGSize = CGSize(width: 1, height: 1),
+                     shouldRasterize: Bool = false) {
         layoutIfNeeded()
         
         layer.shadowColor = color.cgColor
         layer.shadowOffset = offset
         layer.shadowOpacity = opacity
         layer.shadowRadius = radius
+        layer.shouldRasterize = shouldRasterize
+        
+        if shouldRasterize {
+            layer.rasterizationScale = UIScreen.main.scale
+        }
     }
     
     func applyRadius(ratio: CGFloat = 2, andMaskToBounds maskToBounds: Bool = false) {
