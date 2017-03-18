@@ -132,6 +132,8 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         try? realm.write {
             webcam.favorite = sender.isSelected
         }
+        
+        AnalyticsManager.logEvent(set: webcam, asFavorite: sender.isSelected)
         NotificationCenter.default.post(name: Foundation.Notification.Name.favoriteWebcamDidUpdate, object: webcam)
     }
     

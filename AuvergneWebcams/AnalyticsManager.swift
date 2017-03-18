@@ -18,7 +18,7 @@ class AnalyticsManager {
     
     fileprivate static func logEvent(withName name: String, parameters: [String: NSObject]?) {
         #if !DEBUG
-            FIRAnalytics.logEvent(withName: kFIREventShare,
+            FIRAnalytics.logEvent(withName: name,
                                   parameters: parameters)
         
             Answers.logContentView(withName: name,
@@ -94,6 +94,18 @@ class AnalyticsManager {
             kFIRParameterItemID: screen as NSObject
         ]
         AnalyticsManager.logEvent(withName: kFIREventSelectContent,
+                                  parameters: parameters)
+    }
+    
+    static func logEvent(set webcam: Webcam, asFavorite favorite: Bool) {
+        guard let webcamName = webcam.title else { return }
+        let contentType = favorite ? "favorite" : "unfavorite"
+        
+        let parameters = [
+            kFIRParameterContentType: contentType as NSObject,
+            kFIRParameterItemID: webcamName as NSObject
+        ]
+        AnalyticsManager.logEvent(withName: "favorite",
                                   parameters: parameters)
     }
     
