@@ -16,6 +16,13 @@ class WebcamSectionHeaderView: UICollectionReusableView {
     @IBOutlet var weatherView: UIView!
     @IBOutlet var weatherImageView: UIImageView!
     @IBOutlet var temperatureLabel: UILabel!
+    @IBOutlet var weatherViewWidthConstraint: NSLayoutConstraint! {
+        didSet {
+            weatherViewInitialWidth = weatherViewWidthConstraint.constant
+        }
+    }
+    
+    fileprivate var weatherViewInitialWidth: CGFloat = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -35,6 +42,7 @@ class WebcamSectionHeaderView: UICollectionReusableView {
         
         // Configure Weather
         weatherView.alpha = 0
+        weatherViewWidthConstraint.constant = 0
         
         let lastWeatherUpdate = section.lastWeatherUpdate?.timeIntervalSinceReferenceDate ?? 0
         let interval = Date().timeIntervalSinceReferenceDate - lastWeatherUpdate
@@ -53,6 +61,7 @@ class WebcamSectionHeaderView: UICollectionReusableView {
     func displayWeather(for section: WebcamSection) {
         weatherImageView.image = section.weatherImage()
         temperatureLabel.text = String(format: "%.0f°C", section.temperature)
+        weatherViewWidthConstraint.constant = weatherViewInitialWidth
         
         UIView.animate(
             withDuration: 0.3,
