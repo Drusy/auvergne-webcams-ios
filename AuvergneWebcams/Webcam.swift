@@ -13,6 +13,11 @@ import RealmSwift
 
 class Webcam: Object, Mappable {
     
+    enum ContentType: String {
+        case image = "image"
+        case viewsurf = "viewsurf"
+    }
+    
     #if DEBUG
         static let refreshInterval: TimeInterval = 60 * 1
     #else
@@ -27,8 +32,17 @@ class Webcam: Object, Mappable {
     dynamic var title: String?
     dynamic var imageHD: String?
     dynamic var imageLD: String?
-    dynamic var video: String?
-    dynamic var lowQualityOnly: Bool = false
+    dynamic var viewsurfLD: String?
+    dynamic var viewsurfHD: String?
+    
+    // MARK: - Camera content type
+    private dynamic var type: String?
+    var contentType: ContentType {
+        get {
+            guard let stringType = type else { return .image }
+            return ContentType(rawValue: stringType) ?? .image
+        }
+    }
     
     // Internal data
     dynamic var favorite: Bool = false
@@ -50,8 +64,9 @@ class Webcam: Object, Mappable {
         title <- map["title"]
         imageHD <- map["imageHD"]
         imageLD <- map["imageLD"]
-        video <- map["video"]
-        lowQualityOnly <- map["lowQualityOnly"]
+        viewsurfLD <- map["viewsurfLD"]
+        viewsurfHD <- map["viewsurfHD"]
+        type <- map["type"]
         
         tagsArray <- map["tags"]
         setTags(from: tagsArray)
@@ -77,11 +92,32 @@ class Webcam: Object, Mappable {
         }
     }
     
+    func isLowQualityOnly() -> Bool {
+        var lowQuality: Bool = false
+        
+        switch contentType {
+        case .image:
+            lowQuality = (imageHD == nil)
+        default:
+            lowQuality = (viewsurfHD == nil)
+        }
+        
+        return lowQuality
+    }
+    
     func preferredImage() -> String? {
         if Defaults[.prefersHighQuality] {
             return imageHD ?? imageLD
         } else {
             return imageLD ?? imageHD
+        }
+    }
+    
+    func preferredViewsurf() -> String? {
+        if Defaults[.prefersHighQuality] {
+            return viewsurfHD ?? viewsurfLD
+        } else {
+            return viewsurfLD ?? viewsurfHD
         }
     }
 }

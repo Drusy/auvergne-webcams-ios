@@ -63,7 +63,7 @@ class ApiRequest {
     
     // MARK: - Private
     
-    fileprivate static let headers: [String: String] = [
+    static let headers: [String: String] = [
 //        "Accept": "application/json",
         "Cache-Control": "no-cache",
         "Accept-Encoding": "gzip"

@@ -20,7 +20,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sancy-landscape-cloudless" translatesAutoresizingMaskIntoConstraints="NO" id="sUx-7X-Fba">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pdd-landscape-cloudless" translatesAutoresizingMaskIntoConstraints="NO" id="sUx-7X-Fba">
                                 <rect key="frame" x="57" y="218" width="300" height="300"/>
                             </imageView>
                         </subviews>
@@ -37,6 +37,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="sancy-landscape-cloudless" width="300" height="300"/>
+        <image name="pdd-landscape-cloudless" width="300" height="300"/>
     </resources>
 </document>

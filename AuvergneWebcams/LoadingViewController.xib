@@ -39,7 +39,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sancy-landscape-cloudless" translatesAutoresizingMaskIntoConstraints="NO" id="AnE-HF-7eA">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pdd-landscape-cloudless" translatesAutoresizingMaskIntoConstraints="NO" id="AnE-HF-7eA">
                     <rect key="frame" x="38" y="184" width="300" height="300"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloud-3" translatesAutoresizingMaskIntoConstraints="NO" id="iCO-SH-4FX">
@@ -125,6 +125,6 @@
         <image name="cloud-5" width="116" height="24"/>
         <image name="cloud-6" width="87" height="22"/>
         <image name="cloud-7" width="63" height="21"/>
-        <image name="sancy-landscape-cloudless" width="300" height="300"/>
+        <image name="pdd-landscape-cloudless" width="300" height="300"/>
     </resources>
 </document>

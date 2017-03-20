@@ -9,6 +9,7 @@
 import UIKit
 import Reachability
 import Kingfisher
+import Alamofire
 
 public struct CGSizeProxy {
     fileprivate let base: CGSize
@@ -100,6 +101,7 @@ class AbstractWebcamView: UIView {
     @IBOutlet var brokenCameraView: UIView!
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var imageViewHighlightOverlayView: UIView!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
     var retryCount = Webcam.retryCount
     
@@ -138,62 +140,114 @@ class AbstractWebcamView: UIView {
         super.awakeFromNib()
         
         imageViewHighlightOverlayView.alpha = 0
-        imageView.kf.indicatorType = .custom(indicator: KFIndicator(.white))
         imageView.layer.borderWidth = 0
         imageView.layer.borderColor = UIColor.awBlue.withAlphaComponent(0.3).cgColor
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-
-        imageView.kf.indicator?.view.layoutIfNeeded()
     }
     
     // MARK: -
     
     func configure(withWebcam webcam: Webcam) {
+        imageView.image = nil
         noDataView.isHidden = true
+        brokenCameraView.isHidden = true
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        imageView.layoutIfNeeded()
         
-        if let image = webcam.preferredImage(), let url = URL(string: image) {
-            noDataView.isHidden = true
-            brokenCameraView.isHidden = true
-            imageView.layoutIfNeeded()
+        switch webcam.contentType {
+        case .image:
+            if let image = webcam.preferredImage(), let url = URL(string: image) {
+                loadImage(for: webcam, for: url)
+            } else {
+                activityIndicator.isHidden = true
+                activityIndicator.stopAnimating()
+            }
             
-            let scale = UIScreen.main.scale
-            let targetSize = CGSize(width: imageView.bounds.width * scale,
-                                    height: imageView.bounds.height * scale)
-            let processor = ResizingContentModeImageProcessor(targetSize: targetSize, contentMode: .aspectFill)
+        case .viewsurf:
+            loadViewsurfPreview(for: webcam)
+        }
+    }
+    
+    // MARK: - 
+    
+    fileprivate func loadViewsurfPreview(for webcam: Webcam) {
+        guard let viewsurf = webcam.preferredViewsurf(), let lastURL = URL(string: "\(viewsurf)/last") else {
+            return
+        }
+        
+        let request = Alamofire.request(lastURL,
+                                        method: .get,
+                                        parameters: nil,
+                                        encoding: URLEncoding.default,
+                                        headers: ApiRequest.headers)
+        request.validate()
+        request.debugLog()
+        
+        request.responseString { [weak self] response in
+            guard let strongSelf = self else { return }
             
-            imageView.kf.setImage(with: url, options: [.processor(processor)]) { [weak self] (image, error, cacheType, imageUrl) in
-                guard let strongSelf = self else { return }
-                
-                if let error = error {
-                    print("ERROR: \(error.code) - \(error.localizedDescription)")
-                    
-                    let reachability = Reachability()
-                    let isReachable = (reachability == nil || (reachability != nil && reachability!.isReachable))
-                    
-                    if error.code != -999 && isReachable {
-                        
-                        if strongSelf.retryCount > 0 {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-                                guard let strongSelf = self else { return }
-
-                                print("Retrying to download \(imageUrl) ...")
-                                strongSelf.retryCount -= 1
-                                strongSelf.configure(withWebcam: webcam)
-                            }
-                        } else {
-                            strongSelf.brokenCameraView.isHidden = false
-                        }
-                    } else {
-                        strongSelf.retryCount = Webcam.retryCount
-                        strongSelf.noDataView.isHidden = false
-                    }
+            if let error = response.error, let statusCode = response.response?.statusCode {
+                print("ERROR: \(statusCode) - \(error.localizedDescription)")
+                strongSelf.handleError(for: webcam, statusCode: statusCode)
+            } else if let mediaPath = response.result.value?.replacingOccurrences(of: "\n", with: "") {
+                if let previewURL = URL(string: "\(viewsurf)/\(mediaPath).jpg") {
+                    strongSelf.loadImage(for: webcam, for: previewURL)
+                } else {
+                    strongSelf.activityIndicator.stopAnimating()
+                    strongSelf.activityIndicator.isHidden = true
+                    strongSelf.brokenCameraView.isHidden = false
                 }
             }
+        }
+    }
+    
+    fileprivate func loadImage(for webcam: Webcam, for url: URL) {
+        let scale = UIScreen.main.scale
+        let targetSize = CGSize(width: imageView.bounds.width * scale,
+                                height: imageView.bounds.height * scale)
+        let processor = ResizingContentModeImageProcessor(targetSize: targetSize, contentMode: .aspectFill)
+        
+        imageView.kf.setImage(with: url, options: [.processor(processor)]) { [weak self] (image, error, cacheType, imageUrl) in
+            guard let strongSelf = self else { return }
+            
+            if let error = error {
+                print("ERROR: \(error.code) - \(error.localizedDescription)")
+                strongSelf.handleError(for: webcam, statusCode: error.code)
+            } else {
+                strongSelf.activityIndicator.stopAnimating()
+                strongSelf.activityIndicator.isHidden = true
+            }
+        }
+    }
+    
+    fileprivate func handleError(for webcam: Webcam, statusCode: Int) {
+        let reachability = Reachability()
+        let isReachable = (reachability == nil || (reachability != nil && reachability!.isReachable))
+        
+        if statusCode != -999 && isReachable {
+            
+            if retryCount > 0 {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                    guard let strongSelf = self else { return }
+                    
+                    print("Retrying to download \(webcam.title) ...")
+                    strongSelf.retryCount -= 1
+                    strongSelf.configure(withWebcam: webcam)
+                }
+            } else {
+                activityIndicator.stopAnimating()
+                activityIndicator.isHidden = true
+                brokenCameraView.isHidden = false
+            }
         } else {
-            imageView.image = nil
+            retryCount = Webcam.retryCount
+            activityIndicator.stopAnimating()
+            activityIndicator.isHidden = true
+            noDataView.isHidden = false
         }
     }
 }

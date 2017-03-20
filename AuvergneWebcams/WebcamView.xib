@@ -79,6 +79,9 @@ pas fonctionnelle</string>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tei-zY-oAI">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="248"/>
                 </imageView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="PVL-xL-dxy">
+                    <rect key="frame" x="177" y="114" width="20" height="20"/>
+                </activityIndicatorView>
                 <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qTL-4z-ndV">
                     <rect key="frame" x="1" y="1" width="373" height="246"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -86,11 +89,13 @@ pas fonctionnelle</string>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="PVL-xL-dxy" firstAttribute="centerY" secondItem="Tei-zY-oAI" secondAttribute="centerY" id="2Vs-IO-jxV"/>
                 <constraint firstItem="qAv-LI-nUL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="4KQ-4g-cmD"/>
                 <constraint firstItem="HPb-IG-0PK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="4l5-fK-FpO"/>
                 <constraint firstItem="qTL-4z-ndV" firstAttribute="width" secondItem="Tei-zY-oAI" secondAttribute="width" constant="-2" id="5Qu-fU-3t1"/>
                 <constraint firstAttribute="bottom" secondItem="qAv-LI-nUL" secondAttribute="bottom" id="6lu-RO-HL4"/>
                 <constraint firstItem="Tei-zY-oAI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="8fe-TU-e7l"/>
+                <constraint firstItem="PVL-xL-dxy" firstAttribute="centerX" secondItem="Tei-zY-oAI" secondAttribute="centerX" id="9Qr-bC-3Gy"/>
                 <constraint firstAttribute="trailing" secondItem="m7F-54-nap" secondAttribute="trailing" id="Eby-Yo-spL"/>
                 <constraint firstItem="qTL-4z-ndV" firstAttribute="height" secondItem="Tei-zY-oAI" secondAttribute="height" constant="-2" id="FGQ-3u-0QM"/>
                 <constraint firstItem="HPb-IG-0PK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="FJg-V8-xfY"/>
@@ -109,6 +114,7 @@ pas fonctionnelle</string>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="activityIndicator" destination="PVL-xL-dxy" id="JWu-yJ-cpF"/>
                 <outlet property="brokenCameraView" destination="HPb-IG-0PK" id="3hF-O2-ebq"/>
                 <outlet property="imageView" destination="Tei-zY-oAI" id="ouC-cb-5Hd"/>
                 <outlet property="imageViewHighlightOverlayView" destination="qTL-4z-ndV" id="qFQ-4c-Zip"/>

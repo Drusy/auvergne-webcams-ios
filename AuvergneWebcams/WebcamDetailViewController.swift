@@ -13,9 +13,10 @@ import SwiftyUserDefaults
 import MessageUI
 import NVActivityIndicatorView
 import DOFavoriteButton
+import Alamofire
 
 class WebcamDetailViewController: AbstractRefreshViewController {
-
+    
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var brokenConnectionView: UIView!
@@ -31,7 +32,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     @IBOutlet var lastUpdateLabel: UILabel!
     @IBOutlet var lowQualityView: UIVisualEffectView!
     @IBOutlet var favoriteButton: DOFavoriteButton!
-
+    
     var lastZoomScale: CGFloat = -1
     var webcam: Webcam
     var isDataLoaded: Bool = false
@@ -45,6 +46,12 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: Notification.Name.downloadManagerDidUpdateWebcam,
+                                                  object: nil)
     }
     
     override func viewDidLoad() {
@@ -78,7 +85,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         
         brokenConnectionView.isHidden = true
         shareButton.isEnabled = false
-
+        
         setupGestureRecognizer()
         updateLastUpdateLabel()
         refresh()
@@ -86,12 +93,6 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         AnalyticsManager.logEvent(showWebcam: webcam)
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self,
-                                                  name: Notification.Name.downloadManagerDidUpdateWebcam,
-                                                  object: nil)
-    }
-
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
@@ -147,26 +148,26 @@ class WebcamDetailViewController: AbstractRefreshViewController {
                                                 preferredStyle: .actionSheet)
         
         let shareAction = UIAlertAction(title: "Partager",
-                                            style: .default,
-                                            handler: { [weak self] _ in
-                                                guard let strongSelf = self else { return }
-                                                
-                                                strongSelf.share(strongSelf.title,
-                                                                 image: strongSelf.imageView.image,
-                                                                 fromView: strongSelf.shareButton)
+                                        style: .default,
+                                        handler: { [weak self] _ in
+                                            guard let strongSelf = self else { return }
+                                            
+                                            strongSelf.share(strongSelf.title,
+                                                             image: strongSelf.imageView.image,
+                                                             fromView: strongSelf.shareButton)
         })
         
         let saveAction = UIAlertAction(title: "Sauvegarder",
-                                          style: .default,
-                                          handler: { [weak self] _ in
-                                            guard let strongSelf = self else { return }
-                                            guard let image = self?.imageView.image else { return }
-
-                                            UIImageWriteToSavedPhotosAlbum(image,
-                                                                           strongSelf,
-                                                                           #selector(strongSelf.image(_:didFinishSavingWithError:contextInfo:)),
-                                                                           nil)
-                                            AnalyticsManager.logEvent(button: "save_webcam")
+                                       style: .default,
+                                       handler: { [weak self] _ in
+                                        guard let strongSelf = self else { return }
+                                        guard let image = self?.imageView.image else { return }
+                                        
+                                        UIImageWriteToSavedPhotosAlbum(image,
+                                                                       strongSelf,
+                                                                       #selector(strongSelf.image(_:didFinishSavingWithError:contextInfo:)),
+                                                                       nil)
+                                        AnalyticsManager.logEvent(button: "save_webcam")
         })
         
         let cancelAction = UIAlertAction(title: "Annuler",
@@ -193,6 +194,102 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         present(alertController, animated: true, completion: nil)
     }
     
+    // MARK: -
+    
+    fileprivate func loadViewsurfPreview(force: Bool = false) {
+        guard let viewsurf = webcam.preferredViewsurf(), let lastURL = URL(string: "\(viewsurf)/last") else {
+            imageView.image = nil
+            return
+        }
+        
+        let request = Alamofire.request(lastURL,
+                                        method: .get,
+                                        parameters: nil,
+                                        encoding: URLEncoding.default,
+                                        headers: ApiRequest.headers)
+        request.validate()
+        request.debugLog()
+        
+        request.responseString { [weak self] response in
+            guard let strongSelf = self else { return }
+            
+            if let error = response.error, let statusCode = response.response?.statusCode {
+                print("ERROR: \(statusCode) - \(error.localizedDescription)")
+                strongSelf.handleError(statusCode: statusCode)
+            } else if let mediaPath = response.result.value?.replacingOccurrences(of: "\n", with: "") {
+                if let previewURL = URL(string: "\(viewsurf)/\(mediaPath).jpg") {
+                    self?.loadImage(for: previewURL, force: force)
+                } else {
+                    strongSelf.nvActivityIndicatorView.stopAnimating()
+                    strongSelf.nvActivityIndicatorView.isHidden = true
+                    strongSelf.brokenCameraView.isHidden = false
+                }
+            }
+        }
+    }
+    
+    fileprivate func loadImage(for url: URL, force: Bool = false) {
+        var options: KingfisherOptionsInfo = []
+        let currentContentOffset: CGPoint = scrollView.contentOffset
+        
+        if force {
+            options.append(.forceRefresh)
+        }
+        
+        imageView?.kf.setImage(
+            with: url,
+            placeholder: nil,
+            options: options,
+            progressBlock: nil) { [weak self] image, error, cacheType, url in
+                guard let strongSelf = self else { return }
+                
+                if let error = error {
+                    print("ERROR: \(error.code) - \(error.localizedDescription)")
+                    strongSelf.handleError(statusCode: error.code, force: force)
+                } else {
+                    strongSelf.retryCount = Webcam.retryCount
+                    strongSelf.nvActivityIndicatorView.stopAnimating()
+                    strongSelf.nvActivityIndicatorView.isHidden = true
+                    strongSelf.shareButton.isEnabled = true
+                    strongSelf.navigationItem.rightBarButtonItem?.isEnabled = true
+                    strongSelf.isDataLoaded = true
+                    strongSelf.updateZoom(andRestore: currentContentOffset)
+                }
+        }
+    }
+    
+    fileprivate func handleError(statusCode: Int, force: Bool = false) {
+        if statusCode != -999 && isReachable() {
+            
+            if retryCount > 0 {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                    print("Retrying to download \(self?.webcam.title) ...")
+                    self?.retryCount -= 1
+                    self?.refresh(force: force)
+                }
+            } else {
+                nvActivityIndicatorView.stopAnimating()
+                nvActivityIndicatorView.isHidden = true
+                brokenCameraView.isHidden = false
+                navigationItem.rightBarButtonItem?.isEnabled = true
+            }
+        } else {
+            nvActivityIndicatorView.stopAnimating()
+            nvActivityIndicatorView.isHidden = true
+            brokenConnectionView.isHidden = false
+        }
+    }
+    
+    // MARK: - Notification Center
+    
+    func onDownloadManagerDidUpdateWebcam(notification: Notification) {
+        guard let webcam = notification.object as? Webcam, webcam == self.webcam else { return }
+        
+        updateLastUpdateLabel()
+    }
+    
+    // MARK: -
+    
     func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         let okAction = UIAlertAction(title: "OK", style: .default)
         
@@ -218,65 +315,25 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     }
     
     override func refresh(force: Bool = false) {
-        if let image = webcam.preferredImage(), let url = URL(string: image) {
-            var options: KingfisherOptionsInfo = []
-            let currentContentOffset: CGPoint = scrollView.contentOffset
-            
-            if force {
-                options.append(.forceRefresh)
+        imageView.image = nil
+        brokenConnectionView.isHidden = true
+        brokenCameraView.isHidden = true
+        shareButton.isEnabled = false
+        navigationItem.rightBarButtonItem?.isEnabled = false
+        isDataLoaded = false
+        if !nvActivityIndicatorView.isAnimating {
+            nvActivityIndicatorView.startAnimating()
+        }
+        nvActivityIndicatorView.isHidden = false
+        
+        switch webcam.contentType {
+        case .image:
+            if let image = webcam.preferredImage(), let url = URL(string: image) {
+                loadImage(for: url, force: force)
             }
             
-            brokenConnectionView.isHidden = true
-            brokenCameraView.isHidden = true
-            shareButton.isEnabled = false
-            navigationItem.rightBarButtonItem?.isEnabled = false
-            isDataLoaded = false
-            if !nvActivityIndicatorView.isAnimating {
-                nvActivityIndicatorView.startAnimating()
-            }
-            nvActivityIndicatorView.isHidden = false
-            
-            imageView?.kf.setImage(
-                with: url,
-                placeholder: nil,
-                options: options,
-                progressBlock: nil) { [weak self] image, error, cacheType, url in
-                    guard let strongSelf = self else { return }
-                    
-                    if let error = error {
-                        print("ERROR: \(error.code) - \(error.localizedDescription)")
-                        
-                        if error.code != -999 && strongSelf.isReachable() {
-                            
-                            if strongSelf.retryCount > 0 {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-                                    guard let strongSelf = self else { return }
-                                    
-                                    print("Retrying to download \(url) ...")
-                                    strongSelf.retryCount -= 1
-                                    strongSelf.refresh(force: force)
-                                }
-                            } else {
-                                strongSelf.nvActivityIndicatorView.stopAnimating()
-                                strongSelf.nvActivityIndicatorView.isHidden = true
-                                strongSelf.brokenCameraView.isHidden = false
-                                strongSelf.navigationItem.rightBarButtonItem?.isEnabled = true
-                            }
-                        } else {
-                            strongSelf.nvActivityIndicatorView.stopAnimating()
-                            strongSelf.nvActivityIndicatorView.isHidden = true
-                            strongSelf.brokenConnectionView.isHidden = false
-                        }
-                    } else {
-                        strongSelf.retryCount = Webcam.retryCount
-                        strongSelf.nvActivityIndicatorView.stopAnimating()
-                        strongSelf.nvActivityIndicatorView.isHidden = true
-                        strongSelf.shareButton.isEnabled = true
-                        strongSelf.navigationItem.rightBarButtonItem?.isEnabled = true
-                        strongSelf.isDataLoaded = true
-                        strongSelf.updateZoom(andRestore: currentContentOffset)
-                    }
-            }
+        case .viewsurf:
+            loadViewsurfPreview(force: force)
         }
     }
     
@@ -284,10 +341,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         super.style()
         
         nvActivityIndicatorView.color = UIColor.white.withAlphaComponent(0.9)
-//        nvActivityIndicatorView.color = UIColor.awLightGray
-//        nvActivityIndicatorView.color = UIColor.awBlue
         nvActivityIndicatorView.type = .ballGridPulse
-        
     }
     
     override func translate() {
@@ -298,19 +352,9 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     
     override func update() {
         super.update()
-
-        lowQualityView.isHidden = !webcam.lowQualityOnly
-    }
-    
-    // MARK: - Notification Center
-    
-    func onDownloadManagerDidUpdateWebcam(notification: Notification) {
-        guard let webcam = notification.object as? Webcam, webcam == self.webcam else { return }
         
-        updateLastUpdateLabel()
+        lowQualityView.isHidden = !webcam.isLowQualityOnly()
     }
-    
-    // MARK: -
     
     func reportBrokenCamera() {
         guard MFMailComposeViewController.canSendMail() else {
@@ -358,7 +402,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     func handleDoubleTap(recognizer: UITapGestureRecognizer) {
         guard isDataLoaded == true else { return }
         let zoomOffset: CGFloat = (scrollView.maximumZoomScale - scrollView.minimumZoomScale) / 2
-
+        
         if (scrollView.zoomScale == scrollView.minimumZoomScale || scrollView.zoomScale < zoomOffset) {
             let zoom = min(scrollView.maximumZoomScale, scrollView.zoomScale + zoomOffset)
             let pointInView = recognizer.location(in: imageView)
@@ -389,7 +433,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         let viewHeight = view.bounds.size.height
         
         let hPadding = max(0, (viewWidth - scrollView.zoomScale * imageWidth) / 2)
-        let complementaryVPadding = webcam.lowQualityOnly ? lastUpdateView.bounds.height / 2 : lastUpdateView.bounds.height
+        let complementaryVPadding = webcam.isLowQualityOnly() ? lastUpdateView.bounds.height / 2 : lastUpdateView.bounds.height
         let vPadding = max(0, (viewHeight - scrollView.zoomScale * imageHeight) / 2 + complementaryVPadding)
         
         imageConstraintLeft.constant = hPadding
@@ -417,7 +461,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
             let widthScale = scrollViewSize.width / image.size.width
             let heightScale = scrollViewSize.height / image.size.height
             let minZoom = min(1, min(widthScale, heightScale))
-
+            
             scrollView.maximumZoomScale = 1
             scrollView.minimumZoomScale = minZoom
             
@@ -460,7 +504,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     }
 }
 
-// MARK: MFMailComposeViewControllerDelegate
+// MARK: - MFMailComposeViewControllerDelegate
 
 extension WebcamDetailViewController: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {

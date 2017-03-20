@@ -26,6 +26,6 @@ class WebcamSectionResponse: Queryable {
     // MARK: - Queryable
     
     class var webServiceLastSegmentPath: String {
-        return "aw-config.json"
+        return "/v2/aw-config.json"
     }
 }

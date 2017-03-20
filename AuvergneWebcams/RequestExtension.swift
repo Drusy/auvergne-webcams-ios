@@ -9,6 +9,7 @@
 import Alamofire
 
 extension Request {
+    @discardableResult
     public func debugLog() -> Self {
         #if DEBUG
             debugPrint(self)

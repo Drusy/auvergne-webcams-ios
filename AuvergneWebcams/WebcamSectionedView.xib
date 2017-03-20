@@ -82,6 +82,9 @@ pas fonctionnelle</string>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5ju-fM-G0p">
                             <rect key="frame" x="0.0" y="0.0" width="514" height="289"/>
                         </imageView>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="kyb-cc-dfK">
+                            <rect key="frame" x="247" y="134" width="20" height="20"/>
+                        </activityIndicatorView>
                         <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ktB-zU-qjb">
                             <rect key="frame" x="1" y="1" width="512" height="287"/>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -95,11 +98,13 @@ pas fonctionnelle</string>
                         <constraint firstAttribute="bottom" secondItem="SSA-vm-epb" secondAttribute="bottom" id="7m6-38-89O"/>
                         <constraint firstItem="SSA-vm-epb" firstAttribute="leading" secondItem="gKN-Se-vdo" secondAttribute="leading" id="BO2-p1-DpV"/>
                         <constraint firstAttribute="trailing" secondItem="5ju-fM-G0p" secondAttribute="trailing" id="DvM-tK-Fag"/>
+                        <constraint firstItem="kyb-cc-dfK" firstAttribute="centerX" secondItem="5ju-fM-G0p" secondAttribute="centerX" id="IVa-EY-UaH"/>
                         <constraint firstItem="ktB-zU-qjb" firstAttribute="centerY" secondItem="5ju-fM-G0p" secondAttribute="centerY" id="NjO-cN-4ra"/>
                         <constraint firstItem="Q7F-f9-IB0" firstAttribute="leading" secondItem="gKN-Se-vdo" secondAttribute="leading" id="YoL-l8-AGu"/>
                         <constraint firstItem="Q7F-f9-IB0" firstAttribute="top" secondItem="gKN-Se-vdo" secondAttribute="top" id="Z34-xt-exo"/>
                         <constraint firstItem="SSA-vm-epb" firstAttribute="top" secondItem="gKN-Se-vdo" secondAttribute="top" id="afo-UW-IOD"/>
                         <constraint firstAttribute="bottom" secondItem="Q7F-f9-IB0" secondAttribute="bottom" id="eXx-da-vOh"/>
+                        <constraint firstItem="kyb-cc-dfK" firstAttribute="centerY" secondItem="5ju-fM-G0p" secondAttribute="centerY" id="hgV-pA-KVn"/>
                         <constraint firstAttribute="trailing" secondItem="SSA-vm-epb" secondAttribute="trailing" id="keQ-sK-mv2"/>
                         <constraint firstItem="ktB-zU-qjb" firstAttribute="width" secondItem="5ju-fM-G0p" secondAttribute="width" constant="-2" id="t2g-OJ-6ce"/>
                         <constraint firstItem="ktB-zU-qjb" firstAttribute="centerX" secondItem="5ju-fM-G0p" secondAttribute="centerX" id="tLm-3u-6YP"/>
@@ -130,6 +135,7 @@ pas fonctionnelle</string>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="activityIndicator" destination="kyb-cc-dfK" id="yNN-9f-sNT"/>
                 <outlet property="brokenCameraView" destination="Q7F-f9-IB0" id="ZL3-xl-dcz"/>
                 <outlet property="imageView" destination="5ju-fM-G0p" id="9a0-ME-5tf"/>
                 <outlet property="imageViewHighlightOverlayView" destination="ktB-zU-qjb" id="HIm-0v-rOV"/>
