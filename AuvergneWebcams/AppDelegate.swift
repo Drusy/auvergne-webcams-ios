@@ -15,6 +15,7 @@ import Crashlytics
 import AlamofireNetworkActivityIndicator
 import Firebase
 import RealmSwift
+import SVProgressHUD
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -37,6 +38,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #if DEBUG
             UIFont.printFonts()
         #endif
+        
+        // SVProgressHUD
+        SVProgressHUD.setBackgroundColor(UIColor.clear)
+        SVProgressHUD.setForegroundColor(UIColor.white)
+        SVProgressHUD.setFont(UIFont.proximaNovaRegular(withSize: 15))
+        SVProgressHUD.setDefaultMaskType(.black)
         
         // Alamofire
         NetworkActivityIndicatorManager.shared.isEnabled = true

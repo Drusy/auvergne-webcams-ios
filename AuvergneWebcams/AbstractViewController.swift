@@ -9,6 +9,7 @@
 
 import UIKit
 import Reachability
+import Crashlytics
 
 class AbstractViewController: UIViewController {
 
@@ -48,11 +49,33 @@ class AbstractViewController: UIViewController {
     
     // MARK: -
     
+    func showAlertView(for error: Error) {
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        
+        let ac = UIAlertController(title: "Erreur",
+                                   message: error.localizedDescription,
+                                   preferredStyle: .alert)
+        ac.addAction(okAction)
+        present(ac, animated: true)
+        
+        Crashlytics.sharedInstance().recordError(error)
+    }
+    
+    func showAlertView(with message: String) {
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        
+        let ac = UIAlertController(title: title,
+                                   message: message,
+                                   preferredStyle: .alert)
+        ac.addAction(okAction)
+        present(ac, animated: true)
+    }
+    
     func isReachable() -> Bool {
         return (reachability == nil || (reachability != nil && reachability!.isReachable))
     }
     
-    func share(_ title: String? = nil, link: String? = nil, image: UIImage? = nil, fromView view: UIView? = nil) {
+    func share(_ title: String? = nil, url: URL? = nil, image: UIImage? = nil, fromView view: UIView? = nil) {
         var items = [Any]()
         
         if let title = title {
@@ -63,10 +86,8 @@ class AbstractViewController: UIViewController {
             items.append(image)
         }
         
-        if let content = link {
-            if let url = URL(string: content) {
-                items.append(url as Any)
-            }
+        if let url = url{
+            items.append(url as Any)
         }
         
         let activityController = UIActivityViewController(activityItems: items, applicationActivities: nil)

@@ -13,3 +13,5 @@ github "Alamofire/AlamofireNetworkActivityIndicator" ~> 2.1.0
 github "ninjaprox/NVActivityIndicatorView" "carthage"
 github "soheilbm/Firebase" ~> 3.7
 github "okmr-d/DOFavoriteButton" "master"
+github "SVProgressHUD/SVProgressHUD" ~> 2.1
+

@@ -14,31 +14,45 @@ import MessageUI
 import NVActivityIndicatorView
 import DOFavoriteButton
 import Alamofire
+import AVFoundation
+import AVKit
+import SVProgressHUD
 
 class WebcamDetailViewController: AbstractRefreshViewController {
     
-    @IBOutlet var scrollView: UIScrollView!
-    @IBOutlet var imageView: UIImageView!
+    // MARK: - Properties
+    
     @IBOutlet var brokenConnectionView: UIView!
     @IBOutlet var brokenCameraView: UIView!
+    
+    @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet var imageView: UIImageView!
     @IBOutlet var shareButton: UIButton!
     @IBOutlet var imageConstraintTop: NSLayoutConstraint!
     @IBOutlet var imageConstraintRight: NSLayoutConstraint!
     @IBOutlet var imageConstraintLeft: NSLayoutConstraint!
     @IBOutlet var imageConstraintBottom: NSLayoutConstraint!
     @IBOutlet var lastUpdateViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet var videoContainerBottomConstraint: NSLayoutConstraint!
     @IBOutlet var lastUpdateView: UIView!
     @IBOutlet var nvActivityIndicatorView: NVActivityIndicatorView!
     @IBOutlet var lastUpdateLabel: UILabel!
     @IBOutlet var lowQualityView: UIVisualEffectView!
     @IBOutlet var favoriteButton: DOFavoriteButton!
+    @IBOutlet var videoContainer: UIView!
     
     var lastZoomScale: CGFloat = -1
     var webcam: Webcam
     var isDataLoaded: Bool = false
     var shouldSetupInitialZoom: Bool = true
     var retryCount: Int = Webcam.retryCount
+    var avPlayerController = AVPlayerViewController()
+    var avPlayerURL: URL?
+    var avExportTimer: Timer?
+    var avExporter: AVAssetExportSession?
     
+    // MARK: - Initializers
+
     init(webcam: Webcam) {
         self.webcam = webcam
         super.init(nibName: nil, bundle: nil)
@@ -52,7 +66,10 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         NotificationCenter.default.removeObserver(self,
                                                   name: Notification.Name.downloadManagerDidUpdateWebcam,
                                                   object: nil)
+        clearAVPlayerObservers()
     }
+    
+    // MARK: - Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,7 +101,19 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         scrollView.delegate = self
         
         brokenConnectionView.isHidden = true
+        brokenCameraView.isHidden = true
         shareButton.isEnabled = false
+        
+        // AVPlayer
+        addChildViewController(avPlayerController)
+        videoContainer.addSubview(avPlayerController.view)
+        videoContainer.fit(toSubview: avPlayerController.view)
+        
+        // Insert subview
+        [brokenCameraView, brokenConnectionView].forEach { [unowned self] subview in
+            self.view.addSubview(subview!)
+            self.view.fit(toSubview: subview!)
+        }
         
         setupGestureRecognizer()
         updateLastUpdateLabel()
@@ -97,6 +126,15 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         super.viewWillLayoutSubviews()
         
         updateConstraints()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        SVProgressHUD.dismiss()
+        avExporter?.cancelExport()
+        avExportTimer?.invalidate()
+        avPlayerController.player?.pause()
     }
     
     override func viewDidLayoutSubviews() {
@@ -153,6 +191,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
                                             guard let strongSelf = self else { return }
                                             
                                             strongSelf.share(strongSelf.title,
+                                                             url: strongSelf.avPlayerURL,
                                                              image: strongSelf.imageView.image,
                                                              fromView: strongSelf.shareButton)
         })
@@ -161,12 +200,14 @@ class WebcamDetailViewController: AbstractRefreshViewController {
                                        style: .default,
                                        handler: { [weak self] _ in
                                         guard let strongSelf = self else { return }
-                                        guard let image = self?.imageView.image else { return }
                                         
-                                        UIImageWriteToSavedPhotosAlbum(image,
-                                                                       strongSelf,
-                                                                       #selector(strongSelf.image(_:didFinishSavingWithError:contextInfo:)),
-                                                                       nil)
+                                        switch strongSelf.webcam.contentType {
+                                        case .image:
+                                            strongSelf.exportImage()
+                                        case .viewsurf:
+                                            strongSelf.exportAVPlayerVideo()
+                                        }
+                                        
                                         AnalyticsManager.logEvent(button: "save_webcam")
         })
         
@@ -196,11 +237,32 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     
     // MARK: -
     
-    fileprivate func loadViewsurfPreview(force: Bool = false) {
-        guard let viewsurf = webcam.preferredViewsurf(), let lastURL = URL(string: "\(viewsurf)/last") else {
-            imageView.image = nil
-            return
+    fileprivate func clearAVPlayerObservers() {
+        if let player = avPlayerController.player {
+            player.removeObserver(self, forKeyPath: #keyPath(AVPlayer.status))
         }
+    }
+    
+    fileprivate func mediaLoadingDidFinish() {
+        retryCount = Webcam.retryCount
+        nvActivityIndicatorView.stopAnimating()
+        nvActivityIndicatorView.isHidden = true
+        shareButton.isEnabled = true
+        navigationItem.rightBarButtonItem?.isEnabled = true
+        isDataLoaded = true
+        
+        updateZoom(andRestore: scrollView.contentOffset)
+    }
+    
+    fileprivate func mediaLoadingDidFailed() {
+        nvActivityIndicatorView.stopAnimating()
+        nvActivityIndicatorView.isHidden = true
+        brokenCameraView.isHidden = false
+        navigationItem.rightBarButtonItem?.isEnabled = true
+    }
+    
+    fileprivate func fetchLastViewsurfMedia(handler: @escaping (String) -> (Void)) {
+        guard let viewsurf = webcam.preferredViewsurf(), let lastURL = URL(string: "\(viewsurf)/last") else { return }
         
         let request = Alamofire.request(lastURL,
                                         method: .get,
@@ -217,20 +279,53 @@ class WebcamDetailViewController: AbstractRefreshViewController {
                 print("ERROR: \(statusCode) - \(error.localizedDescription)")
                 strongSelf.handleError(statusCode: statusCode)
             } else if let mediaPath = response.result.value?.replacingOccurrences(of: "\n", with: "") {
-                if let previewURL = URL(string: "\(viewsurf)/\(mediaPath).jpg") {
-                    self?.loadImage(for: previewURL, force: force)
-                } else {
-                    strongSelf.nvActivityIndicatorView.stopAnimating()
-                    strongSelf.nvActivityIndicatorView.isHidden = true
-                    strongSelf.brokenCameraView.isHidden = false
-                }
+                handler(mediaPath)
+            }
+        }
+    }
+    
+    fileprivate func loadViewsurfVideo() {
+        guard let viewsurf = webcam.preferredViewsurf() else { return }
+        
+        fetchLastViewsurfMedia { [weak self] mediaPath in
+            guard let strongSelf = self else { return }
+            
+            if let videoURL = URL(string: "\(viewsurf)/\(mediaPath).mp4") {
+                strongSelf.videoContainer.isHidden = false
+                strongSelf.clearAVPlayerObservers()
+                strongSelf.avPlayerURL = videoURL
+
+                let player = AVPlayer(url: videoURL)
+                player.addObserver(strongSelf,
+                                   forKeyPath: #keyPath(AVPlayer.status),
+                                   options: [.initial, .new],
+                                   context: nil)
+                
+                strongSelf.avPlayerController.delegate = self
+                strongSelf.avPlayerController.player = player
+                strongSelf.avPlayerController.player?.play()
+            } else {
+                strongSelf.mediaLoadingDidFailed()
+            }
+        }
+    }
+    
+    fileprivate func loadViewsurfPreview(force: Bool = false) {
+        guard let viewsurf = webcam.preferredViewsurf() else { return }
+
+        fetchLastViewsurfMedia { [weak self] mediaPath in
+            guard let strongSelf = self else { return }
+            
+            if let previewURL = URL(string: "\(viewsurf)/\(mediaPath).jpg") {
+                self?.loadImage(for: previewURL, force: force)
+            } else {
+                strongSelf.mediaLoadingDidFailed()
             }
         }
     }
     
     fileprivate func loadImage(for url: URL, force: Bool = false) {
         var options: KingfisherOptionsInfo = []
-        let currentContentOffset: CGPoint = scrollView.contentOffset
         
         if force {
             options.append(.forceRefresh)
@@ -247,20 +342,13 @@ class WebcamDetailViewController: AbstractRefreshViewController {
                     print("ERROR: \(error.code) - \(error.localizedDescription)")
                     strongSelf.handleError(statusCode: error.code, force: force)
                 } else {
-                    strongSelf.retryCount = Webcam.retryCount
-                    strongSelf.nvActivityIndicatorView.stopAnimating()
-                    strongSelf.nvActivityIndicatorView.isHidden = true
-                    strongSelf.shareButton.isEnabled = true
-                    strongSelf.navigationItem.rightBarButtonItem?.isEnabled = true
-                    strongSelf.isDataLoaded = true
-                    strongSelf.updateZoom(andRestore: currentContentOffset)
+                    strongSelf.mediaLoadingDidFinish()
                 }
         }
     }
     
     fileprivate func handleError(statusCode: Int, force: Bool = false) {
         if statusCode != -999 && isReachable() {
-            
             if retryCount > 0 {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
                     print("Retrying to download \(self?.webcam.title) ...")
@@ -268,10 +356,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
                     self?.refresh(force: force)
                 }
             } else {
-                nvActivityIndicatorView.stopAnimating()
-                nvActivityIndicatorView.isHidden = true
-                brokenCameraView.isHidden = false
-                navigationItem.rightBarButtonItem?.isEnabled = true
+                mediaLoadingDidFailed()
             }
         } else {
             nvActivityIndicatorView.stopAnimating()
@@ -282,31 +367,99 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     
     // MARK: - Notification Center
     
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if let player = object as? AVPlayer {
+            if player.status == .failed {
+                handleError(statusCode: -1)
+            } else if player.status == .readyToPlay {
+                mediaLoadingDidFinish()
+            }
+        }
+    }
+    
+    func onAvExportTimerTick() {
+        guard let exporter = avExporter else { return }
+        
+        if exporter.status == AVAssetExportSessionStatus.completed ||
+            exporter.status == AVAssetExportSessionStatus.cancelled ||
+            exporter.status == AVAssetExportSessionStatus.failed ||
+            fabs(1.0 - exporter.progress) < FLT_EPSILON
+        {
+            SVProgressHUD.dismiss()
+            avExportTimer?.invalidate()
+        } else {
+            SVProgressHUD.showProgress(exporter.progress, status: "Sauvegarde en cours")
+        }
+    }
+    
     func onDownloadManagerDidUpdateWebcam(notification: Notification) {
         guard let webcam = notification.object as? Webcam, webcam == self.webcam else { return }
         
         updateLastUpdateLabel()
     }
     
-    // MARK: -
+    // MARK: - Exports
     
-    func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-        let okAction = UIAlertAction(title: "OK", style: .default)
+    func exportImage() {
+        guard let image = imageView.image else { return }
         
-        if let error = error {
-            let ac = UIAlertController(title: "Erreur",
-                                       message: error.localizedDescription,
-                                       preferredStyle: .alert)
-            ac.addAction(okAction)
-            present(ac, animated: true)
-        } else {
-            let ac = UIAlertController(title: title,
-                                       message: "Image sauvegardée dans la bibliothèque",
-                                       preferredStyle: .alert)
-            ac.addAction(okAction)
-            present(ac, animated: true)
+        UIImageWriteToSavedPhotosAlbum(image,
+                                       self,
+                                       #selector(self.image(_:didFinishSavingWithError:contextInfo:)),
+                                       nil)
+    }
+    
+    func exportAVPlayerVideo() {
+        guard let webcamTitle = webcam.title, let url = avPlayerURL else { return }
+        
+        let asset = AVURLAsset(url: url)
+        let filename = "\(webcamTitle)-\(Date().timeIntervalSince1970).mov"
+        let outputURL = URL(fileURLWithPath: NSTemporaryDirectory().appending(filename))
+        
+        asset.resourceLoader.setDelegate(self, queue: DispatchQueue.main)
+        avExporter = AVAssetExportSession(asset: asset, presetName: AVAssetExportPreset640x480)
+        avExporter?.outputURL = outputURL
+        avExporter?.outputFileType = AVFileTypeQuickTimeMovie
+        
+        avExportTimer = Timer.scheduledTimer(timeInterval: 0.1,
+                                             target: self,
+                                             selector: #selector(onAvExportTimerTick),
+                                             userInfo: nil,
+                                             repeats: true)
+        
+        avExporter?.exportAsynchronously { [weak self] in
+            guard let strongSelf = self else { return }
+            
+            SVProgressHUD.dismiss()
+            
+            if let error = strongSelf.avExporter?.error {
+                strongSelf.showAlertView(for: error)
+            } else if strongSelf.avExporter?.status == .completed {
+                UISaveVideoAtPathToSavedPhotosAlbum(outputURL.path,
+                                                    strongSelf,
+                                                    #selector(strongSelf.video(_:didFinishSavingWithError:contextInfo:)),
+                                                    nil)
+            }
         }
     }
+    
+    func video(_ video: String, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            showAlertView(for: error)
+        } else {
+            showAlertView(with: "Vidéo sauvegardée dans la bibliothèque")
+        }
+    }
+    
+    func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            showAlertView(for: error)
+        } else {
+            showAlertView(with: "Image sauvegardée dans la bibliothèque")
+        }
+    }
+    
+    // MARK: -
     
     func forceRefresh() {
         retryCount = Webcam.retryCount
@@ -321,6 +474,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         shareButton.isEnabled = false
         navigationItem.rightBarButtonItem?.isEnabled = false
         isDataLoaded = false
+        videoContainer.isHidden = true
         if !nvActivityIndicatorView.isAnimating {
             nvActivityIndicatorView.startAnimating()
         }
@@ -333,7 +487,11 @@ class WebcamDetailViewController: AbstractRefreshViewController {
             }
             
         case .viewsurf:
-            loadViewsurfPreview(force: force)
+            if isReachable() {
+                loadViewsurfVideo()
+            } else {
+                loadViewsurfPreview(force: force)
+            }
         }
     }
     
@@ -342,6 +500,8 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         
         nvActivityIndicatorView.color = UIColor.white.withAlphaComponent(0.9)
         nvActivityIndicatorView.type = .ballGridPulse
+        
+        avPlayerController.view.backgroundColor = UIColor.awDarkGray
     }
     
     override func translate() {
@@ -354,6 +514,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         super.update()
         
         lowQualityView.isHidden = !webcam.isLowQualityOnly()
+        videoContainerBottomConstraint.constant = lowQualityView.isHidden ? 0 : lowQualityView.bounds.height
     }
     
     func reportBrokenCamera() {
@@ -502,6 +663,16 @@ class WebcamDetailViewController: AbstractRefreshViewController {
             shouldSetupInitialZoom = false
         }
     }
+}
+
+// MARK: - AVAssetResourceLoaderDelegate
+
+extension WebcamDetailViewController: AVAssetResourceLoaderDelegate {
+}
+
+// MARK: - AVPlayerViewControllerDelegate
+
+extension WebcamDetailViewController: AVPlayerViewControllerDelegate {
 }
 
 // MARK: - MFMailComposeViewControllerDelegate
