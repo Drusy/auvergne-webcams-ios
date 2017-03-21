@@ -116,7 +116,6 @@
 		F9ACD2011E5CA8D8004E5BFF /* FIRAnalyticsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ACD2001E5CA8D8004E5BFF /* FIRAnalyticsExtension.swift */; };
 		F9ACD2031E5CAAD5004E5BFF /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ACD2021E5CAAD5004E5BFF /* AnalyticsManager.swift */; };
 		F9B01F301E8020DE00A1F174 /* aw-config.json in Resources */ = {isa = PBXBuildFile; fileRef = F9B01F2F1E8020DE00A1F174 /* aw-config.json */; };
-		F9B01F321E80AA2000A1F174 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B01F311E80AA2000A1F174 /* SVProgressHUD.framework */; };
 		F9B01F331E80AAB000A1F174 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B01F311E80AA2000A1F174 /* SVProgressHUD.framework */; };
 		F9B01F341E80AAB000A1F174 /* SVProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B01F311E80AA2000A1F174 /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F9B1E5FC1E65656100829FE8 /* NVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B1E5FB1E65652A00829FE8 /* NVActivityIndicatorView.framework */; };
@@ -363,7 +362,6 @@
 				F93C76471DD11AF0005DEE66 /* SwiftyUserDefaults.framework in Frameworks */,
 				F93C76411DD11AF0005DEE66 /* Kingfisher.framework in Frameworks */,
 				F9ACD1EB1E5C9B88004E5BFF /* FirebaseInstanceID.framework in Frameworks */,
-				F9B01F321E80AA2000A1F174 /* SVProgressHUD.framework in Frameworks */,
 				F93C76431DD11AF0005DEE66 /* Reachability.framework in Frameworks */,
 				F9BE03121DD8AF960063275B /* Eureka.framework in Frameworks */,
 				F94D7CE91DFAE50200460CCD /* ActiveLabel.framework in Frameworks */,
@@ -939,7 +937,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				TargetAttributes = {
 					F93C76081DD11577005DEE66 = {
 						CreatedOnToolsVersion = 8.1;
@@ -1215,6 +1213,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1266,6 +1265,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

@@ -19,6 +19,7 @@ class WebcamCarouselTableViewCell: UITableViewCell, ConfigurableCell {
     
     typealias ItemType = WebcamSection
     
+    @IBOutlet var headerView: UIView!
     @IBOutlet var carousel: iCarousel!
     @IBOutlet var sectionImageView: UIImageView!
     @IBOutlet var sectionTitleLabel: UILabel!

@@ -41,6 +41,10 @@ class WebcamSectionViewController: AbstractRefreshViewController {
                                                name: Notification.Name.favoriteWebcamDidUpdate,
                                                object: nil)
         
+        if traitCollection.forceTouchCapability == .available {
+            registerForPreviewing(with: self, sourceView: view)
+        }
+        
         provider.itemSelectionHandler = { [weak self] webcam, indexPath in
             let webcamDetail = WebcamDetailViewController(webcam: webcam)
             self?.navigationController?.pushViewController(webcamDetail, animated: true)
@@ -106,5 +110,30 @@ class WebcamSectionViewController: AbstractRefreshViewController {
                 navigationController.viewControllers.insert(self, at: 1)
             }
         }
+    }
+}
+
+// MARK: - UIViewControllerPreviewingDelegate
+
+extension WebcamSectionViewController: UIViewControllerPreviewingDelegate {
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        
+        let pointConverted = collectionView.convert(location, from: view)
+        
+        if let indexPath = collectionView.indexPathForItem(at: pointConverted) {
+            
+            let cell: WebcamCollectionViewCell = collectionView.cellForItem(at: indexPath) as! WebcamCollectionViewCell
+            previewingContext.sourceRect = view.convert(cell.frame, from: collectionView)
+            
+            if let webcam = provider.objects?[indexPath.row] {
+                return WebcamDetailViewController(webcam: webcam)
+            }
+        }
+        return nil
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        navigationController?.pushViewController(viewControllerToCommit, animated: true)
     }
 }

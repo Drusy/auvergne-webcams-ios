@@ -62,6 +62,10 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
                                                name: Notification.Name.favoriteWebcamDidUpdate,
                                                object: nil)
         
+        if traitCollection.forceTouchCapability == .available {
+            registerForPreviewing(with: self, sourceView: view)
+        }
+        
         provider.additionalCellConfigurationCustomizer = { [weak self](cell: WebcamCarouselTableViewCell, item: WebcamSection) in
             guard let lastObject = self?.provider.objects?.last else { return }
             
@@ -263,4 +267,43 @@ extension WebcamCarouselViewController: CAAnimationDelegate {
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         navigationController?.view.layer.mask = nil
     }
+}
+
+// MARK: - UIViewControllerPreviewingDelegate
+
+extension WebcamCarouselViewController: UIViewControllerPreviewingDelegate {
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        
+        let pointConverted = tableView.convert(location, from: view)
+        
+        if let indexPath = tableView.indexPathForRow(at: pointConverted) {
+            
+            
+            previewingContext.sourceRect = view.convert(tableView.rectForRow(at: indexPath), from: tableView)
+            
+            let cell: WebcamCarouselTableViewCell = tableView.cellForRow(at: indexPath) as! WebcamCarouselTableViewCell
+            let locationInCell = view.convert(location, to: cell.contentView)
+            if locationInCell.y <= cell.headerView.frame.size.height {
+                if let section = cell.section {
+                    return WebcamSectionViewController(section: section)
+                }
+            } else {
+                if let webcams = cell.webcams {
+                    if webcams.count > 0 {
+                        if let webcam = webcams[safe: (cell.carousel.currentItemIndex % webcams.count)] {
+                            return WebcamDetailViewController(webcam: webcam)
+                        }
+                    }
+                }
+            }
+            
+        }
+        return nil
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        navigationController?.pushViewController(viewControllerToCommit, animated: true)
+    }
+    
 }
