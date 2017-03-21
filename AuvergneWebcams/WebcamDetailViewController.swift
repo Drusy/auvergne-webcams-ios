@@ -421,7 +421,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         avExporter?.outputURL = outputURL
         avExporter?.outputFileType = AVFileTypeQuickTimeMovie
         
-        avExportTimer = Timer.scheduledTimer(timeInterval: 0.1,
+        avExportTimer = Timer.scheduledTimer(timeInterval: 0.3,
                                              target: self,
                                              selector: #selector(onAvExportTimerTick),
                                              userInfo: nil,
