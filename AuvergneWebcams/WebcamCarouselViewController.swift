@@ -274,11 +274,9 @@ extension WebcamCarouselViewController: CAAnimationDelegate {
 extension WebcamCarouselViewController: UIViewControllerPreviewingDelegate {
     
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        
         let pointConverted = tableView.convert(location, from: view)
         
         if let indexPath = tableView.indexPathForRow(at: pointConverted) {
-            
             
             previewingContext.sourceRect = view.convert(tableView.rectForRow(at: indexPath), from: tableView)
             
@@ -297,8 +295,8 @@ extension WebcamCarouselViewController: UIViewControllerPreviewingDelegate {
                     }
                 }
             }
-            
         }
+        
         return nil
     }
     
