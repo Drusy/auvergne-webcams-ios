@@ -134,7 +134,6 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         SVProgressHUD.dismiss()
         avExporter?.cancelExport()
         avExportTimer?.invalidate()
-        avPlayerController.player?.pause()
     }
     
     override func viewDidLayoutSubviews() {
@@ -145,6 +144,8 @@ class WebcamDetailViewController: AbstractRefreshViewController {
             let navigationBarY = navigationController.navigationBar.frame.origin.y
             
             lastUpdateViewTopConstraint.constant = navigationBarY + navigationBarHeight
+        } else {
+            lastUpdateViewTopConstraint.constant = 0
         }
     }
     
