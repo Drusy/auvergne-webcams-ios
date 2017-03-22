@@ -2,14 +2,32 @@
 
 set -e
 
-function checkKey {
+function downloadURL {
+    URL="$1"
+
+    echo "Checking '$URL'..."
+    curl --fail "$URL" -o '/tmp/image'
+}
+
+function checkViewsurf {
     echo ""
     echo "Checking images of type '$1'" ...
     IMAGES=$(grep "$1" "$CONFIGURATION_FILE" | tr -s " " | cut -d '"' -f 4)
 
-    for image in $IMAGES; do
-        echo "Checking '$image'..."
-        curl --fail "$image" -o '/tmp/image'
+    for IMAGE in $IMAGES; do
+        LAST=$(curl --fail -s -o - "$IMAGE/last")
+        downloadURL "$IMAGE/$LAST.jpg"
+        downloadURL "$IMAGE/$LAST.mp4"
+    done
+}
+
+function checkImage {
+    echo ""
+    echo "Checking images of type '$1'" ...
+    IMAGES=$(grep "$1" "$CONFIGURATION_FILE" | tr -s " " | cut -d '"' -f 4)
+
+    for IMAGE in $IMAGES; do
+        downloadURL "$IMAGE"
     done
 }
 
@@ -25,5 +43,8 @@ if [ ! -f "$CONFIGURATION_FILE" ]; then
     exit -1
 fi
 
-checkKey "imageLD"
-checkKey "imageHD"
+checkImage "imageLD"
+checkImage "imageHD"
+
+checkViewsurf "viewsurfLD"
+checkViewsurf "viewsurfHD"
