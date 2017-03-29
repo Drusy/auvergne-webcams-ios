@@ -328,7 +328,7 @@ public enum EurekaError : Error {
 *  A protocol implemented by FormViewController
 */
 public protocol FormViewControllerProtocol {
-    var tableView: UITableView? { get }
+    var tableView: UITableView! { get }
     
     func beginEditing<T:Equatable>(of: Cell<T>)
     func endEditing<T:Equatable>(of: Cell<T>)
@@ -344,7 +344,7 @@ public protocol FormViewControllerProtocol {
 /**
  *  Navigation options for a form view controller.
  */
-public struct RowNavigationOptions : OptionSet {
+public struct RowNavigationOptions: OptionSet {
     
     private enum NavigationOptions : Int {
         case disabled = 0, enabled = 1, stopDisabledRow = 2, skipCanNotBecomeFirstResponderRow = 4
@@ -409,7 +409,7 @@ public struct InlineRowHideOptions : OptionSet {
 /// View controller that shows a form.
 open class FormViewController : UIViewController, FormViewControllerProtocol {
     
-    @IBOutlet public var tableView: UITableView?
+    @IBOutlet public var tableView: UITableView!
     
     private lazy var _form : Form = { [weak self] in
         let form = Form()
@@ -425,11 +425,17 @@ open class FormViewController : UIViewController, FormViewControllerProtocol {
             tableView?.endEditing(false)
             _form = newValue
             _form.delegate = self
-            if isViewLoaded && tableView?.window != nil {
+            if isViewLoaded {
                 tableView?.reloadData()
             }
         }
     }
+    
+    /// Extra space to leave between between the row in focus and the keyboard
+    open var rowKeyboardSpacing: CGFloat = 0
+    
+    /// Enables animated scrolling on row navigation
+    open var animateScroll = false
     
     /// Accessory view that is responsible for the navigation between rows
     open var navigationAccessoryView : NavigationAccessoryView!
@@ -453,46 +459,52 @@ open class FormViewController : UIViewController, FormViewControllerProtocol {
     
     open override func viewDidLoad() {
         super.viewDidLoad()
+        navigationAccessoryView = NavigationAccessoryView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44.0))
+        navigationAccessoryView.autoresizingMask = .flexibleWidth
+        
         if tableView == nil {
             tableView = UITableView(frame: view.bounds, style: tableViewStyle)
-            tableView?.autoresizingMask = UIViewAutoresizing.flexibleWidth.union(.flexibleHeight)
+            tableView.autoresizingMask = UIViewAutoresizing.flexibleWidth.union(.flexibleHeight)
             if #available(iOS 9.0, *){
-                tableView?.cellLayoutMarginsFollowReadableWidth = false
+                tableView.cellLayoutMarginsFollowReadableWidth = false
             }
         }
-        if tableView?.superview == nil {
-            view.addSubview(tableView!)
+        if tableView.superview == nil {
+            view.addSubview(tableView)
         }
-        if tableView?.delegate == nil {
-            tableView?.delegate = self
+        if tableView.delegate == nil {
+            tableView.delegate = self
         }
-        if tableView?.dataSource == nil {
-            tableView?.dataSource = self
+        if tableView.dataSource == nil {
+            tableView.dataSource = self
         }
-        tableView?.estimatedRowHeight = BaseRow.estimatedRowHeight
+        tableView.estimatedRowHeight = BaseRow.estimatedRowHeight
+        
+        tableView.setEditing(true, animated: false)
+        tableView.allowsSelectionDuringEditing = true
     }
     
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationAccessoryView = NavigationAccessoryView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44.0))
-        navigationAccessoryView.tintColor = view.tintColor
-
-        let selectedIndexPaths = tableView?.indexPathsForSelectedRows ?? []
-        tableView?.reloadRows(at: selectedIndexPaths, with: .none)
+        animateTableView = true
+        let selectedIndexPaths = tableView.indexPathsForSelectedRows ?? []
+        if !selectedIndexPaths.isEmpty {
+            tableView.reloadRows(at: selectedIndexPaths, with: .none)
+        }
         selectedIndexPaths.forEach {
-            tableView?.selectRow(at: $0, animated: false, scrollPosition: .none)
+            tableView.selectRow(at: $0, animated: false, scrollPosition: .none)
         }
 
         let deselectionAnimation = { [weak self] (context: UIViewControllerTransitionCoordinatorContext) in
             selectedIndexPaths.forEach {
-                self?.tableView?.deselectRow(at: $0, animated: context.isAnimated)
+                self?.tableView.deselectRow(at: $0, animated: context.isAnimated)
             }
         }
 
         let reselection = { [weak self] (context: UIViewControllerTransitionCoordinatorContext) in
             if context.isCancelled {
                 selectedIndexPaths.forEach {
-                    self?.tableView?.selectRow(at: $0, animated: false, scrollPosition: .none)
+                    self?.tableView.selectRow(at: $0, animated: false, scrollPosition: .none)
                 }
             }
         }
@@ -502,7 +514,7 @@ open class FormViewController : UIViewController, FormViewControllerProtocol {
         }
         else {
             selectedIndexPaths.forEach {
-                tableView?.deselectRow(at: $0, animated: false)
+                tableView.deselectRow(at: $0, animated: false)
             }
         }
 
@@ -566,12 +578,12 @@ open class FormViewController : UIViewController, FormViewControllerProtocol {
     public final func endEditing<T:Equatable>(of cell: Cell<T>) {
         cell.row.isHighlighted = false
         cell.row.wasBlurred = true
-        cell.row.updateCell()
         RowDefaults.onCellHighlightChanged["\(type(of: self))"]?(cell, cell.row)
         cell.row.callbackOnCellHighlightChanged?()
-        if cell.row.validationOptions.contains(.validatesOnBlur) ||  cell.row.validationOptions.contains(.validatesOnChangeAfterBlurred) {
+        if cell.row.validationOptions.contains(.validatesOnBlur) || (cell.row.wasChanged && cell.row.validationOptions.contains(.validatesOnChangeAfterBlurred)) {
             cell.row.validate()
         }
+        cell.row.updateCell()
     }
     
     /**
@@ -665,9 +677,20 @@ open class FormViewController : UIViewController, FormViewControllerProtocol {
     
     open func valueHasBeenChanged(for: BaseRow, oldValue: Any?, newValue: Any?) {}
     
+    //MARK: UITableViewDelegate
+    
+    @objc open func tableView(_ tableView: UITableView, willBeginReorderingRowAtIndexPath indexPath: IndexPath){
+        // end editing if inline cell is first responder
+        let row = form[indexPath]
+        if let inlineRow = row as? BaseInlineRowType, row._inlineRow != nil {
+            inlineRow.collapseInlineRow()
+        }
+    }
+    
     //MARK: Private
     
     var oldBottomInset : CGFloat?
+    var animateTableView = false
 }
 
 extension FormViewController : UITableViewDelegate {
@@ -733,6 +756,126 @@ extension FormViewController : UITableViewDelegate {
         }
         return view.bounds.height
     }
+    
+    open func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        guard let section = form[indexPath.section] as? MultivaluedSection else { return false }
+        let row = form[indexPath]
+        guard !row.isDisabled else { return false }
+        guard !(indexPath.row == section.count - 1 && section.multivaluedOptions.contains(.Insert) && section.showInsertIconInAddButton) else {
+            return true
+        }
+        if indexPath.row > 0 && section[indexPath.row - 1] is BaseInlineRowType && section[indexPath.row - 1]._inlineRow != nil {
+            return false
+        }
+        return true
+    }
+    
+    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let row = form[indexPath]
+            var section = row.section!
+            if let _ = row.baseCell.findFirstResponder() {
+                tableView.endEditing(true)
+            }
+            section.remove(at: indexPath.row)
+            DispatchQueue.main.async {
+                tableView.isEditing = !tableView.isEditing
+                tableView.isEditing = !tableView.isEditing
+            }
+        }
+        else if editingStyle == .insert {
+            guard var section = form[indexPath.section] as? MultivaluedSection else { return }
+            guard let multivaluedRowToInsertAt = section.multivaluedRowToInsertAt else {
+                fatalError("Multivalued section multivaluedRowToInsertAt property must be set up")
+            }
+            let newRow = multivaluedRowToInsertAt(max(0, section.count - 1))
+            section.insert(newRow, at: section.count - 1)
+            DispatchQueue.main.async {
+                tableView.isEditing = !tableView.isEditing
+                tableView.isEditing = !tableView.isEditing
+            }
+            tableView.scrollToRow(at: IndexPath(row: section.count - 1, section: indexPath.section), at: .bottom, animated: true)
+            if newRow.baseCell.cellCanBecomeFirstResponder() {
+                newRow.baseCell.cellBecomeFirstResponder()
+            }
+            else if let inlineRow = newRow as? BaseInlineRowType {
+                inlineRow.expandInlineRow()
+            }
+        }
+    }
+    
+    public func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        guard let section = form[indexPath.section] as? MultivaluedSection, section.multivaluedOptions.contains(.Reorder) && section.count > 1 else {
+            return false
+        }
+        if section.multivaluedOptions.contains(.Insert) && (section.count <= 2 || indexPath.row == (section.count - 1)) {
+            return false
+        }
+        if indexPath.row > 0 && section[indexPath.row - 1] is BaseInlineRowType && section[indexPath.row - 1]._inlineRow != nil {
+            return false
+        }
+        return true
+    }
+    
+    
+    
+    public func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
+        guard let section = form[sourceIndexPath.section] as? MultivaluedSection else { return sourceIndexPath }
+        guard sourceIndexPath.section == proposedDestinationIndexPath.section else { return sourceIndexPath }
+        
+        
+        let destRow = form[proposedDestinationIndexPath]
+        if destRow is BaseInlineRowType && destRow._inlineRow != nil {
+            return IndexPath(row: proposedDestinationIndexPath.row + (sourceIndexPath.row < proposedDestinationIndexPath.row ? 1 : -1), section:sourceIndexPath.section)
+        }
+        
+        if proposedDestinationIndexPath.row > 0 {
+            let previousRow = form[IndexPath(row: proposedDestinationIndexPath.row - 1, section: proposedDestinationIndexPath.section)]
+            if previousRow is BaseInlineRowType && previousRow._inlineRow != nil {
+                return IndexPath(row: proposedDestinationIndexPath.row + (sourceIndexPath.row < proposedDestinationIndexPath.row ? 1 : -1), section:sourceIndexPath.section)
+            }
+        }
+        if section.multivaluedOptions.contains(.Insert) && proposedDestinationIndexPath.row == section.count - 1 {
+            return IndexPath(row: section.count - 2, section: sourceIndexPath.section)
+        }
+        return proposedDestinationIndexPath;
+        
+    }
+    
+    public func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
+        guard var section = form[sourceIndexPath.section] as? MultivaluedSection else { return }
+        if sourceIndexPath.row < section.count && destinationIndexPath.row < section.count && sourceIndexPath.row != destinationIndexPath.row {
+            
+            let sourceRow = form[sourceIndexPath]
+            animateTableView = false
+            section.remove(at: sourceIndexPath.row)
+            section.insert(sourceRow, at: destinationIndexPath.row)
+            animateTableView = true
+            // update the accessory view
+            let _ = inputAccessoryView(for: sourceRow)
+        }
+    }
+    
+    
+    
+    public func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        guard let section = form[indexPath.section] as? MultivaluedSection else {
+            return .none
+        }
+        if section.multivaluedOptions.contains(.Insert) && indexPath.row == section.count - 1 {
+            return .insert;
+        }
+        if section.multivaluedOptions.contains(.Delete) {
+            return .delete
+        }
+        return .none;
+    }
+    
+    
+    public func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return self.tableView(tableView, editingStyleForRowAt: indexPath) != .none
+    }
 }
 
 extension FormViewController : UITableViewDataSource {
@@ -767,37 +910,42 @@ extension FormViewController: FormDelegate {
     //MARK: FormDelegate
     
     open func sectionsHaveBeenAdded(_ sections: [Section], at indexes: IndexSet){
+        guard animateTableView else { return }
         tableView?.beginUpdates()
         tableView?.insertSections(indexes, with: insertAnimation(forSections: sections))
         tableView?.endUpdates()
     }
     
     open func sectionsHaveBeenRemoved(_ sections: [Section], at indexes: IndexSet){
+        guard animateTableView else { return }
         tableView?.beginUpdates()
         tableView?.deleteSections(indexes, with: deleteAnimation(forSections: sections))
         tableView?.endUpdates()
     }
     
     open func sectionsHaveBeenReplaced(oldSections:[Section], newSections: [Section], at indexes: IndexSet){
+        guard animateTableView else { return }
         tableView?.beginUpdates()
         tableView?.reloadSections(indexes, with: reloadAnimation(oldSections: oldSections, newSections: newSections))
         tableView?.endUpdates()
     }
     
-
     open func rowsHaveBeenAdded(_ rows: [BaseRow], at indexes: [IndexPath]) {
+        guard animateTableView else { return }
         tableView?.beginUpdates()
         tableView?.insertRows(at: indexes, with: insertAnimation(forRows: rows))
         tableView?.endUpdates()
     }
     
     open func rowsHaveBeenRemoved(_ rows: [BaseRow], at indexes: [IndexPath]) {
+        guard animateTableView else { return }
         tableView?.beginUpdates()
         tableView?.deleteRows(at: indexes, with: deleteAnimation(forRows: rows))
         tableView?.endUpdates()
     }
 
     open func rowsHaveBeenReplaced(oldRows:[BaseRow], newRows: [BaseRow], at indexes: [IndexPath]){
+        guard animateTableView else { return }
         tableView?.beginUpdates()
         tableView?.reloadRows(at: indexes, with: reloadAnimation(oldRows: oldRows, newRows: newRows))
         tableView?.endUpdates()
@@ -810,7 +958,8 @@ extension FormViewController : UIScrollViewDelegate {
     //MARK: UIScrollViewDelegate
     
     open func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        tableView?.endEditing(true)
+        guard let tableView = tableView, scrollView === tableView else { return }
+        tableView.endEditing(true)
     }
 }
 
@@ -819,15 +968,15 @@ extension FormViewController {
     //MARK: KeyBoard Notifications
     
     /**
-    Called when the keyboard will appear. Adjusts insets of the tableView and scrolls it if necessary.
-    */
+     Called when the keyboard will appear. Adjusts insets of the tableView and scrolls it if necessary.
+     */
     open func keyboardWillShow(_ notification: Notification){
         guard let table = tableView, let cell = table.findFirstResponder()?.formCell() else { return }
         let keyBoardInfo = notification.userInfo!
         let endFrame = keyBoardInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue
         
         let keyBoardFrame = table.window!.convert(endFrame.cgRectValue, to: table.superview)
-        let newBottomInset = table.frame.origin.y + table.frame.size.height - keyBoardFrame.origin.y
+        let newBottomInset = table.frame.origin.y + table.frame.size.height - keyBoardFrame.origin.y + rowKeyboardSpacing
         var tableInsets = table.contentInset
         var scrollIndicatorInsets = table.scrollIndicatorInsets
         oldBottomInset = oldBottomInset ?? tableInsets.bottom
@@ -840,7 +989,7 @@ extension FormViewController {
             table.contentInset = tableInsets
             table.scrollIndicatorInsets = scrollIndicatorInsets
             if let selectedRow = table.indexPath(for: cell) {
-                table.scrollToRow(at: selectedRow, at: .none, animated: false)
+                table.scrollToRow(at: selectedRow, at: .none, animated: animateScroll)
             }
             UIView.commitAnimations()
         }
@@ -885,7 +1034,7 @@ extension FormViewController {
         guard let currentIndexPath = tableView?.indexPath(for: currentCell) else { assertionFailure(); return }
         guard let nextRow = nextRow(for: form[currentIndexPath], withDirection: direction) else { return }
         if nextRow.baseCell.cellCanBecomeFirstResponder(){
-            tableView?.scrollToRow(at: nextRow.indexPath!, at: .none, animated: false)
+            tableView?.scrollToRow(at: nextRow.indexPath!, at: .none, animated: animateScroll)
             nextRow.baseCell.cellBecomeFirstResponder(withDirection: direction)
         }
     }

@@ -234,7 +234,9 @@ class AbstractWebcamView: UIView {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
                     guard let strongSelf = self else { return }
                     
-                    print("Retrying to download \(webcam.title) ...")
+                    if let title = webcam.title {
+                        print("Retrying to download \(title) ...")
+                    }
                     strongSelf.retryCount -= 1
                     strongSelf.configure(withWebcam: webcam)
                 }

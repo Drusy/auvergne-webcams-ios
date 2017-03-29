@@ -1,0 +1,394 @@
+{
+    "sections": [
+        {
+            "uid": 1,
+            "order": 1,
+            "title": "Norway",
+            "imageName": "reindeer-landscape",
+            "latitude": 45.7720912,
+            "longitude": 2.9631456,
+            "webcams": [
+                {
+                    "uid": 1,
+                    "order": 2,
+                    "title": "Svalbard\nThe Kjell Henriksen Observatory",
+                    "imageLD": "https://virmalised.ee/aurora-live-cameras/svalbard-norway-all-sky-aurora-live-camera.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "northern",
+                        "lights",
+                        "norway"
+                    ]
+                },
+                {
+                    "uid": 2,
+                    "order": 1,
+                    "title": "Tromso\nNational Institute of Polar Research",
+                    "imageLD": "https://virmalised.ee/aurora-live-cameras/tromso-norway-all-sky-aurora-live-camera.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "northern",
+                        "lights",
+                        "norway"
+                    ]
+                }
+            ]
+        },
+        {
+            "uid": 2,
+            "order": 2,
+            "title": "Finland",
+            "imageName": "reindeer-landscape",
+            "latitude": 45.7720912,
+            "longitude": 2.9631456,
+            "webcams": [
+                {
+                    "uid": 3,
+                    "order": 1,
+                    "title": "Helsinki\nThe Finnish Meteorological Institute",
+                    "imageLD": "http://aurora.fmi.fi/public_service/latest_DYN.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "northern",
+                        "lights",
+                        "finland"
+                    ]
+                },
+                {
+                    "uid": 4,
+                    "order": 2,
+                    "title": "Hankasalmi\nHankasalmi Observatory",
+                    "imageLD": "https://virmalised.ee/aurora-live-cameras/hankasalmi-finland-all-sky-aurora-live-camera.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "northern",
+                        "lights",
+                        "finland"
+                    ]
+                },
+                {
+                    "uid": 5,
+                    "order": 3,
+                    "title": "Tampere North\nUrsa Observatory",
+                    "imageLD": null,
+                    "imageHD": "http://www.ursa.fi/yhd/tampereenursa/Pics/latest_CAM-03.jpg",
+                    "type": "image",
+                    "tags": [
+                        "northern",
+                        "lights",
+                        "finland",
+                        "tampere"
+                    ]
+                },
+                {
+                    "uid": 6,
+                    "order": 4,
+                    "title": "Tampere West\nUrsa Observatory",
+                    "imageLD": null,
+                    "imageHD": "http://www.ursa.fi/yhd/tampereenursa/Pics/latest_CAM-01.jpg",
+                    "type": "image",
+                    "tags": [
+                        "northern",
+                        "lights",
+                        "finland",
+                        "tampere"
+                    ]
+                },
+                {
+                    "uid": 7,
+                    "order": 5,
+                    "title": "Tampere Zenith\nUrsa Observatory",
+                    "imageLD": null,
+                    "imageHD": "http://www.ursa.fi/yhd/tampereenursa/Pics/latest_CAM-05.jpg",
+                    "type": "image",
+                    "tags": [
+                        "northern",
+                        "lights",
+                        "finland",
+                        "tampere"
+                    ]
+                },
+                {
+                    "uid": 8,
+                    "order": 6,
+                    "title": "Tampere South\nUrsa Observatory",
+                    "imageLD": null,
+                    "imageHD": "http://www.ursa.fi/yhd/tampereenursa/Pics/latest_CAM-02.jpg",
+                    "type": "image",
+                    "tags": [
+                        "northern",
+                        "lights",
+                        "finland",
+                        "tampere"
+                    ]
+                },
+                {
+                    "uid": 9,
+                    "order": 7,
+                    "title": "Tampere Southwest\nUrsa Observatory",
+                    "imageLD": null,
+                    "imageHD": "http://www.ursa.fi/yhd/tampereenursa/Pics/latest_CAM-06.jpg",
+                    "type": "image",
+                    "tags": [
+                        "northern",
+                        "lights",
+                        "finland",
+                        "tampere"
+                    ]
+                },
+                {
+                    "uid": 10,
+                    "order": 8,
+                    "title": "Tampere Northwest\nUrsa Observatory",
+                    "imageLD": null,
+                    "imageHD": "http://www.ursa.fi/yhd/tampereenursa/Pics/latest_CAM-04.jpg",
+                    "type": "image",
+                    "tags": [
+                        "northern",
+                        "lights",
+                        "finland",
+                        "tampere"
+                    ]
+                },
+                {
+                    "uid": 11,
+                    "order": 9,
+                    "title": "Tampere Northeast\nUrsa Observatory",
+                    "imageLD": null,
+                    "imageHD": "http://www.ursa.fi/yhd/tampereenursa/Pics/latest_CAM-08.jpg",
+                    "type": "image",
+                    "tags": [
+                        "northern",
+                        "lights",
+                        "finland",
+                        "tampere"
+                    ]
+                },
+                {
+                    "uid": 12,
+                    "order": 10,
+                    "title": "Tampere Southeast\nUrsa Observatory",
+                    "imageLD": null,
+                    "imageHD": "http://www.ursa.fi/yhd/tampereenursa/Pics/latest_CAM-12.jpg",
+                    "type": "image",
+                    "tags": [
+                        "northern",
+                        "lights",
+                        "finland",
+                        "tampere"
+                    ]
+                },
+                {
+                    "uid": 13,
+                    "order": 11,
+                    "title": "Tampere Southeast\nUrsa Observatory",
+                    "imageLD": null,
+                    "imageHD": "http://www.ursa.fi/yhd/tampereenursa/Pics/latest_CAM-10.jpg",
+                    "type": "image",
+                    "tags": [
+                        "northern",
+                        "lights",
+                        "finland",
+                        "tampere"
+                    ]
+                },
+                {
+                    "uid": 14,
+                    "order": 12,
+                    "title": "Muonio\nThe Finnish Meteorological Institute",
+                    "imageLD": "http://aurora.fmi.fi/public_service/latest_MUO.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "northern",
+                        "lights",
+                        "finland"
+                    ]
+                },
+                {
+                    "uid": 15,
+                    "order": 13,
+                    "title": "Kilpisjärvi\nThe Finnish Meteorological Institute",
+                    "imageLD": "http://aurora.fmi.fi/public_service/latest_KIL.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "northern",
+                        "lights",
+                        "finland"
+                    ]
+                },
+                {
+                    "uid": 16,
+                    "order": 14,
+                    "title": "Metsähovi (nr Espoo)\nThe Finnish Meteorological Institute",
+                    "imageLD": "http://aurora.fmi.fi/public_service/latest_HOV.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "northern",
+                        "lights",
+                        "finland"
+                    ]
+                },
+                {
+                    "uid": 17,
+                    "order": 15,
+                    "title": "Sodankylä\nGeophysical Observatory",
+                    "imageLD": "https://virmalised.ee/aurora-live-cameras/sodankyla-finland-all-sky-aurora-live-camera.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "northern",
+                        "lights",
+                        "finland"
+                    ]
+                }
+            ]
+        },
+        {
+            "uid": 3,
+            "order": 3,
+            "title": "Sweden",
+            "imageName": "reindeer-landscape",
+            "latitude": 45.7720912,
+            "longitude": 2.9631456,
+            "webcams": [
+                {
+                    "uid": 18,
+                    "order": 1,
+                    "title": "Abisko\nLights Over Lapland",
+                    "imageLD": "https://virmalised.ee/aurora-live-cameras/abisko-lights-over-lapland-sweden-aurora-live-camera.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "northern",
+                        "lights",
+                        "sweden"
+                    ]
+                },
+                {
+                    "uid": 19,
+                    "order": 2,
+                    "title": "Kiruna\nSwedish Institute of Space Physics",
+                    "imageLD": "https://virmalised.ee//aurora-live-cameras/kiruna-sweden-all-sky-aurora-live-camera.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "northern",
+                        "lights",
+                        "sweden"
+                    ]
+                },
+                {
+                    "uid": 20,
+                    "order": 3,
+                    "title": "Porjus\nNature of Jokkmokk, Porjus",
+                    "imageLD": "https://virmalised.ee/aurora-live-cameras/porjus-sweden-north-view-sweden-aurora-live-camera.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "northern",
+                        "lights",
+                        "sweden"
+                    ]
+                },
+                {
+                    "uid": 21,
+                    "order": 4,
+                    "title": "Porjus North\nNature of Jokkmokk, Porjus",
+                    "imageLD": "https://virmalised.ee/aurora-live-cameras/porjus-sweden-north-view-sweden-aurora-live-camera.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "northern",
+                        "lights",
+                        "sweden"
+                    ]
+                },
+                {
+                    "uid": 22,
+                    "order": 5,
+                    "title": "Porjus West\nNature of Jokkmokk, Porjus",
+                    "imageLD": "https://virmalised.ee/aurora-live-cameras/porjus-sweden-west-view-aurora-live-camera.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "northern",
+                        "lights",
+                        "sweden"
+                    ]
+                },
+                {
+                    "uid": 23,
+                    "order": 6,
+                    "title": "Porjus East\nNature of Jokkmokk, Porjus",
+                    "imageLD": "https://virmalised.ee/aurora-live-cameras/porjus-sweden-east-view-sweden-aurora-live-camera.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "northern",
+                        "lights",
+                        "sweden"
+                    ]
+                },
+                {
+                    "uid": 24,
+                    "order": 7,
+                    "title": "Porjus South\nNature of Jokkmokk, Porjus",
+                    "imageLD": "https://virmalised.ee/aurora-live-cameras/porjus-sweden-all-sky-aurora-live-camera.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "northern",
+                        "lights",
+                        "sweden"
+                    ]
+                }
+            ]
+        },
+        {
+            "uid": 4,
+            "order": 4,
+            "title": "North America",
+            "imageName": "reindeer-landscape",
+            "latitude": 45.7720912,
+            "longitude": 2.9631456,
+            "webcams": [
+                {
+                    "uid": 25,
+                    "order": 2,
+                    "title": "Yellowknife, Canada\nUniversity of Calgary / AuroraMax",
+                    "imageLD": "https://virmalised.ee/aurora-live-cameras/yellowknife-canada-aurora-live-camera.jpg",
+                    "imageHD": "http://auroramax.phys.ucalgary.ca/recent/recent_480p.jpg",
+                    "type": "image",
+                    "tags": [
+                        "northern",
+                        "lights",
+                        "canada",
+                        "america"
+                    ]
+                },
+                {
+                    "uid": 26,
+                    "order": 1,
+                    "title": "Fairbanks\nAlaska, USA",
+                    "imageLD": "https://virmalised.ee/aurora-live-cameras/fairbanks-alaska-usa-aurora-live-camera.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "northern",
+                        "lights",
+                        "usa",
+                        "alaska",
+                        "america"
+                    ]
+                }
+            ]
+        }
+    ]
+}

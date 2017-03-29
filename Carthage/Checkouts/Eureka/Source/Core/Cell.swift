@@ -26,7 +26,7 @@
 import Foundation
 
 /// Base class for the Eureka cells
-open class BaseCell : UITableViewCell, BaseCellType {
+open class BaseCell: UITableViewCell, BaseCellType {
 
     /// Untyped row associated to this cell.
     public var baseRow: BaseRow! { return nil }
@@ -48,8 +48,8 @@ open class BaseCell : UITableViewCell, BaseCellType {
     public func formViewController() -> FormViewController? {
         var responder : AnyObject? = self
         while responder != nil {
-            if responder! is FormViewController {
-                return responder as? FormViewController
+            if let formVC = responder as? FormViewController {
+              return formVC
             }
             responder = responder?.next
         }

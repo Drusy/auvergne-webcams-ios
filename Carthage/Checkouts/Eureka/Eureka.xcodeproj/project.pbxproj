@@ -16,6 +16,7 @@
 		2859CDC41C7D19C50002982F /* HeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2859CDC31C7D19C50002982F /* HeaderFooterView.swift */; };
 		2859CDC61C7D1A2E0002982F /* NavigationAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2859CDC51C7D1A2E0002982F /* NavigationAccessoryView.swift */; };
 		2859CDE91C7DD78E0002982F /* BaseRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2859CDE81C7DD78E0002982F /* BaseRow.swift */; };
+		285BA44A1E8187480034EE92 /* MultivaluedSectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285BA4481E81864E0034EE92 /* MultivaluedSectionTests.swift */; };
 		287A142B1D89DF1E00FFE6EB /* ValidationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287A142A1D89DF1E00FFE6EB /* ValidationsTests.swift */; };
 		287A14331D8A07ED00FFE6EB /* SelectableSectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287A142D1D8A07B700FFE6EB /* SelectableSectionTests.swift */; };
 		287E7D7E1D625A260065F4DE /* RuleRequired.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287E7D7D1D625A260065F4DE /* RuleRequired.swift */; };
@@ -78,6 +79,7 @@
 		28EEC02F1C7E49BF00300699 /* SelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2859CE101C7E01EE0002982F /* SelectorViewController.swift */; };
 		28EEC0321C7E64A400300699 /* DatePickerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2859CDFC1C7DF9430002982F /* DatePickerRow.swift */; };
 		28EEC0331C7E64AB00300699 /* PopoverSelectorRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2859CE1D1C7E08300002982F /* PopoverSelectorRow.swift */; };
+		3973000A1DF0E2A000080E4D /* PickerInputRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397300091DF0E2A000080E4D /* PickerInputRow.swift */; };
 		49ADC7F91C8A83240073952B /* StepperRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ADC7F81C8A83240073952B /* StepperRow.swift */; };
 		51729DF61B9A4F5E004A00EB /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51729DEB1B9A4F5E004A00EB /* Eureka.framework */; };
 		51729E671B9A5FA5004A00EB /* Eureka.h in Headers */ = {isa = PBXBuildFile; fileRef = 51729E661B9A5FA5004A00EB /* Eureka.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -136,6 +138,7 @@
 		2859CE1F1C7E092B0002982F /* MultipleSelectorRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleSelectorRow.swift; sourceTree = "<group>"; };
 		2859CE211C7E13470002982F /* GenericMultipleSelectorRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenericMultipleSelectorRow.swift; path = Common/GenericMultipleSelectorRow.swift; sourceTree = "<group>"; };
 		2859CE231C7E141B0002982F /* SelectableSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectableSection.swift; sourceTree = "<group>"; };
+		285BA4481E81864E0034EE92 /* MultivaluedSectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultivaluedSectionTests.swift; path = Tests/MultivaluedSectionTests.swift; sourceTree = SOURCE_ROOT; };
 		287A142A1D89DF1E00FFE6EB /* ValidationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidationsTests.swift; path = Tests/ValidationsTests.swift; sourceTree = SOURCE_ROOT; };
 		287A142D1D8A07B700FFE6EB /* SelectableSectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectableSectionTests.swift; path = Tests/SelectableSectionTests.swift; sourceTree = SOURCE_ROOT; };
 		287E7D7D1D625A260065F4DE /* RuleRequired.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RuleRequired.swift; path = Source/Validations/RuleRequired.swift; sourceTree = SOURCE_ROOT; };
@@ -167,6 +170,7 @@
 		28EEBFF71C7E241200300699 /* SelectableRowType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectableRowType.swift; sourceTree = "<group>"; };
 		28EEBFFA1C7E25C500300699 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
 		28EEBFFC1C7E25F100300699 /* Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Cell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		397300091DF0E2A000080E4D /* PickerInputRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerInputRow.swift; sourceTree = "<group>"; };
 		49ADC7F81C8A83240073952B /* StepperRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepperRow.swift; sourceTree = "<group>"; };
 		51729DEB1B9A4F5E004A00EB /* Eureka.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Eureka.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		51729DF01B9A4F5E004A00EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Source/Info.plist; sourceTree = "<group>"; };
@@ -241,6 +245,7 @@
 				2859CDA01C7CF3A10002982F /* LabelRow.swift */,
 				2859CE1F1C7E092B0002982F /* MultipleSelectorRow.swift */,
 				2859CDB51C7D0EC60002982F /* PickerRow.swift */,
+				397300091DF0E2A000080E4D /* PickerInputRow.swift */,
 				2859CDB71C7D0FE70002982F /* PickerInlineRow.swift */,
 				2859CE1D1C7E08300002982F /* PopoverSelectorRow.swift */,
 				2859CDEC1C7DF0680002982F /* PushRow.swift */,
@@ -351,6 +356,7 @@
 				28B1D77A1C7F90C900605EB3 /* RowCallbackTests.swift */,
 				28B1D77B1C7F90C900605EB3 /* SetValuesTests.swift */,
 				287A142A1D89DF1E00FFE6EB /* ValidationsTests.swift */,
+				285BA4481E81864E0034EE92 /* MultivaluedSectionTests.swift */,
 				51729DFC1B9A4F5E004A00EB /* Info.plist */,
 			);
 			name = Tests;
@@ -423,7 +429,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = Xmartlabs;
 				TargetAttributes = {
 					51729DEA1B9A4F5E004A00EB = {
@@ -496,6 +502,7 @@
 				2859CDBE1C7D137D0002982F /* Form.swift in Sources */,
 				280FBE5F1D873CCE00900064 /* RuleClosure.swift in Sources */,
 				28EEC0001C7E36EB00300699 /* SwitchRow.swift in Sources */,
+				3973000A1DF0E2A000080E4D /* PickerInputRow.swift in Sources */,
 				287E7D901D7601850065F4DE /* RuleLength.swift in Sources */,
 				28EEC02A1C7E3B5A00300699 /* MultipleSelectorRow.swift in Sources */,
 				28EEC0231C7E3B1900300699 /* AlertRow.swift in Sources */,
@@ -551,6 +558,7 @@
 				28B1D78B1C7F911900605EB3 /* FormValuesTests.swift in Sources */,
 				28B1D7871C7F911900605EB3 /* BaseEurekaTests.swift in Sources */,
 				28B1D7911C7F911900605EB3 /* SetValuesTests.swift in Sources */,
+				285BA44A1E8187480034EE92 /* MultivaluedSectionTests.swift in Sources */,
 				28B1D7901C7F911900605EB3 /* RowCallbackTests.swift in Sources */,
 				28B1D78E1C7F911900605EB3 /* OperatorsTest.swift in Sources */,
 				28B1D78D1C7F911900605EB3 /* HiddenRowsTests.swift in Sources */,
@@ -585,8 +593,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -633,8 +643,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -666,6 +678,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -688,6 +701,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;

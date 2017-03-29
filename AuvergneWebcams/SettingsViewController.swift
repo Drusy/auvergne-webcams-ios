@@ -111,8 +111,8 @@ class SettingsViewController: FormViewController {
                     NotificationCenter.default.post(name: NSNotification.Name.SettingsDidUpdateQuality,
                                                     object: self)
             }
-            
-            +++ Section(header: "Auvergne Webcams", footer: "Version \(version) (\(build))")
+
+            +++ Section(header: Configuration.applicationName, footer: "Version \(version) (\(build))")
             <<< LabelRow() {
                 $0.title = "À propos"
             }.onCellSelection { _, _ in

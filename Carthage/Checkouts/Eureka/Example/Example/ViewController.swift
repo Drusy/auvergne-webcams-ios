@@ -38,7 +38,7 @@ class HomeViewController : FormViewController {
            cell.accessoryView?.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
         }
         
-        form =
+        form +++
             
             Section() {
                 $0.header = HeaderFooterView<EurekaLogoView>(.class)
@@ -96,6 +96,18 @@ class HomeViewController : FormViewController {
                     row.title = row.tag
                     row.presentationMode = .segueName(segueName: "ValidationsControllerSegue", onDismiss: nil)
                 }
+            
+                <<< ButtonRow("Custom Design") { (row: ButtonRow) -> Void in
+                    row.title = row.tag
+                    row.presentationMode = .segueName(segueName: "CustomDesignControllerSegue", onDismiss: nil)
+                }
+            
+                <<< ButtonRow("Multivalued Sections") { (row: ButtonRow) -> Void in
+                    row.title = row.tag
+                    row.presentationMode = .segueName(segueName: "MultivaluedSectionsControllerSegue", onDismiss: nil)
+                }
+            
+                
         +++ Section()
                 <<< ButtonRow() { (row: ButtonRow) -> Void in
                    row.title = "About"
@@ -132,7 +144,7 @@ class RowsExampleViewController: FormViewController {
         CheckRow.defaultCellSetup = { cell, row in cell.tintColor = .orange }
         DateRow.defaultRowInitializer = { row in row.minimumDate = Date() }
 
-        form =
+        form +++
             
             Section()
             
@@ -200,14 +212,17 @@ class RowsExampleViewController: FormViewController {
                         $0.options = ["Diego Forlán", "Edinson Cavani", "Diego Lugano", "Luis Suarez"]
                         $0.value = "Luis Suarez"
                     }
-                
+                    .onPresent { from, to in
+                        to.popoverPresentationController?.permittedArrowDirections = .up
+                    }
+            
                 <<< AlertRow<Emoji>() {
                         $0.title = "AlertRow"
                         $0.selectorTitle = "Who is there?"
                         $0.options = [💁🏻, 🍐, 👦🏼, 🐗, 🐼, 🐻]
                         $0.value = 👦🏼
                     }.onChange { row in
-                        print(row.value)
+                        print(row.value ?? "No Value")
                     }
                     .onPresent{ _, to in
                         to.view.tintColor = .purple
@@ -219,7 +234,23 @@ class RowsExampleViewController: FormViewController {
                         $0.value = 👦🏼
                         $0.selectorTitle = "Choose an Emoji!"
                     }
-            
+
+                <<< PushRow<Emoji>() {
+                        $0.title = "SectionedPushRow"
+                        $0.options = [💁🏻, 🍐, 👦🏼, 🐗, 🐼, 🐻]
+                        $0.value = 👦🏼
+                        $0.selectorTitle = "Choose an Emoji!"
+                    }.onPresent { from, to in
+                        to.sectionKeyForValue = { option in
+                            switch option {
+                            case 💁🏻, 👦🏼: return "People"
+                            case 🐗, 🐼, 🐻: return "Animals"
+                            case 🍐: return "Food"
+                            default: return ""
+                            }
+                        }
+        }
+
         
         if UIDevice.current.userInterfaceIdiom == .pad {
             let section = form.last!
@@ -252,7 +283,24 @@ class RowsExampleViewController: FormViewController {
                     .onPresent { from, to in
                         to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(RowsExampleViewController.multipleSelectorDone(_:)))
                     }
-            
+        
+                <<< MultipleSelectorRow<Emoji>() {
+                    $0.title = "SectionedMultipleSelectorRow"
+                    $0.options = [💁🏻, 🍐, 👦🏼, 🐗, 🐼, 🐻]
+                    $0.value = [👦🏼, 🍐, 🐗]
+                    }
+                    .onPresent { from, to in
+                        to.sectionKeyForValue = { option in
+                            switch option {
+                            case 💁🏻, 👦🏼: return "People"
+                            case 🐗, 🐼, 🐻: return "Animals"
+                            case 🍐: return "Food"
+                            default: return ""
+                            }
+                        }
+                        to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(RowsExampleViewController.multipleSelectorDone(_:)))
+        }
+        
         form +++ Section("Generic picker")
             
                 <<< PickerRow<String>("Picker Row") { (row : PickerRow<String>) -> Void in
@@ -261,7 +309,15 @@ class RowsExampleViewController: FormViewController {
                     for i in 1...10{
                         row.options.append("option \(i)")
                     }
-                
+                }
+            
+                <<< PickerInputRow<String>("Picker Input Row"){
+                    $0.title = "Options"
+                    $0.options = []
+                    for i in 1...10{
+                        $0.options.append("option \(i)")
+                    }
+                    $0.value = $0.options.first
                 }
         
             +++ Section("FieldRow examples")
@@ -467,7 +523,7 @@ class NavigationAccessoryController : FormViewController {
                     $0.title = "Navigation accessory view"
                     $0.value = self.navigationOptions != .Disabled
                 }.onChange { [weak self] in
-                    if $0.value == true {
+                    if $0.value ?? false {
                         self?.navigationOptions = self?.navigationOptionsBackup
                         self?.form.rowBy(tag: "set_disabled")?.baseValue = self?.navigationOptions?.contains(.StopDisabledRow)
                         self?.form.rowBy(tag: "set_skip")?.baseValue = self?.navigationOptions?.contains(.SkipCanNotBecomeFirstResponderRow)
@@ -553,7 +609,7 @@ class NativeEventFormViewController : FormViewController {
     
     private func initializeForm() {
         
-        form =
+        form +++
             
                 TextRow("Title").cellSetup { cell, row in
                     cell.textField.placeholder = row.tag
@@ -657,6 +713,7 @@ class NativeEventFormViewController : FormViewController {
                     $0.value = .Never
                 }.onPresent({ (_, vc) in
                     vc.enableDeselection = false
+                    vc.dismissOnSelection = false
                 })
         
         form +++
@@ -1349,6 +1406,278 @@ class ValidationsController: FormViewController {
                 }
         
     
+    }
+}
+
+
+class CustomDesignController: FormViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        form +++
+            Section()
+            <<< SwitchRow() {
+                $0.cellProvider = CellProvider<SwitchCell>(nibName: "SwitchCell", bundle: Bundle.main)
+                $0.cell.height = { 67 }
+            }
+        
+            <<< DatePickerRow() {
+                $0.cellProvider = CellProvider<DatePickerCell>(nibName: "DatePickerCell", bundle: Bundle.main)
+                $0.cell.height = { 345 }
+            }
+        
+            <<< TextRow() {
+                $0.cellProvider = CellProvider<TextCell>(nibName: "TextCell", bundle: Bundle.main)
+                $0.cell.height = { 199 }
+            }
+            .onChange { row in
+                if let textView = row.cell.viewWithTag(99) as? UITextView {
+                    textView.text = row.cell.textField.text
+                }
+            }
+    }
+}
+
+
+class MultivaluedSectionsController: FormViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "Multivalued examples"
+        form +++
+                Section("Multivalued examples")
+                    <<< ButtonRow(){
+                        $0.title = "Multivalued Sections"
+                        $0.presentationMode = .segueName(segueName: "MultivaluedControllerSegue", onDismiss: nil)
+                    }
+                    <<< ButtonRow(){
+                        $0.title = "Multivalued Only Reorder"
+                        $0.presentationMode = .segueName(segueName: "MultivaluedOnlyReorderControllerSegue", onDismiss: nil)
+                    }
+                    <<< ButtonRow(){
+                        $0.title = "Multivalued Only Insert"
+                        $0.presentationMode = .segueName(segueName: "MultivaluedOnlyInsertControllerSegue", onDismiss: nil)
+                    }
+                    <<< ButtonRow(){
+                        $0.title = "Multivalued Only Delete"
+                        $0.presentationMode = .segueName(segueName: "MultivaluedOnlyDeleteControllerSegue", onDismiss: nil)
+                    }
+    }
+    
+    
+}
+
+class MultivaluedController: FormViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "Multivalued Examples"
+        form +++
+            MultivaluedSection(multivaluedOptions: [.Reorder, .Insert, .Delete],
+                               header: "Multivalued TextField",
+                               footer: ".Insert multivaluedOption adds the 'Add New Tag' button row as last cell.") {
+                $0.addButtonProvider = { section in
+                    return ButtonRow(){
+                        $0.title = "Add New Tag"
+                    }.cellUpdate { cell, row in
+                        cell.textLabel?.textAlignment = .left
+                    }
+                }
+                $0.multivaluedRowToInsertAt = { index in
+                    return NameRow() {
+                        $0.placeholder = "Tag Name"
+                    }
+                }
+                $0 <<< NameRow() {
+                    $0.placeholder = "Tag Name"
+                }
+            }
+            
+            +++
+            
+            MultivaluedSection(multivaluedOptions: [.Insert, .Delete],
+                                           header: "Multivalued ActionSheet Selector example",
+                                           footer: ".Insert multivaluedOption adds a 'Add' button row as last cell.") {
+                $0.multivaluedRowToInsertAt = { index in
+                    return ActionSheetRow<String>{
+                        $0.title = "Tap to select.."
+                        $0.options = ["Option 1", "Option 2", "Option 3", "Option 4", "Option 5"]
+                    }
+                }
+                $0 <<< ActionSheetRow<String> {
+                            $0.title = "Tap to select.."
+                            $0.options = ["Option 1", "Option 2", "Option 3", "Option 4", "Option 5"]
+                       }
+
+            }
+        
+            +++
+        
+            MultivaluedSection(multivaluedOptions: [.Insert, .Delete, .Reorder],
+                                           header: "Multivalued Push Selector example",
+                                           footer: "") {
+                $0.multivaluedRowToInsertAt = { index in
+                    return PushRow<String>{
+                        $0.title = "Tap to select ;)..at \(index)"
+                        $0.options = ["Option 1", "Option 2", "Option 3"]
+                    }
+                }
+                $0 <<< PushRow<String> {
+                    $0.title = "Tap to select ;).."
+                    $0.options = ["Option 1", "Option 2", "Option 3"]
+                }
+                                
+            }
+    }
+}
+
+class MultivaluedOnlyRearderController: FormViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let secondsPerDay = 24 * 60 * 60
+        let list = ["Today", "Yesterday", "Before Yesterday"]
+        
+        form +++
+        
+            MultivaluedSection(multivaluedOptions: .Reorder,
+                               header: "Reordering Selectors",
+                               footer: "") {
+                 $0 <<< PushRow<String> {
+                        $0.title = "Tap to select ;).."
+                        $0.options = ["Option 1", "Option 2", "Option 3"]
+                    }
+                    <<< PushRow<String> {
+                        $0.title = "Tap to select ;).."
+                        $0.options = ["Option 1", "Option 2", "Option 3"]
+                    }
+                    <<< PushRow<String> {
+                        $0.title = "Tap to select ;).."
+                        $0.options = ["Option 1", "Option 2", "Option 3"]
+                    }
+                    <<< PushRow<String> {
+                        $0.title = "Tap to select ;).."
+                        $0.options = ["Option 1", "Option 2", "Option 3"]
+                    }
+            
+            }
+        
+            +++
+            // Multivalued Section with inline rows - section set up to support only reordering
+            MultivaluedSection(multivaluedOptions: .Reorder,
+                                           header: "Reordering Inline Rows",
+                                           footer: "") { section in
+                list.enumerated().forEach({ offset, string in
+                    let dateInlineRow = DateInlineRow(){
+                        $0.value = Date(timeInterval: Double(-secondsPerDay) * Double(offset), since: Date())
+                        $0.title = string
+                    }
+                    section <<< dateInlineRow
+                })
+            }
+        
+            +++
+        
+            MultivaluedSection(multivaluedOptions: .Reorder,
+                               header: "Reordering Field Rows",
+                               footer: "")
+            <<< NameRow {
+                $0.value = "Martin"
+            }
+            <<< NameRow {
+                $0.value = "Mathias"
+            }
+            <<< NameRow {
+                $0.value = "Agustin"
+            }
+            <<< NameRow {
+                $0.value = "Enrique"
+        }
+
+    }
+}
+
+class MultivaluedOnlyInsertController: FormViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "Multivalued Only Insert"
+        form    +++
+            
+                MultivaluedSection(multivaluedOptions: .Insert) { sec in
+                    sec.addButtonProvider = { _ in return ButtonRow {
+                                                            $0.title = "Add Tag"
+                                                          }.cellUpdate { cell, row in
+                                                                cell.textLabel?.textAlignment = .left
+                                                          }
+                    }
+                    sec.multivaluedRowToInsertAt = { index in
+                        return TextRow {
+                            $0.placeholder = "Tag Name"
+                        }
+                    }
+                    sec.showInsertIconInAddButton = false
+                }
+        
+                +++
+        
+                MultivaluedSection(multivaluedOptions: .Insert, header: "Insert With Inline Cells") {
+                    $0.multivaluedRowToInsertAt = { index in
+                        return DateInlineRow {
+                            $0.title = "Date"
+                            $0.value = Date()
+                        }
+                    }
+                }
+    }
+}
+
+class MultivaluedOnlyDeleteController: FormViewController {
+    
+    @IBOutlet weak var editButton: UIBarButtonItem!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.isEditing = false
+        let nameList = ["family", "male", "female", "client"]
+        
+        let section = MultivaluedSection(multivaluedOptions: .Delete, footer: "you can swipe to delete when table.isEditing = false (Not Editing)")
+        
+        
+        for tag in nameList {
+            section <<< TextRow {
+                            $0.placeholder = "Tag Name"
+                            $0.value = tag
+                        }
+        }
+        
+        
+        let section2 =  MultivaluedSection(multivaluedOptions: .Delete, footer: "")
+        for _ in 1..<4 {
+            section2 <<< PickerInlineRow<String> {
+                            $0.title = "Tap to select"
+                            $0.value = "client"
+                            $0.options = nameList
+                         }
+        }
+        
+        editButton.title = tableView.isEditing ? "Done" : "Edit"
+        editButton.target = self
+        editButton.action = #selector(self.editPressed(sender:))
+        
+        form    +++
+            
+                section
+        
+                +++
+        
+                section2
+    }
+    
+    func editPressed(sender: UIBarButtonItem){
+        tableView.setEditing(!tableView.isEditing, animated: true)
+        editButton.title = tableView.isEditing ? "Done" : "Edit"
+        
     }
 }
 

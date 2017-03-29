@@ -91,21 +91,20 @@ extension SelectableSectionType where Self: Section, Self.Iterator == IndexingIt
                     switch s.selectionType {
                     case .multipleSelection:
                         row.value = row.value == nil ? row.selectableValue : nil
-                        row.updateCell()
-                        s.onSelectSelectableRow?(cell, row)
-                    case .singleSelection(let enableDeselection):
+                    case let .singleSelection(enableDeselection):
                         s.filter { $0.baseValue != nil && $0 != row }.forEach {
                             $0.baseValue = nil
                             $0.updateCell()
                         }
                         // Check if row is not already selected
-                        if enableDeselection || row.value == nil {
-                            row.value = row.value == nil ? row.selectableValue : nil
-                            row.updateCell()
-                            s.onSelectSelectableRow?(cell, row)
+                        if row.value == nil {
+                            row.value = row.selectableValue
+                        } else if enableDeselection {
+                            row.value = nil
                         }
                     }
-                    
+                    row.updateCell()
+                    s.onSelectSelectableRow?(cell, row)
                 }
             }
         }
@@ -124,17 +123,22 @@ open class SelectableSection<Row: SelectableRowType> : Section, SelectableSectio
     /// A closure called when a row of this section is selected.
     public var onSelectSelectableRow: ((Row.Cell, Row) -> Void)?
     
-    public required init(_ initializer: (Section) -> ()) {
-        super.init(initializer)
+    public override init(_ initializer: (SelectableSection<Row>) -> ()) {
+        super.init({ section in initializer(section as! SelectableSection<Row>) })
     }
     
-    public init(_ header: String, selectionType: SelectionType, _ initializer: (Section) -> () = { _ in }) {
+    public init(_ header: String, selectionType: SelectionType, _ initializer: (SelectableSection<Row>) -> () = { _ in }) {
         self.selectionType = selectionType
-        super.init(header, initializer)
+        super.init(header, { section in initializer(section as! SelectableSection<Row>) })
     }
-    
+
+    public init(header: String, footer: String, selectionType: SelectionType, _ initializer: (SelectableSection<Row>) -> () = { _ in }) {
+        self.selectionType = selectionType
+        super.init(header: header, footer: footer, { section in initializer(section as! SelectableSection<Row>) })
+    }
+
     public required init() {
-        fatalError("init() has not been implemented")
+        super.init()
     }
     
     open override func rowsHaveBeenAdded(_ rows: [BaseRow], at: IndexSet) {

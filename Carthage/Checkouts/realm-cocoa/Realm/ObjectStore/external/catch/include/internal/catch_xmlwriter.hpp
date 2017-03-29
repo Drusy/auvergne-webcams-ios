@@ -55,9 +55,10 @@ namespace Catch {
                         break;
 
                     default:
-                        // Escape control chars - based on contribution by @espenalb in PR #465
-                        if ( ( c < '\x09' ) || ( c > '\x0D' && c < '\x20') || c=='\x7F' )
-                            os << "&#x" << std::uppercase << std::hex << static_cast<int>( c );
+                        // Escape control chars - based on contribution by @espenalb in PR #465 and
+                        // by @mrpi PR #588
+                        if ( ( c >= 0 && c < '\x09' ) || ( c > '\x0D' && c < '\x20') || c=='\x7F' )
+                            os << "&#x" << std::uppercase << std::hex << std::setfill('0') << std::setw(2) << static_cast<int>( c ) << ';';
                         else
                             os << c;
                 }
@@ -112,13 +113,20 @@ namespace Catch {
         :   m_tagIsOpen( false ),
             m_needsNewline( false ),
             m_os( &Catch::cout() )
-        {}
+        {
+            // We encode control characters, which requires
+            // XML 1.1
+            // see http://stackoverflow.com/questions/404107/why-are-control-characters-illegal-in-xml-1-0
+            *m_os << "<?xml version=\"1.1\" encoding=\"UTF-8\"?>\n";
+        }
 
         XmlWriter( std::ostream& os )
         :   m_tagIsOpen( false ),
             m_needsNewline( false ),
             m_os( &os )
-        {}
+        {
+            *m_os << "<?xml version=\"1.1\" encoding=\"UTF-8\"?>\n";
+        }
 
         ~XmlWriter() {
             while( !m_tags.empty() )
@@ -128,7 +136,7 @@ namespace Catch {
         XmlWriter& startElement( std::string const& name ) {
             ensureTagClosed();
             newlineIfNecessary();
-            stream() << m_indent << "<" << name;
+            stream() << m_indent << '<' << name;
             m_tags.push_back( name );
             m_indent += "  ";
             m_tagIsOpen = true;
@@ -157,12 +165,12 @@ namespace Catch {
 
         XmlWriter& writeAttribute( std::string const& name, std::string const& attribute ) {
             if( !name.empty() && !attribute.empty() )
-                stream() << " " << name << "=\"" << XmlEncode( attribute, XmlEncode::ForAttributes ) << "\"";
+                stream() << ' ' << name << "=\"" << XmlEncode( attribute, XmlEncode::ForAttributes ) << '"';
             return *this;
         }
 
         XmlWriter& writeAttribute( std::string const& name, bool attribute ) {
-            stream() << " " << name << "=\"" << ( attribute ? "true" : "false" ) << "\"";
+            stream() << ' ' << name << "=\"" << ( attribute ? "true" : "false" ) << '"';
             return *this;
         }
 
@@ -194,7 +202,7 @@ namespace Catch {
 
         XmlWriter& writeBlankLine() {
             ensureTagClosed();
-            stream() << "\n";
+            stream() << '\n';
             return *this;
         }
 
@@ -219,7 +227,7 @@ namespace Catch {
 
         void newlineIfNecessary() {
             if( m_needsNewline ) {
-                stream() << "\n";
+                stream() << '\n';
                 m_needsNewline = false;
             }
         }

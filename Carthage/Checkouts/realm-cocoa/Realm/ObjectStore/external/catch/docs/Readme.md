@@ -16,5 +16,5 @@ Before looking at this material be sure to read the [tutorial](tutorial.md)
 Other
 
 * [Why Catch?](why-catch.md)
-* [What's changed](whats-changed.md)
 * [Contributing](contributing.md)
+* [Release Notes](release-notes.md)

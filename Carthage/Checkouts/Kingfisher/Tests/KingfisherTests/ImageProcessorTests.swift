@@ -73,6 +73,16 @@ class ImageProcessorTests: XCTestCase {
         checkProcessor(p, with: "resize-120")
     }
     
+    func testResizingProcessorWithContentMode() {
+        let p1 = ResizingImageProcessor(targetSize: CGSize(width: 240, height: 60), contentMode: .aspectFill)
+        XCTAssertEqual(p1.identifier, "com.onevcat.Kingfisher.ResizingImageProcessor((240.0, 60.0), aspectFill)")
+        checkProcessor(p1, with: "resize-240-60-aspectFill")
+        
+        let p2 = ResizingImageProcessor(targetSize: CGSize(width: 240, height: 60), contentMode: .aspectFit)
+        XCTAssertEqual(p2.identifier, "com.onevcat.Kingfisher.ResizingImageProcessor((240.0, 60.0), aspectFit)")
+        checkProcessor(p2, with: "resize-240-60-aspectFit")
+    }
+    
     func testBlurProcessor() {
         let p = BlurImageProcessor(blurRadius: 10)
         XCTAssertEqual(p.identifier, "com.onevcat.Kingfisher.BlurImageProcessor(10.0)")
@@ -122,6 +132,12 @@ class ImageProcessorTests: XCTestCase {
         let p = TestCIImageProcessor(filter: .tint(Color.yellow.withAlphaComponent(0.2)))
         checkProcessor(p, with: "tint-yellow-02")
     }
+    
+    func testCroppingImageProcessor() {
+        let p = CroppingImageProcessor(size: CGSize(width: 50, height: 50), anchor: CGPoint(x: 0.5, y: 0.5))
+        XCTAssertEqual(p.identifier, "com.onevcat.Kingfisher.CroppingImageProcessor((50.0, 50.0)_(0.5, 0.5))")
+        checkProcessor(p, with: "cropping-50-50-anchor-center")
+    }
 }
 
 struct TestCIImageProcessor: CIImageProcessor {
@@ -139,7 +155,7 @@ extension ImageProcessorTests {
         
         let targetImages = filteredImageNames
             .map { $0.replacingOccurrences(of: ".", with: "-\(specifiedSuffix).") }
-            .map { Image(fileName: $0) }
+            .flatMap { Image(fileName: $0) }
         
         let resultImages = imageData(noAlpha: noAlpha).flatMap { p.process(item: .data($0), options: []) }
         
@@ -148,7 +164,7 @@ extension ImageProcessorTests {
     
     func checkImagesEqual(targetImages: [Image], resultImages: [Image], for suffix: String) {
         XCTAssertEqual(targetImages.count, resultImages.count)
-        
+
         for (i, (resultImage, targetImage)) in zip(resultImages, targetImages).enumerated() {
             guard resultImage.renderEqual(to: targetImage) else {
                 let originalName = imageNames[i]

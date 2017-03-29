@@ -21,7 +21,9 @@ class ApiRequest {
         let request = startRequest(forType: type, parameters: parameters)
         
         request.responseString { response in
-            print("Request: \(response.request)")
+            if let request = response.request {
+                print("Request: \(request)")
+            }
             
             if let statusCode = response.response?.statusCode {
                 print("Status code: \(statusCode)")

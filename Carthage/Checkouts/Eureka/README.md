@@ -14,20 +14,32 @@ Made with ❤️ by [XMARTLABS](http://xmartlabs.com). This is the re-creation o
 
 ## Overview
 
-<img src="Example/Media/EurekaExample1.gif" width="220"/>
-<img src="Example/Media/EurekaExample2.gif" width="220"/>
-<img src="Example/Media/EurekaExample3.gif" width="220"/>
+<table>
+  <tr>
+    <th>
+      <img src="Example/Media/EurekaExample1.gif" width="220"/>
+    </th>
+    <th>
+      <img src="Example/Media/EurekaExample2.gif" width="220"/>
+    </th>
+    <th>
+    <img src="Example/Media/EurekaExample3.gif" width="220"/>
+    </th>
+  </tr>
+</table>
 
 ## Contents
 
 * [Requirements]
 * [Usage]
   + [How to create a Form]
+  + [Getting row values]
   + [Operators]
   + [Using the callbacks]
   + [Section Header and Footer]
   + [Dynamically hide and show rows (or sections)]
   + [List sections]
+  + [Multivalued sections]
   + [Validations]
 * [Custom rows]
   + [Basic custom rows]
@@ -49,8 +61,16 @@ Made with ❤️ by [XMARTLABS](http://xmartlabs.com). This is the re-creation o
 
 You can clone and run the Example project to see examples of most of Eureka's features.
 
-<img src="Example/Media/EurekaNavigation.gif" width="200"/>
-<img src="Example/Media/EurekaRows.gif" width="200"/>
+<table>
+  <tr>
+    <th>
+      <img src="Example/Media/EurekaNavigation.gif" width="200"/>
+    </th>
+    <th>
+      <img src="Example/Media/EurekaRows.gif" width="200"/>
+    </th>
+  </tr>
+</table>
 
 ## Usage
 
@@ -64,7 +84,7 @@ class MyFormViewController: FormViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        form = Section("Section1")
+        form +++ Section("Section1")
             <<< TextRow(){ row in
                 row.title = "Text Row"
                 row.placeholder = "Enter text here"
@@ -76,7 +96,7 @@ class MyFormViewController: FormViewController {
         +++ Section("Section2")
             <<< DateRow(){
                 $0.title = "Date Row"
-                $0.value = NSDate(timeIntervalSinceReferenceDate: 0)
+                $0.value = Date(timeIntervalSinceReferenceDate: 0)
             }
     }
 }
@@ -85,10 +105,45 @@ class MyFormViewController: FormViewController {
 In the example we create two sections with standard rows, the result is this:
 
 <center>
-<img src="Example/Media/EurekaHowTo.gif" width="300" alt="Screenshot of Custom Cells"/>
+<img src="Example/Media/EurekaHowTo.gif" width="200" alt="Screenshot of Custom Cells"/>
 </center>
 
 You could create a form by just setting up the `form` property by yourself without extending from `FormViewController` but this method is typically more convenient.
+
+#### Configuring the keyboard navigation accesory
+
+To change the behaviour of this you should set the navigation options of your controller. The `FormViewController` has a `navigationOptions` variable which is an enum and can have one or more of the following values:
+
+- **disabled**: no view at all
+- **enabled**: enable view at the bottom
+- **stopDisabledRow**: if the navigation should stop when the next row is disabled
+- **skipCanNotBecomeFirstResponderRow**: if the navigation should skip the rows that return false to `canBecomeFirstResponder()`
+
+The default value is `enabled & skipCanNotBecomeFirstResponderRow`
+
+To enable smooth scrolling to off-screen rows, enable it via the `animateScroll` property. By default, the `FormViewController` jumps immediately between rows when the user hits the next or previous buttons in the keyboard navigation accesory, including when the next row is off screen.
+
+To set the amount of space between the keyboard and the highlighted row following a navigation event, set the `rowKeyboardSpacing` property. By default, when the form scrolls to an offscreen view no space will be left between the top of the keyboard and the bottom of the row.
+
+```swift
+class MyFormViewController: FormViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        form = ...
+
+	// Enables the navigation accessory and stops navigation when a disabled row is encountered
+	navigationOptions = RowNavigationOptions.Enabled.union(.StopDisabledRow)
+	// Enables smooth scrolling on navigation to off-screen rows
+	animateScroll = true
+	// Leaves 20pt of space between the keyboard and the highlighted row after scrolling to an off screen row
+	rowKeyboardSpacing = 20
+    }
+}
+```
+
+If you want to change the whole navigation accessory view, you will have to override the `navigationAccessoryView` variable in your subclass of `FormViewController`.
+
 
 ### Getting row values
 
@@ -375,6 +430,61 @@ Eureka includes the `ListCheckRow` which is used for example. In the custom rows
 
 To easily get the selected row/s of a `SelectableSection` there are two methods: `selectedRow()` and `selectedRows()` which can be called to get the selected row in case it is a `SingleSelection` section or all the selected rows if it is a `MultipleSelection` section.
 
+##### Grouping options in sections
+
+Additionally you can setup list of options to be grouped by sections using following properties of `SelectorViewController`:
+
+- `sectionKeyForValue` - a closure that should return key for particular row value. This key is later used to break options by sections.
+
+- `sectionHeaderTitleForKey` - a closure that returns header title for a section for particular key. By default returns the key itself.
+
+- `sectionFooterTitleForKey` - a closure that returns footer title for a section for particular key.
+
+### Multivalued Sections
+
+Eureka supports multiple values for a certain field (such as telephone numbers in a contact) by using Multivalued sections. It allows us to easily create insertable, deletable and reorderable sections.
+
+<img src="Example/Media/EurekaMultivalued.gif" width="300" alt="Screenshot of Multivalued Section" />
+
+#### How to create a multivalued section
+
+In order to create a multivalued section we have to use `MultivaluedSection` type instead of the regular `Section` type. `MultivaluedSection` extends `Section` and has some additional properties to configure multivalued section behavior.
+
+let's dive into a code example...
+
+```swift
+form +++
+    MultivaluedSection(multivaluedOptions: [.Reorder, .Insert, .Delete],
+                       header: "Multivalued TextField",
+                       footer: ".Insert adds a 'Add Item' (Add New Tag) button row as last cell.") {
+        $0.addButtonProvider = { section in
+            return ButtonRow(){
+                $0.title = "Add New Tag"
+            }
+        }
+        $0.multivaluedRowToInsertAt = { index in
+            return NameRow() {
+                $0.placeholder = "Tag Name"
+            }
+        }
+        $0 <<< NameRow() {
+            $0.placeholder = "Tag Name"
+        }
+    }
+```
+
+Previous code snippet shows how to create a multivalued section. In this case we want to insert, delete and reorder rows as multivaluedOptions argument indicates.
+
+`addButtonProvider` allows us to customize the button row which inserts a new row when tapped and `multivaluedOptions` contains .Insert` value.
+
+`multivaluedRowToInsertAt` closure property is called by Eureka each time a new row needs to be inserted. In order to provide the row to add into multivalued section we should set this property. Eureka passes the index as closure parameter. Notice that we can return any kind of row, even custom rows, even though in most cases multivalued section rows are of the same type.
+
+Eureka automatically adds a button row when we create a insertable multivalued section. We can customize how the this button row looks like as we explained before. `showInsertIconInAddButton` property indicates if plus button (insert style) should appear in the left of the button, true by default.
+
+There are some considerations we need to have in mind when creating insertable sections. Any row added to the insertable multivalued section should be placed above the row that Eureka automatically adds to insert new rows. This can be easily achieved by adding these additional rows to the section from inside section's initializer closure (last parameter of section initializer) so then Eureka adds the adds insert button at the end of the section.
+
+For more information on how to use multivalued sections please take a look at Eureka example project which contains several usage examples.
+
 ### Validations
 
 Eureka 2.0.0 introduces the very requested build-in validations feature.
@@ -403,6 +513,15 @@ override func viewDidLoad() {
             <<< TextRow() {
                 $0.title = "Required Rule"
                 $0.add(rule: RuleRequired())
+
+		// This could also have been achieved using a closure that returns nil if valid, or a ValidationError otherwise.
+		/*
+		let ruleRequiredViaClosure = RuleClosure<String> { rowValue in
+		return (rowValue == nil || rowValue!.isEmpty) ? ValidationError(msg: "Field required!") : nil
+		}
+		$0.add(rule: ruleRequiredViaClosure)
+		*/
+
                 $0.validationOptions = .validatesOnChange
             }
             .cellUpdate { cell, row in
@@ -562,8 +681,8 @@ public final class CustomPushRow<T: Equatable>: SelectorRow<PushSelectorCell<T>,
         super.init(tag: tag)
         presentationMode = .show(controllerProvider: ControllerProvider.callback {
             return SelectorViewController<T>(){ _ in }
-            }, completionCallback: { vc in
-                vc.navigationController?.popViewController(animated: true)
+            }, onDismiss: { vc in
+                _ = vc.navigationController?.popViewController(animated: true)
         })
     }
 }
@@ -677,7 +796,7 @@ Additionally, `FieldRow` subtypes have a `useFormatterOnDidBeginEditing` propert
 
 ### Date Rows
 
-Date Rows hold a NSDate and allow us to set up a new value through UIDatePicker control. The mode of the UIDatePicker and the way how the date picker view is shown is what changes between them.
+Date Rows hold a Date and allow us to set up a new value through UIDatePicker control. The mode of the UIDatePicker and the way how the date picker view is shown is what changes between them.
 <table>
 <tr>
 <td>
@@ -790,8 +909,6 @@ Let us know about it, we would be glad to mention it here. :)
 
 [CocoaPods](https://cocoapods.org/) is a dependency manager for Cocoa projects.
 
-**Cocoapods 1.1.0.rc.3 or newer version must be used.**
-
 Specify Eureka into your project's `Podfile`:
 
 ```ruby
@@ -799,7 +916,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'Eureka', '~> 2.0.0-beta.1'
+pod 'Eureka', '~> 3.0'
 ```
 
 Then run the following command:
@@ -815,7 +932,7 @@ $ pod install
 Specify Eureka into your project's `Cartfile`:
 
 ```ogdl
-github "xmartlabs/Eureka" ~> 2.0.0
+github "xmartlabs/Eureka" ~> 3.0
 ```
 
 #### Manually as Embedded Framework
@@ -852,23 +969,6 @@ If you use **Eureka** in your app We would love to hear about it! Drop us a line
 
 ## FAQ
 
-#### How to get the value of a row?
-
-The value of a row can be obtained with `row.value`. The type of this value is the type of the row (i.e. the value of a `PickerRow<String>` is of type `String`).
-
-#### How to change the bottom navigation accessory view?
-
-To change the behaviour of this you should set the navigation options of your controller. The `FormViewController` has a `navigationOptions` variable which is an enum and can have one or more of the following values:
-
-- **disabled**: no view at all
-- **enabled**: enable view at the bottom
-- **stopDisabledRow**: if the navigation should stop when the next row is disabled
-- **skipCanNotBecomeFirstResponderRow**: if the navigation should skip the rows that return false to `canBecomeFirstResponder()`
-
-The default value is `enabled & skipCanNotBecomeFirstResponderRow`
-
-If you want to change the whole view of the bottom you will have to override the `navigationAccessoryView` variable in your subclass of `FormViewController`.
-
 #### How to get a Row using its tag value
 
 We can get a particular row by invoking any of the following functions exposed by the `Form` class:
@@ -885,7 +985,7 @@ For instance:
 let dateRow : DateRow? = form.rowBy(tag: "dateRowTag")
 let labelRow: LabelRow? = form.rowBy(tag: "labelRowTag")
 
-let dateRow2: Row<NSDate>? = form.rowBy(tag: "dateRowTag")
+let dateRow2: Row<Date>? = form.rowBy(tag: "dateRowTag")
 
 let labelRow2: BaseRow? = form.rowBy(tag: "labelRowTag")
 ```
@@ -997,6 +1097,7 @@ It's up to you to decide if you want to use Eureka custom operators or not.
 [Requirements]: #requirements
 
 [How to create a Form]: #how-to-create-a-form
+[Getting row values]: #getting-row-values
 [How to get the form values]: #how-to-get-the-form-values
 [Examples]: #examples
 [Usage]: #usage
@@ -1018,6 +1119,7 @@ It's up to you to decide if you want to use Eureka custom operators or not.
 [FAQ]: #faq
 
 [List sections]: #list-sections
+[Multivalued sections]: #multivalued-sections
 [Validations]: #validations
 
 * [Installation]

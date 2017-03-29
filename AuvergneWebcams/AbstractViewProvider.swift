@@ -157,7 +157,7 @@ class AbstractViewProvider<Item: Any, Cell: ConfigurableCell>: NSObject, UITable
             }
         }
         
-        emptyView.layer.zPosition = CGFloat(FLT_MAX)
+        emptyView.layer.zPosition = CGFloat(Float.greatestFiniteMagnitude)
         emptyView.isHidden = false
     }
     

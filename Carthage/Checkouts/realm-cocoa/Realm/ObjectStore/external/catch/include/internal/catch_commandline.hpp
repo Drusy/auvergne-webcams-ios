@@ -23,13 +23,14 @@ namespace Catch {
         config.abortAfter = x;
     }
     inline void addTestOrTags( ConfigData& config, std::string const& _testSpec ) { config.testsOrTags.push_back( _testSpec ); }
+    inline void addSectionToRun( ConfigData& config, std::string const& sectionName ) { config.sectionsToRun.push_back( sectionName ); }
     inline void addReporterName( ConfigData& config, std::string const& _reporterName ) { config.reporterNames.push_back( _reporterName ); }
 
     inline void addWarning( ConfigData& config, std::string const& _warning ) {
         if( _warning == "NoAssertions" )
             config.warnings = static_cast<WarnAbout::What>( config.warnings | WarnAbout::NoAssertions );
         else
-            throw std::runtime_error( "Unrecognised warning: '" + _warning + "'" );
+            throw std::runtime_error( "Unrecognised warning: '" + _warning + '\'' );
     }
     inline void setOrder( ConfigData& config, std::string const& order ) {
         if( startsWith( "declared", order ) )
@@ -39,7 +40,7 @@ namespace Catch {
         else if( startsWith( "random", order ) )
             config.runOrder = RunTests::InRandomOrder;
         else
-            throw std::runtime_error( "Unrecognised ordering: '" + order + "'" );
+            throw std::runtime_error( "Unrecognised ordering: '" + order + '\'' );
     }
     inline void setRngSeed( ConfigData& config, std::string const& seed ) {
         if( seed == "time" ) {
@@ -62,6 +63,21 @@ namespace Catch {
             ? ShowDurations::Always
             : ShowDurations::Never;
     }
+    inline void setUseColour( ConfigData& config, std::string const& value ) {
+        std::string mode = toLower( value );
+
+        if( mode == "yes" )
+            config.useColour = UseColour::Yes;
+        else if( mode == "no" )
+            config.useColour = UseColour::No;
+        else if( mode == "auto" )
+            config.useColour = UseColour::Auto;
+        else
+            throw std::runtime_error( "colour mode must be one of: auto, yes or no" );
+    }
+    inline void forceColour( ConfigData& config ) {
+        config.useColour = UseColour::Yes;
+    }
     inline void loadTestNamesFromFile( ConfigData& config, std::string const& _filename ) {
         std::ifstream f( _filename.c_str() );
         if( !f.is_open() )
@@ -70,8 +86,11 @@ namespace Catch {
         std::string line;
         while( std::getline( f, line ) ) {
             line = trim(line);
-            if( !line.empty() && !startsWith( line, "#" ) )
-                addTestOrTags( config, "\"" + line + "\"," );
+            if( !line.empty() && !startsWith( line, '#' ) ) {
+                if( !startsWith( line, '"' ) )
+                    line = '"' + line + '"';
+                addTestOrTags( config, line + ',' );
+            }
         }
     }
 
@@ -148,7 +167,7 @@ namespace Catch {
 
         cli["-d"]["--durations"]
             .describe( "show test durations" )
-            .bind( &setShowDurations, "yes/no" );
+            .bind( &setShowDurations, "yes|no" );
 
         cli["-f"]["--input-file"]
             .describe( "load test names to run from a file" )
@@ -157,6 +176,10 @@ namespace Catch {
         cli["-#"]["--filenames-as-tags"]
             .describe( "adds a tag for the filename" )
             .bind( &ConfigData::filenamesAsTags );
+
+        cli["-c"]["--section"]
+                .describe( "specify section to run" )
+                .bind( &addSectionToRun, "section name" );
 
         // Less common commands which don't have a short form
         cli["--list-test-names-only"]
@@ -176,8 +199,12 @@ namespace Catch {
             .bind( &setRngSeed, "'time'|number" );
 
         cli["--force-colour"]
-            .describe( "force colourised output" )
-            .bind( &ConfigData::forceColour );
+            .describe( "force colourised output (deprecated)" )
+            .bind( &forceColour );
+
+        cli["--use-colour"]
+            .describe( "should output be colourised" )
+            .bind( &setUseColour, "yes|no" );
 
         return cli;
     }

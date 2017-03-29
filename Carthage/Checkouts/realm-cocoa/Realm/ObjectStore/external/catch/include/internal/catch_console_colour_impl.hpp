@@ -41,15 +41,7 @@ namespace Catch {
 
 #if defined ( CATCH_CONFIG_COLOUR_WINDOWS ) /////////////////////////////////////////
 
-#ifndef NOMINMAX
-#define NOMINMAX
-#endif
-
-#ifdef __AFXDLL
-#include <AfxWin.h>
-#else
-#include <windows.h>
-#endif
+#include "catch_windows_h_proxy.h"
 
 namespace Catch {
 namespace {
@@ -95,7 +87,18 @@ namespace {
 
     IColourImpl* platformColourInstance() {
         static Win32ColourImpl s_instance;
-        return &s_instance;
+
+        Ptr<IConfig const> config = getCurrentContext().getConfig();
+        UseColour::YesOrNo colourMode = config
+            ? config->useColour()
+            : UseColour::Auto;
+        if( colourMode == UseColour::Auto )
+            colourMode = !isDebuggerActive()
+                ? UseColour::Yes
+                : UseColour::No;
+        return colourMode == UseColour::Yes
+            ? &s_instance
+            : NoColourImpl::instance();
     }
 
 } // end anon namespace
@@ -120,7 +123,7 @@ namespace {
                 case Colour::White:     return setColour( "[0m" );
                 case Colour::Red:       return setColour( "[0;31m" );
                 case Colour::Green:     return setColour( "[0;32m" );
-                case Colour::Blue:      return setColour( "[0:34m" );
+                case Colour::Blue:      return setColour( "[0;34m" );
                 case Colour::Cyan:      return setColour( "[0;36m" );
                 case Colour::Yellow:    return setColour( "[0;33m" );
                 case Colour::Grey:      return setColour( "[1;30m" );
@@ -146,7 +149,14 @@ namespace {
 
     IColourImpl* platformColourInstance() {
         Ptr<IConfig const> config = getCurrentContext().getConfig();
-        return (config && config->forceColour()) || isatty(STDOUT_FILENO)
+        UseColour::YesOrNo colourMode = config
+            ? config->useColour()
+            : UseColour::Auto;
+        if( colourMode == UseColour::Auto )
+            colourMode = (!isDebuggerActive() && isatty(STDOUT_FILENO) )
+                ? UseColour::Yes
+                : UseColour::No;
+        return colourMode == UseColour::Yes
             ? PosixColourImpl::instance()
             : NoColourImpl::instance();
     }
@@ -171,9 +181,7 @@ namespace Catch {
     Colour::~Colour(){ if( !m_moved ) use( None ); }
 
     void Colour::use( Code _colourCode ) {
-        static IColourImpl* impl = isDebuggerActive()
-            ? NoColourImpl::instance()
-            : platformColourInstance();
+        static IColourImpl* impl = platformColourInstance();
         impl->use( _colourCode );
     }
 

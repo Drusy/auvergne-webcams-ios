@@ -45,7 +45,7 @@ class OpenWeatherResponse: Queryable {
     
     class func parameters() -> [String: Any]? {
         return [
-            "appid": "54a35820a2f57153fa94eeef69fc094e"
+            "appid": Configuration.openWeatherAPIKey
         ]
     }
 }

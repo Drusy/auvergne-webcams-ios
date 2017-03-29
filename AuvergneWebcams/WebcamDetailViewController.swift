@@ -352,7 +352,10 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         if statusCode != -999 && isReachable() {
             if retryCount > 0 {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-                    print("Retrying to download \(self?.webcam.title) ...")
+                    if let title = self?.webcam.title {
+                        print("Retrying to download \(title) ...")
+                    }
+                    
                     self?.retryCount -= 1
                     self?.refresh(force: force)
                 }
@@ -384,7 +387,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         if exporter.status == AVAssetExportSessionStatus.completed ||
             exporter.status == AVAssetExportSessionStatus.cancelled ||
             exporter.status == AVAssetExportSessionStatus.failed ||
-            fabs(1.0 - exporter.progress) < FLT_EPSILON
+            fabs(1.0 - exporter.progress) < Float.ulpOfOne
         {
             SVProgressHUD.dismiss()
             avExportTimer?.invalidate()
@@ -565,23 +568,25 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         guard isDataLoaded == true else { return }
         let zoomOffset: CGFloat = (scrollView.maximumZoomScale - scrollView.minimumZoomScale) / 2
         
-        if (scrollView.zoomScale == scrollView.minimumZoomScale || scrollView.zoomScale < zoomOffset) {
-            let zoom = min(scrollView.maximumZoomScale, scrollView.zoomScale + zoomOffset)
-            let pointInView = recognizer.location(in: imageView)
-            
-            let scrollViewSize = scrollView.bounds.size
-            let width: CGFloat = scrollViewSize.width / zoom
-            let height: CGFloat = scrollViewSize.height / zoom
-            let originX: CGFloat = pointInView.x - (width / 2.0)
-            let originY: CGFloat = pointInView.y - (height / 2.0)
-            let rectToZoomTo = CGRect(x: originX,
-                                      y: originY,
-                                      width: width,
-                                      height: height)
-            
-            scrollView.zoom(to: rectToZoomTo, animated: true)
-        } else {
-            scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
+        if zoomOffset > 0 {
+            if (scrollView.zoomScale == scrollView.minimumZoomScale || scrollView.zoomScale < zoomOffset) {
+                let zoom = min(scrollView.maximumZoomScale, scrollView.zoomScale + zoomOffset)
+                let pointInView = recognizer.location(in: imageView)
+                
+                let scrollViewSize = scrollView.bounds.size
+                let width: CGFloat = scrollViewSize.width / zoom
+                let height: CGFloat = scrollViewSize.height / zoom
+                let originX: CGFloat = pointInView.x - (width / 2.0)
+                let originY: CGFloat = pointInView.y - (height / 2.0)
+                let rectToZoomTo = CGRect(x: originX,
+                                          y: originY,
+                                          width: width,
+                                          height: height)
+                
+                scrollView.zoom(to: rectToZoomTo, animated: true)
+            } else {
+                scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
+            }
         }
     }
     

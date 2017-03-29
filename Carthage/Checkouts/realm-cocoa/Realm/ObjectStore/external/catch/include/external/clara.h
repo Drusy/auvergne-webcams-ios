@@ -6,6 +6,8 @@
  *  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
  */
 
+// Version 0.0.2.4
+
 // Only use header guard if we are not using an outer namespace
 #if !defined(TWOBLUECUBES_CLARA_H_INCLUDED) || defined(STITCH_CLARA_OPEN_NAMESPACE)
 
@@ -38,6 +40,7 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <algorithm>
 
 // Use optional outer namespace
 #ifdef STITCH_TBC_TEXT_FORMAT_OUTER_NAMESPACE
@@ -172,15 +175,178 @@ namespace Tbc {
 #endif // TBC_TEXT_FORMAT_H_INCLUDED
 
 // ----------- end of #include from tbc_text_format.h -----------
-// ........... back in /Users/philnash/Dev/OSS/Clara/srcs/clara.h
+// ........... back in clara.h
 
 #undef STITCH_TBC_TEXT_FORMAT_OPEN_NAMESPACE
 
 
+// ----------- #included from clara_compilers.h -----------
+
+/*
+ *  Created by Phil on 10/02/2016.
+ *  Copyright 2016 Two Blue Cubes Ltd. All rights reserved.
+ *
+ *  Distributed under the Boost Software License, Version 1.0. (See accompanying
+ *  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+ */
+#ifndef TWOBLUECUBES_CLARA_COMPILERS_H_INCLUDED
+#define TWOBLUECUBES_CLARA_COMPILERS_H_INCLUDED
+
+// Detect a number of compiler features - mostly C++11/14 conformance - by compiler
+// The following features are defined:
+//
+// CLARA_CONFIG_CPP11_NULLPTR : is nullptr supported?
+// CLARA_CONFIG_CPP11_NOEXCEPT : is noexcept supported?
+// CLARA_CONFIG_CPP11_GENERATED_METHODS : The delete and default keywords for compiler generated methods
+// CLARA_CONFIG_CPP11_OVERRIDE : is override supported?
+// CLARA_CONFIG_CPP11_UNIQUE_PTR : is unique_ptr supported (otherwise use auto_ptr)
+
+// CLARA_CONFIG_CPP11_OR_GREATER : Is C++11 supported?
+
+// CLARA_CONFIG_VARIADIC_MACROS : are variadic macros supported?
+
+// In general each macro has a _NO_<feature name> form
+// (e.g. CLARA_CONFIG_CPP11_NO_NULLPTR) which disables the feature.
+// Many features, at point of detection, define an _INTERNAL_ macro, so they
+// can be combined, en-mass, with the _NO_ forms later.
+
+// All the C++11 features can be disabled with CLARA_CONFIG_NO_CPP11
+
+#ifdef __clang__
+
+#if __has_feature(cxx_nullptr)
+#define CLARA_INTERNAL_CONFIG_CPP11_NULLPTR
+#endif
+
+#if __has_feature(cxx_noexcept)
+#define CLARA_INTERNAL_CONFIG_CPP11_NOEXCEPT
+#endif
+
+#endif // __clang__
+
+////////////////////////////////////////////////////////////////////////////////
+// GCC
+#ifdef __GNUC__
+
+#if __GNUC__ == 4 && __GNUC_MINOR__ >= 6 && defined(__GXX_EXPERIMENTAL_CXX0X__)
+#define CLARA_INTERNAL_CONFIG_CPP11_NULLPTR
+#endif
+
+// - otherwise more recent versions define __cplusplus >= 201103L
+// and will get picked up below
+
+#endif // __GNUC__
+
+////////////////////////////////////////////////////////////////////////////////
+// Visual C++
+#ifdef _MSC_VER
+
+#if (_MSC_VER >= 1600)
+#define CLARA_INTERNAL_CONFIG_CPP11_NULLPTR
+#define CLARA_INTERNAL_CONFIG_CPP11_UNIQUE_PTR
+#endif
+
+#if (_MSC_VER >= 1900 ) // (VC++ 13 (VS2015))
+#define CLARA_INTERNAL_CONFIG_CPP11_NOEXCEPT
+#define CLARA_INTERNAL_CONFIG_CPP11_GENERATED_METHODS
+#endif
+
+#endif // _MSC_VER
+
+
+////////////////////////////////////////////////////////////////////////////////
+// C++ language feature support
+
+// catch all support for C++11
+#if defined(__cplusplus) && __cplusplus >= 201103L
+
+#define CLARA_CPP11_OR_GREATER
+
+#if !defined(CLARA_INTERNAL_CONFIG_CPP11_NULLPTR)
+#define CLARA_INTERNAL_CONFIG_CPP11_NULLPTR
+#endif
+
+#ifndef CLARA_INTERNAL_CONFIG_CPP11_NOEXCEPT
+#define CLARA_INTERNAL_CONFIG_CPP11_NOEXCEPT
+#endif
+
+#ifndef CLARA_INTERNAL_CONFIG_CPP11_GENERATED_METHODS
+#define CLARA_INTERNAL_CONFIG_CPP11_GENERATED_METHODS
+#endif
+
+#if !defined(CLARA_INTERNAL_CONFIG_CPP11_OVERRIDE)
+#define CLARA_INTERNAL_CONFIG_CPP11_OVERRIDE
+#endif
+#if !defined(CLARA_INTERNAL_CONFIG_CPP11_UNIQUE_PTR)
+#define CLARA_INTERNAL_CONFIG_CPP11_UNIQUE_PTR
+#endif
+
+
+#endif // __cplusplus >= 201103L
+
+// Now set the actual defines based on the above + anything the user has configured
+#if defined(CLARA_INTERNAL_CONFIG_CPP11_NULLPTR) && !defined(CLARA_CONFIG_CPP11_NO_NULLPTR) && !defined(CLARA_CONFIG_CPP11_NULLPTR) && !defined(CLARA_CONFIG_NO_CPP11)
+#define CLARA_CONFIG_CPP11_NULLPTR
+#endif
+#if defined(CLARA_INTERNAL_CONFIG_CPP11_NOEXCEPT) && !defined(CLARA_CONFIG_CPP11_NO_NOEXCEPT) && !defined(CLARA_CONFIG_CPP11_NOEXCEPT) && !defined(CLARA_CONFIG_NO_CPP11)
+#define CLARA_CONFIG_CPP11_NOEXCEPT
+#endif
+#if defined(CLARA_INTERNAL_CONFIG_CPP11_GENERATED_METHODS) && !defined(CLARA_CONFIG_CPP11_NO_GENERATED_METHODS) && !defined(CLARA_CONFIG_CPP11_GENERATED_METHODS) && !defined(CLARA_CONFIG_NO_CPP11)
+#define CLARA_CONFIG_CPP11_GENERATED_METHODS
+#endif
+#if defined(CLARA_INTERNAL_CONFIG_CPP11_OVERRIDE) && !defined(CLARA_CONFIG_NO_OVERRIDE) && !defined(CLARA_CONFIG_CPP11_OVERRIDE) && !defined(CLARA_CONFIG_NO_CPP11)
+#define CLARA_CONFIG_CPP11_OVERRIDE
+#endif
+#if defined(CLARA_INTERNAL_CONFIG_CPP11_UNIQUE_PTR) && !defined(CLARA_CONFIG_NO_UNIQUE_PTR) && !defined(CLARA_CONFIG_CPP11_UNIQUE_PTR) && !defined(CLARA_CONFIG_NO_CPP11)
+#define CLARA_CONFIG_CPP11_UNIQUE_PTR
+#endif
+
+
+// noexcept support:
+#if defined(CLARA_CONFIG_CPP11_NOEXCEPT) && !defined(CLARA_NOEXCEPT)
+#define CLARA_NOEXCEPT noexcept
+#  define CLARA_NOEXCEPT_IS(x) noexcept(x)
+#else
+#define CLARA_NOEXCEPT throw()
+#  define CLARA_NOEXCEPT_IS(x)
+#endif
+
+// nullptr support
+#ifdef CLARA_CONFIG_CPP11_NULLPTR
+#define CLARA_NULL nullptr
+#else
+#define CLARA_NULL NULL
+#endif
+
+// override support
+#ifdef CLARA_CONFIG_CPP11_OVERRIDE
+#define CLARA_OVERRIDE override
+#else
+#define CLARA_OVERRIDE
+#endif
+
+// unique_ptr support
+#ifdef CLARA_CONFIG_CPP11_UNIQUE_PTR
+#   define CLARA_AUTO_PTR( T ) std::unique_ptr<T>
+#else
+#   define CLARA_AUTO_PTR( T ) std::auto_ptr<T>
+#endif
+
+#endif // TWOBLUECUBES_CLARA_COMPILERS_H_INCLUDED
+
+
+// ----------- end of #include from clara_compilers.h -----------
+// ........... back in clara.h
+
+
 #include <map>
-#include <algorithm>
 #include <stdexcept>
 #include <memory>
+
+#if defined(WIN32) || defined(__WIN32__) || defined(_WIN32) || defined(_MSC_VER)
+#define CLARA_PLATFORM_WINDOWS
+#endif
+
 
 // Use optional outer namespace
 #ifdef STITCH_CLARA_OPEN_NAMESPACE
@@ -230,9 +396,12 @@ namespace Clara {
         inline void convertInto( std::string const& _source, std::string& _dest ) {
             _dest = _source;
         }
+        char toLowerCh(char c) {
+            return static_cast<char>( ::tolower( c ) );
+        }
         inline void convertInto( std::string const& _source, bool& _dest ) {
             std::string sourceLC = _source;
-            std::transform( sourceLC.begin(), sourceLC.end(), sourceLC.begin(), ::tolower );
+            std::transform( sourceLC.begin(), sourceLC.end(), sourceLC.begin(), toLowerCh );
             if( sourceLC == "y" || sourceLC == "1" || sourceLC == "true" || sourceLC == "yes" || sourceLC == "on" )
                 _dest = true;
             else if( sourceLC == "n" || sourceLC == "0" || sourceLC == "false" || sourceLC == "no" || sourceLC == "off" )
@@ -240,23 +409,16 @@ namespace Clara {
             else
                 throw std::runtime_error( "Expected a boolean value but did not recognise:\n  '" + _source + "'" );
         }
-        inline void convertInto( bool _source, bool& _dest ) {
-            _dest = _source;
-        }
-        template<typename T>
-        inline void convertInto( bool, T& ) {
-            throw std::runtime_error( "Invalid conversion" );
-        }
+
 
         template<typename ConfigT>
         struct IArgFunction {
             virtual ~IArgFunction() {}
-#  ifdef CATCH_CONFIG_CPP11_GENERATED_METHODS
+#ifdef CLARA_CONFIG_CPP11_GENERATED_METHODS
             IArgFunction()                      = default;
             IArgFunction( IArgFunction const& ) = default;
-#  endif
+#endif
             virtual void set( ConfigT& config, std::string const& value ) const = 0;
-            virtual void setFlag( ConfigT& config ) const = 0;
             virtual bool takesArg() const = 0;
             virtual IArgFunction* clone() const = 0;
         };
@@ -264,11 +426,11 @@ namespace Clara {
         template<typename ConfigT>
         class BoundArgFunction {
         public:
-            BoundArgFunction() : functionObj( CATCH_NULL ) {}
+            BoundArgFunction() : functionObj( CLARA_NULL ) {}
             BoundArgFunction( IArgFunction<ConfigT>* _functionObj ) : functionObj( _functionObj ) {}
-            BoundArgFunction( BoundArgFunction const& other ) : functionObj( other.functionObj ? other.functionObj->clone() : CATCH_NULL ) {}
+            BoundArgFunction( BoundArgFunction const& other ) : functionObj( other.functionObj ? other.functionObj->clone() : CLARA_NULL ) {}
             BoundArgFunction& operator = ( BoundArgFunction const& other ) {
-                IArgFunction<ConfigT>* newFunctionObj = other.functionObj ? other.functionObj->clone() : CATCH_NULL;
+                IArgFunction<ConfigT>* newFunctionObj = other.functionObj ? other.functionObj->clone() : CLARA_NULL;
                 delete functionObj;
                 functionObj = newFunctionObj;
                 return *this;
@@ -278,13 +440,10 @@ namespace Clara {
             void set( ConfigT& config, std::string const& value ) const {
                 functionObj->set( config, value );
             }
-            void setFlag( ConfigT& config ) const {
-                functionObj->setFlag( config );
-            }
             bool takesArg() const { return functionObj->takesArg(); }
 
             bool isSet() const {
-                return functionObj != CATCH_NULL;
+                return functionObj != CLARA_NULL;
             }
         private:
             IArgFunction<ConfigT>* functionObj;
@@ -294,7 +453,6 @@ namespace Clara {
         template<typename C>
         struct NullBinder : IArgFunction<C>{
             virtual void set( C&, std::string const& ) const {}
-            virtual void setFlag( C& ) const {}
             virtual bool takesArg() const { return true; }
             virtual IArgFunction<C>* clone() const { return new NullBinder( *this ); }
         };
@@ -304,9 +462,6 @@ namespace Clara {
             BoundDataMember( M C::* _member ) : member( _member ) {}
             virtual void set( C& p, std::string const& stringValue ) const {
                 convertInto( stringValue, p.*member );
-            }
-            virtual void setFlag( C& p ) const {
-                convertInto( true, p.*member );
             }
             virtual bool takesArg() const { return !IsBool<M>::value; }
             virtual IArgFunction<C>* clone() const { return new BoundDataMember( *this ); }
@@ -318,11 +473,6 @@ namespace Clara {
             virtual void set( C& p, std::string const& stringValue ) const {
                 typename RemoveConstRef<M>::type value;
                 convertInto( stringValue, value );
-                (p.*member)( value );
-            }
-            virtual void setFlag( C& p ) const {
-                typename RemoveConstRef<M>::type value;
-                convertInto( true, value );
                 (p.*member)( value );
             }
             virtual bool takesArg() const { return !IsBool<M>::value; }
@@ -338,9 +488,6 @@ namespace Clara {
                 if( value )
                     (p.*member)();
             }
-            virtual void setFlag( C& p ) const {
-                (p.*member)();
-            }
             virtual bool takesArg() const { return false; }
             virtual IArgFunction<C>* clone() const { return new BoundNullaryMethod( *this ); }
             void (C::*member)();
@@ -355,9 +502,6 @@ namespace Clara {
                 if( value )
                     function( obj );
             }
-            virtual void setFlag( C& p ) const {
-                function( p );
-            }
             virtual bool takesArg() const { return false; }
             virtual IArgFunction<C>* clone() const { return new BoundUnaryFunction( *this ); }
             void (*function)( C& );
@@ -371,11 +515,6 @@ namespace Clara {
                 convertInto( stringValue, value );
                 function( obj, value );
             }
-            virtual void setFlag( C& obj ) const {
-                typename RemoveConstRef<T>::type value;
-                convertInto( true, value );
-                function( obj, value );
-            }
             virtual bool takesArg() const { return !IsBool<T>::value; }
             virtual IArgFunction<C>* clone() const { return new BoundBinaryFunction( *this ); }
             void (*function)( C&, T );
@@ -383,8 +522,20 @@ namespace Clara {
 
     } // namespace Detail
 
-    struct Parser {
-        Parser() : separators( " \t=:" ) {}
+    inline std::vector<std::string> argsToVector( int argc, char const* const* const argv ) {
+        std::vector<std::string> args( static_cast<std::size_t>( argc ) );
+        for( std::size_t i = 0; i < static_cast<std::size_t>( argc ); ++i )
+            args[i] = argv[i];
+
+        return args;
+    }
+
+    class Parser {
+        enum Mode { None, MaybeShortOpt, SlashOpt, ShortOpt, LongOpt, Positional };
+        Mode mode;
+        std::size_t from;
+        bool inQuotes;
+    public:
 
         struct Token {
             enum Type { Positional, ShortOpt, LongOpt };
@@ -393,38 +544,75 @@ namespace Clara {
             std::string data;
         };
 
-        void parseIntoTokens( int argc, char const * const * argv, std::vector<Parser::Token>& tokens ) const {
+        Parser() : mode( None ), from( 0 ), inQuotes( false ){}
+
+        void parseIntoTokens( std::vector<std::string> const& args, std::vector<Token>& tokens ) {
             const std::string doubleDash = "--";
-            for( int i = 1; i < argc && argv[i] != doubleDash; ++i )
-                parseIntoTokens( argv[i] , tokens);
+            for( std::size_t i = 1; i < args.size() && args[i] != doubleDash; ++i )
+                parseIntoTokens( args[i], tokens);
         }
-        void parseIntoTokens( std::string arg, std::vector<Parser::Token>& tokens ) const {
-            while( !arg.empty() ) {
-                Parser::Token token( Parser::Token::Positional, arg );
-                arg = "";
-                if( token.data[0] == '-' ) {
-                    if( token.data.size() > 1 && token.data[1] == '-' ) {
-                        token = Parser::Token( Parser::Token::LongOpt, token.data.substr( 2 ) );
-                    }
-                    else {
-                        token = Parser::Token( Parser::Token::ShortOpt, token.data.substr( 1 ) );
-                        if( token.data.size() > 1 && separators.find( token.data[1] ) == std::string::npos ) {
-                            arg = "-" + token.data.substr( 1 );
-                            token.data = token.data.substr( 0, 1 );
-                        }
-                    }
-                }
-                if( token.type != Parser::Token::Positional ) {
-                    std::size_t pos = token.data.find_first_of( separators );
-                    if( pos != std::string::npos ) {
-                        arg = token.data.substr( pos+1 );
-                        token.data = token.data.substr( 0, pos );
-                    }
-                }
-                tokens.push_back( token );
+
+        void parseIntoTokens( std::string const& arg, std::vector<Token>& tokens ) {
+            for( std::size_t i = 0; i <= arg.size(); ++i ) {
+                char c = arg[i];
+                if( c == '"' )
+                    inQuotes = !inQuotes;
+                mode = handleMode( i, c, arg, tokens );
             }
         }
-        std::string separators;
+        Mode handleMode( std::size_t i, char c, std::string const& arg, std::vector<Token>& tokens ) {
+            switch( mode ) {
+                case None: return handleNone( i, c );
+                case MaybeShortOpt: return handleMaybeShortOpt( i, c );
+                case ShortOpt:
+                case LongOpt:
+                case SlashOpt: return handleOpt( i, c, arg, tokens );
+                case Positional: return handlePositional( i, c, arg, tokens );
+                default: throw std::logic_error( "Unknown mode" );
+            }
+        }
+
+        Mode handleNone( std::size_t i, char c ) {
+            if( inQuotes ) {
+                from = i;
+                return Positional;
+            }
+            switch( c ) {
+                case '-': return MaybeShortOpt;
+#ifdef CLARA_PLATFORM_WINDOWS
+                case '/': from = i+1; return SlashOpt;
+#endif
+                default: from = i; return Positional;
+            }
+        }
+        Mode handleMaybeShortOpt( std::size_t i, char c ) {
+            switch( c ) {
+                case '-': from = i+1; return LongOpt;
+                default: from = i; return ShortOpt;
+            }
+        }
+        Mode handleOpt( std::size_t i, char c, std::string const& arg, std::vector<Token>& tokens ) {
+            if( std::string( ":=\0", 3 ).find( c ) == std::string::npos )
+                return mode;
+
+            std::string optName = arg.substr( from, i-from );
+            if( mode == ShortOpt )
+                for( std::size_t j = 0; j < optName.size(); ++j )
+                    tokens.push_back( Token( Token::ShortOpt, optName.substr( j, 1 ) ) );
+            else if( mode == SlashOpt && optName.size() == 1 )
+                tokens.push_back( Token( Token::ShortOpt, optName ) );
+            else
+                tokens.push_back( Token( Token::LongOpt, optName ) );
+            return None;
+        }
+        Mode handlePositional( std::size_t i, char c, std::string const& arg, std::vector<Token>& tokens ) {
+            if( inQuotes || std::string( "\0", 1 ).find( c ) == std::string::npos )
+                return mode;
+
+            std::string data = arg.substr( from, i-from );
+            tokens.push_back( Token( Token::Positional, data ) );
+            return None;
+        }
     };
 
     template<typename ConfigT>
@@ -503,7 +691,7 @@ namespace Clara {
             }
         };
 
-        typedef CATCH_AUTO_PTR( Arg ) ArgAutoPtr;
+        typedef CLARA_AUTO_PTR( Arg ) ArgAutoPtr;
 
         friend void addOptName( Arg& arg, std::string const& optName )
         {
@@ -580,8 +768,8 @@ namespace Clara {
                 m_arg->description = description;
                 return *this;
             }
-            ArgBuilder& detail( std::string const& _detail ) {
-                m_arg->detail = _detail;
+            ArgBuilder& detail( std::string const& detail ) {
+                m_arg->detail = detail;
                 return *this;
             }
 
@@ -665,14 +853,14 @@ namespace Clara {
                 maxWidth = (std::max)( maxWidth, it->commands().size() );
 
             for( it = itBegin; it != itEnd; ++it ) {
-                Detail::Text usageText( it->commands(), Detail::TextAttributes()
+                Detail::Text usage( it->commands(), Detail::TextAttributes()
                                                         .setWidth( maxWidth+indent )
                                                         .setIndent( indent ) );
                 Detail::Text desc( it->description, Detail::TextAttributes()
                                                         .setWidth( width - maxWidth - 3 ) );
 
-                for( std::size_t i = 0; i < (std::max)( usageText.size(), desc.size() ); ++i ) {
-                    std::string usageCol = i < usageText.size() ? usageText[i] : "";
+                for( std::size_t i = 0; i < (std::max)( usage.size(), desc.size() ); ++i ) {
+                    std::string usageCol = i < usage.size() ? usage[i] : "";
                     os << usageCol;
 
                     if( i < desc.size() && !desc[i].empty() )
@@ -729,21 +917,21 @@ namespace Clara {
             return oss.str();
         }
 
-        ConfigT parse( int argc, char const * const * argv ) const {
+        ConfigT parse( std::vector<std::string> const& args ) const {
             ConfigT config;
-            parseInto( argc, argv, config );
+            parseInto( args, config );
             return config;
         }
 
-        std::vector<Parser::Token> parseInto( int argc, char const * const * argv, ConfigT& config ) const {
-            std::string processName = argv[0];
+        std::vector<Parser::Token> parseInto( std::vector<std::string> const& args, ConfigT& config ) const {
+            std::string processName = args[0];
             std::size_t lastSlash = processName.find_last_of( "/\\" );
             if( lastSlash != std::string::npos )
                 processName = processName.substr( lastSlash+1 );
             m_boundProcessName.set( config, processName );
             std::vector<Parser::Token> tokens;
             Parser parser;
-            parser.parseIntoTokens( argc, argv, tokens );
+            parser.parseIntoTokens( args, tokens );
             return populate( tokens, config );
         }
 
@@ -774,7 +962,7 @@ namespace Clara {
                                     arg.boundField.set( config, tokens[++i].data );
                             }
                             else {
-                                arg.boundField.setFlag( config );
+                                arg.boundField.set( config, "true" );
                             }
                             break;
                         }

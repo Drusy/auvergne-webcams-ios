@@ -184,7 +184,7 @@ namespace Matchers {
             {
                 return m_caseSensitivity == CaseSensitive::No
                     ? " (case insensitive)"
-                    : "";
+                    : std::string();
             }
             CaseSensitive::Choice m_caseSensitivity;
             std::string m_str;
@@ -202,7 +202,7 @@ namespace Matchers {
                 return m_data.m_str == m_data.adjustString( expr );;
             }
             virtual std::string toString() const {
-                return "equals: \"" + m_data.m_str + "\"" + m_data.toStringSuffix();
+                return "equals: \"" + m_data.m_str + '"' + m_data.toStringSuffix();
             }
 
             CasedString m_data;
@@ -219,7 +219,7 @@ namespace Matchers {
                 return m_data.adjustString( expr ).find( m_data.m_str ) != std::string::npos;
             }
             virtual std::string toString() const {
-                return "contains: \"" + m_data.m_str  + "\"" + m_data.toStringSuffix();
+                return "contains: \"" + m_data.m_str  + '"' + m_data.toStringSuffix();
             }
 
             CasedString m_data;
@@ -234,10 +234,10 @@ namespace Matchers {
             virtual ~StartsWith();
 
             virtual bool match( std::string const& expr ) const {
-                return m_data.adjustString( expr ).find( m_data.m_str ) == 0;
+                return startsWith( m_data.adjustString( expr ), m_data.m_str );
             }
             virtual std::string toString() const {
-                return "starts with: \"" + m_data.m_str + "\"" + m_data.toStringSuffix();
+                return "starts with: \"" + m_data.m_str + '"' + m_data.toStringSuffix();
             }
 
             CasedString m_data;
@@ -251,10 +251,10 @@ namespace Matchers {
             virtual ~EndsWith();
 
             virtual bool match( std::string const& expr ) const {
-                return m_data.adjustString( expr ).find( m_data.m_str ) == expr.size() - m_data.m_str.size();
+                return endsWith( m_data.adjustString( expr ), m_data.m_str );
             }
             virtual std::string toString() const {
-                return "ends with: \"" + m_data.m_str + "\"" + m_data.toStringSuffix();
+                return "ends with: \"" + m_data.m_str + '"' + m_data.toStringSuffix();
             }
 
             CasedString m_data;

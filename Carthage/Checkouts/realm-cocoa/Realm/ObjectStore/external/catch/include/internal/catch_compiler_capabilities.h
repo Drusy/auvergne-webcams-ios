@@ -19,11 +19,13 @@
 // CATCH_CONFIG_CPP11_LONG_LONG : is long long supported?
 // CATCH_CONFIG_CPP11_OVERRIDE : is override supported?
 // CATCH_CONFIG_CPP11_UNIQUE_PTR : is unique_ptr supported (otherwise use auto_ptr)
+// CATCH_CONFIG_CPP11_SHUFFLE : is std::shuffle supported?
+// CATCH_CONFIG_CPP11_TYPE_TRAITS : are type_traits and enable_if supported?
 
 // CATCH_CONFIG_CPP11_OR_GREATER : Is C++11 supported?
 
 // CATCH_CONFIG_VARIADIC_MACROS : are variadic macros supported?
-
+// CATCH_CONFIG_COUNTER : is the __COUNTER__ macro supported?
 // ****************
 // Note to maintainers: if new toggles are added please document them
 // in configuration.md, too
@@ -36,6 +38,18 @@
 
 // All the C++11 features can be disabled with CATCH_CONFIG_NO_CPP11
 
+#ifdef __cplusplus
+
+#  if __cplusplus >= 201103L
+#    define CATCH_CPP11_OR_GREATER
+#  endif
+
+#  if __cplusplus >= 201402L
+#    define CATCH_CPP14_OR_GREATER
+#  endif
+
+#endif
+
 #ifdef __clang__
 
 #  if __has_feature(cxx_nullptr)
@@ -45,6 +59,10 @@
 #  if __has_feature(cxx_noexcept)
 #    define CATCH_INTERNAL_CONFIG_CPP11_NOEXCEPT
 #  endif
+
+#   if defined(CATCH_CPP11_OR_GREATER)
+#       define CATCH_INTERNAL_SUPPRESS_PARENTHESES_WARNINGS _Pragma( "clang diagnostic ignored \"-Wparentheses\"" )
+#   endif
 
 #endif // __clang__
 
@@ -73,9 +91,13 @@
 // GCC
 #ifdef __GNUC__
 
-#if __GNUC__ == 4 && __GNUC_MINOR__ >= 6 && defined(__GXX_EXPERIMENTAL_CXX0X__)
-#   define CATCH_INTERNAL_CONFIG_CPP11_NULLPTR
-#endif
+#   if __GNUC__ == 4 && __GNUC_MINOR__ >= 6 && defined(__GXX_EXPERIMENTAL_CXX0X__)
+#       define CATCH_INTERNAL_CONFIG_CPP11_NULLPTR
+#   endif
+
+#   if !defined(CATCH_INTERNAL_SUPPRESS_PARENTHESES_WARNINGS) && defined(CATCH_CPP11_OR_GREATER)
+#       define CATCH_INTERNAL_SUPPRESS_PARENTHESES_WARNINGS _Pragma( "GCC diagnostic ignored \"-Wparentheses\"" )
+#   endif
 
 // - otherwise more recent versions define __cplusplus >= 201103L
 // and will get picked up below
@@ -95,6 +117,8 @@
 #if (_MSC_VER >= 1900 ) // (VC++ 13 (VS2015))
 #define CATCH_INTERNAL_CONFIG_CPP11_NOEXCEPT
 #define CATCH_INTERNAL_CONFIG_CPP11_GENERATED_METHODS
+#define CATCH_INTERNAL_CONFIG_CPP11_SHUFFLE
+#define CATCH_INTERNAL_CONFIG_CPP11_TYPE_TRAITS
 #endif
 
 #endif // _MSC_VER
@@ -111,13 +135,20 @@
 
 #endif
 
+// Use __COUNTER__ if the compiler supports it
+#if ( defined _MSC_VER && _MSC_VER >= 1300 ) || \
+    ( defined __GNUC__  && __GNUC__ >= 4 && __GNUC_MINOR__ >= 3 ) || \
+    ( defined __clang__ && __clang_major__ >= 3 )
+
+#define CATCH_INTERNAL_CONFIG_COUNTER
+
+#endif
+
 ////////////////////////////////////////////////////////////////////////////////
 // C++ language feature support
 
 // catch all support for C++11
-#if defined(__cplusplus) && __cplusplus >= 201103L
-
-#  define CATCH_CPP11_OR_GREATER
+#if defined(CATCH_CPP11_OR_GREATER)
 
 #  if !defined(CATCH_INTERNAL_CONFIG_CPP11_NULLPTR)
 #    define CATCH_INTERNAL_CONFIG_CPP11_NULLPTR
@@ -153,7 +184,12 @@
 #  if !defined(CATCH_INTERNAL_CONFIG_CPP11_UNIQUE_PTR)
 #    define CATCH_INTERNAL_CONFIG_CPP11_UNIQUE_PTR
 #  endif
-
+# if !defined(CATCH_INTERNAL_CONFIG_CPP11_SHUFFLE)
+#   define CATCH_INTERNAL_CONFIG_CPP11_SHUFFLE
+#  endif
+# if !defined(CATCH_INTERNAL_CONFIG_CPP11_TYPE_TRAITS)
+#  define CATCH_INTERNAL_CONFIG_CPP11_TYPE_TRAITS
+# endif
 
 #endif // __cplusplus >= 201103L
 
@@ -176,16 +212,31 @@
 #if defined(CATCH_INTERNAL_CONFIG_VARIADIC_MACROS) && !defined(CATCH_CONFIG_NO_VARIADIC_MACROS) && !defined(CATCH_CONFIG_VARIADIC_MACROS)
 #   define CATCH_CONFIG_VARIADIC_MACROS
 #endif
-#if defined(CATCH_INTERNAL_CONFIG_CPP11_LONG_LONG) && !defined(CATCH_CONFIG_NO_LONG_LONG) && !defined(CATCH_CONFIG_CPP11_LONG_LONG) && !defined(CATCH_CONFIG_NO_CPP11)
+#if defined(CATCH_INTERNAL_CONFIG_CPP11_LONG_LONG) && !defined(CATCH_CONFIG_CPP11_NO_LONG_LONG) && !defined(CATCH_CONFIG_CPP11_LONG_LONG) && !defined(CATCH_CONFIG_NO_CPP11)
 #   define CATCH_CONFIG_CPP11_LONG_LONG
 #endif
-#if defined(CATCH_INTERNAL_CONFIG_CPP11_OVERRIDE) && !defined(CATCH_CONFIG_NO_OVERRIDE) && !defined(CATCH_CONFIG_CPP11_OVERRIDE) && !defined(CATCH_CONFIG_NO_CPP11)
+#if defined(CATCH_INTERNAL_CONFIG_CPP11_OVERRIDE) && !defined(CATCH_CONFIG_CPP11_NO_OVERRIDE) && !defined(CATCH_CONFIG_CPP11_OVERRIDE) && !defined(CATCH_CONFIG_NO_CPP11)
 #   define CATCH_CONFIG_CPP11_OVERRIDE
 #endif
-#if defined(CATCH_INTERNAL_CONFIG_CPP11_UNIQUE_PTR) && !defined(CATCH_CONFIG_NO_UNIQUE_PTR) && !defined(CATCH_CONFIG_CPP11_UNIQUE_PTR) && !defined(CATCH_CONFIG_NO_CPP11)
+#if defined(CATCH_INTERNAL_CONFIG_CPP11_UNIQUE_PTR) && !defined(CATCH_CONFIG_CPP11_NO_UNIQUE_PTR) && !defined(CATCH_CONFIG_CPP11_UNIQUE_PTR) && !defined(CATCH_CONFIG_NO_CPP11)
 #   define CATCH_CONFIG_CPP11_UNIQUE_PTR
 #endif
+// Use of __COUNTER__ is suppressed if __JETBRAINS_IDE__ is #defined (meaning we're being parsed by a JetBrains IDE for
+// analytics) because, at time of writing, __COUNTER__ is not properly handled by it.
+// This does not affect compilation
+#if defined(CATCH_INTERNAL_CONFIG_COUNTER) && !defined(CATCH_CONFIG_NO_COUNTER) && !defined(CATCH_CONFIG_COUNTER) && !defined(__JETBRAINS_IDE__)
+#   define CATCH_CONFIG_COUNTER
+#endif
+#if defined(CATCH_INTERNAL_CONFIG_CPP11_SHUFFLE) && !defined(CATCH_CONFIG_CPP11_NO_SHUFFLE) && !defined(CATCH_CONFIG_CPP11_SHUFFLE) && !defined(CATCH_CONFIG_NO_CPP11)
+#   define CATCH_CONFIG_CPP11_SHUFFLE
+#endif
+# if defined(CATCH_INTERNAL_CONFIG_CPP11_TYPE_TRAITS) && !defined(CATCH_CONFIG_CPP11_NO_TYPE_TRAITS) && !defined(CATCH_CONFIG_CPP11_TYPE_TRAITS) && !defined(CATCH_CONFIG_NO_CPP11)
+#  define CATCH_CONFIG_CPP11_TYPE_TRAITS
+# endif
 
+#if !defined(CATCH_INTERNAL_SUPPRESS_PARENTHESES_WARNINGS)
+#   define CATCH_INTERNAL_SUPPRESS_PARENTHESES_WARNINGS
+#endif
 
 // noexcept support:
 #if defined(CATCH_CONFIG_CPP11_NOEXCEPT) && !defined(CATCH_NOEXCEPT)

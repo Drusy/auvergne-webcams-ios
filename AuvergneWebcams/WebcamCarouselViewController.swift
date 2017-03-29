@@ -169,6 +169,8 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
     
     override func style() {
         super.style()
+        
+        loadingAnimationImageView.image = UIImage(named: Configuration.mainThemeImageName)
     }
     
     override func refresh(force: Bool = false) {
@@ -184,7 +186,8 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
     override func translate() {
         super.translate()
         
-        title = "Auvergne Webcams"
+        title = Configuration.applicationName
+        
         searchTextField.attributedPlaceholder = "Rechercher une webcam"
             .withFont(UIFont.proximaNovaLightItalic(withSize: 16))
             .withTextColor(UIColor.awLightGray)

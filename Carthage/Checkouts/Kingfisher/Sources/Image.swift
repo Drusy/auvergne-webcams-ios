@@ -141,11 +141,11 @@ extension Kingfisher where Base: Image {
     }
     #else
     static func image(cgImage: CGImage, scale: CGFloat, refImage: Image?) -> Image {
-    if let refImage = refImage {
-        return Image(cgImage: cgImage, scale: scale, orientation: refImage.imageOrientation)
-    } else {
-        return Image(cgImage: cgImage, scale: scale, orientation: .up)
-    }
+        if let refImage = refImage {
+            return Image(cgImage: cgImage, scale: scale, orientation: refImage.imageOrientation)
+        } else {
+            return Image(cgImage: cgImage, scale: scale, orientation: .up)
+        }
     }
     
     /**
@@ -377,11 +377,9 @@ extension Kingfisher where Base: Image {
     func resize(to size: CGSize, for contentMode: UIViewContentMode) -> Image {
         switch contentMode {
         case .scaleAspectFit:
-            let newSize = self.size.kf.constrained(size)
-            return resize(to: newSize)
+            return resize(to: size, for: .aspectFit)
         case .scaleAspectFill:
-            let newSize = self.size.kf.filling(size)
-            return resize(to: newSize)
+            return resize(to: size, for: .aspectFill)
         default:
             return resize(to: size)
         }
@@ -389,7 +387,6 @@ extension Kingfisher where Base: Image {
     #endif
     
     // MARK: - Resize
-    
     /// Resize `self` to an image of new size.
     ///
     /// - parameter size: The target size.
@@ -412,6 +409,40 @@ extension Kingfisher where Base: Image {
                 base.draw(in: rect)
             #endif
         }
+    }
+    
+    /// Resize `self` to an image of new size, respecting the content mode.
+    ///
+    /// - Parameters:
+    ///   - size: The target size.
+    ///   - contentMode: Content mode of output image should be.
+    /// - Returns: An image with new size.
+    public func resize(to size: CGSize, for contentMode: ContentMode) -> Image {
+        switch contentMode {
+        case .aspectFit:
+            let newSize = self.size.kf.constrained(size)
+            return resize(to: newSize)
+        case .aspectFill:
+            let newSize = self.size.kf.filling(size)
+            return resize(to: newSize)
+        default:
+            return resize(to: size)
+        }
+    }
+    
+    public func crop(to size: CGSize, anchorOn anchor: CGPoint) -> Image {
+        guard let cgImage = cgImage else {
+            assertionFailure("[Kingfisher] Crop only works for CG-based image.")
+            return base
+        }
+        
+        let rect = self.size.kf.constrainedRect(for: size, anchor: anchor)
+        guard let image = cgImage.cropping(to: rect) else {
+            assertionFailure("[Kingfisher] Cropping image failed.")
+            return base
+        }
+        
+        return Kingfisher.image(cgImage: image, scale: scale, refImage: base)
     }
     
     // MARK: - Blur
@@ -437,7 +468,12 @@ extension Kingfisher where Base: Image {
             // if d is odd, use three box-blurs of size 'd', centered on the output pixel.
             let s = Float(max(radius, 2.0))
             // We will do blur on a resized image (*0.5), so the blur radius could be half as well.
-            var targetRadius = floor(s * 3.0 * sqrt(2 * Float.pi) / 4.0 + 0.5)
+            
+            // Fix the slow compiling time for Swift 3. 
+            // See https://github.com/onevcat/Kingfisher/issues/611
+            let pi2 = 2 * Float.pi
+            let sqrtPi2 = sqrt(pi2)
+            var targetRadius = floor(s * 3.0 * sqrtPi2 / 4.0 + 0.5)
             
             if targetRadius.isEven {
                 targetRadius += 1
@@ -694,6 +730,26 @@ extension CGSizeProxy {
 
     private var aspectRatio: CGFloat {
         return base.height == 0.0 ? 1.0 : base.width / base.height
+    }
+    
+    
+    func constrainedRect(for size: CGSize, anchor: CGPoint) -> CGRect {
+        
+        let unifiedAnchor = CGPoint(x: anchor.x.clamped(to: 0.0...1.0),
+                                    y: anchor.y.clamped(to: 0.0...1.0))
+        
+        let x = unifiedAnchor.x * base.width - unifiedAnchor.x * size.width
+        let y = unifiedAnchor.y * base.height - unifiedAnchor.y * size.height
+        let r = CGRect(x: x, y: y, width: size.width, height: size.height)
+        
+        let ori = CGRect(origin: CGPoint.zero, size: base)
+        return ori.intersection(r)
+    }
+}
+
+extension Comparable {
+    func clamped(to limits: ClosedRange<Self>) -> Self {
+        return min(max(self, limits.lowerBound), limits.upperBound)
     }
 }
 

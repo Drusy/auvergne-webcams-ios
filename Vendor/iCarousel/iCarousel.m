@@ -531,8 +531,8 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
         case iCarouselTypeInvertedRotary:
         {
             CGFloat count = [self circularCarouselItemCount];
-            CGFloat spacing = [self valueForOption:iCarouselOptionSpacing withDefault:1.0];
-            CGFloat arc = [self valueForOption:iCarouselOptionArc withDefault:M_PI * 2.0];
+            CGFloat spacing = [self valueForOption:iCarouselOptionSpacing withDefault: 1.0];
+            CGFloat arc = [self valueForOption:iCarouselOptionArc withDefault: M_PI * 2.0];
             CGFloat radius = [self valueForOption:iCarouselOptionRadius withDefault:MAX(_itemWidth * spacing / 2.0, _itemWidth * spacing / 2.0 / tan(arc/2.0/count))];
             CGFloat angle = [self valueForOption:iCarouselOptionAngle withDefault:offset / count * arc];
             

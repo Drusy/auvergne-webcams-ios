@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>fr</string>
+	<key>CFBundleDisplayName</key>
+	<string>Northern Lights Webcams</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.2.1</string>
+	<key>CFBundleVersion</key>
+	<string>17</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>7cc7cb6974a476c88eaefd8f8f18727ed0ba945a</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+		</array>
+	</dict>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>La bibliothèque d'image est utilisée afin de sauvegarder l'image de la webcam sur votre périphérique</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>ProximaNova-SboldItalic.otf</string>
+		<string>ProximaNova-Sbold.otf</string>
+		<string>ProximaNova-RegularItalic.otf</string>
+		<string>ProximaNova-Regular.otf</string>
+		<string>ProximaNova-LightItalic.otf</string>
+		<string>ProximaNova-Light.otf</string>
+		<string>ProximaNova-Black.otf</string>
+		<string>ProximaNova-Bold.otf</string>
+		<string>ProximaNova-Extrabold.otf</string>
+		<string>Open Sans italic.ttf</string>
+		<string>Open Sans regular.ttf</string>
+		<string>Open Sans 300.ttf</string>
+		<string>Open Sans 300italic.ttf</string>
+		<string>Open Sans 700.ttf</string>
+		<string>Open Sans 700italic.ttf</string>
+		<string>Open Sans 600.ttf</string>
+		<string>Open Sans 600italic.ttf</string>
+		<string>Open Sans 800.ttf</string>
+		<string>Open Sans 800italic.ttf</string>
+		<string>Open Sans Condensed 300.ttf</string>
+		<string>Open Sans Condensed 300italic.ttf</string>
+		<string>Open Sans Condensed 700.ttf</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UIRequiresFullScreen</key>
+	<false/>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+</dict>
+</plist>

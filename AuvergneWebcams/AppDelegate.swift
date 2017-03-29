@@ -88,8 +88,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ImageCache.default.cleanExpiredDiskCache()
         
         // Update
-        Siren.sharedInstance.alertType = .skip
-        Siren.sharedInstance.checkVersion(checkType: .immediately)
+        Siren.shared.alertType = .skip
+        Siren.shared.checkVersion(checkType: .immediately)
         
         // Setup Window
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -111,7 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        Siren.sharedInstance.checkVersion(checkType: .daily)
+        Siren.shared.checkVersion(checkType: .daily)
         
         #if !DEBUG
             AnalyticsManager.logEventAppOpen()
@@ -120,7 +120,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        Siren.sharedInstance.checkVersion(checkType: .daily)
+        Siren.shared.checkVersion(checkType: .daily)
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -131,9 +131,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Realm
     
     func printRealmPath() {
-        let realm = try? Realm()
+        guard let realm = try? Realm() else { return }
+        guard let path = realm.configuration.fileURL?.path else { return }
         
-        print("\(realm?.configuration.fileURL?.path)");
+        print(path)
     }
     
     func deleteRealmIfMigrationNeeded() -> Bool {
@@ -183,7 +184,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 // MARK: - LoadingViewControllerDelegate
 
 extension AppDelegate: LoadingViewControllerDelegate {
-    func didFinishLoading(_: LoadingViewController) {
+    func didFinishLoading(_: AbstractLoadingViewController) {
         let navigationController = NavigationController(rootViewController: mainViewController)
         window?.rootViewController = navigationController
     }

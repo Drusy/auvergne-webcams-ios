@@ -264,9 +264,9 @@ extension WebcamCarouselTableViewCell: iCarouselDelegate, iCarouselDataSource {
             return 0.4
         case .arc:
             if UIApplication.shared.statusBarOrientation == .portrait {
-                return CGFloat(2 * M_PI)
+                return CGFloat(2 * Double.pi)
             } else {
-                return CGFloat(M_PI)
+                return CGFloat(Double.pi)
             }
             
         default:

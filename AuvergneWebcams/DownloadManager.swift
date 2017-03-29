@@ -24,10 +24,18 @@ class DownloadManager {
     
     func bootstrapRealmDevelopmentData() {
         print(">>> Bootstraping developement configuration JSON")
-        let path = Bundle.main.path(forResource: "aw-config-dev", ofType: "json")
-        if let json = try? String(contentsOfFile: path!, encoding: String.Encoding.utf8) {
+        guard let path = Bundle.main.path(forResource: Configuration.localJSONConfigurationFileDev, ofType: "json") else { return }
+        
+        if let json = try? String(contentsOfFile: path, encoding: String.Encoding.utf8) {
             if let webcamSectionsResponse = Mapper<WebcamSectionResponse>().map(JSONString: json) {
+                // Delete all sections & webcams
+                let sections = realm.objects(WebcamSection.self)
+                let webcams = realm.objects(Webcam.self)
+                
                 try! realm.write {
+                    realm.delete(sections)
+                    realm.delete(webcams)
+                    
                     realm.add(webcamSectionsResponse.sections, update: true)
                 }
             }
@@ -36,8 +44,9 @@ class DownloadManager {
     
     func bootstrapRealmData() {
         print(">>> Bootstraping configuration JSON")
-        let path = Bundle.main.path(forResource: "aw-config", ofType: "json")
-        if let json = try? String(contentsOfFile: path!, encoding: String.Encoding.utf8) {
+        guard let path = Bundle.main.path(forResource: Configuration.localJSONConfigurationFile, ofType: "json") else { return }
+        
+        if let json = try? String(contentsOfFile: path, encoding: String.Encoding.utf8) {
             if let webcamSectionsResponse = Mapper<WebcamSectionResponse>().map(JSONString: json) {
                 try! realm.write {
                     realm.add(webcamSectionsResponse.sections, update: true)

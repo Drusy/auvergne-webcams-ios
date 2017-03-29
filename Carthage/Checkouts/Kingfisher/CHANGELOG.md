@@ -2,6 +2,37 @@
 
 -----
 
+## [3.6.0 - Cropping](https://github.com/onevcat/Kingfisher/releases/tag/3.6.0) (2017-03-26)
+
+#### Add
+* A built-in image processor to crop images with a targeted size and anchor. [#465](https://github.com/onevcat/Kingfisher/issues/465)
+
+---
+
+## [3.5.2 - Bad Apple](https://github.com/onevcat/Kingfisher/releases/tag/3.5.2) (2017-03-09)
+
+#### Fix
+* An issue which causes app crashing while folder enumerating encountered an error in `ImageCache`. [#620](https://github.com/onevcat/Kingfisher/pull/620)
+
+---
+
+## [3.5.1 - Fast is better than slow](https://github.com/onevcat/Kingfisher/releases/tag/3.5.1) (2017-03-01)
+
+#### Fix
+* A minor improvement on slow compiling time due to a method in `Image`. [#611](https://github.com/onevcat/Kingfisher/issues/611)
+
+---
+
+## [3.5.0 - New age, new content](https://github.com/onevcat/Kingfisher/releases/tag/3.5.0) (2017-02-21)
+
+#### Add
+* Resizing processor now support to resize images with content mode. You could choose from `aspectFill`, `aspectFit` or just respect the target size. [#597](https://github.com/onevcat/Kingfisher/issues/597)
+
+#### Fix
+* A problem which might cause the downloaded image set unexpected for a cell which already not in use. [#598](https://github.com/onevcat/Kingfisher/pull/598)
+
+---
+
 ## [3.4.0 - Spring is here](https://github.com/onevcat/Kingfisher/releases/tag/3.4.0) (2017-02-11)
 
 #### Add
