@@ -41,8 +41,7 @@ open class DateCell : Cell<Date>, CellType {
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        datePicker = UIDatePicker()
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) has not been implemented")
     }
     
     open override func setup() {

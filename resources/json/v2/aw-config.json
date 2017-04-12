@@ -11,7 +11,7 @@
                 {
                     "uid": 1,
                     "order": 2,
-                    "title": "Sommet du Puy de Dôme",
+                    "title": "Sommet du Puy de Dôme\nVue Clermont-Ferrand",
                     "imageLD": "http://wwwobs.univ-bpclermont.fr/opgc/webcampdd.jpg",
                     "imageHD": null,
                     "type": "image",
@@ -26,6 +26,19 @@
                     "order": 1,
                     "title": "Campus des Cézeaux",
                     "imageLD": "http://wwwobs.univ-bpclermont.fr/opgc/webcamcez.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "puy de dome",
+                        "auvergne",
+                        "volcan"
+                    ]
+                },
+                {
+                    "uid": 101,
+                    "order": 3,
+                    "title": "Sommet du Puy de Dôme\nVue Sancy",
+                    "imageLD": "http://194.51.121.89:8080/jpg/1/image.jpg",
                     "imageHD": null,
                     "type": "image",
                     "tags": [

@@ -93,15 +93,17 @@ open class _MultipleSelectorViewController<T: Hashable, Row: SelectableRowType> 
     
     func section(with options: [Set<T>], header: String?, footer: String?) -> SelectableSection<Row> {
         let section = SelectableSection<Row>(header: header ?? "", footer: footer ?? "", selectionType: .multipleSelection) { [weak self] section in
-            section.onSelectSelectableRow = { _, selectableRow in
-                var newValue: Set<T> = self?.row.value ?? []
-                if let selectableValue = selectableRow.value {
-                    newValue.insert(selectableValue)
+            if let sec = section as? SelectableSection<Row> {
+                sec.onSelectSelectableRow = { _, selectableRow in
+                    var newValue: Set<T> = self?.row.value ?? []
+                    if let selectableValue = selectableRow.value {
+                        newValue.insert(selectableValue)
+                    }
+                    else {
+                        newValue.remove(selectableRow.selectableValue!)
+                    }
+                    self?.row.value = newValue
                 }
-                else {
-                    newValue.remove(selectableRow.selectableValue!)
-                }
-                self?.row.value = newValue
             }
         }
         for option in options {

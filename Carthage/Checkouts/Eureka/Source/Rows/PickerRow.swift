@@ -28,24 +28,23 @@ import Foundation
 
 open class PickerCell<T> : Cell<T>, CellType, UIPickerViewDataSource, UIPickerViewDelegate where T: Equatable{
     
-    @IBOutlet public weak var picker: UIPickerView!
+    public var picker: UIPickerView
     
     private var pickerRow : _PickerRow<T>? { return row as? _PickerRow<T> }
     
     public required init(style: UITableViewCellStyle, reuseIdentifier: String?){
-        let pickerView = UIPickerView()
-        self.picker = pickerView
-        self.picker?.translatesAutoresizingMaskIntoConstraints = false
+        self.picker = UIPickerView()
+        self.picker.translatesAutoresizingMaskIntoConstraints = false
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.contentView.addSubview(pickerView)
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[picker]-0-|", options: [], metrics: nil, views: ["picker": pickerView]))
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[picker]-0-|", options: [], metrics: nil, views: ["picker": pickerView]))
+        self.contentView.addSubview(self.picker)
+        self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[picker]-0-|", options: [], metrics: nil, views: ["picker": self.picker]))
+        self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[picker]-0-|", options: [], metrics: nil, views: ["picker": self.picker]))
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) has not been implemented")
     }
     
     open override func setup() {
@@ -57,8 +56,8 @@ open class PickerCell<T> : Cell<T>, CellType, UIPickerViewDataSource, UIPickerVi
     }
     
     deinit {
-        picker?.delegate = nil
-        picker?.dataSource = nil
+        picker.delegate = nil
+        picker.dataSource = nil
     }
     
     open override func update(){

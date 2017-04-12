@@ -33,6 +33,19 @@
                         "auvergne",
                         "volcan"
                     ]
+                },
+                {
+                    "uid": 101,
+                    "order": 3,
+                    "title": "Sommet du Puy de Dôme\nVue Sancy",
+                    "imageLD": "http://194.51.121.89:8080/jpg/1/image.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "puy de dome",
+                        "auvergne",
+                        "volcan"
+                    ]
                 }
             ]
         },

@@ -28,20 +28,19 @@ import Foundation
 
 open class PickerInputCell<T: Equatable> : Cell<T>, CellType, UIPickerViewDataSource, UIPickerViewDelegate where T: Equatable, T: InputTypeInitiable {
     
-    lazy public var picker: UIPickerView = {
-        let picker = UIPickerView()
-        picker.translatesAutoresizingMaskIntoConstraints = false
-        return picker
-    }()
+    public var picker: UIPickerView
     
     private var pickerInputRow : _PickerInputRow<T>? { return row as? _PickerInputRow<T> }
     
     public required init(style: UITableViewCellStyle, reuseIdentifier: String?){
+        self.picker = UIPickerView()
+        self.picker.translatesAutoresizingMaskIntoConstraints = false
+        
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) has not been implemented")
     }
     
     open override func setup() {
@@ -116,6 +115,7 @@ open class PickerInputCell<T: Equatable> : Cell<T>, CellType, UIPickerViewDataSo
             update()
         }
     }
+    
 }
 
 //MARK: PickerInputRow

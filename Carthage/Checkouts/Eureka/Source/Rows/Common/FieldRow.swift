@@ -110,7 +110,8 @@ public protocol TextInputCell {
 }
 
 public protocol TextFieldCell: TextInputCell {
-    var textField: UITextField! { get }
+    
+    var textField: UITextField { get }
 }
 
 extension TextFieldCell {
@@ -122,30 +123,25 @@ extension TextFieldCell {
 
 open class _FieldCell<T> : Cell<T>, UITextFieldDelegate, TextFieldCell where T: Equatable, T: InputTypeInitiable {
     
-    @IBOutlet public weak var textField: UITextField!
-    @IBOutlet public weak var titleLabel: UILabel?
+    public var textField: UITextField
     
-    fileprivate var observingTitleText = false
-    private var awakeFromNibCalled = false
+    open var titleLabel : UILabel? {
+        textLabel?.translatesAutoresizingMaskIntoConstraints = false
+        textLabel?.setContentHuggingPriority(500, for: .horizontal)
+        textLabel?.setContentCompressionResistancePriority(1000, for: .horizontal)
+        return textLabel
+    }
+
+    fileprivate var observingTitleText: Bool = false
 
     open var dynamicConstraints = [NSLayoutConstraint]()
     
     public required init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         
-        let textField = UITextField()
-        self.textField = textField
+        textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        titleLabel = self.textLabel
-        titleLabel?.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel?.setContentHuggingPriority(500, for: .horizontal)
-        titleLabel?.setContentCompressionResistancePriority(1000, for: .horizontal)
-        
-        contentView.addSubview(titleLabel!)
-        contentView.addSubview(textField)
-
         
         NotificationCenter.default.addObserver(forName: Notification.Name.UIApplicationWillResignActive, object: nil, queue: nil){ [weak self] notification in
             guard let me = self else { return }
@@ -166,19 +162,12 @@ open class _FieldCell<T> : Cell<T>, UITextFieldDelegate, TextFieldCell where T: 
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) has not been implemented")
     }
-    
-    open override func awakeFromNib() {
-        super.awakeFromNib()
-        awakeFromNibCalled = true
-    }
-    
     
     deinit {
-        textField?.delegate = nil
-        textField?.removeTarget(self, action: nil, for: .allEvents)
-        guard !awakeFromNibCalled else { return }
+        textField.delegate = nil
+        textField.removeTarget(self, action: nil, for: .allEvents)
         if observingTitleText {
             titleLabel?.removeObserver(self, forKeyPath: "text")
         }
@@ -191,12 +180,12 @@ open class _FieldCell<T> : Cell<T>, UITextFieldDelegate, TextFieldCell where T: 
     open override func setup() {
         super.setup()
         selectionStyle = .none
+        contentView.addSubview(titleLabel!)
+        contentView.addSubview(textField)
 
-        if !awakeFromNibCalled {
-            titleLabel?.addObserver(self, forKeyPath: "text", options: NSKeyValueObservingOptions.old.union(.new), context: nil)
-            observingTitleText = true
-            imageView?.addObserver(self, forKeyPath: "image", options: NSKeyValueObservingOptions.old.union(.new), context: nil)
-        }
+        titleLabel?.addObserver(self, forKeyPath: "text", options: NSKeyValueObservingOptions.old.union(.new), context: nil)
+        observingTitleText = true
+        imageView?.addObserver(self, forKeyPath: "image", options: NSKeyValueObservingOptions.old.union(.new), context: nil)
         textField.addTarget(self, action: #selector(_FieldCell.textFieldDidChange(_:)), for: .editingChanged)
         
     }
@@ -204,16 +193,13 @@ open class _FieldCell<T> : Cell<T>, UITextFieldDelegate, TextFieldCell where T: 
     open override func update() {
         super.update()
         detailTextLabel?.text = nil
-        
-        if !awakeFromNibCalled {
-            if let title = row.title {
-                textField.textAlignment = title.isEmpty ? .left : .right
-                textField.clearButtonMode = title.isEmpty ? .whileEditing : .never
-            }
-            else{
-                textField.textAlignment =  .left
-                textField.clearButtonMode =  .whileEditing
-            }
+        if let title = row.title {
+            textField.textAlignment = title.isEmpty ? .left : .right
+            textField.clearButtonMode = title.isEmpty ? .whileEditing : .never
+        }
+        else{
+            textField.textAlignment =  .left
+            textField.clearButtonMode =  .whileEditing
         }
         textField.delegate = self
         textField.text = row.displayValueFor?(row.value)
@@ -234,15 +220,15 @@ open class _FieldCell<T> : Cell<T>, UITextFieldDelegate, TextFieldCell where T: 
     }
     
     open override func cellCanBecomeFirstResponder() -> Bool {
-        return !row.isDisabled && textField?.canBecomeFirstResponder == true
+        return !row.isDisabled && textField.canBecomeFirstResponder
     }
     
     open override func cellBecomeFirstResponder(withDirection: Direction) -> Bool {
-        return textField?.becomeFirstResponder() ?? false
+        return textField.becomeFirstResponder()
     }
     
     open override func cellResignFirstResponder() -> Bool {
-        return textField?.resignFirstResponder() ?? true
+        return textField.resignFirstResponder()
     }
 
     open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -257,12 +243,10 @@ open class _FieldCell<T> : Cell<T>, UITextFieldDelegate, TextFieldCell where T: 
     // Mark: Helpers
     
     open func customConstraints() {
-        
-        guard !awakeFromNibCalled else { return }
         contentView.removeConstraints(dynamicConstraints)
         dynamicConstraints = []
         var views : [String: AnyObject] =  ["textField": textField]
-        dynamicConstraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-11-[textField]-11-|", options: .alignAllLastBaseline, metrics: nil, views: views)
+        dynamicConstraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-11-[textField]-11-|", options: .alignAllLastBaseline, metrics: nil, views: ["textField": textField])
         
         if let label = titleLabel, let text = label.text, !text.isEmpty {
             dynamicConstraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-11-[titleLabel]-11-|", options: .alignAllLastBaseline, metrics: nil, views: ["titleLabel": label])
@@ -337,7 +321,7 @@ open class _FieldCell<T> : Cell<T>, UITextFieldDelegate, TextFieldCell where T: 
     private func displayValue(useFormatter: Bool) -> String? {
         guard let v = row.value else { return nil }
         if let formatter = (row as? FormatterConformance)?.formatter, useFormatter {
-            return textField?.isFirstResponder == true ? formatter.editingString(for: v) : formatter.string(for: v)
+            return textField.isFirstResponder ? formatter.editingString(for: v) : formatter.string(for: v)
         }
         return String(describing: v)
     }
