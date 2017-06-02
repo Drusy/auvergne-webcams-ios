@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -28,7 +28,7 @@
             <rect key="frame" x="0.0" y="0.0" width="420" height="350"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="420" height="349"/>
+                <rect key="frame" x="0.0" y="0.0" width="420" height="350"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mIn-07-yEu">
@@ -37,7 +37,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gEB-5z-4o6" userLabel="ContentView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sancy-landscape" translatesAutoresizingMaskIntoConstraints="NO" id="t4w-xp-UKl">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pdd-landscape" translatesAutoresizingMaskIntoConstraints="NO" id="t4w-xp-UKl">
                                         <rect key="frame" x="16" y="25" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="t4w-xp-UKl" secondAttribute="height" multiplier="100%" id="Bzr-qV-xr4"/>
@@ -54,13 +54,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 webcams" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Sn-aM-2PQ">
-                                        <rect key="frame" x="82" y="56" width="65.5" height="13"/>
+                                        <rect key="frame" x="82" y="56" width="67" height="15.5"/>
                                         <fontDescription key="fontDescription" name="ProximaNova-RegularIt" family="Proxima Nova" pointSize="13"/>
                                         <color key="textColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow-right-icon" translatesAutoresizingMaskIntoConstraints="NO" id="eec-iS-nUm">
-                                        <rect key="frame" x="150.5" y="60.5" width="10" height="8"/>
+                                        <rect key="frame" x="152" y="61.5" width="10" height="8"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="8" id="Ip1-EQ-gkD"/>
                                         </constraints>
@@ -83,10 +83,10 @@
                                 <rect key="frame" x="320" y="0.0" width="100" height="100"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weather-cloudy" translatesAutoresizingMaskIntoConstraints="NO" id="QQV-QQ-Nwt">
-                                        <rect key="frame" x="18.5" y="39" width="25" height="22"/>
+                                        <rect key="frame" x="12.5" y="39" width="25" height="22"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-13°C" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PNT-xh-URj">
-                                        <rect key="frame" x="55.5" y="44.5" width="28.5" height="13"/>
+                                        <rect key="frame" x="49.5" y="43" width="34.5" height="15.5"/>
                                         <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="13"/>
                                         <color key="textColor" red="0.32156862749999998" green="0.64313725489999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -186,7 +186,7 @@
     </objects>
     <resources>
         <image name="arrow-right-icon" width="10" height="17"/>
-        <image name="sancy-landscape" width="300" height="300"/>
+        <image name="pdd-landscape" width="300" height="300"/>
         <image name="weather-cloudy" width="25" height="22"/>
     </resources>
 </document>

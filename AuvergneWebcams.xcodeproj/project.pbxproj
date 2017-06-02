@@ -179,6 +179,21 @@
 		F94D7CEA1DFAE50200460CCD /* ActiveLabel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F94D7CE71DFAE4FC00460CCD /* ActiveLabel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F94FEEAD1DD4764100586F54 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94FEEAC1DD4764100586F54 /* NavigationController.swift */; };
 		F94FEEB01DD4765A00586F54 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94FEEAF1DD4765A00586F54 /* UIFontExtension.swift */; };
+		F95DEB781EE1BB6400101CC4 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F95DEB771EE1BB6400101CC4 /* NotificationCenter.framework */; };
+		F95DEB7B1EE1BB6400101CC4 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEB7A1EE1BB6400101CC4 /* TodayViewController.swift */; };
+		F95DEB7E1EE1BB6400101CC4 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F95DEB7C1EE1BB6400101CC4 /* MainInterface.storyboard */; };
+		F95DEB821EE1BB6400101CC4 /* Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F95DEB761EE1BB6300101CC4 /* Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F95DEB871EE1BCEB00101CC4 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F93C76391DD11ACE005DEE66 /* Kingfisher.framework */; };
+		F95DEB881EE1BDF100101CC4 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F963AB3B1E59E7FC00ED5A8B /* Realm.framework */; };
+		F95DEB891EE1BDF400101CC4 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F963AB3C1E59E7FC00ED5A8B /* RealmSwift.framework */; };
+		F95DEB8A1EE1BF8100101CC4 /* Webcam.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5AC721DD33B6800D9FF83 /* Webcam.swift */; };
+		F95DEB8B1EE1C0AF00101CC4 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F963AB391E59E7FC00ED5A8B /* Alamofire.framework */; };
+		F95DEB8C1EE1C0C500101CC4 /* ApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B1E61A1E66128C00829FE8 /* ApiRequest.swift */; };
+		F95DEB8D1EE1C0CE00101CC4 /* Queryable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B1E61C1E6612E500829FE8 /* Queryable.swift */; };
+		F95DEB8E1EE1C0D600101CC4 /* WebcamTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C747F91E5F8B6C0018B5CC /* WebcamTag.swift */; };
+		F95DEB8F1EE1C0EA00101CC4 /* RequestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9147FBB1E66137C000C78CA /* RequestExtension.swift */; };
+		F95DEB901EE1C11100101CC4 /* DefaultsKeyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9022DA01DD90601006AF146 /* DefaultsKeyExtension.swift */; };
+		F95DEB911EE1C12600101CC4 /* SwiftyUserDefaults.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F93C763C1DD11ACE005DEE66 /* SwiftyUserDefaults.framework */; };
 		F96276191DDB6A5D0090A9AB /* UITableViewCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96276181DDB6A5D0090A9AB /* UITableViewCellExtension.swift */; };
 		F963AB131E59BDF900ED5A8B /* AbstractLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F963AB111E59BDF900ED5A8B /* AbstractLoadingViewController.swift */; };
 		F963AB141E59BDF900ED5A8B /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F963AB121E59BDF900ED5A8B /* LoadingViewController.xib */; };
@@ -441,6 +456,13 @@
 			remoteGlobalIDString = F93C76081DD11577005DEE66;
 			remoteInfo = AuvergneWebcams;
 		};
+		F95DEB801EE1BB6400101CC4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F93C76011DD11577005DEE66 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F95DEB751EE1BB6300101CC4;
+			remoteInfo = Widget;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -496,6 +518,17 @@
 				F94433001E8A4C45006D7308 /* NVActivityIndicatorView.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F95DEB861EE1BB6400101CC4 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F95DEB821EE1BB6400101CC4 /* Widget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F9D610A41E82EDBF00BFC18D /* Embed Frameworks */ = {
@@ -575,6 +608,12 @@
 		F94D7CE71DFAE4FC00460CCD /* ActiveLabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ActiveLabel.framework; path = Carthage/Build/iOS/ActiveLabel.framework; sourceTree = "<group>"; };
 		F94FEEAC1DD4764100586F54 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		F94FEEAF1DD4765A00586F54 /* UIFontExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
+		F95DEB761EE1BB6300101CC4 /* Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Widget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		F95DEB771EE1BB6400101CC4 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		F95DEB7A1EE1BB6400101CC4 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		F95DEB7D1EE1BB6400101CC4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		F95DEB7F1EE1BB6400101CC4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F95DEB921EE1C8A400101CC4 /* Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Widget.entitlements; sourceTree = "<group>"; };
 		F96276181DDB6A5D0090A9AB /* UITableViewCellExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtension.swift; sourceTree = "<group>"; };
 		F963AB111E59BDF900ED5A8B /* AbstractLoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractLoadingViewController.swift; sourceTree = "<group>"; };
 		F963AB121E59BDF900ED5A8B /* LoadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingViewController.xib; sourceTree = "<group>"; };
@@ -768,6 +807,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F95DEB731EE1BB6300101CC4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F95DEB881EE1BDF100101CC4 /* Realm.framework in Frameworks */,
+				F95DEB871EE1BCEB00101CC4 /* Kingfisher.framework in Frameworks */,
+				F95DEB891EE1BDF400101CC4 /* RealmSwift.framework in Frameworks */,
+				F95DEB911EE1C12600101CC4 /* SwiftyUserDefaults.framework in Frameworks */,
+				F95DEB8B1EE1C0AF00101CC4 /* Alamofire.framework in Frameworks */,
+				F95DEB781EE1BB6400101CC4 /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F9D610611E82EDBF00BFC18D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -859,6 +911,7 @@
 				F93C760B1DD11577005DEE66 /* AuvergneWebcams */,
 				F9D610BD1E82EE0600BFC18D /* ParisWebcams */,
 				F94433081E8A4CC4006D7308 /* NorthernLightsWebcams */,
+				F95DEB791EE1BB6400101CC4 /* Widget */,
 				F93C76201DD11577005DEE66 /* AuvergneWebcamsTests */,
 				F93C760A1DD11577005DEE66 /* Products */,
 			);
@@ -871,6 +924,7 @@
 				F93C761D1DD11577005DEE66 /* AuvergneWebcamsTests.xctest */,
 				F9D610BB1E82EDBF00BFC18D /* ParisWebcams.app */,
 				F94433061E8A4C45006D7308 /* NorthernLightsWebcams.app */,
+				F95DEB761EE1BB6300101CC4 /* Widget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1092,6 +1146,17 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
+		F95DEB791EE1BB6400101CC4 /* Widget */ = {
+			isa = PBXGroup;
+			children = (
+				F95DEB921EE1C8A400101CC4 /* Widget.entitlements */,
+				F95DEB7A1EE1BB6400101CC4 /* TodayViewController.swift */,
+				F95DEB7C1EE1BB6400101CC4 /* MainInterface.storyboard */,
+				F95DEB7F1EE1BB6400101CC4 /* Info.plist */,
+			);
+			path = Widget;
+			sourceTree = "<group>";
+		};
 		F963AB101E59BDD500ED5A8B /* Loading */ = {
 			isa = PBXGroup;
 			children = (
@@ -1273,6 +1338,7 @@
 		F9ACD1F61E5C9DD8004E5BFF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F95DEB771EE1BB6400101CC4 /* NotificationCenter.framework */,
 				F9ACD1F91E5C9DF5004E5BFF /* AddressBook.framework */,
 				F9ACD1F71E5C9DD8004E5BFF /* libsqlite3.tbd */,
 			);
@@ -1498,10 +1564,12 @@
 				F93C76491DD11AF1005DEE66 /* Embed Frameworks */,
 				F93C764A1DD11AF5005DEE66 /* Carthage */,
 				F911BBEC1DDC6074000C022B /* Crashlytics */,
+				F95DEB861EE1BB6400101CC4 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				F95DEB811EE1BB6400101CC4 /* PBXTargetDependency */,
 			);
 			name = AuvergneWebcams;
 			productName = AuvergneWebcams;
@@ -1547,6 +1615,23 @@
 			productReference = F94433061E8A4C45006D7308 /* NorthernLightsWebcams.app */;
 			productType = "com.apple.product-type.application";
 		};
+		F95DEB751EE1BB6300101CC4 /* Widget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F95DEB831EE1BB6400101CC4 /* Build configuration list for PBXNativeTarget "Widget" */;
+			buildPhases = (
+				F95DEB721EE1BB6300101CC4 /* Sources */,
+				F95DEB731EE1BB6300101CC4 /* Frameworks */,
+				F95DEB741EE1BB6300101CC4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Widget;
+			productName = Widget;
+			productReference = F95DEB761EE1BB6300101CC4 /* Widget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		F9D610291E82EDBF00BFC18D /* ParisWebcams */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F9D610B81E82EDBF00BFC18D /* Build configuration list for PBXNativeTarget "ParisWebcams" */;
@@ -1574,7 +1659,7 @@
 		F93C76011DD11577005DEE66 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0810;
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0820;
 				TargetAttributes = {
 					F93C76081DD11577005DEE66 = {
@@ -1582,6 +1667,9 @@
 						DevelopmentTeam = QH6KR5PAQ7;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -1595,6 +1683,16 @@
 					};
 					F94432721E8A4C45006D7308 = {
 						DevelopmentTeam = QH6KR5PAQ7;
+					};
+					F95DEB751EE1BB6300101CC4 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = QH6KR5PAQ7;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					F9D610291E82EDBF00BFC18D = {
 						DevelopmentTeam = QH6KR5PAQ7;
@@ -1618,6 +1716,7 @@
 				F9D610291E82EDBF00BFC18D /* ParisWebcams */,
 				F94432721E8A4C45006D7308 /* NorthernLightsWebcams */,
 				F93C761C1DD11577005DEE66 /* AuvergneWebcamsTests */,
+				F95DEB751EE1BB6300101CC4 /* Widget */,
 			);
 		};
 /* End PBXProject section */
@@ -1722,6 +1821,14 @@
 				F94432EC1E8A4C45006D7308 /* ProximaNova-Sbold.otf in Resources */,
 				F94432ED1E8A4C45006D7308 /* ProximaNova-Extrabold.otf in Resources */,
 				F94432EE1E8A4C45006D7308 /* SettingsViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F95DEB741EE1BB6300101CC4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F95DEB7E1EE1BB6400101CC4 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2101,6 +2208,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F95DEB721EE1BB6300101CC4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F95DEB8D1EE1C0CE00101CC4 /* Queryable.swift in Sources */,
+				F95DEB8F1EE1C0EA00101CC4 /* RequestExtension.swift in Sources */,
+				F95DEB901EE1C11100101CC4 /* DefaultsKeyExtension.swift in Sources */,
+				F95DEB8A1EE1BF8100101CC4 /* Webcam.swift in Sources */,
+				F95DEB8E1EE1C0D600101CC4 /* WebcamTag.swift in Sources */,
+				F95DEB7B1EE1BB6400101CC4 /* TodayViewController.swift in Sources */,
+				F95DEB8C1EE1C0C500101CC4 /* ApiRequest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F9D6102B1E82EDBF00BFC18D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2172,7 +2293,23 @@
 			target = F93C76081DD11577005DEE66 /* AuvergneWebcams */;
 			targetProxy = F93C761E1DD11577005DEE66 /* PBXContainerItemProxy */;
 		};
+		F95DEB811EE1BB6400101CC4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F95DEB751EE1BB6300101CC4 /* Widget */;
+			targetProxy = F95DEB801EE1BB6400101CC4 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F95DEB7C1EE1BB6400101CC4 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F95DEB7D1EE1BB6400101CC4 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F93C76241DD11577005DEE66 /* Debug */ = {
@@ -2414,6 +2551,47 @@
 			};
 			name = Release;
 		};
+		F95DEB841EE1BB6400101CC4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = Widget/Widget.entitlements;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = QH6KR5PAQ7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = Widget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = fr.openium.AuvergneWebcams.Widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		F95DEB851EE1BB6400101CC4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = Widget/Widget.entitlements;
+				DEVELOPMENT_TEAM = QH6KR5PAQ7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = Widget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = fr.openium.AuvergneWebcams.Widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		F9D610B91E82EDBF00BFC18D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F93C762F1DD115EB005DEE66 /* Debug.xcconfig */;
@@ -2496,6 +2674,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		F95DEB831EE1BB6400101CC4 /* Build configuration list for PBXNativeTarget "Widget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F95DEB841EE1BB6400101CC4 /* Debug */,
+				F95DEB851EE1BB6400101CC4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		F9D610B81E82EDBF00BFC18D /* Build configuration list for PBXNativeTarget "ParisWebcams" */ = {
 			isa = XCConfigurationList;

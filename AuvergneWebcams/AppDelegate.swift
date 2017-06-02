@@ -60,6 +60,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // Realm
+        var config = Realm.Configuration()
+        let realmPath: URL = FileManager.default
+            .containerURL(forSecurityApplicationGroupIdentifier: "group.fr.openium.AuvergneWebcams")!
+            .appendingPathComponent("db.realm")
+        config.fileURL = realmPath
+        Realm.Configuration.defaultConfiguration = config
+        
         let didPerformMigration = deleteRealmIfMigrationNeeded()
         #if DEBUG
             printRealmPath()
@@ -128,6 +135,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        return true
+    }
     
     // MARK: - Realm
     
