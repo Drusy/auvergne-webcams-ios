@@ -293,7 +293,9 @@ extension WebcamCarouselViewController: UIViewControllerPreviewingDelegate {
                 if let webcams = cell.webcams {
                     if webcams.count > 0 {
                         if let webcam = webcams[safe: (cell.carousel.currentItemIndex % webcams.count)] {
-                            return WebcamDetailViewController(webcam: webcam)
+                            let detail = WebcamDetailViewController(webcam: webcam)
+                            detail.initiatingPreviewActionController = self
+                            return detail
                         }
                     }
                 }
@@ -306,5 +308,4 @@ extension WebcamCarouselViewController: UIViewControllerPreviewingDelegate {
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         navigationController?.pushViewController(viewControllerToCommit, animated: true)
     }
-    
 }

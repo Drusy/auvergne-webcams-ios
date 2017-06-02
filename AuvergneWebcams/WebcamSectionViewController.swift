@@ -127,7 +127,9 @@ extension WebcamSectionViewController: UIViewControllerPreviewingDelegate {
             previewingContext.sourceRect = view.convert(cell.frame, from: collectionView)
             
             if let webcam = provider.objects?[indexPath.row] {
-                return WebcamDetailViewController(webcam: webcam)
+                let detail = WebcamDetailViewController(webcam: webcam)
+                detail.initiatingPreviewActionController = self
+                return detail
             }
         }
         return nil

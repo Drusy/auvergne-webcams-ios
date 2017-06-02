@@ -88,6 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ImageCache.default.cleanExpiredDiskCache()
         
         // Update
+        Siren.shared.delegate = self
         Siren.shared.alertType = .skip
         Siren.shared.checkVersion(checkType: .immediately)
         
@@ -187,6 +188,23 @@ extension AppDelegate: LoadingViewControllerDelegate {
     func didFinishLoading(_: AbstractLoadingViewController) {
         let navigationController = NavigationController(rootViewController: mainViewController)
         window?.rootViewController = navigationController
+    }
+}
+
+// MARK: - SirenDelegate
+
+extension AppDelegate: SirenDelegate {
+
+    func sirenUserDidLaunchAppStore() {
+        
+    }
+    
+    func sirenUserDidSkipVersion() {
+        
+    }
+    
+    func sirenUserDidCancel() {
+        
     }
 }
 

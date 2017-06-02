@@ -504,7 +504,7 @@ class ImageViewExtensionTests: XCTestCase {
         }
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(Double(NSEC_PER_SEC) * 0.1)) / Double(NSEC_PER_SEC)) { () -> Void in
-            XCTAssertFalse(task1Complete, "Task 1 should not be completed since task 2 overrides it.")
+            XCTAssertTrue(task1Complete, "Task 1 should be completed even task 2 overrides it. See issue 665.")
             XCTAssertTrue(task2Complete, "Task 2 should be completed.")
 
             XCTAssertFalse(task1Progress, "Progress of Task 1 should not be called since task 2 overrides it.")
@@ -535,7 +535,7 @@ class ImageViewExtensionTests: XCTestCase {
     }
     
     func testSettingImageWhileKeepingCurrentOne() {
-
+        let expectation = self.expectation(description: "wait for downloading image")
         let URLString = testKeys[0]
         _ = stubRequest("GET", URLString).andReturn(200)?.withBody(testImageData)
         let url = URL(string: URLString)!
@@ -547,6 +547,12 @@ class ImageViewExtensionTests: XCTestCase {
         imageView.image = testImage
         imageView.kf.setImage(with: url, placeholder: nil, options: [.keepCurrentImageWhileLoading])
         XCTAssertEqual(testImage, imageView.image)
+        
+        // Wait request finished. Ensure tests timing order.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { 
+            expectation.fulfill()
+        }
+        waitForExpectations(timeout: 5, handler: nil)
     }
     
     func testSetGIFImageOnlyFirstFrameThenFullFrames() {
@@ -595,6 +601,40 @@ class ImageViewExtensionTests: XCTestCase {
         
         
         waitForExpectations(timeout: 5, handler: nil)
-
+    }
+    
+    // https://github.com/onevcat/Kingfisher/issues/665
+    // The completion handler should be called even when the image view loading url gets changed.
+    func testIssue665() {
+        let expectation = self.expectation(description: "wait for downloading image")
+        
+        let URLString1 = testKeys[0]
+        let URLString2 = testKeys[1]
+        
+        _ = stubRequest("GET", URLString1).andReturn(200)?.withBody(testImageData)
+        _ = stubRequest("GET", URLString2).andReturn(200)?.withBody(testImageData)
+        
+        let url1 = URL(string: URLString1)!
+        let url2 = URL(string: URLString2)!
+        
+        var url1Completed = false
+        var url2Completed = false
+        
+        imageView.kf.setImage(with: url1) { (image, _, cacheType, url) in
+            url1Completed = true
+        }
+        
+        imageView.kf.setImage(with: url2) { (image, _, cacheType, url) in
+            url2Completed = true
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            XCTAssertTrue(url1Completed)
+            XCTAssertTrue(url2Completed)
+            
+            expectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 1, handler: nil)
     }
 }

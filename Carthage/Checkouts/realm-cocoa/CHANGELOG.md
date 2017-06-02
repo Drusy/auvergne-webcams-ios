@@ -1,3 +1,107 @@
+2.7.0 Release notes (2017-05-03)
+=============================================================
+
+### API Breaking Changes
+
+* None.
+
+### Enhancements
+
+* Use reachability API to minimize the reconnection delay if the network
+  connection was lost.
+* Add `-[RLMSyncUser changePassword:completion:]` API to change the current
+  user's password if using Realm's 'password' authentication provider.
+  Requires any edition of the Realm Object Server 1.4.0 or later.
+* `{RLM}SyncConfiguration` now has an `enableSSLValidation` property
+  (and default parameter in the Swift initializer) to allow SSL validation
+  to be specified on a per-server basis.
+* Transactions between a synced Realm and a Realm Object Server can now
+  exceed 16 MB in size.
+* Add new APIs for changing and retrieving permissions for synchronized Realms.
+  These APIs are intended to replace the existing Realm Object-based permissions
+  system. Requires any edition of the Realm Object Server 1.1.0 or later.
+
+### Bugfixes
+
+* Support Realm model classes defined in Swift with overridden Objective-C
+  names (e.g. `@objc(Foo) class SwiftFoo: Object {}`).
+* Fix `-[RLMMigration enumerateObjects:block:]` returning incorrect `oldObject`
+  objects when enumerating a class name after previously deleting a `newObject`.
+* Fix an issue where `Realm.asyncOpen(...)` would fail to work when opening a
+  synchronized Realm for which the user only had read permissions.
+* Using KVC to set a `List` property to `nil` now clears it to match the
+  behavior of `RLMArray` properties.
+* Fix crash from `!m_awaiting_pong` assertion failure when using synced Realms.
+* Fix poor performance or hangs when performing case-insensitive queries on
+  indexed string properties that contain many characters that don't differ
+  between upper and lower case (e.g., numbers, punctuation).
+
+2.6.2 Release notes (2017-04-21)
+=============================================================
+
+### API Breaking Changes
+
+* None.
+
+### Enhancements
+
+* None.
+
+### Bugfixes
+
+* Fix an issue where calling `Realm.asyncOpen(...)` with a synchronized Realm
+  configuration would fail with an "Operation canceled" error.
+* Fix initial collection notification sometimes not being delivered for synced
+  Realms.
+* Fix circular links sometimes resulting in objects not being marked as
+  modified in change notifications.
+
+2.6.1 Release notes (2017-04-18)
+=============================================================
+
+### API Breaking Changes
+
+* None.
+
+### Enhancements
+
+* None.
+
+### Bugfixes
+
+* Fix an issue where calling `Realm.asyncOpen(...)` with a synchronized Realm
+  configuration would crash in error cases rather than report the error.
+  This is a small source breaking change if you were relying on the error
+  being reported to be a `Realm.Error`.
+
+2.6.0 Release notes (2017-04-18)
+=============================================================
+
+### API Breaking Changes
+
+* None.
+
+### Enhancements
+
+* Add a `{RLM}SyncUser.isAdmin` property indicating whether a user is a Realm
+  Object Server administrator.
+* Add an API to asynchronously open a Realm and deliver it to a block on a
+  given queue. This performs all work needed to get the Realm to
+  a usable state (such as running potentially time-consuming migrations) on a
+  background thread before dispatching to the given queue. In addition,
+  synchronized Realms wait for all remote content available at the time the
+  operation began to be downloaded and available locally.
+* Add `shouldCompactOnLaunch` block property when configuring a Realm to
+  determine if it should be compacted before being returned.
+* Speed up case-insensitive queries on indexed string properties.
+* Add RLMResults's collection aggregate methods to RLMArray.
+* Add support for calling the aggregate methods on unmanaged Lists.
+
+### Bugfixes
+
+* Fix a deadlock when multiple processes open a Realm at the same time.
+* Fix `value(forKey:)`/`value(forKeyPath:)` returning incorrect values for `List` properties.
+
 2.5.1 Release notes (2017-04-05)
 =============================================================
 

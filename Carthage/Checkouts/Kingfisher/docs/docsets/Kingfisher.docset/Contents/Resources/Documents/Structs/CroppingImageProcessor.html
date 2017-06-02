@@ -14,7 +14,7 @@
     <a title="CroppingImageProcessor Struct Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Kingfisher Docs</a> (80% documented)</p>
+        <p><a href="../index.html">Kingfisher Docs</a> (78% documented)</p>
         <p class="header-right"><a href="https://github.com/onevcat/Kingfisher"><img src="../img/gh.png"/>View on GitHub</a></p>
         <p class="header-right"><a href="dash-feed://http%3A%2F%2Fonevcat%2Egithub%2Eio%2FKingfisher%2Fdocsets%2FKingfisher%2Exml"><img src="../img/dash.png"/>Install in Dash</a></p>
       </div>
@@ -213,6 +213,9 @@
                 <a href="../Structs/OverlayImageProcessor.html">OverlayImageProcessor</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/RectCorner.html">RectCorner</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/ResizingImageProcessor.html">ResizingImageProcessor</a>
               </li>
               <li class="nav-group-task">
@@ -287,8 +290,12 @@ watchOS is not supported.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Identifier of the processor.
-- Note: See documentation of <code><a href="../Protocols/ImageProcessor.html">ImageProcessor</a></code> protocol for more.</p>
+                        <p>Identifier of the processor.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    See documentation of <code><a href="../Protocols/ImageProcessor.html">ImageProcessor</a></code> protocol for more.
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -300,7 +307,7 @@ watchOS is not supported.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/onevcat/Kingfisher/tree/3.6.2/Sources/ImageProcessor.swift#L458">Show on GitHub</a>
+                        <a href="https://github.com/onevcat/Kingfisher/tree/3.9.1/Sources/ImageProcessor.swift#L483">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -330,7 +337,7 @@ watchOS is not supported.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/onevcat/Kingfisher/tree/3.6.2/Sources/ImageProcessor.swift#L461">Show on GitHub</a>
+                        <a href="https://github.com/onevcat/Kingfisher/tree/3.9.1/Sources/ImageProcessor.swift#L486">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -363,7 +370,7 @@ See <code><a href="../Structs/CroppingImageProcessor.html#/s:FV10Kingfisher22Cro
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/onevcat/Kingfisher/tree/3.6.2/Sources/ImageProcessor.swift#L467">Show on GitHub</a>
+                        <a href="https://github.com/onevcat/Kingfisher/tree/3.9.1/Sources/ImageProcessor.swift#L492">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -382,7 +389,6 @@ See <code><a href="../Structs/CroppingImageProcessor.html#/s:FV10Kingfisher22Cro
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Initialize a <code>CroppingImageProcessor</code></p>
-
 <div class="aside aside-note">
     <p class="aside-title">Note</p>
     The anchor point is consisted by two values between 0.0 and 1.0.
@@ -395,10 +401,13 @@ The <code><a href="../Structs/CroppingImageProcessor.html#/s:vV10Kingfisher22Cro
 
 <p>The target size will be automatically calculated with a reasonable behavior.
   For example, when you have an image size of <code>CGSize(width: 100, height: 100)</code>,
-  and a target size of <code>CGSize(width: 20, height: 20)</code>: 
-  - with a (0.0, 0.0) anchor (top-left), the crop rect will be <code>{0, 0, 20, 20}</code>; 
-  - with a (0.5, 0.5) anchor (center), it will be <code>{40, 40, 20, 20}</code>
-  - while with a (1.0, 1.0) anchor (bottom-right), it will be <code>{80, 80, 20, 20}</code></p>
+  and a target size of <code>CGSize(width: 20, height: 20)</code>: </p>
+
+<ul>
+<li>with a (0.0, 0.0) anchor (top-left), the crop rect will be <code>{0, 0, 20, 20}</code>;</li>
+<li>with a (0.5, 0.5) anchor (center), it will be <code>{40, 40, 20, 20}</code></li>
+<li>while with a (1.0, 1.0) anchor (bottom-right), it will be <code>{80, 80, 20, 20}</code></li>
+</ul>
 
                       </div>
                       <div class="declaration">
@@ -422,7 +431,6 @@ The <code><a href="../Structs/CroppingImageProcessor.html#/s:vV10Kingfisher22Cro
                               <td>
                                 <div>
                                   <p>Target size of output image should be.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -434,8 +442,8 @@ The <code><a href="../Structs/CroppingImageProcessor.html#/s:vV10Kingfisher22Cro
                               </td>
                               <td>
                                 <div>
-                                  <p>The anchor point from which the size should be calculated. Default is <code>CGPoint(x: 0.5, y: 0.5)</code>, which means the center of input image.</p>
-
+                                  <p>The anchor point from which the size should be calculated.
+    Default is <code>CGPoint(x: 0.5, y: 0.5)</code>, which means the center of input image.</p>
                                 </div>
                               </td>
                             </tr>
@@ -443,7 +451,7 @@ The <code><a href="../Structs/CroppingImageProcessor.html#/s:vV10Kingfisher22Cro
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/onevcat/Kingfisher/tree/3.6.2/Sources/ImageProcessor.swift#L488-L492">Show on GitHub</a>
+                        <a href="https://github.com/onevcat/Kingfisher/tree/3.9.1/Sources/ImageProcessor.swift#L513-L517">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -462,7 +470,6 @@ The <code><a href="../Structs/CroppingImageProcessor.html#/s:vV10Kingfisher22Cro
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Process an input <code><a href="../Enums/ImageProcessItem.html">ImageProcessItem</a></code> item to an image for this processor.</p>
-
 <div class="aside aside-note">
     <p class="aside-title">Note</p>
     <p>See documentation of <code><a href="../Protocols/ImageProcessor.html">ImageProcessor</a></code> protocol for more.</p>
@@ -491,7 +498,6 @@ The <code><a href="../Structs/CroppingImageProcessor.html#/s:vV10Kingfisher22Cro
                               <td>
                                 <div>
                                   <p>Input item which will be processed by <code>self</code></p>
-
                                 </div>
                               </td>
                             </tr>
@@ -504,7 +510,6 @@ The <code><a href="../Structs/CroppingImageProcessor.html#/s:vV10Kingfisher22Cro
                               <td>
                                 <div>
                                   <p>Options when processing the item.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -514,10 +519,9 @@ The <code><a href="../Structs/CroppingImageProcessor.html#/s:vV10Kingfisher22Cro
                       <div>
                         <h4>Return Value</h4>
                         <p>The processed image.</p>
-
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/onevcat/Kingfisher/tree/3.6.2/Sources/ImageProcessor.swift#L502-L508">Show on GitHub</a>
+                        <a href="https://github.com/onevcat/Kingfisher/tree/3.9.1/Sources/ImageProcessor.swift#L527-L533">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -527,8 +531,8 @@ The <code><a href="../Structs/CroppingImageProcessor.html#/s:vV10Kingfisher22Cro
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="https://onevcat.com" target="_blank" rel="external">Wei Wang</a>. All rights reserved. (Last updated: 2017-04-11)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.5</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2017 <a class="link" href="https://onevcat.com" target="_blank" rel="external">Wei Wang</a>. All rights reserved. (Last updated: 2017-05-13)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

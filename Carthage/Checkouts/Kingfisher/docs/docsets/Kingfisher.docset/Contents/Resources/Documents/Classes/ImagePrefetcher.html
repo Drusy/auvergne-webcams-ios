@@ -14,7 +14,7 @@
     <a title="ImagePrefetcher Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Kingfisher Docs</a> (80% documented)</p>
+        <p><a href="../index.html">Kingfisher Docs</a> (78% documented)</p>
         <p class="header-right"><a href="https://github.com/onevcat/Kingfisher"><img src="../img/gh.png"/>View on GitHub</a></p>
         <p class="header-right"><a href="dash-feed://http%3A%2F%2Fonevcat%2Egithub%2Eio%2FKingfisher%2Fdocsets%2FKingfisher%2Exml"><img src="../img/dash.png"/>Install in Dash</a></p>
       </div>
@@ -213,6 +213,9 @@
                 <a href="../Structs/OverlayImageProcessor.html">OverlayImageProcessor</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/RectCorner.html">RectCorner</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/ResizingImageProcessor.html">ResizingImageProcessor</a>
               </li>
               <li class="nav-group-task">
@@ -299,7 +302,7 @@ This is useful when you know a list of image resources and want to download them
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/onevcat/Kingfisher/tree/3.6.2/Sources/ImagePrefetcher.swift#L54">Show on GitHub</a>
+                        <a href="https://github.com/onevcat/Kingfisher/tree/3.9.1/Sources/ImagePrefetcher.swift#L54">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -322,7 +325,6 @@ This is useful when you know a list of image resources and want to download them
 <p>The prefetcher should be initiated with a list of prefetching targets. The URLs list is immutable. 
 After you get a valid <code>ImagePrefetcher</code> object, you could call <code><a href="../Classes/ImagePrefetcher.html#/s:FC10Kingfisher15ImagePrefetcher5startFT_T_">start()</a></code> on it to begin the prefetching process.
 The images already cached will be skipped without downloading again.</p>
-
 <div class="aside aside-note">
     <p class="aside-title">Note</p>
     <p>By default, the <code>ImageDownloader.defaultDownloader</code> and <code>ImageCache.defaultCache</code> will be used as 
@@ -356,7 +358,6 @@ Both the progress and completion block will be invoked in main thread. The <code
                               <td>
                                 <div>
                                   <p>The URLs which should be prefetched.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -369,7 +370,6 @@ Both the progress and completion block will be invoked in main thread. The <code
                               <td>
                                 <div>
                                   <p>A dictionary could control some behaviors. See <code>KingfisherOptionsInfo</code> for more.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -382,7 +382,6 @@ Both the progress and completion block will be invoked in main thread. The <code
                               <td>
                                 <div>
                                   <p>Called every time an resource is downloaded, skipped or cancelled.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -395,7 +394,6 @@ Both the progress and completion block will be invoked in main thread. The <code
                               <td>
                                 <div>
                                   <p>Called when the whole prefetching process finished.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -405,10 +403,9 @@ Both the progress and completion block will be invoked in main thread. The <code
                       <div>
                         <h4>Return Value</h4>
                         <p>An <code>ImagePrefetcher</code> object.</p>
-
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/onevcat/Kingfisher/tree/3.6.2/Sources/ImagePrefetcher.swift#L95-L102">Show on GitHub</a>
+                        <a href="https://github.com/onevcat/Kingfisher/tree/3.9.1/Sources/ImagePrefetcher.swift#L95-L102">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -431,7 +428,6 @@ Both the progress and completion block will be invoked in main thread. The <code
 <p>The prefetcher should be initiated with a list of prefetching targets. The resources list is immutable.
 After you get a valid <code>ImagePrefetcher</code> object, you could call <code><a href="../Classes/ImagePrefetcher.html#/s:FC10Kingfisher15ImagePrefetcher5startFT_T_">start()</a></code> on it to begin the prefetching process.
 The images already cached will be skipped without downloading again.</p>
-
 <div class="aside aside-note">
     <p class="aside-title">Note</p>
     <p>By default, the <code>ImageDownloader.defaultDownloader</code> and <code>ImageCache.defaultCache</code> will be used as
@@ -465,7 +461,6 @@ Both the progress and completion block will be invoked in main thread. The <code
                               <td>
                                 <div>
                                   <p>The resources which should be prefetched. See <code>Resource</code> type for more.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -478,7 +473,6 @@ Both the progress and completion block will be invoked in main thread. The <code
                               <td>
                                 <div>
                                   <p>A dictionary could control some behaviors. See <code>KingfisherOptionsInfo</code> for more.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -491,7 +485,6 @@ Both the progress and completion block will be invoked in main thread. The <code
                               <td>
                                 <div>
                                   <p>Called every time an resource is downloaded, skipped or cancelled.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -504,7 +497,6 @@ Both the progress and completion block will be invoked in main thread. The <code
                               <td>
                                 <div>
                                   <p>Called when the whole prefetching process finished.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -514,10 +506,9 @@ Both the progress and completion block will be invoked in main thread. The <code
                       <div>
                         <h4>Return Value</h4>
                         <p>An <code>ImagePrefetcher</code> object.</p>
-
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/onevcat/Kingfisher/tree/3.6.2/Sources/ImagePrefetcher.swift#L122-L140">Show on GitHub</a>
+                        <a href="https://github.com/onevcat/Kingfisher/tree/3.9.1/Sources/ImagePrefetcher.swift#L122-L140">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -549,7 +540,7 @@ with the results of the process.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/onevcat/Kingfisher/tree/3.6.2/Sources/ImagePrefetcher.swift#L147-L176">Show on GitHub</a>
+                        <a href="https://github.com/onevcat/Kingfisher/tree/3.9.1/Sources/ImagePrefetcher.swift#L147-L176">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -579,7 +570,7 @@ with the results of the process.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/onevcat/Kingfisher/tree/3.6.2/Sources/ImagePrefetcher.swift#L182-L192">Show on GitHub</a>
+                        <a href="https://github.com/onevcat/Kingfisher/tree/3.9.1/Sources/ImagePrefetcher.swift#L182-L192">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -589,8 +580,8 @@ with the results of the process.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="https://onevcat.com" target="_blank" rel="external">Wei Wang</a>. All rights reserved. (Last updated: 2017-04-11)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.5</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2017 <a class="link" href="https://onevcat.com" target="_blank" rel="external">Wei Wang</a>. All rights reserved. (Last updated: 2017-05-13)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

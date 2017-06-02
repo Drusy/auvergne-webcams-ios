@@ -33,6 +33,7 @@
 #include <realm/group_shared.hpp>
 #include <realm/link_view.hpp>
 #include <realm/query_engine.hpp>
+#include <realm/query_expression.hpp>
 
 #if REALM_ENABLE_SYNC
 #include "sync/sync_manager.hpp"
@@ -173,6 +174,14 @@ TEST_CASE("notifications: async delivery") {
                 REQUIRE(notification_calls == 1);
                 r->cancel_transaction();
             }
+        }
+
+        SECTION("is delivered by notify() even if there are later versions") {
+            REQUIRE(notification_calls == 0);
+            coordinator->on_change();
+            make_remote_change();
+            r->notify();
+            REQUIRE(notification_calls == 1);
         }
     }
 

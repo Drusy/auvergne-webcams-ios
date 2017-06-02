@@ -41,6 +41,8 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     @IBOutlet var favoriteButton: DOFavoriteButton!
     @IBOutlet var videoContainer: UIView!
     
+    var initiatingPreviewActionController: AbstractViewController?
+    
     var lastZoomScale: CGFloat = -1
     var webcam: Webcam
     var isDataLoaded: Bool = false
@@ -189,27 +191,13 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         let shareAction = UIAlertAction(title: "Partager",
                                         style: .default,
                                         handler: { [weak self] _ in
-                                            guard let strongSelf = self else { return }
-                                            
-                                            strongSelf.share(strongSelf.title,
-                                                             url: strongSelf.avPlayerURL,
-                                                             image: strongSelf.imageView.image,
-                                                             fromView: strongSelf.shareButton)
+                                            self?.shareWebcam()
         })
         
         let saveAction = UIAlertAction(title: "Sauvegarder",
                                        style: .default,
                                        handler: { [weak self] _ in
-                                        guard let strongSelf = self else { return }
-                                        
-                                        switch strongSelf.webcam.contentType {
-                                        case .image:
-                                            strongSelf.exportImage()
-                                        case .viewsurf:
-                                            strongSelf.exportAVPlayerVideo()
-                                        }
-                                        
-                                        AnalyticsManager.logEvent(button: "save_webcam")
+                                        self?.saveWebcam()
         })
         
         let cancelAction = UIAlertAction(title: "Annuler",
@@ -465,6 +453,24 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     
     // MARK: -
     
+    func saveWebcam() {
+        switch webcam.contentType {
+        case .image:
+            exportImage()
+        case .viewsurf:
+            exportAVPlayerVideo()
+        }
+        
+        AnalyticsManager.logEvent(button: "save_webcam")
+    }
+    
+    func shareWebcam() {
+        share(title,
+              url: avPlayerURL,
+              image: imageView.image,
+              fromView: shareButton)
+    }
+    
     func forceRefresh() {
         retryCount = Webcam.retryCount
         refresh(force: isReachable())
@@ -668,6 +674,49 @@ class WebcamDetailViewController: AbstractRefreshViewController {
             
             shouldSetupInitialZoom = false
         }
+    }
+    
+    // MARK: - Pick & Pop
+    
+    override var previewActionItems: [UIPreviewActionItem] {
+        
+        var actions = [UIPreviewActionItem]()
+        
+        let unfavoriteAction = UIPreviewAction(title: "Supprimer des favoris", style: .destructive) { [weak self] action, viewController in
+            try? self?.realm.write {
+                self?.webcam.favorite = false
+            }
+            self?.initiatingPreviewActionController?.update()
+        }
+        
+        let favoriteAction = UIPreviewAction(title: "Ajouter aux favoris", style: .default) { [weak self] action, viewController in
+            try? self?.realm.write {
+                self?.webcam.favorite = true
+            }
+            self?.initiatingPreviewActionController?.update()
+        }
+        
+        let shareAction = UIPreviewAction(title: "Partager", style: .default) { action, viewController in
+            guard let initiatingPreviewVC = self.initiatingPreviewActionController else { return }
+            
+            initiatingPreviewVC.share(self.title,
+                                      url: self.avPlayerURL,
+                                      image: self.imageView.image,
+                                      fromView: initiatingPreviewVC.view)
+        }
+        
+        if initiatingPreviewActionController != nil {
+            actions.append(shareAction)
+        }
+        
+        if webcam.favorite {
+            actions.append(unfavoriteAction)
+        } else {
+            actions.append(favoriteAction)
+        }
+        
+        return actions
+        
     }
 }
 

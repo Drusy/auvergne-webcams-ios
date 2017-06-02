@@ -19,6 +19,7 @@
 #import "RLMSyncUser+ObjectServerTests.h"
 
 #import "RLMSyncSession_Private.hpp"
+#import "RLMRealmUtil.hpp"
 
 #import "sync/sync_session.hpp"
 
@@ -32,7 +33,7 @@ using namespace realm;
     RLMSyncSession *session = [self sessionForURL:url];
     NSAssert(session, @"Cannot call with invalid URL");
     BOOL couldWait = [session waitForUploadCompletionOnQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)
-                                                    callback:^{
+                                                    callback:^(NSError *){
                                                         dispatch_semaphore_signal(sema);
                                                     }];
     if (!couldWait) {
@@ -47,7 +48,7 @@ using namespace realm;
     RLMSyncSession *session = [self sessionForURL:url];
     NSAssert(session, @"Cannot call with invalid URL");
     BOOL couldWait = [session waitForDownloadCompletionOnQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)
-                                                      callback:^{
+                                                      callback:^(NSError *){
                                                           dispatch_semaphore_signal(sema);
                                                       }];
     if (!couldWait) {
@@ -69,3 +70,7 @@ using namespace realm;
 }
 
 @end
+
+bool RLMHasCachedRealmForPath(NSString *path) {
+    return RLMGetAnyCachedRealmForPath(path.UTF8String);
+}
