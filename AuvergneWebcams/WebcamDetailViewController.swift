@@ -122,7 +122,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         refresh()
         
         AnalyticsManager.logEvent(showWebcam: webcam)
-        QuickActionsService.shared.QuickActionEdit(webcam: webcam, value: .add)
+        QuickActionsService.shared.quickActionEdit(webcam: webcam, value: .add)
     }
     
     override func viewWillLayoutSubviews() {
@@ -168,7 +168,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     @IBAction func onFavoriteTouched(_ sender: DOFavoriteButton) {
         if sender.isSelected {
             sender.deselect()
-            QuickActionsService.shared.QuickActionEdit(webcam: webcam, value: .delete)
+            QuickActionsService.shared.quickActionEdit(webcam: webcam, value: .delete)
         } else {
             sender.select()
         }
@@ -177,7 +177,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
             webcam.favorite = sender.isSelected
         }
         
-        QuickActionsService.shared.QuickActionEdit(webcam: webcam, value: .add)
+        QuickActionsService.shared.quickActionEdit(webcam: webcam, value: .add)
         
         AnalyticsManager.logEvent(set: webcam, asFavorite: sender.isSelected)
         NotificationCenter.default.post(name: Foundation.Notification.Name.favoriteWebcamDidUpdate, object: webcam)

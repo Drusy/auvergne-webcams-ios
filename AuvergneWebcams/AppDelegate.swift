@@ -21,6 +21,7 @@ import SVProgressHUD
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var shortcutItem: UIApplicationShortcutItem?
     
     lazy var loadingViewController: LoadingViewController = {
         let loadingViewController = LoadingViewController()
@@ -94,6 +95,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ImageCache.default.maxCachePeriodInSecond = autorefreshInterval as TimeInterval
         ImageCache.default.cleanExpiredDiskCache()
         
+        // Shortcut items
+        shortcutItem = launchOptions?[UIApplicationLaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem
+        
         // Update
         Siren.shared.delegate = self
         Siren.shared.alertType = .skip
@@ -104,12 +108,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = UIColor.awDarkGray
         window?.rootViewController = loadingViewController
         window?.makeKeyAndVisible()
-                
+        
         return true
     }
     
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
-        
         if let root = self.window?.rootViewController {
             QuickActionsService.shared.performActionFor(shortcutItem: shortcutItem, for: root)
         }
@@ -205,6 +208,11 @@ extension AppDelegate: LoadingViewControllerDelegate {
     func didFinishLoading(_: AbstractLoadingViewController) {
         let navigationController = NavigationController(rootViewController: mainViewController)
         window?.rootViewController = navigationController
+        
+        if let item = shortcutItem {
+            shortcutItem = nil
+            mainViewController.shortcutItem = item
+        }
     }
 }
 

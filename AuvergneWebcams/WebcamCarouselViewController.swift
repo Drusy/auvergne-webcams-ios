@@ -43,6 +43,7 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
         return provider
     }()
     
+    var shortcutItem: UIApplicationShortcutItem?
     var isFirstAppear: Bool = true
 
     override func viewDidLoad() {
@@ -156,14 +157,19 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
             animations: { [weak self] in
                 self?.navigationController?.view.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
             },
-            completion: { [weak self] finished in
-                UIView.animate(withDuration: 0.3,
-                               delay: 0.0,
-                               options: UIViewAnimationOptions.curveEaseInOut,
-                               animations: {
-                                self?.navigationController?.view.transform = .identity
+            completion: { [weak self] _ in
+                UIView.animate(
+                    withDuration: 0.3,
+                    delay: 0.0,
+                    options: UIViewAnimationOptions.curveEaseInOut,
+                    animations: {
+                        self?.navigationController?.view.transform = .identity
                 },
-                               completion: nil)
+                    completion: { [weak self] _ in
+                        if let item = self?.shortcutItem, let navigationController = self?.navigationController {
+                            QuickActionsService.shared.performActionFor(shortcutItem: item, for: navigationController)
+                        }
+                })
         })
     }
     

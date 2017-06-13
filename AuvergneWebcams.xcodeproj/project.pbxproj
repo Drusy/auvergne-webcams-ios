@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5E5C80811EF037FA009FA2AA /* QuickActionsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5C807F1EF037FA009FA2AA /* QuickActionsEnum.swift */; };
-		5E5C80821EF037FA009FA2AA /* QuickActionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5C80801EF037FA009FA2AA /* QuickActionsService.swift */; };
 		F900E4CD1DE5DBA300B017BB /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F900E4CC1DE5DBA300B017BB /* NotificationNameExtension.swift */; };
 		F9022D9E1DD90032006AF146 /* SwiftiumKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9022D9D1DD90018006AF146 /* SwiftiumKit.framework */; };
 		F9022D9F1DD90032006AF146 /* SwiftiumKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9022D9D1DD90018006AF146 /* SwiftiumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -294,6 +292,9 @@
 		F9BE03101DD8AC1B0063275B /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9BE030E1DD8AC1B0063275B /* SettingsViewController.xib */; };
 		F9BE03121DD8AF960063275B /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9BE03111DD8AF8E0063275B /* Eureka.framework */; };
 		F9BE03131DD8AF960063275B /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9BE03111DD8AF8E0063275B /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F9C214E01EF03B5A00EED240 /* QuickActionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C214DC1EF03B5A00EED240 /* QuickActionsService.swift */; };
+		F9C214E11EF03B5A00EED240 /* QuickActionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C214DC1EF03B5A00EED240 /* QuickActionsService.swift */; };
+		F9C214E21EF03B5A00EED240 /* QuickActionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C214DC1EF03B5A00EED240 /* QuickActionsService.swift */; };
 		F9C747F81E5F88DE0018B5CC /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C747F71E5F88DE0018B5CC /* DownloadManager.swift */; };
 		F9C747FA1E5F8B6C0018B5CC /* WebcamTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C747F91E5F8B6C0018B5CC /* WebcamTag.swift */; };
 		F9C747FC1E5F92480018B5CC /* AbstractRealmViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C747FB1E5F92480018B5CC /* AbstractRealmViewProvider.swift */; };
@@ -563,8 +564,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5E5C807F1EF037FA009FA2AA /* QuickActionsEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuickActionsEnum.swift; path = QuickActions/QuickActionsEnum.swift; sourceTree = "<group>"; };
-		5E5C80801EF037FA009FA2AA /* QuickActionsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuickActionsService.swift; path = QuickActions/QuickActionsService.swift; sourceTree = "<group>"; };
 		F900E4CC1DE5DBA300B017BB /* NotificationNameExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		F9022D9D1DD90018006AF146 /* SwiftiumKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftiumKit.framework; path = Carthage/Build/iOS/SwiftiumKit.framework; sourceTree = "<group>"; };
 		F9022DA01DD90601006AF146 /* DefaultsKeyExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsKeyExtension.swift; sourceTree = "<group>"; };
@@ -706,6 +705,7 @@
 		F9BE030D1DD8AC1B0063275B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F9BE030E1DD8AC1B0063275B /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		F9BE03111DD8AF8E0063275B /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
+		F9C214DC1EF03B5A00EED240 /* QuickActionsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickActionsService.swift; sourceTree = "<group>"; };
 		F9C747F71E5F88DE0018B5CC /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		F9C747F91E5F8B6C0018B5CC /* WebcamTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebcamTag.swift; sourceTree = "<group>"; };
 		F9C747FB1E5F92480018B5CC /* AbstractRealmViewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractRealmViewProvider.swift; sourceTree = "<group>"; };
@@ -860,15 +860,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5EC9078E1EEEDB82006A570D /* QuickAction */ = {
-			isa = PBXGroup;
-			children = (
-				5E5C807F1EF037FA009FA2AA /* QuickActionsEnum.swift */,
-				5E5C80801EF037FA009FA2AA /* QuickActionsService.swift */,
-			);
-			name = QuickAction;
-			sourceTree = "<group>";
-		};
 		F911BBE81DDC6066000C022B /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
@@ -924,7 +915,6 @@
 				F93C760B1DD11577005DEE66 /* AuvergneWebcams */,
 				F9D610BD1E82EE0600BFC18D /* ParisWebcams */,
 				F94433081E8A4CC4006D7308 /* NorthernLightsWebcams */,
-				5EC9078E1EEEDB82006A570D /* QuickAction */,
 				F95DEB791EE1BB6400101CC4 /* Widget */,
 				F93C76201DD11577005DEE66 /* AuvergneWebcamsTests */,
 				F93C760A1DD11577005DEE66 /* Products */,
@@ -1231,6 +1221,7 @@
 		F963AB791E5A6E6E00ED5A8B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				F9C214DC1EF03B5A00EED240 /* QuickActionsService.swift */,
 				F963AB7A1E5A6E8300ED5A8B /* DateFormatterCache.swift */,
 				F9ACD2021E5CAAD5004E5BFF /* AnalyticsManager.swift */,
 				F9C747F71E5F88DE0018B5CC /* DownloadManager.swift */,
@@ -2088,14 +2079,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E5C80811EF037FA009FA2AA /* QuickActionsEnum.swift in Sources */,
 				F963AB211E59CE6300ED5A8B /* WebcamCarouselTableViewCell.swift in Sources */,
 				F9F5AC981DD34C8B00D9FF83 /* WebcamSection.swift in Sources */,
 				F9ACD1C81E5B0E37004E5BFF /* CGSizeExtension.swift in Sources */,
 				F963AB681E5A60F300ED5A8B /* WebcamSectionViewProvider.swift in Sources */,
 				F963AB6B1E5A611600ED5A8B /* WebcamCollectionViewCell.swift in Sources */,
 				F963AB321E59D07800ED5A8B /* AbstractArrayViewProvider.swift in Sources */,
-				5E5C80821EF037FA009FA2AA /* QuickActionsService.swift in Sources */,
 				F94D7CE51DFABF6000460CCD /* AboutViewController.swift in Sources */,
 				F9147FBC1E66137C000C78CA /* RequestExtension.swift in Sources */,
 				F9022DA11DD90601006AF146 /* DefaultsKeyExtension.swift in Sources */,
@@ -2113,6 +2102,7 @@
 				F963AB5F1E5A3C8400ED5A8B /* WebcamView.swift in Sources */,
 				F92800B01E84343B0056E5CE /* Configuration.swift in Sources */,
 				F999841C1E62D631007D95AC /* WebcamSectionResponse.swift in Sources */,
+				F9C214E01EF03B5A00EED240 /* QuickActionsService.swift in Sources */,
 				F96276191DDB6A5D0090A9AB /* UITableViewCellExtension.swift in Sources */,
 				F9E858341E5D90D700F7C40D /* MailComposeViewController.swift in Sources */,
 				F9F5AC5E1DD31C9100D9FF83 /* AbstractViewController.swift in Sources */,
@@ -2188,6 +2178,7 @@
 				F94432891E8A4C45006D7308 /* WebcamView.swift in Sources */,
 				F94433131E8A4DF0006D7308 /* ConfigurationExtension.swift in Sources */,
 				F944328A1E8A4C45006D7308 /* Configuration.swift in Sources */,
+				F9C214E21EF03B5A00EED240 /* QuickActionsService.swift in Sources */,
 				F944328B1E8A4C45006D7308 /* WebcamSectionResponse.swift in Sources */,
 				F944328C1E8A4C45006D7308 /* UITableViewCellExtension.swift in Sources */,
 				F944328D1E8A4C45006D7308 /* MailComposeViewController.swift in Sources */,
@@ -2265,6 +2256,7 @@
 				F9D610401E82EDBF00BFC18D /* WebcamView.swift in Sources */,
 				F92800B11E84343D0056E5CE /* Configuration.swift in Sources */,
 				F9D610411E82EDBF00BFC18D /* WebcamSectionResponse.swift in Sources */,
+				F9C214E11EF03B5A00EED240 /* QuickActionsService.swift in Sources */,
 				F9D610421E82EDBF00BFC18D /* UITableViewCellExtension.swift in Sources */,
 				F9D610431E82EDBF00BFC18D /* MailComposeViewController.swift in Sources */,
 				F9D610441E82EDBF00BFC18D /* AbstractViewController.swift in Sources */,

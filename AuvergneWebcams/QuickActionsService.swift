@@ -9,6 +9,11 @@
 import Foundation
 import RealmSwift
 
+enum QuickActionsEnum {
+    case add
+    case delete
+}
+
 class QuickActionsService {
     
     static let shared = QuickActionsService()
@@ -23,6 +28,8 @@ class QuickActionsService {
     let indexKey = "Index"
     
     func registerQuickActions() {
+        guard UIApplication.shared.shortcutItems?.isEmpty ?? false else { return }
+        
         var shortcutItems = Array<UIApplicationShortcutItem>()
         let favoriteWebcams = realm.objects(Webcam.self).filter("%K = true", #keyPath(Webcam.favorite)).prefix(maxFav)
         
@@ -43,41 +50,37 @@ class QuickActionsService {
         UIApplication.shared.shortcutItems = shortcutItems
     }
     
-    func performActionFor(shortcutItem: UIApplicationShortcutItem, for root: UIViewController) {
+    func performActionFor(shortcutItem: UIApplicationShortcutItem, for root: UIViewController, animated: Bool = true) {
         
         if shortcutItem.type.contains(QuickActionsService.shared.defaultTypePrefix) {
             guard let idString = shortcutItem.type.components(separatedBy: ".").last,
                 let id = Int(idString),
                 let webcam = realm.object(ofType: Webcam.self, forPrimaryKey: id)
             else {
-                if let nav = root as? NavigationController {
-                    nav.popToRootViewController(animated: false)
-                }
                 return
             }
             
             let webcamDetailViewController = WebcamDetailViewController(webcam: webcam)
             if let nav = root as? NavigationController {
                 nav.popToRootViewController(animated: false)
-                nav.pushViewController(webcamDetailViewController, animated: true)
+                nav.pushViewController(webcamDetailViewController, animated: animated)
             }
         }
     }
     
-    func QuickActionEdit(webcam: Webcam, value: QuickActionsEnum) {
-        guard var shortcutItems: Array<UIApplicationShortcutItem> = UIApplication.shared.shortcutItems else { return }
-        shortcutItems = removeRecentQuickAction(in: shortcutItems)
-        UIApplication.shared.shortcutItems = shortcutItems
+    func quickActionEdit(webcam: Webcam, value: QuickActionsEnum) {
+        guard let shortcutItems: Array<UIApplicationShortcutItem> = UIApplication.shared.shortcutItems else { return }
         
         if webcam.favorite && shortcutItems.count < 4 {
-            QuickActionsFavorite(webcam: webcam, value: value)
+            quickActionsFavorite(webcam: webcam, value: value)
         } else {
-            QuickActionsRecent(webcam: webcam, value: value)
+            quickActionsRecent(webcam: webcam, value: value)
         }
     }
-
     
-    private func QuickActionsFavorite(webcam: Webcam, value: QuickActionsEnum) {
+    // MARK: - Private
+
+    private func quickActionsFavorite(webcam: Webcam, value: QuickActionsEnum) {
         guard var shortcutItems: Array<UIApplicationShortcutItem> = UIApplication.shared.shortcutItems else { return }
         
         let type = QuickActionsService.shared.defaultTypePrefix + "\(webcam.uid)"
@@ -92,18 +95,21 @@ class QuickActionsService {
             
             switch value {
             case .add:
+                shortcutItems = removeRecentQuickAction(in: shortcutItems)
                 if !containsInQuickAction(webcam: webcam, in: shortcutItems) {
                     shortcutItems.append(shortcutItem)
                 }
             case .delete:
-                guard let index = shortcutItems.index(of: shortcutItem) else { return }
-                shortcutItems.remove(at: index)
+                if let index = shortcutItems.index(of: shortcutItem) {
+                    shortcutItems.remove(at: index)
+                }
             }
+            
             UIApplication.shared.shortcutItems = shortcutItems
         }
     }
     
-    private func QuickActionsRecent(webcam: Webcam, value: QuickActionsEnum) {
+    private func quickActionsRecent(webcam: Webcam, value: QuickActionsEnum) {
         guard var shortcutItems: Array<UIApplicationShortcutItem> = UIApplication.shared.shortcutItems else { return }
         
         switch value {
@@ -119,6 +125,7 @@ class QuickActionsService {
                 }
                 
                 if !containsInQuickAction(webcam: webcam, in: shortcutItems) {
+                    shortcutItems = removeRecentQuickAction(in: shortcutItems)
                     shortcutItems.insert(shortcutItem, at: 0)
                 }
             }
@@ -143,7 +150,7 @@ class QuickActionsService {
     private func removeRecentQuickAction(in array: Array<UIApplicationShortcutItem> ) -> Array<UIApplicationShortcutItem> {
         var shortcutItems = array
         
-        for (index,shortcutItem) in shortcutItems.enumerated() {
+        for (index, shortcutItem) in shortcutItems.enumerated() {
             if #available(iOS 9.1, *) {
                 if shortcutItem.icon == UIApplicationShortcutIcon(type: .time) {
                     shortcutItems.remove(at: index)
