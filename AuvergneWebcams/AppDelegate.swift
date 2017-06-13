@@ -104,8 +104,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = UIColor.awDarkGray
         window?.rootViewController = loadingViewController
         window?.makeKeyAndVisible()
-
+                
         return true
+    }
+    
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        
+        if let root = self.window?.rootViewController {
+            QuickActionsService.shared.performActionFor(shortcutItem: shortcutItem, for: root)
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
