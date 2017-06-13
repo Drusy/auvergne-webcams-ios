@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E5C80811EF037FA009FA2AA /* QuickActionsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5C807F1EF037FA009FA2AA /* QuickActionsEnum.swift */; };
+		5E5C80821EF037FA009FA2AA /* QuickActionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5C80801EF037FA009FA2AA /* QuickActionsService.swift */; };
 		F900E4CD1DE5DBA300B017BB /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F900E4CC1DE5DBA300B017BB /* NotificationNameExtension.swift */; };
 		F9022D9E1DD90032006AF146 /* SwiftiumKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9022D9D1DD90018006AF146 /* SwiftiumKit.framework */; };
 		F9022D9F1DD90032006AF146 /* SwiftiumKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9022D9D1DD90018006AF146 /* SwiftiumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -561,6 +563,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5E5C807F1EF037FA009FA2AA /* QuickActionsEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuickActionsEnum.swift; path = QuickActions/QuickActionsEnum.swift; sourceTree = "<group>"; };
+		5E5C80801EF037FA009FA2AA /* QuickActionsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuickActionsService.swift; path = QuickActions/QuickActionsService.swift; sourceTree = "<group>"; };
 		F900E4CC1DE5DBA300B017BB /* NotificationNameExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		F9022D9D1DD90018006AF146 /* SwiftiumKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftiumKit.framework; path = Carthage/Build/iOS/SwiftiumKit.framework; sourceTree = "<group>"; };
 		F9022DA01DD90601006AF146 /* DefaultsKeyExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsKeyExtension.swift; sourceTree = "<group>"; };
@@ -856,6 +860,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5EC9078E1EEEDB82006A570D /* QuickAction */ = {
+			isa = PBXGroup;
+			children = (
+				5E5C807F1EF037FA009FA2AA /* QuickActionsEnum.swift */,
+				5E5C80801EF037FA009FA2AA /* QuickActionsService.swift */,
+			);
+			name = QuickAction;
+			sourceTree = "<group>";
+		};
 		F911BBE81DDC6066000C022B /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
@@ -911,6 +924,7 @@
 				F93C760B1DD11577005DEE66 /* AuvergneWebcams */,
 				F9D610BD1E82EE0600BFC18D /* ParisWebcams */,
 				F94433081E8A4CC4006D7308 /* NorthernLightsWebcams */,
+				5EC9078E1EEEDB82006A570D /* QuickAction */,
 				F95DEB791EE1BB6400101CC4 /* Widget */,
 				F93C76201DD11577005DEE66 /* AuvergneWebcamsTests */,
 				F93C760A1DD11577005DEE66 /* Products */,
@@ -2074,12 +2088,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E5C80811EF037FA009FA2AA /* QuickActionsEnum.swift in Sources */,
 				F963AB211E59CE6300ED5A8B /* WebcamCarouselTableViewCell.swift in Sources */,
 				F9F5AC981DD34C8B00D9FF83 /* WebcamSection.swift in Sources */,
 				F9ACD1C81E5B0E37004E5BFF /* CGSizeExtension.swift in Sources */,
 				F963AB681E5A60F300ED5A8B /* WebcamSectionViewProvider.swift in Sources */,
 				F963AB6B1E5A611600ED5A8B /* WebcamCollectionViewCell.swift in Sources */,
 				F963AB321E59D07800ED5A8B /* AbstractArrayViewProvider.swift in Sources */,
+				5E5C80821EF037FA009FA2AA /* QuickActionsService.swift in Sources */,
 				F94D7CE51DFABF6000460CCD /* AboutViewController.swift in Sources */,
 				F9147FBC1E66137C000C78CA /* RequestExtension.swift in Sources */,
 				F9022DA11DD90601006AF146 /* DefaultsKeyExtension.swift in Sources */,
@@ -2682,6 +2698,7 @@
 				F95DEB851EE1BB6400101CC4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F9D610B81E82EDBF00BFC18D /* Build configuration list for PBXNativeTarget "ParisWebcams" */ = {
 			isa = XCConfigurationList;

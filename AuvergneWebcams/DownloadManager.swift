@@ -38,6 +38,7 @@ class DownloadManager {
                     
                     realm.add(webcamSectionsResponse.sections, update: true)
                 }
+                QuickActionsService.shared.registerQuickActions()
             }
         }
     }
@@ -51,6 +52,7 @@ class DownloadManager {
                 try! realm.write {
                     realm.add(webcamSectionsResponse.sections, update: true)
                 }
+                QuickActionsService.shared.registerQuickActions()
             }
         }
     }
