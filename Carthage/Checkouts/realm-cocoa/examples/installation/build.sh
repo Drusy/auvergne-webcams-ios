@@ -40,7 +40,7 @@ COMMAND="$1"
 download_zip_if_needed() {
     LANG="$1"
     DIRECTORY=realm-$LANG-latest
-    if [ ! -f $DIRECTORY.zip ]; then
+    if [ ! -d $DIRECTORY ]; then
         curl -o $DIRECTORY.zip -L https://static.realm.io/downloads/$LANG/latest
         unzip $DIRECTORY.zip
         rm $DIRECTORY.zip
@@ -53,6 +53,9 @@ xctest() {
     LANG="$2"
     NAME="$3"
     DIRECTORY="$PLATFORM/$LANG/$NAME"
+    if [[ ! -d "$DIRECTORY" ]]; then
+        DIRECTORY="${DIRECTORY/swift/swift-$REALM_SWIFT_VERSION}"
+    fi
     PROJECT="$DIRECTORY/$NAME.xcodeproj"
     WORKSPACE="$DIRECTORY/$NAME.xcworkspace"
     if [[ $PLATFORM == ios ]]; then
@@ -103,7 +106,7 @@ set_xcode_and_swift_versions # exports REALM_SWIFT_VERSION, REALM_XCODE_VERSION,
 
 case "$COMMAND" in
     "test-all")
-        for target in ios-swift-dynamic ios-swift-cocoapods osx-swift-dynamic ios-swift-carthage osx-swift-carthage watchos-objc-dynamic test-watchos-objc-cocoapods test-watchos-objc-carthage watchos-swift-dynamic test-watchos-swift-cocoapods test-watchos-swift-carthage; do
+        for target in ios-swift-dynamic ios-swift-cocoapods osx-swift-dynamic ios-swift-carthage osx-swift-carthage; do
             ./build.sh test-$target || exit 1
         done
         ;;
@@ -129,15 +132,15 @@ case "$COMMAND" in
         ;;
 
     "test-ios-swift-dynamic")
-        xctest ios swift-$REALM_SWIFT_VERSION DynamicExample
+        xctest ios swift DynamicExample
         ;;
 
     "test-ios-swift-cocoapods")
-        xctest ios swift-$REALM_SWIFT_VERSION CocoaPodsExample
+        xctest ios swift CocoaPodsExample
         ;;
 
     "test-ios-swift-carthage")
-        xctest ios swift-$REALM_SWIFT_VERSION CarthageExample
+        xctest ios swift CarthageExample
         ;;
 
     "test-osx-objc-dynamic")
@@ -153,15 +156,15 @@ case "$COMMAND" in
         ;;
 
     "test-osx-swift-dynamic")
-        xctest osx swift-$REALM_SWIFT_VERSION DynamicExample
+        xctest osx swift DynamicExample
         ;;
 
     "test-osx-swift-cocoapods")
-        xctest osx swift-$REALM_SWIFT_VERSION CocoaPodsExample
+        xctest osx swift CocoaPodsExample
         ;;
 
     "test-osx-swift-carthage")
-        xctest osx swift-$REALM_SWIFT_VERSION CarthageExample
+        xctest osx swift CarthageExample
         ;;
 
     "test-watchos-objc-dynamic")
@@ -177,15 +180,15 @@ case "$COMMAND" in
         ;;
 
     "test-watchos-swift-dynamic")
-        xctest watchos swift-$REALM_SWIFT_VERSION DynamicExample
+        xctest watchos swift DynamicExample
         ;;
 
     "test-watchos-swift-cocoapods")
-        xctest watchos swift-$REALM_SWIFT_VERSION CocoaPodsExample
+        xctest watchos swift CocoaPodsExample
         ;;
 
     "test-watchos-swift-carthage")
-        xctest watchos swift-$REALM_SWIFT_VERSION CarthageExample
+        xctest watchos swift CarthageExample
         ;;
 
     *)

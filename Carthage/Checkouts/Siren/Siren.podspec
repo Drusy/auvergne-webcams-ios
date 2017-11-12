@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
   s.name         = "Siren"
-  s.version      = "2.0.4"
-  s.summary      = "Notify users when a new version of your iOS app is available, and prompt them with the App Store link.."
+  s.version      = "3.1.5"
+  s.summary      = "Notify users that a new version of your iOS app is available, and prompt them with the App Store link."
 
   s.description  = <<-DESC
-Siren is checks a user’s currently installed version of your iOS app against the version that is currently available in the App Store.
+Notify users when a new version of your iOS app is available, and prompt them with the App Store link.
                    DESC
 
   s.homepage     = "https://github.com/ArtSabintsev/Siren"

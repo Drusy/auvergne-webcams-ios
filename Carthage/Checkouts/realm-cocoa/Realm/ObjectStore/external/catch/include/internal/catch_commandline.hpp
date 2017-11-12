@@ -13,6 +13,7 @@
 #include "catch_clara.h"
 
 #include <fstream>
+#include <ctime>
 
 namespace Catch {
 
@@ -51,7 +52,7 @@ namespace Catch {
             ss << seed;
             ss >> config.rngSeed;
             if( ss.fail() )
-                throw std::runtime_error( "Argment to --rng-seed should be the word 'time' or a number" );
+                throw std::runtime_error( "Argument to --rng-seed should be the word 'time' or a number" );
         }
     }
     inline void setVerbosity( ConfigData& config, int level ) {
@@ -185,6 +186,10 @@ namespace Catch {
         cli["--list-test-names-only"]
             .describe( "list all/matching test cases names only" )
             .bind( &ConfigData::listTestNamesOnly );
+
+        cli["--list-extra-info"]
+            .describe( "list all/matching test cases with more info" )
+            .bind( &ConfigData::listExtraInfo );
 
         cli["--list-reporters"]
             .describe( "list all reporters" )

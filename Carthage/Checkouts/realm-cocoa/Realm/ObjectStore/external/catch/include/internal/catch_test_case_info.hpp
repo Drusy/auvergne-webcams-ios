@@ -13,6 +13,8 @@
 #include "catch_interfaces_testcase.h"
 #include "catch_common.h"
 
+#include <cctype>
+
 namespace Catch {
 
     inline TestCaseInfo::SpecialProperties parseSpecialTag( std::string const& tag ) {
@@ -32,21 +34,17 @@ namespace Catch {
             return TestCaseInfo::None;
     }
     inline bool isReservedTag( std::string const& tag ) {
-        return parseSpecialTag( tag ) == TestCaseInfo::None && tag.size() > 0 && !isalnum( tag[0] );
+        return parseSpecialTag( tag ) == TestCaseInfo::None && tag.size() > 0 && !std::isalnum( tag[0] );
     }
     inline void enforceNotReservedTag( std::string const& tag, SourceLineInfo const& _lineInfo ) {
         if( isReservedTag( tag ) ) {
-            {
-                Colour colourGuard( Colour::Red );
-                Catch::cerr()
-                    << "Tag name [" << tag << "] not allowed.\n"
-                    << "Tag names starting with non alpha-numeric characters are reserved\n";
-            }
-            {
-                Colour colourGuard( Colour::FileName );
-                Catch::cerr() << _lineInfo << std::endl;
-            }
-            exit(1);
+            std::ostringstream ss;
+            ss << Colour(Colour::Red)
+               << "Tag name [" << tag << "] not allowed.\n"
+               << "Tag names starting with non alpha-numeric characters are reserved\n"
+               << Colour(Colour::FileName)
+               << _lineInfo << '\n';
+            throw std::runtime_error(ss.str());
         }
     }
 

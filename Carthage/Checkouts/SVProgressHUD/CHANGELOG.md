@@ -1,3 +1,16 @@
+## 2.2.2
+* Rollback of popActivity #824
+
+## Version 2.2
+* Update project to AutoLayout (finally)
+* Added grace time #556
+* New Fade in / Fade out animation #703, #757, #776, #779, #791, #793, #798, #800
+* Remove vibrancy for better readability on iOS 11 (and below)
+
+## Version 2.1.3
+* Fixed: Background resize #709
+* Update year to 2017
+
 ## Version 2.1.2
 * Fixed: Status message goes offscreen #699
 * Fixed: HUD customization behaving unexpectedly #700

@@ -44,12 +44,6 @@ class SettingsViewController: FormViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        
-        if let navigationController = navigationController {
-            let inset = UIApplication.shared.statusBarFrame.height + navigationController.navigationBar.frame.height
-            
-            tableView?.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: 0, right: 0)
-        }
     }
     
     // MARK: - Form
@@ -213,7 +207,7 @@ class SettingsViewController: FormViewController {
         setNeedsStatusBarAppearanceUpdate()
     }
     
-    func close() {
+    @objc func close() {
         dismiss(animated: true, completion: nil)
     }
     

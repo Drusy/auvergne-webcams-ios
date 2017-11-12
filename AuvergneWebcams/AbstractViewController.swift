@@ -14,6 +14,7 @@ import Crashlytics
 class AbstractViewController: UIViewController {
 
     let reachability = Reachability()
+    var didLayoutSubviews = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,16 @@ class AbstractViewController: UIViewController {
         style()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if !didLayoutSubviews {
+            didLayoutSubviews = true
+            
+            onAppearConfiguration()
+        }
+    }
+    
     override var prefersStatusBarHidden: Bool {
         return false
     }
@@ -34,6 +45,10 @@ class AbstractViewController: UIViewController {
     }
 
     // MARK: - Overridable
+    
+    func onAppearConfiguration() {
+        
+    }
     
     func style() {
         
@@ -72,7 +87,7 @@ class AbstractViewController: UIViewController {
     }
     
     func isReachable() -> Bool {
-        return (reachability == nil || (reachability != nil && reachability!.isReachable))
+        return (reachability == nil || (reachability != nil && reachability!.connection != .none))
     }
     
     func share(_ title: String? = nil, url: URL? = nil, image: UIImage? = nil, fromView view: UIView? = nil) {

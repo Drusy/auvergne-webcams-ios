@@ -161,7 +161,7 @@
 
     // verify properties
     RLMRealm *dyrealm = [self realmWithTestPathAndSchema:nil];
-    RLMResults *results = [dyrealm allObjects:AllTypesObject.className];
+    RLMResults<RLMObject *> *results = [dyrealm allObjects:AllTypesObject.className];
     XCTAssertEqual(results.count, (NSUInteger)2, @"Should have 2 objects");
 
     RLMObjectSchema *schema = dyrealm.schema[AllTypesObject.className];
@@ -186,22 +186,24 @@
         RLMProperty *prop = schema.properties[i];
         id value = prop.type == RLMPropertyTypeString ? @1 : @"";
         RLMAssertThrowsWithReason(o[prop.name] = value,
-                                  @"Invalid property value");
+                                  @"Invalid value '");
         RLMAssertThrowsWithReason(o[prop.name] = NSNull.null,
-                                  @"Invalid property value");
+                                  @"Invalid value '<null>' of type 'NSNull' for");
         RLMAssertThrowsWithReason(o[prop.name] = nil,
-                                  @"Invalid property value");
+                                  @"Invalid value '(null)' of type '(null)' for");
     }
 
     RLMProperty *prop = schema.properties[9];
     RLMAssertThrowsWithReason(o[prop.name] = @"str",
-                              @"Invalid property value");
+                              @"Invalid value 'str' of type '__NSCFConstantString' for 'StringObject?' property 'AllTypesObject.objectCol'.");
     XCTAssertNoThrow(o[prop.name] = nil);
     XCTAssertNoThrow(o[prop.name] = NSNull.null);
 
     id otherObjectType = [dyrealm createObject:IntObject.className withValue:@[@1]];
     RLMAssertThrowsWithReason(o[prop.name] = otherObjectType,
-                              @"Invalid property value");
+                              @"Invalid value 'IntObject");
+
+    [dyrealm cancelWriteTransaction];
 }
 
 - (void)testDynamicAdd {
@@ -233,10 +235,10 @@
     RLMObject *stringObject1 = [dyrealm createObject:StringObject.className withValue:@[@"string1"]];
     [dyrealm createObject:ArrayPropertyObject.className withValue:@[@"name", @[stringObject, stringObject1], @[]]];
 
-    RLMResults *results = [dyrealm allObjects:ArrayPropertyObject.className];
+    RLMResults<RLMObject *> *results = [dyrealm allObjects:ArrayPropertyObject.className];
     XCTAssertEqual(1U, results.count);
     RLMObject *arrayObj = results.firstObject;
-    RLMArray *array = arrayObj[@"array"];
+    RLMArray<RLMObject *> *array = arrayObj[@"array"];
     XCTAssertEqual(2U, array.count);
     XCTAssertEqualObjects(array[0][@"stringCol"], stringObject[@"stringCol"]);
 

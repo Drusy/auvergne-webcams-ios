@@ -26,12 +26,12 @@ private func nextDynamicDefaultSeed() -> Int {
     return dynamicDefaultSeed
 }
 class DynamicDefaultObject: Object {
-    dynamic var intCol = nextDynamicDefaultSeed()
-    dynamic var floatCol = Float(nextDynamicDefaultSeed())
-    dynamic var doubleCol = Double(nextDynamicDefaultSeed())
-    dynamic var dateCol = Date(timeIntervalSinceReferenceDate: TimeInterval(nextDynamicDefaultSeed()))
-    dynamic var stringCol = UUID().uuidString
-    dynamic var binaryCol = UUID().uuidString.data(using: .utf8)
+    @objc dynamic var intCol = nextDynamicDefaultSeed()
+    @objc dynamic var floatCol = Float(nextDynamicDefaultSeed())
+    @objc dynamic var doubleCol = Double(nextDynamicDefaultSeed())
+    @objc dynamic var dateCol = Date(timeIntervalSinceReferenceDate: TimeInterval(nextDynamicDefaultSeed()))
+    @objc dynamic var stringCol = UUID().uuidString
+    @objc dynamic var binaryCol = UUID().uuidString.data(using: .utf8)
 
     override static func primaryKey() -> String? {
         return "intCol"
@@ -115,11 +115,11 @@ class ObjectTests: TestCase {
     func testDescription() {
         let object = SwiftObject()
         // swiftlint:disable line_length
-        XCTAssertEqual(object.description, "SwiftObject {\n\tboolCol = 0;\n\tintCol = 123;\n\tfloatCol = 1.23;\n\tdoubleCol = 12.3;\n\tstringCol = a;\n\tbinaryCol = <61 — 1 total bytes>;\n\tdateCol = 1970-01-01 00:00:01 +0000;\n\tobjectCol = SwiftBoolObject {\n\t\tboolCol = 0;\n\t};\n\tarrayCol = List<SwiftBoolObject> (\n\t\n\t);\n}")
+        assertMatches(object.description, "SwiftObject \\{\n\tboolCol = 0;\n\tintCol = 123;\n\tfloatCol = 1\\.23;\n\tdoubleCol = 12\\.3;\n\tstringCol = a;\n\tbinaryCol = <61 — 1 total bytes>;\n\tdateCol = 1970-01-01 00:00:01 \\+0000;\n\tobjectCol = SwiftBoolObject \\{\n\t\tboolCol = 0;\n\t\\};\n\tarrayCol = List<SwiftBoolObject> <0x[0-9a-f]+> \\(\n\t\n\t\\);\n\\}")
 
         let recursiveObject = SwiftRecursiveObject()
         recursiveObject.objects.append(recursiveObject)
-        XCTAssertEqual(recursiveObject.description, "SwiftRecursiveObject {\n\tobjects = List<SwiftRecursiveObject> (\n\t\t[0] SwiftRecursiveObject {\n\t\t\tobjects = List<SwiftRecursiveObject> (\n\t\t\t\t[0] SwiftRecursiveObject {\n\t\t\t\t\tobjects = <Maximum depth exceeded>;\n\t\t\t\t}\n\t\t\t);\n\t\t}\n\t);\n}")
+        assertMatches(recursiveObject.description, "SwiftRecursiveObject \\{\n\tobjects = List<SwiftRecursiveObject> <0x[0-9a-f]+> \\(\n\t\t\\[0\\] SwiftRecursiveObject \\{\n\t\t\tobjects = List<SwiftRecursiveObject> <0x[0-9a-f]+> \\(\n\t\t\t\t\\[0\\] SwiftRecursiveObject \\{\n\t\t\t\t\tobjects = <Maximum depth exceeded>;\n\t\t\t\t\\}\n\t\t\t\\);\n\t\t\\}\n\t\\);\n\\}")
         // swiftlint:enable line_length
     }
 
@@ -152,19 +152,19 @@ class ObjectTests: TestCase {
 
         try! realm.write {
             realm.add(intObj)
-            assertThrows(intObj.intCol = 2, reason: primaryKeyReason)
-            assertThrows(intObj["intCol"] = 2, reason: primaryKeyReason)
-            assertThrows(intObj.setValue(2, forKey: "intCol"), reason: primaryKeyReason)
+            assertThrows(intObj.intCol = 2, reasonMatching: primaryKeyReason)
+            assertThrows(intObj["intCol"] = 2, reasonMatching: primaryKeyReason)
+            assertThrows(intObj.setValue(2, forKey: "intCol"), reasonMatching: primaryKeyReason)
 
             realm.add(optionalIntObj)
-            assertThrows(optionalIntObj.intCol.value = 2, reason: primaryKeyReason)
-            assertThrows(optionalIntObj["intCol"] = 2, reason: primaryKeyReason)
-            assertThrows(optionalIntObj.setValue(2, forKey: "intCol"), reason: primaryKeyReason)
+            assertThrows(optionalIntObj.intCol.value = 2, reasonMatching: primaryKeyReason)
+            assertThrows(optionalIntObj["intCol"] = 2, reasonMatching: primaryKeyReason)
+            assertThrows(optionalIntObj.setValue(2, forKey: "intCol"), reasonMatching: primaryKeyReason)
 
             realm.add(stringObj)
-            assertThrows(stringObj.stringCol = "c", reason: primaryKeyReason)
-            assertThrows(stringObj["stringCol"] = "c", reason: primaryKeyReason)
-            assertThrows(stringObj.setValue("c", forKey: "stringCol"), reason: primaryKeyReason)
+            assertThrows(stringObj.stringCol = "c", reasonMatching: primaryKeyReason)
+            assertThrows(stringObj["stringCol"] = "c", reasonMatching: primaryKeyReason)
+            assertThrows(stringObj.setValue("c", forKey: "stringCol"), reasonMatching: primaryKeyReason)
         }
     }
 
@@ -215,7 +215,8 @@ class ObjectTests: TestCase {
             XCTAssertNotEqual(obj1.intCol, obj2.intCol)
             XCTAssertNotEqual(obj1.floatCol, obj2.floatCol)
             XCTAssertNotEqual(obj1.doubleCol, obj2.doubleCol)
-            XCTAssertNotEqualWithAccuracy(obj1.dateCol.timeIntervalSinceReferenceDate, obj2.dateCol.timeIntervalSinceReferenceDate, 0.01)
+            XCTAssertNotEqual(obj1.dateCol.timeIntervalSinceReferenceDate, obj2.dateCol.timeIntervalSinceReferenceDate,
+                              accuracy: 0.01)
             XCTAssertNotEqual(obj1.stringCol, obj2.stringCol)
             XCTAssertNotEqual(obj1.binaryCol, obj2.binaryCol)
         }
@@ -294,14 +295,14 @@ class ObjectTests: TestCase {
 
         let boolObject = SwiftBoolObject(value: [true])
         setter(object, boolObject, "objectCol")
-        XCTAssertEqual(getter(object, "objectCol") as? SwiftBoolObject, boolObject)
+        assertEqual(getter(object, "objectCol") as? SwiftBoolObject, boolObject)
         XCTAssertEqual((getter(object, "objectCol") as! SwiftBoolObject).boolCol, true)
 
         let list = List<SwiftBoolObject>()
         list.append(boolObject)
         setter(object, list, "arrayCol")
         XCTAssertEqual((getter(object, "arrayCol") as! List<SwiftBoolObject>).count, 1)
-        XCTAssertEqual((getter(object, "arrayCol") as! List<SwiftBoolObject>).first!, boolObject)
+        assertEqual((getter(object, "arrayCol") as! List<SwiftBoolObject>).first!, boolObject)
 
         list.removeAll()
         setter(object, list, "arrayCol")
@@ -309,7 +310,7 @@ class ObjectTests: TestCase {
 
         setter(object, [boolObject], "arrayCol")
         XCTAssertEqual((getter(object, "arrayCol") as! List<SwiftBoolObject>).count, 1)
-        XCTAssertEqual((getter(object, "arrayCol") as! List<SwiftBoolObject>).first!, boolObject)
+        assertEqual((getter(object, "arrayCol") as! List<SwiftBoolObject>).first!, boolObject)
 
         setter(object, nil, "arrayCol")
         XCTAssertEqual((getter(object, "arrayCol") as! List<SwiftBoolObject>).count, 0)
@@ -345,12 +346,12 @@ class ObjectTests: TestCase {
         XCTAssertEqual((getter(object, "dateCol") as! Date), Date(timeIntervalSince1970: 333))
 
         setter(object, boolObject, "objectCol")
-        XCTAssertEqual((getter(object, "objectCol") as! DynamicObject), boolObject)
+        assertEqual((getter(object, "objectCol") as! DynamicObject), boolObject)
         XCTAssertEqual(((getter(object, "objectCol") as! DynamicObject)["boolCol"] as! Bool), true)
 
         setter(object, [boolObject], "arrayCol")
         XCTAssertEqual((getter(object, "arrayCol") as! List<DynamicObject>).count, 1)
-        XCTAssertEqual((getter(object, "arrayCol") as! List<DynamicObject>).first!, boolObject)
+        assertEqual((getter(object, "arrayCol") as! List<DynamicObject>).first!, boolObject)
 
         let list = getter(object, "arrayCol") as! List<DynamicObject>
         list.removeAll()
@@ -359,7 +360,7 @@ class ObjectTests: TestCase {
 
         setter(object, [boolObject], "arrayCol")
         XCTAssertEqual((getter(object, "arrayCol") as! List<DynamicObject>).count, 1)
-        XCTAssertEqual((getter(object, "arrayCol") as! List<DynamicObject>).first!, boolObject)
+        assertEqual((getter(object, "arrayCol") as! List<DynamicObject>).first!, boolObject)
 
         setter(object, nil, "arrayCol")
         XCTAssertEqual((getter(object, "arrayCol") as! List<DynamicObject>).count, 0)
@@ -441,8 +442,8 @@ class ObjectTests: TestCase {
         }
         let dynamicArray = arrayObject.dynamicList("array")
         XCTAssertEqual(dynamicArray.count, 2)
-        XCTAssertEqual(dynamicArray[0], str1)
-        XCTAssertEqual(dynamicArray[1], str2)
+        assertEqual(dynamicArray[0], str1)
+        assertEqual(dynamicArray[1], str2)
         XCTAssertEqual(arrayObject.dynamicList("intArray").count, 0)
         assertThrows(arrayObject.dynamicList("noSuchList"))
     }
@@ -473,7 +474,7 @@ class ObjectTests: TestCase {
         try! realm.commitWrite()
 
         let exp = expectation(description: "")
-        let token = object.addNotificationBlock { change in
+        let token = object.observe { change in
             if case .deleted = change {
             } else {
                 XCTFail("expected .deleted, got \(change)")
@@ -486,7 +487,7 @@ class ObjectTests: TestCase {
         try! realm.commitWrite()
 
         waitForExpectations(timeout: 2)
-        token.stop()
+        token.invalidate()
     }
 
     func expectChange<T: Equatable, U: Equatable>(_ name: String, _ old: T?, _ new: U?) -> ((ObjectChange) -> Void) {
@@ -512,13 +513,13 @@ class ObjectTests: TestCase {
         let object = realm.create(SwiftIntObject.self, value: [1])
         try! realm.commitWrite()
 
-        let token = object.addNotificationBlock(expectChange("intCol", Int?.none, 2))
+        let token = object.observe(expectChange("intCol", Int?.none, 2))
         try! realm.write {
             object.intCol = 2
         }
 
         waitForExpectations(timeout: 2)
-        token.stop()
+        token.invalidate()
     }
 
     func testModifyObservedObjectRemotely() {
@@ -527,7 +528,7 @@ class ObjectTests: TestCase {
         let object = realm.create(SwiftIntObject.self, value: [1])
         try! realm.commitWrite()
 
-        let token = object.addNotificationBlock(expectChange("intCol", 1, 2))
+        let token = object.observe(expectChange("intCol", 1, 2))
         dispatchSyncNewThread {
             let realm = try! Realm()
             try! realm.write {
@@ -536,7 +537,7 @@ class ObjectTests: TestCase {
         }
 
         waitForExpectations(timeout: 2)
-        token.stop()
+        token.invalidate()
     }
 
     func testListPropertyNotifications() {
@@ -545,7 +546,7 @@ class ObjectTests: TestCase {
         let object = realm.create(SwiftRecursiveObject.self, value: [[]])
         try! realm.commitWrite()
 
-        let token = object.addNotificationBlock(expectChange("objects", Int?.none, Int?.none))
+        let token = object.observe(expectChange("objects", Int?.none, Int?.none))
         dispatchSyncNewThread {
             let realm = try! Realm()
             try! realm.write {
@@ -555,7 +556,7 @@ class ObjectTests: TestCase {
         }
 
         waitForExpectations(timeout: 2)
-        token.stop()
+        token.invalidate()
     }
 
     func testOptionalPropertyNotifications() {
@@ -565,7 +566,7 @@ class ObjectTests: TestCase {
             realm.add(object)
         }
 
-        var token = object.addNotificationBlock(expectChange("optIntCol", 1, 2))
+        var token = object.observe(expectChange("optIntCol", 1, 2))
         dispatchSyncNewThread {
             let realm = try! Realm()
             try! realm.write {
@@ -573,9 +574,9 @@ class ObjectTests: TestCase {
             }
         }
         waitForExpectations(timeout: 2)
-        token.stop()
+        token.invalidate()
 
-        token = object.addNotificationBlock(expectChange("optIntCol", 2, Int?.none))
+        token = object.observe(expectChange("optIntCol", 2, Int?.none))
         dispatchSyncNewThread {
             let realm = try! Realm()
             try! realm.write {
@@ -583,9 +584,9 @@ class ObjectTests: TestCase {
             }
         }
         waitForExpectations(timeout: 2)
-        token.stop()
+        token.invalidate()
 
-        token = object.addNotificationBlock(expectChange("optIntCol", Int?.none, 3))
+        token = object.observe(expectChange("optIntCol", Int?.none, 3))
         dispatchSyncNewThread {
             let realm = try! Realm()
             try! realm.write {
@@ -593,6 +594,105 @@ class ObjectTests: TestCase {
             }
         }
         waitForExpectations(timeout: 2)
-        token.stop()
+        token.invalidate()
+    }
+
+    func testEqualityForObjectTypeWithPrimaryKey() {
+        let realm = try! Realm()
+        let pk = "123456"
+
+        let testObject = SwiftPrimaryStringObject()
+        testObject.stringCol = pk
+        testObject.intCol = 12345
+
+        let unmanaged = SwiftPrimaryStringObject()
+        unmanaged.stringCol = pk
+        unmanaged.intCol = 12345
+
+        let otherObject = SwiftPrimaryStringObject()
+        otherObject.stringCol = "not" + pk
+        otherObject.intCol = 12345
+
+        try! realm.write {
+            realm.add([testObject, otherObject])
+        }
+
+        // Should not match an object that's not equal.
+        XCTAssertNotEqual(testObject, otherObject)
+
+        // Should not match an object whose fields are equal if it's not the same row in the database.
+        XCTAssertNotEqual(testObject, unmanaged)
+
+        // Should match an object that represents the same row.
+        let retrievedObject = realm.object(ofType: SwiftPrimaryStringObject.self, forPrimaryKey: pk)!
+        XCTAssertEqual(testObject, retrievedObject)
+        XCTAssertEqual(testObject.hash, retrievedObject.hash)
+        XCTAssertTrue(testObject.isSameObject(as: retrievedObject))
+    }
+
+    func testEqualityForObjectTypeWithoutPrimaryKey() {
+        let realm = try! Realm()
+        let pk = "123456"
+        XCTAssertNil(SwiftStringObject.primaryKey())
+
+        let testObject = SwiftStringObject()
+        testObject.stringCol = pk
+
+        let alias = testObject
+
+        try! realm.write {
+            realm.add(testObject)
+        }
+
+        XCTAssertEqual(testObject, alias)
+
+        // Should not match an object even if it represents the same row.
+        let retrievedObject = realm.objects(SwiftStringObject.self).first!
+        XCTAssertNotEqual(testObject, retrievedObject)
+
+        // Should be able to use `isSameObject(as:)` to check if same row in the database.
+        XCTAssertTrue(testObject.isSameObject(as: retrievedObject))
+    }
+
+    func testRetrievingObjectWithRuntimeType() {
+        let realm = try! Realm()
+
+        let unmanagedStringObject = SwiftPrimaryStringObject()
+        unmanagedStringObject.stringCol = UUID().uuidString
+        let managedStringObject = SwiftPrimaryStringObject()
+        managedStringObject.stringCol = UUID().uuidString
+
+        // Add the object.
+        try! realm.write {
+            realm.add(managedStringObject)
+        }
+
+        // Shouldn't throw when using type(of:).
+        XCTAssertNotNil(realm.object(ofType: type(of: unmanagedStringObject),
+                                     forPrimaryKey: managedStringObject.stringCol))
+
+        // Shouldn't throw when using type(of:).
+        XCTAssertNotNil(realm.object(ofType: type(of: managedStringObject),
+                                     forPrimaryKey: managedStringObject.stringCol))
+    }
+
+    func testRetrievingObjectsWithRuntimeType() {
+        let realm = try! Realm()
+
+        let unmanagedStringObject = SwiftStringObject()
+        unmanagedStringObject.stringCol = "foo"
+        let managedStringObject = SwiftStringObject()
+        managedStringObject.stringCol = "bar"
+
+        // Add the object.
+        try! realm.write {
+            realm.add(managedStringObject)
+        }
+
+        // Shouldn't throw when using type(of:).
+        XCTAssertEqual(realm.objects(type(of: unmanagedStringObject)).count, 1)
+
+        // Shouldn't throw when using type(of:).
+        XCTAssertEqual(realm.objects(type(of: managedStringObject)).count, 1)
     }
 }

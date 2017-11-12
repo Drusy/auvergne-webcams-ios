@@ -19,9 +19,10 @@
 #include "catch.hpp"
 
 #include "util/event_loop.hpp"
-#include "util/index_helpers.hpp"
-#include "util/test_file.hpp"
 #include "util/format.hpp"
+#include "util/index_helpers.hpp"
+#include "util/templated_test_case.hpp"
+#include "util/test_file.hpp"
 
 #include "impl/realm_coordinator.hpp"
 #include "binding_context.hpp"
@@ -262,15 +263,93 @@ TEST_CASE("notifications: async delivery") {
         REQUIRE(notification_calls == 1);
     }
 
-    SECTION("notifications are delivered when a new callback is added from within a callback") {
+    SECTION("notifications are delivered on the next cycle when a new callback is added from within a callback") {
         NotificationToken token2, token3;
         bool called = false;
         token2 = results.add_notification_callback([&](CollectionChangeSet, std::exception_ptr) {
+            token2 = {};
             token3 = results.add_notification_callback([&](CollectionChangeSet, std::exception_ptr) {
                 called = true;
             });
         });
 
+        advance_and_notify(*r);
+        REQUIRE_FALSE(called);
+        advance_and_notify(*r);
+        REQUIRE(called);
+    }
+
+    SECTION("notifications are delivered on the next cycle when a new callback is added from within a callback") {
+        auto results2 = results;
+        auto results3 = results;
+        NotificationToken token2, token3, token4;
+
+        bool called = false;
+        auto check = [&](Results& outer, Results& inner) {
+            token2 = outer.add_notification_callback([&](CollectionChangeSet, std::exception_ptr) {
+                token2 = {};
+                token3 = inner.add_notification_callback([&](CollectionChangeSet, std::exception_ptr) {
+                    called = true;
+                });
+            });
+
+            advance_and_notify(*r);
+            REQUIRE_FALSE(called);
+            advance_and_notify(*r);
+            REQUIRE(called);
+        };
+
+        SECTION("same Results") {
+            check(results, results);
+        }
+
+        SECTION("Results which has never had a notifier") {
+            check(results, results2);
+        }
+
+        SECTION("Results which used to have callbacks but no longer does") {
+            SECTION("notifier before active") {
+                token3 = results2.add_notification_callback([&](CollectionChangeSet, std::exception_ptr) {
+                    token3 = {};
+                });
+                check(results3, results2);
+            }
+            SECTION("notifier after active") {
+                token3 = results2.add_notification_callback([&](CollectionChangeSet, std::exception_ptr) {
+                    token3 = {};
+                });
+                check(results, results2);
+            }
+        }
+
+        SECTION("Results which already has callbacks") {
+            SECTION("notifier before active") {
+                token4 = results2.add_notification_callback([&](CollectionChangeSet, std::exception_ptr) { });
+                check(results3, results2);
+            }
+            SECTION("notifier after active") {
+                token4 = results2.add_notification_callback([&](CollectionChangeSet, std::exception_ptr) { });
+                check(results, results2);
+            }
+        }
+    }
+
+    SECTION("remote changes made before adding a callback from within a callback are not reported") {
+        NotificationToken token2, token3;
+        bool called = false;
+        token2 = results.add_notification_callback([&](CollectionChangeSet, std::exception_ptr) {
+            token2 = {};
+            make_remote_change();
+            coordinator->on_change();
+            token3 = results.add_notification_callback([&](CollectionChangeSet c, std::exception_ptr) {
+                called = true;
+                REQUIRE(c.empty());
+                REQUIRE(table->get_int(0, 0) == 5);
+            });
+        });
+
+        advance_and_notify(*r);
+        REQUIRE_FALSE(called);
         advance_and_notify(*r);
         REQUIRE(called);
     }
@@ -967,7 +1046,7 @@ TEST_CASE("notifications: async error handling") {
             r->cancel_transaction();
         }
 
-        SECTION("adding another callback does not send the error again") {
+        SECTION("adding another callback sends the error to only the newly added one") {
             advance_and_notify(*r);
             REQUIRE(called);
 
@@ -980,6 +1059,52 @@ TEST_CASE("notifications: async error handling") {
 
             advance_and_notify(*r);
             REQUIRE(called2);
+        }
+
+        SECTION("destroying a token from before the error does not remove newly added callbacks") {
+            advance_and_notify(*r);
+
+            bool called = false;
+            auto token2 = results.add_notification_callback([&](CollectionChangeSet, std::exception_ptr err) {
+                REQUIRE(err);
+                REQUIRE_FALSE(called);
+                called = true;
+            });
+            token = {};
+
+            advance_and_notify(*r);
+            REQUIRE(called);
+        }
+
+        SECTION("adding another callback from within an error callback defers delivery") {
+            NotificationToken token2;
+            token = results.add_notification_callback([&](CollectionChangeSet, std::exception_ptr) {
+                token2 = results.add_notification_callback([&](CollectionChangeSet, std::exception_ptr err) {
+                    REQUIRE(err);
+                    REQUIRE_FALSE(called);
+                    called = true;
+                });
+            });
+            advance_and_notify(*r);
+            REQUIRE(!called);
+            advance_and_notify(*r);
+            REQUIRE(called);
+        }
+
+        SECTION("adding a callback to a different collection from within the error callback defers delivery") {
+            auto results2 = results;
+            NotificationToken token2;
+            token = results.add_notification_callback([&](CollectionChangeSet, std::exception_ptr) {
+                token2 = results2.add_notification_callback([&](CollectionChangeSet, std::exception_ptr err) {
+                    REQUIRE(err);
+                    REQUIRE_FALSE(called);
+                    called = true;
+                });
+            });
+            advance_and_notify(*r);
+            REQUIRE(!called);
+            advance_and_notify(*r);
+            REQUIRE(called);
         }
     }
 
@@ -999,7 +1124,7 @@ TEST_CASE("notifications: async error handling") {
             REQUIRE(called);
         }
 
-        SECTION("adding another callback does not send the error again") {
+        SECTION("adding another callback only sends the error to the new one") {
             bool called = false;
             auto token = results.add_notification_callback([&](CollectionChangeSet, std::exception_ptr err) {
                 REQUIRE(err);
@@ -1061,15 +1186,7 @@ TEST_CASE("notifications: sync") {
         // Start the server and wait for the Realm to be uploaded so that sync
         // makes some writes to the Realm and bumps the version
         server.start();
-        std::condition_variable cv;
-        std::mutex wait_mutex;
-        std::atomic<bool> wait_flag(false);
-        SyncManager::shared().get_session(config.path, *config.sync_config)->wait_for_upload_completion([&](auto) {
-            wait_flag = true;
-            cv.notify_one();
-        });
-        std::unique_lock<std::mutex> lock(wait_mutex);
-        cv.wait(lock, [&]() { return wait_flag == true; });
+        wait_for_upload(*r);
 
         // Make sure that the notifications still get delivered rather than
         // waiting forever due to that we don't get a commit notification from
@@ -1090,13 +1207,13 @@ TEST_CASE("notifications: results") {
     r->update_schema({
         {"object", {
             {"value", PropertyType::Int},
-            {"link", PropertyType::Object, "linked to object", "", false, false, true}
+            {"link", PropertyType::Object|PropertyType::Nullable, "linked to object"}
         }},
         {"other object", {
             {"value", PropertyType::Int}
         }},
         {"linking object", {
-            {"link", PropertyType::Object, "object", "", false, false, true}
+            {"link", PropertyType::Object|PropertyType::Nullable, "object"}
         }},
         {"linked to object", {
             {"value", PropertyType::Int}
@@ -1107,9 +1224,12 @@ TEST_CASE("notifications: results") {
     auto table = r->read_group().get_table("class_object");
 
     r->begin_transaction();
+    r->read_group().get_table("class_linked to object")->add_empty_row(10);
     table->add_empty_row(10);
-    for (int i = 0; i < 10; ++i)
+    for (int i = 0; i < 10; ++i) {
         table->set_int(0, i, i * 2);
+        table->set_link(1, i, i);
+    }
     r->commit_transaction();
 
     auto r2 = coordinator->get_realm();
@@ -1334,6 +1454,22 @@ TEST_CASE("notifications: results") {
             coordinator->on_change();
             r->notify();
             REQUIRE(notification_calls == 1);
+        }
+
+        SECTION("inserting a non-matching row at the beginning does not produce a notification") {
+            write([&] {
+                table->insert_empty_row(1);
+            });
+            REQUIRE(notification_calls == 1);
+        }
+
+        SECTION("inserting a matching row at the beginning marks just it as inserted") {
+            write([&] {
+                table->insert_empty_row(0);
+                table->set_int(0, 0, 5);
+            });
+            REQUIRE(notification_calls == 2);
+            REQUIRE_INDICES(change.insertions, 0);
         }
     }
 
@@ -1638,6 +1774,81 @@ TEST_CASE("notifications: results") {
             REQUIRE_INDICES(change.insertions, 0);
         }
     }
+
+    SECTION("schema changes") {
+        CollectionChangeSet change;
+        auto token = results.add_notification_callback([&](CollectionChangeSet c, std::exception_ptr err) {
+            REQUIRE_FALSE(err);
+            change = c;
+        });
+        advance_and_notify(*r);
+
+        auto write = [&](auto&& f) {
+            r->begin_transaction();
+            f();
+            r->commit_transaction();
+            advance_and_notify(*r);
+        };
+
+        SECTION("insert table before observed table") {
+            write([&] {
+                size_t row = table->add_empty_row();
+                table->set_int(0, row, 5);
+                r->read_group().insert_table(0, "new table");
+                table->insert_empty_row(0);
+                table->set_int(0, 0, 5);
+            });
+            REQUIRE_INDICES(change.insertions, 0, 5);
+        }
+
+        SECTION("move observed table") {
+            write([&] {
+                size_t row = table->add_empty_row();
+                table->set_int(0, row, 5);
+                r->read_group().move_table(table->get_index_in_group(), 0);
+                table->insert_empty_row(0);
+                table->set_int(0, 0, 5);
+            });
+            REQUIRE_INDICES(change.insertions, 0, 5);
+        }
+
+        auto linked_table = table->get_link_target(1);
+        SECTION("insert new column before link column") {
+            write([&] {
+                linked_table->set_int(0, 1, 5);
+                table->insert_column(0, type_Int, "new col");
+                linked_table->set_int(0, 2, 5);
+            });
+            REQUIRE_INDICES(change.modifications, 0, 1);
+        }
+
+        SECTION("move link column") {
+            write([&] {
+                linked_table->set_int(0, 1, 5);
+                _impl::TableFriend::move_column(*table->get_descriptor(), 1, 0);
+                linked_table->set_int(0, 2, 5);
+            });
+            REQUIRE_INDICES(change.modifications, 0, 1);
+        }
+
+        SECTION("insert table before link target") {
+            write([&] {
+                linked_table->set_int(0, 1, 5);
+                r->read_group().insert_table(0, "new table");
+                linked_table->set_int(0, 2, 5);
+            });
+            REQUIRE_INDICES(change.modifications, 0, 1);
+        }
+
+        SECTION("move link target") {
+            write([&] {
+                linked_table->set_int(0, 1, 5);
+                r->read_group().move_table(linked_table->get_index_in_group(), 0);
+                linked_table->set_int(0, 2, 5);
+            });
+            REQUIRE_INDICES(change.modifications, 0, 1);
+        }
+    }
 }
 
 TEST_CASE("results: notifications after move") {
@@ -1756,7 +1967,7 @@ TEST_CASE("results: error messages") {
     r->commit_transaction();
 
     SECTION("out of bounds access") {
-        REQUIRE_THROWS_WITH(results.get(5), "Requested index 5 greater than max 1");
+        REQUIRE_THROWS_WITH(results.get(5), "Requested index 5 greater than max 0");
     }
 
     SECTION("unsupported aggregate operation") {
@@ -1771,7 +1982,7 @@ TEST_CASE("results: snapshots") {
     config.schema = Schema{
         {"object", {
             {"value", PropertyType::Int},
-            {"array", PropertyType::Array, "linked to object"}
+            {"array", PropertyType::Array|PropertyType::Object, "linked to object"}
         }},
         {"linked to object", {
             {"value", PropertyType::Int}
@@ -2084,7 +2295,206 @@ TEST_CASE("results: snapshots") {
     }
 }
 
-TEST_CASE("distinct") {
+#if REALM_HAVE_COMPOSABLE_DISTINCT
+TEST_CASE("results: distinct") {
+    const int N = 10;
+    InMemoryTestFile config;
+    config.cache = false;
+    config.automatic_change_notifications = false;
+
+    auto r = Realm::get_shared_realm(config);
+    r->update_schema({
+        {"object", {
+            {"num1", PropertyType::Int},
+            {"string", PropertyType::String},
+            {"num2", PropertyType::Int},
+            {"num3", PropertyType::Int}
+        }},
+    });
+
+    auto table = r->read_group().get_table("class_object");
+
+    r->begin_transaction();
+    table->add_empty_row(N);
+    for (int i = 0; i < N; ++i) {
+        table->set_int(0, i, i % 3);
+        table->set_string(1, i, util::format("Foo_%1", i % 3).c_str());
+        table->set_int(2, i, N - i);
+        table->set_int(3, i, i % 2);
+    }
+    // table:
+    //   0, Foo_0, 10,  0
+    //   1, Foo_1,  9,  1
+    //   2, Foo_2,  8,  0
+    //   0, Foo_0,  7,  1
+    //   1, Foo_1,  6,  0
+    //   2, Foo_2,  5,  1
+    //   0, Foo_0,  4,  0
+    //   1, Foo_1,  3,  1
+    //   2, Foo_2,  2,  0
+    //   0, Foo_0,  1,  1
+
+    r->commit_transaction();
+    Results results(r, table->where());
+
+    SECTION("Single integer property") {
+        Results unique = results.distinct(SortDescriptor(results.get_tableview().get_parent(), {{0}}));
+        // unique:
+        //  0, Foo_0, 10
+        //  1, Foo_1,  9
+        //  2, Foo_2,  8
+        REQUIRE(unique.size() == 3);
+        REQUIRE(unique.get(0).get_int(2) == 10);
+        REQUIRE(unique.get(1).get_int(2) == 9);
+        REQUIRE(unique.get(2).get_int(2) == 8);
+    }
+
+    SECTION("Single string property") {
+        Results unique = results.distinct(SortDescriptor(results.get_tableview().get_parent(), {{1}}));
+        // unique:
+        //  0, Foo_0, 10
+        //  1, Foo_1,  9
+        //  2, Foo_2,  8
+        REQUIRE(unique.size() == 3);
+        REQUIRE(unique.get(0).get_int(2) == 10);
+        REQUIRE(unique.get(1).get_int(2) == 9);
+        REQUIRE(unique.get(2).get_int(2) == 8);
+    }
+
+    SECTION("Two integer properties combined") {
+        Results unique = results.distinct(SortDescriptor(results.get_tableview().get_parent(), {{0}, {2}}));
+        // unique is the same as the table
+        REQUIRE(unique.size() == N);
+        for (int i = 0; i < N; ++i) {
+            REQUIRE(unique.get(i).get_string(1) == StringData(util::format("Foo_%1", i % 3).c_str()));
+        }
+    }
+
+    SECTION("String and integer combined") {
+        Results unique = results.distinct(SortDescriptor(results.get_tableview().get_parent(), {{2}, {1}}));
+        // unique is the same as the table
+        REQUIRE(unique.size() == N);
+        for (int i = 0; i < N; ++i) {
+            REQUIRE(unique.get(i).get_string(1) == StringData(util::format("Foo_%1", i % 3).c_str()));
+        }
+    }
+
+    // This section and next section demonstrate that sort().distinct() != distinct().sort()
+    SECTION("Order after sort and distinct") {
+        Results reverse = results.sort(SortDescriptor(results.get_tableview().get_parent(), {{2}}, {true}));
+        // reverse:
+        //   0, Foo_0,  1
+        //  ...
+        //   0, Foo_0, 10
+        REQUIRE(reverse.first()->get_int(2) == 1);
+        REQUIRE(reverse.last()->get_int(2) == 10);
+
+        // distinct() will be applied to the table, after sorting
+        Results unique = reverse.distinct(SortDescriptor(reverse.get_tableview().get_parent(), {{0}}));
+        // unique:
+        //  0, Foo_0,  1
+        //  2, Foo_2,  2
+        //  1, Foo_1,  3
+        REQUIRE(unique.size() == 3);
+        REQUIRE(unique.get(0).get_int(2) == 1);
+        REQUIRE(unique.get(1).get_int(2) == 2);
+        REQUIRE(unique.get(2).get_int(2) == 3);
+    }
+
+    SECTION("Order after distinct and sort") {
+        Results unique = results.distinct(SortDescriptor(results.get_tableview().get_parent(), {{0}}));
+        // unique:
+        //  0, Foo_0, 10
+        //  1, Foo_1,  9
+        //  2, Foo_2,  8
+        REQUIRE(unique.size() == 3);
+        REQUIRE(unique.first()->get_int(2) == 10);
+        REQUIRE(unique.last()->get_int(2) == 8);
+
+        // sort() is only applied to unique
+        Results reverse = unique.sort(SortDescriptor(unique.get_tableview().get_parent(), {{2}}, {true}));
+        // reversed:
+        //  2, Foo_2,  8
+        //  1, Foo_1,  9
+        //  0, Foo_0, 10
+        REQUIRE(reverse.size() == 3);
+        REQUIRE(reverse.get(0).get_int(2) == 8);
+        REQUIRE(reverse.get(1).get_int(2) == 9);
+        REQUIRE(reverse.get(2).get_int(2) == 10);
+    }
+
+    SECTION("Chaining distinct") {
+        Results first = results.distinct(SortDescriptor(results.get_tableview().get_parent(), {{0}}));
+        REQUIRE(first.size() == 3);
+
+        // distinct() will not discard the previous applied distinct() calls
+        Results second = first.distinct(SortDescriptor(first.get_tableview().get_parent(), {{3}}));
+        REQUIRE(second.size() == 2);
+    }
+
+    SECTION("Chaining sort") {
+        using cols_0_3 = std::pair<size_t, size_t>;
+        Results first = results.sort(SortDescriptor(results.get_tableview().get_parent(), {{0}}));
+        Results second = first.sort(SortDescriptor(first.get_tableview().get_parent(), {{3}}));
+
+        REQUIRE(second.size() == 10);
+        // results are ordered first by the last sorted column
+        // if any duplicates exist in that column, they are resolved by sorting the
+        // previously sorted column. Eg. sort(a).sort(b) == sort(b, a)
+        std::vector<cols_0_3> results
+            = {{0, 0}, {0, 0}, {1, 0}, {2, 0}, {2, 0}, {0, 1}, {0, 1}, {1, 1}, {1, 1}, {2, 1}};
+        for (size_t i = 0; i < results.size(); ++i) {
+            REQUIRE(second.get(i).get_int(0) == results[i].first);
+            REQUIRE(second.get(i).get_int(3) == results[i].second);
+        }
+    }
+
+    SECTION("Distinct is carried over to new queries") {
+        Results unique = results.distinct(SortDescriptor(results.get_tableview().get_parent(), {{0}}));
+        // unique:
+        //  0, Foo_0, 10
+        //  1, Foo_1,  9
+        //  2, Foo_2,  8
+        REQUIRE(unique.size() == 3);
+
+        Results filtered = unique.filter(Query(table->where().less(0, 2)));
+        // filtered:
+        //  0, Foo_0, 10
+        //  1, Foo_1,  9
+        REQUIRE(filtered.size() == 2);
+        REQUIRE(filtered.get(0).get_int(2) == 10);
+        REQUIRE(filtered.get(1).get_int(2) == 9);
+    }
+
+    SECTION("Distinct will not forget previous query") {
+        Results filtered = results.filter(Query(table->where().greater(2, 5)));
+        // filtered:
+        //   0, Foo_0, 10
+        //   1, Foo_1,  9
+        //   2, Foo_2,  8
+        //   0, Foo_0,  7
+        //   1, Foo_1,  6
+        REQUIRE(filtered.size() == 5);
+
+        Results unique = filtered.distinct(SortDescriptor(filtered.get_tableview().get_parent(), {{0}}));
+        // unique:
+        //   0, Foo_0, 10
+        //   1, Foo_1,  9
+        //   2, Foo_2,  8
+        REQUIRE(unique.size() == 3);
+        REQUIRE(unique.get(0).get_int(2) == 10);
+        REQUIRE(unique.get(1).get_int(2) == 9);
+        REQUIRE(unique.get(2).get_int(2) == 8);
+
+        Results further_filtered = unique.filter(Query(table->where().equal(2, 9)));
+        // further_filtered:
+        //   1, Foo_1,  9
+        REQUIRE(further_filtered.size() == 1);
+        REQUIRE(further_filtered.get(0).get_int(2) == 9);
+    }
+}
+#else // !REALM_HAVE_COMPOSABLE_DISTINCT
+TEST_CASE("results: distinct") {
     const int N = 10;
     InMemoryTestFile config;
     config.cache = false;
@@ -2262,48 +2672,168 @@ TEST_CASE("distinct") {
         REQUIRE(further_filtered.get(0).get_int(2) == 9);
     }
 }
+#endif // !REALM_HAVE_COMPOSABLE_DISTINCT
 
+TEST_CASE("results: sort") {
+    InMemoryTestFile config;
+    config.cache = false;
+    config.schema = Schema{
+        {"object", {
+            {"value", PropertyType::Int},
+            {"bool", PropertyType::Bool},
+            {"data prop", PropertyType::Data},
+            {"link", PropertyType::Object|PropertyType::Nullable, "object 2"},
+            {"array", PropertyType::Object|PropertyType::Array, "object 2"},
+        }},
+        {"object 2", {
+            {"value", PropertyType::Int},
+            {"link", PropertyType::Object|PropertyType::Nullable, "object"},
+        }},
+    };
 
-TEST_CASE("aggregate") {
-#define SECTIONS_RESULT_BUILT_FROM_TABLE_QUERY_TABLE_VIEW() \
-    SECTION("results built from table") { \
-        results = Results(r, *table); \
-    } \
-    SECTION("results built from query") { \
-        results = Results(r, table->where()); \
-    } \
-    SECTION("results built from tableview") { \
-        results = Results(r, table->where().find_all()); \
-    } \
-    SECTION("results built from linkview") { \
-        r->begin_transaction(); \
-        auto link_table = r->read_group().get_table("class_linking_object"); \
-        link_table->add_empty_row(1); \
-        auto link_view = link_table->get_linklist(0, 0); \
-        auto table_view = table->where().find_all(); \
-        for (size_t i = 0; i< table_view.size(); ++i) { \
-            link_view->add(table_view.get_source_ndx(i)); \
-        } \
-        r->commit_transaction(); \
-        results = Results(r, link_view); \
+    auto realm = Realm::get_shared_realm(config);
+    auto table = realm->read_group().get_table("class_object");
+    auto table2 = realm->read_group().get_table("class_object 2");
+    Results r(realm, *table);
+
+    SECTION("invalid keypaths") {
+        SECTION("empty property name") {
+            REQUIRE_THROWS_WITH(r.sort({{"", true}}), "Cannot sort on key path '': missing property name.");
+            REQUIRE_THROWS_WITH(r.sort({{".", true}}), "Cannot sort on key path '.': missing property name.");
+            REQUIRE_THROWS_WITH(r.sort({{"link.", true}}), "Cannot sort on key path 'link.': missing property name.");
+            REQUIRE_THROWS_WITH(r.sort({{".value", true}}), "Cannot sort on key path '.value': missing property name.");
+            REQUIRE_THROWS_WITH(r.sort({{"link..value", true}}), "Cannot sort on key path 'link..value': missing property name.");
+        }
+        SECTION("bad property name") {
+            REQUIRE_THROWS_WITH(r.sort({{"not a property", true}}),
+                                "Cannot sort on key path 'not a property': property 'object.not a property' does not exist.");
+            REQUIRE_THROWS_WITH(r.sort({{"link.not a property", true}}),
+                                "Cannot sort on key path 'link.not a property': property 'object 2.not a property' does not exist.");
+        }
+        SECTION("subscript primitive") {
+            REQUIRE_THROWS_WITH(r.sort({{"value.link", true}}),
+                                "Cannot sort on key path 'value.link': property 'object.value' of type 'int' may only be the final property in the key path.");
+        }
+        SECTION("end in link") {
+            REQUIRE_THROWS_WITH(r.sort({{"link", true}}),
+                                "Cannot sort on key path 'link': property 'object.link' of type 'object' cannot be the final property in the key path.");
+            REQUIRE_THROWS_WITH(r.sort({{"link.link", true}}),
+                                "Cannot sort on key path 'link.link': property 'object 2.link' of type 'object' cannot be the final property in the key path.");
+        }
+        SECTION("sort involving bad property types") {
+            REQUIRE_THROWS_WITH(r.sort({{"array", true}}),
+                                "Cannot sort on key path 'array': property 'object.array' is of unsupported type 'array'.");
+            REQUIRE_THROWS_WITH(r.sort({{"array.value", true}}),
+                                "Cannot sort on key path 'array.value': property 'object.array' is of unsupported type 'array'.");
+            REQUIRE_THROWS_WITH(r.sort({{"link.link.array.value", true}}),
+                                "Cannot sort on key path 'link.link.array.value': property 'object.array' is of unsupported type 'array'.");
+            REQUIRE_THROWS_WITH(r.sort({{"data prop", true}}),
+                                "Cannot sort on key path 'data prop': property 'object.data prop' is of unsupported type 'data'.");
+        }
     }
 
-    const int column_count = 4;
+    realm->begin_transaction();
+    table->add_empty_row(4);
+    table2->add_empty_row(4);
+    for (int i = 0; i < 4; ++i) {
+        table->set_int(0, i, (i + 2) % 4);
+        table->set_bool(1, i, i % 2);
+        table->set_link(3, i, 3 - i);
+
+        table2->set_int(0, i, (i + 1) % 4);
+        table2->set_link(1, i, i);
+    }
+    realm->commit_transaction();
+    /*
+     | index | value | bool | link.value | link.link.value |
+     |-------|-------|------|------------|-----------------|
+     | 0     | 2     | 0    | 0          | 1               |
+     | 1     | 3     | 1    | 3          | 0               |
+     | 2     | 0     | 0    | 2          | 3               |
+     | 3     | 1     | 1    | 1          | 2               |
+     */
+
+    #define REQUIRE_ORDER(sort, ...) do { \
+        std::vector<size_t> expected = {__VA_ARGS__}; \
+        auto results = sort; \
+        for (size_t i = 0; i < 4; ++i) \
+            REQUIRE(results.get(i).get_index() == expected[i]); \
+    } while (0)
+
+    SECTION("sort on single property") {
+        REQUIRE_ORDER((r.sort({{"value", true}})),
+                      2, 3, 0, 1);
+        REQUIRE_ORDER((r.sort({{"value", false}})),
+                      1, 0, 3, 2);
+    }
+
+    SECTION("sort on two properties") {
+        REQUIRE_ORDER((r.sort({{"bool", true}, {"value", true}})),
+                      2, 0, 3, 1);
+        REQUIRE_ORDER((r.sort({{"bool", false}, {"value", true}})),
+                      3, 1, 2, 0);
+        REQUIRE_ORDER((r.sort({{"bool", true}, {"value", false}})),
+                      0, 2, 1, 3);
+        REQUIRE_ORDER((r.sort({{"bool", false}, {"value", false}})),
+                      1, 3, 0, 2);
+    }
+    SECTION("sort over link") {
+        REQUIRE_ORDER((r.sort({{"link.value", true}})),
+                      0, 3, 2, 1);
+        REQUIRE_ORDER((r.sort({{"link.value", false}})),
+                      1, 2, 3, 0);
+    }
+    SECTION("sort over two links") {
+        REQUIRE_ORDER((r.sort({{"link.link.value", true}})),
+                      1, 0, 3, 2);
+        REQUIRE_ORDER((r.sort({{"link.link.value", false}})),
+                      2, 3, 0, 1);
+    }
+}
+
+struct ResultsFromTable {
+    static Results call(std::shared_ptr<Realm> r, Table* table) {
+        return Results(std::move(r), *table);
+    }
+};
+struct ResultsFromQuery {
+    static Results call(std::shared_ptr<Realm> r, Table* table) {
+        return Results(std::move(r), table->where());
+    }
+};
+struct ResultsFromTableView {
+    static Results call(std::shared_ptr<Realm> r, Table* table) {
+        return Results(std::move(r), table->where().find_all());
+    }
+};
+struct ResultsFromLinkView {
+    static Results call(std::shared_ptr<Realm> r, Table* table) {
+        r->begin_transaction();
+        auto link_table = r->read_group().get_table("class_linking_object");
+        link_table->add_empty_row(1);
+        auto link_view = link_table->get_linklist(0, 0);
+        for (size_t i = 0; i < table->size(); ++i)
+            link_view->add(i);
+        r->commit_transaction();
+        return Results(r, link_view);
+    }
+};
+
+TEMPLATE_TEST_CASE("results: aggregate", ResultsFromTable, ResultsFromQuery, ResultsFromTableView, ResultsFromLinkView) {
     InMemoryTestFile config;
     config.cache = false;
     config.automatic_change_notifications = false;
 
-
     auto r = Realm::get_shared_realm(config);
     r->update_schema({
         {"object", {
-            {"int", PropertyType::Int, "", "", false, false, true},
-            {"float", PropertyType::Float,  "", "", false, false, true},
-            {"double", PropertyType::Double, "", "", false, false, true},
-            {"date", PropertyType::Date, "", "", false, false, true},
+            {"int", PropertyType::Int|PropertyType::Nullable},
+            {"float", PropertyType::Float|PropertyType::Nullable},
+            {"double", PropertyType::Double|PropertyType::Nullable},
+            {"date", PropertyType::Date|PropertyType::Nullable},
         }},
         {"linking_object", {
-            {"link", PropertyType::Array, "object", "", false, false, false}
+            {"link", PropertyType::Array|PropertyType::Object, "object"}
         }},
     });
 
@@ -2312,9 +2842,6 @@ TEST_CASE("aggregate") {
     SECTION("one row with null values") {
         r->begin_transaction();
         table->add_empty_row(3);
-        for (int i = 0; i < column_count; ++i) {
-            table->set_null(i, 0);
-        }
 
         table->set_int(0, 1, 0);
         table->set_float(1, 1, 0.f);
@@ -2331,11 +2858,9 @@ TEST_CASE("aggregate") {
         //  2,    2,    2,    (2, 0)
         r->commit_transaction();
 
+        Results results = TestType::call(r, table.get());
+
         SECTION("max") {
-            Results results;
-
-            SECTIONS_RESULT_BUILT_FROM_TABLE_QUERY_TABLE_VIEW()
-
             REQUIRE(results.max(0)->get_int() == 2);
             REQUIRE(results.max(1)->get_float() == 2.f);
             REQUIRE(results.max(2)->get_double() == 2.0);
@@ -2343,10 +2868,6 @@ TEST_CASE("aggregate") {
         }
 
         SECTION("min") {
-            Results results;
-
-            SECTIONS_RESULT_BUILT_FROM_TABLE_QUERY_TABLE_VIEW()
-
             REQUIRE(results.min(0)->get_int() == 0);
             REQUIRE(results.min(1)->get_float() == 0.f);
             REQUIRE(results.min(2)->get_double() == 0.0);
@@ -2354,21 +2875,13 @@ TEST_CASE("aggregate") {
         }
 
         SECTION("average") {
-            Results results;
-
-            SECTIONS_RESULT_BUILT_FROM_TABLE_QUERY_TABLE_VIEW()
-
-            REQUIRE(results.average(0)->get_double() == 1.0);
-            REQUIRE(results.average(1)->get_double() == 1.0);
-            REQUIRE(results.average(2)->get_double() == 1.0);
+            REQUIRE(results.average(0) == 1.0);
+            REQUIRE(results.average(1) == 1.0);
+            REQUIRE(results.average(2) == 1.0);
             REQUIRE_THROWS_AS(results.average(3), Results::UnsupportedColumnTypeException);
         }
 
         SECTION("sum") {
-            Results results;
-
-            SECTIONS_RESULT_BUILT_FROM_TABLE_QUERY_TABLE_VIEW()
-
             REQUIRE(results.sum(0)->get_int() == 2);
             REQUIRE(results.sum(1)->get_double() == 2.0);
             REQUIRE(results.sum(2)->get_double() == 2.0);
@@ -2377,25 +2890,17 @@ TEST_CASE("aggregate") {
     }
 
     SECTION("rows with all null values") {
-        const int row_count = 3;
         r->begin_transaction();
-        table->add_empty_row(row_count);
-        for (int i = 0; i < column_count; ++i) {
-            for (int j = 0; j < row_count; ++j) {
-                table->set_null(i, j);
-            }
-        }
+        table->add_empty_row(3);
         // table:
         //  null, null, null,  null,  null
         //  null, null, null,  null,  null
         //  null, null, null,  null,  null
         r->commit_transaction();
 
+        Results results = TestType::call(r, table.get());
+
         SECTION("max") {
-            Results results;
-
-            SECTIONS_RESULT_BUILT_FROM_TABLE_QUERY_TABLE_VIEW()
-
             REQUIRE(!results.max(0));
             REQUIRE(!results.max(1));
             REQUIRE(!results.max(2));
@@ -2403,10 +2908,6 @@ TEST_CASE("aggregate") {
         }
 
         SECTION("min") {
-            Results results;
-
-            SECTIONS_RESULT_BUILT_FROM_TABLE_QUERY_TABLE_VIEW()
-
             REQUIRE(!results.min(0));
             REQUIRE(!results.min(1));
             REQUIRE(!results.min(2));
@@ -2414,10 +2915,6 @@ TEST_CASE("aggregate") {
         }
 
         SECTION("average") {
-            Results results;
-
-            SECTIONS_RESULT_BUILT_FROM_TABLE_QUERY_TABLE_VIEW()
-
             REQUIRE(!results.average(0));
             REQUIRE(!results.average(1));
             REQUIRE(!results.average(2));
@@ -2425,10 +2922,6 @@ TEST_CASE("aggregate") {
         }
 
         SECTION("sum") {
-            Results results;
-
-            SECTIONS_RESULT_BUILT_FROM_TABLE_QUERY_TABLE_VIEW()
-
             REQUIRE(results.sum(0)->get_int() == 0);
             REQUIRE(results.sum(1)->get_double() == 0.0);
             REQUIRE(results.sum(2)->get_double() == 0.0);
@@ -2437,15 +2930,9 @@ TEST_CASE("aggregate") {
     }
 
     SECTION("empty") {
+        Results results = TestType::call(r, table.get());
+
         SECTION("max") {
-            Results results;
-
-            SECTION("empty results") {
-                results = Results();
-            }
-
-            SECTIONS_RESULT_BUILT_FROM_TABLE_QUERY_TABLE_VIEW()
-
             REQUIRE(!results.max(0));
             REQUIRE(!results.max(1));
             REQUIRE(!results.max(2));
@@ -2453,10 +2940,6 @@ TEST_CASE("aggregate") {
         }
 
         SECTION("min") {
-            Results results;
-
-            SECTIONS_RESULT_BUILT_FROM_TABLE_QUERY_TABLE_VIEW()
-
             REQUIRE(!results.min(0));
             REQUIRE(!results.min(1));
             REQUIRE(!results.min(2));
@@ -2464,10 +2947,6 @@ TEST_CASE("aggregate") {
         }
 
         SECTION("average") {
-            Results results;
-
-            SECTIONS_RESULT_BUILT_FROM_TABLE_QUERY_TABLE_VIEW()
-
             REQUIRE(!results.average(0));
             REQUIRE(!results.average(1));
             REQUIRE(!results.average(2));
@@ -2475,10 +2954,6 @@ TEST_CASE("aggregate") {
         }
 
         SECTION("sum") {
-            Results results;
-
-            SECTIONS_RESULT_BUILT_FROM_TABLE_QUERY_TABLE_VIEW()
-
             REQUIRE(results.sum(0)->get_int() == 0);
             REQUIRE(results.sum(1)->get_double() == 0.0);
             REQUIRE(results.sum(2)->get_double() == 0.0);

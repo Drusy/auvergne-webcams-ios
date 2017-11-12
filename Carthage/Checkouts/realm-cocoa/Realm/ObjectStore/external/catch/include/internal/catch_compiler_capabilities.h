@@ -26,6 +26,8 @@
 
 // CATCH_CONFIG_VARIADIC_MACROS : are variadic macros supported?
 // CATCH_CONFIG_COUNTER : is the __COUNTER__ macro supported?
+// CATCH_CONFIG_WINDOWS_SEH : is Windows SEH supported?
+// CATCH_CONFIG_POSIX_SIGNALS : are POSIX signals supported?
 // ****************
 // Note to maintainers: if new toggles are added please document them
 // in configuration.md, too
@@ -61,10 +63,42 @@
 #  endif
 
 #   if defined(CATCH_CPP11_OR_GREATER)
-#       define CATCH_INTERNAL_SUPPRESS_PARENTHESES_WARNINGS _Pragma( "clang diagnostic ignored \"-Wparentheses\"" )
+#       define CATCH_INTERNAL_SUPPRESS_ETD_WARNINGS \
+            _Pragma( "clang diagnostic push" ) \
+            _Pragma( "clang diagnostic ignored \"-Wexit-time-destructors\"" )
+#       define CATCH_INTERNAL_UNSUPPRESS_ETD_WARNINGS \
+            _Pragma( "clang diagnostic pop" )
+
+#       define CATCH_INTERNAL_SUPPRESS_PARENTHESES_WARNINGS \
+            _Pragma( "clang diagnostic push" ) \
+            _Pragma( "clang diagnostic ignored \"-Wparentheses\"" )
+#       define CATCH_INTERNAL_UNSUPPRESS_PARENTHESES_WARNINGS \
+            _Pragma( "clang diagnostic pop" )
 #   endif
 
 #endif // __clang__
+
+
+////////////////////////////////////////////////////////////////////////////////
+// We know some environments not to support full POSIX signals
+#if defined(__CYGWIN__) || defined(__QNX__)
+
+#   if !defined(CATCH_CONFIG_POSIX_SIGNALS)
+#       define CATCH_INTERNAL_CONFIG_NO_POSIX_SIGNALS
+#   endif
+
+#endif
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Cygwin
+#ifdef __CYGWIN__
+
+// Required for some versions of Cygwin to declare gettimeofday
+// see: http://stackoverflow.com/questions/36901803/gettimeofday-not-declared-in-this-scope-cygwin
+#   define _BSD_SOURCE
+
+#endif // __CYGWIN__
 
 ////////////////////////////////////////////////////////////////////////////////
 // Borland
@@ -95,9 +129,6 @@
 #       define CATCH_INTERNAL_CONFIG_CPP11_NULLPTR
 #   endif
 
-#   if !defined(CATCH_INTERNAL_SUPPRESS_PARENTHESES_WARNINGS) && defined(CATCH_CPP11_OR_GREATER)
-#       define CATCH_INTERNAL_SUPPRESS_PARENTHESES_WARNINGS _Pragma( "GCC diagnostic ignored \"-Wparentheses\"" )
-#   endif
 
 // - otherwise more recent versions define __cplusplus >= 201103L
 // and will get picked up below
@@ -108,6 +139,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Visual C++
 #ifdef _MSC_VER
+
+#define CATCH_INTERNAL_CONFIG_WINDOWS_SEH
 
 #if (_MSC_VER >= 1600)
 #   define CATCH_INTERNAL_CONFIG_CPP11_NULLPTR
@@ -137,7 +170,7 @@
 
 // Use __COUNTER__ if the compiler supports it
 #if ( defined _MSC_VER && _MSC_VER >= 1300 ) || \
-    ( defined __GNUC__  && __GNUC__ >= 4 && __GNUC_MINOR__ >= 3 ) || \
+    ( defined __GNUC__  && ( __GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 3 )) ) || \
     ( defined __clang__ && __clang_major__ >= 3 )
 
 #define CATCH_INTERNAL_CONFIG_COUNTER
@@ -233,9 +266,21 @@
 # if defined(CATCH_INTERNAL_CONFIG_CPP11_TYPE_TRAITS) && !defined(CATCH_CONFIG_CPP11_NO_TYPE_TRAITS) && !defined(CATCH_CONFIG_CPP11_TYPE_TRAITS) && !defined(CATCH_CONFIG_NO_CPP11)
 #  define CATCH_CONFIG_CPP11_TYPE_TRAITS
 # endif
+#if defined(CATCH_INTERNAL_CONFIG_WINDOWS_SEH) && !defined(CATCH_CONFIG_NO_WINDOWS_SEH) && !defined(CATCH_CONFIG_WINDOWS_SEH)
+#   define CATCH_CONFIG_WINDOWS_SEH
+#endif
+// This is set by default, because we assume that unix compilers are posix-signal-compatible by default.
+#if !defined(CATCH_INTERNAL_CONFIG_NO_POSIX_SIGNALS) && !defined(CATCH_CONFIG_NO_POSIX_SIGNALS) && !defined(CATCH_CONFIG_POSIX_SIGNALS)
+#   define CATCH_CONFIG_POSIX_SIGNALS
+#endif
 
 #if !defined(CATCH_INTERNAL_SUPPRESS_PARENTHESES_WARNINGS)
 #   define CATCH_INTERNAL_SUPPRESS_PARENTHESES_WARNINGS
+#   define CATCH_INTERNAL_UNSUPPRESS_PARENTHESES_WARNINGS
+#endif
+#if !defined(CATCH_INTERNAL_SUPPRESS_ETD_WARNINGS)
+#   define CATCH_INTERNAL_SUPPRESS_ETD_WARNINGS
+#   define CATCH_INTERNAL_UNSUPPRESS_ETD_WARNINGS
 #endif
 
 // noexcept support:

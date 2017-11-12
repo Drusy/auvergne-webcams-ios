@@ -39,6 +39,7 @@ namespace Catch {
                         char const* capturedExpression,
                         ResultDisposition::Flags resultDisposition,
                         char const* secondArg = "" );
+        ~ResultBuilder();
 
         template<typename T>
         ExpressionLhs<T const&> operator <= ( T const& operand );
@@ -46,7 +47,7 @@ namespace Catch {
 
         template<typename T>
         ResultBuilder& operator << ( T const& value ) {
-            m_stream.oss << value;
+            m_stream().oss << value;
             return *this;
         }
 
@@ -64,7 +65,7 @@ namespace Catch {
         void captureResult( ResultWas::OfType resultType );
         void captureExpression();
         void captureExpectedException( std::string const& expectedMessage );
-        void captureExpectedException( Matchers::Impl::Matcher<std::string> const& matcher );
+        void captureExpectedException( Matchers::Impl::MatcherBase<std::string> const& matcher );
         void handleResult( AssertionResult const& result );
         void react();
         bool shouldDebugBreak() const;
@@ -73,13 +74,22 @@ namespace Catch {
         template<typename ArgT, typename MatcherT>
         void captureMatch( ArgT const& arg, MatcherT const& matcher, char const* matcherString );
 
+        void setExceptionGuard();
+        void unsetExceptionGuard();
+
     private:
         AssertionInfo m_assertionInfo;
         AssertionResultData m_data;
-        CopyableStream m_stream;
+
+        static CopyableStream &m_stream()
+        {
+            static CopyableStream s;
+            return s;
+        }
 
         bool m_shouldDebugBreak;
         bool m_shouldThrow;
+        bool m_guardException;
     };
 
 } // namespace Catch
@@ -105,6 +115,7 @@ namespace Catch {
         setResultType( matcher.match( arg ) );
         endExpression( expr );
     }
+
 
 } // namespace Catch
 

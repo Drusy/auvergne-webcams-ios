@@ -186,7 +186,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         widgetPerformUpdate(completionHandler: completionHandler)
     }
     
-    func onViewTapped() {
+    @objc func onViewTapped() {
         guard let url = URL(string: "auvergne-webcams://") else { return }
         
         extensionContext?.open(url, completionHandler: nil)

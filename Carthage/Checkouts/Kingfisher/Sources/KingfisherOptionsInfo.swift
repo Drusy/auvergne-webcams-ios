@@ -46,6 +46,11 @@ public enum KingfisherOptionsInfoItem {
     /// the downloaded image to it.
     case targetCache(ImageCache)
     
+    /// Cache for storing and retrieving original image.
+    /// Preferred prior to targetCache for storing and retrieving original images if specified.
+    /// Only used if a non-default image processor is involved.
+    case originalCache(ImageCache)
+    
     /// The associated value of this member should be an ImageDownloader object. Kingfisher will use this
     /// downloader to download the images.
     case downloader(ImageDownloader)
@@ -138,6 +143,7 @@ infix operator <== : ItemComparisonPrecedence
 func <== (lhs: KingfisherOptionsInfoItem, rhs: KingfisherOptionsInfoItem) -> Bool {
     switch (lhs, rhs) {
     case (.targetCache(_), .targetCache(_)): return true
+    case (.originalCache(_), .originalCache(_)): return true
     case (.downloader(_), .downloader(_)): return true
     case (.transition(_), .transition(_)): return true
     case (.downloadPriority(_), .downloadPriority(_)): return true
@@ -179,6 +185,16 @@ public extension Collection where Iterator.Element == KingfisherOptionsInfoItem 
             return cache
         }
         return ImageCache.default
+    }
+    
+    /// The original `ImageCache` which is used.
+    public var originalCache: ImageCache {
+        if let item = lastMatchIgnoringAssociatedValue(.originalCache(.default)),
+            case .originalCache(let cache) = item
+        {
+            return cache
+        }
+        return targetCache
     }
     
     /// The `ImageDownloader` which is specified.
@@ -305,19 +321,4 @@ public extension Collection where Iterator.Element == KingfisherOptionsInfoItem 
     public var cacheOriginalImage: Bool {
         return contains { $0 <== .cacheOriginalImage }
     }
-}
-
-// MARK: - Deprecated. Only for back compatibility.
-public extension Collection where Iterator.Element == KingfisherOptionsInfoItem {
-
-    /// Whether the image data should be all loaded at once if it is a GIF.
-    @available(*, deprecated, renamed: "preloadAllAnimationData")
-    public var preloadAllGIFData: Bool {
-        return preloadAllAnimationData
-    }
-}
-
-public extension KingfisherOptionsInfoItem {
-    @available(*, deprecated, renamed: "preloadAllAnimationData")
-    static let preloadAllGIFData = KingfisherOptionsInfoItem.preloadAllAnimationData
 }

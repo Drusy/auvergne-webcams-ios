@@ -29,17 +29,17 @@ class WebcamSection: Object, Mappable {
     static let weatherAcceptanceInterval: TimeInterval = 60 * 60 * 2 // 2h
     
     // Update from WS
-    dynamic var uid: Int = 0
-    dynamic var order: Int = 0
-    dynamic var title: String?
-    dynamic var imageName: String?
-    dynamic var latitude: Double = -1
-    dynamic var longitude: Double = -1
+    @objc dynamic var uid: Int = 0
+    @objc dynamic var order: Int = 0
+    @objc dynamic var title: String?
+    @objc dynamic var imageName: String?
+    @objc dynamic var latitude: Double = -1
+    @objc dynamic var longitude: Double = -1
     
     // Interval data
-    dynamic var lastWeatherUpdate: Date?
-    dynamic var temperature: Double = 0
-    dynamic var weatherID: Int = 0
+    @objc dynamic var lastWeatherUpdate: Date?
+    @objc dynamic var temperature: Double = 0
+    @objc dynamic var weatherID: Int = 0
 
     var webcams = List<Webcam>()
     var image: UIImage? {

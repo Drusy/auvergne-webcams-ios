@@ -17,7 +17,7 @@ protocol WebcamCarouselViewProviderDelegate: class {
 class WebcamCarouselViewProvider: AbstractArrayViewProvider<WebcamSection, WebcamCarouselTableViewCell> {
     weak var delegate: WebcamCarouselViewProviderDelegate?
     
-    func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
+    @objc func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         if UIDevice.current.userInterfaceIdiom == .pad {
             return 450
         } else {
@@ -25,7 +25,7 @@ class WebcamCarouselViewProvider: AbstractArrayViewProvider<WebcamSection, Webca
         }
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    @objc func scrollViewDidScroll(_ scrollView: UIScrollView) {
         delegate?.webcamCarousel(viewProvider: self, scrollViewDidScroll: scrollView)
     }
 }
@@ -129,7 +129,7 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
                                                  width: loadingAnimationImageView.bounds.width * 5,
                                                  height: loadingAnimationImageView.bounds.height * 5))
         let duration: TimeInterval = 1
-        
+
         transformAnimation.duration = duration
         transformAnimation.delegate = self
         transformAnimation.values = [initalBounds, secondBounds, finalBounds]
@@ -137,7 +137,7 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
         transformAnimation.timingFunctions = [CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut), CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)]
         transformAnimation.fillMode = kCAFillModeForwards
         transformAnimation.isRemovedOnCompletion = false
-        
+
         navigationController?.view.layer.mask?.add(transformAnimation, forKey: transformAnimation.keyPath)
         loadingAnimationImageView.layer.add(transformAnimation, forKey: transformAnimation.keyPath)
         
@@ -155,7 +155,7 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
             delay: duration * 0.3,
             options: [],
             animations: { [weak self] in
-                self?.navigationController?.view.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+                self?.tableView.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
             },
             completion: { [weak self] _ in
                 UIView.animate(
@@ -163,7 +163,7 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
                     delay: 0.0,
                     options: UIViewAnimationOptions.curveEaseInOut,
                     animations: {
-                        self?.navigationController?.view.transform = .identity
+                        self?.tableView.transform = .identity
                 },
                     completion: { [weak self] _ in
                         if let item = self?.shortcutItem, let navigationController = self?.navigationController {
@@ -222,16 +222,16 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
     
     // MARK: - IBActions
     
-    func onFavoriteWebcamDidUpdate(notification: Notification) {
+    @objc func onFavoriteWebcamDidUpdate(notification: Notification) {
         update()
     }
     
-    func onRefreshTouched() {
+    @objc func onRefreshTouched() {
         refresh()
         AnalyticsManager.logEvent(button: "home_refresh")
     }
     
-    func onSettingsTouched() {
+    @objc func onSettingsTouched() {
         let settingsVC = SettingsViewController()
         let navigationVC = NavigationController(rootViewController: settingsVC)
         

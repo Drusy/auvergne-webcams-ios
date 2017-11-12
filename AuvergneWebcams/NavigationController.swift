@@ -51,9 +51,9 @@ class NavigationController: UINavigationController {
     func style() {
         let color = UIColor.white
         
-        let attributes: [String : Any] = [
-            NSForegroundColorAttributeName: color,
-            NSFontAttributeName: UIFont.proximaNovaSemiBold(withSize: 17)
+        let attributes: [NSAttributedStringKey: Any] = [
+            NSAttributedStringKey.foregroundColor: color,
+            NSAttributedStringKey.font: UIFont.proximaNovaSemiBold(withSize: 17)
         ]
         
         navigationBar.titleTextAttributes = attributes
@@ -67,7 +67,7 @@ class NavigationController: UINavigationController {
         setNeedsStatusBarAppearanceUpdate()
     }
     
-    func update() {
+    @objc func update() {
         if self.topViewController != nil && self.topViewController!.responds(to: #selector(update)) {
             _ = topViewController?.perform(#selector(update))
         }

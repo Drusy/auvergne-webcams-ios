@@ -2,10 +2,120 @@
 
 -----
 
+## [4.2.0 - A Tale of Two Caches](https://github.com/onevcat/Kingfisher/releases/tag/4.2.0) (2017-10-22)
+
+#### Add
+* An option to provice a specific cache for original image. This gives us a change to caching original iamges on a different cache. [#794](https://github.com/onevcat/Kingfisher/pull/794)
+
+---
+
+## [4.1.1 - Love Barrier Again](https://github.com/onevcat/Kingfisher/releases/tag/4.1.1) (2017-10-17)
+
+#### Fix
+* A potential race condition in `ImageDownloader`. [#763](https://github.com/onevcat/Kingfisher/issues/763)
+
+---
+
+## [4.1.0 - Data in Hand](https://github.com/onevcat/Kingfisher/releases/tag/4.1.0) (2017-09-28)
+
+#### Add
+* An `ImageDownloader` delegate method to provide a chance for you to check and modify the data. [#773](https://github.com/onevcat/Kingfisher/pull/773)
+
+#### Fix
+* Now Kingfisher also supports Swift 3.2, as a workaround for CocoaPods not respecting pod spec build setting. [CocoaPods_#6791](https://github.com/CocoaPods/CocoaPods/issues/6791)
+
+---
+
+## [4.0.1 - Swift 4](https://github.com/onevcat/Kingfisher/releases/tag/4.0.1) (2017-09-15)
+
+#### Add
+* Supports for Swift 4. The new major version of Kingfisher should be source compatible with Kingfisher 3. Please make sure you have no warning left with Kingfisher related APIs before migrating to version 4, since all deprecated methods are removed from our code base. [#704](https://github.com/onevcat/Kingfisher/pull/704)
+* A cleaner API to track whether an image is cached and its cache type. Use `imageChachedType` and `CacheType.cached` instead of `isImageCached` and `CacheCheckResult`. [#704](https://github.com/onevcat/Kingfisher/pull/704/commits/38860911310931842f2d44e020204e894b7b2ae8)
+
+#### Fix
+* Update pod spec to use Swift 4.0 as Swift Version configuration.
+
+---
+
+## [4.0.0 - Swift 4](https://github.com/onevcat/Kingfisher/releases/tag/4.0.0) (2017-09-14)
+
+#### Add
+* Supports for Swift 4. The new major version of Kingfisher should be source compatible with Kingfisher 3. Please make sure you have no warning left with Kingfisher related APIs before migrating to version 4, since all deprecated methods are removed from our code base. [#704](https://github.com/onevcat/Kingfisher/pull/704)
+* A cleaner API to track whether an image is cached and its cache type. Use `imageChachedType` and `CacheType.cached` instead of `isImageCached` and `CacheCheckResult`. [#704](https://github.com/onevcat/Kingfisher/pull/704/commits/38860911310931842f2d44e020204e894b7b2ae8)
+
+---
+
+## [3.13.1 - Evil Setting](https://github.com/onevcat/Kingfisher/releases/tag/3.13.1) (2017-09-14)
+
+#### Fix
+* Disable code coverage for all targets in build setting to avoid rejecting from iTunes when building with Xcode 9. [#753](https://github.com/onevcat/Kingfisher/pull/753)
+
+---
+
+## [3.13.0 - Rum Bird](https://github.com/onevcat/Kingfisher/releases/tag/3.13.0) (2017-09-12)
+
+#### Add
+* Introduces a `backgroundColor` property to `RoundCornerImageProcessor` allowing to specify a desired backgroud color. It could be useful for a JPEG based image to prevent alpha blending. [#766](https://github.com/onevcat/Kingfisher/pull/766)
+
+---
+
+## [3.12.2 - Scaling Background Decoding](https://github.com/onevcat/Kingfisher/releases/tag/3.12.2) (2017-09-02)
+
+#### Fix
+* Fix an issue which causes image scale not correct when background decoding option is used. [#761](https://github.com/onevcat/Kingfisher/issues/761)
+
+---
+
+## [3.12.1 - Placeholder](https://github.com/onevcat/Kingfisher/releases/tag/3.12.1) (2017-08-30)
+
+#### Add
+* Now you could use a customized view (subclass of `UIView` or `NSView`) as placeholder in image view setting extension method. [#746](https://github.com/onevcat/Kingfisher/issues/746)
+
+---
+
+## [3.12.0 - Placeholder](https://github.com/onevcat/Kingfisher/releases/tag/3.12.0) (2017-08-30)
+
+#### Add
+* Now you could use a customized view (subclass of `UIView` or `NSView`) as placeholder in image view setting extension method. [#746](https://github.com/onevcat/Kingfisher/issues/746)
+
+---
+
+## [3.11.0 - Task Auth](https://github.com/onevcat/Kingfisher/releases/tag/3.11.0) (2017-08-16)
+
+#### Add
+* A task based authentication challenge handler for some auth methods like HTTP Digest. [#742](https://github.com/onevcat/Kingfisher/issues/742)
+
+#### Fix
+* The option of `keepCurrentImageWhileLoading` now will respect your placeholder if the original image is `nil` in the image view. [#747](https://github.com/onevcat/Kingfisher/pull/747)
+
+---
+
+## [3.10.4 - Indicator Size](https://github.com/onevcat/Kingfisher/releases/tag/3.10.4) (2017-07-26)
+
+#### Fix
+* Respect image and custom indicator size. Now Kingfisher will not resize the indicators to the image size for you automatically.
+
+---
+
+## [3.10.3 - ProMotion](https://github.com/onevcat/Kingfisher/releases/tag/3.10.3) (2017-07-06)
+
+#### Fix
+* Fix a problem which causes the GIF playing in a slow rate on ProMotion enabled devices (iPad Pro 10.5) [#718](https://github.com/onevcat/Kingfisher/issues/718)
+
+---
+
+## [3.10.2 - Missing Boys](https://github.com/onevcat/Kingfisher/releases/tag/3.10.2) (2017-06-16)
+
+#### Fix
+* Now the processed images result from a cache original image could be cached correctly. [#711](https://github.com/onevcat/Kingfisher/issues/711)
+* Some internal minor clean up.
+
+---
+
 ## [3.10.1 - Order, order!](https://github.com/onevcat/Kingfisher/releases/tag/3.10.1) (2017-06-04)
 
 #### Fix
-* Change a inline function order to make Swift 3.0 compiler happy. [#700](https://github.com/onevcat/Kingfisher/issues/700)
+* Change an inline function order to make Swift 3.0 compiler happy. [#700](https://github.com/onevcat/Kingfisher/issues/700)
 
 ---
 

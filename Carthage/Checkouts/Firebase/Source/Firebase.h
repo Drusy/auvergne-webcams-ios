@@ -1,21 +1,11 @@
-#import <UIKit/UIKit.h>
-
-//! Project version number for Firebase.
-FOUNDATION_EXPORT double FirebaseVersionNumber;
-
-//! Project version string for Firebase.
-FOUNDATION_EXPORT const unsigned char FirebaseVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <Firebase/PublicHeader.h>
-
 #import <FirebaseAnalytics/FirebaseAnalytics.h>
+#import <FirebaseCore/FirebaseCore.h>
 
 #if !defined(__has_include)
   #error "Firebase.h won't import anything if your compiler doesn't support __has_include. Please \
           import the headers individually."
 #else
   #if __has_include(<FirebaseAppIndexing/FirebaseAppIndexing.h>)
-    #import <FirebaseCore/FirebaseCore.h>
     #import <FirebaseAppIndexing/FirebaseAppIndexing.h>
   #endif
 
@@ -35,6 +25,10 @@ FOUNDATION_EXPORT const unsigned char FirebaseVersionString[];
     #import <FirebaseDynamicLinks/FirebaseDynamicLinks.h>
   #endif
 
+  #if __has_include(<FirebaseFirestore/FirebaseFirestore.h>)
+    #import <FirebaseFirestore/FirebaseFirestore.h>
+  #endif
+
   #if __has_include(<FirebaseInstanceID/FirebaseInstanceID.h>)
     #import <FirebaseInstanceID/FirebaseInstanceID.h>
   #endif
@@ -47,6 +41,10 @@ FOUNDATION_EXPORT const unsigned char FirebaseVersionString[];
     #import <FirebaseMessaging/FirebaseMessaging.h>
   #endif
 
+  #if __has_include(<FirebasePerformance/FirebasePerformance.h>)
+    #import <FirebasePerformance/FirebasePerformance.h>
+  #endif
+
   #if __has_include(<FirebaseRemoteConfig/FirebaseRemoteConfig.h>)
     #import <FirebaseRemoteConfig/FirebaseRemoteConfig.h>
   #endif
@@ -57,6 +55,14 @@ FOUNDATION_EXPORT const unsigned char FirebaseVersionString[];
 
   #if __has_include(<GoogleMobileAds/GoogleMobileAds.h>)
     #import <GoogleMobileAds/GoogleMobileAds.h>
+  #endif
+
+  #if __has_include(<Fabric/Fabric.h>)
+    #import <Fabric/Fabric.h>
+  #endif
+
+  #if __has_include(<Crashlytics/Crashlytics.h>)
+    #import <Crashlytics/Crashlytics.h>
   #endif
 
 #endif  // defined(__has_include)

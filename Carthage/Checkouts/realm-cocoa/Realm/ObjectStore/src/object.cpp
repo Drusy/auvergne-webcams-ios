@@ -21,6 +21,7 @@
 #include "impl/object_notifier.hpp"
 #include "impl/realm_coordinator.hpp"
 #include "object_schema.hpp"
+#include "object_store.hpp"
 #include "util/format.hpp"
 
 using namespace realm;
@@ -52,6 +53,12 @@ ReadOnlyPropertyException::ReadOnlyPropertyException(const std::string& object_t
 Object::Object(SharedRealm r, ObjectSchema const& s, RowExpr const& o)
 : m_realm(std::move(r)), m_object_schema(&s), m_row(o) { }
 
+Object::Object(SharedRealm r, StringData object_type, size_t ndx)
+: m_realm(std::move(r))
+, m_object_schema(&*m_realm->schema().find(object_type))
+, m_row(ObjectStore::table_for_object_type(m_realm->read_group(), object_type)->get(ndx))
+{ }
+
 Object::Object() = default;
 Object::~Object() = default;
 Object::Object(Object const&) = default;
@@ -61,6 +68,7 @@ Object& Object::operator=(Object&&) = default;
 
 NotificationToken Object::add_notification_callback(CollectionChangeCallback callback) &
 {
+    verify_attached();
     if (!m_notifier) {
         m_notifier = std::make_shared<_impl::ObjectNotifier>(m_row, m_realm);
         _impl::RealmCoordinator::register_notifier(m_notifier);

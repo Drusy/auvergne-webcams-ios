@@ -8,7 +8,7 @@
 
 import Firebase
 
-extension FIRAnalytics {
+extension Analytics {
     static let refreshUserProperty: String = "refresh"
     static let refreshIntervalUserProperty: String = "refresh_interval"
     static let webcamQualityUserProperty: String = "webcam_quality"

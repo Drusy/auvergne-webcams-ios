@@ -22,6 +22,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     
     // MARK: - Properties
     
+    @IBOutlet weak var lowQualityViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet var brokenConnectionView: UIView!
     @IBOutlet var brokenCameraView: UIView!
     
@@ -161,6 +162,14 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         
         coordinator.animate(alongsideTransition: transition,
                             completion: nil)
+    }
+    
+    override func onAppearConfiguration() {
+        super.onAppearConfiguration()
+        
+        if #available(iOS 11, *) {
+            lowQualityViewHeightConstraint.constant += view.safeAreaInsets.bottom
+        }
     }
     
     // MARK: - IBActions
@@ -373,7 +382,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         }
     }
     
-    func onAvExportTimerTick() {
+    @objc func onAvExportTimerTick() {
         guard let exporter = avExporter else { return }
         
         if exporter.status == AVAssetExportSessionStatus.completed ||
@@ -388,7 +397,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         }
     }
     
-    func onDownloadManagerDidUpdateWebcam(notification: Notification) {
+    @objc func onDownloadManagerDidUpdateWebcam(notification: Notification) {
         guard let webcam = notification.object as? Webcam, webcam == self.webcam else { return }
         
         updateLastUpdateLabel()
@@ -415,7 +424,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         asset.resourceLoader.setDelegate(self, queue: DispatchQueue.main)
         avExporter = AVAssetExportSession(asset: asset, presetName: AVAssetExportPreset640x480)
         avExporter?.outputURL = outputURL
-        avExporter?.outputFileType = AVFileTypeQuickTimeMovie
+        avExporter?.outputFileType = AVFileType.mov
         
         avExportTimer = Timer.scheduledTimer(timeInterval: 0.3,
                                              target: self,
@@ -439,7 +448,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         }
     }
     
-    func video(_ video: String, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+    @objc func video(_ video: String, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         if let error = error {
             showAlertView(for: error)
         } else {
@@ -447,7 +456,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         }
     }
     
-    func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         if let error = error {
             showAlertView(for: error)
         } else {
@@ -475,7 +484,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
               fromView: shareButton)
     }
     
-    func forceRefresh() {
+    @objc func forceRefresh() {
         retryCount = Webcam.retryCount
         refresh(force: isReachable())
         AnalyticsManager.logEvent(button: "webcam_detail_refresh")
@@ -548,9 +557,9 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         
         let mailComposerVC = MailComposeViewController()
         let title = self.title ?? ""
-        let attributes: [String : Any] = [
-            NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: UIFont.proximaNovaSemiBold(withSize: 17)
+        let attributes: [NSAttributedStringKey: Any] = [
+            NSAttributedStringKey.foregroundColor: UIColor.white,
+            NSAttributedStringKey.font: UIFont.proximaNovaSemiBold(withSize: 17)
         ]
         
         mailComposerVC.navigationBar.titleTextAttributes = attributes
@@ -574,7 +583,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         scrollView.addGestureRecognizer(doubleTap)
     }
     
-    func handleDoubleTap(recognizer: UITapGestureRecognizer) {
+    @objc func handleDoubleTap(recognizer: UITapGestureRecognizer) {
         guard isDataLoaded == true else { return }
         let zoomOffset: CGFloat = (scrollView.maximumZoomScale - scrollView.minimumZoomScale) / 2
         

@@ -69,7 +69,7 @@ class WebcamSectionViewController: AbstractRefreshViewController {
     
     // MARK: - Actions
     
-    func onFavoriteWebcamDidUpdate(notification: Notification) {
+    @objc func onFavoriteWebcamDidUpdate(notification: Notification) {
         update()
     }
     

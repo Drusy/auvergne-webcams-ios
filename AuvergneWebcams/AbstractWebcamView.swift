@@ -226,7 +226,7 @@ class AbstractWebcamView: UIView {
     
     fileprivate func handleError(for webcam: Webcam, statusCode: Int) {
         let reachability = Reachability()
-        let isReachable = (reachability == nil || (reachability != nil && reachability!.isReachable))
+        let isReachable = (reachability == nil || (reachability != nil && reachability!.connection != .none))
         
         if statusCode != -999 && isReachable {
             

@@ -27,16 +27,16 @@ class Webcam: Object, Mappable {
     static let retryCount: Int = 3
     
     // Update from WS
-    dynamic var uid: Int = 0
-    dynamic var order: Int = 0
-    dynamic var title: String?
-    dynamic var imageHD: String?
-    dynamic var imageLD: String?
-    dynamic var viewsurfLD: String?
-    dynamic var viewsurfHD: String?
+    @objc dynamic var uid: Int = 0
+    @objc dynamic var order: Int = 0
+    @objc dynamic var title: String?
+    @objc dynamic var imageHD: String?
+    @objc dynamic var imageLD: String?
+    @objc dynamic var viewsurfLD: String?
+    @objc dynamic var viewsurfHD: String?
     
     // MARK: - Camera content type
-    private dynamic var type: String?
+    @objc private dynamic var type: String?
     var contentType: ContentType {
         get {
             guard let stringType = type else { return .image }
@@ -45,8 +45,8 @@ class Webcam: Object, Mappable {
     }
     
     // Internal data
-    dynamic var favorite: Bool = false
-    dynamic var lastUpdate: Date?
+    @objc dynamic var favorite: Bool = false
+    @objc dynamic var lastUpdate: Date?
 
     var tags = List<WebcamTag>()
     

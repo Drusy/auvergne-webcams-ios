@@ -87,7 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // Firebase
-        FIRApp.configure()
+        FirebaseApp.configure()
         AnalyticsManager.logUserProperties()
 
         // Cache
@@ -219,6 +219,14 @@ extension AppDelegate: LoadingViewControllerDelegate {
 // MARK: - SirenDelegate
 
 extension AppDelegate: SirenDelegate {
+    
+    func sirenLatestVersionInstalled() {
+        
+    }
+    
+    func sirenDidFailVersionCheck(error: Error) {
+        print("Failed to check app version : \(error.localizedDescription)")
+    }
 
     func sirenUserDidLaunchAppStore() {
         

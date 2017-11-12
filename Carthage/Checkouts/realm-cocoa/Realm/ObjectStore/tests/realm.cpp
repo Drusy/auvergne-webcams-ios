@@ -20,6 +20,7 @@
 
 #include "util/event_loop.hpp"
 #include "util/test_file.hpp"
+#include "util/templated_test_case.hpp"
 
 #include "binding_context.hpp"
 #include "object_schema.hpp"
@@ -29,6 +30,7 @@
 #include "schema.hpp"
 
 #include "impl/realm_coordinator.hpp"
+#include "util/format.hpp"
 
 #include <realm/group.hpp>
 
@@ -54,7 +56,7 @@ TEST_CASE("SharedRealm: get_shared_realm()") {
     config.schema_version = 1;
     config.schema = Schema{
         {"object", {
-            {"value", PropertyType::Int, "", "", false, false, false}
+            {"value", PropertyType::Int}
         }},
     };
 
@@ -82,8 +84,14 @@ TEST_CASE("SharedRealm: get_shared_realm()") {
             REQUIRE_THROWS(Realm::get_shared_realm(config));
         }
 
+        SECTION("migration function for immutable") {
+            config.schema_mode = SchemaMode::Immutable;
+            config.migration_function = [](auto, auto, auto) { };
+            REQUIRE_THROWS(Realm::get_shared_realm(config));
+        }
+
         SECTION("migration function for read-only") {
-            config.schema_mode = SchemaMode::ReadOnly;
+            config.schema_mode = SchemaMode::ReadOnlyAlternative;
             config.migration_function = [](auto, auto, auto) { };
             REQUIRE_THROWS(Realm::get_shared_realm(config));
         }
@@ -91,6 +99,18 @@ TEST_CASE("SharedRealm: get_shared_realm()") {
         SECTION("migration function for additive-only") {
             config.schema_mode = SchemaMode::Additive;
             config.migration_function = [](auto, auto, auto) { };
+            REQUIRE_THROWS(Realm::get_shared_realm(config));
+        }
+
+        SECTION("initialization function for immutable") {
+            config.schema_mode = SchemaMode::Immutable;
+            config.initialization_function = [](auto) { };
+            REQUIRE_THROWS(Realm::get_shared_realm(config));
+        }
+
+        SECTION("initialization function for read-only") {
+            config.schema_mode = SchemaMode::ReadOnlyAlternative;
+            config.initialization_function = [](auto) { };
             REQUIRE_THROWS(Realm::get_shared_realm(config));
         }
     }
@@ -125,8 +145,8 @@ TEST_CASE("SharedRealm: get_shared_realm()") {
             auto realm = Realm::get_shared_realm(config);
             config.schema = Schema{
                 {"object", {
-                    {"value", PropertyType::Int, "", "", false, false, false},
-                    {"value2", PropertyType::Int, "", "", false, false, false}
+                    {"value", PropertyType::Int},
+                    {"value2", PropertyType::Int}
                 }},
             };
             REQUIRE_THROWS(Realm::get_shared_realm(config));
@@ -137,7 +157,7 @@ TEST_CASE("SharedRealm: get_shared_realm()") {
         config.schema = Schema{
             {"object",
                 {{"value", PropertyType::Int}},
-                {{"invalid backlink", PropertyType::LinkingObjects, "object", "value"}}
+                {{"invalid backlink", PropertyType::LinkingObjects|PropertyType::Array, "object", "value"}}
             }
         };
         REQUIRE_THROWS_WITH(Realm::get_shared_realm(config),
@@ -158,8 +178,8 @@ TEST_CASE("SharedRealm: get_shared_realm()") {
         config.schema_version = 2;
         config.schema = Schema{
             {"object", {
-                {"value", PropertyType::Int, "", "", false, false, false},
-                {"value2", PropertyType::Int, "", "", false, false, false}
+                {"value", PropertyType::Int},
+                {"value2", PropertyType::Int}
             }},
         };
         bool migration_called = false;
@@ -178,8 +198,8 @@ TEST_CASE("SharedRealm: get_shared_realm()") {
         config.schema_version = 2;
         config.schema = Schema{
             {"object", {
-                {"value", PropertyType::Int, "", "", false, false, false},
-                {"value2", PropertyType::Int, "", "", false, false, false}
+                {"value", PropertyType::Int},
+                {"value2", PropertyType::Int}
             }},
         };
         bool migration_called = false;
@@ -228,10 +248,10 @@ TEST_CASE("SharedRealm: get_shared_realm()") {
 
         config.schema = Schema{
             {"object", {
-                {"value", PropertyType::Int, "", "", false, false, false}
+                {"value", PropertyType::Int}
             }},
             {"object1", {
-                {"value", PropertyType::Int, "", "", false, false, false}
+                {"value", PropertyType::Int}
             }},
         };
         config.schema_version = 1;
@@ -267,10 +287,10 @@ TEST_CASE("SharedRealm: get_shared_realm()") {
         REQUIRE(realm2->schema_version() == 1);
     }
 
-    SECTION("should populate the table columns in the schema when opening as read-only") {
+    SECTION("should populate the table columns in the schema when opening as immutable") {
         Realm::get_shared_realm(config);
 
-        config.schema_mode = SchemaMode::ReadOnly;
+        config.schema_mode = SchemaMode::Immutable;
         auto realm = Realm::get_shared_realm(config);
         auto it = realm->schema().find("object");
         REQUIRE(it != realm->schema().end());
@@ -285,7 +305,7 @@ TEST_CASE("SharedRealm: get_shared_realm()") {
 
         config.schema = Schema{
             {"object 2", {
-                {"value", PropertyType::Int, "", "", false, false, false}
+                {"value", PropertyType::Int}
             }},
         };
         auto realm2 = Realm::get_shared_realm(config);
@@ -295,7 +315,7 @@ TEST_CASE("SharedRealm: get_shared_realm()") {
 
         config.schema = Schema{
             {"object", {
-                {"value", PropertyType::Int, "", "", false, false, false}
+                {"value", PropertyType::Int}
             }},
         };
         auto realm4 = Realm::get_shared_realm(config);
@@ -385,7 +405,7 @@ TEST_CASE("SharedRealm: notifications") {
     config.schema_version = 0;
     config.schema = Schema{
         {"object", {
-            {"value", PropertyType::Int, "", "", false, false, false}
+            {"value", PropertyType::Int}
         }},
     };
 
@@ -514,8 +534,8 @@ TEST_CASE("SharedRealm: schema updating from external changes") {
     config.schema_mode = SchemaMode::Additive;
     config.schema = Schema{
         {"object", {
-            {"value", PropertyType::Int, "", "", true, false, false},
-            {"value 2", PropertyType::Int, "", "", false, true, false},
+            {"value", PropertyType::Int, Property::IsPrimary{true}},
+            {"value 2", PropertyType::Int, Property::IsPrimary{false}, Property::IsIndexed{true}},
         }},
     };
 
@@ -594,7 +614,7 @@ TEST_CASE("SharedRealm: closed realm") {
     config.schema_version = 1;
     config.schema = Schema{
         {"object", {
-            {"value", PropertyType::Int, "", "", false, false, false}
+            {"value", PropertyType::Int}
         }},
     };
 
@@ -619,7 +639,7 @@ TEST_CASE("ShareRealm: in-memory mode from buffer") {
     config.schema_version = 1;
     config.schema = Schema{
         {"object", {
-            {"value", PropertyType::Int, "", "", false, false, false}
+            {"value", PropertyType::Int}
         }},
     };
 
@@ -628,10 +648,10 @@ TEST_CASE("ShareRealm: in-memory mode from buffer") {
         auto realm = Realm::get_shared_realm(config);
         OwnedBinaryData realm_buffer = realm->write_copy();
 
-        // Open the buffer as a new (read-only in-memory) Realm
+        // Open the buffer as a new (immutable in-memory) Realm
         realm::Realm::Config config2;
         config2.in_memory = true;
-        config2.schema_mode = SchemaMode::ReadOnly;
+        config2.schema_mode = SchemaMode::Immutable;
         config2.realm_data = realm_buffer.get();
 
         auto realm2 = Realm::get_shared_realm(config2);
@@ -647,10 +667,10 @@ TEST_CASE("ShareRealm: in-memory mode from buffer") {
         // Test invalid configs
         realm::Realm::Config config3;
         config3.realm_data = realm_buffer.get();
-        REQUIRE_THROWS(Realm::get_shared_realm(config3)); // missing in_memory and read-only
+        REQUIRE_THROWS(Realm::get_shared_realm(config3)); // missing in_memory and immutable
 
         config3.in_memory = true;
-        config3.schema_mode = SchemaMode::ReadOnly;
+        config3.schema_mode = SchemaMode::Immutable;
         config3.path = "path";
         REQUIRE_THROWS(Realm::get_shared_realm(config3)); // both buffer and path
 
@@ -665,7 +685,7 @@ TEST_CASE("ShareRealm: realm closed in did_change callback") {
     config.schema_version = 1;
     config.schema = Schema{
         {"object", {
-            {"value", PropertyType::Int, "", "", false, false, false}
+            {"value", PropertyType::Int}
         }},
     };
     config.cache = false;
@@ -674,8 +694,7 @@ TEST_CASE("ShareRealm: realm closed in did_change callback") {
 
     r1->begin_transaction();
     auto table = r1->read_group().get_table("class_object");
-    auto row_idx = table->add_empty_row(1);
-    auto table_idx = table->get_index_in_group();
+    table->add_empty_row();
     r1->commit_transaction();
 
     // Cannot be a member var of Context since Realm.close will free the context.
@@ -733,6 +752,8 @@ TEST_CASE("ShareRealm: realm closed in did_change callback") {
 
         REQUIRE_FALSE(r1->refresh());
     }
+
+    shared_realm = nullptr;
 }
 
 TEST_CASE("RealmCoordinator: schema cache") {
@@ -1072,8 +1093,8 @@ TEST_CASE("SharedRealm: dynamic schema mode doesn't invalidate object schema poi
     config_with_schema.schema_mode = SchemaMode::Automatic;
     config_with_schema.schema = Schema{
         {"object", {
-            {"value", PropertyType::Int, "", "", true, false, false},
-            {"value 2", PropertyType::Int, "", "", false, true, false},
+            {"value", PropertyType::Int, Property::IsPrimary{true}},
+            {"value 2", PropertyType::Int, Property::IsPrimary{false}, Property::IsIndexed{true}},
         }}
     };
     auto r1 = Realm::get_shared_realm(config_with_schema);
@@ -1091,6 +1112,120 @@ TEST_CASE("SharedRealm: dynamic schema mode doesn't invalidate object schema poi
     REQUIRE(object_schema == &*r2->schema().find("object"));
 }
 
+TEST_CASE("SharedRealm: SchemaChangedFunction") {
+    struct Context : BindingContext {
+        size_t* change_count;
+        Schema* schema;
+        Context(size_t* count_out, Schema* schema_out) : change_count(count_out), schema(schema_out) { }
+
+        void schema_did_change(Schema const& changed_schema) override
+        {
+            ++*change_count;
+            *schema = changed_schema;
+        }
+    };
+
+    size_t schema_changed_called = 0;
+    Schema changed_fixed_schema;
+    TestFile config;
+    config.cache = false;
+    auto dynamic_config = config;
+
+    config.schema = Schema{
+        {"object1", {
+            {"value", PropertyType::Int},
+        }},
+        {"object2", {
+            {"value", PropertyType::Int},
+        }}
+    };
+    config.schema_version = 1;
+    auto r1 = Realm::get_shared_realm(config);
+    r1->m_binding_context.reset(new Context(&schema_changed_called, &changed_fixed_schema));
+
+    SECTION("Fixed schema") {
+        SECTION("update_schema") {
+            auto new_schema = Schema{
+                {"object3", {
+                    {"value", PropertyType::Int},
+                }}
+            };
+            r1->update_schema(new_schema, 2);
+            REQUIRE(schema_changed_called == 1);
+            REQUIRE(changed_fixed_schema.find("object3")->property_for_name("value")->table_column == 0);
+        }
+
+        SECTION("Open a new Realm instance with same config won't trigger") {
+            auto r2 = Realm::get_shared_realm(config);
+            REQUIRE(schema_changed_called == 0);
+        }
+
+        SECTION("Non schema related transaction doesn't trigger") {
+            auto r2 = Realm::get_shared_realm(config);
+            r2->begin_transaction();
+            r2->commit_transaction();
+            r1->refresh();
+            REQUIRE(schema_changed_called == 0);
+        }
+
+        SECTION("Schema is changed by another Realm") {
+            auto r2 = Realm::get_shared_realm(config);
+            r2->begin_transaction();
+            r2->read_group().get_table("class_object1")->insert_column(0, type_String, "new col");
+            r2->commit_transaction();
+            r1->refresh();
+            REQUIRE(schema_changed_called == 1);
+            REQUIRE(changed_fixed_schema.find("object1")->property_for_name("value")->table_column == 1);
+        }
+
+        // This is not a valid use case. m_schema won't be refreshed.
+        SECTION("Schema is changed by this Realm won't trigger") {
+            r1->begin_transaction();
+            r1->read_group().get_table("class_object1")->insert_column(0, type_String, "new col");
+            r1->commit_transaction();
+            REQUIRE(schema_changed_called == 0);
+        }
+    }
+
+    SECTION("Dynamic schema") {
+        size_t dynamic_schema_changed_called = 0;
+        Schema changed_dynamic_schema;
+        auto r2 = Realm::get_shared_realm(dynamic_config);
+        r2->m_binding_context.reset(new Context(&dynamic_schema_changed_called, &changed_dynamic_schema));
+
+        SECTION("set_schema_subset") {
+            auto new_schema = Schema{
+                {"object1", {
+                    {"value", PropertyType::Int},
+                }}
+            };
+            r2->set_schema_subset(new_schema);
+            REQUIRE(schema_changed_called == 0);
+            REQUIRE(dynamic_schema_changed_called == 1);
+            REQUIRE(changed_dynamic_schema.find("object1")->property_for_name("value")->table_column == 0);
+        }
+
+        SECTION("Non schema related transaction will alway trigger in dynamic mode") {
+            auto r1 = Realm::get_shared_realm(config);
+            // An empty transaction will trigger the schema changes always in dynamic mode.
+            r1->begin_transaction();
+            r1->commit_transaction();
+            r2->refresh();
+            REQUIRE(dynamic_schema_changed_called == 1);
+            REQUIRE(changed_dynamic_schema.find("object1")->property_for_name("value")->table_column == 0);
+        }
+
+        SECTION("Schema is changed by another Realm") {
+            r1->begin_transaction();
+            r1->read_group().get_table("class_object1")->insert_column(0, type_String, "new col");
+            r1->commit_transaction();
+            r2->refresh();
+            REQUIRE(dynamic_schema_changed_called == 1);
+            REQUIRE(changed_dynamic_schema.find("object1")->property_for_name("value")->table_column == 1);
+        }
+    }
+}
+
 #ifndef _WIN32
 TEST_CASE("SharedRealm: compact on launch") {
     // Make compactable Realm
@@ -1105,29 +1240,131 @@ TEST_CASE("SharedRealm: compact on launch") {
     };
     config.schema = Schema{
         {"object", {
-            {"value", PropertyType::String, "", "", false, false, false}
+            {"value", PropertyType::String}
         }},
     };
+    REQUIRE(num_opens == 0);
     auto r = Realm::get_shared_realm(config);
+    REQUIRE(num_opens == 1);
     r->begin_transaction();
     auto table = r->read_group().get_table("class_object");
-    int count = 1000;
+    size_t count = 1000;
     table->add_empty_row(count);
-    for (int i = 0; i < count; ++i)
+    for (size_t i = 0; i < count; ++i)
         table->set_string(0, i, util::format("Foo_%1", i % 10).c_str());
     r->commit_transaction();
     REQUIRE(table->size() == count);
     r->close();
 
-    // Confirm expected sizes before and after opening the Realm
-    size_t size_before = size_t(File(config.path).get_size());
-    r = Realm::get_shared_realm(config);
-    r->close();
-    REQUIRE(size_t(File(config.path).get_size()) == size_before); // File size after returning false
-    r = Realm::get_shared_realm(config);
-    REQUIRE(size_t(File(config.path).get_size()) < size_before); // File size after returning true
+    SECTION("compact reduces the file size") {
+        // Confirm expected sizes before and after opening the Realm
+        size_t size_before = size_t(File(config.path).get_size());
+        r = Realm::get_shared_realm(config);
+        REQUIRE(num_opens == 2);
+        r->close();
+        REQUIRE(size_t(File(config.path).get_size()) == size_before); // File size after returning false
+        r = Realm::get_shared_realm(config);
+        REQUIRE(num_opens == 3);
+        REQUIRE(size_t(File(config.path).get_size()) < size_before); // File size after returning true
 
-    // Validate that the file still contains what it should
-    REQUIRE(r->read_group().get_table("class_object")->size() == count);
+        // Validate that the file still contains what it should
+        REQUIRE(r->read_group().get_table("class_object")->size() == count);
+
+        // Registering for a collection notification shouldn't crash when compact on launch is used.
+        Results results(r, *r->read_group().get_table("class_object"));
+        results.async([](std::exception_ptr) { });
+        r->close();
+    }
+
+    SECTION("compact function does not get invoked if realm is open on another thread") {
+        // Confirm expected sizes before and after opening the Realm
+        size_t size_before = size_t(File(config.path).get_size());
+        r = Realm::get_shared_realm(config);
+        REQUIRE(num_opens == 2);
+        std::thread([&]{
+            auto r2 = Realm::get_shared_realm(config);
+            REQUIRE(num_opens == 2);
+        }).join();
+        r->close();
+        std::thread([&]{
+            auto r3 = Realm::get_shared_realm(config);
+            REQUIRE(num_opens == 3);
+        }).join();
+    }
 }
 #endif
+
+struct ModeAutomatic {
+    static SchemaMode mode() { return SchemaMode::Automatic; }
+    static bool should_call_init_on_version_bump() { return false; }
+};
+struct ModeAdditive {
+    static SchemaMode mode() { return SchemaMode::Additive; }
+    static bool should_call_init_on_version_bump() { return false; }
+};
+struct ModeManual {
+    static SchemaMode mode() { return SchemaMode::Manual; }
+    static bool should_call_init_on_version_bump() { return false; }
+};
+struct ModeResetFile {
+    static SchemaMode mode() { return SchemaMode::ResetFile; }
+    static bool should_call_init_on_version_bump() { return true; }
+};
+
+TEMPLATE_TEST_CASE("SharedRealm: update_schema with initialization_function",
+                   ModeAutomatic, ModeAdditive, ModeManual, ModeResetFile) {
+    TestFile config;
+    config.schema_mode = TestType::mode();
+    bool initialization_function_called = false;
+    uint64_t schema_version_in_callback = -1;
+    Schema schema_in_callback;
+    auto initialization_function = [&initialization_function_called, &schema_version_in_callback,
+                                    &schema_in_callback](auto shared_realm) {
+        REQUIRE(shared_realm->is_in_transaction());
+        initialization_function_called = true;
+        schema_version_in_callback = shared_realm->schema_version();
+        schema_in_callback = shared_realm->schema();
+    };
+
+    Schema schema{
+        {"object", {
+            {"value", PropertyType::String}
+        }},
+    };
+
+    SECTION("call initialization function directly by update_schema") {
+        // Open in dynamic mode with no schema specified
+        auto realm = Realm::get_shared_realm(config);
+        REQUIRE_FALSE(initialization_function_called);
+
+        realm->update_schema(schema, 0, nullptr, initialization_function);
+        REQUIRE(initialization_function_called);
+        REQUIRE(schema_version_in_callback == 0);
+        REQUIRE(schema_in_callback.compare(schema).size() == 0);
+    }
+
+    config.schema_version = 0;
+    config.schema = schema;
+
+    SECTION("initialization function should be called for unversioned realm") {
+        config.initialization_function = initialization_function;
+        Realm::get_shared_realm(config);
+        REQUIRE(initialization_function_called);
+        REQUIRE(schema_version_in_callback == 0);
+        REQUIRE(schema_in_callback.compare(schema).size() == 0);
+    }
+
+    SECTION("initialization function for versioned realm") {
+        // Initialize v0
+        Realm::get_shared_realm(config);
+
+        config.schema_version = 1;
+        config.initialization_function = initialization_function;
+        Realm::get_shared_realm(config);
+        REQUIRE(initialization_function_called == TestType::should_call_init_on_version_bump());
+        if (TestType::should_call_init_on_version_bump()) {
+            REQUIRE(schema_version_in_callback == 1);
+            REQUIRE(schema_in_callback.compare(schema).size() == 0);
+        }
+    }
+}

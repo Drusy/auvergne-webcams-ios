@@ -33,7 +33,7 @@ public extension NSAttributedString {
     
     fileprivate func withNewAttribute(_ attributeName: String, value: Any) -> NSAttributedString {
         let newString = mutableString
-        newString.addAttributes([attributeName: value], range: NSMakeRange(0, newString.length))
+        newString.addAttributes([NSAttributedStringKey(rawValue: attributeName): value], range: NSMakeRange(0, newString.length))
         return newString
     }
     
@@ -44,7 +44,7 @@ public extension NSAttributedString {
      - Returns: A new attributed string with the newly added attribute.
      */
     public func withFont(_ font: UIFont) -> NSAttributedString {
-        return withNewAttribute(NSFontAttributeName, value: font)
+        return withNewAttribute(NSAttributedStringKey.font.rawValue, value: font)
     }
     
     /**
@@ -54,7 +54,7 @@ public extension NSAttributedString {
      - Returns: A new attributed string with the newly added attribute.
      */
     public func withParagraphStyle(_ style: NSParagraphStyle) -> NSAttributedString {
-        return withNewAttribute(NSParagraphStyleAttributeName, value: style)
+        return withNewAttribute(NSAttributedStringKey.paragraphStyle.rawValue, value: style)
     }
     
     /**
@@ -64,7 +64,7 @@ public extension NSAttributedString {
      - Returns: A new attributed string with the newly added attribute.
      */
     public func withTextColor(_ color: UIColor) -> NSAttributedString {
-        return withNewAttribute(NSForegroundColorAttributeName, value: color)
+        return withNewAttribute(NSAttributedStringKey.foregroundColor.rawValue, value: color)
     }
     
     /**
@@ -74,7 +74,7 @@ public extension NSAttributedString {
      - Returns: A new attributed string with the newly added attribute.
      */
     public func withBackgroundColor(_ color: UIColor) -> NSAttributedString {
-        return withNewAttribute(NSBackgroundColorAttributeName, value: color)
+        return withNewAttribute(NSAttributedStringKey.backgroundColor.rawValue, value: color)
     }
     
     /**
@@ -84,7 +84,7 @@ public extension NSAttributedString {
      - Returns: A new attributed string with the newly added attribute.
      */
     public func withLigature(_ ligatureValue: NSNumber) -> NSAttributedString {
-        return withNewAttribute(NSLigatureAttributeName, value: ligatureValue)
+        return withNewAttribute(NSAttributedStringKey.ligature.rawValue, value: ligatureValue)
     }
     
     /**
@@ -94,7 +94,7 @@ public extension NSAttributedString {
      - Returns: A new attributed string with the newly added attribute.
      */
     public func withKern(_ kernValue: NSNumber) -> NSAttributedString {
-        return withNewAttribute(NSKernAttributeName, value: kernValue)
+        return withNewAttribute(NSAttributedStringKey.kern.rawValue, value: kernValue)
     }
     
     /**
@@ -104,7 +104,7 @@ public extension NSAttributedString {
      - Returns: A new attributed string with the newly added attribute.
      */
     public func withStrikethroughStyle(_ style: NSUnderlineStyle) -> NSAttributedString {
-        return withNewAttribute(NSStrikethroughColorAttributeName, value: NSNumber(value: style.rawValue as Int))
+        return withNewAttribute(NSAttributedStringKey.strikethroughColor.rawValue, value: NSNumber(value: style.rawValue as Int))
     }
     
     /**
@@ -114,7 +114,7 @@ public extension NSAttributedString {
      - Returns: A new attributed string with the newly added attribute.
      */
     public func withUnderlineStyle(_ style: NSUnderlineStyle) -> NSAttributedString {
-        return withNewAttribute(NSUnderlineStyleAttributeName, value: NSNumber(value: style.rawValue as Int))
+        return withNewAttribute(NSAttributedStringKey.underlineStyle.rawValue, value: NSNumber(value: style.rawValue as Int))
     }
     
     /**
@@ -124,7 +124,7 @@ public extension NSAttributedString {
      - Returns: A new attributed string with the newly added attribute.
      */
     public func withStrokeColor(_ color: UIColor) -> NSAttributedString {
-        return withNewAttribute(NSStrokeColorAttributeName, value: color)
+        return withNewAttribute(NSAttributedStringKey.strokeColor.rawValue, value: color)
     }
     
     /**
@@ -134,7 +134,7 @@ public extension NSAttributedString {
      - Returns: A new attributed string with the newly added attribute.
      */
     public func withStrokeWidth(_ width: NSNumber) -> NSAttributedString {
-        return withNewAttribute(NSStrokeWidthAttributeName, value: width)
+        return withNewAttribute(NSAttributedStringKey.strokeWidth.rawValue, value: width)
     }
     
     /**
@@ -144,7 +144,7 @@ public extension NSAttributedString {
      - Returns: A new attributed string with the newly added attribute.
      */
     public func withShadow(_ shadow: NSShadow) -> NSAttributedString {
-        return withNewAttribute(NSShadowAttributeName, value: shadow)
+        return withNewAttribute(NSAttributedStringKey.shadow.rawValue, value: shadow)
     }
     
     /**
@@ -154,7 +154,7 @@ public extension NSAttributedString {
      - Returns: A new attributed string with the newly added attribute.
      */
     public func withTextEffect(_ effect: String) -> NSAttributedString {
-        return withNewAttribute(NSTextEffectAttributeName, value: effect as Any)
+        return withNewAttribute(NSAttributedStringKey.textEffect.rawValue, value: effect as Any)
     }
     
     /**
@@ -164,7 +164,7 @@ public extension NSAttributedString {
      - Returns: A new attributed string with the newly added attribute.
      */
     public func withAttachment(_ attachment: NSTextAttachment) -> NSAttributedString {
-        return withNewAttribute(NSTextEffectAttributeName, value: attachment)
+        return withNewAttribute(NSAttributedStringKey.textEffect.rawValue, value: attachment)
     }
     
     /**
@@ -174,7 +174,7 @@ public extension NSAttributedString {
      - Returns: A new attributed string with the newly added attribute.
      */
     public func withLink(_ link: URL) -> NSAttributedString {
-        return withNewAttribute(NSLinkAttributeName, value: link as Any)
+        return withNewAttribute(NSAttributedStringKey.link.rawValue, value: link as Any)
     }
     
     /**
@@ -184,7 +184,7 @@ public extension NSAttributedString {
      - Returns: A new attributed string with the newly added attribute.
      */
     public func withBaselineOffset(_ offset: NSNumber) -> NSAttributedString {
-        return withNewAttribute(NSBaselineOffsetAttributeName, value: offset)
+        return withNewAttribute(NSAttributedStringKey.baselineOffset.rawValue, value: offset)
     }
     
     /**
@@ -194,7 +194,7 @@ public extension NSAttributedString {
      - Returns: A new attributed string with the newly added attribute.
      */
     public func withUnderlineColor(_ color: UIColor) -> NSAttributedString {
-        return withNewAttribute(NSUnderlineColorAttributeName, value: color)
+        return withNewAttribute(NSAttributedStringKey.underlineColor.rawValue, value: color)
     }
     
     /**
@@ -204,7 +204,7 @@ public extension NSAttributedString {
      - Returns: A new attributed string with the newly added attribute.
      */
     public func withStrikethroughColor(_ color: UIColor) -> NSAttributedString {
-        return withNewAttribute(NSStrikethroughColorAttributeName, value: color)
+        return withNewAttribute(NSAttributedStringKey.strikethroughColor.rawValue, value: color)
     }
     
     /**
@@ -214,7 +214,7 @@ public extension NSAttributedString {
      - Returns: A new attributed string with the newly added attribute.
      */
     public func withObliqueness(_ obliquenessValue: NSNumber) -> NSAttributedString {
-        return withNewAttribute(NSObliquenessAttributeName, value: obliquenessValue)
+        return withNewAttribute(NSAttributedStringKey.obliqueness.rawValue, value: obliquenessValue)
     }
     
     /**
@@ -224,7 +224,7 @@ public extension NSAttributedString {
      - Returns: A new attributed string with the newly added attribute.
      */
     public func withExpansion(_ expansion: NSNumber) -> NSAttributedString {
-        return withNewAttribute(NSExpansionAttributeName, value: expansion)
+        return withNewAttribute(NSAttributedStringKey.expansion.rawValue, value: expansion)
     }
     
     /**
@@ -234,7 +234,7 @@ public extension NSAttributedString {
      - Returns: A new attributed string with the newly added attribute.
      */
     public func withWritingDirection(_ direction: [NSNumber]) -> NSAttributedString {
-        return withNewAttribute(NSWritingDirectionAttributeName, value: direction as Any)
+        return withNewAttribute(NSAttributedStringKey.writingDirection.rawValue, value: direction as Any)
     }
     
     /**
@@ -244,7 +244,7 @@ public extension NSAttributedString {
      - Returns: A new attributed string with the newly added attribute.
      */
     public func withVerticalGlyphForm(_ form: NSNumber) -> NSAttributedString {
-        return withNewAttribute(NSVerticalGlyphFormAttributeName, value: form)
+        return withNewAttribute(NSAttributedStringKey.verticalGlyphForm.rawValue, value: form)
     }
 }
 

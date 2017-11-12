@@ -43,13 +43,25 @@ endif()
 if(MSVC)
     add_definitions(
         /D_UNICODE
-        /DPTW32_STATIC_LIB
+        /DWIN32_LEAN_AND_MEAN
         /D_CRT_SECURE_NO_WARNINGS
         /D_SCL_SECURE_NO_WARNINGS
     )
     add_compile_options(
         /MP # Enable multi-processor compilation
     )
+    if(NOT WINDOWS_STORE)
+        # Statically link the run-time library
+        # https://docs.microsoft.com/bg-bg/cpp/build/reference/md-mt-ld-use-run-time-library
+        # https://cmake.org/Wiki/CMake_FAQ#How_can_I_build_my_MSVC_application_with_a_static_runtime.3F
+        foreach(flag_var
+            CMAKE_CXX_FLAGS CMAKE_CXX_FLAGS_DEBUG CMAKE_CXX_FLAGS_RELEASE
+            CMAKE_CXX_FLAGS_MINSIZEREL CMAKE_CXX_FLAGS_RELWITHDEBINFO)
+            if(${flag_var} MATCHES "/MD")
+                string(REGEX REPLACE "/MD" "/MT" ${flag_var} "${${flag_var}}")
+            endif()
+        endforeach()
+    endif()
 endif()
 
 if(${CMAKE_CXX_COMPILER_ID} MATCHES "Clang")
@@ -88,18 +100,21 @@ elseif(REALM_PLATFORM STREQUAL "Android")
     set(PLATFORM_DEFINES "__STDC_CONSTANT_MACROS=1")
 endif()
 
-if(REALM_PLATFORM STREQUAL "Node")
-    set(PLATFORM_DEFINES "REALM_PLATFORM_NODE=1")
+if(NOT REALM_PLATFORM OR REALM_PLATFORM STREQUAL "Node")
+    find_library(UV_LIBRARY NAMES uv libuv)
+    if(UV_LIBRARY)
+        find_path(UV_INCLUDE_DIR uv.h)
+
+        list(APPEND PLATFORM_LIBRARIES ${UV_LIBRARY})
+        add_definitions(-DREALM_HAVE_UV)
+    endif()
 endif()
 
-find_library(UV_LIBRARY NAMES uv libuv)
-if(UV_LIBRARY)
-    find_path(UV_INCLUDE_DIR uv.h)
-
-    list(APPEND PLATFORM_LIBRARIES ${UV_LIBRARY})
-    add_definitions(-DREALM_HAVE_UV)
-elseif(REALM_PLATFORM STREQUAL "Node")
-    message(FATAL_ERROR "Platform set to Node but libuv was not found!")
+if(REALM_PLATFORM STREQUAL "Node")
+    set(PLATFORM_DEFINES "REALM_PLATFORM_NODE=1")
+    if(NOT UV_LIBRARY)
+        message(FATAL_ERROR "Platform set to Node but libuv was not found!")
+    endif()
 endif()
 
 check_symbol_exists(epoll_create sys/epoll.h REALM_HAVE_EPOLL)

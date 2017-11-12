@@ -19,7 +19,19 @@
 import XCTest
 import RealmSwift
 
+// Used by testOfflineClientReset
+// The naming here is nonstandard as the sync-1.x.realm test file comes from the .NET unit tests.
+// swiftlint:disable identifier_name
+@objc(Person)
+class Person: Object {
+    @objc dynamic var FirstName: String?
+    @objc dynamic var LastName: String?
+
+    override class func shouldIncludeInDefaultSchema() -> Bool { return false }
+}
+
 class SwiftObjectServerTests: SwiftSyncTestCase {
+
     /// It should be possible to successfully open a Realm configured for sync.
     func testBasicSwiftSync() {
         let url = URL(string: "realm://localhost:9080/~/testBasicSync")!
@@ -79,14 +91,14 @@ class SwiftObjectServerTests: SwiftSyncTestCase {
                     realm.deleteAll()
                 }
                 waitForUploads(for: user, url: realmURL)
-                checkCount(expected:0, realm, SwiftSyncObject.self)
+                checkCount(expected: 0, realm, SwiftSyncObject.self)
             }
         } catch {
             XCTFail("Got an error: \(error) (process: \(isParent ? "parent" : "child"))")
         }
     }
 
-    // MARK: Client reset
+    // MARK: - Client reset
 
     func testClientReset() {
         do {
@@ -121,7 +133,7 @@ class SwiftObjectServerTests: SwiftSyncTestCase {
             let user = try synchronouslyLogInUser(for: basicCredentials(register: isParent), server: authURL)
             var theError: SyncError?
 
-            try autoreleasepool { _ in
+            try autoreleasepool {
                 let realm = try synchronouslyOpenRealm(url: realmURL, user: user)
                 let ex = expectation(description: "Waiting for error handler to be called...")
                 SyncManager.shared.errorHandler = { (error, session) in
@@ -137,16 +149,16 @@ class SwiftObjectServerTests: SwiftSyncTestCase {
                 XCTAssertNotNil(theError)
                 XCTAssertNotNil(realm)
             }
-            let (path, closure) = theError!.clientResetInfo()!
+            let (path, errorToken) = theError!.clientResetInfo()!
             XCTAssertFalse(FileManager.default.fileExists(atPath: path))
-            closure()
+            SyncSession.immediatelyHandleError(errorToken)
             XCTAssertTrue(FileManager.default.fileExists(atPath: path))
         } catch {
             XCTFail("Got an error: \(error) (process: \(isParent ? "parent" : "child"))")
         }
     }
 
-    // MARK: Progress notifiers
+    // MARK: - Progress notifiers
 
     func testStreamingDownloadNotifier() {
         let bigObjectCount = 2
@@ -175,7 +187,7 @@ class SwiftObjectServerTests: SwiftSyncTestCase {
                 // Wait for the child process to upload all the data.
                 executeChild()
                 waitForExpectations(timeout: 10.0, handler: nil)
-                token!.stop()
+                token!.invalidate()
                 XCTAssert(callCount > 1)
                 XCTAssert(transferred >= transferrable)
             } else {
@@ -221,7 +233,7 @@ class SwiftObjectServerTests: SwiftSyncTestCase {
                 }
             }
             waitForExpectations(timeout: 10.0, handler: nil)
-            token!.stop()
+            token!.invalidate()
             XCTAssert(callCount > 1)
             XCTAssert(transferred >= transferrable)
         } catch {
@@ -229,7 +241,7 @@ class SwiftObjectServerTests: SwiftSyncTestCase {
         }
     }
 
-    // MARK: Download Realm
+    // MARK: - Download Realm
 
     func testDownloadRealm() {
         let bigObjectCount = 2
@@ -279,171 +291,190 @@ class SwiftObjectServerTests: SwiftSyncTestCase {
         }
     }
 
-    // MARK: Permissions
+    // MARK: - Administration
 
-    func testPermissionChange() {
-        do {
-            let userA = try synchronouslyLogInUser(for: basicCredentials(register: isParent, usernameSuffix: "_A"), server: authURL)
-            let userB = try synchronouslyLogInUser(for: basicCredentials(register: isParent, usernameSuffix: "_B"), server: authURL)
-            _ = try synchronouslyOpenRealm(url: realmURL, user: userA)
+    func testRetrieveUserInfo() {
+        let adminUsername = "jyaku.swift"
+        let nonAdminUsername = "meela.swift@realm.example.org"
+        let password = "p"
+        let server = SwiftObjectServerTests.authServerURL()
 
-            let adminPermissions = [
-                [true, true, true],
-                [false, true, true],
-                [true, false, true],
-                [false, false, true]
-            ]
-            let readWritePermissions = [[true, true, false]]
-            let readOnlyPermissions = [[true, false, false]]
-            let noAccessPermissions: [[Bool?]] = [
-                [false, false, false],
-                [nil, nil, nil]
-            ]
-            let permissions = [adminPermissions, readWritePermissions, readOnlyPermissions, noAccessPermissions]
-            let statusMessages = [
-                "administrative access",
-                "read-write access",
-                "read-only access",
-                "no access"
-            ]
+        // Create a non-admin user.
+        _ = logInUser(for: .init(username: nonAdminUsername, password: password, register: true),
+                      server: server)
+        // Create an admin user.
+        let adminUser = createAdminUser(for: server, username: adminUsername)
 
-            for (accessPermissions, statusMessage) in zip(permissions, statusMessages) {
-                for permissions in accessPermissions {
-                    let permissionChange = SyncPermissionChange(
-                        realmURL: realmURL.absoluteString,
-                        userID: userB.identity!,
-                        mayRead: permissions[0],
-                        mayWrite: permissions[1],
-                        mayManage: permissions[2]
-                    )
-                    try verifyChangePermission(change: permissionChange, statusMessage: statusMessage, owner: userA)
-                }
+        // Look up information about the non-admin user from the admin user.
+        let ex = expectation(description: "Should be able to look up user information")
+        adminUser.retrieveInfo(forUser: nonAdminUsername, identityProvider: .usernamePassword) { (userInfo, err) in
+            XCTAssertNil(err)
+            XCTAssertNotNil(userInfo)
+            guard let userInfo = userInfo else {
+                return
             }
+            let account = userInfo.accounts.first!
+            XCTAssertEqual(account.providerUserIdentity, nonAdminUsername)
+            XCTAssertEqual(account.provider, Provider.usernamePassword)
+            XCTAssertFalse(userInfo.isAdmin)
+            ex.fulfill()
+        }
+        waitForExpectations(timeout: 10.0, handler: nil)
+    }
+
+    // MARK: - Authentication
+
+    func testInvalidCredentials() {
+        do {
+            let username = "testInvalidCredentialsUsername"
+            let credentials = SyncCredentials.usernamePassword(username: username,
+                                                               password: "THIS_IS_A_PASSWORD",
+                                                               register: true)
+            _ = try synchronouslyLogInUser(for: credentials, server: authURL)
+            // Now log in the same user, but with a bad password.
+            let ex = expectation(description: "wait for user login")
+            let credentials2 = SyncCredentials.usernamePassword(username: username, password: "NOT_A_VALID_PASSWORD")
+            SyncUser.logIn(with: credentials2, server: authURL) { user, error in
+                XCTAssertNil(user)
+                XCTAssertTrue(error is SyncAuthError)
+                let castError = error as! SyncAuthError
+                XCTAssertEqual(castError.code, SyncAuthError.invalidCredential)
+                ex.fulfill()
+            }
+            waitForExpectations(timeout: 2.0, handler: nil)
         } catch {
             XCTFail("Got an error: \(error) (process: \(isParent ? "parent" : "child"))")
         }
     }
 
-    func verifyChangePermission(change: SyncPermissionChange, statusMessage: String, owner: SyncUser) throws {
-        let managementRealm = try owner.managementRealm()
+    // MARK: - User-specific functionality
 
-        let exp = expectation(description: "A new permission will be granted by the server")
-        let token = managementRealm.objects(SyncPermissionChange.self).filter("id = %@", change.id).addNotificationBlock { changes in
-            if case .update(let change, _, _, _) = changes, let statusCode = change[0].statusCode.value {
-                XCTAssertEqual(statusCode, 0)
-                XCTAssertEqual(change[0].status, .success)
-                XCTAssertNotNil(change[0].statusMessage?.range(of: statusMessage))
-                exp.fulfill()
-            }
-        }
-
-        try managementRealm.write {
-            managementRealm.add(change)
-        }
-
-        waitForExpectations(timeout: 2)
-        token.stop()
-    }
-
-    func testPermissionOffer() {
+    func testUserExpirationCallback() {
         do {
-            let user = try synchronouslyLogInUser(for: basicCredentials(register: isParent), server: authURL)
-            _ = try synchronouslyOpenRealm(url: realmURL, user: user)
+            let user = try synchronouslyLogInUser(for: basicCredentials(), server: authURL)
 
-            let managementRealm = try user.managementRealm()
-            let permissionOffer = SyncPermissionOffer(realmURL: realmURL.absoluteString, expiresAt: Date(timeIntervalSinceNow: 30 * 24 * 60 * 60), mayRead: true, mayWrite: true, mayManage: false)
-
-            let exp = expectation(description: "A new permission offer will be processed by the server")
-
-            let results = managementRealm.objects(SyncPermissionOffer.self).filter("id = %@", permissionOffer.id)
-            let notificationToken = results.addNotificationBlock { (changes) in
-                if case .update(let change, _, _, _) = changes, let statusCode = change[0].statusCode.value {
-                    XCTAssertEqual(statusCode, 0)
-                    XCTAssertEqual(change[0].status, .success)
-                    exp.fulfill()
-                }
+            // Set a callback on the user
+            var blockCalled = false
+            let ex = expectation(description: "Error callback should fire upon receiving an error")
+            user.errorHandler = { (u, error) in
+                XCTAssertEqual(u.identity, user.identity)
+                XCTAssertEqual(error.code, .accessDeniedOrInvalidPath)
+                blockCalled = true
+                ex.fulfill()
             }
 
-            try managementRealm.write {
-                managementRealm.add(permissionOffer)
-            }
+            // Screw up the token on the user.
+            manuallySetRefreshToken(for: user, value: "not-a-real-token")
 
-            waitForExpectations(timeout: 2)
-            notificationToken.stop()
+            // Try to open a Realm with the user; this will cause our errorHandler block defined above to be fired.
+            XCTAssertFalse(blockCalled)
+            _ = try immediatelyOpenRealm(url: realmURL, user: user)
+            waitForExpectations(timeout: 10.0, handler: nil)
+            XCTAssertEqual(user.state, .loggedOut)
         } catch {
             XCTFail("Got an error: \(error) (process: \(isParent ? "parent" : "child"))")
         }
     }
 
-    func testPermissionOfferResponse() {
+    // MARK: - Offline client reset
+
+    func testOfflineClientReset() {
+        let user = try! synchronouslyLogInUser(for: basicCredentials(), server: authURL)
+
+        let sourceFileURL = Bundle(for: type(of: self)).url(forResource: "sync-1.x", withExtension: "realm")!
+        let fileName = "\(UUID()).realm"
+        let fileURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
+        try! FileManager.default.copyItem(at: sourceFileURL, to: fileURL)
+
+        let syncConfig = RLMSyncConfiguration(user: user, realmURL: realmURL)
+        syncConfig.customFileURL = fileURL
+        let config = Realm.Configuration(syncConfiguration: ObjectiveCSupport.convert(object: syncConfig))
         do {
-            let userA = try synchronouslyLogInUser(for: basicCredentials(register: isParent, usernameSuffix: "_A"), server: authURL)
-            _ = try synchronouslyOpenRealm(url: realmURL, user: userA)
+            _ = try Realm(configuration: config)
+        } catch let e as Realm.Error where e.code == .incompatibleSyncedFile {
+            var backupConfiguration = e.backupConfiguration
+            XCTAssertNotNil(backupConfiguration)
 
-            var managementRealm = try userA.managementRealm()
-            let permissionOffer = SyncPermissionOffer(realmURL: realmURL.absoluteString, expiresAt: Date(timeIntervalSinceNow: 30 * 24 * 60 * 60), mayRead: true, mayWrite: true, mayManage: false)
+            // Open the backup Realm with a schema subset since it was created using the schema from .NET's unit tests.
+            backupConfiguration!.objectTypes = [Person.self]
+            let backupRealm = try! Realm(configuration: backupConfiguration!)
 
-            var permissionToken: String?
+            let people = backupRealm.objects(Person.self)
+            XCTAssertEqual(people.count, 1)
+            XCTAssertEqual(people[0].FirstName, "John")
+            XCTAssertEqual(people[0].LastName, "Smith")
 
-            var exp = expectation(description: "A new permission offer will be processed by the server")
-
-            let permissionOfferNotificationToken = managementRealm
-                .objects(SyncPermissionOffer.self)
-                .filter("id = %@", permissionOffer.id)
-                .addNotificationBlock { (changes) in
-                if case .update(let change, _, _, _) = changes, let statusCode = change[0].statusCode.value {
-                    XCTAssertEqual(statusCode, 0)
-                    XCTAssertEqual(change[0].status, .success)
-
-                    permissionToken = change[0].token
-                    exp.fulfill()
-                }
-            }
-
-            try managementRealm.write {
-                managementRealm.add(permissionOffer)
-            }
-
-            waitForExpectations(timeout: 2)
-            permissionOfferNotificationToken.stop()
-
-            let userB = try synchronouslyLogInUser(for: basicCredentials(register: isParent, usernameSuffix: "_B"), server: authURL)
-            _ = try synchronouslyOpenRealm(url: realmURL, user: userB)
-
-            managementRealm = try userB.managementRealm()
-
-            XCTAssertNotNil(permissionToken)
-
-            var responseRealmUrl: String?
-            let permissionOfferResponse = SyncPermissionOfferResponse(token: permissionToken!)
-
-            exp = expectation(description: "A new permission offer response will be processed by the server")
-
-            let permissionOfferResponseNotificationToken = managementRealm
-                .objects(SyncPermissionOfferResponse.self)
-                .filter("id = %@", permissionOfferResponse.id)
-                .addNotificationBlock { (changes) in
-                if case .update(let change, _, _, _) = changes, let statusCode = change[0].statusCode.value {
-                    XCTAssertEqual(statusCode, 0)
-                    XCTAssertEqual(change[0].status, .success)
-                    XCTAssertEqual(change[0].realmUrl, String(format: "realm://localhost:9080/%@/testBasicSync", userA.identity!))
-
-                    responseRealmUrl = change[0].realmUrl
-
-                    exp.fulfill()
-                }
-            }
-
-            try managementRealm.write {
-                managementRealm.add(permissionOfferResponse)
-            }
-
-            waitForExpectations(timeout: 2)
-            permissionOfferResponseNotificationToken.stop()
-
-            _ = try synchronouslyOpenRealm(url: URL(string: responseRealmUrl!)!, user: userB)
+            // Verify that we can now successfully open the original synced Realm.
+            _ = try! Realm(configuration: config)
         } catch {
-            XCTFail("Got an error: \(error) (process: \(isParent ? "parent" : "child"))")
+            fatalError("Unexpected error: \(error)")
+        }
+    }
+
+    // MARK: - Partial sync
+
+    func testPartialSync() {
+        autoreleasepool {
+            let credentials = basicCredentials(register: true)
+            let user = try! synchronouslyLogInUser(for: credentials, server: authURL)
+
+            // Log in and populate the Realm.
+            autoreleasepool {
+                let syncConfig = SyncConfiguration(user: user, realmURL: realmURL)
+                let configuration = Realm.Configuration(syncConfiguration: syncConfig)
+                let realm = try! synchronouslyOpenRealm(configuration: configuration)
+
+                try! realm.write {
+                    realm.add(SwiftPartialSyncObjectA(number: 0, string: "realm"))
+                    realm.add(SwiftPartialSyncObjectA(number: 1, string: ""))
+                    realm.add(SwiftPartialSyncObjectA(number: 2, string: ""))
+                    realm.add(SwiftPartialSyncObjectA(number: 3, string: ""))
+                    realm.add(SwiftPartialSyncObjectA(number: 4, string: "realm"))
+                    realm.add(SwiftPartialSyncObjectA(number: 5, string: "sync"))
+                    realm.add(SwiftPartialSyncObjectA(number: 6, string: "partial"))
+                    realm.add(SwiftPartialSyncObjectA(number: 7, string: "partial"))
+                    realm.add(SwiftPartialSyncObjectA(number: 8, string: "partial"))
+                    realm.add(SwiftPartialSyncObjectA(number: 9, string: "partial"))
+                    realm.add(SwiftPartialSyncObjectB(number: 0, firstString: "", secondString: ""))
+                    realm.add(SwiftPartialSyncObjectB(number: 1, firstString: "", secondString: ""))
+                    realm.add(SwiftPartialSyncObjectB(number: 2, firstString: "", secondString: ""))
+                    realm.add(SwiftPartialSyncObjectB(number: 3, firstString: "", secondString: ""))
+                    realm.add(SwiftPartialSyncObjectB(number: 4, firstString: "", secondString: ""))
+                    realm.add(SwiftPartialSyncObjectB(number: 5, firstString: "", secondString: ""))
+                    realm.add(SwiftPartialSyncObjectB(number: 6, firstString: "", secondString: ""))
+                    realm.add(SwiftPartialSyncObjectB(number: 7, firstString: "", secondString: ""))
+                    realm.add(SwiftPartialSyncObjectB(number: 8, firstString: "", secondString: ""))
+                    realm.add(SwiftPartialSyncObjectB(number: 9, firstString: "", secondString: ""))
+                }
+
+                waitForUploads(for: user, url: realmURL)
+            }
+
+            // Log back in and do partial sync stuff.
+            autoreleasepool {
+                let syncConfig = SyncConfiguration(user: user, realmURL: realmURL, isPartial: true)
+                let configuration = Realm.Configuration(syncConfiguration: syncConfig)
+                let realm = try! synchronouslyOpenRealm(configuration: configuration)
+
+                let ex = expectation(description: "Should be able to successfully complete a query")
+
+                var results: Results<SwiftPartialSyncObjectA>!
+                realm.subscribe(to: SwiftPartialSyncObjectA.self, where: "number > 5") { r, error in
+                    XCTAssertNil(error)
+                    XCTAssertNotNil(r)
+                    results = r
+                    ex.fulfill()
+                }
+
+                waitForExpectations(timeout: 20.0)
+
+                // Verify that we got what we're looking for
+                XCTAssertEqual(results.count, 4)
+                for object in results {
+                    XCTAssertGreaterThan(object.number, 5)
+                    XCTAssertEqual(object.string, "partial")
+                }
+            }
         }
     }
 }

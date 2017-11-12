@@ -37,6 +37,16 @@ private var largeRealm: Realm!
 private let isRunningOnDevice = TARGET_IPHONE_SIMULATOR == 0
 
 class SwiftPerformanceTests: TestCase {
+#if swift(>=4)
+    override class var defaultTestSuite: XCTestSuite {
+        #if !DEBUG && os(iOS)
+            if isRunningOnDevice {
+                return super.defaultTestSuite
+            }
+        #endif
+        return XCTestSuite(name: "SwiftPerformanceTests")
+    }
+#else
     override class func defaultTestSuite() -> XCTestSuite {
 #if !DEBUG && os(iOS)
         if isRunningOnDevice {
@@ -45,6 +55,7 @@ class SwiftPerformanceTests: TestCase {
 #endif
         return XCTestSuite(name: "SwiftPerformanceTests")
     }
+#endif
 
     override class func setUp() {
         super.setUp()
@@ -66,6 +77,30 @@ class SwiftPerformanceTests: TestCase {
         // Do nothing, as we need to keep our in-memory realms around between tests
     }
 
+#if swift(>=4)
+    override func measure(_ block: (() -> Void)) {
+        super.measure {
+            autoreleasepool {
+                block()
+            }
+        }
+    }
+
+    override func measureMetrics(_ metrics: [XCTPerformanceMetric], automaticallyStartMeasuring: Bool, for block: () -> Void) {
+        super.measureMetrics(metrics, automaticallyStartMeasuring: automaticallyStartMeasuring) {
+            autoreleasepool {
+                block()
+            }
+        }
+    }
+
+    func inMeasureBlock(block: () -> Void) {
+        measureMetrics(type(of: self).defaultPerformanceMetrics, automaticallyStartMeasuring: false) {
+            _ = block()
+        }
+    }
+
+#else
     override func measure(_ block: @escaping (() -> Void)) {
         super.measure {
             autoreleasepool {
@@ -87,6 +122,7 @@ class SwiftPerformanceTests: TestCase {
             _ = block()
         }
     }
+#endif
 
     private func copyRealmToTestPath(_ realm: Realm) -> Realm {
         do {
@@ -384,13 +420,13 @@ class SwiftPerformanceTests: TestCase {
             let object = realm.create(SwiftIntObject.self)
             try! realm.commitWrite()
 
-            let token = realm.addNotificationBlock { _, _ in }
+            let token = realm.observe { _, _ in }
             self.startMeasuring()
             while object.intCol < 100 {
                 try! realm.write { object.intCol += 1 }
             }
             self.stopMeasuring()
-            token.stop()
+            token.invalidate()
         }
     }
 
@@ -410,7 +446,7 @@ class SwiftPerformanceTests: TestCase {
                     let object = realm.objects(SwiftIntObject.self).first!
                     var token: NotificationToken! = nil
                     CFRunLoopPerformBlock(CFRunLoopGetCurrent(), CFRunLoopMode.defaultMode.rawValue) {
-                        token = realm.addNotificationBlock { _, _ in
+                        token = realm.observe { _, _ in
                             if object.intCol == stopValue {
                                 CFRunLoopStop(CFRunLoopGetCurrent())
                             }
@@ -418,7 +454,7 @@ class SwiftPerformanceTests: TestCase {
                         semaphore.signal()
                     }
                     CFRunLoopRun()
-                    token.stop()
+                    token.invalidate()
                 }
             }
 
@@ -449,7 +485,7 @@ class SwiftPerformanceTests: TestCase {
                     let object = realm.objects(SwiftIntObject.self).first!
                     var token: NotificationToken! = nil
                     CFRunLoopPerformBlock(CFRunLoopGetCurrent(), CFRunLoopMode.defaultMode.rawValue) {
-                        token = realm.addNotificationBlock { _, _ in
+                        token = realm.observe { _, _ in
                             if object.intCol == stopValue {
                                 CFRunLoopStop(CFRunLoopGetCurrent())
                             } else if object.intCol % 2 == 0 {
@@ -459,11 +495,11 @@ class SwiftPerformanceTests: TestCase {
                         semaphore.signal()
                     }
                     CFRunLoopRun()
-                    token.stop()
+                    token.invalidate()
                 }
             }
 
-            let token = realm.addNotificationBlock { _, _ in
+            let token = realm.observe { _, _ in
                 if object.intCol % 2 == 1 && object.intCol < stopValue {
                     try! realm.write { object.intCol += 1 }
                 }
@@ -478,7 +514,7 @@ class SwiftPerformanceTests: TestCase {
             }
             queue.sync {}
             self.stopMeasuring()
-            token.stop()
+            token.invalidate()
         }
     }
 

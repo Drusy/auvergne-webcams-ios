@@ -84,6 +84,8 @@
 		51729DF61B9A4F5E004A00EB /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51729DEB1B9A4F5E004A00EB /* Eureka.framework */; };
 		51729E671B9A5FA5004A00EB /* Eureka.h in Headers */ = {isa = PBXBuildFile; fileRef = 51729E661B9A5FA5004A00EB /* Eureka.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8690E4BE1CFDE062004CDB1C /* Eureka.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8690E4BD1CFDE062004CDB1C /* Eureka.bundle */; };
+		B257FE2E1EC0F66900043911 /* RowsInsertionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B257FE2D1EC0F66900043911 /* RowsInsertionTests.swift */; };
+		B2A401161EC0BA140042EDF0 /* SectionsInsertionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A401151EC0BA140042EDF0 /* SectionsInsertionTests.swift */; };
 		FA56B6AF1DBAD38900407C94 /* RuleEqualsToRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56B6AE1DBAD38900407C94 /* RuleEqualsToRow.swift */; };
 /* End PBXBuildFile section */
 
@@ -178,6 +180,8 @@
 		51729DFC1B9A4F5E004A00EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Tests/Info.plist; sourceTree = "<group>"; };
 		51729E661B9A5FA5004A00EB /* Eureka.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Eureka.h; path = Source/Eureka.h; sourceTree = SOURCE_ROOT; };
 		8690E4BD1CFDE062004CDB1C /* Eureka.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Eureka.bundle; sourceTree = "<group>"; };
+		B257FE2D1EC0F66900043911 /* RowsInsertionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RowsInsertionTests.swift; path = Tests/RowsInsertionTests.swift; sourceTree = SOURCE_ROOT; };
+		B2A401151EC0BA140042EDF0 /* SectionsInsertionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SectionsInsertionTests.swift; path = Tests/SectionsInsertionTests.swift; sourceTree = SOURCE_ROOT; };
 		FA56B6AE1DBAD38900407C94 /* RuleEqualsToRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RuleEqualsToRow.swift; path = Source/Validations/RuleEqualsToRow.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -358,6 +362,8 @@
 				287A142A1D89DF1E00FFE6EB /* ValidationsTests.swift */,
 				285BA4481E81864E0034EE92 /* MultivaluedSectionTests.swift */,
 				51729DFC1B9A4F5E004A00EB /* Info.plist */,
+				B2A401151EC0BA140042EDF0 /* SectionsInsertionTests.swift */,
+				B257FE2D1EC0F66900043911 /* RowsInsertionTests.swift */,
 			);
 			name = Tests;
 			path = EurekaTests;
@@ -429,12 +435,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = Xmartlabs;
 				TargetAttributes = {
 					51729DEA1B9A4F5E004A00EB = {
 						CreatedOnToolsVersion = 7.0;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					51729DF41B9A4F5E004A00EB = {
@@ -556,6 +562,7 @@
 				28B1D7891C7F911900605EB3 /* CollectionTests.swift in Sources */,
 				28B1D78C1C7F911900605EB3 /* HelperMethodTests.swift in Sources */,
 				28B1D78B1C7F911900605EB3 /* FormValuesTests.swift in Sources */,
+				B2A401161EC0BA140042EDF0 /* SectionsInsertionTests.swift in Sources */,
 				28B1D7871C7F911900605EB3 /* BaseEurekaTests.swift in Sources */,
 				28B1D7911C7F911900605EB3 /* SetValuesTests.swift in Sources */,
 				285BA44A1E8187480034EE92 /* MultivaluedSectionTests.swift in Sources */,
@@ -563,6 +570,7 @@
 				28B1D78E1C7F911900605EB3 /* OperatorsTest.swift in Sources */,
 				28B1D78D1C7F911900605EB3 /* HiddenRowsTests.swift in Sources */,
 				287A14331D8A07ED00FFE6EB /* SelectableSectionTests.swift in Sources */,
+				B257FE2E1EC0F66900043911 /* RowsInsertionTests.swift in Sources */,
 				28B1D78A1C7F911900605EB3 /* DateTests.swift in Sources */,
 				287A142B1D89DF1E00FFE6EB /* ValidationsTests.swift in Sources */,
 				28B1D78F1C7F911900605EB3 /* RowByTagTests.swift in Sources */,
@@ -588,14 +596,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -638,14 +652,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -692,7 +712,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -715,7 +736,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -726,7 +748,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xmartlabs.EurekaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -738,7 +761,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.xmartlabs.EurekaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

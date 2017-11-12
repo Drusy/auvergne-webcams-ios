@@ -321,6 +321,15 @@ RLM_ARRAY_TYPE(CycleObject)
     }];
     XCTAssertEqual(row1.boolCol, true);
     XCTAssertEqual(row1.cBoolCol, true);
+
+    AllTypesObject *o = [[AllTypesObject alloc] initWithValue:row1];
+    o.floatCol = NAN;
+    o.doubleCol = NAN;
+    [realm transactionWithBlock:^{
+        [realm addObject:o];
+    }];
+    XCTAssertTrue(isnan(o.floatCol));
+    XCTAssertTrue(isnan(o.doubleCol));
 }
 
 - (void)testObjectSubclass {
@@ -572,6 +581,7 @@ static void testDatesInRange(NSTimeInterval from, NSTimeInterval to, void (^chec
 static void addProperty(Class cls, const char *name, const char *type, size_t size, size_t align, id getter) {
     objc_property_attribute_t objectColAttrs[] = {
         {"T", type},
+        {"V", name},
     };
     class_addIvar(cls, name, size, align, type);
     class_addProperty(cls, name, objectColAttrs, sizeof(objectColAttrs) / sizeof(objc_property_attribute_t));
@@ -676,7 +686,7 @@ static void addProperty(Class cls, const char *name, const char *type, size_t si
         else {
             [realm beginWriteTransaction];
             RLMAssertThrowsWithReason([DefaultObject createInRealm:realm withValue:dict],
-                                      @"Invalid value '<null>' for property ");
+                                      @"Invalid value '<null>' of type 'NSNull' for ");
             [realm commitWriteTransaction];
         }
     }
@@ -1273,19 +1283,19 @@ static void addProperty(Class cls, const char *name, const char *type, size_t si
 
     // wrong PK type
     RLMAssertThrowsWithReasonMatching([PrimaryStringObject objectForPrimaryKey:@0],
-                                      @"Invalid value '0' of type '.*Number.*' for expected type 'string'");
+                                      @"Invalid value '0' of type '.*Number.*' for 'string' property 'PrimaryStringObject.stringCol'.");
     RLMAssertThrowsWithReasonMatching([PrimaryStringObject objectForPrimaryKey:@[]],
-                                      @"of type '.*Array.*' for expected type 'string'");
+                                      @"of type '.*Array.*' for 'string' property 'PrimaryStringObject.stringCol'.");
     RLMAssertThrowsWithReasonMatching([PrimaryIntObject objectForPrimaryKey:@""],
-                                      @"Invalid value '' of type '.*String.*' for expected type 'int'");
+                                      @"Invalid value '' of type '.*String.*' for 'int' property 'PrimaryIntObject.intCol'.");
     RLMAssertThrowsWithReason([PrimaryIntObject objectForPrimaryKey:NSNull.null],
-                              @"Invalid null value for non-nullable primary key.");
+                              @"Invalid value '<null>' of type 'NSNull' for 'int' property 'PrimaryIntObject.intCol'.");
     RLMAssertThrowsWithReason([PrimaryIntObject objectForPrimaryKey:nil],
-                              @"Invalid null value for non-nullable primary key.");
+                              @"Invalid value '(null)' of type '(null)' for 'int' property 'PrimaryIntObject.intCol'.");
    RLMAssertThrowsWithReason([PrimaryStringObject objectForPrimaryKey:NSNull.null],
-                             @"Invalid null value for non-nullable primary key.");
+                             @"Invalid value '<null>' of type 'NSNull' for 'string' property 'PrimaryStringObject.stringCol'.");
    RLMAssertThrowsWithReason([PrimaryStringObject objectForPrimaryKey:nil],
-                             @"Invalid null value for non-nullable primary key.");
+                             @"Invalid value '(null)' of type '(null)' for 'string' property 'PrimaryStringObject.stringCol'.");
 
     // no object with key
     XCTAssertNil([PrimaryStringObject objectForPrimaryKey:@"bad key"]);

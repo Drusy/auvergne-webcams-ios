@@ -71,9 +71,9 @@ class AnalyticsManager {
         guard let sectionName = section.title else { return }
         
         let parameters = [
-            kFIRParameterItemCategory: sectionName as NSObject
+            AnalyticsParameterItemCategory: sectionName as NSObject
         ]
-        AnalyticsManager.logEvent(withName: kFIREventViewItemList,
+        AnalyticsManager.logEvent(withName: AnalyticsEventViewItemList,
                                   parameters: parameters)
     }
     
@@ -81,19 +81,19 @@ class AnalyticsManager {
         guard let webcamName = webcam.title else { return }
         
         let parameters = [
-            kFIRParameterContentType: "webcam" as NSObject,
-            kFIRParameterItemID: webcamName as NSObject
+            AnalyticsParameterContentType: "webcam" as NSObject,
+            AnalyticsParameterItemID: webcamName as NSObject
         ]
-        AnalyticsManager.logEvent(withName: kFIREventSelectContent,
+        AnalyticsManager.logEvent(withName: AnalyticsEventSelectContent,
                                   parameters: parameters)
     }
     
     static func logEvent(screenName screen: String) {
         let parameters = [
-            kFIRParameterContentType: "screen" as NSObject,
-            kFIRParameterItemID: screen as NSObject
+            AnalyticsParameterContentType: "screen" as NSObject,
+            AnalyticsParameterItemID: screen as NSObject
         ]
-        AnalyticsManager.logEvent(withName: kFIREventSelectContent,
+        AnalyticsManager.logEvent(withName: AnalyticsEventSelectContent,
                                   parameters: parameters)
     }
     
@@ -102,8 +102,8 @@ class AnalyticsManager {
         let contentType = favorite ? "favorite" : "unfavorite"
         
         let parameters = [
-            kFIRParameterContentType: contentType as NSObject,
-            kFIRParameterItemID: webcamName as NSObject
+            AnalyticsParameterContentType: contentType as NSObject,
+            AnalyticsParameterItemID: webcamName as NSObject
         ]
         AnalyticsManager.logEvent(withName: "favorite",
                                   parameters: parameters)
@@ -111,15 +111,15 @@ class AnalyticsManager {
     
     static func logEvent(button: String) {
         let parameters = [
-            kFIRParameterContentType: "button" as NSObject,
-            kFIRParameterItemID: button as NSObject
+            AnalyticsParameterContentType: "button" as NSObject,
+            AnalyticsParameterItemID: button as NSObject
         ]
-        AnalyticsManager.logEvent(withName: kFIREventSelectContent,
+        AnalyticsManager.logEvent(withName: AnalyticsEventSelectContent,
                                   parameters: parameters)
     }
     
     static func logEventAppOpen() {
-        AnalyticsManager.logEvent(withName: kFIREventAppOpen,
+        AnalyticsManager.logEvent(withName: AnalyticsEventAppOpen,
                                   parameters: nil)
     }
     

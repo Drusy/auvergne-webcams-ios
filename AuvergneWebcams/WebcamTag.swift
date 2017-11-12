@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 
 class WebcamTag: Object {
-    dynamic var tag: String = ""
+    @objc dynamic var tag: String = ""
     
     override static func primaryKey() -> String? {
         return #keyPath(WebcamTag.tag)

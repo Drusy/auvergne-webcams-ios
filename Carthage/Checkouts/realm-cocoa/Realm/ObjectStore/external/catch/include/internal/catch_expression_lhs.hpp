@@ -27,47 +27,49 @@ class ExpressionLhs : public DecomposedExpression {
 public:
     ExpressionLhs( ResultBuilder& rb, T lhs ) : m_rb( rb ), m_lhs( lhs ), m_truthy(false) {}
 
+    ExpressionLhs& operator = ( const ExpressionLhs& );
+
     template<typename RhsT>
     BinaryExpression<T, Internal::IsEqualTo, RhsT const&>
-    operator == ( RhsT const& rhs ) const {
+    operator == ( RhsT const& rhs ) {
         return captureExpression<Internal::IsEqualTo>( rhs );
     }
 
     template<typename RhsT>
     BinaryExpression<T, Internal::IsNotEqualTo, RhsT const&>
-    operator != ( RhsT const& rhs ) const {
+    operator != ( RhsT const& rhs ) {
         return captureExpression<Internal::IsNotEqualTo>( rhs );
     }
 
     template<typename RhsT>
     BinaryExpression<T, Internal::IsLessThan, RhsT const&>
-    operator < ( RhsT const& rhs ) const {
+    operator < ( RhsT const& rhs ) {
         return captureExpression<Internal::IsLessThan>( rhs );
     }
 
     template<typename RhsT>
     BinaryExpression<T, Internal::IsGreaterThan, RhsT const&>
-    operator > ( RhsT const& rhs ) const {
+    operator > ( RhsT const& rhs ) {
         return captureExpression<Internal::IsGreaterThan>( rhs );
     }
 
     template<typename RhsT>
     BinaryExpression<T, Internal::IsLessThanOrEqualTo, RhsT const&>
-    operator <= ( RhsT const& rhs ) const {
+    operator <= ( RhsT const& rhs ) {
         return captureExpression<Internal::IsLessThanOrEqualTo>( rhs );
     }
 
     template<typename RhsT>
     BinaryExpression<T, Internal::IsGreaterThanOrEqualTo, RhsT const&>
-    operator >= ( RhsT const& rhs ) const {
+    operator >= ( RhsT const& rhs ) {
         return captureExpression<Internal::IsGreaterThanOrEqualTo>( rhs );
     }
 
-    BinaryExpression<T, Internal::IsEqualTo, bool> operator == ( bool rhs ) const {
+    BinaryExpression<T, Internal::IsEqualTo, bool> operator == ( bool rhs ) {
         return captureExpression<Internal::IsEqualTo>( rhs );
     }
 
-    BinaryExpression<T, Internal::IsNotEqualTo, bool> operator != ( bool rhs ) const {
+    BinaryExpression<T, Internal::IsNotEqualTo, bool> operator != ( bool rhs ) {
         return captureExpression<Internal::IsNotEqualTo>( rhs );
     }
 
@@ -79,7 +81,7 @@ public:
     }
 
     virtual void reconstructExpression( std::string& dest ) const CATCH_OVERRIDE {
-        dest = Catch::toString( m_truthy );
+        dest = Catch::toString( m_lhs );
     }
 
 private:
@@ -104,6 +106,8 @@ class BinaryExpression : public DecomposedExpression {
 public:
     BinaryExpression( ResultBuilder& rb, LhsT lhs, RhsT rhs )
         : m_rb( rb ), m_lhs( lhs ), m_rhs( rhs ) {}
+
+    BinaryExpression& operator = ( BinaryExpression& );
 
     void endExpression() const {
         m_rb

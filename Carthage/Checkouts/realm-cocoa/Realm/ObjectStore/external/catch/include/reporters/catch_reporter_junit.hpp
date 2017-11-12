@@ -26,7 +26,7 @@ namespace Catch {
             std::time(&rawtime);
             const size_t timeStampSize = sizeof("2017-01-16T17:06:45Z");
 
-#ifdef CATCH_PLATFORM_WINDOWS
+#ifdef _MSC_VER
             std::tm timeInfo = {};
             gmtime_s(&timeInfo, &rawtime);
 #else
@@ -37,7 +37,7 @@ namespace Catch {
             char timeStamp[timeStampSize];
             const char * const fmt = "%Y-%m-%dT%H:%M:%SZ";
 
-#ifdef CATCH_PLATFORM_WINDOWS
+#ifdef _MSC_VER
             std::strftime(timeStamp, timeStampSize, fmt, &timeInfo);
 #else
             std::strftime(timeStamp, timeStampSize, fmt, timeInfo);
@@ -51,7 +51,8 @@ namespace Catch {
     public:
         JunitReporter( ReporterConfig const& _config )
         :   CumulativeReporterBase( _config ),
-            xml( _config.stream() )
+            xml( _config.stream() ),
+            m_okToFail( false )
         {
             m_reporterPrefs.shouldRedirectStdOut = true;
         }
@@ -77,8 +78,11 @@ namespace Catch {
             CumulativeReporterBase::testGroupStarting( groupInfo );
         }
 
+        virtual void testCaseStarting( TestCaseInfo const& testCaseInfo ) CATCH_OVERRIDE {
+            m_okToFail = testCaseInfo.okToFail();
+        }
         virtual bool assertionEnded( AssertionStats const& assertionStats ) CATCH_OVERRIDE {
-            if( assertionStats.assertionResult.getResultType() == ResultWas::ThrewException )
+            if( assertionStats.assertionResult.getResultType() == ResultWas::ThrewException && !m_okToFail )
                 unexpectedExceptions++;
             return CumulativeReporterBase::assertionEnded( assertionStats );
         }
@@ -243,6 +247,7 @@ namespace Catch {
         std::ostringstream stdOutForSuite;
         std::ostringstream stdErrForSuite;
         unsigned int unexpectedExceptions;
+        bool m_okToFail;
     };
 
     INTERNAL_CATCH_REGISTER_REPORTER( "junit", JunitReporter )

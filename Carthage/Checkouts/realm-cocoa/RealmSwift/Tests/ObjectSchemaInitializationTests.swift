@@ -18,7 +18,6 @@
 
 import XCTest
 import RealmSwift
-import Realm.Private
 import Realm.Dynamic
 import Foundation
 
@@ -97,7 +96,8 @@ class ObjectSchemaInitializationTests: TestCase {
         let arrayCol = objectSchema["arrayCol"]
         XCTAssertNotNil(arrayCol)
         XCTAssertEqual(arrayCol!.name, "arrayCol")
-        XCTAssertEqual(arrayCol!.type, PropertyType.array)
+        XCTAssertEqual(arrayCol!.type, PropertyType.object)
+        XCTAssertTrue(arrayCol!.isArray)
         XCTAssertFalse(arrayCol!.isIndexed)
         XCTAssertFalse(arrayCol!.isOptional)
         XCTAssertEqual(objectCol!.objectClassName!, "SwiftBoolObject")
@@ -105,7 +105,8 @@ class ObjectSchemaInitializationTests: TestCase {
         let dynamicArrayCol = SwiftCompanyObject().objectSchema["employees"]
         XCTAssertNotNil(dynamicArrayCol)
         XCTAssertEqual(dynamicArrayCol!.name, "employees")
-        XCTAssertEqual(dynamicArrayCol!.type, PropertyType.array)
+        XCTAssertEqual(dynamicArrayCol!.type, PropertyType.object)
+        XCTAssertTrue(dynamicArrayCol!.isArray)
         XCTAssertFalse(dynamicArrayCol!.isIndexed)
         XCTAssertFalse(arrayCol!.isOptional)
         XCTAssertEqual(dynamicArrayCol!.objectClassName!, "SwiftEmployeeObject")
@@ -124,6 +125,10 @@ class ObjectSchemaInitializationTests: TestCase {
                      "Should throw when not ignoring a property of a type we can't persist")
         assertThrows(RLMObjectSchema(forObjectClass: SwiftObjectWithBadPropertyName.self),
                      "Should throw when not ignoring a property with a name we don't support")
+        assertThrows(RLMObjectSchema(forObjectClass: SwiftObjectWithManagedLazyProperty.self),
+                     "Should throw when not ignoring a lazy property")
+        assertThrows(RLMObjectSchema(forObjectClass: SwiftObjectWithDynamicManagedLazyProperty.self),
+                     "Should throw when not ignoring a lazy property")
 
         // Shouldn't throw when not ignoring a property of a type we can't persist if it's not dynamic
         _ = RLMObjectSchema(forObjectClass: SwiftObjectWithEnum.self)
@@ -204,30 +209,37 @@ class ObjectSchemaInitializationTests: TestCase {
     func testNonRealmOptionalTypesDeclaredAsRealmOptional() {
         assertThrows(RLMObjectSchema(forObjectClass: SwiftObjectWithNonRealmOptionalType.self))
     }
+
+    func testNotExplicitlyIgnoredComputedProperties() {
+        let schema = SwiftComputedPropertyNotIgnoredObject().objectSchema
+        // The two computed properties should not appear on the schema.
+        XCTAssertEqual(schema.properties.count, 1)
+        XCTAssertNotNil(schema["_urlBacking"])
+    }
 }
 
 class SwiftFakeObject: NSObject {
-    dynamic class func objectUtilClass(_ isSwift: Bool) -> AnyClass { return ObjectUtil.self }
-    dynamic class func primaryKey() -> String? { return nil }
-    dynamic class func ignoredProperties() -> [String] { return [] }
-    dynamic class func indexedProperties() -> [String] { return [] }
-    dynamic class func _realmObjectName() -> String? { return nil }
+    @objc class func objectUtilClass(_ isSwift: Bool) -> AnyClass { return ObjectUtil.self }
+    @objc class func primaryKey() -> String? { return nil }
+    @objc class func ignoredProperties() -> [String] { return [] }
+    @objc class func indexedProperties() -> [String] { return [] }
+    @objc class func _realmObjectName() -> String? { return nil }
 }
 
 class SwiftObjectWithNSURL: SwiftFakeObject {
-    dynamic var url = NSURL(string: "http://realm.io")!
+    @objc dynamic var url = NSURL(string: "http://realm.io")!
 }
 
 class SwiftObjectWithAnyObject: SwiftFakeObject {
-    dynamic var anyObject: AnyObject = NSObject()
+    @objc dynamic var anyObject: AnyObject = NSObject()
 }
 
 class SwiftObjectWithStringArray: SwiftFakeObject {
-    dynamic var stringArray = [String]()
+    @objc dynamic var stringArray = [String]()
 }
 
 class SwiftObjectWithOptionalStringArray: SwiftFakeObject {
-    dynamic var stringArray: [String]?
+    @objc dynamic var stringArray: [String]?
 }
 
 enum SwiftEnum {
@@ -244,33 +256,33 @@ class SwiftObjectWithStruct: SwiftFakeObject {
 }
 
 class SwiftObjectWithDatePrimaryKey: SwiftFakeObject {
-    dynamic var date = Date()
+    @objc dynamic var date = Date()
 
-    dynamic override class func primaryKey() -> String? {
+    override class func primaryKey() -> String? {
         return "date"
     }
 }
 
 class SwiftObjectWithNSNumber: SwiftFakeObject {
-    dynamic var number = NSNumber()
+    @objc dynamic var number = NSNumber()
 }
 
 class SwiftObjectWithOptionalNSNumber: SwiftFakeObject {
-    dynamic var number: NSNumber? = NSNumber()
+    @objc dynamic var number: NSNumber? = NSNumber()
 }
 
 class SwiftFakeObjectSubclass: SwiftFakeObject {
-    dynamic var dateCol = Date()
+    @objc dynamic var dateCol = Date()
 }
 
 class SwiftObjectWithUnindexibleProperties: SwiftFakeObject {
-    dynamic var boolCol = false
-    dynamic var intCol = 123
-    dynamic var floatCol = 1.23 as Float
-    dynamic var doubleCol = 12.3
-    dynamic var binaryCol = "a".data(using: String.Encoding.utf8)!
-    dynamic var dateCol = Date(timeIntervalSince1970: 1)
-    dynamic var objectCol: SwiftBoolObject? = SwiftBoolObject()
+    @objc dynamic var boolCol = false
+    @objc dynamic var intCol = 123
+    @objc dynamic var floatCol = 1.23 as Float
+    @objc dynamic var doubleCol = 12.3
+    @objc dynamic var binaryCol = "a".data(using: String.Encoding.utf8)!
+    @objc dynamic var dateCol = Date(timeIntervalSince1970: 1)
+    @objc dynamic var objectCol: SwiftBoolObject? = SwiftBoolObject()
     let arrayCol = List<SwiftBoolObject>()
 
     dynamic override class func indexedProperties() -> [String] {
@@ -280,11 +292,11 @@ class SwiftObjectWithUnindexibleProperties: SwiftFakeObject {
 
 // swiftlint:disable:next type_name
 class SwiftObjectWithNonNullableOptionalProperties: SwiftFakeObject {
-    dynamic var optDateCol: Date?
+    @objc dynamic var optDateCol: Date?
 }
 
 class SwiftObjectWithNonOptionalLinkProperty: SwiftFakeObject {
-    dynamic var objectCol = SwiftBoolObject()
+    @objc dynamic var objectCol = SwiftBoolObject()
 }
 
 extension Set: RealmOptionalType { }
@@ -294,5 +306,14 @@ class SwiftObjectWithNonRealmOptionalType: SwiftFakeObject {
 }
 
 class SwiftObjectWithBadPropertyName: SwiftFakeObject {
-    dynamic var newValue = false
+    @objc dynamic var newValue = false
+}
+
+class SwiftObjectWithManagedLazyProperty: SwiftFakeObject {
+    lazy var foobar: String = "foo"
+}
+
+// swiftlint:disable:next type_name
+class SwiftObjectWithDynamicManagedLazyProperty: SwiftFakeObject {
+    @objc dynamic lazy var foobar: String = "foo"
 }

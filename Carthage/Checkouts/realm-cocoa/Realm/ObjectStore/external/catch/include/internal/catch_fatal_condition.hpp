@@ -22,13 +22,17 @@ namespace Catch {
 } // namespace Catch
 
 #if defined ( CATCH_PLATFORM_WINDOWS ) /////////////////////////////////////////
+#include "catch_windows_h_proxy.h"
 
-#define NOMINMAX
-#define WIN32_LEAN_AND_MEAN
-#include <windows.h>
-#undef WIN32_LEAN_AND_MEAN
-#undef NOMINMAX
+#  if !defined ( CATCH_CONFIG_WINDOWS_SEH )
 
+namespace Catch {
+    struct FatalConditionHandler {
+        void reset() {}
+    };
+}
+
+#  else // CATCH_CONFIG_WINDOWS_SEH is defined
 
 namespace Catch {
 
@@ -57,22 +61,25 @@ namespace Catch {
             return EXCEPTION_CONTINUE_SEARCH;
         }
 
-        // 32k seems enough for Catch to handle stack overflow,
-        // but the value was found experimentally, so there is no strong guarantee
-        FatalConditionHandler():m_isSet(true), m_guaranteeSize(32 * 1024), m_exceptionHandlerHandle(CATCH_NULL) {
+        FatalConditionHandler() {
+            isSet = true;
+            // 32k seems enough for Catch to handle stack overflow,
+            // but the value was found experimentally, so there is no strong guarantee
+            guaranteeSize = 32 * 1024;
+            exceptionHandlerHandle = CATCH_NULL;
             // Register as first handler in current chain
-            m_exceptionHandlerHandle = AddVectoredExceptionHandler(1, handleVectoredException);
+            exceptionHandlerHandle = AddVectoredExceptionHandler(1, handleVectoredException);
             // Pass in guarantee size to be filled
-            SetThreadStackGuarantee(&m_guaranteeSize);
+            SetThreadStackGuarantee(&guaranteeSize);
         }
 
-        void reset() {
-            if (m_isSet) {
+        static void reset() {
+            if (isSet) {
                 // Unregister handler and restore the old guarantee
-                RemoveVectoredExceptionHandler(m_exceptionHandlerHandle);
-                SetThreadStackGuarantee(&m_guaranteeSize);
-                m_exceptionHandlerHandle = CATCH_NULL;
-                m_isSet = false;
+                RemoveVectoredExceptionHandler(exceptionHandlerHandle);
+                SetThreadStackGuarantee(&guaranteeSize);
+                exceptionHandlerHandle = CATCH_NULL;
+                isSet = false;
             }
         }
 
@@ -80,14 +87,31 @@ namespace Catch {
             reset();
         }
     private:
-        bool m_isSet;
-        ULONG m_guaranteeSize;
-        PVOID m_exceptionHandlerHandle;
+        static bool isSet;
+        static ULONG guaranteeSize;
+        static PVOID exceptionHandlerHandle;
     };
+
+    bool FatalConditionHandler::isSet = false;
+    ULONG FatalConditionHandler::guaranteeSize = 0;
+    PVOID FatalConditionHandler::exceptionHandlerHandle = CATCH_NULL;
 
 } // namespace Catch
 
+#  endif // CATCH_CONFIG_WINDOWS_SEH
+
 #else // Not Windows - assumed to be POSIX compatible //////////////////////////
+
+#  if !defined(CATCH_CONFIG_POSIX_SIGNALS)
+
+namespace Catch {
+    struct FatalConditionHandler {
+        void reset() {}
+    };
+}
+
+
+#  else // CATCH_CONFIG_POSIX_SIGNALS is defined
 
 #include <signal.h>
 
@@ -168,6 +192,8 @@ namespace Catch {
 
 
 } // namespace Catch
+
+#  endif // CATCH_CONFIG_POSIX_SIGNALS
 
 #endif // not Windows
 

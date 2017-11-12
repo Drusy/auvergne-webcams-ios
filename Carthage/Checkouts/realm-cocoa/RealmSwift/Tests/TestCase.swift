@@ -18,7 +18,6 @@
 
 import Foundation
 import Realm
-import Realm.Private
 import Realm.Dynamic
 import RealmSwift
 import XCTest
@@ -113,13 +112,56 @@ class TestCase: XCTestCase {
         queue.sync { }
     }
 
-    func assertThrows<T>(_ block: @autoclosure @escaping() -> T, named: String? = RLMExceptionName,
+    /// Check whether two test objects are equal (refer to the same row in the same Realm), even if their models
+    /// don't define a primary key.
+    func assertEqual<O: Object>(_ o1: O?, _ o2: O?, fileName: StaticString = #file, lineNumber: UInt = #line) {
+        if o1 == nil && o2 == nil {
+            return
+        }
+        if let o1 = o1, let o2 = o2, o1.isSameObject(as: o2) {
+            return
+        }
+        XCTFail("Objects expected to be equal, but weren't. First: \(String(describing: o1)), "
+            + "second: \(String(describing: o2))", file: fileName, line: lineNumber)
+    }
+
+    /// Check whether two collections containing Realm objects are equal.
+    func assertEqual<C: Collection>(_ c1: C, _ c2: C, fileName: StaticString = #file, lineNumber: UInt = #line)
+        where C.Iterator.Element: Object {
+            XCTAssertEqual(c1.count, c2.count, "Collection counts were incorrect", file: fileName, line: lineNumber)
+            for (o1, o2) in zip(c1, c2) {
+                assertEqual(o1, o2, fileName: fileName, lineNumber: lineNumber)
+            }
+    }
+
+    func assertEqual<T: Equatable>(_ expected: [T?], _ actual: [T?], file: StaticString = #file, line: UInt = #line) {
+        if expected.count != actual.count {
+            XCTFail("assertEqual failed: (\"\(expected)\") is not equal to (\"\(actual)\")",
+                file: file, line: line)
+            return
+        }
+
+        XCTAssertEqual(expected.count, actual.count, "Collection counts were incorrect", file: file, line: line)
+        for (e, a) in zip(expected, actual) where e != a {
+            XCTFail("assertEqual failed: (\"\(expected)\") is not equal to (\"\(actual)\")",
+                file: file, line: line)
+            return
+        }
+    }
+
+    func assertThrows<T>(_ block: @autoclosure () -> T, named: String? = RLMExceptionName,
                          _ message: String? = nil, fileName: String = #file, lineNumber: UInt = #line) {
         exceptionThrown = true
         RLMAssertThrowsWithName(self, { _ = block() }, named, message, fileName, lineNumber)
     }
 
-    func assertThrows<T>(_ block: @autoclosure @escaping () -> T, reason regexString: String,
+    func assertThrows<T>(_ block: @autoclosure () -> T, reason: String,
+                         _ message: String? = nil, fileName: String = #file, lineNumber: UInt = #line) {
+        exceptionThrown = true
+        RLMAssertThrowsWithReason(self, { _ = block() }, reason, message, fileName, lineNumber)
+    }
+
+    func assertThrows<T>(_ block: @autoclosure () -> T, reasonMatching regexString: String,
                          _ message: String? = nil, fileName: String = #file, lineNumber: UInt = #line) {
         exceptionThrown = true
         RLMAssertThrowsWithReasonMatching(self, { _ = block() }, regexString, message, fileName, lineNumber)
@@ -170,7 +212,13 @@ class TestCase: XCTestCase {
         XCTAssert(block() == nil, message ?? "", file: fileName, line: lineNumber)
     }
 
+    func assertMatches(_ block: @autoclosure () -> String, _ regexString: String, _ message: String? = nil,
+                       fileName: String = #file, lineNumber: UInt = #line) {
+        RLMAssertMatches(self, block, regexString, message, fileName, lineNumber)
+    }
+
     private func realmFilePrefix() -> String {
+        let name: String? = self.name
         return name!.trimmingCharacters(in: CharacterSet(charactersIn: "-[]"))
     }
 
@@ -187,3 +235,14 @@ class TestCase: XCTestCase {
         return directory.appendingPathComponent(fileName, isDirectory: false)
     }
 }
+
+#if !swift(>=3.2)
+func XCTAssertEqual<F: FloatingPoint>(_ expression1: F, _ expression2: F, accuracy: F,
+                                      file: StaticString = #file, line: UInt = #line) {
+    XCTAssertEqualWithAccuracy(expression1, expression2, accuracy: accuracy, file: file, line: line)
+}
+func XCTAssertNotEqual<F: FloatingPoint>(_ expression1: F, _ expression2: F, accuracy: F,
+                                         file: StaticString = #file, line: UInt = #line) {
+    XCTAssertNotEqualWithAccuracy(expression1, expression2, accuracy, file: file, line: line)
+}
+#endif

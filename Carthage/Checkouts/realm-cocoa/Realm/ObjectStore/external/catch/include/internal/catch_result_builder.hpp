@@ -18,20 +18,28 @@
 
 namespace Catch {
 
-    std::string capturedExpressionWithSecondArgument( std::string const& capturedExpression, std::string const& secondArg ) {
-        return secondArg.empty() || secondArg == "\"\""
-            ? capturedExpression
-            : capturedExpression + ", " + secondArg;
-    }
     ResultBuilder::ResultBuilder(   char const* macroName,
                                     SourceLineInfo const& lineInfo,
                                     char const* capturedExpression,
                                     ResultDisposition::Flags resultDisposition,
                                     char const* secondArg )
-    :   m_assertionInfo( macroName, lineInfo, capturedExpressionWithSecondArgument( capturedExpression, secondArg ), resultDisposition ),
+    :   m_assertionInfo( macroName, lineInfo, capturedExpression, resultDisposition, secondArg ),
         m_shouldDebugBreak( false ),
-        m_shouldThrow( false )
-    {}
+        m_shouldThrow( false ),
+        m_guardException( false )
+    {
+        m_stream().oss.str("");
+    }
+
+    ResultBuilder::~ResultBuilder() {
+#if defined(CATCH_CONFIG_FAST_COMPILE)
+        if ( m_guardException ) {
+            m_stream().oss << "Exception translation was disabled by CATCH_CONFIG_FAST_COMPILE";
+            captureResult( ResultWas::ThrewException );
+            getCurrentContext().getResultCapture()->exceptionEarlyReported();
+        }
+#endif
+    }
 
     ResultBuilder& ResultBuilder::setResultType( ResultWas::OfType result ) {
         m_data.resultType = result;
@@ -49,7 +57,7 @@ namespace Catch {
 
     void ResultBuilder::useActiveException( ResultDisposition::Flags resultDisposition ) {
         m_assertionInfo.resultDisposition = resultDisposition;
-        m_stream.oss << Catch::translateActiveException();
+        m_stream().oss << Catch::translateActiveException();
         captureResult( ResultWas::ThrewException );
     }
 
@@ -60,17 +68,18 @@ namespace Catch {
 
     void ResultBuilder::captureExpectedException( std::string const& expectedMessage ) {
         if( expectedMessage.empty() )
-            captureExpectedException( Matchers::Impl::Generic::AllOf<std::string>() );
+            captureExpectedException( Matchers::Impl::MatchAllOf<std::string>() );
         else
             captureExpectedException( Matchers::Equals( expectedMessage ) );
     }
 
-    void ResultBuilder::captureExpectedException( Matchers::Impl::Matcher<std::string> const& matcher ) {
+
+    void ResultBuilder::captureExpectedException( Matchers::Impl::MatcherBase<std::string> const& matcher ) {
 
         assert( !isFalseTest( m_assertionInfo.resultDisposition ) );
         AssertionResultData data = m_data;
         data.resultType = ResultWas::Ok;
-        data.reconstructedExpression = m_assertionInfo.capturedExpression;
+        data.reconstructedExpression = capturedExpressionWithSecondArgument(m_assertionInfo.capturedExpression, m_assertionInfo.secondArg);
 
         std::string actualMessage = Catch::translateActiveException();
         if( !matcher.match( actualMessage ) ) {
@@ -99,6 +108,15 @@ namespace Catch {
     }
 
     void ResultBuilder::react() {
+#if defined(CATCH_CONFIG_FAST_COMPILE)
+        if (m_shouldDebugBreak) {
+            ///////////////////////////////////////////////////////////////////
+            // To inspect the state during test, you need to go one level up the callstack
+            // To go back to the test and change execution, jump over the throw statement
+            ///////////////////////////////////////////////////////////////////
+            CATCH_BREAK_INTO_DEBUGGER();
+        }
+#endif
         if( m_shouldThrow )
             throw Catch::TestFailureException();
     }
@@ -127,13 +145,20 @@ namespace Catch {
             data.negate( expr.isBinaryExpression() );
         }
 
-        data.message = m_stream.oss.str();
+        data.message = m_stream().oss.str();
         data.decomposedExpression = &expr; // for lazy reconstruction
         return AssertionResult( m_assertionInfo, data );
     }
 
     void ResultBuilder::reconstructExpression( std::string& dest ) const {
-        dest = m_assertionInfo.capturedExpression;
+        dest = capturedExpressionWithSecondArgument(m_assertionInfo.capturedExpression, m_assertionInfo.secondArg);
+    }
+
+    void ResultBuilder::setExceptionGuard() {
+        m_guardException = true;
+    }
+    void ResultBuilder::unsetExceptionGuard() {
+        m_guardException = false;
     }
 
 } // end namespace Catch

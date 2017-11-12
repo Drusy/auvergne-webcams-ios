@@ -48,11 +48,11 @@ class WebcamSectionViewProvider: AbstractArrayViewProvider<Webcam, WebcamCollect
     
     // MARK: - CollectionViewDelegate
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    @objc func scrollViewDidScroll(_ scrollView: UIScrollView) {
         delegate?.webcamSection(viewProvider: self, scrollViewDidScroll: scrollView)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    @objc func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var offset: CGFloat = 0
         var width: CGFloat = 0
         
@@ -69,11 +69,11 @@ class WebcamSectionViewProvider: AbstractArrayViewProvider<Webcam, WebcamCollect
         return CGSize(width: width, height: WebcamSectionViewProvider.cellHeight)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    @objc func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+    @objc func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if self.section == nil {
             return CGSize.zero
         } else {
@@ -82,7 +82,7 @@ class WebcamSectionViewProvider: AbstractArrayViewProvider<Webcam, WebcamCollect
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: IndexPath) -> UICollectionReusableView {
+    @objc func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: IndexPath) -> UICollectionReusableView {
         let complementaryIdentifier = WebcamSectionHeaderView.identifier()
         let complementary = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader,
                                                                             withReuseIdentifier: complementaryIdentifier,
@@ -95,7 +95,7 @@ class WebcamSectionViewProvider: AbstractArrayViewProvider<Webcam, WebcamCollect
         return complementary
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: IndexPath) {
+    @objc func collectionView(_ collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: IndexPath) {
         guard shouldAnimateCellDisplay else { return }
         
         let translation: CGAffineTransform

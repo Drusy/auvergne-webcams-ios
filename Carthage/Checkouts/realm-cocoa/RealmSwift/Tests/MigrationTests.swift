@@ -19,7 +19,6 @@
 import XCTest
 import RealmSwift
 import Realm
-import Realm.Private
 import Realm.Dynamic
 import Foundation
 
@@ -92,7 +91,7 @@ class MigrationTests: TestCase {
 
         var didRun = false
         let config = Realm.Configuration(fileURL: defaultRealmURL(), schemaVersion: 1,
-                                         migrationBlock: { _ in didRun = true })
+                                         migrationBlock: { _, _ in didRun = true })
         Realm.Configuration.defaultConfiguration = config
 
         try! Realm.performMigration()
@@ -117,8 +116,16 @@ class MigrationTests: TestCase {
         _ = try! Realm()
         XCTAssertEqual(0, try! schemaVersionAtURL(defaultRealmURL()),
                        "Initial version should be 0")
-        assertFails(.fail) {
-            try schemaVersionAtURL(URL(fileURLWithPath: "/dev/null"))
+
+        do {
+            _ = try schemaVersionAtURL(URL(fileURLWithPath: "/dev/null"))
+            XCTFail("Expected .filePermissionDenied or .fileAccess, but no error was raised")
+        } catch Realm.Error.filePermissionDenied {
+            // Success!
+        } catch Realm.Error.fileAccess {
+            // Success!
+        } catch {
+            XCTFail("Expected .filePermissionDenied or .fileAccess, got \(error)")
         }
     }
 
@@ -158,11 +165,11 @@ class MigrationTests: TestCase {
         }
 
         migrateAndTestDefaultRealm { migration, _ in
-            migration.enumerateObjects(ofType: "SwiftStringObject", { _ in
+            migration.enumerateObjects(ofType: "SwiftStringObject", { _, _ in
                 XCTFail("No objects to enumerate")
             })
 
-            migration.enumerateObjects(ofType: "NoSuchClass", { _ in }) // shouldn't throw
+            migration.enumerateObjects(ofType: "NoSuchClass", { _, _ in }) // shouldn't throw
         }
 
         autoreleasepool {
@@ -359,6 +366,34 @@ class MigrationTests: TestCase {
             migration.enumerateObjects(ofType: "SwiftBoolObject") { _, _ in
                 XCTFail("This line should not executed since all objects have been deleted.")
             }
+        }
+    }
+
+    func testEnumerateObjectsAfterDeleteData() {
+        autoreleasepool {
+            // add object
+            try! Realm().write {
+                try! Realm().create(SwiftStringObject.self, value: ["1"])
+                try! Realm().create(SwiftStringObject.self, value: ["2"])
+                try! Realm().create(SwiftStringObject.self, value: ["3"])
+            }
+        }
+
+        migrateAndTestDefaultRealm(1) { migration, _ in
+            var count = 0
+            migration.enumerateObjects(ofType: "SwiftStringObject") { _, _ in
+                count += 1
+            }
+            XCTAssertEqual(count, 3)
+
+            migration.deleteData(forType: "SwiftStringObject")
+            migration.create("SwiftStringObject", value: ["A"])
+
+            count = 0
+            migration.enumerateObjects(ofType: "SwiftStringObject") { _, _ in
+                count += 1
+            }
+            XCTAssertEqual(count, 0)
         }
     }
 
@@ -577,7 +612,7 @@ class MigrationTests: TestCase {
         }
 
         var config = Realm.Configuration(fileURL: defaultRealmURL(), objectTypes: [SwiftEmployeeObject.self])
-        config.migrationBlock = { _ in
+        config.migrationBlock = { _, _ in
             XCTFail("Migration block should not be called")
         }
         config.deleteRealmIfMigrationNeeded = true
@@ -611,7 +646,7 @@ class MigrationTests: TestCase {
             }
         }
 
-        let migrationBlock: MigrationBlock = { _ in
+        let migrationBlock: MigrationBlock = { _, _ in
             XCTFail("Migration block should not be called")
         }
         let config = Realm.Configuration(fileURL: defaultRealmURL(),
@@ -622,6 +657,6 @@ class MigrationTests: TestCase {
             _ = try Realm(configuration: config)
         }
 
-        class_replaceMethod(metaClass, #selector(RLMObjectBase.sharedSchema), originalImp, "@@:")
+        class_replaceMethod(metaClass, #selector(RLMObjectBase.sharedSchema), originalImp!, "@@:")
     }
 }

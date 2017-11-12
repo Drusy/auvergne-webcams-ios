@@ -22,39 +22,43 @@ extension RLMRealm {
     @nonobjc public class func schemaVersion(at url: URL, usingEncryptionKey key: Data? = nil) throws -> UInt64 {
         var error: NSError?
         let version = __schemaVersion(at: url, encryptionKey: key, error: &error)
-        guard version != RLMNotVersioned else {
-            throw error!
-        }
+        guard version != RLMNotVersioned else { throw error! }
         return version
     }
 
+#if swift(>=3.2)
+    @nonobjc public func resolve<Confined>(reference: RLMThreadSafeReference<Confined>) -> Confined? {
+        return __resolve(reference as! RLMThreadSafeReference<RLMThreadConfined>) as! Confined?
+    }
+#else
     @nonobjc public func resolve<Confined: RLMThreadConfined>(reference: RLMThreadSafeReference<Confined>) -> Confined? {
         return __resolve(reference as! RLMThreadSafeReference<RLMThreadConfined>) as! Confined?
     }
+#endif
 }
 
 extension RLMObject {
     // Swift query convenience functions
     public class func objects(where predicateFormat: String, _ args: CVarArg...) -> RLMResults<RLMObject> {
-        return objects(with: NSPredicate(format: predicateFormat, arguments: getVaList(args)))
+        return objects(with: NSPredicate(format: predicateFormat, arguments: getVaList(args))) as! RLMResults<RLMObject>
     }
 
     public class func objects(in realm: RLMRealm,
                               where predicateFormat: String,
                               _ args: CVarArg...) -> RLMResults<RLMObject> {
-        return objects(in: realm, with: NSPredicate(format: predicateFormat, arguments: getVaList(args)))
+        return objects(in: realm, with: NSPredicate(format: predicateFormat, arguments: getVaList(args))) as! RLMResults<RLMObject>
     }
 }
 
-public final class RLMIterator: IteratorProtocol {
-    private let iteratorBase: NSFastEnumerationIterator
+public struct RLMIterator<T>: IteratorProtocol {
+    private var iteratorBase: NSFastEnumerationIterator
 
     internal init(collection: RLMCollection) {
         iteratorBase = NSFastEnumerationIterator(collection)
     }
 
-    public func next() -> RLMObject? {
-        return iteratorBase.next() as! RLMObject?
+    public mutating func next() -> T? {
+        return iteratorBase.next() as! T?
     }
 }
 
@@ -65,7 +69,7 @@ extension RLMResults: Sequence {}
 
 extension RLMCollection {
     // Support Sequence-style enumeration
-    public func makeIterator() -> RLMIterator {
+    public func makeIterator() -> RLMIterator<RLMObject> {
         return RLMIterator(collection: self)
     }
 }
@@ -76,60 +80,61 @@ extension RLMCollection {
         return indexOfObject(with: NSPredicate(format: predicateFormat, arguments: getVaList(args)))
     }
 
-    public func objects(where predicateFormat: String, _ args: CVarArg...) -> RLMResults<RLMObject> {
-        return objects(with: NSPredicate(format: predicateFormat, arguments: getVaList(args)))
+    public func objects(where predicateFormat: String, _ args: CVarArg...) -> RLMResults<NSObject> {
+        return objects(with: NSPredicate(format: predicateFormat, arguments: getVaList(args))) as! RLMResults<NSObject>
     }
 }
 
-#if swift(>=3.1)
-// Collection conformance for RLMSyncPermissionResults.
-extension RLMSyncPermissionResults: RandomAccessCollection {
-    public subscript(index: Int) -> RLMSyncPermissionValue {
-        return object(at: index)
-    }
+// MARK: - Sync-related
 
-    public func index(after i: Int) -> Int {
-        return i + 1
-    }
-
-    public var startIndex: Int {
-        return 0
-    }
-
-    public var endIndex: Int {
-        return count
-    }
-}
-#else
-extension RLMSyncPermissionResults {
-    /// Return the first permission value in the results, or `nil` if
-    /// the results are empty.
-    public var first: RLMSyncPermissionValue? {
-        return count > 0 ? object(at: 0) : nil
-    }
-
-    /// Return the last permission value in the results, or `nil` if
-    /// the results are empty.
-    public var last: RLMSyncPermissionValue? {
-        return count > 0 ? object(at: count - 1) : nil
+extension RLMSyncManager {
+    public static var shared: RLMSyncManager {
+        return __shared()
     }
 }
 
-extension RLMSyncPermissionResults: Sequence {
-    public struct Iterator: IteratorProtocol {
-        private let iteratorBase: NSFastEnumerationIterator
+extension RLMSyncUser {
+    public static var current: RLMSyncUser? {
+        return __current()
+    }
 
-        fileprivate init(results: RLMSyncPermissionResults) {
-            iteratorBase = NSFastEnumerationIterator(results)
+    public static var all: [String: RLMSyncUser] {
+        return __allUsers()
+    }
+
+    @nonobjc public var errorHandler: RLMUserErrorReportingBlock? {
+        get {
+            return __errorHandler
         }
-
-        public func next() -> RLMSyncPermissionValue? {
-            return iteratorBase.next() as! RLMSyncPermissionValue?
+        set {
+            __errorHandler = newValue
         }
     }
 
-    public func makeIterator() -> RLMSyncPermissionResults.Iterator {
-        return Iterator(results: self)
+    public static func logIn(with credentials: RLMSyncCredentials,
+                             server authServerURL: URL,
+                             timeout: TimeInterval = 30,
+                             callbackQueue queue: DispatchQueue = DispatchQueue.main,
+                             onCompletion completion: @escaping RLMUserCompletionBlock) {
+        return __logIn(with: credentials,
+                       authServerURL: authServerURL,
+                       timeout: timeout,
+                       callbackQueue: queue,
+                       onCompletion: completion)
     }
 }
-#endif
+
+extension RLMSyncSession {
+    public func addProgressNotification(for direction: RLMSyncProgressDirection,
+                                        mode: RLMSyncProgressMode,
+                                        block: @escaping RLMProgressNotificationBlock) -> RLMProgressNotificationToken? {
+        return __addProgressNotification(for: direction,
+                                         mode: mode,
+                                         block: block)
+    }
+}
+
+extension RLMNotificationToken {
+    @available(*, unavailable, renamed: "invalidate()")
+    @nonobjc public func stop() { fatalError() }
+}

@@ -350,8 +350,7 @@
     RLMAssertThrowsWithReasonMatching([allArray maxOfProperty:@"boolCol"], @"max.*bool");
 }
 
-- (void)testValueForCollectionOperationKeyPath
-{
+- (void)testValueForCollectionOperationKeyPath {
     RLMRealm *realm = [RLMRealm defaultRealm];
 
     [realm beginWriteTransaction];
@@ -382,16 +381,25 @@
     XCTAssertEqualWithAccuracy([[allEmployees valueForKeyPath:@"@avg.age"] doubleValue], 29.43, 0.1f);
 
     // collection
-    XCTAssertEqualObjects([allCompanies valueForKeyPath:@"@unionOfObjects.name"], (@[@"InspiringNames LLC", @"ABC AG", @"ABC AG"]));
-    XCTAssertEqualObjects([allCompanies valueForKeyPath:@"@distinctUnionOfObjects.name"], (@[@"ABC AG", @"InspiringNames LLC"]));
-    XCTAssertEqualObjects([allCompanies valueForKeyPath:@"employees.@unionOfArrays.name"], (@[@"Joe", @"John", @"Jill", @"A", @"B", @"C", @"A"]));
-    XCTAssertEqualObjects([NSSet setWithArray:[allCompanies valueForKeyPath:@"employees.@distinctUnionOfArrays.name"]], ([NSSet setWithArray:@[@"Joe", @"John", @"Jill", @"A", @"B", @"C"]]));
+    XCTAssertEqualObjects([allCompanies valueForKeyPath:@"@unionOfObjects.name"],
+                          (@[@"InspiringNames LLC", @"ABC AG", @"ABC AG"]));
+    XCTAssertEqualObjects([allCompanies valueForKeyPath:@"@distinctUnionOfObjects.name"],
+                          (@[@"ABC AG", @"InspiringNames LLC"]));
+    XCTAssertEqualObjects([allCompanies valueForKeyPath:@"employees.@unionOfArrays.name"],
+                          (@[@"Joe", @"John", @"Jill", @"A", @"B", @"C", @"A"]));
+    XCTAssertEqualObjects([[allCompanies valueForKeyPath:@"employees.@distinctUnionOfArrays.name"]
+                           sortedArrayUsingSelector:@selector(compare:)],
+                          (@[@"A", @"B", @"C", @"Jill", @"Joe", @"John"]));
 
     // invalid key paths
-    RLMAssertThrowsWithReasonMatching([allCompanies valueForKeyPath:@"@invalid"], @"Unsupported KVC collection operator found in key path '@invalid'");
-    RLMAssertThrowsWithReasonMatching([allCompanies valueForKeyPath:@"@sum"], @"Missing key path for KVC collection operator sum in key path '@sum'");
-    RLMAssertThrowsWithReasonMatching([allCompanies valueForKeyPath:@"@sum."], @"Missing key path for KVC collection operator sum in key path '@sum.'");
-    RLMAssertThrowsWithReasonMatching([allCompanies valueForKeyPath:@"@sum.employees.@sum.age"], @"Nested key paths.*not supported");
+    RLMAssertThrowsWithReasonMatching([allCompanies valueForKeyPath:@"@invalid.name"],
+                                      @"Unsupported KVC collection operator found in key path '@invalid.name'");
+    RLMAssertThrowsWithReasonMatching([allCompanies valueForKeyPath:@"@sum"],
+                                      @"Missing key path for KVC collection operator sum in key path '@sum'");
+    RLMAssertThrowsWithReasonMatching([allCompanies valueForKeyPath:@"@sum."],
+                                      @"Missing key path for KVC collection operator sum in key path '@sum.'");
+    RLMAssertThrowsWithReasonMatching([allCompanies valueForKeyPath:@"@sum.employees.@sum.age"],
+                                      @"Nested key paths.*not supported");
 }
 
 - (void)testArrayDescription
@@ -508,7 +516,7 @@
     [EmployeeObject createInRealm:realm withValue:@{@"name": @"Jill",  @"age": @50, @"hired": @YES}];
     [realm commitWriteTransaction];
 
-    RLMResults *subarray = nil;
+    RLMResults<EmployeeObject *> *subarray = nil;
     {
         __attribute((objc_precise_lifetime)) RLMResults *results = [EmployeeObject objectsWhere:@"hired = YES"];
         subarray = [results objectsWhere:@"age = 40"];
@@ -530,7 +538,7 @@
     [EmployeeObject createInRealm:realm withValue:@{@"name": @"Jill",  @"age": @50, @"hired": @YES}];
     [realm commitWriteTransaction];
 
-    RLMResults *subarray = nil;
+    RLMResults<EmployeeObject *> *subarray = nil;
     {
         __attribute((objc_precise_lifetime)) RLMResults *results = [[EmployeeObject allObjects] sortedResultsUsingKeyPath:@"age" ascending:YES];
         subarray = [results sortedResultsUsingKeyPath:@"age" ascending:NO];

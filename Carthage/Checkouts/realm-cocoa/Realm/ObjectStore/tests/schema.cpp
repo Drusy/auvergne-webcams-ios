@@ -19,9 +19,12 @@
 #include "catch.hpp"
 
 #include "object_schema.hpp"
+#include "object_store.hpp"
 #include "property.hpp"
 #include "schema.hpp"
+#include "util/format.hpp"
 
+#include <realm/descriptor.hpp>
 #include <realm/group.hpp>
 #include <realm/table.hpp>
 
@@ -54,6 +57,7 @@ struct SchemaChangePrinter {
     REALM_SC_PRINT(AddIndex, v.object, v.property)
     REALM_SC_PRINT(AddProperty, v.object, v.property)
     REALM_SC_PRINT(AddTable, v.object)
+    REALM_SC_PRINT(AddInitialProperties, v.object)
     REALM_SC_PRINT(ChangePrimaryKey, v.object, v.property)
     REALM_SC_PRINT(ChangePropertyType, v.object, v.old_property, v.new_property)
     REALM_SC_PRINT(MakePropertyNullable, v.object, v.property)
@@ -75,6 +79,9 @@ struct StringMaker<SchemaChange> {
     }
 };
 } // namespace Catch
+
+#define REQUIRE_THROWS_CONTAINING(expr, msg) \
+    REQUIRE_THROWS_WITH(expr, Catch::Matchers::Contains(msg))
 
 TEST_CASE("ObjectSchema") {
     SECTION("from a Group") {
@@ -110,6 +117,30 @@ TEST_CASE("ObjectSchema") {
         table->add_column(type_Binary, "data?", true);
         table->add_column(type_Timestamp, "date?", true);
 
+        table->add_column(type_Table, "subtable 1");
+        size_t col = table->add_column(type_Table, "subtable 2");
+        table->get_subdescriptor(col)->add_column(type_Int, "value");
+
+        auto add_list = [](TableRef table, DataType type, StringData name, bool nullable) {
+            size_t col = table->add_column(type_Table, name);
+            table->get_subdescriptor(col)->add_column(type, ObjectStore::ArrayColumnName, nullptr, nullable);
+        };
+
+        add_list(table, type_Int, "int array", false);
+        add_list(table, type_Bool, "bool array", false);
+        add_list(table, type_Float, "float array", false);
+        add_list(table, type_Double, "double array", false);
+        add_list(table, type_String, "string array", false);
+        add_list(table, type_Binary, "data array", false);
+        add_list(table, type_Timestamp, "date array", false);
+        add_list(table, type_Int, "int? array", true);
+        add_list(table, type_Bool, "bool? array", true);
+        add_list(table, type_Float, "float? array", true);
+        add_list(table, type_Double, "double? array", true);
+        add_list(table, type_String, "string? array", true);
+        add_list(table, type_Binary, "data? array", true);
+        add_list(table, type_Timestamp, "date? array", true);
+
         size_t indexed_start = table->get_column_count();
         table->add_column(type_Int, "indexed int");
         table->add_column(type_Bool, "indexed bool");
@@ -127,8 +158,8 @@ TEST_CASE("ObjectSchema") {
         ObjectSchema os(g, "table");
 
 #define REQUIRE_PROPERTY(name, type, ...) do { \
-    auto prop = os.property_for_name(name); \
-    REQUIRE(prop); \
+    Property* prop; \
+    REQUIRE((prop = os.property_for_name(name))); \
     REQUIRE((*prop == Property{name, PropertyType::type, __VA_ARGS__})); \
     REQUIRE(prop->table_column == expected_col++); \
 } while (0)
@@ -137,37 +168,56 @@ TEST_CASE("ObjectSchema") {
 
         REQUIRE(os.property_for_name("nonexistent property") == nullptr);
 
-        // bools are (primary, indexed, nullable)
-        REQUIRE_PROPERTY("pk", Int, "", "",true, false, false);
+        REQUIRE_PROPERTY("pk", Int, Property::IsPrimary{true});
 
-        REQUIRE_PROPERTY("int", Int, "", "", false, false, false);
-        REQUIRE_PROPERTY("bool", Bool, "", "", false, false, false);
-        REQUIRE_PROPERTY("float", Float, "", "", false, false, false);
-        REQUIRE_PROPERTY("double", Double, "", "", false, false, false);
-        REQUIRE_PROPERTY("string", String, "", "", false, false, false);
-        REQUIRE_PROPERTY("data", Data, "", "", false, false, false);
-        REQUIRE_PROPERTY("date", Date, "", "", false, false, false);
+        REQUIRE_PROPERTY("int", Int);
+        REQUIRE_PROPERTY("bool", Bool);
+        REQUIRE_PROPERTY("float", Float);
+        REQUIRE_PROPERTY("double", Double);
+        REQUIRE_PROPERTY("string", String);
+        REQUIRE_PROPERTY("data", Data);
+        REQUIRE_PROPERTY("date", Date);
 
-        REQUIRE_PROPERTY("object", Object, "target", "", false, false, true);
-        REQUIRE_PROPERTY("array", Array, "target", "", false, false, false);
+        REQUIRE_PROPERTY("object", Object|PropertyType::Nullable, "target");
+        REQUIRE_PROPERTY("array", Array|PropertyType::Object, "target");
 
-        REQUIRE_PROPERTY("int?", Int, "", "", false, false, true);
-        REQUIRE_PROPERTY("bool?", Bool, "", "", false, false, true);
-        REQUIRE_PROPERTY("float?", Float, "", "", false, false, true);
-        REQUIRE_PROPERTY("double?", Double, "", "", false, false, true);
-        REQUIRE_PROPERTY("string?", String, "", "", false, false, true);
-        REQUIRE_PROPERTY("data?", Data, "", "", false, false, true);
-        REQUIRE_PROPERTY("date?", Date, "", "", false, false, true);
+        REQUIRE_PROPERTY("int?", Int|PropertyType::Nullable);
+        REQUIRE_PROPERTY("bool?", Bool|PropertyType::Nullable);
+        REQUIRE_PROPERTY("float?", Float|PropertyType::Nullable);
+        REQUIRE_PROPERTY("double?", Double|PropertyType::Nullable);
+        REQUIRE_PROPERTY("string?", String|PropertyType::Nullable);
+        REQUIRE_PROPERTY("data?", Data|PropertyType::Nullable);
+        REQUIRE_PROPERTY("date?", Date|PropertyType::Nullable);
 
-        REQUIRE_PROPERTY("indexed int", Int, "", "", false, true, false);
-        REQUIRE_PROPERTY("indexed bool", Bool, "", "", false, true, false);
-        REQUIRE_PROPERTY("indexed string", String, "", "", false, true, false);
-        REQUIRE_PROPERTY("indexed date", Date, "", "", false, true, false);
+        // Unsupported column type should be skipped entirely
+        REQUIRE(os.property_for_name("subtable 1") == nullptr);
+        REQUIRE(os.property_for_name("subtable 2") == nullptr);
+        expected_col += 2;
 
-        REQUIRE_PROPERTY("indexed int?", Int, "", "", false, true, true);
-        REQUIRE_PROPERTY("indexed bool?", Bool, "", "", false, true, true);
-        REQUIRE_PROPERTY("indexed string?", String, "", "", false, true, true);
-        REQUIRE_PROPERTY("indexed date?", Date, "", "", false, true, true);
+        REQUIRE_PROPERTY("int array", Int|PropertyType::Array);
+        REQUIRE_PROPERTY("bool array", Bool|PropertyType::Array);
+        REQUIRE_PROPERTY("float array", Float|PropertyType::Array);
+        REQUIRE_PROPERTY("double array", Double|PropertyType::Array);
+        REQUIRE_PROPERTY("string array", String|PropertyType::Array);
+        REQUIRE_PROPERTY("data array", Data|PropertyType::Array);
+        REQUIRE_PROPERTY("date array", Date|PropertyType::Array);
+        REQUIRE_PROPERTY("int? array", Int|PropertyType::Array|PropertyType::Nullable);
+        REQUIRE_PROPERTY("bool? array", Bool|PropertyType::Array|PropertyType::Nullable);
+        REQUIRE_PROPERTY("float? array", Float|PropertyType::Array|PropertyType::Nullable);
+        REQUIRE_PROPERTY("double? array", Double|PropertyType::Array|PropertyType::Nullable);
+        REQUIRE_PROPERTY("string? array", String|PropertyType::Array|PropertyType::Nullable);
+        REQUIRE_PROPERTY("data? array", Data|PropertyType::Array|PropertyType::Nullable);
+        REQUIRE_PROPERTY("date? array", Date|PropertyType::Array|PropertyType::Nullable);
+
+        REQUIRE_PROPERTY("indexed int", Int, Property::IsPrimary{false}, Property::IsIndexed{true});
+        REQUIRE_PROPERTY("indexed bool", Bool, Property::IsPrimary{false}, Property::IsIndexed{true});
+        REQUIRE_PROPERTY("indexed string", String, Property::IsPrimary{false}, Property::IsIndexed{true});
+        REQUIRE_PROPERTY("indexed date", Date, Property::IsPrimary{false}, Property::IsIndexed{true});
+
+        REQUIRE_PROPERTY("indexed int?", Int|PropertyType::Nullable, Property::IsPrimary{false}, Property::IsIndexed{true});
+        REQUIRE_PROPERTY("indexed bool?", Bool|PropertyType::Nullable, Property::IsPrimary{false}, Property::IsIndexed{true});
+        REQUIRE_PROPERTY("indexed string?", String|PropertyType::Nullable, Property::IsPrimary{false}, Property::IsIndexed{true});
+        REQUIRE_PROPERTY("indexed date?", Date|PropertyType::Nullable, Property::IsPrimary{false}, Property::IsIndexed{true});
 
         pk->set_string(1, 0, "nonexistent property");
         REQUIRE(ObjectSchema(g, "table").primary_key_property() == nullptr);
@@ -179,106 +229,269 @@ TEST_CASE("Schema") {
         SECTION("rejects link properties with no target object") {
             Schema schema = {
                 {"object", {
-                    {"link", PropertyType::Object, "", "", false, false, true}
+                    {"link", PropertyType::Object|PropertyType::Nullable}
                 }},
             };
-            REQUIRE_THROWS(schema.validate());
+            REQUIRE_THROWS_CONTAINING(schema.validate(), "Property 'object.link' of type 'object' has unknown object type ''");
         }
 
         SECTION("rejects array properties with no target object") {
             Schema schema = {
                 {"object", {
-                    {"array", PropertyType::Array, "", "", false, false, true}
+                    {"array", PropertyType::Array|PropertyType::Object}
                 }},
             };
-            REQUIRE_THROWS(schema.validate());
+            REQUIRE_THROWS_CONTAINING(schema.validate(), "Property 'object.array' of type 'array' has unknown object type ''");
         }
 
         SECTION("rejects link properties with a target not in the schema") {
             Schema schema = {
                 {"object", {
-                    {"link", PropertyType::Object, "invalid target", "", false, false, true}
+                    {"link", PropertyType::Object|PropertyType::Nullable, "invalid target"}
                 }}
             };
-            REQUIRE_THROWS(schema.validate());
+            REQUIRE_THROWS_CONTAINING(schema.validate(), "Property 'object.link' of type 'object' has unknown object type 'invalid target'");
         }
 
         SECTION("rejects array properties with a target not in the schema") {
             Schema schema = {
                 {"object", {
-                    {"array", PropertyType::Array, "invalid target", "", false, false, true}
+                    {"array", PropertyType::Array|PropertyType::Object, "invalid target"}
                 }}
             };
-            REQUIRE_THROWS(schema.validate());
+            REQUIRE_THROWS_CONTAINING(schema.validate(), "Property 'object.array' of type 'array' has unknown object type 'invalid target'");
+        }
+
+        SECTION("rejects linking objects without a source object") {
+            Schema schema = {
+                {"object", {
+                    {"value", PropertyType::Int},
+                }, {
+                    {"incoming", PropertyType::Array|PropertyType::LinkingObjects, "", ""}
+                }}
+            };
+            REQUIRE_THROWS_CONTAINING(schema.validate(), "Property 'object.incoming' of type 'linking objects' has unknown object type ''");
+        }
+
+        SECTION("rejects linking objects without a source property") {
+            Schema schema = {
+                {"object", {
+                    {"value", PropertyType::Int},
+                }, {
+                    {"incoming", PropertyType::Array|PropertyType::LinkingObjects, "object", ""}
+                }}
+            };
+            REQUIRE_THROWS_CONTAINING(schema.validate(), "Property 'object.incoming' of type 'linking objects' must have an origin property name.");
+        }
+
+        SECTION("rejects linking objects with invalid source object") {
+            Schema schema = {
+                {"object", {
+                    {"value", PropertyType::Int},
+                }, {
+                    {"incoming", PropertyType::Array|PropertyType::LinkingObjects, "not an object type", ""}
+                }}
+            };
+            REQUIRE_THROWS_CONTAINING(schema.validate(), "Property 'object.incoming' of type 'linking objects' has unknown object type 'not an object type'");
+        }
+
+        SECTION("rejects linking objects with invalid source property") {
+            Schema schema = {
+                {"object", {
+                    {"value", PropertyType::Int},
+                }, {
+                    {"incoming", PropertyType::Array|PropertyType::LinkingObjects, "object", "value"}
+                }}
+            };
+            REQUIRE_THROWS_CONTAINING(schema.validate(), "Property 'object.value' declared as origin of linking objects property 'object.incoming' is not a link");
+
+            schema = {
+                {"object", {
+                    {"value", PropertyType::Int},
+                    {"link", PropertyType::Object|PropertyType::Nullable, "object 2"},
+                }, {
+                    {"incoming", PropertyType::Array|PropertyType::LinkingObjects, "object", "link"}
+                }},
+                {"object 2", {
+                    {"value", PropertyType::Int},
+                }}
+            };
+            REQUIRE_THROWS_CONTAINING(schema.validate(), "Property 'object.link' declared as origin of linking objects property 'object.incoming' links to type 'object 2'");
+
+        }
+
+        SECTION("rejects non-array linking objects") {
+            Schema schema = {
+                {"object", {
+                    {"link", PropertyType::Object|PropertyType::Nullable, "object"},
+                }, {
+                    {"incoming", PropertyType::LinkingObjects, "object", "link"}
+                }}
+            };
+            REQUIRE_THROWS_CONTAINING(schema.validate(), "Linking Objects property 'object.incoming' must be an array.");
         }
 
         SECTION("rejects target object types for non-link properties") {
             Schema schema = {
                 {"object", {
-                    {"int", PropertyType::Int, "", "", false, false, false},
-                    {"bool", PropertyType::Bool, "", "", false, false, false},
-                    {"float", PropertyType::Float, "", "", false, false, false},
-                    {"double", PropertyType::Double, "", "", false, false, false},
-                    {"string", PropertyType::String, "", "", false, false, false},
-                    {"date", PropertyType::Date, "", "", false, false, false},
+                    {"int", PropertyType::Int},
+                    {"bool", PropertyType::Bool},
+                    {"float", PropertyType::Float},
+                    {"double", PropertyType::Double},
+                    {"string", PropertyType::String},
+                    {"date", PropertyType::Date},
                 }}
             };
             for (auto& prop : schema.begin()->persisted_properties) {
                 REQUIRE_NOTHROW(schema.validate());
                 prop.object_type = "object";
-                REQUIRE_THROWS(schema.validate());
+                REQUIRE_THROWS_CONTAINING(schema.validate(), "cannot have an object type.");
                 prop.object_type = "";
+            }
+        }
+
+        SECTION("rejects source property name for non-linking objects properties") {
+            Schema schema = {
+                {"object", {
+                    {"int", PropertyType::Int},
+                    {"bool", PropertyType::Bool},
+                    {"float", PropertyType::Float},
+                    {"double", PropertyType::Double},
+                    {"string", PropertyType::String},
+                    {"data", PropertyType::Data},
+                    {"date", PropertyType::Date},
+                    {"object", PropertyType::Object|PropertyType::Nullable, "object"},
+                    {"array", PropertyType::Object|PropertyType::Array, "object"},
+                }}
+            };
+            for (auto& prop : schema.begin()->persisted_properties) {
+                REQUIRE_NOTHROW(schema.validate());
+                prop.link_origin_property_name = "source";
+                auto expected = util::format("Property 'object.%1' of type '%1' cannot have an origin property name.", prop.name, prop.name);
+                REQUIRE_THROWS_CONTAINING(schema.validate(), expected);
+                prop.link_origin_property_name = "";
             }
         }
 
         SECTION("rejects non-nullable link properties") {
             Schema schema = {
                 {"object", {
-                    {"link", PropertyType::Object, "target", "", false, false, false}
+                    {"link", PropertyType::Object, "target"}
                 }},
                 {"target", {
                     {"value", PropertyType::Int}
                 }}
             };
-            REQUIRE_THROWS(schema.validate());
+            REQUIRE_THROWS_CONTAINING(schema.validate(), "Property 'object.link' of type 'object' must be nullable.");
         }
 
         SECTION("rejects nullable array properties") {
             Schema schema = {
                 {"object", {
-                    {"array", PropertyType::Array, "target", "", false, false, true}
+                    {"array", PropertyType::Array|PropertyType::Object|PropertyType::Nullable, "target"}
                 }},
                 {"target", {
                     {"value", PropertyType::Int}
                 }}
             };
-            REQUIRE_THROWS(schema.validate());
+            REQUIRE_THROWS_CONTAINING(schema.validate(), "Property 'object.array' of type 'array' cannot be nullable.");
+        }
+
+        SECTION("rejects nullable linking objects") {
+            Schema schema = {
+                {"object", {
+                    {"link", PropertyType::Object|PropertyType::Nullable, "object"},
+                }, {
+                    {"incoming", PropertyType::LinkingObjects|PropertyType::Array|PropertyType::Nullable, "object", "link"}
+                }}
+            };
+            REQUIRE_THROWS_CONTAINING(schema.validate(), "Property 'object.incoming' of type 'linking objects' cannot be nullable.");
         }
 
         SECTION("rejects duplicate primary keys") {
             Schema schema = {
                 {"object", {
-                    {"pk1", PropertyType::Int, "", "", true, false, false},
-                    {"pk2", PropertyType::Int, "", "", true, false, false},
+                    {"pk1", PropertyType::Int, Property::IsPrimary{true}},
+                    {"pk2", PropertyType::Int, Property::IsPrimary{true}},
                 }}
             };
-            REQUIRE_THROWS(schema.validate());
+            REQUIRE_THROWS_CONTAINING(schema.validate(), "Properties 'pk2' and 'pk1' are both marked as the primary key of 'object'.");
+        }
+
+        SECTION("rejects invalid primary key types") {
+            Schema schema = {
+                {"object", {
+                    {"pk", PropertyType::Float, Property::IsPrimary{true}},
+                }}
+            };
+
+            schema.begin()->primary_key_property()->type = PropertyType::Any;
+            REQUIRE_THROWS_CONTAINING(schema.validate(), "Property 'object.pk' of type 'any' cannot be made the primary key.");
+
+            schema.begin()->primary_key_property()->type = PropertyType::Bool;
+            REQUIRE_THROWS_CONTAINING(schema.validate(), "Property 'object.pk' of type 'bool' cannot be made the primary key.");
+
+            schema.begin()->primary_key_property()->type = PropertyType::Float;
+            REQUIRE_THROWS_CONTAINING(schema.validate(), "Property 'object.pk' of type 'float' cannot be made the primary key.");
+
+            schema.begin()->primary_key_property()->type = PropertyType::Double;
+            REQUIRE_THROWS_CONTAINING(schema.validate(), "Property 'object.pk' of type 'double' cannot be made the primary key.");
+
+            schema.begin()->primary_key_property()->type = PropertyType::Object;
+            REQUIRE_THROWS_CONTAINING(schema.validate(), "Property 'object.pk' of type 'object' cannot be made the primary key.");
+
+            schema.begin()->primary_key_property()->type = PropertyType::LinkingObjects;
+            REQUIRE_THROWS_CONTAINING(schema.validate(), "Property 'object.pk' of type 'linking objects' cannot be made the primary key.");
+
+            schema.begin()->primary_key_property()->type = PropertyType::Data;
+            REQUIRE_THROWS_CONTAINING(schema.validate(), "Property 'object.pk' of type 'data' cannot be made the primary key.");
+
+            schema.begin()->primary_key_property()->type = PropertyType::Date;
+            REQUIRE_THROWS_CONTAINING(schema.validate(), "Property 'object.pk' of type 'date' cannot be made the primary key.");
+        }
+
+        SECTION("allows valid primary key types") {
+            Schema schema = {
+                {"object", {
+                    {"pk", PropertyType::Int, Property::IsPrimary{true}},
+                }}
+            };
+
+            REQUIRE_NOTHROW(schema.validate());
+
+            schema.begin()->primary_key_property()->type = PropertyType::Int|PropertyType::Nullable;
+            REQUIRE_NOTHROW(schema.validate());
+            schema.begin()->primary_key_property()->type = PropertyType::String;
+            REQUIRE_NOTHROW(schema.validate());
+            schema.begin()->primary_key_property()->type = PropertyType::String|PropertyType::Nullable;
+            REQUIRE_NOTHROW(schema.validate());
+        }
+
+        SECTION("rejects nonexistent primary key") {
+            Schema schema = {
+                {"object", {
+                    {"value", PropertyType::Int},
+                }}
+            };
+            schema.begin()->primary_key = "nonexistent";
+            REQUIRE_THROWS_CONTAINING(schema.validate(), "Specified primary key 'object.nonexistent' does not exist.");
         }
 
         SECTION("rejects indexes for types that cannot be indexed") {
             Schema schema = {
                 {"object", {
-                    {"float", PropertyType::Float, "", "", false, false, false},
-                    {"double", PropertyType::Double, "", "", false, false, false},
-                    {"data", PropertyType::Data, "", "", false, false, false},
-                    {"object", PropertyType::Object, "object", "", false, false, true},
-                    {"array", PropertyType::Array, "object", "", false, false, false},
+                    {"float", PropertyType::Float},
+                    {"double", PropertyType::Double},
+                    {"data", PropertyType::Data},
+                    {"object", PropertyType::Object|PropertyType::Nullable, "object"},
+                    {"array", PropertyType::Array|PropertyType::Object, "object"},
                 }}
             };
             for (auto& prop : schema.begin()->persisted_properties) {
                 REQUIRE_NOTHROW(schema.validate());
                 prop.is_indexed = true;
-                REQUIRE_THROWS(schema.validate());
+                auto expected = util::format("Property 'object.%1' of type '%1' cannot be indexed.", prop.name);
+                REQUIRE_THROWS_CONTAINING(schema.validate(), expected);
                 prop.is_indexed = false;
             }
         }
@@ -286,10 +499,10 @@ TEST_CASE("Schema") {
         SECTION("allows indexing types that can be indexed") {
             Schema schema = {
                 {"object", {
-                    {"int", PropertyType::Int, "", "", false, true, false},
-                    {"bool", PropertyType::Bool, "", "", false, true, false},
-                    {"string", PropertyType::String, "", "", false, true, false},
-                    {"date", PropertyType::Date, "", "", false, true, false},
+                    {"int", PropertyType::Int, Property::IsPrimary{false}, Property::IsIndexed{true}},
+                    {"bool", PropertyType::Bool, Property::IsPrimary{false}, Property::IsIndexed{true}},
+                    {"string", PropertyType::String, Property::IsPrimary{false}, Property::IsIndexed{true}},
+                    {"date", PropertyType::Date, Property::IsPrimary{false}, Property::IsIndexed{true}},
                 }}
             };
             REQUIRE_NOTHROW(schema.validate());
@@ -302,30 +515,32 @@ TEST_CASE("Schema") {
         SECTION("add table") {
             Schema schema1 = {
                 {"object 1", {
-                    {"int", PropertyType::Int, "", "", false, false, false},
+                    {"int", PropertyType::Int},
                 }}
             };
             Schema schema2 = {
                 {"object 1", {
-                    {"int", PropertyType::Int, "", "", false, false, false},
+                    {"int", PropertyType::Int},
                 }},
                 {"object 2", {
-                    {"int", PropertyType::Int, "", "", false, false, false},
+                    {"int", PropertyType::Int},
                 }}
             };
-            REQUIRE(schema1.compare(schema2) == vec{AddTable{&*schema2.find("object 2")}});
+            auto obj = &*schema2.find("object 2");
+            auto expected = vec{AddTable{obj}, AddInitialProperties{obj}};
+            REQUIRE(schema1.compare(schema2) == expected);
         }
 
         SECTION("add property") {
             Schema schema1 = {
                 {"object", {
-                    {"int 1", PropertyType::Int, "", "", false, false, false},
+                    {"int 1", PropertyType::Int},
                 }}
             };
             Schema schema2 = {
                 {"object", {
-                    {"int 1", PropertyType::Int, "", "", false, false, false},
-                    {"int 2", PropertyType::Int, "", "", false, false, false},
+                    {"int 1", PropertyType::Int},
+                    {"int 2", PropertyType::Int},
                 }}
             };
             REQUIRE(schema1.compare(schema2) == vec{(AddProperty{&*schema1.find("object"), &schema2.find("object")->persisted_properties[1]})});
@@ -334,13 +549,13 @@ TEST_CASE("Schema") {
         SECTION("remove property") {
             Schema schema1 = {
                 {"object", {
-                    {"int 1", PropertyType::Int, "", "", false, false, false},
-                    {"int 2", PropertyType::Int, "", "", false, false, false},
+                    {"int 1", PropertyType::Int},
+                    {"int 2", PropertyType::Int},
                 }}
             };
             Schema schema2 = {
                 {"object", {
-                    {"int 1", PropertyType::Int, "", "", false, false, false},
+                    {"int 1", PropertyType::Int},
                 }}
             };
             REQUIRE(schema1.compare(schema2) == vec{(RemoveProperty{&*schema1.find("object"), &schema1.find("object")->persisted_properties[1]})});
@@ -349,12 +564,12 @@ TEST_CASE("Schema") {
         SECTION("change property type") {
             Schema schema1 = {
                 {"object", {
-                    {"value", PropertyType::Int, "", "", false, false, false},
+                    {"value", PropertyType::Int},
                 }}
             };
             Schema schema2 = {
                 {"object", {
-                    {"value", PropertyType::Double, "", "", false, false, false},
+                    {"value", PropertyType::Double},
                 }}
             };
             REQUIRE(schema1.compare(schema2) == vec{(ChangePropertyType{
@@ -366,24 +581,24 @@ TEST_CASE("Schema") {
         SECTION("change link target") {
             Schema schema1 = {
                 {"object", {
-                    {"value", PropertyType::Object, "target 1", "", false, false, false},
+                    {"value", PropertyType::Object, "target 1"},
                 }},
                 {"target 1", {
-                    {"value", PropertyType::Int, "", "", false, false, false},
+                    {"value", PropertyType::Int},
                 }},
                 {"target 2", {
-                    {"value", PropertyType::Int, "", "", false, false, false},
+                    {"value", PropertyType::Int},
                 }},
             };
             Schema schema2 = {
                 {"object", {
-                    {"value", PropertyType::Object, "target 2", "", false, false, false},
+                    {"value", PropertyType::Object, "target 2"},
                 }},
                 {"target 1", {
-                    {"value", PropertyType::Int, "", "", false, false, false},
+                    {"value", PropertyType::Int},
                 }},
                 {"target 2", {
-                    {"value", PropertyType::Int, "", "", false, false, false},
+                    {"value", PropertyType::Int},
                 }},
             };
             REQUIRE(schema1.compare(schema2) == vec{(ChangePropertyType{
@@ -395,12 +610,12 @@ TEST_CASE("Schema") {
         SECTION("add index") {
             Schema schema1 = {
                 {"object", {
-                    {"int", PropertyType::Int, "", "", false, false, false},
+                    {"int", PropertyType::Int},
                 }}
             };
             Schema schema2 = {
                 {"object", {
-                    {"int", PropertyType::Int, "", "", false, true, false},
+                    {"int", PropertyType::Int, Property::IsPrimary{false}, Property::IsIndexed{true}},
                 }}
             };
             auto object_schema = &*schema1.find("object");
@@ -410,12 +625,12 @@ TEST_CASE("Schema") {
         SECTION("remove index") {
             Schema schema1 = {
                 {"object", {
-                    {"int", PropertyType::Int, "", "", false, true, false},
+                    {"int", PropertyType::Int, Property::IsPrimary{false}, Property::IsIndexed{true}},
                 }}
             };
             Schema schema2 = {
                 {"object", {
-                    {"int", PropertyType::Int, "", "", false, false, false},
+                    {"int", PropertyType::Int},
                 }}
             };
             auto object_schema = &*schema1.find("object");
@@ -425,12 +640,12 @@ TEST_CASE("Schema") {
         SECTION("add index and make nullable") {
             Schema schema1 = {
                 {"object", {
-                    {"int", PropertyType::Int, "", "", false, false, false},
+                    {"int", PropertyType::Int},
                 }}
             };
             Schema schema2 = {
                 {"object", {
-                    {"int", PropertyType::Int, "", "", false, true, true},
+                    {"int", PropertyType::Int|PropertyType::Nullable, Property::IsPrimary{false}, Property::IsIndexed{true}},
                 }}
             };
             auto object_schema = &*schema1.find("object");
@@ -442,12 +657,12 @@ TEST_CASE("Schema") {
         SECTION("add index and change type") {
             Schema schema1 = {
                 {"object", {
-                    {"value", PropertyType::Int, "", "", false, false, false},
+                    {"value", PropertyType::Int},
                 }}
             };
             Schema schema2 = {
                 {"object", {
-                    {"value", PropertyType::Double, "", "", false, true, false},
+                    {"value", PropertyType::Double, Property::IsPrimary{false}, Property::IsIndexed{true}},
                 }}
             };
             REQUIRE(schema1.compare(schema2) == vec{(ChangePropertyType{
@@ -459,12 +674,12 @@ TEST_CASE("Schema") {
         SECTION("make nullable and change type") {
             Schema schema1 = {
                 {"object", {
-                    {"value", PropertyType::Int, "", "", false, false, false},
+                    {"value", PropertyType::Int},
                 }}
             };
             Schema schema2 = {
                 {"object", {
-                    {"value", PropertyType::Double, "", "", false, false, true},
+                    {"value", PropertyType::Double|PropertyType::Nullable},
                 }}
             };
             REQUIRE(schema1.compare(schema2) == vec{(ChangePropertyType{

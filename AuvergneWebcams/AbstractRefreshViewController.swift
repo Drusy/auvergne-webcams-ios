@@ -14,7 +14,7 @@ class AbstractRefreshViewController: AbstractRealmViewController {
 
     var refreshTimer: Timer?
     var lastUpdate: TimeInterval?
-    var lastReachabilityStatus: Reachability.NetworkStatus =  Reachability.NetworkStatus.notReachable
+    var lastReachabilityStatus: Reachability.Connection = .none
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +25,7 @@ class AbstractRefreshViewController: AbstractRealmViewController {
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reachabilityChanged),
-                                               name: ReachabilityChangedNotification,
+                                               name: Notification.Name.reachabilityChanged,
                                                object: reachability)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(startRefreshing),
@@ -46,7 +46,7 @@ class AbstractRefreshViewController: AbstractRealmViewController {
         
         
         if let reachability = reachability {
-            lastReachabilityStatus = reachability.currentReachabilityStatus
+            lastReachabilityStatus = reachability.connection
             try? reachability.startNotifier()
         }
         
@@ -62,7 +62,7 @@ class AbstractRefreshViewController: AbstractRealmViewController {
         reachability?.stopNotifier()
         
         NotificationCenter.default.removeObserver(self,
-                                                  name: ReachabilityChangedNotification,
+                                                  name: Notification.Name.reachabilityChanged,
                                                   object: reachability)
         NotificationCenter.default.removeObserver(self,
                                                   name: NSNotification.Name.UIApplicationDidBecomeActive,
@@ -80,13 +80,13 @@ class AbstractRefreshViewController: AbstractRealmViewController {
     
     // MARK: - 
     
-    func reachabilityChanged(notification: NSNotification) {
+    @objc func reachabilityChanged(notification: NSNotification) {
         guard let reachability = notification.object as? Reachability else { return }
 
-        if lastReachabilityStatus == .notReachable && reachability.isReachable {
+        if lastReachabilityStatus == .none && reachability.connection != .none {
             refresh()
         }
-        lastReachabilityStatus = reachability.currentReachabilityStatus
+        lastReachabilityStatus = reachability.connection
     }
     
     @objc private func refreshIfNeeded() {
