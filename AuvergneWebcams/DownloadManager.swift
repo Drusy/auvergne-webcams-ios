@@ -75,7 +75,7 @@ extension DownloadManager: ImageDownloaderDelegate {
             // Managing Viewsurf content type
             if webcam == nil {
                 var viewsurfURLAbsoluteString = url.deletingLastPathComponent().absoluteString
-                viewsurfURLAbsoluteString = viewsurfURLAbsoluteString.substring(to: viewsurfURLAbsoluteString.index(before: viewsurfURLAbsoluteString.endIndex))
+                viewsurfURLAbsoluteString.removeLast()
                 webcam = self?.realm.objects(Webcam.self).filter("%K == %@ OR %K == %@",
                                                                  #keyPath(Webcam.viewsurfHD), viewsurfURLAbsoluteString,
                                                                  #keyPath(Webcam.viewsurfLD), viewsurfURLAbsoluteString).first
