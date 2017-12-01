@@ -1,0 +1,35 @@
+name: Alamofire, nameSpecified: , owner: Alamofire, version: 4.5.1
+
+name: AlamofireNetworkActivityIndicator, nameSpecified: , owner: Alamofire, version: 2.2.0
+
+name: Siren, nameSpecified: , owner: ArtSabintsev, version: 3.1.5
+
+name: ObjectMapper, nameSpecified: , owner: Hearst-DD, version: 2.2.3
+
+name: SwiftiumKit, nameSpecified: , owner: Openium, version: v1.4.0
+
+name: SVProgressHUD, nameSpecified: , owner: SVProgressHUD, version: 2.2.2
+
+name: Reachability.swift, nameSpecified: , owner: ashleymills, version: v4.1.0
+
+name: NVActivityIndicatorView, nameSpecified: , owner: ninjaprox, version: 4.0.0
+
+name: DOFavoriteButton, nameSpecified: , owner: okmr-d, version: 43c6525
+
+name: Kingfisher, nameSpecified: , owner: onevcat, version: 4.2.0
+
+name: ActiveLabel.swift, nameSpecified: , owner: optonaut, version: 0.8.0
+
+name: SwiftyUserDefaults, nameSpecified: , owner: radex, version: 3.0.1
+
+name: realm-cocoa, nameSpecified: , owner: realm, version: v3.0.1
+
+name: Firebase, nameSpecified: , owner: soheilbm, version: 4.5.0
+
+name: AlamofireObjectMapper, nameSpecified: , owner: tristanhimmelman, version: 4.1.0
+
+name: Eureka, nameSpecified: , owner: xmartlabs, version: 4.0.1
+
+add-version-numbers: false
+
+LicensePlist Version: 1.7.0

@@ -260,6 +260,9 @@
 		F98CE3541FB8B75400116FCF /* FirebaseNanoPB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F90551EC1FB136C7007BE4CD /* FirebaseNanoPB.framework */; };
 		F98CE3551FB8B75400116FCF /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ACD1E41E5C9B83004E5BFF /* FirebaseAnalytics.framework */; };
 		F98CE3561FB8B75400116FCF /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ACD1E51E5C9B83004E5BFF /* FirebaseInstanceID.framework */; };
+		F990992B1FD183F10001754D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F990992A1FD183F10001754D /* Settings.bundle */; };
+		F990992C1FD183F10001754D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F990992A1FD183F10001754D /* Settings.bundle */; };
+		F990992D1FD183F10001754D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F990992A1FD183F10001754D /* Settings.bundle */; };
 		F996553A1E8510C8009BD9E6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F99655391E8510C8009BD9E6 /* GoogleService-Info.plist */; };
 		F999841C1E62D631007D95AC /* WebcamSectionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F999841B1E62D631007D95AC /* WebcamSectionResponse.swift */; };
 		F999841F1E62D75C007D95AC /* WebcamSectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F999841E1E62D75C007D95AC /* WebcamSectionTests.swift */; };
@@ -672,6 +675,7 @@
 		F963AB751E5A695300ED5A8B /* WebcamSectionedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebcamSectionedView.xib; sourceTree = "<group>"; };
 		F963AB771E5A696500ED5A8B /* AbstractWebcamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractWebcamView.swift; sourceTree = "<group>"; };
 		F963AB7A1E5A6E8300ED5A8B /* DateFormatterCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatterCache.swift; sourceTree = "<group>"; };
+		F990992A1FD183F10001754D /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		F99655391E8510C8009BD9E6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F999841B1E62D631007D95AC /* WebcamSectionResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebcamSectionResponse.swift; sourceTree = "<group>"; };
 		F999841E1E62D75C007D95AC /* WebcamSectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebcamSectionTests.swift; sourceTree = "<group>"; };
@@ -995,6 +999,7 @@
 		F93C762E1DD115B0005DEE66 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F990992A1FD183F10001754D /* Settings.bundle */,
 				F9E858351E5DA85F00F7C40D /* AuvergneWebcams.entitlements */,
 				F93C762F1DD115EB005DEE66 /* Debug.xcconfig */,
 				F93C76301DD115EB005DEE66 /* Release.xcconfig */,
@@ -1582,6 +1587,7 @@
 				F93C76051DD11577005DEE66 /* Sources */,
 				F93C76061DD11577005DEE66 /* Frameworks */,
 				F93C76071DD11577005DEE66 /* Resources */,
+				F990992E1FD185C70001754D /* Settings Bundle Version */,
 				F93C76491DD11AF1005DEE66 /* Embed Frameworks */,
 				F93C764A1DD11AF5005DEE66 /* Carthage */,
 				F911BBEC1DDC6074000C022B /* Crashlytics */,
@@ -1755,6 +1761,7 @@
 				F9F5AC921DD344CC00D9FF83 /* Open Sans Condensed 300.ttf in Resources */,
 				F9F5AC901DD344CC00D9FF83 /* Open Sans 800.ttf in Resources */,
 				F9F5AC8B1DD344CC00D9FF83 /* Open Sans 300italic.ttf in Resources */,
+				F990992B1FD183F10001754D /* Settings.bundle in Resources */,
 				F963AB581E5A172500ED5A8B /* ProximaNova-RegularItalic.otf in Resources */,
 				F9ACD1E11E5C951C004E5BFF /* GoogleService-Info.plist in Resources */,
 				F99F37611E71C0810058AFB3 /* aw-config-dev.json in Resources */,
@@ -1838,6 +1845,7 @@
 				F94432E41E8A4C45006D7308 /* Open Sans 800italic.ttf in Resources */,
 				F94432E71E8A4C45006D7308 /* Open Sans 700italic.ttf in Resources */,
 				F94432E81E8A4C45006D7308 /* Open Sans Condensed 700.ttf in Resources */,
+				F990992D1FD183F10001754D /* Settings.bundle in Resources */,
 				F94432E91E8A4C45006D7308 /* Open Sans italic.ttf in Resources */,
 				F944331C1E8A7710006D7308 /* LaunchScreen.storyboard in Resources */,
 				F94432EA1E8A4C45006D7308 /* ProximaNova-Bold.otf in Resources */,
@@ -1892,6 +1900,7 @@
 				F92800B51E8435860056E5CE /* pw-config-dev.json in Resources */,
 				F9D6109B1E82EDBF00BFC18D /* Open Sans 700italic.ttf in Resources */,
 				F9D6109C1E82EDBF00BFC18D /* Open Sans Condensed 700.ttf in Resources */,
+				F990992C1FD183F10001754D /* Settings.bundle in Resources */,
 				F944331E1E8A7714006D7308 /* LaunchScreen.storyboard in Resources */,
 				F9D6109D1E82EDBF00BFC18D /* Open Sans italic.ttf in Resources */,
 				F9D6109F1E82EDBF00BFC18D /* ProximaNova-Bold.otf in Resources */,
@@ -2028,6 +2037,20 @@
 			shellPath = /bin/sh;
 			shellScript = "${PROJECT_DIR}/scripts/todo.sh";
 			showEnvVarsInLog = 0;
+		};
+		F990992E1FD185C70001754D /* Settings Bundle Version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Settings Bundle Version";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "version=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"$PROJECT_DIR/$INFOPLIST_FILE\")\nbuild=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$PROJECT_DIR/$INFOPLIST_FILE\")\n/usr/libexec/PlistBuddy -c \"Set PreferenceSpecifiers:2:DefaultValue $version ($build)\" \"$CODESIGNING_FOLDER_PATH/Settings.bundle/Root.plist\"";
 		};
 		F9D6102A1E82EDBF00BFC18D /* Warning TODO / FIXME / WARNING */ = {
 			isa = PBXShellScriptBuildPhase;
