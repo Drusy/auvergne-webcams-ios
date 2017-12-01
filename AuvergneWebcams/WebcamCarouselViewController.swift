@@ -9,6 +9,8 @@
 import UIKit
 import Kingfisher
 import RealmSwift
+import StoreKit
+import SwiftyUserDefaults
 
 protocol WebcamCarouselViewProviderDelegate: class {
     func webcamCarousel(viewProvider: WebcamCarouselViewProvider, scrollViewDidScroll scrollView: UIScrollView)
@@ -84,6 +86,15 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
             isFirstAppear = false
             
             startShowAnimation()
+        }
+        
+        if Defaults[.cameraDetailCount] >= 4 && Defaults[.appOpenCount] >= 2 {
+            if #available(iOS 10.3, *){
+                Defaults[.cameraDetailCount] = 0
+                Defaults[.appOpenCount] = 0
+                
+                SKStoreReviewController.requestReview()
+            }
         }
     }
     

@@ -8,6 +8,7 @@
 
 import UIKit
 import Crashlytics
+import SwiftyUserDefaults
 
 protocol LoadingViewControllerDelegate: class {
     func didFinishLoading(_: AbstractLoadingViewController)
@@ -27,6 +28,7 @@ class AbstractLoadingViewController: AbstractRealmViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        Defaults[.appOpenCount] += 1
         showClouds()
         
         #if DEBUG && true

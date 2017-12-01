@@ -122,6 +122,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         updateLastUpdateLabel()
         refresh()
         
+        Defaults[.cameraDetailCount] += 1
         AnalyticsManager.logEvent(showWebcam: webcam)
         QuickActionsService.shared.quickActionEdit(webcam: webcam, value: .add)
     }

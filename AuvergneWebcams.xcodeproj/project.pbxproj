@@ -1065,18 +1065,18 @@
 		F94350241E8AC55100D3736D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F94350251E8AC55600D3736D /* Login */,
+				F94350251E8AC55600D3736D /* Loading */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
 		};
-		F94350251E8AC55600D3736D /* Login */ = {
+		F94350251E8AC55600D3736D /* Loading */ = {
 			isa = PBXGroup;
 			children = (
 				F94350261E8AC55D00D3736D /* LoadingViewController.swift */,
 				F94350271E8AC55D00D3736D /* LoadingViewController.xib */,
 			);
-			name = Login;
+			name = Loading;
 			sourceTree = "<group>";
 		};
 		F94433081E8A4CC4006D7308 /* NorthernLightsWebcams */ = {
@@ -1629,6 +1629,7 @@
 				F94432741E8A4C45006D7308 /* Sources */,
 				F94432AC1E8A4C45006D7308 /* Frameworks */,
 				F94432C71E8A4C45006D7308 /* Resources */,
+				F99099301FD193960001754D /* Settings Bundle Version */,
 				F94432EF1E8A4C45006D7308 /* Embed Frameworks */,
 				F94433011E8A4C45006D7308 /* Carthage */,
 				F94433021E8A4C45006D7308 /* Crashlytics */,
@@ -1667,6 +1668,7 @@
 				F9D6102B1E82EDBF00BFC18D /* Sources */,
 				F9D610611E82EDBF00BFC18D /* Frameworks */,
 				F9D6107C1E82EDBF00BFC18D /* Resources */,
+				F990992F1FD193880001754D /* Settings Bundle Version */,
 				F9D610A41E82EDBF00BFC18D /* Embed Frameworks */,
 				F9D610B61E82EDBF00BFC18D /* Carthage */,
 				F9D610B71E82EDBF00BFC18D /* Crashlytics */,
@@ -2039,6 +2041,34 @@
 			showEnvVarsInLog = 0;
 		};
 		F990992E1FD185C70001754D /* Settings Bundle Version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Settings Bundle Version";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "version=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"$PROJECT_DIR/$INFOPLIST_FILE\")\nbuild=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$PROJECT_DIR/$INFOPLIST_FILE\")\n/usr/libexec/PlistBuddy -c \"Set PreferenceSpecifiers:2:DefaultValue $version ($build)\" \"$CODESIGNING_FOLDER_PATH/Settings.bundle/Root.plist\"";
+		};
+		F990992F1FD193880001754D /* Settings Bundle Version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Settings Bundle Version";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "version=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"$PROJECT_DIR/$INFOPLIST_FILE\")\nbuild=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$PROJECT_DIR/$INFOPLIST_FILE\")\n/usr/libexec/PlistBuddy -c \"Set PreferenceSpecifiers:2:DefaultValue $version ($build)\" \"$CODESIGNING_FOLDER_PATH/Settings.bundle/Root.plist\"";
+		};
+		F99099301FD193960001754D /* Settings Bundle Version */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (

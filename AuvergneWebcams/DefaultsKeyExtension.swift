@@ -14,4 +14,6 @@ extension DefaultsKeys {
     static let prefersHighQuality = DefaultsKey<Bool>("quality")
     static let autorefreshInterval = DefaultsKey<Double>("autorefreshInterval")
     static let currentVersion = DefaultsKey<String>("currentVersion")
+    static let cameraDetailCount = DefaultsKey<Int>("cameraDetailCount")
+    static let appOpenCount = DefaultsKey<Int>("appOpenCount")
 }
