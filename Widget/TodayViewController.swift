@@ -11,15 +11,20 @@ import NotificationCenter
 import Kingfisher
 import RealmSwift
 import Alamofire
+import SwiftyUserDefaults
+import NVActivityIndicatorView
 
 class TodayViewController: UIViewController, NCWidgetProviding {
     
-    @IBOutlet var imageView: UIImageView!
-    @IBOutlet var webcamTitleLabel: UILabel!
-    @IBOutlet var noFavoriteLabel: UILabel!
-    @IBOutlet var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet var contentView: UIView!
-    @IBOutlet var errorButton: UIButton! {
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var webcamTitleLabel: UILabel!
+    @IBOutlet weak var noFavoriteLabel: UILabel!
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var previousButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var nvActivityIndicatorView: NVActivityIndicatorView!
+    @IBOutlet var shadowViews: [UIView]!
+    @IBOutlet weak var errorButton: UIButton! {
         didSet {
             errorButton.titleLabel?.numberOfLines = 0
         }
@@ -46,7 +51,27 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
         // Size
         extensionContext?.widgetLargestAvailableDisplayMode = .expanded
+        
+        // Initial state
+        errorButton.alpha = 0
+        contentView.alpha = 0
+        noFavoriteLabel.alpha = 0
+        nvActivityIndicatorView.alpha = 0
+        
+        // Shadow
+        shadowViews.forEach { view in
+            view.layer.shadowColor = UIColor.black.cgColor
+            view.layer.shadowOffset = CGSize(width: 1, height: 1)
+            view.layer.shadowOpacity = 0.5
+            view.layer.shadowRadius = 4
+        }
+        
+        // Loader
+        nvActivityIndicatorView.color = UIColor.white
+        nvActivityIndicatorView.type = .ballGridPulse
     }
+    
+    // MARK: -
     
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
         switch activeDisplayMode {
@@ -58,76 +83,135 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
+        self.completionHandler = completionHandler
         guard let realm = realm else {
             onError()
-            
             return
         }
         
-        self.completionHandler = completionHandler
-        let favoriteWebcams = Array(realm.objects(Webcam.self).filter("%K == true", #keyPath(Webcam.favorite)))
-        
-        if !favoriteWebcams.isEmpty {
-            let favorite = favoriteWebcams[Int(arc4random_uniform(UInt32(favoriteWebcams.count)))]
-
-            startLoading()
-            
-            webcamTitleLabel.text = favorite.title
-            
-            switch favorite.contentType {
-            case .image:
-                if let image = favorite.preferredImage(), let url = URL(string: image) {
-                    loadImage(for: url)
+        if let favoriteWebcams = favoriteWebcams() {
+            if !favoriteWebcams.isEmpty {
+                if let currentWebcamUid = Defaults[.currentWidgetWebcamUid], let webcam = realm.object(ofType: Webcam.self, forPrimaryKey: currentWebcamUid) {
+                    if favoriteWebcams.contains(webcam) {
+                        onShow(webcam)
+                    } else {
+                        onShow(favoriteWebcams.first)
+                    }
                 } else {
-                    onError()
+                    onShow(favoriteWebcams.first)
                 }
-                
-            case .viewsurf:
-                loadViewsurfPreview(for: favorite)
+            } else {
+                onNoFavorite()
             }
         } else {
-            onNoFavorite()
+            onError()
         }
     }
     
     // MARK: -
     
+    fileprivate func favoriteWebcams() -> [Webcam]? {
+        guard let realm = realm else { return nil }
+        
+        return Array(realm.objects(Webcam.self).filter("%K == true", #keyPath(Webcam.favorite)))
+    }
+    
+    fileprivate func onShow(_ webcam: Webcam?) {
+        guard let webcam = webcam else {
+            onError()
+            return
+        }
+        
+        startLoading()
+        webcamTitleLabel.text = webcam.title
+        Defaults[.currentWidgetWebcamUid] = webcam.uid
+        
+        switch webcam.contentType {
+        case .image:
+            if let image = webcam.preferredImage(), let url = URL(string: image) {
+                loadImage(for: url)
+            } else {
+                onError()
+            }
+            
+        case .viewsurf:
+            loadViewsurfPreview(for: webcam)
+        }
+    }
+    
     fileprivate func onNoFavorite() {
-        noFavoriteLabel.isHidden = false
-        
-        activityIndicator.isHidden = true
-        contentView.isHidden = true
-        errorButton.isHidden = true
-        
-        completionHandler?(NCUpdateResult.noData)
+        UIView.animate(
+            withDuration: 0.3,
+            animations: { [weak self] in
+                self?.noFavoriteLabel.alpha = 1
+                self?.contentView.alpha = 0
+                self?.errorButton.alpha = 0
+                self?.nvActivityIndicatorView.alpha = 0
+        },
+            completion: { [weak self] _ in
+                self?.nvActivityIndicatorView.stopAnimating()
+                self?.completionHandler?(NCUpdateResult.noData)
+        })
     }
     
     fileprivate func startLoading() {
-        activityIndicator.isHidden = false
+        if !nvActivityIndicatorView.isAnimating {
+            nvActivityIndicatorView.startAnimating()
+        }
         
-        contentView.isHidden = true
-        noFavoriteLabel.isHidden = true
-        errorButton.isHidden = true
+        UIView.animate(
+            withDuration: 0.3,
+            animations: { [weak self] in
+                self?.nvActivityIndicatorView.alpha = 1
+                self?.contentView.alpha = 0
+                self?.noFavoriteLabel.alpha = 0
+                self?.errorButton.alpha = 0
+            },
+            completion: nil)
     }
     
     fileprivate func onError() {
-        errorButton.isHidden = false
-        
-        activityIndicator.isHidden = true
-        contentView.isHidden = true
-        noFavoriteLabel.isHidden = true
-        
-        completionHandler?(NCUpdateResult.failed)
+        UIView.animate(
+            withDuration: 0.3,
+            animations: { [weak self] in
+                self?.errorButton.alpha = 1
+                self?.contentView.alpha = 0
+                self?.noFavoriteLabel.alpha = 0
+                self?.nvActivityIndicatorView.alpha = 0
+            },
+            completion: { [weak self] _ in
+                self?.nvActivityIndicatorView.stopAnimating()
+                self?.completionHandler?(NCUpdateResult.failed)
+        })
     }
     
     fileprivate func onSuccess() {
-        contentView.isHidden = false
-
-        errorButton.isHidden = true
-        activityIndicator.isHidden = true
-        noFavoriteLabel.isHidden = true
+        previousButton.isHidden = true
+        nextButton.isHidden = true
         
-        completionHandler?(NCUpdateResult.newData)
+        if let uid = Defaults[.currentWidgetWebcamUid], let favorites = favoriteWebcams() {
+            if let index = favorites.index(where: { $0.uid == uid }) {
+                if index > 0 {
+                    previousButton.isHidden = false
+                }
+                if index < favorites.count - 1 {
+                    nextButton.isHidden = false
+                }
+            }
+        }
+        
+        UIView.animate(
+            withDuration: 0.3,
+            animations: { [weak self] in
+                self?.contentView.alpha = 1
+                self?.errorButton.alpha = 0
+                self?.noFavoriteLabel.alpha = 0
+                self?.nvActivityIndicatorView.alpha = 0
+            },
+            completion: { [weak self] _ in
+                self?.nvActivityIndicatorView.stopAnimating()
+                self?.completionHandler?(NCUpdateResult.newData)
+        })
     }
     
     fileprivate func loadViewsurfPreview(for webcam: Webcam) {
@@ -179,6 +263,24 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     // MARK: - Actions
+    
+    @IBAction func onPreviousTouched(_ sender: Any) {
+        guard let uid = Defaults[.currentWidgetWebcamUid] else { return }
+        guard let favorites = favoriteWebcams() else { return }
+        guard let index = favorites.index(where: { $0.uid == uid }) else { return }
+        guard index > 0 else { return }
+        
+        onShow(favorites[index - 1])
+    }
+    
+    @IBAction func onNextTouched(_ sender: Any) {
+        guard let uid = Defaults[.currentWidgetWebcamUid] else { return }
+        guard let favorites = favoriteWebcams() else { return }
+        guard let index = favorites.index(where: { $0.uid == uid }) else { return }
+        guard index < favorites.count - 1 else { return }
+        
+        onShow(favorites[index + 1])
+    }
     
     @IBAction func onErrorTouched(_ sender: Any) {
         guard let completionHandler = completionHandler else { return }

@@ -40,6 +40,8 @@ class AboutViewController: AbstractViewController {
                     url = URL(string : "http://www.flaticon.com/authors/popcorns-arts")
                 } else if mention.contains("MathildeVigneau") {
                     url = URL(string : "https://www.matvino.com")
+                }else if mention.contains("TuSaisQueTuEsDeClermontFerrandQuand") {
+                    url = URL(string : "https://www.facebook.com/tusaisquetuesdeclermontferrandquand/")
                 }
                 
                 if let url = url {

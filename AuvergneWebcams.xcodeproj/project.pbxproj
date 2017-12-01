@@ -263,6 +263,9 @@
 		F990992B1FD183F10001754D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F990992A1FD183F10001754D /* Settings.bundle */; };
 		F990992C1FD183F10001754D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F990992A1FD183F10001754D /* Settings.bundle */; };
 		F990992D1FD183F10001754D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F990992A1FD183F10001754D /* Settings.bundle */; };
+		F99099321FD1A9990001754D /* assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F99099311FD1A9990001754D /* assets.xcassets */; };
+		F990993C1FD1ADAD0001754D /* WidgetDefaultsKeyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F990993B1FD1ADAD0001754D /* WidgetDefaultsKeyExtension.swift */; };
+		F990993D1FD1B3480001754D /* NVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B1E5FB1E65652A00829FE8 /* NVActivityIndicatorView.framework */; };
 		F996553A1E8510C8009BD9E6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F99655391E8510C8009BD9E6 /* GoogleService-Info.plist */; };
 		F999841C1E62D631007D95AC /* WebcamSectionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F999841B1E62D631007D95AC /* WebcamSectionResponse.swift */; };
 		F999841F1E62D75C007D95AC /* WebcamSectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F999841E1E62D75C007D95AC /* WebcamSectionTests.swift */; };
@@ -676,6 +679,8 @@
 		F963AB771E5A696500ED5A8B /* AbstractWebcamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractWebcamView.swift; sourceTree = "<group>"; };
 		F963AB7A1E5A6E8300ED5A8B /* DateFormatterCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatterCache.swift; sourceTree = "<group>"; };
 		F990992A1FD183F10001754D /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		F99099311FD1A9990001754D /* assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = assets.xcassets; sourceTree = "<group>"; };
+		F990993B1FD1ADAD0001754D /* WidgetDefaultsKeyExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidgetDefaultsKeyExtension.swift; sourceTree = "<group>"; };
 		F99655391E8510C8009BD9E6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F999841B1E62D631007D95AC /* WebcamSectionResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebcamSectionResponse.swift; sourceTree = "<group>"; };
 		F999841E1E62D75C007D95AC /* WebcamSectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebcamSectionTests.swift; sourceTree = "<group>"; };
@@ -832,6 +837,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F95DEB881EE1BDF100101CC4 /* Realm.framework in Frameworks */,
+				F990993D1FD1B3480001754D /* NVActivityIndicatorView.framework in Frameworks */,
 				F95DEB871EE1BCEB00101CC4 /* Kingfisher.framework in Frameworks */,
 				F95DEB891EE1BDF400101CC4 /* RealmSwift.framework in Frameworks */,
 				F95DEB911EE1C12600101CC4 /* SwiftyUserDefaults.framework in Frameworks */,
@@ -1172,10 +1178,8 @@
 		F95DEB791EE1BB6400101CC4 /* Widget */ = {
 			isa = PBXGroup;
 			children = (
-				F95DEB921EE1C8A400101CC4 /* Widget.entitlements */,
-				F95DEB7A1EE1BB6400101CC4 /* TodayViewController.swift */,
-				F95DEB7C1EE1BB6400101CC4 /* MainInterface.storyboard */,
-				F95DEB7F1EE1BB6400101CC4 /* Info.plist */,
+				F99099361FD1ACDA0001754D /* Classes */,
+				F99099381FD1ACE90001754D /* Resources */,
 			);
 			path = Widget;
 			sourceTree = "<group>";
@@ -1247,6 +1251,26 @@
 				F92800AF1E84343B0056E5CE /* Configuration.swift */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		F99099361FD1ACDA0001754D /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F990993B1FD1ADAD0001754D /* WidgetDefaultsKeyExtension.swift */,
+				F95DEB7A1EE1BB6400101CC4 /* TodayViewController.swift */,
+				F95DEB7C1EE1BB6400101CC4 /* MainInterface.storyboard */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		F99099381FD1ACE90001754D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F99099311FD1A9990001754D /* assets.xcassets */,
+				F95DEB7F1EE1BB6400101CC4 /* Info.plist */,
+				F95DEB921EE1C8A400101CC4 /* Widget.entitlements */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		F99984171E60C76B007D95AC /* json */ = {
@@ -1862,6 +1886,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F99099321FD1A9990001754D /* assets.xcassets in Resources */,
 				F95DEB7E1EE1BB6400101CC4 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2294,6 +2319,7 @@
 				F95DEB8D1EE1C0CE00101CC4 /* Queryable.swift in Sources */,
 				F95DEB8F1EE1C0EA00101CC4 /* RequestExtension.swift in Sources */,
 				F95DEB901EE1C11100101CC4 /* DefaultsKeyExtension.swift in Sources */,
+				F990993C1FD1ADAD0001754D /* WidgetDefaultsKeyExtension.swift in Sources */,
 				F95DEB8A1EE1BF8100101CC4 /* Webcam.swift in Sources */,
 				F95DEB8E1EE1C0D600101CC4 /* WebcamTag.swift in Sources */,
 				F95DEB7B1EE1BB6400101CC4 /* TodayViewController.swift in Sources */,
@@ -2555,7 +2581,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = fr.openium.AuvergneWebcamsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AuvergneWebcams.app/AuvergneWebcams";
 			};
@@ -2583,7 +2608,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = fr.openium.AuvergneWebcamsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AuvergneWebcams.app/AuvergneWebcams";
 			};
@@ -2648,7 +2672,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = fr.openium.AuvergneWebcams.Widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -2669,7 +2692,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = fr.openium.AuvergneWebcams.Widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -32,7 +33,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="991"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pz9-og-f5t">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="961.66666666666663"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="921.66666666666663"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pdd-landscape" translatesAutoresizingMaskIntoConstraints="NO" id="ajF-hu-P0q">
                                     <rect key="frame" x="132" y="24" width="150" height="150"/>
@@ -42,7 +43,7 @@
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Vq-kb-CUG" customClass="ActiveLabel" customModule="ActiveLabel">
-                                    <rect key="frame" x="31.666666666666657" y="250.66666666666663" width="351.66666666666663" height="613"/>
+                                    <rect key="frame" x="31.666666666666657" y="246.66666666666663" width="351.66666666666674" height="577"/>
                                     <mutableString key="text">Auvergne Webcams vous permet d'observer vos volcans favoris à tout moment via votre smartphone.
 
 Ni Auvergne Webcams ni Openium ne sont propriétaires des images et flux vidéos présentés. Pour plus d'information, rendez-vous sur https://github.com/Drusy/auvergne-webcams-ios
@@ -64,19 +65,23 @@ http://www.puy-de-dome.fr/routes/webcam.html
 
 Produit en 🇫🇷 par @Drusy chez @Openium
 Design par @MathildeVigneau chez @LesPirates ☠️
-Icônes par @FlatIcons, @Freepik et @PopcornsArts</mutableString>
+
+❤️ En partinariat avec le groupe Facebook @TuSaisQueTuEsDeClermontFerrandQuand
+
+Icônes par @FlatIcons, @Freepik et @PopcornsArts
+</mutableString>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auvergne Webcams" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nZ-ya-nux">
-                                    <rect key="frame" x="8" y="198" width="398" height="28.666666666666657"/>
+                                    <rect key="frame" x="8" y="198" width="398" height="24.666666666666657"/>
                                     <fontDescription key="fontDescription" name="OpenSans-CondensedBold" family="Open Sans Condensed" pointSize="21"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="openium" translatesAutoresizingMaskIntoConstraints="NO" id="Rwf-O2-sKW">
-                                    <rect key="frame" x="24" y="887.66666666666663" width="366" height="50"/>
+                                    <rect key="frame" x="24" y="847.66666666666663" width="366" height="50"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="NaA-Qb-THx"/>
                                     </constraints>
