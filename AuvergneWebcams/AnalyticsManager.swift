@@ -18,12 +18,12 @@ class AnalyticsManager {
     
     fileprivate static func logEvent(withName name: String, parameters: [String: NSObject]?) {
         #if !DEBUG
-            FIRAnalytics.logEvent(withName: name,
-                                  parameters: parameters)
-        
+            Analytics.logEvent(name,
+                               parameters: parameters)
+            
             Answers.logContentView(withName: name,
-                                   contentType: parameters?[kFIRParameterContentType] as? String,
-                                   contentId: parameters?[kFIRParameterItemID] as? String,
+                                   contentType: parameters?[AnalyticsParameterContentType] as? String,
+                                   contentId: parameters?[AnalyticsParameterItemID] as? String,
                                    customAttributes: nil)
         #endif
     }
@@ -37,11 +37,11 @@ class AnalyticsManager {
                              customAttributes: nil)
             
             let parameters = [
-                kFIRParameterItemID: name as NSObject,
-                kFIRParameterContentType: type as NSObject
+                AnalyticsParameterItemID: name as NSObject,
+                AnalyticsParameterContentType: type as NSObject
             ]
-            FIRAnalytics.logEvent(withName: kFIREventShare,
-                                  parameters: parameters)
+            Analytics.logEvent(AnalyticsEventShare,
+                               parameters: parameters)
         #endif
     }
     
@@ -50,10 +50,10 @@ class AnalyticsManager {
             Answers.logSearch(withQuery: text, customAttributes: nil)
             
             let parameters = [
-                kFIRParameterSearchTerm: text as NSObject
+                AnalyticsParameterSearchTerm: text as NSObject
             ]
-            FIRAnalytics.logEvent(withName: kFIREventSearch,
-                                      parameters: parameters)
+            Analytics.logEvent(AnalyticsEventSearch,
+                               parameters: parameters)
         #endif
     }
     
@@ -131,9 +131,9 @@ class AnalyticsManager {
             let refreshInterval = String(format: "%d", Defaults[.autorefreshInterval])
             let quality = Defaults[.prefersHighQuality] ? "high" : "low"
             
-            FIRAnalytics.setUserPropertyString(refresh, forName: FIRAnalytics.refreshUserProperty)
-            FIRAnalytics.setUserPropertyString(refreshInterval, forName: FIRAnalytics.refreshIntervalUserProperty)
-            FIRAnalytics.setUserPropertyString(quality, forName: FIRAnalytics.webcamQualityUserProperty)
+            Analytics.setUserProperty(refresh, forName: Analytics.refreshUserProperty)
+            Analytics.setUserProperty(refreshInterval, forName: Analytics.refreshIntervalUserProperty)
+            Analytics.setUserProperty(quality, forName: Analytics.webcamQualityUserProperty)
         #endif
     }
 }
