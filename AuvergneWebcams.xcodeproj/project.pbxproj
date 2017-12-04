@@ -1607,7 +1607,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F93C76261DD11577005DEE66 /* Build configuration list for PBXNativeTarget "AuvergneWebcams" */;
 			buildPhases = (
-				F990993E1FD5397B0001754D /* ShellScript */,
+				F990993E1FD5397B0001754D /* Carthage update if needed */,
 				F963AB621E5A45E300ED5A8B /* Warning TODO / FIXME / WARNING */,
 				F93C76051DD11577005DEE66 /* Sources */,
 				F93C76061DD11577005DEE66 /* Frameworks */,
@@ -1672,6 +1672,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F95DEB831EE1BB6400101CC4 /* Build configuration list for PBXNativeTarget "WidgetAW" */;
 			buildPhases = (
+				F99099431FD54B7D0001754D /* Carthage update if needed */,
 				F95DEB721EE1BB6300101CC4 /* Sources */,
 				F95DEB731EE1BB6300101CC4 /* Frameworks */,
 				F95DEB741EE1BB6300101CC4 /* Resources */,
@@ -2108,18 +2109,34 @@
 			shellPath = /bin/sh;
 			shellScript = "version=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"$PROJECT_DIR/$INFOPLIST_FILE\")\nbuild=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$PROJECT_DIR/$INFOPLIST_FILE\")\n/usr/libexec/PlistBuddy -c \"Set PreferenceSpecifiers:2:DefaultValue $version ($build)\" \"$CODESIGNING_FOLDER_PATH/Settings.bundle/Root.plist\"";
 		};
-		F990993E1FD5397B0001754D /* ShellScript */ = {
+		F990993E1FD5397B0001754D /* Carthage update if needed */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Carthage update if needed";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Embedded binaries only when archiving\nif [ \"$ACTION\" == \"install\" ]; then\n    carthage update --platform iOS --no-use-binaries\nfi";
+			shellPath = /bin/bash;
+			shellScript = "EMPTY=$(ls -A \"${PROJECT_DIR}/Carthage/Build\")\n\nif [ \"EMPTY\" ]; then\n    echo \"Carthage dependencies up to date\"\nelse\n    carthage update --platform iOS --no-use-binaries\nfi";
+			showEnvVarsInLog = 0;
+		};
+		F99099431FD54B7D0001754D /* Carthage update if needed */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Carthage update if needed";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "EMPTY=$(ls -A \"${PROJECT_DIR}/Carthage/Build\")\n\nif [ \"$EMPTY\" ]; then\n    echo \"Carthage dependencies up to date\"\nelse\n    carthage update --platform iOS --no-use-binaries\nfi";
 			showEnvVarsInLog = 0;
 		};
 		F9D6102A1E82EDBF00BFC18D /* Warning TODO / FIXME / WARNING */ = {

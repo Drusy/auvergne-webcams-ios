@@ -57,17 +57,216 @@ class BasicTypesTestsFromJSON: XCTestCase {
 		XCTAssertEqual(mappedObject?.boolOptional, value)
 		XCTAssertEqual(mappedObject?.boolImplicityUnwrapped, value)
 	}
-	
-	func testMappingIntFromJSON(){
-		let value: Int = 11
-		let JSONString = "{\"int\" : \(value), \"intOpt\" : \(value), \"intImp\" : \(value)}"
-		
-		let mappedObject = mapper.map(JSONString: JSONString)
 
+	/// - warning: This test doens't consider integer overflow/underflow.
+	func testMappingIntegerFromJSON(){
+		func parameterize<T: FixedWidthInteger>(_ type: T.Type) {
+			let value: T = 123
+			let json: [String: Any] = [
+				"int": value,
+				"intOpt": value,
+				"intImp": value,
+				
+				"int8": value,
+				"int8Opt": value,
+				"int8Imp": value,
+				
+				"int16": value,
+				"int16Opt": value,
+				"int16Imp": value,
+				
+				"int32": value,
+				"int32Opt": value,
+				"int32Imp": value,
+				
+				"int64": value,
+				"int64Opt": value,
+				"int64Imp": value,
+				
+				"uint": value,
+				"uintOpt": value,
+				"uintImp": value,
+				
+				"uint8": value,
+				"uint8Opt": value,
+				"uint8Imp": value,
+				
+				"uint16": value,
+				"uint16Opt": value,
+				"uint16Imp": value,
+				
+				"uint32": value,
+				"uint32Opt": value,
+				"uint32Imp": value,
+				
+				"uint64": value,
+				"uint64Opt": value,
+				"uint64Imp": value,
+			]
+			let mappedObject = mapper.map(JSON: json)
+			XCTAssertNotNil(mappedObject)
+			
+			XCTAssertEqual(mappedObject?.int, 123)
+			XCTAssertEqual(mappedObject?.intOptional, 123)
+			XCTAssertEqual(mappedObject?.intImplicityUnwrapped, 123)
+			
+			XCTAssertEqual(mappedObject?.int8, 123)
+			XCTAssertEqual(mappedObject?.int8Optional, 123)
+			XCTAssertEqual(mappedObject?.int8ImplicityUnwrapped, 123)
+			
+			XCTAssertEqual(mappedObject?.int16, 123)
+			XCTAssertEqual(mappedObject?.int16Optional, 123)
+			XCTAssertEqual(mappedObject?.int16ImplicityUnwrapped, 123)
+			
+			XCTAssertEqual(mappedObject?.int32, 123)
+			XCTAssertEqual(mappedObject?.int32Optional, 123)
+			XCTAssertEqual(mappedObject?.int32ImplicityUnwrapped, 123)
+			
+			XCTAssertEqual(mappedObject?.int64, 123)
+			XCTAssertEqual(mappedObject?.int64Optional, 123)
+			XCTAssertEqual(mappedObject?.int64ImplicityUnwrapped, 123)
+			
+			XCTAssertEqual(mappedObject?.uint, 123)
+			XCTAssertEqual(mappedObject?.uintOptional, 123)
+			XCTAssertEqual(mappedObject?.uintImplicityUnwrapped, 123)
+			
+			XCTAssertEqual(mappedObject?.uint8, 123)
+			XCTAssertEqual(mappedObject?.uint8Optional, 123)
+			XCTAssertEqual(mappedObject?.uint8ImplicityUnwrapped, 123)
+			
+			XCTAssertEqual(mappedObject?.uint16, 123)
+			XCTAssertEqual(mappedObject?.uint16Optional, 123)
+			XCTAssertEqual(mappedObject?.uint16ImplicityUnwrapped, 123)
+			
+			XCTAssertEqual(mappedObject?.uint32, 123)
+			XCTAssertEqual(mappedObject?.uint32Optional, 123)
+			XCTAssertEqual(mappedObject?.uint32ImplicityUnwrapped, 123)
+			
+			XCTAssertEqual(mappedObject?.uint64, 123)
+			XCTAssertEqual(mappedObject?.uint64Optional, 123)
+			XCTAssertEqual(mappedObject?.uint64ImplicityUnwrapped, 123)
+		}
+		
+		parameterize(Int.self)
+		parameterize(Int8.self)
+		parameterize(Int16.self)
+		parameterize(Int32.self)
+		parameterize(Int64.self)
+		
+		parameterize(UInt.self)
+		parameterize(UInt8.self)
+		parameterize(UInt16.self)
+		parameterize(UInt32.self)
+		parameterize(UInt64.self)
+	}
+
+	func testMappingIntegerWithOverflowFromJSON(){
+		let signedValue = Int.max
+		let unsignedValue = UInt.max
+
+		let json: [String: Any] = [
+			"int": signedValue,
+			"intOpt": signedValue,
+			"intImp": signedValue,
+
+			"int8": signedValue,
+			"int8Opt": signedValue,
+			"int8Imp": signedValue,
+
+			"int16": signedValue,
+			"int16Opt": signedValue,
+			"int16Imp": signedValue,
+
+			"int32": signedValue,
+			"int32Opt": signedValue,
+			"int32Imp": signedValue,
+
+			"int64": signedValue,
+			"int64Opt": signedValue,
+			"int64Imp": signedValue,
+
+			"uint": unsignedValue,
+			"uintOpt": unsignedValue,
+			"uintImp": unsignedValue,
+
+			"uint8": unsignedValue,
+			"uint8Opt": unsignedValue,
+			"uint8Imp": unsignedValue,
+
+			"uint16": unsignedValue,
+			"uint16Opt": unsignedValue,
+			"uint16Imp": unsignedValue,
+
+			"uint32": unsignedValue,
+			"uint32Opt": unsignedValue,
+			"uint32Imp": unsignedValue,
+
+			"uint64": unsignedValue,
+			"uint64Opt": unsignedValue,
+			"uint64Imp": unsignedValue,
+		]
+		let mappedObject = mapper.map(JSON: json)
 		XCTAssertNotNil(mappedObject)
-		XCTAssertEqual(mappedObject?.int, value)
-		XCTAssertEqual(mappedObject?.intOptional, value)
-		XCTAssertEqual(mappedObject?.intImplicityUnwrapped, value)
+
+		XCTAssertEqual(mappedObject?.int, Int.max)
+		XCTAssertEqual(mappedObject?.intOptional, Int.max)
+		XCTAssertEqual(mappedObject?.intImplicityUnwrapped, Int.max)
+
+		XCTAssertEqual(mappedObject?.int8, 0)
+		XCTAssertEqual(mappedObject?.int8Optional, nil)
+		XCTAssertEqual(mappedObject?.int8ImplicityUnwrapped, nil)
+
+		XCTAssertEqual(mappedObject?.int16, 0)
+		XCTAssertEqual(mappedObject?.int16Optional, nil)
+		XCTAssertEqual(mappedObject?.int16ImplicityUnwrapped, nil)
+
+#if arch(x86_64) || arch(arm64)
+		XCTAssertEqual(mappedObject?.int32, 0)
+		XCTAssertEqual(mappedObject?.int32Optional, nil)
+		XCTAssertEqual(mappedObject?.int32ImplicityUnwrapped, nil)
+
+		XCTAssertEqual(mappedObject?.int64, Int64.max)
+		XCTAssertEqual(mappedObject?.int64Optional, Int64.max)
+		XCTAssertEqual(mappedObject?.int64ImplicityUnwrapped, Int64.max)
+#else
+		XCTAssertEqual(mappedObject?.int32, Int32.max)
+		XCTAssertEqual(mappedObject?.int32Optional, Int32.max)
+		XCTAssertEqual(mappedObject?.int32ImplicityUnwrapped, Int32.max)
+
+		XCTAssertEqual(mappedObject?.int64, Int64(Int32.max))
+		XCTAssertEqual(mappedObject?.int64Optional, Int64(Int32.max))
+		XCTAssertEqual(mappedObject?.int64ImplicityUnwrapped, Int64(Int32.max))
+#endif
+
+		XCTAssertEqual(mappedObject?.uint, UInt.max)
+		XCTAssertEqual(mappedObject?.uintOptional, UInt.max)
+		XCTAssertEqual(mappedObject?.uintImplicityUnwrapped, UInt.max)
+
+		XCTAssertEqual(mappedObject?.uint8, 0)
+		XCTAssertEqual(mappedObject?.uint8Optional, nil)
+		XCTAssertEqual(mappedObject?.uint8ImplicityUnwrapped, nil)
+
+		XCTAssertEqual(mappedObject?.uint16, 0)
+		XCTAssertEqual(mappedObject?.uint16Optional, nil)
+		XCTAssertEqual(mappedObject?.uint16ImplicityUnwrapped, nil)
+
+#if arch(x86_64) || arch(arm64)
+		XCTAssertEqual(mappedObject?.uint32, 0)
+		XCTAssertEqual(mappedObject?.uint32Optional, nil)
+		XCTAssertEqual(mappedObject?.uint32ImplicityUnwrapped, nil)
+
+		XCTAssertEqual(mappedObject?.uint64, UInt64.max)
+		XCTAssertEqual(mappedObject?.uint64Optional, UInt64.max)
+		XCTAssertEqual(mappedObject?.uint64ImplicityUnwrapped, UInt64.max)
+#else
+		XCTAssertEqual(mappedObject?.uint32, UInt32.max)
+		XCTAssertEqual(mappedObject?.uint32Optional, UInt32.max)
+		XCTAssertEqual(mappedObject?.uint32ImplicityUnwrapped, UInt32.max)
+
+		XCTAssertEqual(mappedObject?.uint64, UInt64(UInt32.max))
+		XCTAssertEqual(mappedObject?.uint64Optional, UInt64(UInt32.max))
+		XCTAssertEqual(mappedObject?.uint64ImplicityUnwrapped, UInt64(UInt32.max))
+#endif
 	}
 	
 	func testMappingDoubleFromJSON(){
@@ -179,7 +378,7 @@ class BasicTypesTestsFromJSON: XCTestCase {
 		XCTAssertNotNil(mappedObject)
 		XCTAssertEqual(mappedObject?.arrayFloat.first, value)
 		XCTAssertEqual(mappedObject?.arrayFloatOptional?.first, value)
-		XCTAssertEqual(mappedObject?.arrayFloatImplicityUnwrapped.first, value)
+		XCTAssertEqual(mappedObject?.arrayFloatImplicityUnwrapped?.first, value)
 	}
 	
 	func testMappingStringArrayFromJSON(){
@@ -259,7 +458,7 @@ class BasicTypesTestsFromJSON: XCTestCase {
 		XCTAssertNotNil(mappedObject)
 		XCTAssertEqual(mappedObject?.dictFloat[key], value)
 		XCTAssertEqual(mappedObject?.dictFloatOptional?[key], value)
-		XCTAssertEqual(mappedObject?.dictFloatImplicityUnwrapped[key], value)
+		XCTAssertEqual(mappedObject?.dictFloatImplicityUnwrapped?[key], value)
 	}
 	
 	func testMappingStringDictionaryFromJSON(){
@@ -272,7 +471,7 @@ class BasicTypesTestsFromJSON: XCTestCase {
 		XCTAssertNotNil(mappedObject)
 		XCTAssertEqual(mappedObject?.dictString[key], value)
 		XCTAssertEqual(mappedObject?.dictStringOptional?[key], value)
-		XCTAssertEqual(mappedObject?.dictStringImplicityUnwrapped[key], value)
+		XCTAssertEqual(mappedObject?.dictStringImplicityUnwrapped?[key], value)
 	}
 	
 	func testMappingAnyObjectDictionaryFromJSON(){
