@@ -181,7 +181,7 @@
 		F95DEB781EE1BB6400101CC4 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F95DEB771EE1BB6400101CC4 /* NotificationCenter.framework */; };
 		F95DEB7B1EE1BB6400101CC4 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEB7A1EE1BB6400101CC4 /* TodayViewController.swift */; };
 		F95DEB7E1EE1BB6400101CC4 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F95DEB7C1EE1BB6400101CC4 /* MainInterface.storyboard */; };
-		F95DEB821EE1BB6400101CC4 /* Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F95DEB761EE1BB6300101CC4 /* Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F95DEB821EE1BB6400101CC4 /* WidgetAW.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F95DEB761EE1BB6300101CC4 /* WidgetAW.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F95DEB871EE1BCEB00101CC4 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F93C76391DD11ACE005DEE66 /* Kingfisher.framework */; };
 		F95DEB881EE1BDF100101CC4 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F963AB3B1E59E7FC00ED5A8B /* Realm.framework */; };
 		F95DEB891EE1BDF400101CC4 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F963AB3C1E59E7FC00ED5A8B /* RealmSwift.framework */; };
@@ -541,7 +541,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				F95DEB821EE1BB6400101CC4 /* Widget.appex in Embed App Extensions */,
+				F95DEB821EE1BB6400101CC4 /* WidgetAW.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -629,7 +629,7 @@
 		F94D7CE71DFAE4FC00460CCD /* ActiveLabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ActiveLabel.framework; path = Carthage/Build/iOS/ActiveLabel.framework; sourceTree = "<group>"; };
 		F94FEEAC1DD4764100586F54 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		F94FEEAF1DD4765A00586F54 /* UIFontExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
-		F95DEB761EE1BB6300101CC4 /* Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Widget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		F95DEB761EE1BB6300101CC4 /* WidgetAW.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetAW.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		F95DEB771EE1BB6400101CC4 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		F95DEB7A1EE1BB6400101CC4 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		F95DEB7D1EE1BB6400101CC4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -952,7 +952,7 @@
 				F93C761D1DD11577005DEE66 /* AuvergneWebcamsTests.xctest */,
 				F9D610BB1E82EDBF00BFC18D /* ParisWebcams.app */,
 				F94433061E8A4C45006D7308 /* NorthernLightsWebcams.app */,
-				F95DEB761EE1BB6300101CC4 /* Widget.appex */,
+				F95DEB761EE1BB6300101CC4 /* WidgetAW.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1607,6 +1607,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F93C76261DD11577005DEE66 /* Build configuration list for PBXNativeTarget "AuvergneWebcams" */;
 			buildPhases = (
+				F990993E1FD5397B0001754D /* ShellScript */,
 				F963AB621E5A45E300ED5A8B /* Warning TODO / FIXME / WARNING */,
 				F93C76051DD11577005DEE66 /* Sources */,
 				F93C76061DD11577005DEE66 /* Frameworks */,
@@ -1667,9 +1668,9 @@
 			productReference = F94433061E8A4C45006D7308 /* NorthernLightsWebcams.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F95DEB751EE1BB6300101CC4 /* Widget */ = {
+		F95DEB751EE1BB6300101CC4 /* WidgetAW */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F95DEB831EE1BB6400101CC4 /* Build configuration list for PBXNativeTarget "Widget" */;
+			buildConfigurationList = F95DEB831EE1BB6400101CC4 /* Build configuration list for PBXNativeTarget "WidgetAW" */;
 			buildPhases = (
 				F95DEB721EE1BB6300101CC4 /* Sources */,
 				F95DEB731EE1BB6300101CC4 /* Frameworks */,
@@ -1679,9 +1680,9 @@
 			);
 			dependencies = (
 			);
-			name = Widget;
+			name = WidgetAW;
 			productName = Widget;
-			productReference = F95DEB761EE1BB6300101CC4 /* Widget.appex */;
+			productReference = F95DEB761EE1BB6300101CC4 /* WidgetAW.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 		F9D610291E82EDBF00BFC18D /* ParisWebcams */ = {
@@ -1772,7 +1773,7 @@
 				F9D610291E82EDBF00BFC18D /* ParisWebcams */,
 				F94432721E8A4C45006D7308 /* NorthernLightsWebcams */,
 				F93C761C1DD11577005DEE66 /* AuvergneWebcamsTests */,
-				F95DEB751EE1BB6300101CC4 /* Widget */,
+				F95DEB751EE1BB6300101CC4 /* WidgetAW */,
 			);
 		};
 /* End PBXProject section */
@@ -1985,7 +1986,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "# Embedded binaries only when archiving\nif [ \"$ACTION\" == \"install\" ] ; then\n    /usr/local/bin/carthage copy-frameworks\nfi\n";
+			shellScript = "# Embedded binaries only when archiving\nif [ \"$ACTION\" == \"install\" ]; then\n    /usr/local/bin/carthage copy-frameworks\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		F94432731E8A4C45006D7308 /* Warning TODO / FIXME / WARNING */ = {
@@ -2106,6 +2107,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "version=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"$PROJECT_DIR/$INFOPLIST_FILE\")\nbuild=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$PROJECT_DIR/$INFOPLIST_FILE\")\n/usr/libexec/PlistBuddy -c \"Set PreferenceSpecifiers:2:DefaultValue $version ($build)\" \"$CODESIGNING_FOLDER_PATH/Settings.bundle/Root.plist\"";
+		};
+		F990993E1FD5397B0001754D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Embedded binaries only when archiving\nif [ \"$ACTION\" == \"install\" ]; then\n    carthage update --platform iOS --no-use-binaries\nfi";
+			showEnvVarsInLog = 0;
 		};
 		F9D6102A1E82EDBF00BFC18D /* Warning TODO / FIXME / WARNING */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2401,7 +2416,7 @@
 		};
 		F95DEB811EE1BB6400101CC4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F95DEB751EE1BB6300101CC4 /* Widget */;
+			target = F95DEB751EE1BB6300101CC4 /* WidgetAW */;
 			targetProxy = F95DEB801EE1BB6400101CC4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -2777,7 +2792,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F95DEB831EE1BB6400101CC4 /* Build configuration list for PBXNativeTarget "Widget" */ = {
+		F95DEB831EE1BB6400101CC4 /* Build configuration list for PBXNativeTarget "WidgetAW" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F95DEB841EE1BB6400101CC4 /* Debug */,

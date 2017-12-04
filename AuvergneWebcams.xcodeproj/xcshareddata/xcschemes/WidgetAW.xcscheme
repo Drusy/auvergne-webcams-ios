@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F95DEB751EE1BB6300101CC4"
-               BuildableName = "Widget.appex"
-               BlueprintName = "Widget"
+               BuildableName = "WidgetAW.appex"
+               BlueprintName = "WidgetAW"
                ReferencedContainer = "container:AuvergneWebcams.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -41,6 +41,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
@@ -48,8 +49,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F95DEB751EE1BB6300101CC4"
-            BuildableName = "Widget.appex"
-            BlueprintName = "Widget"
+            BuildableName = "WidgetAW.appex"
+            BlueprintName = "WidgetAW"
             ReferencedContainer = "container:AuvergneWebcams.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -60,6 +61,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = ""
       selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
+      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"

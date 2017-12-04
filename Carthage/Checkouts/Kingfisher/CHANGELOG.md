@@ -2,6 +2,34 @@
 
 -----
 
+## [4.4.0 - Image Modifier](https://github.com/onevcat/Kingfisher/releases/tag/4.4.0) (2017-12-01)
+
+#### Add
+* Add `ImageModifier` to give a final chance for setting image object related properties just before getting back the image from either network or cache. [#810](https://github.com/onevcat/Kingfisher/issues/810)
+
+#### Fix
+* Apply scale on all image based processor methods, including the existing ones from memory cache. [#813](https://github.com/onevcat/Kingfisher/issues/813)
+
+---
+
+## [4.3.1 - Cache Regression](https://github.com/onevcat/Kingfisher/releases/tag/4.3.1) (2017-11-21)
+
+#### Fix
+* A regression introduced in 4.3.0 which cause the cache not working well for processed images.
+
+---
+
+## [4.3.0 - Memory Or Refresh](https://github.com/onevcat/Kingfisher/releases/tag/4.3.0) (2017-11-17)
+
+#### Add
+* An option for only getting cached images from memory or refresh it by downloading. It could be useful for fetching images behind the same URL while keeping to use the latest memory cached ones. [#806](https://github.com/onevcat/Kingfisher/pull/806)
+
+#### Fix
+* A problem when setting customized indicator with non-zero frame. Now the indicator will be no longer resized to image view size incorrectly. [#798](https://github.com/onevcat/Kingfisher/pull/798)
+* Improve store performance by avoiding re-encode images as long as the original data could be provided. [#805](https://github.com/onevcat/Kingfisher/pull/805)
+
+---
+
 ## [4.2.0 - A Tale of Two Caches](https://github.com/onevcat/Kingfisher/releases/tag/4.2.0) (2017-10-22)
 
 #### Add
