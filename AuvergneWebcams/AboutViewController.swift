@@ -30,6 +30,8 @@ class AboutViewController: AbstractViewController {
                     url = URL(string : "https://openium.fr")
                 } else if mention.contains("Drusy") {
                     url = URL(string : "https://github.com/Drusy")
+                } else if mention.contains("Titiphoque") {
+                    url = URL(string : "https://github.com/titiphoque")
                 } else if mention.contains("LesPirates") {
                     url = URL(string : "http://agencelespirates.com/")
                 } else if mention.contains("FlatIcons") {
