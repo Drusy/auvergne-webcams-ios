@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>La bibliothèque d&apos;image est utilisée afin de sauvegarder l&apos;image de la webcam sur votre périphérique</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>fr</string>
 	<key>CFBundleDisplayName</key>
@@ -57,7 +59,7 @@
 		<true/>
 	</dict>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>La bibliothèque d'image est utilisée afin de sauvegarder l'image de la webcam sur votre périphérique</string>
+	<string>La bibliothèque d&apos;image est utilisée afin de sauvegarder l&apos;image de la webcam sur votre périphérique</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>ProximaNova-SboldItalic.otf</string>
