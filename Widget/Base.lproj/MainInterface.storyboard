@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="ProximaNova-Regular.otf">
+            <string>ProximaNova-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Today View Controller-->
         <scene sceneID="cwh-vc-ff4">
             <objects>
-                <viewController id="M4Y-Lb-cyx" customClass="TodayViewController" customModule="Widget" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="M4Y-Lb-cyx" customClass="TodayViewController" customModule="WidgetAW" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ft6-oW-KC0"/>
                         <viewControllerLayoutGuide type="bottom" id="FKl-LY-JtV"/>
@@ -57,6 +62,31 @@ Touchez pour réessayer</string>
                                         <rect key="frame" x="0.0" y="0.0" width="360" height="200"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </imageView>
+                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="76S-hv-FfP">
+                                        <rect key="frame" x="0.0" y="0.0" width="360" height="25"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="h7R-Sx-u2j">
+                                            <rect key="frame" x="0.0" y="0.0" width="360" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cette webcam ne semble pas être à jour" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="PhR-UW-wQi">
+                                                    <rect key="frame" x="20" y="0.0" width="320" height="25"/>
+                                                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="15"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="PhR-UW-wQi" firstAttribute="leading" secondItem="h7R-Sx-u2j" secondAttribute="leading" constant="20" id="Mc9-Fd-Qtr"/>
+                                                <constraint firstItem="PhR-UW-wQi" firstAttribute="top" secondItem="h7R-Sx-u2j" secondAttribute="top" id="MlW-nI-skt"/>
+                                                <constraint firstAttribute="bottom" secondItem="PhR-UW-wQi" secondAttribute="bottom" id="pwK-cV-xXk"/>
+                                                <constraint firstAttribute="trailing" secondItem="PhR-UW-wQi" secondAttribute="trailing" constant="20" id="zKx-tN-xiR"/>
+                                            </constraints>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="Bmh-Az-xjt"/>
+                                        </constraints>
+                                        <blurEffect style="light"/>
+                                    </visualEffectView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Puy de Dôme" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="CSC-oc-Zwa">
                                         <rect key="frame" x="20" y="170.5" width="320" height="21.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -91,7 +121,9 @@ Touchez pour réessayer</string>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="CSC-oc-Zwa" secondAttribute="trailing" constant="20" id="3bk-aR-Zdf"/>
+                                    <constraint firstItem="76S-hv-FfP" firstAttribute="leading" secondItem="5gi-2i-4jA" secondAttribute="leading" id="CpR-36-Pbp"/>
                                     <constraint firstAttribute="trailing" secondItem="5gi-2i-4jA" secondAttribute="trailing" id="DFD-H7-YZO"/>
+                                    <constraint firstItem="76S-hv-FfP" firstAttribute="trailing" secondItem="5gi-2i-4jA" secondAttribute="trailing" id="JOn-nI-lMk"/>
                                     <constraint firstItem="ook-6U-YAA" firstAttribute="centerY" secondItem="jKS-hg-77T" secondAttribute="centerY" id="JuE-77-ROq"/>
                                     <constraint firstAttribute="bottom" secondItem="5gi-2i-4jA" secondAttribute="bottom" id="Ll4-N1-BJO"/>
                                     <constraint firstItem="5gi-2i-4jA" firstAttribute="leading" secondItem="jKS-hg-77T" secondAttribute="leading" id="M0u-tC-bBh"/>
@@ -101,6 +133,7 @@ Touchez pour réessayer</string>
                                     <constraint firstItem="uG8-3x-qbL" firstAttribute="leading" secondItem="jKS-hg-77T" secondAttribute="leading" constant="32" id="emc-7F-6lO"/>
                                     <constraint firstAttribute="trailing" secondItem="ook-6U-YAA" secondAttribute="trailing" constant="32" id="fYd-Yf-0Uz"/>
                                     <constraint firstItem="5gi-2i-4jA" firstAttribute="top" secondItem="jKS-hg-77T" secondAttribute="top" id="gT9-zD-Cst"/>
+                                    <constraint firstItem="76S-hv-FfP" firstAttribute="top" secondItem="5gi-2i-4jA" secondAttribute="top" id="ipy-Hc-Phg"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -134,6 +167,7 @@ Touchez pour réessayer</string>
                         <outlet property="nextButton" destination="ook-6U-YAA" id="kcU-pV-9gW"/>
                         <outlet property="noFavoriteLabel" destination="yNt-pL-2aF" id="7Ca-vd-OtA"/>
                         <outlet property="nvActivityIndicatorView" destination="bom-pX-jVL" id="Fmh-Vn-LVJ"/>
+                        <outlet property="outdatedView" destination="76S-hv-FfP" id="bA4-d4-c9o"/>
                         <outlet property="previousButton" destination="uG8-3x-qbL" id="Vcy-xs-S2U"/>
                         <outlet property="webcamTitleLabel" destination="CSC-oc-Zwa" id="0LF-Hm-hxE"/>
                         <outletCollection property="shadowViews" destination="uG8-3x-qbL" collectionClass="NSMutableArray" id="Mnv-uA-k41"/>

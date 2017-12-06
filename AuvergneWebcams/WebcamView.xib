@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,6 +25,34 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="248"/>
                     <color key="backgroundColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tei-zY-oAI">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="248"/>
+                </imageView>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1AQ-UI-Egh">
+                    <rect key="frame" x="0.0" y="213" width="375" height="35"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="iRO-er-koO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="35"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cette webcam ne semble pas être à jour" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ig-ho-37S">
+                                <rect key="frame" x="20" y="0.0" width="335" height="35"/>
+                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="15"/>
+                                <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="2Ig-ho-37S" secondAttribute="trailing" constant="20" id="ITF-kq-XxN"/>
+                            <constraint firstAttribute="bottom" secondItem="2Ig-ho-37S" secondAttribute="bottom" id="Qni-9i-czS"/>
+                            <constraint firstItem="2Ig-ho-37S" firstAttribute="top" secondItem="iRO-er-koO" secondAttribute="top" id="Ro7-Y0-KxL"/>
+                            <constraint firstItem="2Ig-ho-37S" firstAttribute="leading" secondItem="iRO-er-koO" secondAttribute="leading" constant="20" id="zQ9-oS-eWs"/>
+                        </constraints>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="dYg-Bg-3In"/>
+                    </constraints>
+                    <blurEffect style="dark"/>
+                </visualEffectView>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m7F-54-nap">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="248"/>
                     <subviews>
@@ -76,9 +105,6 @@ pas fonctionnelle</string>
                         <constraint firstItem="smx-bg-uB2" firstAttribute="top" secondItem="gMR-bd-QzE" secondAttribute="bottom" constant="16" id="e8R-Wq-73r"/>
                     </constraints>
                 </view>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tei-zY-oAI">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="248"/>
-                </imageView>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="PVL-xL-dxy">
                     <rect key="frame" x="177" y="114" width="20" height="20"/>
                 </activityIndicatorView>
@@ -94,6 +120,7 @@ pas fonctionnelle</string>
                 <constraint firstItem="HPb-IG-0PK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="4l5-fK-FpO"/>
                 <constraint firstItem="qTL-4z-ndV" firstAttribute="width" secondItem="Tei-zY-oAI" secondAttribute="width" constant="-2" id="5Qu-fU-3t1"/>
                 <constraint firstAttribute="bottom" secondItem="qAv-LI-nUL" secondAttribute="bottom" id="6lu-RO-HL4"/>
+                <constraint firstItem="1AQ-UI-Egh" firstAttribute="trailing" secondItem="Tei-zY-oAI" secondAttribute="trailing" id="7P9-ic-IaE"/>
                 <constraint firstItem="Tei-zY-oAI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="8fe-TU-e7l"/>
                 <constraint firstItem="PVL-xL-dxy" firstAttribute="centerX" secondItem="Tei-zY-oAI" secondAttribute="centerX" id="9Qr-bC-3Gy"/>
                 <constraint firstAttribute="trailing" secondItem="m7F-54-nap" secondAttribute="trailing" id="Eby-Yo-spL"/>
@@ -103,9 +130,11 @@ pas fonctionnelle</string>
                 <constraint firstItem="qAv-LI-nUL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="M6n-YP-V3p"/>
                 <constraint firstAttribute="trailing" secondItem="Tei-zY-oAI" secondAttribute="trailing" id="QeO-aN-wF8"/>
                 <constraint firstItem="m7F-54-nap" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="X5q-zQ-neg"/>
+                <constraint firstItem="1AQ-UI-Egh" firstAttribute="leading" secondItem="Tei-zY-oAI" secondAttribute="leading" id="d4k-8s-XpX"/>
                 <constraint firstAttribute="trailing" secondItem="HPb-IG-0PK" secondAttribute="trailing" id="gQq-80-nQd"/>
                 <constraint firstItem="qTL-4z-ndV" firstAttribute="centerX" secondItem="Tei-zY-oAI" secondAttribute="centerX" id="hzY-uY-l13"/>
                 <constraint firstItem="qTL-4z-ndV" firstAttribute="centerY" secondItem="Tei-zY-oAI" secondAttribute="centerY" id="i3O-Qd-MJg"/>
+                <constraint firstItem="1AQ-UI-Egh" firstAttribute="bottom" secondItem="Tei-zY-oAI" secondAttribute="bottom" id="lQ2-Gc-RY1"/>
                 <constraint firstAttribute="bottom" secondItem="m7F-54-nap" secondAttribute="bottom" id="mfF-lu-gWn"/>
                 <constraint firstAttribute="bottom" secondItem="HPb-IG-0PK" secondAttribute="bottom" id="mfp-tY-Fr0"/>
                 <constraint firstItem="m7F-54-nap" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="pwK-bc-dt3"/>
@@ -119,6 +148,7 @@ pas fonctionnelle</string>
                 <outlet property="imageView" destination="Tei-zY-oAI" id="ouC-cb-5Hd"/>
                 <outlet property="imageViewHighlightOverlayView" destination="qTL-4z-ndV" id="qFQ-4c-Zip"/>
                 <outlet property="noDataView" destination="m7F-54-nap" id="lp6-Jz-AZk"/>
+                <outlet property="outdatedView" destination="1AQ-UI-Egh" id="cW0-BU-BDN"/>
             </connections>
             <point key="canvasLocation" x="-83.5" y="-47"/>
         </view>

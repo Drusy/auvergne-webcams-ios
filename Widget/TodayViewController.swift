@@ -16,6 +16,7 @@ import NVActivityIndicatorView
 
 class TodayViewController: UIViewController, NCWidgetProviding {
     
+    @IBOutlet weak var outdatedView: UIVisualEffectView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var webcamTitleLabel: UILabel!
     @IBOutlet weak var noFavoriteLabel: UILabel!
@@ -36,6 +37,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Let's init the image downloader proxy
+        ImageDownloader.default.delegate = self
+
         // Realm
         var config = Realm.Configuration()
         let realmPath: URL = FileManager.default
@@ -57,6 +61,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         contentView.alpha = 0
         noFavoriteLabel.alpha = 0
         nvActivityIndicatorView.alpha = 0
+        outdatedView.alpha = 0
         
         // Shadow
         shadowViews.forEach { view in
@@ -129,7 +134,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         switch webcam.contentType {
         case .image:
             if let image = webcam.preferredImage(), let url = URL(string: image) {
-                loadImage(for: url)
+                loadImage(for: url, webcam: webcam)
             } else {
                 onError()
             }
@@ -147,6 +152,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 self?.contentView.alpha = 0
                 self?.errorButton.alpha = 0
                 self?.nvActivityIndicatorView.alpha = 0
+                self?.outdatedView.alpha = 0
         },
             completion: { [weak self] _ in
                 self?.nvActivityIndicatorView.stopAnimating()
@@ -178,6 +184,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 self?.contentView.alpha = 0
                 self?.noFavoriteLabel.alpha = 0
                 self?.nvActivityIndicatorView.alpha = 0
+                self?.outdatedView.alpha = 0
             },
             completion: { [weak self] _ in
                 self?.nvActivityIndicatorView.stopAnimating()
@@ -185,7 +192,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         })
     }
     
-    fileprivate func onSuccess() {
+    fileprivate func onSuccess(webcam: Webcam) {
         previousButton.isHidden = true
         nextButton.isHidden = true
         
@@ -207,6 +214,12 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 self?.errorButton.alpha = 0
                 self?.noFavoriteLabel.alpha = 0
                 self?.nvActivityIndicatorView.alpha = 0
+                
+                if webcam.isUpToDate() {
+                    self?.outdatedView.alpha = 0
+                } else {
+                    self?.outdatedView.alpha = 1
+                }
             },
             completion: { [weak self] _ in
                 self?.nvActivityIndicatorView.stopAnimating()
@@ -235,7 +248,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 strongSelf.onError()
             } else if let mediaPath = response.result.value?.replacingOccurrences(of: "\n", with: "") {
                 if let previewURL = URL(string: "\(viewsurf)/\(mediaPath).jpg") {
-                    strongSelf.loadImage(for: previewURL)
+                    strongSelf.loadImage(for: previewURL, webcam: webcam)
                 } else {
                     self?.onError()
                 }
@@ -243,7 +256,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         }
     }
     
-    fileprivate func loadImage(for url: URL) {
+    fileprivate func loadImage(for url: URL, webcam: Webcam) {
         let options: KingfisherOptionsInfo = [.forceRefresh]
         
         imageView?.kf.setImage(
@@ -257,7 +270,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                     print("ERROR: \(error.code) - \(error.localizedDescription)")
                     strongSelf.onError()
                 } else {
-                    strongSelf.onSuccess()
+                    strongSelf.onSuccess(webcam: webcam)
                 }
         }
     }
@@ -294,3 +307,14 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         extensionContext?.open(url, completionHandler: nil)
     }
 }
+
+// MARK: - ImageDownloaderDelegate
+
+extension TodayViewController: ImageDownloaderDelegate {
+    func imageDownloader(_ downloader: ImageDownloader, didDownload image: Image, for url: URL, with response: URLResponse?) {
+        DispatchQueue.main.async {
+            ImageDownloaderUtils.updateDate(for: url, with: response)
+        }
+    }
+}
+

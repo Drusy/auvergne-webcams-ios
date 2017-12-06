@@ -62,36 +62,8 @@ class DownloadManager {
 
 extension DownloadManager: ImageDownloaderDelegate {
     func imageDownloader(_ downloader: ImageDownloader, didDownload image: Image, for url: URL, with response: URLResponse?) {
-        DispatchQueue.main.async { [weak self] in
-            guard let httpResponse = response as? HTTPURLResponse else { return }
-            guard let lastModifiedString = httpResponse.allHeaderFields["Last-Modified"] as? String else { return }
-            
-            var webcam: Webcam?
-            
-            // Managing Image content type
-            webcam = self?.realm.objects(Webcam.self).filter("%K == %@ OR %K == %@",
-                                                             #keyPath(Webcam.imageHD), url.absoluteString,
-                                                             #keyPath(Webcam.imageLD), url.absoluteString).first
-            // Managing Viewsurf content type
-            if webcam == nil {
-                var viewsurfURLAbsoluteString = url.deletingLastPathComponent().absoluteString
-                viewsurfURLAbsoluteString.removeLast()
-                webcam = self?.realm.objects(Webcam.self).filter("%K == %@ OR %K == %@",
-                                                                 #keyPath(Webcam.viewsurfHD), viewsurfURLAbsoluteString,
-                                                                 #keyPath(Webcam.viewsurfLD), viewsurfURLAbsoluteString).first
-            }
-            
-            if let webcam = webcam {
-                let dateFormatter = DateFormatterCache.shared.dateFormatter(withFormat: "E, d MMM yyyy HH:mm:ss 'GMT'",
-                                                                            locale: Locale(identifier: "en_US"),
-                                                                            timeZone: TimeZone(abbreviation: "GMT"))
-                if let date = dateFormatter.date(from: lastModifiedString) {
-                    try? self?.realm.write {
-                        webcam.lastUpdate = date
-                    }
-                    NotificationCenter.default.post(name: Foundation.Notification.Name.downloadManagerDidUpdateWebcam, object: webcam)
-                }
-            }
+        DispatchQueue.main.async {
+            ImageDownloaderUtils.updateDate(for: url, with: response)
         }
     }
 }

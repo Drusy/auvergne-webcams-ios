@@ -311,6 +311,11 @@
 		F9BE03101DD8AC1B0063275B /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9BE030E1DD8AC1B0063275B /* SettingsViewController.xib */; };
 		F9BE03121DD8AF960063275B /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9BE03111DD8AF8E0063275B /* Eureka.framework */; };
 		F9BE03131DD8AF960063275B /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9BE03111DD8AF8E0063275B /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F9C08C8F1FD815820098E5AF /* ImageDownloaderUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C08C8E1FD815820098E5AF /* ImageDownloaderUtils.swift */; };
+		F9C08C901FD815820098E5AF /* ImageDownloaderUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C08C8E1FD815820098E5AF /* ImageDownloaderUtils.swift */; };
+		F9C08C911FD815820098E5AF /* ImageDownloaderUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C08C8E1FD815820098E5AF /* ImageDownloaderUtils.swift */; };
+		F9C08C921FD815820098E5AF /* ImageDownloaderUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C08C8E1FD815820098E5AF /* ImageDownloaderUtils.swift */; };
+		F9C08C931FD816900098E5AF /* DateFormatterCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F963AB7A1E5A6E8300ED5A8B /* DateFormatterCache.swift */; };
 		F9C214E01EF03B5A00EED240 /* QuickActionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C214DC1EF03B5A00EED240 /* QuickActionsService.swift */; };
 		F9C214E11EF03B5A00EED240 /* QuickActionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C214DC1EF03B5A00EED240 /* QuickActionsService.swift */; };
 		F9C214E21EF03B5A00EED240 /* QuickActionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C214DC1EF03B5A00EED240 /* QuickActionsService.swift */; };
@@ -722,6 +727,7 @@
 		F9BE030D1DD8AC1B0063275B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F9BE030E1DD8AC1B0063275B /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		F9BE03111DD8AF8E0063275B /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
+		F9C08C8E1FD815820098E5AF /* ImageDownloaderUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloaderUtils.swift; sourceTree = "<group>"; };
 		F9C214DC1EF03B5A00EED240 /* QuickActionsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickActionsService.swift; sourceTree = "<group>"; };
 		F9C747F71E5F88DE0018B5CC /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		F9C747F91E5F8B6C0018B5CC /* WebcamTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebcamTag.swift; sourceTree = "<group>"; };
@@ -1249,6 +1255,7 @@
 				F9ACD2021E5CAAD5004E5BFF /* AnalyticsManager.swift */,
 				F9C747F71E5F88DE0018B5CC /* DownloadManager.swift */,
 				F92800AF1E84343B0056E5CE /* Configuration.swift */,
+				F9C08C8E1FD815820098E5AF /* ImageDownloaderUtils.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -2220,6 +2227,7 @@
 				F9C747FA1E5F8B6C0018B5CC /* WebcamTag.swift in Sources */,
 				F963AB651E5A5DA800ED5A8B /* WebcamSectionViewController.swift in Sources */,
 				F9B1E61B1E66128C00829FE8 /* ApiRequest.swift in Sources */,
+				F9C08C8F1FD815820098E5AF /* ImageDownloaderUtils.swift in Sources */,
 				F99F37741E72C7A90058AFB3 /* CollectionExtensions.swift in Sources */,
 				F9F5AC731DD33B6800D9FF83 /* Webcam.swift in Sources */,
 				F963AB381E59E54300ED5A8B /* UIViewExtension.swift in Sources */,
@@ -2296,6 +2304,7 @@
 				F944327E1E8A4C45006D7308 /* WebcamTag.swift in Sources */,
 				F944327F1E8A4C45006D7308 /* WebcamSectionViewController.swift in Sources */,
 				F94432801E8A4C45006D7308 /* ApiRequest.swift in Sources */,
+				F9C08C911FD815820098E5AF /* ImageDownloaderUtils.swift in Sources */,
 				F94432811E8A4C45006D7308 /* CollectionExtensions.swift in Sources */,
 				F94432821E8A4C45006D7308 /* Webcam.swift in Sources */,
 				F94432831E8A4C45006D7308 /* UIViewExtension.swift in Sources */,
@@ -2355,6 +2364,8 @@
 				F95DEB8A1EE1BF8100101CC4 /* Webcam.swift in Sources */,
 				F95DEB8E1EE1C0D600101CC4 /* WebcamTag.swift in Sources */,
 				F95DEB7B1EE1BB6400101CC4 /* TodayViewController.swift in Sources */,
+				F9C08C931FD816900098E5AF /* DateFormatterCache.swift in Sources */,
+				F9C08C921FD815820098E5AF /* ImageDownloaderUtils.swift in Sources */,
 				F95DEB8C1EE1C0C500101CC4 /* ApiRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2375,6 +2386,7 @@
 				F9D610351E82EDBF00BFC18D /* WebcamTag.swift in Sources */,
 				F9D610361E82EDBF00BFC18D /* WebcamSectionViewController.swift in Sources */,
 				F9D610371E82EDBF00BFC18D /* ApiRequest.swift in Sources */,
+				F9C08C901FD815820098E5AF /* ImageDownloaderUtils.swift in Sources */,
 				F9D610381E82EDBF00BFC18D /* CollectionExtensions.swift in Sources */,
 				F9D610391E82EDBF00BFC18D /* Webcam.swift in Sources */,
 				F9D6103A1E82EDBF00BFC18D /* UIViewExtension.swift in Sources */,

@@ -97,11 +97,12 @@ struct ResizingContentModeImageProcessor: ImageProcessor {
 
 class AbstractWebcamView: UIView {
     
-    @IBOutlet var noDataView: UIView!
-    @IBOutlet var brokenCameraView: UIView!
-    @IBOutlet var imageView: UIImageView!
-    @IBOutlet var imageViewHighlightOverlayView: UIView!
-    @IBOutlet var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var noDataView: UIView!
+    @IBOutlet weak var brokenCameraView: UIView!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var imageViewHighlightOverlayView: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var outdatedView: UIView!
     
     var retryCount = Webcam.retryCount
     
@@ -155,6 +156,7 @@ class AbstractWebcamView: UIView {
         noDataView.isHidden = true
         brokenCameraView.isHidden = true
         activityIndicator.isHidden = false
+        outdatedView.isHidden = webcam.isUpToDate()
         activityIndicator.startAnimating()
         imageView.layoutIfNeeded()
         

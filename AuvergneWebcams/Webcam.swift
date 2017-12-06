@@ -105,6 +105,13 @@ class Webcam: Object, Mappable {
         return lowQuality
     }
     
+    func isUpToDate() -> Bool {
+        guard let update = lastUpdate else { return true }
+        
+        // 48h
+        return (Date().timeIntervalSince1970 - update.timeIntervalSince1970) < (60 * 60 * 48)
+    }
+    
     func preferredImage() -> String? {
         if Defaults[.prefersHighQuality] {
             return imageHD ?? imageLD

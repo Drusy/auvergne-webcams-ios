@@ -26,21 +26,22 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     @IBOutlet var brokenConnectionView: UIView!
     @IBOutlet var brokenCameraView: UIView!
     
-    @IBOutlet var scrollView: UIScrollView!
-    @IBOutlet var imageView: UIImageView!
-    @IBOutlet var shareButton: UIButton!
-    @IBOutlet var imageConstraintTop: NSLayoutConstraint!
-    @IBOutlet var imageConstraintRight: NSLayoutConstraint!
-    @IBOutlet var imageConstraintLeft: NSLayoutConstraint!
-    @IBOutlet var imageConstraintBottom: NSLayoutConstraint!
-    @IBOutlet var lastUpdateViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet var videoContainerBottomConstraint: NSLayoutConstraint!
-    @IBOutlet var lastUpdateView: UIView!
-    @IBOutlet var nvActivityIndicatorView: NVActivityIndicatorView!
-    @IBOutlet var lastUpdateLabel: UILabel!
-    @IBOutlet var lowQualityView: UIVisualEffectView!
-    @IBOutlet var favoriteButton: DOFavoriteButton!
-    @IBOutlet var videoContainer: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var imageConstraintTop: NSLayoutConstraint!
+    @IBOutlet weak var imageConstraintRight: NSLayoutConstraint!
+    @IBOutlet weak var imageConstraintLeft: NSLayoutConstraint!
+    @IBOutlet weak var imageConstraintBottom: NSLayoutConstraint!
+    @IBOutlet weak var lastUpdateViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var videoContainerBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var lastUpdateView: UIView!
+    @IBOutlet weak var nvActivityIndicatorView: NVActivityIndicatorView!
+    @IBOutlet weak var lastUpdateLabel: UILabel!
+    @IBOutlet weak var lowQualityView: UIVisualEffectView!
+    @IBOutlet weak var favoriteButton: DOFavoriteButton!
+    @IBOutlet weak var videoContainer: UIView!
+    @IBOutlet weak var informationLabel: UILabel!
     
     var initiatingPreviewActionController: AbstractViewController?
     
@@ -537,7 +538,16 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     override func update() {
         super.update()
         
-        lowQualityView.isHidden = !webcam.isLowQualityOnly()
+        if webcam.isUpToDate() == false {
+            lowQualityView.isHidden = false
+            informationLabel.text = "Cette webcam ne semble pas être à jour"
+        } else if webcam.isLowQualityOnly() {
+            lowQualityView.isHidden = false
+            informationLabel.text = "Cette webcam est disponible en basse qualité uniquement"
+        } else {
+            lowQualityView.isHidden = true
+        }
+        
         videoContainerBottomConstraint.constant = lowQualityView.isHidden ? 0 : lowQualityView.bounds.height
     }
     

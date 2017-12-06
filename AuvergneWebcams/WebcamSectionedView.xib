@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,6 +28,34 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gKN-Se-vdo">
                     <rect key="frame" x="9" y="8" width="514" height="289"/>
                     <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5ju-fM-G0p">
+                            <rect key="frame" x="0.0" y="0.0" width="514" height="289"/>
+                        </imageView>
+                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="anM-Bi-K5F">
+                            <rect key="frame" x="0.0" y="254" width="514" height="35"/>
+                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="9er-Tm-wkY">
+                                <rect key="frame" x="0.0" y="0.0" width="514" height="35"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cette webcam ne semble pas être à jour" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m4D-wq-hbR">
+                                        <rect key="frame" x="20" y="0.0" width="474" height="35"/>
+                                        <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="15"/>
+                                        <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="m4D-wq-hbR" secondAttribute="bottom" id="6ju-nV-IY3"/>
+                                    <constraint firstAttribute="trailing" secondItem="m4D-wq-hbR" secondAttribute="trailing" constant="20" id="Eca-fC-1wz"/>
+                                    <constraint firstItem="m4D-wq-hbR" firstAttribute="leading" secondItem="9er-Tm-wkY" secondAttribute="leading" constant="20" id="SMe-G8-8Vw"/>
+                                    <constraint firstItem="m4D-wq-hbR" firstAttribute="top" secondItem="9er-Tm-wkY" secondAttribute="top" id="bfg-Xe-dGr"/>
+                                </constraints>
+                            </view>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="35" id="MZI-Vs-RSi"/>
+                            </constraints>
+                            <blurEffect style="dark"/>
+                        </visualEffectView>
                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SSA-vm-epb">
                             <rect key="frame" x="0.0" y="0.0" width="514" height="289"/>
                             <subviews>
@@ -79,9 +108,6 @@ pas fonctionnelle</string>
                                 <constraint firstItem="LIX-pV-caf" firstAttribute="centerY" secondItem="Q7F-f9-IB0" secondAttribute="centerY" multiplier="75%" id="yze-iP-AxF"/>
                             </constraints>
                         </view>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5ju-fM-G0p">
-                            <rect key="frame" x="0.0" y="0.0" width="514" height="289"/>
-                        </imageView>
                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="kyb-cc-dfK">
                             <rect key="frame" x="247" y="134" width="20" height="20"/>
                         </activityIndicatorView>
@@ -94,10 +120,13 @@ pas fonctionnelle</string>
                     <constraints>
                         <constraint firstItem="5ju-fM-G0p" firstAttribute="top" secondItem="gKN-Se-vdo" secondAttribute="top" id="1VM-Ve-ZS2"/>
                         <constraint firstItem="ktB-zU-qjb" firstAttribute="height" secondItem="5ju-fM-G0p" secondAttribute="height" constant="-2" id="2St-RF-lo8"/>
+                        <constraint firstItem="anM-Bi-K5F" firstAttribute="trailing" secondItem="5ju-fM-G0p" secondAttribute="trailing" id="2Ym-AO-2zn"/>
                         <constraint firstItem="5ju-fM-G0p" firstAttribute="leading" secondItem="gKN-Se-vdo" secondAttribute="leading" id="6gq-pm-JWM"/>
                         <constraint firstAttribute="bottom" secondItem="SSA-vm-epb" secondAttribute="bottom" id="7m6-38-89O"/>
                         <constraint firstItem="SSA-vm-epb" firstAttribute="leading" secondItem="gKN-Se-vdo" secondAttribute="leading" id="BO2-p1-DpV"/>
+                        <constraint firstItem="anM-Bi-K5F" firstAttribute="leading" secondItem="5ju-fM-G0p" secondAttribute="leading" id="CH2-RO-vWz"/>
                         <constraint firstAttribute="trailing" secondItem="5ju-fM-G0p" secondAttribute="trailing" id="DvM-tK-Fag"/>
+                        <constraint firstItem="anM-Bi-K5F" firstAttribute="bottom" secondItem="5ju-fM-G0p" secondAttribute="bottom" id="FMs-jo-awF"/>
                         <constraint firstItem="kyb-cc-dfK" firstAttribute="centerX" secondItem="5ju-fM-G0p" secondAttribute="centerX" id="IVa-EY-UaH"/>
                         <constraint firstItem="ktB-zU-qjb" firstAttribute="centerY" secondItem="5ju-fM-G0p" secondAttribute="centerY" id="NjO-cN-4ra"/>
                         <constraint firstItem="Q7F-f9-IB0" firstAttribute="leading" secondItem="gKN-Se-vdo" secondAttribute="leading" id="YoL-l8-AGu"/>
@@ -140,6 +169,7 @@ pas fonctionnelle</string>
                 <outlet property="imageView" destination="5ju-fM-G0p" id="9a0-ME-5tf"/>
                 <outlet property="imageViewHighlightOverlayView" destination="ktB-zU-qjb" id="HIm-0v-rOV"/>
                 <outlet property="noDataView" destination="SSA-vm-epb" id="nhw-l0-URT"/>
+                <outlet property="outdatedView" destination="anM-Bi-K5F" id="ii5-g8-Irn"/>
                 <outlet property="shadowView" destination="gKN-Se-vdo" id="76O-QH-glk"/>
                 <outlet property="webcamTitleLabel" destination="8Sm-IR-S9e" id="wC5-Iv-trp"/>
             </connections>
