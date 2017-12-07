@@ -222,6 +222,7 @@ class AbstractWebcamView: UIView {
             } else {
                 strongSelf.activityIndicator.stopAnimating()
                 strongSelf.activityIndicator.isHidden = true
+                strongSelf.outdatedView.isHidden = webcam.isUpToDate()
             }
         }
     }
