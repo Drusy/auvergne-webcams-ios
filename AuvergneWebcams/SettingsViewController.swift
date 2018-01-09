@@ -93,7 +93,7 @@ class SettingsViewController: FormViewController {
                     
                     alertController.addAction(okAction)
                     self.present(alertController, animated: true, completion: nil)
-                    row.value = Int(Defaults[.autorefreshInterval])
+                    row.value = Int(Defaults[.autorefreshInterval] / 60)
                     row.updateCell()
                 }
             }
