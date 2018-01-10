@@ -1,0 +1,31 @@
+Auvergne Webcams 1.3.3:
+Cette mise à jour apporte de nombreuses corrections graphiques mineures
+Amélioraton de la compatibilité iPhone X
+
+Auvergne Webcams 1.3:
+• Ajout d'un Widget affichant les webcams favorites !
+• Ajout des racourcis 3D Touch (Force Touch)
+• Ajout des licences Open Sources dans les paramètres système, section Auvergne Webcams
+• Support de l'iPhone X
+
+Nous remercions particulièrement la page Facebook "Tu sais que tu es de Clermont-Ferrand quand" pour son aide !
+
+Notes de la version 1.2:
+• Ajout des webcams de Clermont-Ferrand.
+• Gestion des webcams vidéo (inclut partage / sauvegarde).
+• Corrections mineures et amélioration des performances.
+• Gestion du Peek & Pop
+
+NOUVEAUTÉS
+• Nous avons ajouté un Widget qui vous permettra d'avoir un aperçu de vos webcams préférées sur l'écran d'accueil.
+• Nous avons ajouté des racourcis 3D Touch sur l'icône de l'application afin d'accéder plus rapidement aux webcams les plus consultées.
+• Nous faisons désormais références aux bibliothèques Open Source que nous utilisons dans les paramètres du téléphone, section Auvergne Webcams
+
+CORRECTIONS
+• Amélioration globale de la stabilité et de l'affichage des carrousels
+• Amélioration du rendu sur les différents iPhones
+• Correction d'un bug qui faisait disparaître les webcams de qualité trop faible pour être zoomées lors d'un double tap
+
+De nombreuses autres améliorations sont prévues et vous pourrez bientôt trouver des variantes de l'application pour d'autres villes, régions et pays, stay tuned !
+
+Nous sommes à l'écoute de vos commentaires, n'hésitez pas à nous envoyer un email à auvergnewebcams@openium.fr afin de nous donner votre avis !
