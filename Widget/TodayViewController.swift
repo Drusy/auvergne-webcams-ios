@@ -118,7 +118,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     fileprivate func favoriteWebcams() -> [Webcam]? {
         guard let realm = realm else { return nil }
         
-        return Array(realm.objects(Webcam.self).filter("%K == true", #keyPath(Webcam.favorite)))
+        return Array(realm.objects(Webcam.self).filter("%K = true AND %K = false", #keyPath(Webcam.favorite), #keyPath(Webcam.isHidden)))
     }
     
     fileprivate func onShow(_ webcam: Webcam?) {

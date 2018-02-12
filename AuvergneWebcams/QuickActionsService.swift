@@ -31,7 +31,7 @@ class QuickActionsService {
         guard UIApplication.shared.shortcutItems?.isEmpty ?? false else { return }
         
         var shortcutItems = Array<UIApplicationShortcutItem>()
-        let favoriteWebcams = realm.objects(Webcam.self).filter("%K = true", #keyPath(Webcam.favorite)).prefix(maxFav)
+        let favoriteWebcams = realm.objects(Webcam.self).filter("%K = true AND %K = false", #keyPath(Webcam.favorite), #keyPath(Webcam.isHidden)).prefix(maxFav)
         
         for fwb in favoriteWebcams {
             let type = QuickActionsService.shared.defaultTypePrefix + "\(fwb.uid)"

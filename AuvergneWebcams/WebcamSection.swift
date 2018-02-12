@@ -82,7 +82,7 @@ class WebcamSection: Object, Mappable {
     // MARK: - 
     
     func sortedWebcams() -> Results<Webcam> {
-        return webcams.sorted(byKeyPath: #keyPath(Webcam.order), ascending: true)
+        return webcams.filter("%K = false", #keyPath(Webcam.isHidden)).sorted(byKeyPath: #keyPath(Webcam.order), ascending: true)
     }
     
     func refreshWeatherIfNeeded(handler: @escaping ((WebcamSection, Error?) -> Void)) {
