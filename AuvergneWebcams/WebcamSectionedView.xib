@@ -141,7 +141,7 @@ pas fonctionnelle</string>
                         <constraint firstAttribute="trailing" secondItem="Q7F-f9-IB0" secondAttribute="trailing" id="wd7-3S-R5m"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sommet du Puy de Dôme" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Sm-IR-S9e">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Sommet du Puy de Dôme" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Sm-IR-S9e">
                     <rect key="frame" x="16" y="313" width="499" height="16"/>
                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="16"/>
                     <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -173,7 +173,7 @@ pas fonctionnelle</string>
                 <outlet property="shadowView" destination="gKN-Se-vdo" id="76O-QH-glk"/>
                 <outlet property="webcamTitleLabel" destination="8Sm-IR-S9e" id="wC5-Iv-trp"/>
             </connections>
-            <point key="canvasLocation" x="-66.5" y="-11.5"/>
+            <point key="canvasLocation" x="-274" y="-10"/>
         </view>
     </objects>
     <resources>
