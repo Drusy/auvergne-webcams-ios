@@ -53,15 +53,13 @@
         {
             "uid": 2,
             "order": 2,
-            "title": "Puy de Sancy",
+            "title": "Loisir / Nature",
             "imageName": "waterfall-landscape",
-            "latitude": 45.5498761,
-            "longitude": 2.7791934,
             "webcams": [
                 {
                     "uid": 2001,
                     "order": 1,
-                    "title": "Station Chastreix",
+                    "title": "Puy de Sancy\nStation Chastreix",
                     "imageLD": "http://srv02.trinum.com/ibox/ftpcam/1280_chastreix-sancy_station.jpg",
                     "imageHD": "http://srv02.trinum.com/ibox/ftpcam/mega_chastreix-sancy_station.jpg",
                     "type": "image",
@@ -76,7 +74,7 @@
                 {
                     "uid": 2002,
                     "order": 2,
-                    "title": "Lac Chambon",
+                    "title": "Puy de Sancy\nLac Chambon",
                     "imageLD": "http://srv14.trinum.com/ibox/ftpcam/1280_chastreix-sancy_lac-chambon.jpg",
                     "imageHD": "http://srv14.trinum.com/ibox/ftpcam/mega_chastreix-sancy_lac-chambon.jpg",
                     "type": "image",
@@ -84,8 +82,36 @@
                         "sancy",
                         "lac chambon",
                         "auvergne",
-                        "station",
-                        "ski"
+                        "loisir"
+                    ]
+                },
+                {
+                    "uid": 2003,
+                    "order": 3,
+                    "title": "Les Cheires\nLac d'Aydat",
+                    "imageLD": "http://www.trinum.com/ibox/ftpcam/les-cheires_lac-d-aydat.jpg",
+                    "imageHD": "http://www.trinum.com/ibox/ftpcam/mega_les-cheires_lac-d-aydat.jpg",
+                    "type": "image",
+                    "tags": [
+                        "aydat",
+                        "lac",
+                        "auvergne",
+                        "loisir",
+                        "les cheires"
+                    ]
+                },
+                {
+                    "uid": 2004,
+                    "order": 4,
+                    "title": "Les Cheires\nCentre Nature Pessade",
+                    "imageLD": "http://srv15.trinum.com/ibox/ftpcam/les-cheires_pessade.jpg",
+                    "imageHD": "http://srv15.trinum.com/ibox/ftpcam/mega_les-cheires_pessade.jpg",
+                    "type": "image",
+                    "tags": [
+                        "pessade",
+                        "auvergne",
+                        "loisir",
+                        "les cheires"
                     ]
                 }
             ]
