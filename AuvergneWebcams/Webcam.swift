@@ -34,7 +34,8 @@ class Webcam: Object, Mappable {
     @objc dynamic var imageLD: String?
     @objc dynamic var viewsurfLD: String?
     @objc dynamic var viewsurfHD: String?
-    
+    @objc dynamic var isHidden: Bool = false
+
     // MARK: - Camera content type
     @objc private dynamic var type: String?
     var contentType: ContentType {
@@ -67,6 +68,7 @@ class Webcam: Object, Mappable {
         viewsurfLD <- map["viewsurfLD"]
         viewsurfHD <- map["viewsurfHD"]
         type <- map["type"]
+        isHidden <- map["hidden"]
         
         tagsArray <- map["tags"]
         setTags(from: tagsArray)

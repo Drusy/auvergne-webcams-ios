@@ -9,7 +9,21 @@
             "longitude": 2.9631456,
             "webcams": [
                 {
-                    "uid": 1,
+                    "uid": 1001,
+                    "order": 1,
+                    "title": "Campus des Cézeaux",
+                    "imageLD": "http://wwwobs.univ-bpclermont.fr/opgc/webcamcez.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "hidden": true,
+                    "tags": [
+                        "puy de dome",
+                        "auvergne",
+                        "volcan"
+                    ]
+                },
+                {
+                    "uid": 1002,
                     "order": 2,
                     "title": "Sommet du Puy de Dôme\nVue Clermont-Ferrand",
                     "imageLD": "http://wwwobs.univ-bpclermont.fr/opgc/webcampdd.jpg",
@@ -22,20 +36,7 @@
                     ]
                 },
                 {
-                    "uid": 2,
-                    "order": 1,
-                    "title": "Campus des Cézeaux",
-                    "imageLD": "http://wwwobs.univ-bpclermont.fr/opgc/webcamcez.jpg",
-                    "imageHD": null,
-                    "type": "image",
-                    "tags": [
-                        "puy de dome",
-                        "auvergne",
-                        "volcan"
-                    ]
-                },
-                {
-                    "uid": 101,
+                    "uid": 1003,
                     "order": 3,
                     "title": "Sommet du Puy de Dôme\nVue Sancy",
                     "imageLD": "http://194.51.121.89:8080/jpg/1/image.jpg",
@@ -58,38 +59,248 @@
             "longitude": 2.7791934,
             "webcams": [
                 {
-                    "uid": 3,
+                    "uid": 2001,
                     "order": 1,
-                    "title": "Mont Dore - Bas de la station",
+                    "title": "Mont Dore - Bas de la station\nPanoramique",
                     "imageLD": "http://srv02.trinum.com/ibox/ftpcam/1280_mont-dore_bas-station.jpg",
                     "imageHD": "http://srv02.trinum.com/ibox/ftpcam/mega_mont-dore_bas-station.jpg",
                     "type": "image",
                     "tags": [
                         "sancy",
-                        "mot dore",
+                        "mont dore",
                         "auvergne",
                         "station",
                         "ski"
                     ]
                 },
                 {
-                    "uid": 4,
+                    "uid": 2002,
                     "order": 2,
-                    "title": "Mont Dore - Sommet",
+                    "title": "Mont Dore - Bas de la station\nLes Longes",
+                    "imageLD": "https://www.webcam-hd.com/images/mont-dore_bas-station/zooms/mont-dore_bas-station7.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "sancy",
+                        "mont dore",
+                        "auvergne",
+                        "station",
+                        "ski"
+                    ]
+                },
+                {
+                    "uid": 2003,
+                    "order": 3,
+                    "title": "Mont Dore - Bas de la station\nVue Gauthier de Tessières",
+                    "imageLD": "https://www.webcam-hd.com/images/mont-dore_bas-station/zooms/mont-dore_bas-station12.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "sancy",
+                        "mont dore",
+                        "auvergne",
+                        "station",
+                        "ski"
+                    ]
+                },
+                {
+                    "uid": 2004,
+                    "order": 4,
+                    "title": "Mont Dore - Bas de la station\nTS Tremplin",
+                    "imageLD": "https://www.webcam-hd.com/images/mont-dore_bas-station/zooms/mont-dore_bas-station13.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "sancy",
+                        "mont dore",
+                        "auvergne",
+                        "station",
+                        "ski"
+                    ]
+                },
+                {
+                    "uid": 2005,
+                    "order": 5,
+                    "title": "Mont Dore - Bas de la station\nVue générale",
+                    "imageLD": "https://www.webcam-hd.com/images/mont-dore_bas-station/zooms/mont-dore_bas-station3.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "sancy",
+                        "mont dore",
+                        "auvergne",
+                        "station",
+                        "ski"
+                    ]
+                },
+                {
+                    "uid": 2006,
+                    "order": 6,
+                    "title": "Mont Dore - Bas de la station\nJardin des Neiges",
+                    "imageLD": "https://www.webcam-hd.com/images/mont-dore_bas-station/zooms/mont-dore_bas-station4.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "sancy",
+                        "mont dore",
+                        "auvergne",
+                        "station",
+                        "ski"
+                    ]
+                },
+                {
+                    "uid": 2007,
+                    "order": 7,
+                    "title": "Mont Dore - Bas de la station\nEspace ludique (Ludo'Glyss)",
+                    "imageLD": "https://www.webcam-hd.com/images/mont-dore_bas-station/zooms/mont-dore_bas-station5.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "sancy",
+                        "mont dore",
+                        "auvergne",
+                        "station",
+                        "ski"
+                    ]
+                },
+                {
+                    "uid": 2008,
+                    "order": 8,
+                    "title": "Mont Dore - Sommet\nPanoramique",
                     "imageLD": "http://www.trinum.com/ibox/ftpcam/1280_mont-dore_sommet.jpg",
                     "imageHD": "http://www.trinum.com/ibox/ftpcam/mega_mont-dore_sommet.jpg",
                     "type": "image",
                     "tags": [
                         "sancy",
-                        "super besse",
+                        "mont dore",
                         "auvergne",
                         "station",
                         "ski"
                     ]
                 },
                 {
-                    "uid": 5,
-                    "order": 3,
+                    "uid": 2009,
+                    "order": 9,
+                    "title": "Mont Dore - Sommet\nRoc de Cuzeau (La Cabane)",
+                    "imageLD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet3.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "sancy",
+                        "mont dore",
+                        "auvergne",
+                        "station",
+                        "ski"
+                    ]
+                },
+                {
+                    "uid": 2010,
+                    "order": 10,
+                    "title": "Mont Dore - Sommet\nPuy de Sancy",
+                    "imageLD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet4.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "sancy",
+                        "mont dore",
+                        "auvergne",
+                        "station",
+                        "ski"
+                    ]
+                },
+                {
+                    "uid": 2011,
+                    "order": 11,
+                    "title": "Mont Dore - Sommet\nLa Dore / Le Ferrand Nord",
+                    "imageLD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet6.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "sancy",
+                        "mont dore",
+                        "auvergne",
+                        "station",
+                        "ski"
+                    ]
+                },
+                {
+                    "uid": 2012,
+                    "order": 12,
+                    "title": "Mont Dore - Sommet\nVue Générale",
+                    "imageLD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet7.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "sancy",
+                        "mont dore",
+                        "auvergne",
+                        "station",
+                        "ski"
+                    ]
+                },
+                {
+                    "uid": 2013,
+                    "order": 13,
+                    "title": "Mont Dore - Sommet\nAccès au Sancy",
+                    "imageLD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet8.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "sancy",
+                        "mont dore",
+                        "auvergne",
+                        "station",
+                        "ski"
+                    ]
+                },
+                {
+                    "uid": 2014,
+                    "order": 14,
+                    "title": "Mont Dore - Sommet\nPan Grange",
+                    "imageLD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet9.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "sancy",
+                        "mont dore",
+                        "auvergne",
+                        "station",
+                        "ski"
+                    ]
+                },
+                {
+                    "uid": 2015,
+                    "order": 15,
+                    "title": "Mont Dore - Sommet\nTerrasse",
+                    "imageLD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet1.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "sancy",
+                        "mont dore",
+                        "auvergne",
+                        "station",
+                        "ski"
+                    ]
+                },
+                {
+                    "uid": 2016,
+                    "order": 16,
+                    "title": "Mont Dore - Sommet\nLe Pas de l'Ane",
+                    "imageLD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet2.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "sancy",
+                        "mont dore",
+                        "auvergne",
+                        "station",
+                        "ski"
+                    ]
+                },
+                {
+                    "uid": 2017,
+                    "order": 17,
                     "title": "Super Besse - Ecole (Bas)",
                     "imageLD": "http://srv14.trinum.com/ibox/ftpcam/1280_superbesse_ecole.jpg",
                     "imageHD": "http://srv14.trinum.com/ibox/ftpcam/mega_superbesse_ecole.jpg",
@@ -103,8 +314,8 @@
                     ]
                 },
                 {
-                    "uid": 6,
-                    "order": 4,
+                    "uid": 2018,
+                    "order": 18,
                     "title": "Super Besse - Tyrolienne (Haut)",
                     "imageLD": "http://srv06.trinum.com/ibox/ftpcam/1280_superbesse_superbesse-haut.jpg",
                     "imageHD": "http://srv06.trinum.com/ibox/ftpcam/mega_superbesse_superbesse-haut.jpg",
@@ -118,8 +329,8 @@
                     ]
                 },
                 {
-                    "uid": 7,
-                    "order": 5,
+                    "uid": 2019,
+                    "order": 19,
                     "title": "Super Besse - Front de neige",
                     "imageLD": "http://srv05.trinum.com/ibox/ftpcam/1280_superbesseM.jpg",
                     "imageHD": "http://srv05.trinum.com/ibox/ftpcam/mega_superbesseM.jpg",
@@ -133,8 +344,8 @@
                     ]
                 },
                 {
-                    "uid": 8,
-                    "order": 6,
+                    "uid": 2020,
+                    "order": 20,
                     "title": "Sancy - Station Chastreix",
                     "imageLD": "http://srv02.trinum.com/ibox/ftpcam/1280_chastreix-sancy_station.jpg",
                     "imageHD": "http://srv02.trinum.com/ibox/ftpcam/mega_chastreix-sancy_station.jpg",
@@ -148,8 +359,8 @@
                     ]
                 },
                 {
-                    "uid": 9,
-                    "order": 7,
+                    "uid": 2021,
+                    "order": 21,
                     "title": "Sancy - Lac Chambon",
                     "imageLD": "http://srv14.trinum.com/ibox/ftpcam/1280_chastreix-sancy_lac-chambon.jpg",
                     "imageHD": "http://srv14.trinum.com/ibox/ftpcam/mega_chastreix-sancy_lac-chambon.jpg",
@@ -173,12 +384,13 @@
             "longitude": 2.75,
             "webcams": [
                 {
-                    "uid": 10,
+                    "uid": 3001,
                     "order": 1,
                     "title": "Sommet de la station",
                     "imageLD": "http://srv02.trinum.com/ibox/ftpcam/1280_lioran_sommet-domaine.jpg",
                     "imageHD": "http://srv02.trinum.com/ibox/ftpcam/mega_lioran_sommet-domaine.jpg",
                     "type": "image",
+                    "hidden": true,
                     "tags": [
                         "lioran",
                         "auvergne",
@@ -188,7 +400,7 @@
                     ]
                 },
                 {
-                    "uid": 11,
+                    "uid": 3002,
                     "order": 2,
                     "title": "Font d'Alagnon",
                     "imageLD": "http://srv04.trinum.com/ibox/ftpcam/1280_lioran_font-d-alagnon.jpg",
@@ -202,7 +414,7 @@
                     ]
                 },
                 {
-                    "uid": 12,
+                    "uid": 3003,
                     "order": 3,
                     "title": "Centre station",
                     "imageLD": "http://srv02.trinum.com/ibox/ftpcam/1280_lioran_station.jpg",
@@ -226,7 +438,7 @@
             "longitude": null,
             "webcams": [
                 {
-                    "uid": 13,
+                    "uid": 4001,
                     "order": 1,
                     "title": "D149 - Besse et Saint-Anastaise\nAccès à Super-Besse",
                     "imageLD": "http://routes.cg63.fr/sig/CAM1.jpg",
@@ -238,7 +450,7 @@
                     ]
                 },
                 {
-                    "uid": 14,
+                    "uid": 4002,
                     "order": 2,
                     "title": "D942 - Saint-Genès Champanelle\nCol de la Moreno",
                     "imageLD": "http://routes.cg63.fr/sig/CAM2.jpg",
@@ -250,7 +462,7 @@
                     ]
                 },
                 {
-                    "uid": 15,
+                    "uid": 4003,
                     "order": 3,
                     "title": "D941 - Saint-Ours Les roches\nEntrée de Pontgibaud",
                     "imageLD": "http://routes.cg63.fr/sig/CAM3.jpg",
@@ -262,7 +474,7 @@
                     ]
                 },
                 {
-                    "uid": 16,
+                    "uid": 4004,
                     "order": 4,
                     "title": "D996 - Grandrif\nCol des Pradeaux",
                     "imageLD": "http://routes.cg63.fr/sig/CAM4.jpg",
@@ -274,7 +486,7 @@
                     ]
                 },
                 {
-                    "uid": 17,
+                    "uid": 4005,
                     "order": 5,
                     "title": "D2089 - Perpezat\nCôte de Buges",
                     "imageLD": "http://routes.cg63.fr/sig/CAM5.jpg",
@@ -286,7 +498,7 @@
                     ]
                 },
                 {
-                    "uid": 18,
+                    "uid": 4006,
                     "order": 6,
                     "title": "D996 - Cunlhat\nCol de Toutée",
                     "imageLD": "http://routes.cg63.fr/sig/CAM6.jpg",
@@ -298,7 +510,7 @@
                     ]
                 },
                 {
-                    "uid": 19,
+                    "uid": 4007,
                     "order": 7,
                     "title": "D2144 - Menat\nLa Baraque Brûlée",
                     "imageLD": "http://routes.cg63.fr/sig/CAM7.jpg",
@@ -310,7 +522,7 @@
                     ]
                 },
                 {
-                    "uid": 20,
+                    "uid": 4008,
                     "order": 8,
                     "title": "D2009 - Cébazat\nPont de Ladoux",
                     "imageLD": "http://routes.cg63.fr/sig/CAM8.jpg",
@@ -322,7 +534,7 @@
                     ]
                 },
                 {
-                    "uid": 21,
+                    "uid": 4009,
                     "order": 9,
                     "title": "D999 - Saint-Germain l'Herm\nCol de la Dételée",
                     "imageLD": "http://routes.cg63.fr/sig/CAM9.jpg",
@@ -334,7 +546,7 @@
                     ]
                 },
                 {
-                    "uid": 22,
+                    "uid": 4010,
                     "order": 10,
                     "title": "D2089 - Chabreloche\nLe Pas du Pire",
                     "imageLD": "http://routes.cg63.fr/sig/CAM10.jpg",
@@ -346,7 +558,7 @@
                     ]
                 },
                 {
-                    "uid": 23,
+                    "uid": 4012,
                     "order": 11,
                     "title": "D943 - Saint-Ours Les Roches\nLe Vauriat",
                     "imageLD": "http://routes.cg63.fr/sig/CAM11.jpg",
@@ -358,7 +570,7 @@
                     ]
                 },
                 {
-                    "uid": 24,
+                    "uid": 4013,
                     "order": 12,
                     "title": "D922 - Saint-Sauves d'Auvergne\nMéjanesse",
                     "imageLD": "http://routes.cg63.fr/sig/CAM12.jpg",
@@ -380,7 +592,7 @@
             "longitude": 3.0807292,
             "webcams": [
                 {
-                    "uid": 25,
+                    "uid": 5001,
                     "order": 1,
                     "title": "Place de Jaude",
                     "viewsurfLD": "https://filmssite.viewsurf.com/clermontferrand4/1/2",
@@ -395,8 +607,8 @@
                     ]
                 },
                 {
-                    "uid": 26,
-                    "order": 1,
+                    "uid": 5002,
+                    "order": 2,
                     "title": "Montjuzet",
                     "viewsurfLD": "https://filmssite.viewsurf.com/clermontferrand4/7/7",
                     "viewsurfHD": "https://filmssite.viewsurf.com/clermontferrand4/7/6",
@@ -409,12 +621,13 @@
                     ]
                 },
                 {
-                    "uid": 27,
-                    "order": 1,
+                    "uid": 5003,
+                    "order": 3,
                     "title": "Place de la Victoire",
                     "viewsurfLD": "https://filmssite.viewsurf.com/clermontferrandvictoire/640_h264",
                     "viewsurfHD": null,
                     "type": "viewsurf",
+                    "hidden": true,
                     "tags": [
                         "clermont-ferrand",
                         "clermont",
@@ -424,8 +637,8 @@
                     ]
                 },
                 {
-                    "uid": 28,
-                    "order": 1,
+                    "uid": 5004,
+                    "order": 4,
                     "title": "Puy de Dôme",
                     "viewsurfLD": "https://filmssite.viewsurf.com/clermontferrand4/3/5",
                     "viewsurfHD": "https://filmssite.viewsurf.com/clermontferrand4/3/4",
@@ -438,8 +651,8 @@
                     ]
                 },
                 {
-                    "uid": 29,
-                    "order": 1,
+                    "uid": 5005,
+                    "order": 5,
                     "title": "Forez",
                     "viewsurfLD": "https://filmssite.viewsurf.com/clermontferrand4/10/9",
                     "viewsurfHD": "https://filmssite.viewsurf.com/clermontferrand4/10/8",
@@ -452,8 +665,8 @@
                     ]
                 },
                 {
-                    "uid": 30,
-                    "order": 1,
+                    "uid": 5006,
+                    "order": 6,
                     "title": "Cathédrale",
                     "viewsurfLD": "https://filmssite.viewsurf.com/clermontferrand4/14/11",
                     "viewsurfHD": "https://filmssite.viewsurf.com/clermontferrand4/14/10",

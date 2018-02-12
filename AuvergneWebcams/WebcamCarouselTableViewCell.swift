@@ -137,7 +137,9 @@ class WebcamCarouselTableViewCell: UITableViewCell, ConfigurableCell {
         }
         
         item.refreshWeatherIfNeeded { [weak self] section, error in
-            if error == nil {
+            if let error = error {
+                print(error)
+            } else {
                 self?.displayWeather(for: section)
             }
         }
