@@ -94,11 +94,7 @@ class AbstractViewController: UIViewController {
         var items = [Any]()
         
         if let title = title {
-            if let appName = Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String {
-                items.append("\(title)\n\nPartagé depuis \(appName)" as Any)
-            } else {
-                items.append(title as Any)
-            }
+            items.append("\(title)\n\nPartagé depuis \(Configuration.applicationName)" as Any)
         }
         
         if let image = image {

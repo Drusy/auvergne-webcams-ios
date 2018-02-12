@@ -232,7 +232,6 @@ class AbstractWebcamView: UIView {
         let isReachable = (reachability == nil || (reachability != nil && reachability!.connection != .none))
         
         if statusCode != -999 && isReachable {
-            
             if retryCount > 0 {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
                     guard let strongSelf = self else { return }

@@ -15,4 +15,5 @@ extension Configuration {
     
     static let openWeatherAPIKey = "54a35820a2f57153fa94eeef69fc094e"
     static let mainThemeImageName = "pdd-landscape-cloudless"
+    static let contactEmail = "auvergnewebcams@openium.fr"
 }

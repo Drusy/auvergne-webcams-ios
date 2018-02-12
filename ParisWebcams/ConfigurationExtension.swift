@@ -15,4 +15,5 @@ extension Configuration {
     
     static let openWeatherAPIKey = "4d154bd07e174b49b13ce6d51143a3aa"
     static let mainThemeImageName = "eiffel-tower-landscape-cloudless"
+    static let contactEmail = "auvergnewebcams@openium.fr"
 }

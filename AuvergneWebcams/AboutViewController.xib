@@ -33,7 +33,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="991"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pz9-og-f5t">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="1084.3333333333333"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="1268"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pdd-landscape" translatesAutoresizingMaskIntoConstraints="NO" id="ajF-hu-P0q">
                                     <rect key="frame" x="132" y="24" width="150" height="150"/>
@@ -43,7 +43,7 @@
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Vq-kb-CUG" customClass="ActiveLabel" customModule="ActiveLabel">
-                                    <rect key="frame" x="31.666666666666657" y="250.66666666666669" width="351.66666666666674" height="735.66666666666652"/>
+                                    <rect key="frame" x="31.666666666666657" y="250.66666666666669" width="351.66666666666674" height="919.33333333333326"/>
                                     <mutableString key="text">Auvergne Webcams vous permet d'observer vos volcans favoris à tout moment via votre smartphone.
 
 Ni Auvergne Webcams ni Openium ne sont propriétaires des images et flux vidéos présentés. Pour plus d'informations, rendez-vous sur https://github.com/Drusy/auvergne-webcams-ios
@@ -63,6 +63,15 @@ https://clermont-ferrand.fr/webcams
 Routes CG63
 http://www.puy-de-dome.fr/routes/webcam.html
 
+Allier
+http://www.meteo-centre.fr/webcam-allier.php
+
+Aurillac
+https://www.caba.fr/webcams/
+
+Puy-en-Velay
+http://www.ot-lepuyenvelay.fr/webcam.php
+
 Produit en 🇫🇷 par @Drusy et @Titiphoque chez @Openium
 Design par @MathildeVigneau chez @LesPirates ☠️
 
@@ -81,7 +90,7 @@ Icônes par @FlatIcons, @Freepik et @PopcornsArts
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="openium" translatesAutoresizingMaskIntoConstraints="NO" id="Rwf-O2-sKW">
-                                    <rect key="frame" x="24" y="1010.3333333333335" width="366" height="50"/>
+                                    <rect key="frame" x="24" y="1194" width="366" height="50"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="NaA-Qb-THx"/>
                                     </constraints>

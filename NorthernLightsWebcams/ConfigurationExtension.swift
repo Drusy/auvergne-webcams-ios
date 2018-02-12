@@ -15,4 +15,5 @@ extension Configuration {
     
     static let openWeatherAPIKey = "7d4e3aac6da85ff24310eaca82e3b802"
     static let mainThemeImageName = "reindeer-landscape-cloudless"
+    static let contactEmail = "auvergnewebcams@openium.fr"
 }

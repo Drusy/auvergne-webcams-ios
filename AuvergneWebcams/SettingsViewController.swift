@@ -10,6 +10,7 @@ import UIKit
 import Eureka
 import SafariServices
 import SwiftyUserDefaults
+import MessageUI
 
 enum SettingTag: String {
     case theme
@@ -125,6 +126,11 @@ class SettingsViewController: FormViewController {
                 self.showLesPiratesWebsite()
             }
             <<< LabelRow() {
+                $0.title = "Proposer une webcam"
+                }.onCellSelection { _, _ in
+                    self.proposeYourWebcams()
+            }
+            <<< LabelRow() {
                 $0.title = "Noter l'application"
             }.onCellSelection { _, _ in
                 self.rateApp()
@@ -165,6 +171,61 @@ class SettingsViewController: FormViewController {
         let avc = AboutViewController()
         navigationController?.pushViewController(avc, animated: true)
         AnalyticsManager.logEvent(button: "about")
+    }
+    
+    func proposeYourWebcams() {
+        let alertTitle = "Nouvelle webcam"
+        guard MFMailComposeViewController.canSendMail() else {
+            let alertController = UIAlertController(title: alertTitle,
+                                                    message: "Aucun compte email n'est configuré",
+                                                    preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK",
+                                         style: .cancel,
+                                         handler: nil)
+            
+            alertController.addAction(okAction)
+            DispatchQueue.main.async {
+                self.present(alertController, animated: true, completion: nil)
+            }
+            
+            return
+        }
+        
+        let mailHandler: () -> Void = {
+            let mailComposerVC = MailComposeViewController()
+            let attributes: [NSAttributedStringKey: Any] = [
+                NSAttributedStringKey.foregroundColor: UIColor.white,
+                NSAttributedStringKey.font: UIFont.proximaNovaSemiBold(withSize: 17)
+            ]
+            
+            mailComposerVC.navigationBar.titleTextAttributes = attributes
+            mailComposerVC.navigationBar.barStyle = .black
+            mailComposerVC.navigationBar.isTranslucent = true
+            mailComposerVC.navigationBar.tintColor = UIColor.white
+            mailComposerVC.navigationBar.barTintColor = UIColor.black
+            mailComposerVC.mailComposeDelegate = self
+            mailComposerVC.setToRecipients([Configuration.contactEmail])
+            mailComposerVC.setSubject("Proposition de webcam")
+            mailComposerVC.setMessageBody("J'ai connaissance d'une webcam non disponible dans l'application.\n\nNom du lieu:\nLien vers la webcam:",
+                isHTML: false)
+            
+            DispatchQueue.main.async {
+                self.present(mailComposerVC, animated: true, completion: nil)
+            }
+        }
+        
+        let alertController = UIAlertController(title: alertTitle,
+                                                message: "Afin de proposer une webcam, veuillez vous munir du nom du lieu proposé ainsi que du lien vers la webcam en question.",
+                                                preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            mailHandler()
+        }
+        
+        alertController.addAction(okAction)
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true, completion: nil)
+        }
+        AnalyticsManager.logEvent(button: "propose_webcam")
     }
     
     func translate() {
@@ -220,3 +281,20 @@ class SettingsViewController: FormViewController {
     }
 }
 
+// MARK: - MFMailComposeViewControllerDelegate
+
+extension SettingsViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+        
+        if result == .sent {
+            let alertController = UIAlertController(title: "Merci !",
+                                                    message: "Nous vous tiendrons au courant rapidement concernant l'ajout de cette nouvelle webcam",
+                                                    preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            
+            alertController.addAction(okAction)
+            present(alertController, animated: true, completion: nil)
+        }
+    }
+}

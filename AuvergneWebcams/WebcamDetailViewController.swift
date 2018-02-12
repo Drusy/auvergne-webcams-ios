@@ -579,7 +579,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         mailComposerVC.navigationBar.tintColor = UIColor.white
         mailComposerVC.navigationBar.barTintColor = UIColor.black
         mailComposerVC.mailComposeDelegate = self
-        mailComposerVC.setToRecipients(["auvergnewebcams@openium.fr"])
+        mailComposerVC.setToRecipients([Configuration.contactEmail])
         mailComposerVC.setSubject("Signaler un problème - Webcam \(title)")
         mailComposerVC.setMessageBody("La webcam \(title) (\(webcam.uid)) ne fonctionne pas.",
             isHTML: false)
