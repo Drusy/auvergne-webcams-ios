@@ -213,7 +213,7 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
     override func update() {
         super.update()
         
-        var sectionsArray = Array(realm.objects(WebcamSection.self).sorted(byKeyPath: #keyPath(WebcamSection.order), ascending: true))
+        var sectionsArray = Array(realm.objects(WebcamSection.self).filter("webcams.@count > 0").sorted(byKeyPath: #keyPath(WebcamSection.order), ascending: true))
         let favoriteWebcams = realm.objects(Webcam.self).filter("%K == true", #keyPath(Webcam.favorite)).sorted(byKeyPath: #keyPath(Webcam.title))
         
         if !favoriteWebcams.isEmpty {
