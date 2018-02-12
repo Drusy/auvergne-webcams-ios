@@ -23,7 +23,7 @@ class WebcamSectionViewProvider: AbstractArrayViewProvider<Webcam, WebcamCollect
             if UIDevice.current.userInterfaceIdiom == .pad {
                 return 250
             } else {
-                return 200
+                return 220
             }
         }
     }
