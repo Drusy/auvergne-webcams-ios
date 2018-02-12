@@ -1074,6 +1074,41 @@
                     ]
                 }
             ]
+        },
+        {
+            "uid": 8,
+            "order": 8,
+            "title": "Aurillac",
+            "imageName": "aurillac-landscape",
+            "latitude": 44.9280406,
+            "longitude": 2.3716527,
+            "webcams": [
+                {
+                    "uid": 8001,
+                    "order": 1,
+                    "title": "Place des Carmes",
+                    "imageLD": "https://www.caba.fr/webcams/WEBCAM_00_01_LAST.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "aurillac",
+                        "place"
+                    ]
+                },
+                {
+                    "uid": 8002,
+                    "order": 2,
+                    "title": "Vue toits",
+                    "imageLD": "https://www.caba.fr/webcams/WEBCAM_01_01_LAST.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "aurillac",
+                        "toit",
+                        "ciel"
+                    ]
+                }
+            ]
         }
     ]
 }
