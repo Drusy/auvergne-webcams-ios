@@ -1,3 +1,41 @@
+3.1.1 Release notes (2018-02-03)
+=============================================================
+
+Prebuilt Swift frameworks for Carthage are now built with Xcode 9.2.
+
+### Bugfixes
+
+* Fix a memory leak when opening Realms with an explicit `objectTypes` array
+  from Swift.
+
+3.1.0 Release notes (2018-01-16)
+=============================================================
+
+* Prebuilt frameworks are now included for Swift 3.2.3 and 4.0.3.
+* Prebuilt frameworks are no longer included for Swift 3.0.x.
+* Building from source with Xcode versions prior to Xcode 8.3 is no longer supported.
+
+### Enhancements
+
+* Add `Results.distinct(by:)` / `-[RLMResults distinctResultsUsingKeyPaths:]`, which return a `Results`
+  containing only objects with unique values at the given key paths.
+* Improve performance of change checking for notifications in certain cases.
+* Realm Object Server errors not explicitly recognized by the client are now reported to the application
+  regardless.
+* Add support for JSON Web Token as a sync credential source.
+* Add support for Nickname and Anonymous Auth as a sync credential source.
+* Improve allocator performance when writing to a highly fragmented file. This
+  should significantly improve performance when inserting large numbers of
+  objects which have indexed properties.
+* Improve write performance for complex object graphs involving many classes
+  linking to each other.
+
+### Bugfixes
+
+* Add a missing check for a run loop in the permission API methods which
+  require one.
+* Fix some cases where non-fatal sync errors were being treated as fatal errors.
+
 3.0.2 Release notes (2017-11-08)
 =============================================================
 
