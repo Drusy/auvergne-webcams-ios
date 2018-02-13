@@ -4,7 +4,8 @@
 $ch = curl_init();
 
 // Example data
-$id = "3";
+// $id = "3";
+$id = $_GET['id'];
 
 curl_setopt($ch, CURLOPT_URL, "http://public.dir-massif-central.magsys-services.net/index.php/camera/ajaxRefresh");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);

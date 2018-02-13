@@ -188,8 +188,8 @@
                     "uid": 3005,
                     "order": 5,
                     "title": "Bas de la station\nBois Joli",
-                    "imageLD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole8.jpg",
-                    "imageHD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole8.jpg",
+                    "imageLD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole9.jpg",
+                    "imageHD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole9.jpg",
                     "type": "image",
                     "tags": [
                         "sancy",
@@ -340,21 +340,6 @@
                     "title": "Sommet\nPuy de Chambourget",
                     "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut10.jpg",
                     "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut10.jpg",
-                    "type": "image",
-                    "tags": [
-                        "sancy",
-                        "super besse",
-                        "auvergne",
-                        "station",
-                        "ski"
-                    ]
-                },
-                {
-                    "uid": 3016,
-                    "order": 16,
-                    "title": "Sommet\nPiste Chemin de ronde",
-                    "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut12.jpg",
-                    "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut12.jpg",
                     "type": "image",
                     "tags": [
                         "sancy",
@@ -847,13 +832,140 @@
                         "station",
                         "ski"
                     ]
+                },
+                {
+                    "uid": 5004,
+                    "order": 4,
+                    "title": "Route du Lioran\nDirection Murat / Massiac",
+                    "imageLD": "https://auvergne-webcams.openium.fr/proxy/massif-central-magsys-services.php?id=6",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "lioran",
+                        "auvergne",
+                        "station",
+                        "ski",
+                        "route"
+                    ]
+                },
+                {
+                    "uid": 5005,
+                    "order": 5,
+                    "title": "Les chazes\nDirection Murat / Massiac",
+                    "imageLD": "https://auvergne-webcams.openium.fr/proxy/massif-central-magsys-services.php?id=36",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "lioran",
+                        "auvergne",
+                        "station",
+                        "ski",
+                        "route"
+                    ]
+                }
+            ]
+        },
+        {
+            "uid": 7,
+            "order": 6,
+            "title": "Clermont-Ferrand",
+            "imageName": "cf-landscape",
+            "latitude": 45.7747873,
+            "longitude": 3.0807292,
+            "webcams": [
+                {
+                    "uid": 7001,
+                    "order": 1,
+                    "title": "Place de Jaude",
+                    "viewsurfLD": "https://filmssite.viewsurf.com/clermontferrand4/1/2",
+                    "viewsurfHD": "https://filmssite.viewsurf.com/clermontferrand4/1/1",
+                    "type": "viewsurf",
+                    "tags": [
+                        "clermont-ferrand",
+                        "clermont",
+                        "ferrand",
+                        "jaude",
+                        "place"
+                    ]
+                },
+                {
+                    "uid": 7002,
+                    "order": 2,
+                    "title": "Montjuzet",
+                    "viewsurfLD": "https://filmssite.viewsurf.com/clermontferrand4/7/7",
+                    "viewsurfHD": "https://filmssite.viewsurf.com/clermontferrand4/7/6",
+                    "type": "viewsurf",
+                    "tags": [
+                        "clermont-ferrand",
+                        "clermont",
+                        "ferrand",
+                        "montjuzet"
+                    ]
+                },
+                {
+                    "uid": 7003,
+                    "order": 3,
+                    "title": "Place de la Victoire",
+                    "viewsurfLD": "https://filmssite.viewsurf.com/clermontferrandvictoire/640_h264",
+                    "viewsurfHD": null,
+                    "type": "viewsurf",
+                    "hidden": true,
+                    "tags": [
+                        "clermont-ferrand",
+                        "clermont",
+                        "ferrand",
+                        "place",
+                        "victoire"
+                    ]
+                },
+                {
+                    "uid": 7004,
+                    "order": 4,
+                    "title": "Puy de Dôme",
+                    "viewsurfLD": "https://filmssite.viewsurf.com/clermontferrand4/3/5",
+                    "viewsurfHD": "https://filmssite.viewsurf.com/clermontferrand4/3/4",
+                    "type": "viewsurf",
+                    "tags": [
+                        "clermont-ferrand",
+                        "clermont",
+                        "ferrand",
+                        "puy de dome"
+                    ]
+                },
+                {
+                    "uid": 7005,
+                    "order": 5,
+                    "title": "Forez",
+                    "viewsurfLD": "https://filmssite.viewsurf.com/clermontferrand4/10/9",
+                    "viewsurfHD": "https://filmssite.viewsurf.com/clermontferrand4/10/8",
+                    "type": "viewsurf",
+                    "tags": [
+                        "clermont-ferrand",
+                        "clermont",
+                        "ferrand",
+                        "forez"
+                    ]
+                },
+                {
+                    "uid": 7006,
+                    "order": 6,
+                    "title": "Cathédrale",
+                    "viewsurfLD": "https://filmssite.viewsurf.com/clermontferrand4/14/11",
+                    "viewsurfHD": "https://filmssite.viewsurf.com/clermontferrand4/14/10",
+                    "type": "viewsurf",
+                    "tags": [
+                        "clermont-ferrand",
+                        "clermont",
+                        "ferrand",
+                        "forez"
+                    ]
                 }
             ]
         },
         {
             "uid": 6,
             "order": 7,
-            "title": "État du traffic",
+            "title": "Traffic / Puy De Dôme",
             "imageName": "road-landscape",
             "latitude": null,
             "longitude": null,
@@ -1005,105 +1117,90 @@
             ]
         },
         {
-            "uid": 7,
-            "order": 6,
-            "title": "Clermont-Ferrand",
-            "imageName": "cf-landscape",
-            "latitude": 45.7747873,
-            "longitude": 3.0807292,
+            "uid": 11,
+            "order": 8,
+            "title": "Traffic / A75",
+            "imageName": "car-landscape",
+            "latitude": null,
+            "longitude": null,
             "webcams": [
                 {
-                    "uid": 7001,
+                    "uid": 11001,
                     "order": 1,
-                    "title": "Place de Jaude",
-                    "viewsurfLD": "https://filmssite.viewsurf.com/clermontferrand4/1/2",
-                    "viewsurfHD": "https://filmssite.viewsurf.com/clermontferrand4/1/1",
-                    "type": "viewsurf",
+                    "title": "PMV PR11\nDirection Clermont-Ferrand",
+                    "imageLD": "https://auvergne-webcams.openium.fr/proxy/massif-central-magsys-services.php?id=39",
+                    "imageHD": null,
+                    "type": "image",
                     "tags": [
-                        "clermont-ferrand",
-                        "clermont",
-                        "ferrand",
-                        "jaude",
-                        "place"
+                        "a75",
+                        "route"
                     ]
                 },
                 {
-                    "uid": 7002,
+                    "uid": 11002,
                     "order": 2,
-                    "title": "Montjuzet",
-                    "viewsurfLD": "https://filmssite.viewsurf.com/clermontferrand4/7/7",
-                    "viewsurfHD": "https://filmssite.viewsurf.com/clermontferrand4/7/6",
-                    "type": "viewsurf",
+                    "title": "Coudes PR20+200\nDirection Clermont-Ferrand",
+                    "imageLD": "https://auvergne-webcams.openium.fr/proxy/massif-central-magsys-services.php?id=20",
+                    "imageHD": null,
+                    "type": "image",
                     "tags": [
-                        "clermont-ferrand",
-                        "clermont",
-                        "ferrand",
-                        "montjuzet"
+                        "a75",
+                        "route"
                     ]
                 },
                 {
-                    "uid": 7003,
+                    "uid": 11003,
                     "order": 3,
-                    "title": "Place de la Victoire",
-                    "viewsurfLD": "https://filmssite.viewsurf.com/clermontferrandvictoire/640_h264",
-                    "viewsurfHD": null,
-                    "type": "viewsurf",
-                    "hidden": true,
+                    "title": "Fageole PR86+400\nDirection Montpellier",
+                    "imageLD": "https://auvergne-webcams.openium.fr/proxy/massif-central-magsys-services.php?id=23",
+                    "imageHD": null,
+                    "type": "image",
                     "tags": [
-                        "clermont-ferrand",
-                        "clermont",
-                        "ferrand",
-                        "place",
-                        "victoire"
+                        "a75",
+                        "route"
                     ]
                 },
                 {
-                    "uid": 7004,
+                    "uid": 11004,
                     "order": 4,
-                    "title": "Puy de Dôme",
-                    "viewsurfLD": "https://filmssite.viewsurf.com/clermontferrand4/3/5",
-                    "viewsurfHD": "https://filmssite.viewsurf.com/clermontferrand4/3/4",
-                    "type": "viewsurf",
+                    "title": "Coren PR89+840\nDirection Clermont-Ferrand",
+                    "imageLD": "https://auvergne-webcams.openium.fr/proxy/massif-central-magsys-services.php?id=33",
+                    "imageHD": null,
+                    "type": "image",
                     "tags": [
-                        "clermont-ferrand",
-                        "clermont",
-                        "ferrand",
-                        "puy de dome"
+                        "a75",
+                        "route"
                     ]
                 },
                 {
-                    "uid": 7005,
+                    "uid": 11005,
                     "order": 5,
-                    "title": "Forez",
-                    "viewsurfLD": "https://filmssite.viewsurf.com/clermontferrand4/10/9",
-                    "viewsurfHD": "https://filmssite.viewsurf.com/clermontferrand4/10/8",
-                    "type": "viewsurf",
+                    "title": "Col du Rocher Blanc PR118+150\nDirection Montpellier",
+                    "imageLD": "https://auvergne-webcams.openium.fr/proxy/massif-central-magsys-services.php?id=3",
+                    "imageHD": null,
+                    "type": "image",
                     "tags": [
-                        "clermont-ferrand",
-                        "clermont",
-                        "ferrand",
-                        "forez"
+                        "a75",
+                        "route"
                     ]
                 },
                 {
-                    "uid": 7006,
+                    "uid": 11006,
                     "order": 6,
-                    "title": "Cathédrale",
-                    "viewsurfLD": "https://filmssite.viewsurf.com/clermontferrand4/14/11",
-                    "viewsurfHD": "https://filmssite.viewsurf.com/clermontferrand4/14/10",
-                    "type": "viewsurf",
+                    "title": "Col des Issartets PR144+662\nDirection Montpellier",
+                    "imageLD": "https://auvergne-webcams.openium.fr/proxy/massif-central-magsys-services.php?id=4",
+                    "imageHD": null,
+                    "type": "image",
                     "tags": [
-                        "clermont-ferrand",
-                        "clermont",
-                        "ferrand",
-                        "forez"
+                        "a75",
+                        "route"
                     ]
                 }
             ]
         },
         {
             "uid": 8,
-            "order": 8,
+            "order": 9,
             "title": "Aurillac",
             "imageName": "aurillac-landscape",
             "latitude": 44.9280406,
@@ -1138,7 +1235,7 @@
         },
         {
             "uid": 9,
-            "order": 9,
+            "order": 10,
             "title": "Allier",
             "imageName": "allier-landscape",
             "latitude": 46.3661442,
@@ -1209,7 +1306,7 @@
         },
         {
             "uid": 10,
-            "order": 10,
+            "order": 11,
             "title": "Haute-Loire",
             "imageName": "hl-landscape",
             "latitude": 46.3661442,
@@ -1230,25 +1327,28 @@
                 {
                     "uid": 10002,
                     "order": 2,
-                    "title": "Saint-Maurice-de-Lignon\nN88",
+                    "title": "Saint-Maurice-de-Lignon / Les Barrys\nDirection Le Puy en Velay",
                     "imageLD": "http://www.webcam-autoroute.eu/images/massif_central_cam9.JPG",
                     "imageHD": null,
                     "type": "image",
                     "tags": [
                         "haute loire",
+                        "puy en velay",
                         "saint maurice de lignon",
+                        "les barrys",
                         "route"
                     ]
                 },
                 {
                     "uid": 10004,
                     "order": 4,
-                    "title": "Le Pertuis\nN88",
+                    "title": "Le Pertuis - N88\nDirection Le Puy en Velay",
                     "imageLD": "http://www.webcam-autoroute.eu/images/massif_central_cam7.JPG",
                     "imageHD": null,
                     "type": "image",
                     "tags": [
                         "haute loire",
+                        "puy en velay",
                         "pertuis",
                         "route"
                     ]
@@ -1256,12 +1356,13 @@
                 {
                     "uid": 10005,
                     "order": 5,
-                    "title": "Blavozy\nN88",
+                    "title": "Blavozy / Montferrat - N88\nDirection Le Puy en Velay",
                     "imageLD": "http://www.webcam-autoroute.eu/images/massif_central_cam8.JPG",
                     "imageHD": null,
                     "type": "image",
                     "tags": [
                         "haute loire",
+                        "puy en velay",
                         "blavozy",
                         "route"
                     ]
@@ -1275,6 +1376,7 @@
                     "type": "image",
                     "tags": [
                         "haute loire",
+                        "puy en velay",
                         "saint paul de tartas",
                         "route"
                     ]
@@ -1282,6 +1384,20 @@
                 {
                     "uid": 10007,
                     "order": 7,
+                    "title": "Col de Fix\nDirection Le Puy en Velay",
+                    "imageLD": "https://auvergne-webcams.openium.fr/proxy/massif-central-magsys-services.php?id=10",
+                    "imageHD": null,
+                    "type": "image",
+                    "tags": [
+                        "haute loire",
+                        "col de fix",
+                        "puy en velay",
+                        "route"
+                    ]
+                },
+                {
+                    "uid": 10008,
+                    "order": 8,
                     "title": "Saint Haon",
                     "imageLD": "http://213.111.54.196:8080/cam_1.jpg",
                     "imageHD": null,
@@ -1292,8 +1408,8 @@
                     ]
                 },
                 {
-                    "uid": 10008,
-                    "order": 8,
+                    "uid": 10009,
+                    "order": 9,
                     "title": "Domaine alpin des Estables",
                     "imageLD": "https://www.mezencloiresauvage.com/webcam/camera2.jpg",
                     "imageHD": null,
@@ -1304,8 +1420,8 @@
                     ]
                 },
                 {
-                    "uid": 10009,
-                    "order": 9,
+                    "uid": 10010,
+                    "order": 10,
                     "title": "Domaine nordic de Mézenc",
                     "imageLD": "https://www.mezencloiresauvage.com/webcam/MOBOTIX/camera1.jpg",
                     "imageHD": null,
