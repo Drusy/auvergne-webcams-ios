@@ -466,6 +466,12 @@
 		F9F5AC981DD34C8B00D9FF83 /* WebcamSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5AC971DD34C8B00D9FF83 /* WebcamSection.swift */; };
 		F9F5ACA21DD35DDD00D9FF83 /* WebcamDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5ACA01DD35DDD00D9FF83 /* WebcamDetailViewController.swift */; };
 		F9F5ACA31DD35DDD00D9FF83 /* WebcamDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9F5ACA11DD35DDD00D9FF83 /* WebcamDetailViewController.xib */; };
+		F9F67DF42032EB64005FDE42 /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9F67DF32032EB58005FDE42 /* Mapbox.framework */; };
+		F9F67DF52032EB64005FDE42 /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9F67DF32032EB58005FDE42 /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F9F67DF62032EB6A005FDE42 /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9F67DF32032EB58005FDE42 /* Mapbox.framework */; };
+		F9F67DF72032EB6A005FDE42 /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9F67DF32032EB58005FDE42 /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F9F67DF82032EB6F005FDE42 /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9F67DF32032EB58005FDE42 /* Mapbox.framework */; };
+		F9F67DF92032EB6F005FDE42 /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9F67DF32032EB58005FDE42 /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -509,6 +515,7 @@
 				F9022D9F1DD90032006AF146 /* SwiftiumKit.framework in Embed Frameworks */,
 				F963AB3E1E59E80900ED5A8B /* Alamofire.framework in Embed Frameworks */,
 				F9B1E5FD1E65656100829FE8 /* NVActivityIndicatorView.framework in Embed Frameworks */,
+				F9F67DF52032EB64005FDE42 /* Mapbox.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -536,6 +543,7 @@
 				F94432FE1E8A4C45006D7308 /* SwiftiumKit.framework in Embed Frameworks */,
 				F94432FF1E8A4C45006D7308 /* Alamofire.framework in Embed Frameworks */,
 				F94433001E8A4C45006D7308 /* NVActivityIndicatorView.framework in Embed Frameworks */,
+				F9F67DF92032EB6F005FDE42 /* Mapbox.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -574,6 +582,7 @@
 				F9D610B31E82EDBF00BFC18D /* SwiftiumKit.framework in Embed Frameworks */,
 				F9D610B41E82EDBF00BFC18D /* Alamofire.framework in Embed Frameworks */,
 				F9D610B51E82EDBF00BFC18D /* NVActivityIndicatorView.framework in Embed Frameworks */,
+				F9F67DF72032EB6A005FDE42 /* Mapbox.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -756,6 +765,7 @@
 		F9F5AC971DD34C8B00D9FF83 /* WebcamSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebcamSection.swift; sourceTree = "<group>"; };
 		F9F5ACA01DD35DDD00D9FF83 /* WebcamDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebcamDetailViewController.swift; sourceTree = "<group>"; };
 		F9F5ACA11DD35DDD00D9FF83 /* WebcamDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebcamDetailViewController.xib; sourceTree = "<group>"; };
+		F9F67DF32032EB58005FDE42 /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapbox.framework; path = Carthage/Build/iOS/Mapbox.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -779,6 +789,7 @@
 				F911BBEE1DDC6097000C022B /* Crashlytics.framework in Frameworks */,
 				F963AB461E5A152100ED5A8B /* ObjectMapper.framework in Frameworks */,
 				F9B01F331E80AAB000A1F174 /* SVProgressHUD.framework in Frameworks */,
+				F9F67DF42032EB64005FDE42 /* Mapbox.framework in Frameworks */,
 				F963AB3D1E59E80900ED5A8B /* Alamofire.framework in Frameworks */,
 				F93C76471DD11AF0005DEE66 /* SwiftyUserDefaults.framework in Frameworks */,
 				F93C76411DD11AF0005DEE66 /* Kingfisher.framework in Frameworks */,
@@ -823,6 +834,7 @@
 				F90551DA1FB13421007BE4CD /* Firebase.framework in Frameworks */,
 				F94432B91E8A4C45006D7308 /* Crashlytics.framework in Frameworks */,
 				F94432BA1E8A4C45006D7308 /* ObjectMapper.framework in Frameworks */,
+				F9F67DF82032EB6F005FDE42 /* Mapbox.framework in Frameworks */,
 				F94432BC1E8A4C45006D7308 /* SVProgressHUD.framework in Frameworks */,
 				F94432BE1E8A4C45006D7308 /* Alamofire.framework in Frameworks */,
 				F94432BF1E8A4C45006D7308 /* SwiftyUserDefaults.framework in Frameworks */,
@@ -872,6 +884,7 @@
 				F90551CC1FB1340E007BE4CD /* Firebase.framework in Frameworks */,
 				F9D6106E1E82EDBF00BFC18D /* Crashlytics.framework in Frameworks */,
 				F9D6106F1E82EDBF00BFC18D /* ObjectMapper.framework in Frameworks */,
+				F9F67DF62032EB6A005FDE42 /* Mapbox.framework in Frameworks */,
 				F9D610711E82EDBF00BFC18D /* SVProgressHUD.framework in Frameworks */,
 				F9D610731E82EDBF00BFC18D /* Alamofire.framework in Frameworks */,
 				F9D610741E82EDBF00BFC18D /* SwiftyUserDefaults.framework in Frameworks */,
@@ -1043,6 +1056,7 @@
 				F93C763A1DD11ACE005DEE66 /* Reachability.framework */,
 				F93C763B1DD11ACE005DEE66 /* Siren.framework */,
 				F99F37621E72969E0058AFB3 /* DOFavoriteButton.framework */,
+				F9F67DF32032EB58005FDE42 /* Mapbox.framework */,
 				F93C763C1DD11ACE005DEE66 /* SwiftyUserDefaults.framework */,
 			);
 			name = Carthage;
@@ -1988,6 +2002,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/NVActivityIndicatorView.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/DOFavoriteButton.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Mapbox.framework",
 			);
 			name = Carthage;
 			outputPaths = (
@@ -2035,6 +2050,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/NVActivityIndicatorView.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/DOFavoriteButton.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Mapbox.framework",
 			);
 			name = Carthage;
 			outputPaths = (
@@ -2184,6 +2200,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/NVActivityIndicatorView.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/DOFavoriteButton.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Mapbox.framework",
 			);
 			name = Carthage;
 			outputPaths = (
