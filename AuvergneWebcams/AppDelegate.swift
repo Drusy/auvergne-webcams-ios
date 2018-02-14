@@ -66,15 +66,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .containerURL(forSecurityApplicationGroupIdentifier: "group.fr.openium.AuvergneWebcams")!
             .appendingPathComponent("db.realm")
         config.fileURL = realmPath
+        config.deleteRealmIfMigrationNeeded = true
         Realm.Configuration.defaultConfiguration = config
         
-        let didPerformMigration = deleteRealmIfMigrationNeeded()
         #if DEBUG
             printRealmPath()
         #endif
         
         // Database init
-        if didPerformMigration || Defaults[.currentVersion] != version {
+        if Defaults[.currentVersion] != version {
             DownloadManager.shared.bootstrapRealmData()
         } else {
             // Let's init the download manager proxy
@@ -156,49 +156,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let path = realm.configuration.fileURL?.path else { return }
         
         print(path)
-    }
-    
-    func deleteRealmIfMigrationNeeded() -> Bool {
-        var didPerformMigration = false
-        
-        do {
-            _ = try Realm()
-        } catch {
-            print("Realm schema mismatch, deleting realm")
-            
-            Realm.Configuration.defaultConfiguration.deleteRealmIfMigrationNeeded = true
-            _ = try! Realm()
-            didPerformMigration = true
-        }
-        
-        return didPerformMigration
-    }
-    
-    func performRealmMigration() -> Void {
-        // Inside your application(application:didFinishLaunchingWithOptions:)
-        
-        let config = Realm.Configuration(
-            // Set the new schema version. This must be greater than the previously used
-            // version (if you've never set a schema version before, the version is 0).
-            schemaVersion: 1,
-            
-            // Set the block which will be called automatically when opening a Realm with
-            // a schema version lower than the one set above
-            migrationBlock: { migration, oldSchemaVersion in
-                // We haven’t migrated anything yet, so oldSchemaVersion == 0
-                if (oldSchemaVersion < 1) {
-                    // Nothing to do!
-                    // Realm will automatically detect new properties and removed properties
-                    // And will update the schema on disk automatically
-                }
-        })
-        
-        // Tell Realm to use this new configuration object for the default Realm
-        Realm.Configuration.defaultConfiguration = config
-        
-        // Now that we've told Realm how to handle the schema change, opening the file
-        // will automatically perform the migration
-        _ = try? Realm()
     }
 }
 

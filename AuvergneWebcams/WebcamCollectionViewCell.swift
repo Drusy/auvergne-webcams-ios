@@ -26,6 +26,12 @@ class WebcamCollectionViewCell: UICollectionViewCell, ConfigurableCell {
         fit(toSubview: webcamView)
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        webcamView.reset()
+    }
+    
     // MARK: - 
     
     static func identifier() -> String {

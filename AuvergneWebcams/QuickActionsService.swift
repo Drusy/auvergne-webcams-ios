@@ -20,7 +20,9 @@ class QuickActionsService {
     private init() { }
     
     let defaultTypePrefix = "fr.openium.AuvergneWebcams.quickAction."
-    var realm = try! Realm()
+    lazy var realm: Realm = {
+        return try! Realm()
+    }()
     let maxFav: Int = 4
     let maxQuickActionItem: Int = 4
     

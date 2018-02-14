@@ -152,11 +152,7 @@ class AbstractWebcamView: UIView {
     // MARK: -
     
     func configure(withWebcam webcam: Webcam) {
-        imageView.image = nil
-        noDataView.isHidden = true
-        brokenCameraView.isHidden = true
-        activityIndicator.isHidden = false
-        outdatedView.isHidden = webcam.isUpToDate()
+        reset()
         activityIndicator.startAnimating()
         imageView.layoutIfNeeded()
         
@@ -172,6 +168,17 @@ class AbstractWebcamView: UIView {
         case .viewsurf:
             loadViewsurfPreview(for: webcam)
         }
+    }
+    
+    func reset() {
+        imageView.kf.cancelDownloadTask()
+        imageView.image = nil
+        
+        noDataView.isHidden = true
+        brokenCameraView.isHidden = true
+        outdatedView.isHidden = true
+
+        activityIndicator.isHidden = false
     }
     
     // MARK: - 
@@ -231,27 +238,30 @@ class AbstractWebcamView: UIView {
         let reachability = Reachability()
         let isReachable = (reachability == nil || (reachability != nil && reachability!.connection != .none))
         
-        if statusCode != -999 && isReachable {
-            if retryCount > 0 {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-                    guard let strongSelf = self else { return }
-                    
-                    if let title = webcam.title {
-                        print("Retrying to download \(title) ...")
+        if  statusCode != -999 && statusCode != 30000 {
+            if isReachable {
+                if retryCount > 0 {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                        guard let strongSelf = self else { return }
+                        
+                        if let title = webcam.title {
+                            print("Retrying to download \(title) ...")
+                        }
+                        strongSelf.retryCount -= 1
+                        strongSelf.configure(withWebcam: webcam)
                     }
-                    strongSelf.retryCount -= 1
-                    strongSelf.configure(withWebcam: webcam)
+                } else {
+                    activityIndicator.stopAnimating()
+                    activityIndicator.isHidden = true
+                    brokenCameraView.isHidden = false
                 }
             } else {
+                retryCount = Webcam.retryCount
                 activityIndicator.stopAnimating()
                 activityIndicator.isHidden = true
-                brokenCameraView.isHidden = false
+                imageView.image = nil
+                noDataView.isHidden = false
             }
-        } else {
-            retryCount = Webcam.retryCount
-            activityIndicator.stopAnimating()
-            activityIndicator.isHidden = true
-            noDataView.isHidden = false
         }
     }
 }

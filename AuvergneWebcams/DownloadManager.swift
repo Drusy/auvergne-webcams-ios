@@ -14,7 +14,9 @@ import ObjectMapper
 class DownloadManager {
     static let shared = DownloadManager()
     
-    let realm = try! Realm()
+    lazy var realm: Realm = {
+        return try! Realm()
+    }()
     
     private init() {
         ImageDownloader.default.delegate = self

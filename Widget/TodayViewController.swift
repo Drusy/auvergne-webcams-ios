@@ -46,6 +46,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             .containerURL(forSecurityApplicationGroupIdentifier: "group.fr.openium.AuvergneWebcams")!
             .appendingPathComponent("db.realm")
         config.fileURL = realmPath
+        config.deleteRealmIfMigrationNeeded = true
         Realm.Configuration.defaultConfiguration = config
         realm = try? Realm()
         

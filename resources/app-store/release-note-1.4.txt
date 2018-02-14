@@ -19,6 +19,7 @@ NOUVEAUTÉS
 • Nous préparons l'application à une modification importante: la géolocalisation des webcams qui arrivera dans une prochaine version
 
 CORRECTIONS
+• Correction majeure des performances de l'écran principal
 • Correction de certaines typographies
 • Suppression de webcams non fonctionnelles
 

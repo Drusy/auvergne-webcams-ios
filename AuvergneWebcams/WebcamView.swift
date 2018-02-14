@@ -10,17 +10,20 @@ import UIKit
 
 class WebcamViewPool {
     static let shared = WebcamViewPool()
-    var pool = [WebcamView]()
+    
+    private var pool = [WebcamView]()
     
     private init() {
         load(count: 20)
     }
     
     private func load(count: Int) {
-        for _ in 1...20 {
+        for _ in 0..<count {
             give(view: WebcamView.loadFromXib())
         }
     }
+    
+    // MARK: -
     
     func take() -> WebcamView {
         if pool.isEmpty {

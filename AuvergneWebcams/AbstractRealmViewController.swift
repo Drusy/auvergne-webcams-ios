@@ -10,5 +10,7 @@ import Foundation
 import RealmSwift
 
 class AbstractRealmViewController: AbstractViewController {
-    var realm = try! Realm()
+    lazy var realm: Realm = {
+        return try! Realm()
+    }()
 }

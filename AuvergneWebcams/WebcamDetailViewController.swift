@@ -352,7 +352,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     }
     
     fileprivate func handleError(statusCode: Int, force: Bool = false) {
-        if statusCode != -999 && isReachable() {
+        if statusCode != -999 && statusCode != 30000 && isReachable() {
             if retryCount > 0 {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
                     if let title = self?.webcam.title {
