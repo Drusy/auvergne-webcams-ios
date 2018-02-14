@@ -42,7 +42,6 @@ class WebcamCarouselTableViewCell: UITableViewCell, ConfigurableCell {
     
     var section: WebcamSection?
     var webcams: Results<Webcam>?
-    var task: DispatchWorkItem?
     var takenFromPool = [WebcamView]()
     
     weak var delegate: WebcamCarouselTableViewCellDelegate?
@@ -76,12 +75,8 @@ class WebcamCarouselTableViewCell: UITableViewCell, ConfigurableCell {
         section = nil
         webcams = nil
         delegate = nil
-
-        task?.cancel()
-        task = nil
         
         takenFromPool.forEach { webcamView in
-            webcamView.reset()
             WebcamViewPool.shared.give(view: webcamView)
         }
         takenFromPool.removeAll()
@@ -102,36 +97,28 @@ class WebcamCarouselTableViewCell: UITableViewCell, ConfigurableCell {
     }
     
     func configure(with item: ItemType) {
-        let sortedWebcams = item.sortedWebcams()
-
-        carousel.alpha = 0
+        layoutIfNeeded()
+        carousel.layoutIfNeeded()
+        
         section = item
+        webcams = item.sortedWebcams()
         
-        task?.cancel()
-        task = DispatchWorkItem { [weak self] in
-            self?.layoutIfNeeded()
-            self?.carousel.layoutIfNeeded()
-            
-            self?.webcams = sortedWebcams
-            self?.carousel.reloadData()
-            
-            UIView.animate(
-                withDuration: 0.3,
-                delay: 0,
-                options: [.allowUserInteraction],
-                animations: { [weak self] in
-                    self?.carousel.alpha = 1
-                },
-                completion: nil)
-        }
+        // Configure Carousel
+        carousel.reloadData()
         
-        if let task = task {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5,
-                                          execute: task)
-        }
+        carousel.alpha = 0
+        UIView.animate(
+            withDuration: 0.2,
+            delay: 0.2,
+            options: [.allowUserInteraction],
+            animations: { [weak self] in
+                self?.carousel.alpha = 1
+                
+            },
+            completion: nil)
         
         // Configure header
-        let currentWebcam = sortedWebcams[safe: carousel.currentItemIndex] ?? sortedWebcams.first
+        let currentWebcam = webcams?[safe: carousel.currentItemIndex] ?? webcams?.first
 
         sectionImageView.image = item.image
         sectionTitleLabel.text = item.title?.uppercased()
@@ -240,7 +227,10 @@ extension WebcamCarouselTableViewCell: iCarouselDelegate, iCarouselDataSource {
     }
     
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
+        guard let webcams = webcams else { return UIView() }
+
         var webcamView: WebcamView
+        let webcam = webcams[index % webcams.count]
         let width: CGFloat = UIScreen.main.bounds.width * widthRatio()
         let height: CGFloat = min(width * 0.55, carousel.bounds.height * 0.95)
         
@@ -252,13 +242,7 @@ extension WebcamCarouselTableViewCell: iCarouselDelegate, iCarouselDataSource {
         }
         
         webcamView.frame = CGRect(x: 0, y: 0, width: width, height: height)
-        
-        if let webcams = webcams {
-            webcamView.configure(withWebcam: webcams[index % webcams.count])
-        } else {
-            webcamView.reset()
-            webcamView.activityIndicator.startAnimating()
-        }
+        webcamView.configure(withWebcam: webcam)
         
         return webcamView
     }
@@ -293,4 +277,3 @@ extension WebcamCarouselTableViewCell: iCarouselDelegate, iCarouselDataSource {
         }
     }
 }
-
