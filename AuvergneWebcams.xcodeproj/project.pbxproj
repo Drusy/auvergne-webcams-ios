@@ -298,6 +298,12 @@
 		F9ACD1FA1E5C9DF5004E5BFF /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ACD1F91E5C9DF5004E5BFF /* AddressBook.framework */; };
 		F9ACD2011E5CA8D8004E5BFF /* FIRAnalyticsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ACD2001E5CA8D8004E5BFF /* FIRAnalyticsExtension.swift */; };
 		F9ACD2031E5CAAD5004E5BFF /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ACD2021E5CAAD5004E5BFF /* AnalyticsManager.swift */; };
+		F9AEF45420349BE600BEA6B2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEF45220349BE600BEA6B2 /* MapViewController.swift */; };
+		F9AEF45520349BE600BEA6B2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEF45220349BE600BEA6B2 /* MapViewController.swift */; };
+		F9AEF45620349BE600BEA6B2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEF45220349BE600BEA6B2 /* MapViewController.swift */; };
+		F9AEF45720349BE600BEA6B2 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9AEF45320349BE600BEA6B2 /* MapViewController.xib */; };
+		F9AEF45820349BE600BEA6B2 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9AEF45320349BE600BEA6B2 /* MapViewController.xib */; };
+		F9AEF45920349BE600BEA6B2 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9AEF45320349BE600BEA6B2 /* MapViewController.xib */; };
 		F9B01F301E8020DE00A1F174 /* aw-config.json in Resources */ = {isa = PBXBuildFile; fileRef = F9B01F2F1E8020DE00A1F174 /* aw-config.json */; };
 		F9B01F331E80AAB000A1F174 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B01F311E80AA2000A1F174 /* SVProgressHUD.framework */; };
 		F9B01F341E80AAB000A1F174 /* SVProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B01F311E80AA2000A1F174 /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -726,6 +732,8 @@
 		F9ACD1F91E5C9DF5004E5BFF /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		F9ACD2001E5CA8D8004E5BFF /* FIRAnalyticsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIRAnalyticsExtension.swift; sourceTree = "<group>"; };
 		F9ACD2021E5CAAD5004E5BFF /* AnalyticsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
+		F9AEF45220349BE600BEA6B2 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		F9AEF45320349BE600BEA6B2 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		F9B01F2F1E8020DE00A1F174 /* aw-config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "aw-config.json"; path = "resources/json/v2/aw-config.json"; sourceTree = SOURCE_ROOT; };
 		F9B01F311E80AA2000A1F174 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
 		F9B1E5FB1E65652A00829FE8 /* NVActivityIndicatorView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NVActivityIndicatorView.framework; path = Carthage/Build/iOS/NVActivityIndicatorView.framework; sourceTree = "<group>"; };
@@ -1416,6 +1424,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F9AEF45120349B8E00BEA6B2 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				F9AEF45220349BE600BEA6B2 /* MapViewController.swift */,
+				F9AEF45320349BE600BEA6B2 /* MapViewController.xib */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
 		F9B1E6191E66127E00829FE8 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -1500,6 +1517,7 @@
 				F9F5AC701DD32C9A00D9FF83 /* Main */,
 				F9F5AC9F1DD35D9200D9FF83 /* Details */,
 				F9BE03141DD8AFD40063275B /* Settings */,
+				F9AEF45120349B8E00BEA6B2 /* Map */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1830,6 +1848,7 @@
 				F963AB5A1E5A172500ED5A8B /* ProximaNova-SboldItalic.otf in Resources */,
 				F963AB711E5A635800ED5A8B /* WebcamSectionHeaderView.xib in Resources */,
 				F9F5AC8A1DD344CC00D9FF83 /* Open Sans 300.ttf in Resources */,
+				F9AEF45720349BE600BEA6B2 /* MapViewController.xib in Resources */,
 				F9F5AC931DD344CC00D9FF83 /* Open Sans Condensed 300italic.ttf in Resources */,
 				F94433221E8A7969006D7308 /* Assets.xcassets in Resources */,
 				F963AB661E5A5DA800ED5A8B /* WebcamSectionViewController.xib in Resources */,
@@ -1893,6 +1912,7 @@
 				F94432E31E8A4C45006D7308 /* WebcamCarouselTableViewCell.xib in Resources */,
 				F94432E41E8A4C45006D7308 /* Open Sans 800italic.ttf in Resources */,
 				F94432E71E8A4C45006D7308 /* Open Sans 700italic.ttf in Resources */,
+				F9AEF45920349BE600BEA6B2 /* MapViewController.xib in Resources */,
 				F94432E81E8A4C45006D7308 /* Open Sans Condensed 700.ttf in Resources */,
 				F990992D1FD183F10001754D /* Settings.bundle in Resources */,
 				F94432E91E8A4C45006D7308 /* Open Sans italic.ttf in Resources */,
@@ -1949,6 +1969,7 @@
 				F9D610C61E82F18100BFC18D /* Assets.xcassets in Resources */,
 				F92800B51E8435860056E5CE /* pw-config-dev.json in Resources */,
 				F9D6109B1E82EDBF00BFC18D /* Open Sans 700italic.ttf in Resources */,
+				F9AEF45820349BE600BEA6B2 /* MapViewController.xib in Resources */,
 				F9D6109C1E82EDBF00BFC18D /* Open Sans Condensed 700.ttf in Resources */,
 				F990992C1FD183F10001754D /* Settings.bundle in Resources */,
 				F944331E1E8A7714006D7308 /* LaunchScreen.storyboard in Resources */,
@@ -2270,6 +2291,7 @@
 				F93C760D1DD11577005DEE66 /* AppDelegate.swift in Sources */,
 				F9ACD1CC1E5B227A004E5BFF /* UIImageExtension.swift in Sources */,
 				F943501D1E8AB45100D3736D /* LoadingViewController.swift in Sources */,
+				F9AEF45420349BE600BEA6B2 /* MapViewController.swift in Sources */,
 				F9A7A8FD1E6ECF3F00CFFF94 /* OpenTemperature.swift in Sources */,
 				F9A7A8FE1E6ECF3F00CFFF94 /* OpenWeather.swift in Sources */,
 				F9C747FE1E5F9B330018B5CC /* AbstractRealmViewController.swift in Sources */,
@@ -2347,6 +2369,7 @@
 				F94432951E8A4C45006D7308 /* AbstractLoadingViewController.swift in Sources */,
 				F94432961E8A4C45006D7308 /* AppDelegate.swift in Sources */,
 				F94350281E8AC55D00D3736D /* LoadingViewController.swift in Sources */,
+				F9AEF45620349BE600BEA6B2 /* MapViewController.swift in Sources */,
 				F94432971E8A4C45006D7308 /* UIImageExtension.swift in Sources */,
 				F94432981E8A4C45006D7308 /* OpenTemperature.swift in Sources */,
 				F94432991E8A4C45006D7308 /* OpenWeather.swift in Sources */,
@@ -2429,6 +2452,7 @@
 				F9D6104C1E82EDBF00BFC18D /* AppDelegate.swift in Sources */,
 				F9D6104D1E82EDBF00BFC18D /* UIImageExtension.swift in Sources */,
 				F94350221E8AB59A00D3736D /* LoadingViewController.swift in Sources */,
+				F9AEF45520349BE600BEA6B2 /* MapViewController.swift in Sources */,
 				F9D6104E1E82EDBF00BFC18D /* OpenTemperature.swift in Sources */,
 				F9D6104F1E82EDBF00BFC18D /* OpenWeather.swift in Sources */,
 				F9D610501E82EDBF00BFC18D /* AbstractRealmViewController.swift in Sources */,
