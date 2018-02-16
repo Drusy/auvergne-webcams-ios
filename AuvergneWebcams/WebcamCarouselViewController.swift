@@ -268,7 +268,7 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
         AnalyticsManager.logEvent(button: "search")
     }
     
-    func onMapTouched() {
+    @objc func onMapTouched() {
         let mapVC = MapViewController(webcams: WebcamManager.shared.webcams(), subtitle: title)
         navigationController?.pushViewController(mapVC, animated: true)
         AnalyticsManager.logEvent(button: "home_map")
