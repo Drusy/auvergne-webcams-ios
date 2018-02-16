@@ -31,7 +31,7 @@
                 <constraint firstItem="8w0-jq-PqO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="OIZ-21-StV"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="8w0-jq-PqO" secondAttribute="trailing" id="QuW-Ul-67V"/>
                 <constraint firstItem="8w0-jq-PqO" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="jnL-kX-ihq"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="8w0-jq-PqO" secondAttribute="bottom" id="qDs-ao-5XJ"/>
+                <constraint firstAttribute="bottom" secondItem="8w0-jq-PqO" secondAttribute="bottom" id="qDs-ao-5XJ"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>

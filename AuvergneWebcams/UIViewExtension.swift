@@ -9,15 +9,15 @@
 import Foundation
 
 extension UIView {
-    func fit(toSubview subview: UIView) {
+    func fit(toSubview subview: UIView, left: CGFloat = 0, right: CGFloat = 0, top: CGFloat = 0, bottom: CGFloat = 0) {
         subview.translatesAutoresizingMaskIntoConstraints = false;
         let views: [String: UIView] = ["subview": subview];
         
-        let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[subview]|",
+        let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-\(top)-[subview]-\(bottom)-|",
                                                                  options: NSLayoutFormatOptions(rawValue: 0),
                                                                  metrics: nil,
                                                                  views: views)
-        let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[subview]|",
+        let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-\(left)-[subview]-\(right)-|",
                                                                    options: NSLayoutFormatOptions(rawValue: 0),
                                                                    metrics: nil,
                                                                    views: views)

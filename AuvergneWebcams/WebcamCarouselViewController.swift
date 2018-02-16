@@ -55,10 +55,17 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(onSettingsTouched))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "refresh-icon"),
-                                                            style: .plain,
-                                                            target: self,
-                                                            action: #selector(onRefreshTouched))
+        
+        
+        let refreshBarButtonItem = UIBarButtonItem(image: UIImage(named: "refresh-icon"),
+                                                   style: .plain,
+                                                   target: self,
+                                                   action: #selector(onRefreshTouched))
+        let mapBarButtonItem = UIBarButtonItem(image: UIImage(named: "map-icon"),
+                                               style: .plain,
+                                               target: self,
+                                               action: #selector(onMapTouched))
+        navigationItem.rightBarButtonItems = [refreshBarButtonItem, mapBarButtonItem]
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(onFavoriteWebcamDidUpdate),
@@ -213,8 +220,11 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
     override func update() {
         super.update()
         
-        var sectionsArray = Array(realm.objects(WebcamSection.self).filter("webcams.@count > 0").sorted(byKeyPath: #keyPath(WebcamSection.order), ascending: true))
-        let favoriteWebcams = realm.objects(Webcam.self).filter("%K = true AND %K = false", #keyPath(Webcam.favorite), #keyPath(Webcam.isHidden)).sorted(byKeyPath: #keyPath(Webcam.title))
+        let sections = realm.objects(WebcamSection.self)
+            .filter("webcams.@count > 0")
+            .sorted(byKeyPath: #keyPath(WebcamSection.order), ascending: true)
+        var sectionsArray = Array(sections)
+        let favoriteWebcams = WebcamManager.shared.favoriteWebcams()
         
         if !favoriteWebcams.isEmpty {
             let favoriteSection = FavoriteWebcamSection()
@@ -256,6 +266,12 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
         let searchVC = SearchViewController()
         navigationController?.pushViewController(searchVC, animated: true)
         AnalyticsManager.logEvent(button: "search")
+    }
+    
+    func onMapTouched() {
+        let mapVC = MapViewController(webcams: WebcamManager.shared.webcams(), subtitle: title)
+        navigationController?.pushViewController(mapVC, animated: true)
+        AnalyticsManager.logEvent(button: "home_map")
     }
 }
 

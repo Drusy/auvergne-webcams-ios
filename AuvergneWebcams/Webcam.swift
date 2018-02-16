@@ -34,8 +34,16 @@ class Webcam: Object, Mappable {
     @objc dynamic var imageLD: String?
     @objc dynamic var viewsurfLD: String?
     @objc dynamic var viewsurfHD: String?
+    @objc dynamic var mapImageName: String?
     @objc dynamic var isHidden: Bool = false
-
+    @objc dynamic var latitude: Double = -1
+    @objc dynamic var longitude: Double = -1
+    
+    private let sections: LinkingObjects<WebcamSection> = LinkingObjects(fromType: WebcamSection.self, property: "webcams")
+    var section: WebcamSection? {
+        return sections.first
+    }
+    
     // MARK: - Camera content type
     @objc private dynamic var type: String?
     var contentType: ContentType {
@@ -67,7 +75,10 @@ class Webcam: Object, Mappable {
         imageLD <- map["imageLD"]
         viewsurfLD <- map["viewsurfLD"]
         viewsurfHD <- map["viewsurfHD"]
+        mapImageName <- map["mapImageName"]
         type <- map["type"]
+        latitude <- map["latitude"]
+        longitude <- map["longitude"]
         isHidden <- map["hidden"]
         
         tagsArray <- map["tags"]

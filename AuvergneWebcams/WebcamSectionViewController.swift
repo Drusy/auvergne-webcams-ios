@@ -31,10 +31,19 @@ class WebcamSectionViewController: AbstractRefreshViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "refresh-icon"),
-                                                            style: .plain,
-                                                            target: self,
-                                                            action: #selector(refresh))
+        let refreshBarButtonItem = UIBarButtonItem(image: UIImage(named: "refresh-icon"),
+                                                   style: .plain,
+                                                   target: self,
+                                                   action: #selector(refresh))
+        if section.shouldShowMap() {
+            let mapBarButtonItem = UIBarButtonItem(image: UIImage(named: "map-icon"),
+                                                   style: .plain,
+                                                   target: self,
+                                                   action: #selector(map))
+            navigationItem.rightBarButtonItems = [refreshBarButtonItem, mapBarButtonItem]
+        } else {
+            navigationItem.rightBarButtonItem = refreshBarButtonItem
+        }
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(onFavoriteWebcamDidUpdate),
@@ -74,6 +83,12 @@ class WebcamSectionViewController: AbstractRefreshViewController {
     }
     
     // MARK: -
+    
+    @objc func map() {
+        let mapVC = MapViewController(webcams: section.sortedWebcams(), subtitle: title)
+        navigationController?.pushViewController(mapVC, animated: true)
+        AnalyticsManager.logEvent(button: "section_map")
+    }
     
     override func style() {
         super.style()

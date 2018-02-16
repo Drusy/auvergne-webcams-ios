@@ -95,32 +95,24 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             return
         }
         
-        if let favoriteWebcams = favoriteWebcams() {
-            if !favoriteWebcams.isEmpty {
-                if let currentWebcamUid = Defaults[.currentWidgetWebcamUid], let webcam = realm.object(ofType: Webcam.self, forPrimaryKey: currentWebcamUid) {
-                    if favoriteWebcams.contains(webcam) {
-                        onShow(webcam)
-                    } else {
-                        onShow(favoriteWebcams.first)
-                    }
+        let favoriteWebcams = WebcamManager.shared.favoriteWebcams()
+        if !favoriteWebcams.isEmpty {
+            if let currentWebcamUid = Defaults[.currentWidgetWebcamUid], let webcam = realm.object(ofType: Webcam.self, forPrimaryKey: currentWebcamUid) {
+                if favoriteWebcams.contains(webcam) {
+                    onShow(webcam)
                 } else {
                     onShow(favoriteWebcams.first)
                 }
             } else {
-                onNoFavorite()
+                onShow(favoriteWebcams.first)
             }
         } else {
-            onError()
+            onNoFavorite()
         }
+
     }
     
     // MARK: -
-    
-    fileprivate func favoriteWebcams() -> [Webcam]? {
-        guard let realm = realm else { return nil }
-        
-        return Array(realm.objects(Webcam.self).filter("%K = true AND %K = false", #keyPath(Webcam.favorite), #keyPath(Webcam.isHidden)))
-    }
     
     fileprivate func onShow(_ webcam: Webcam?) {
         guard let webcam = webcam else {
@@ -197,7 +189,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         previousButton.isHidden = true
         nextButton.isHidden = true
         
-        if let uid = Defaults[.currentWidgetWebcamUid], let favorites = favoriteWebcams() {
+        let favorites = WebcamManager.shared.favoriteWebcams()
+        if let uid = Defaults[.currentWidgetWebcamUid] {
             if let index = favorites.index(where: { $0.uid == uid }) {
                 if index > 0 {
                     previousButton.isHidden = false
@@ -279,8 +272,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     // MARK: - Actions
     
     @IBAction func onPreviousTouched(_ sender: Any) {
+        let favorites = WebcamManager.shared.favoriteWebcams()
+        
         guard let uid = Defaults[.currentWidgetWebcamUid] else { return }
-        guard let favorites = favoriteWebcams() else { return }
         guard let index = favorites.index(where: { $0.uid == uid }) else { return }
         guard index > 0 else { return }
         
@@ -288,8 +282,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     @IBAction func onNextTouched(_ sender: Any) {
+        let favorites = WebcamManager.shared.favoriteWebcams()
+
         guard let uid = Defaults[.currentWidgetWebcamUid] else { return }
-        guard let favorites = favoriteWebcams() else { return }
         guard let index = favorites.index(where: { $0.uid == uid }) else { return }
         guard index < favorites.count - 1 else { return }
         

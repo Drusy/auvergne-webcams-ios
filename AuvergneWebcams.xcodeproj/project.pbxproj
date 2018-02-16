@@ -172,6 +172,17 @@
 		F944331E1E8A7714006D7308 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F944331D1E8A7714006D7308 /* LaunchScreen.storyboard */; };
 		F94433201E8A773D006D7308 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F944331F1E8A773D006D7308 /* LaunchScreen.storyboard */; };
 		F94433221E8A7969006D7308 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F94433211E8A7969006D7308 /* Assets.xcassets */; };
+		F94576DB2035E641002466DA /* WebcamCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94576DA2035E641002466DA /* WebcamCalloutView.swift */; };
+		F94576DC2035E641002466DA /* WebcamCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94576DA2035E641002466DA /* WebcamCalloutView.swift */; };
+		F94576DD2035E641002466DA /* WebcamCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94576DA2035E641002466DA /* WebcamCalloutView.swift */; };
+		F94576E32036F750002466DA /* WebcamSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5AC971DD34C8B00D9FF83 /* WebcamSection.swift */; };
+		F94576E42036F759002466DA /* OpenWeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7A8F71E6ECA0C00CFFF94 /* OpenWeatherResponse.swift */; };
+		F94576E52036F761002466DA /* OpenWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7A8FC1E6ECF3F00CFFF94 /* OpenWeather.swift */; };
+		F94576E62036F764002466DA /* OpenTemperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7A8FB1E6ECF3F00CFFF94 /* OpenTemperature.swift */; };
+		F94576E72036F772002466DA /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92800AF1E84343B0056E5CE /* Configuration.swift */; };
+		F94576E82036F780002466DA /* ConfigurationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92800A51E8427B30056E5CE /* ConfigurationExtension.swift */; };
+		F94576E92036F7A4002466DA /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F911BBED1DDC6097000C022B /* Crashlytics.framework */; };
+		F94576EA2036F7A7002466DA /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F911BBEA1DDC6066000C022B /* Fabric.framework */; };
 		F94D7CE51DFABF6000460CCD /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94D7CE31DFABF6000460CCD /* AboutViewController.swift */; };
 		F94D7CE61DFABF6000460CCD /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94D7CE41DFABF6000460CCD /* AboutViewController.xib */; };
 		F94D7CE91DFAE50200460CCD /* ActiveLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F94D7CE71DFAE4FC00460CCD /* ActiveLabel.framework */; };
@@ -304,6 +315,13 @@
 		F9AEF45720349BE600BEA6B2 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9AEF45320349BE600BEA6B2 /* MapViewController.xib */; };
 		F9AEF45820349BE600BEA6B2 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9AEF45320349BE600BEA6B2 /* MapViewController.xib */; };
 		F9AEF45920349BE600BEA6B2 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9AEF45320349BE600BEA6B2 /* MapViewController.xib */; };
+		F9AEF45B2035B99E00BEA6B2 /* WebcamManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEF45A2035B99E00BEA6B2 /* WebcamManager.swift */; };
+		F9AEF45C2035B99F00BEA6B2 /* WebcamManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEF45A2035B99E00BEA6B2 /* WebcamManager.swift */; };
+		F9AEF45D2035B99F00BEA6B2 /* WebcamManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEF45A2035B99E00BEA6B2 /* WebcamManager.swift */; };
+		F9AEF45E2035BDEC00BEA6B2 /* WebcamManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEF45A2035B99E00BEA6B2 /* WebcamManager.swift */; };
+		F9AEF4652035C3CF00BEA6B2 /* MGLMapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEF4642035C3CD00BEA6B2 /* MGLMapViewExtension.swift */; };
+		F9AEF4662035C3CF00BEA6B2 /* MGLMapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEF4642035C3CD00BEA6B2 /* MGLMapViewExtension.swift */; };
+		F9AEF4672035C3CF00BEA6B2 /* MGLMapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEF4642035C3CD00BEA6B2 /* MGLMapViewExtension.swift */; };
 		F9B01F301E8020DE00A1F174 /* aw-config.json in Resources */ = {isa = PBXBuildFile; fileRef = F9B01F2F1E8020DE00A1F174 /* aw-config.json */; };
 		F9B01F331E80AAB000A1F174 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B01F311E80AA2000A1F174 /* SVProgressHUD.framework */; };
 		F9B01F341E80AAB000A1F174 /* SVProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B01F311E80AA2000A1F174 /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -644,6 +662,7 @@
 		F944331D1E8A7714006D7308 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F944331F1E8A773D006D7308 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F94433211E8A7969006D7308 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F94576DA2035E641002466DA /* WebcamCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebcamCalloutView.swift; sourceTree = "<group>"; };
 		F94D7CE31DFABF6000460CCD /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		F94D7CE41DFABF6000460CCD /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
 		F94D7CE71DFAE4FC00460CCD /* ActiveLabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ActiveLabel.framework; path = Carthage/Build/iOS/ActiveLabel.framework; sourceTree = "<group>"; };
@@ -734,6 +753,8 @@
 		F9ACD2021E5CAAD5004E5BFF /* AnalyticsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		F9AEF45220349BE600BEA6B2 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		F9AEF45320349BE600BEA6B2 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		F9AEF45A2035B99E00BEA6B2 /* WebcamManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebcamManager.swift; sourceTree = "<group>"; };
+		F9AEF4642035C3CD00BEA6B2 /* MGLMapViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGLMapViewExtension.swift; sourceTree = "<group>"; };
 		F9B01F2F1E8020DE00A1F174 /* aw-config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "aw-config.json"; path = "resources/json/v2/aw-config.json"; sourceTree = SOURCE_ROOT; };
 		F9B01F311E80AA2000A1F174 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
 		F9B1E5FB1E65652A00829FE8 /* NVActivityIndicatorView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NVActivityIndicatorView.framework; path = Carthage/Build/iOS/NVActivityIndicatorView.framework; sourceTree = "<group>"; };
@@ -864,8 +885,10 @@
 			files = (
 				F95DEB881EE1BDF100101CC4 /* Realm.framework in Frameworks */,
 				F990993D1FD1B3480001754D /* NVActivityIndicatorView.framework in Frameworks */,
+				F94576E92036F7A4002466DA /* Crashlytics.framework in Frameworks */,
 				F95DEB871EE1BCEB00101CC4 /* Kingfisher.framework in Frameworks */,
 				F95DEB891EE1BDF400101CC4 /* RealmSwift.framework in Frameworks */,
+				F94576EA2036F7A7002466DA /* Fabric.framework in Frameworks */,
 				F95DEB911EE1C12600101CC4 /* SwiftyUserDefaults.framework in Frameworks */,
 				F95DEB8B1EE1C0AF00101CC4 /* Alamofire.framework in Frameworks */,
 				F95DEB781EE1BB6400101CC4 /* NotificationCenter.framework in Frameworks */,
@@ -1175,6 +1198,14 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
+		F94576D92035E622002466DA /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				F94576DA2035E641002466DA /* WebcamCalloutView.swift */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
 		F94FEEAB1DD4763900586F54 /* Containers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1186,6 +1217,7 @@
 		F94FEEAE1DD4764A00586F54 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				F9AEF4642035C3CD00BEA6B2 /* MGLMapViewExtension.swift */,
 				F9ACD1C71E5B0E37004E5BFF /* CGSizeExtension.swift */,
 				F99F37731E72C7A90058AFB3 /* CollectionExtensions.swift */,
 				F92800A51E8427B30056E5CE /* ConfigurationExtension.swift */,
@@ -1278,6 +1310,7 @@
 				F9C747F71E5F88DE0018B5CC /* DownloadManager.swift */,
 				F92800AF1E84343B0056E5CE /* Configuration.swift */,
 				F9C08C8E1FD815820098E5AF /* ImageDownloaderUtils.swift */,
+				F9AEF45A2035B99E00BEA6B2 /* WebcamManager.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -1529,6 +1562,7 @@
 				F9BE030A1DD78E330063275B /* Kingfisher */,
 				F9F5AC6F1DD32C8A00D9FF83 /* Webcam */,
 				F963AB721E5A684100ED5A8B /* Webcam Section */,
+				F94576D92035E622002466DA /* Map */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -2261,6 +2295,7 @@
 				F963AB321E59D07800ED5A8B /* AbstractArrayViewProvider.swift in Sources */,
 				F94D7CE51DFABF6000460CCD /* AboutViewController.swift in Sources */,
 				F9147FBC1E66137C000C78CA /* RequestExtension.swift in Sources */,
+				F9AEF45B2035B99E00BEA6B2 /* WebcamManager.swift in Sources */,
 				F9022DA11DD90601006AF146 /* DefaultsKeyExtension.swift in Sources */,
 				F9C747FA1E5F8B6C0018B5CC /* WebcamTag.swift in Sources */,
 				F963AB651E5A5DA800ED5A8B /* WebcamSectionViewController.swift in Sources */,
@@ -2298,6 +2333,7 @@
 				F9ACD1CA1E5B2130004E5BFF /* UIColorExtension.swift in Sources */,
 				F963AB361E59D07800ED5A8B /* AbstractViewProvider.swift in Sources */,
 				F9A7A8F81E6ECA0C00CFFF94 /* OpenWeatherResponse.swift in Sources */,
+				F9AEF4652035C3CF00BEA6B2 /* MGLMapViewExtension.swift in Sources */,
 				F9ACD2031E5CAAD5004E5BFF /* AnalyticsManager.swift in Sources */,
 				F963AB701E5A635800ED5A8B /* WebcamSectionHeaderView.swift in Sources */,
 				F9BE030C1DD78E4B0063275B /* KFIndicator.swift in Sources */,
@@ -2307,6 +2343,7 @@
 				F9BE030F1DD8AC1B0063275B /* SettingsViewController.swift in Sources */,
 				F963AB181E59C05100ED5A8B /* iCarousel.m in Sources */,
 				F92800A61E8427B30056E5CE /* ConfigurationExtension.swift in Sources */,
+				F94576DB2035E641002466DA /* WebcamCalloutView.swift in Sources */,
 				F963AB351E59D07800ED5A8B /* AbstractSectionedEnumeratableViewProvider.swift in Sources */,
 				F963AB5D1E5A2F7D00ED5A8B /* SwiftyAttributes.swift in Sources */,
 				F9BE03091DD7817C0063275B /* AbstractRefreshViewController.swift in Sources */,
@@ -2339,6 +2376,7 @@
 				F944327A1E8A4C45006D7308 /* AbstractArrayViewProvider.swift in Sources */,
 				F944327B1E8A4C45006D7308 /* AboutViewController.swift in Sources */,
 				F944327C1E8A4C45006D7308 /* RequestExtension.swift in Sources */,
+				F9AEF45D2035B99F00BEA6B2 /* WebcamManager.swift in Sources */,
 				F944327D1E8A4C45006D7308 /* DefaultsKeyExtension.swift in Sources */,
 				F944327E1E8A4C45006D7308 /* WebcamTag.swift in Sources */,
 				F944327F1E8A4C45006D7308 /* WebcamSectionViewController.swift in Sources */,
@@ -2376,6 +2414,7 @@
 				F944329A1E8A4C45006D7308 /* AbstractRealmViewController.swift in Sources */,
 				F944329B1E8A4C45006D7308 /* UIColorExtension.swift in Sources */,
 				F944329C1E8A4C45006D7308 /* AbstractViewProvider.swift in Sources */,
+				F9AEF4672035C3CF00BEA6B2 /* MGLMapViewExtension.swift in Sources */,
 				F944329D1E8A4C45006D7308 /* OpenWeatherResponse.swift in Sources */,
 				F944329E1E8A4C45006D7308 /* AnalyticsManager.swift in Sources */,
 				F944329F1E8A4C45006D7308 /* WebcamSectionHeaderView.swift in Sources */,
@@ -2385,6 +2424,7 @@
 				F94432A31E8A4C45006D7308 /* DateFormatterCache.swift in Sources */,
 				F94432A41E8A4C45006D7308 /* SettingsViewController.swift in Sources */,
 				F94432A51E8A4C45006D7308 /* iCarousel.m in Sources */,
+				F94576DD2035E641002466DA /* WebcamCalloutView.swift in Sources */,
 				F94432A71E8A4C45006D7308 /* AbstractSectionedEnumeratableViewProvider.swift in Sources */,
 				F94432A81E8A4C45006D7308 /* SwiftyAttributes.swift in Sources */,
 				F94432A91E8A4C45006D7308 /* AbstractRefreshViewController.swift in Sources */,
@@ -2397,16 +2437,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F94576E52036F761002466DA /* OpenWeather.swift in Sources */,
 				F95DEB8D1EE1C0CE00101CC4 /* Queryable.swift in Sources */,
 				F95DEB8F1EE1C0EA00101CC4 /* RequestExtension.swift in Sources */,
+				F94576E32036F750002466DA /* WebcamSection.swift in Sources */,
 				F95DEB901EE1C11100101CC4 /* DefaultsKeyExtension.swift in Sources */,
 				F990993C1FD1ADAD0001754D /* WidgetDefaultsKeyExtension.swift in Sources */,
+				F94576E72036F772002466DA /* Configuration.swift in Sources */,
 				F95DEB8A1EE1BF8100101CC4 /* Webcam.swift in Sources */,
 				F95DEB8E1EE1C0D600101CC4 /* WebcamTag.swift in Sources */,
 				F95DEB7B1EE1BB6400101CC4 /* TodayViewController.swift in Sources */,
+				F94576E42036F759002466DA /* OpenWeatherResponse.swift in Sources */,
 				F9C08C931FD816900098E5AF /* DateFormatterCache.swift in Sources */,
 				F9C08C921FD815820098E5AF /* ImageDownloaderUtils.swift in Sources */,
+				F94576E62036F764002466DA /* OpenTemperature.swift in Sources */,
 				F95DEB8C1EE1C0C500101CC4 /* ApiRequest.swift in Sources */,
+				F9AEF45E2035BDEC00BEA6B2 /* WebcamManager.swift in Sources */,
+				F94576E82036F780002466DA /* ConfigurationExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2422,6 +2469,7 @@
 				F9D610311E82EDBF00BFC18D /* AbstractArrayViewProvider.swift in Sources */,
 				F9D610321E82EDBF00BFC18D /* AboutViewController.swift in Sources */,
 				F9D610331E82EDBF00BFC18D /* RequestExtension.swift in Sources */,
+				F9AEF45C2035B99F00BEA6B2 /* WebcamManager.swift in Sources */,
 				F9D610341E82EDBF00BFC18D /* DefaultsKeyExtension.swift in Sources */,
 				F9D610351E82EDBF00BFC18D /* WebcamTag.swift in Sources */,
 				F9D610361E82EDBF00BFC18D /* WebcamSectionViewController.swift in Sources */,
@@ -2459,6 +2507,7 @@
 				F9D610511E82EDBF00BFC18D /* UIColorExtension.swift in Sources */,
 				F9D610521E82EDBF00BFC18D /* AbstractViewProvider.swift in Sources */,
 				F9D610531E82EDBF00BFC18D /* OpenWeatherResponse.swift in Sources */,
+				F9AEF4662035C3CF00BEA6B2 /* MGLMapViewExtension.swift in Sources */,
 				F9D610541E82EDBF00BFC18D /* AnalyticsManager.swift in Sources */,
 				F9D610551E82EDBF00BFC18D /* WebcamSectionHeaderView.swift in Sources */,
 				F9D610561E82EDBF00BFC18D /* KFIndicator.swift in Sources */,
@@ -2468,6 +2517,7 @@
 				F9D6105A1E82EDBF00BFC18D /* SettingsViewController.swift in Sources */,
 				F9D6105B1E82EDBF00BFC18D /* iCarousel.m in Sources */,
 				F92800A91E8428870056E5CE /* ConfigurationExtension.swift in Sources */,
+				F94576DC2035E641002466DA /* WebcamCalloutView.swift in Sources */,
 				F9D6105C1E82EDBF00BFC18D /* AbstractSectionedEnumeratableViewProvider.swift in Sources */,
 				F9D6105D1E82EDBF00BFC18D /* SwiftyAttributes.swift in Sources */,
 				F9D6105E1E82EDBF00BFC18D /* AbstractRefreshViewController.swift in Sources */,
@@ -2750,6 +2800,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Vendor/Fabric",
 				);
 				INFOPLIST_FILE = Widget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
@@ -2770,6 +2821,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Vendor/Fabric",
 				);
 				INFOPLIST_FILE = Widget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;

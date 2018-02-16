@@ -16,4 +16,5 @@ extension DefaultsKeys {
     static let currentVersion = DefaultsKey<String>("currentVersion")
     static let cameraDetailCount = DefaultsKey<Int>("cameraDetailCount")
     static let appOpenCount = DefaultsKey<Int>("appOpenCount")
+    static let mapboxStyle = DefaultsKey<String?>("mapboxStyle")
 }

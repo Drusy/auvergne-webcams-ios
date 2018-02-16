@@ -6,7 +6,7 @@
 //
 //
 
-import Foundation
+import UIKit
 import ObjectMapper
 import RealmSwift
 import Crashlytics
@@ -33,6 +33,8 @@ class WebcamSection: Object, Mappable {
     @objc dynamic var order: Int = 0
     @objc dynamic var title: String?
     @objc dynamic var imageName: String?
+    @objc dynamic var mapImageName: String?
+    @objc dynamic var mapColor: String?
     @objc dynamic var latitude: Double = -1
     @objc dynamic var longitude: Double = -1
     
@@ -61,6 +63,8 @@ class WebcamSection: Object, Mappable {
         order <- map["order"]
         title <- map["title"]
         imageName <- map["imageName"]
+        mapImageName <- map["mapImageName"]
+        mapColor <- map["mapColor"]
         latitude <- map["latitude"]
         longitude <- map["longitude"]
         webcamsArray <- map["webcams"]
@@ -155,5 +159,9 @@ class WebcamSection: Object, Mappable {
         } else {
             return "\(count) webcams"
         }
+    }
+    
+    func shouldShowMap() -> Bool {
+        return sortedWebcams().filter { $0.latitude != -1 && $0.longitude != -1 }.isEmpty == false
     }
 }

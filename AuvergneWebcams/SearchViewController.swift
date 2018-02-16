@@ -69,7 +69,7 @@ class SearchViewController: AbstractRealmViewController {
         if let searchText = text, !searchText.isEmpty {
             clearSearchButton.isHidden = false
             
-            let webcams = Array(realm.objects(Webcam.self).filter("%K = false", #keyPath(Webcam.isHidden)).sorted(byKeyPath: #keyPath(Webcam.title), ascending: true))
+            let webcams = Array(WebcamManager.shared.webcams())
             let searchResult = webcams.filter { webcam in
                 let title = webcam.title ?? ""
                 let tags = webcam.tags.filter { (webcamTag: WebcamTag) -> Bool in
