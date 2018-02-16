@@ -54,7 +54,7 @@ class MapViewController: AbstractRealmViewController {
         mapView?.showsUserLocation = true
         mapView?.layer.backgroundColor = UIColor.clear.cgColor
         mapView?.attributionButton.tintColor = UIColor.white
-        mapView?.setCenter(CLLocationCoordinate2D(latitude: 785931, longitude: 3.250595),
+        mapView?.setCenter(CLLocationCoordinate2D(latitude: 45.785931, longitude: 3.250595),
                            zoomLevel: 6,
                            animated: false)
         
