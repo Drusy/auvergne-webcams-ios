@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="AuvergneWebcams" customModuleProvider="target">
+            <connections>
+                <outlet property="containerView" destination="cNc-CA-HHb" id="42x-Yq-zyZ"/>
+                <outlet property="listTabbarItem" destination="koq-it-Hh1" id="PGe-1B-SP7"/>
+                <outlet property="mapTabbarItem" destination="Ilr-Fi-LNg" id="UjL-qU-DNt"/>
+                <outlet property="tabbar" destination="TUZ-Cn-YCU" id="8eE-RR-abw"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="wGL-LO-0nI"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cNc-CA-HHb">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                    <color key="backgroundColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+                <tabBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="TUZ-Cn-YCU">
+                    <rect key="frame" x="0.0" y="729" width="375" height="83"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <items>
+                        <tabBarItem title="Liste" image="carousel-icon" id="koq-it-Hh1">
+                            <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </tabBarItem>
+                        <tabBarItem tag="1" title="Carte" image="map-icon" id="Ilr-Fi-LNg"/>
+                    </items>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tabBar>
+            </subviews>
+            <color key="backgroundColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="TUZ-Cn-YCU" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="30E-Kb-zGU"/>
+                <constraint firstAttribute="trailing" secondItem="cNc-CA-HHb" secondAttribute="trailing" id="5Mj-sj-IZv"/>
+                <constraint firstItem="cNc-CA-HHb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="K8o-5V-ZYR"/>
+                <constraint firstItem="TUZ-Cn-YCU" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="R4a-aW-GL7"/>
+                <constraint firstItem="TUZ-Cn-YCU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ak8-VM-VDM"/>
+                <constraint firstItem="TUZ-Cn-YCU" firstAttribute="top" secondItem="cNc-CA-HHb" secondAttribute="bottom" id="sPo-9N-9ak"/>
+                <constraint firstItem="cNc-CA-HHb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="z6Z-Y7-TPp"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="-602.5" y="-150"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="carousel-icon" width="30" height="22"/>
+        <image name="map-icon" width="25" height="25"/>
+    </resources>
+</document>

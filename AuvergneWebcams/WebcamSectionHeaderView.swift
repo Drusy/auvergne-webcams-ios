@@ -10,12 +10,13 @@ import UIKit
 
 class WebcamSectionHeaderView: UICollectionReusableView {
 
-    @IBOutlet var sectionImageView: UIImageView!
-    @IBOutlet var sectionTitleLabel: UILabel!
-    @IBOutlet var webcamCountLabel: UILabel!
-    @IBOutlet var weatherView: UIView!
-    @IBOutlet var weatherImageView: UIImageView!
-    @IBOutlet var temperatureLabel: UILabel!
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var sectionImageView: UIImageView!
+    @IBOutlet weak var sectionTitleLabel: UILabel!
+    @IBOutlet weak var webcamCountLabel: UILabel!
+    @IBOutlet weak var weatherView: UIView!
+    @IBOutlet weak var weatherImageView: UIImageView!
+    @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet var weatherViewWidthConstraint: NSLayoutConstraint! {
         didSet {
             weatherViewInitialWidth = weatherViewWidthConstraint.constant
@@ -26,6 +27,8 @@ class WebcamSectionHeaderView: UICollectionReusableView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        contentView.backgroundColor = UIColor.clear
     }
      
     static func identifier() -> String {

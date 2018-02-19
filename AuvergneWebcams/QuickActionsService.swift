@@ -52,7 +52,7 @@ class QuickActionsService {
         UIApplication.shared.shortcutItems = shortcutItems
     }
     
-    func performActionFor(shortcutItem: UIApplicationShortcutItem, for root: UIViewController, animated: Bool = true) {
+    func performActionFor(shortcutItem: UIApplicationShortcutItem, for root: UINavigationController, animated: Bool = true) {
         
         if shortcutItem.type.contains(QuickActionsService.shared.defaultTypePrefix) {
             guard let idString = shortcutItem.type.components(separatedBy: ".").last,
@@ -63,10 +63,8 @@ class QuickActionsService {
             }
             
             let webcamDetailViewController = WebcamDetailViewController(webcam: webcam)
-            if let nav = root as? NavigationController {
-                nav.popToRootViewController(animated: false)
-                nav.pushViewController(webcamDetailViewController, animated: animated)
-            }
+            root.popToRootViewController(animated: false)
+            root.pushViewController(webcamDetailViewController, animated: animated)
         }
     }
     

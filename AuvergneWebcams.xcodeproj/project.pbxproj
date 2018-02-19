@@ -183,6 +183,12 @@
 		F94576E82036F780002466DA /* ConfigurationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92800A51E8427B30056E5CE /* ConfigurationExtension.swift */; };
 		F94576E92036F7A4002466DA /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F911BBED1DDC6097000C022B /* Crashlytics.framework */; };
 		F94576EA2036F7A7002466DA /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F911BBEA1DDC6066000C022B /* Fabric.framework */; };
+		F94576EE20377123002466DA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94576EC20377123002466DA /* HomeViewController.swift */; };
+		F94576EF20377123002466DA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94576EC20377123002466DA /* HomeViewController.swift */; };
+		F94576F020377123002466DA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94576EC20377123002466DA /* HomeViewController.swift */; };
+		F94576F120377123002466DA /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94576ED20377123002466DA /* HomeViewController.xib */; };
+		F94576F220377123002466DA /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94576ED20377123002466DA /* HomeViewController.xib */; };
+		F94576F320377123002466DA /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94576ED20377123002466DA /* HomeViewController.xib */; };
 		F94D7CE51DFABF6000460CCD /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94D7CE31DFABF6000460CCD /* AboutViewController.swift */; };
 		F94D7CE61DFABF6000460CCD /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94D7CE41DFABF6000460CCD /* AboutViewController.xib */; };
 		F94D7CE91DFAE50200460CCD /* ActiveLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F94D7CE71DFAE4FC00460CCD /* ActiveLabel.framework */; };
@@ -663,6 +669,8 @@
 		F944331F1E8A773D006D7308 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F94433211E8A7969006D7308 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F94576DA2035E641002466DA /* WebcamCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebcamCalloutView.swift; sourceTree = "<group>"; };
+		F94576EC20377123002466DA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		F94576ED20377123002466DA /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		F94D7CE31DFABF6000460CCD /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		F94D7CE41DFABF6000460CCD /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
 		F94D7CE71DFAE4FC00460CCD /* ActiveLabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ActiveLabel.framework; path = Carthage/Build/iOS/ActiveLabel.framework; sourceTree = "<group>"; };
@@ -1604,6 +1612,8 @@
 		F9F5AC701DD32C9A00D9FF83 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				F94576EC20377123002466DA /* HomeViewController.swift */,
+				F94576ED20377123002466DA /* HomeViewController.xib */,
 				F963AB1B1E59C8C400ED5A8B /* WebcamCarouselViewController.swift */,
 				F963AB1C1E59C8C400ED5A8B /* WebcamCarouselViewController.xib */,
 				F963AB631E5A5DA800ED5A8B /* WebcamSectionViewController.swift */,
@@ -1883,6 +1893,7 @@
 				F963AB711E5A635800ED5A8B /* WebcamSectionHeaderView.xib in Resources */,
 				F9F5AC8A1DD344CC00D9FF83 /* Open Sans 300.ttf in Resources */,
 				F9AEF45720349BE600BEA6B2 /* MapViewController.xib in Resources */,
+				F94576F120377123002466DA /* HomeViewController.xib in Resources */,
 				F9F5AC931DD344CC00D9FF83 /* Open Sans Condensed 300italic.ttf in Resources */,
 				F94433221E8A7969006D7308 /* Assets.xcassets in Resources */,
 				F963AB661E5A5DA800ED5A8B /* WebcamSectionViewController.xib in Resources */,
@@ -1920,6 +1931,7 @@
 				F94432CA1E8A4C45006D7308 /* Open Sans Condensed 300.ttf in Resources */,
 				F94432CB1E8A4C45006D7308 /* Open Sans 800.ttf in Resources */,
 				F94432CC1E8A4C45006D7308 /* Open Sans 300italic.ttf in Resources */,
+				F94576F320377123002466DA /* HomeViewController.xib in Resources */,
 				F94432CD1E8A4C45006D7308 /* ProximaNova-RegularItalic.otf in Resources */,
 				F94432CF1E8A4C45006D7308 /* Open Sans regular.ttf in Resources */,
 				F94432D01E8A4C45006D7308 /* ProximaNova-LightItalic.otf in Resources */,
@@ -1977,6 +1989,7 @@
 				F9D6107F1E82EDBF00BFC18D /* Open Sans Condensed 300.ttf in Resources */,
 				F9D610801E82EDBF00BFC18D /* Open Sans 800.ttf in Resources */,
 				F9D610811E82EDBF00BFC18D /* Open Sans 300italic.ttf in Resources */,
+				F94576F220377123002466DA /* HomeViewController.xib in Resources */,
 				F9D610821E82EDBF00BFC18D /* ProximaNova-RegularItalic.otf in Resources */,
 				F9D610861E82EDBF00BFC18D /* Open Sans regular.ttf in Resources */,
 				F9D610871E82EDBF00BFC18D /* ProximaNova-LightItalic.otf in Resources */,
@@ -2292,6 +2305,7 @@
 				F9ACD1C81E5B0E37004E5BFF /* CGSizeExtension.swift in Sources */,
 				F963AB681E5A60F300ED5A8B /* WebcamSectionViewProvider.swift in Sources */,
 				F963AB6B1E5A611600ED5A8B /* WebcamCollectionViewCell.swift in Sources */,
+				F94576EE20377123002466DA /* HomeViewController.swift in Sources */,
 				F963AB321E59D07800ED5A8B /* AbstractArrayViewProvider.swift in Sources */,
 				F94D7CE51DFABF6000460CCD /* AboutViewController.swift in Sources */,
 				F9147FBC1E66137C000C78CA /* RequestExtension.swift in Sources */,
@@ -2373,6 +2387,7 @@
 				F94432771E8A4C45006D7308 /* CGSizeExtension.swift in Sources */,
 				F94432781E8A4C45006D7308 /* WebcamSectionViewProvider.swift in Sources */,
 				F94432791E8A4C45006D7308 /* WebcamCollectionViewCell.swift in Sources */,
+				F94576F020377123002466DA /* HomeViewController.swift in Sources */,
 				F944327A1E8A4C45006D7308 /* AbstractArrayViewProvider.swift in Sources */,
 				F944327B1E8A4C45006D7308 /* AboutViewController.swift in Sources */,
 				F944327C1E8A4C45006D7308 /* RequestExtension.swift in Sources */,
@@ -2466,6 +2481,7 @@
 				F9D6102E1E82EDBF00BFC18D /* CGSizeExtension.swift in Sources */,
 				F9D6102F1E82EDBF00BFC18D /* WebcamSectionViewProvider.swift in Sources */,
 				F9D610301E82EDBF00BFC18D /* WebcamCollectionViewCell.swift in Sources */,
+				F94576EF20377123002466DA /* HomeViewController.swift in Sources */,
 				F9D610311E82EDBF00BFC18D /* AbstractArrayViewProvider.swift in Sources */,
 				F9D610321E82EDBF00BFC18D /* AboutViewController.swift in Sources */,
 				F9D610331E82EDBF00BFC18D /* RequestExtension.swift in Sources */,

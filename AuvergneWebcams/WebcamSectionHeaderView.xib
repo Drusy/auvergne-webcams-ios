@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -110,6 +111,7 @@
                 <constraint firstAttribute="trailing" secondItem="atG-ck-aZM" secondAttribute="trailing" id="sOC-hn-nQJ"/>
             </constraints>
             <connections>
+                <outlet property="contentView" destination="atG-ck-aZM" id="eld-tP-I6F"/>
                 <outlet property="sectionImageView" destination="kUa-Sw-Jy7" id="z9W-YW-zhq"/>
                 <outlet property="sectionTitleLabel" destination="btd-5A-nnC" id="ooB-I0-BwB"/>
                 <outlet property="temperatureLabel" destination="B4y-XQ-vEg" id="7MV-UW-TZE"/>
@@ -118,7 +120,7 @@
                 <outlet property="weatherViewWidthConstraint" destination="nNI-ih-GFP" id="WqA-qZ-TD4"/>
                 <outlet property="webcamCountLabel" destination="4N5-eB-2HF" id="Kvj-Fs-rbR"/>
             </connections>
-            <point key="canvasLocation" x="-472" y="-48"/>
+            <point key="canvasLocation" x="-639" y="-47"/>
         </collectionReusableView>
     </objects>
     <resources>

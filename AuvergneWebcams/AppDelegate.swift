@@ -29,8 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return loadingViewController
     }()
     
-    lazy var mainViewController: WebcamCarouselViewController = {
-        return WebcamCarouselViewController()
+    lazy var mainViewController: HomeViewController = {
+        return HomeViewController()
     }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -113,8 +113,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
-        if let root = self.window?.rootViewController {
-            QuickActionsService.shared.performActionFor(shortcutItem: shortcutItem, for: root)
+        if let navigationController = mainViewController.currentViewController as? UINavigationController {
+            QuickActionsService.shared.performActionFor(shortcutItem: shortcutItem, for: navigationController)
         }
     }
 
@@ -163,12 +163,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: LoadingViewControllerDelegate {
     func didFinishLoading(_: AbstractLoadingViewController) {
-        let navigationController = NavigationController(rootViewController: mainViewController)
-        window?.rootViewController = navigationController
+        window?.rootViewController = mainViewController
         
         if let item = shortcutItem {
             shortcutItem = nil
-            mainViewController.shortcutItem = item
+            mainViewController.listViewController.shortcutItem = item
         }
     }
 }

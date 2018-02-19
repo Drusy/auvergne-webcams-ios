@@ -10,7 +10,6 @@ import UIKit
 
 extension UIImage {
     func maskWithColor(_ color: UIColor) -> UIImage? {
-        
         let maskImage = self.cgImage
         let width = self.size.width
         let height = self.size.height

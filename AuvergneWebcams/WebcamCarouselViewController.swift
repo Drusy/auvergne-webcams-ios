@@ -32,6 +32,10 @@ class WebcamCarouselViewProvider: AbstractArrayViewProvider<WebcamSection, Webca
     }
 }
 
+protocol WebcamCarouselViewControllerDelegate: class {
+    func webcamCarouselDidTriggerSettings(viewController: WebcamCarouselViewController)
+}
+
 class WebcamCarouselViewController: AbstractRefreshViewController {
     
     @IBOutlet var tableView: UITableView!
@@ -45,27 +49,24 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
         return provider
     }()
     
+    weak var delegate: WebcamCarouselViewControllerDelegate?
+    
     var shortcutItem: UIApplicationShortcutItem?
     var isFirstAppear: Bool = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "settings-icon"),
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(onSettingsTouched))
         
         
-        let refreshBarButtonItem = UIBarButtonItem(image: UIImage(named: "refresh-icon"),
-                                                   style: .plain,
-                                                   target: self,
-                                                   action: #selector(onRefreshTouched))
-        let mapBarButtonItem = UIBarButtonItem(image: UIImage(named: "map-icon"),
-                                               style: .plain,
-                                               target: self,
-                                               action: #selector(onMapTouched))
-        navigationItem.rightBarButtonItems = [refreshBarButtonItem, mapBarButtonItem]
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "refresh-icon"),
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(onRefreshTouched))
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(onFavoriteWebcamDidUpdate),
@@ -253,13 +254,7 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
     }
     
     @objc func onSettingsTouched() {
-        let settingsVC = SettingsViewController()
-        let navigationVC = NavigationController(rootViewController: settingsVC)
-        
-        navigationVC.modalPresentationStyle = .overCurrentContext
-        
-        present(navigationVC, animated: true, completion: nil)
-        AnalyticsManager.logEvent(button: "settings")
+        delegate?.webcamCarouselDidTriggerSettings(viewController: self)
     }
     
     @IBAction func onSearchTouched(_ sender: Any) {
