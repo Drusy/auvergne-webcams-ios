@@ -25,10 +25,14 @@ class HomeViewController: AbstractRealmViewController {
     @IBOutlet weak var mapTabbarItem: UITabBarItem!
     @IBOutlet weak var containerView: UIView!
     
+    @IBOutlet var loadingAnimationView: UIView!
+    @IBOutlet weak var loadingAnimationImageView: UIImageView!
+    
     fileprivate(set) weak var currentViewController: UIViewController?
     fileprivate weak var currentTabbarItem: UITabBarItem?
     fileprivate var isAnimatingController: Bool = false
-    
+    fileprivate var didLaunchStartupAnimation: Bool = true
+
     lazy var listViewController: WebcamCarouselViewController = {
         let controller = WebcamCarouselViewController()
         controller.delegate = self
@@ -47,15 +51,109 @@ class HomeViewController: AbstractRealmViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.addSubview(loadingAnimationView)
+        view.fit(toSubview: loadingAnimationView)
 
         showList(with: .left, animated: false)
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if didLaunchStartupAnimation {
+            didLaunchStartupAnimation = false
+            
+            startShowAnimation()
+        }
+    }
+    
+    override var shouldAutorotate: Bool {
+        return loadingAnimationView.superview == nil
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        let transition: (UIViewControllerTransitionCoordinatorContext) -> Void = { [weak self] _ in
+            self?.tabbar.invalidateIntrinsicContentSize()
+            self?.tabbar.layoutIfNeeded()
+        }
+        
+        coordinator.animate(alongsideTransition: transition,
+                            completion: nil)
     }
     
     // MARK: -
+    
+    func startShowAnimation() {
+        loadingAnimationView.alpha = 1
+
+        view.layoutIfNeeded()
+        containerView.layoutIfNeeded()
+        loadingAnimationView.layoutIfNeeded()
+        loadingAnimationImageView.layoutIfNeeded()
+        
+        view.layer.mask = CALayer()
+        view.layer.mask?.contents = loadingAnimationImageView.image!.cgImage
+        view.layer.mask?.bounds = loadingAnimationImageView.bounds
+        view.layer.mask?.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        view.layer.mask?.position = CGPoint(x: view.frame.width / 2, y: view.frame.height / 2)
+        
+        let transformAnimation = CAKeyframeAnimation(keyPath: "bounds")
+        let initalBounds = NSValue(cgRect: loadingAnimationImageView.bounds)
+        let secondBounds = NSValue(cgRect: CGRect(x: 0, y: 0,
+                                                  width: loadingAnimationImageView.bounds.width * 0.9,
+                                                  height: loadingAnimationImageView.bounds.height * 0.9))
+        let finalBounds = NSValue(cgRect: CGRect(x: 0, y: 0,
+                                                 width: loadingAnimationImageView.bounds.width * 5,
+                                                 height: loadingAnimationImageView.bounds.height * 5))
+        let duration: TimeInterval = 1
+        
+        transformAnimation.duration = duration
+        transformAnimation.delegate = self
+        transformAnimation.values = [initalBounds, secondBounds, finalBounds]
+        transformAnimation.keyTimes = [0, 0.5, 1]
+        transformAnimation.timingFunctions = [CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut), CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)]
+        transformAnimation.fillMode = kCAFillModeForwards
+        transformAnimation.isRemovedOnCompletion = false
+        
+        view.layer.mask?.add(transformAnimation, forKey: transformAnimation.keyPath)
+        loadingAnimationImageView.layer.add(transformAnimation, forKey: transformAnimation.keyPath)
+        
+        UIView.animate(
+            withDuration: duration * 0.2,
+            delay: duration * 0.35,
+            options: .curveEaseIn,
+            animations: { [weak self] in
+                self?.loadingAnimationView.alpha = 0.0
+            },
+            completion: nil)
+        
+        UIView.animate(
+            withDuration: duration * 0.25,
+            delay: duration * 0.3,
+            options: [],
+            animations: { [weak self] in
+                self?.view.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+            },
+            completion: { [weak self] _ in
+                UIView.animate(
+                    withDuration: 0.3,
+                    delay: 0.0,
+                    options: UIViewAnimationOptions.curveEaseInOut,
+                    animations: {
+                        self?.view.transform = .identity
+                },
+                    completion: nil)
+        })
+    }
+    
+    override func style() {
+        super.style()
+        
+        loadingAnimationImageView.image = UIImage(named: Configuration.mainThemeImageName)
+    }
     
     fileprivate func showList(with direction: TransitionDirection, animated: Bool = true) {
         currentTabbarItem = listTabbarItem
@@ -171,6 +269,15 @@ extension HomeViewController: UITabBarDelegate {
                 tabbar.selectedItem = currentTabbarItem
             }
         }
+    }
+}
+
+// MARK: - CAAnimationDelegate
+
+extension HomeViewController: CAAnimationDelegate {
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        view.layer.mask = nil
+        loadingAnimationView.removeFromSuperview()
     }
 }
 

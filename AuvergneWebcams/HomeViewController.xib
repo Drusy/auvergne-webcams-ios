@@ -14,6 +14,8 @@
             <connections>
                 <outlet property="containerView" destination="cNc-CA-HHb" id="42x-Yq-zyZ"/>
                 <outlet property="listTabbarItem" destination="koq-it-Hh1" id="PGe-1B-SP7"/>
+                <outlet property="loadingAnimationImageView" destination="FdK-iS-Dnd" id="W3Z-Gf-Qk3"/>
+                <outlet property="loadingAnimationView" destination="E9t-Qo-Vdp" id="H59-8l-BtX"/>
                 <outlet property="mapTabbarItem" destination="Ilr-Fi-LNg" id="UjL-qU-DNt"/>
                 <outlet property="tabbar" destination="TUZ-Cn-YCU" id="8eE-RR-abw"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="wGL-LO-0nI"/>
@@ -54,9 +56,26 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="-602.5" y="-150"/>
         </view>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="E9t-Qo-Vdp">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pdd-landscape-cloudless" translatesAutoresizingMaskIntoConstraints="NO" id="FdK-iS-Dnd">
+                    <rect key="frame" x="38" y="256" width="300" height="300"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="FdK-iS-Dnd" firstAttribute="centerX" secondItem="E9t-Qo-Vdp" secondAttribute="centerX" id="6Er-Vx-tVl"/>
+                <constraint firstItem="FdK-iS-Dnd" firstAttribute="centerY" secondItem="E9t-Qo-Vdp" secondAttribute="centerY" id="RMN-t7-JX5"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="NQa-VO-1oo"/>
+            <point key="canvasLocation" x="-1095" y="-150"/>
+        </view>
     </objects>
     <resources>
         <image name="carousel-icon" width="30" height="22"/>
         <image name="map-icon" width="25" height="25"/>
+        <image name="pdd-landscape-cloudless" width="300" height="300"/>
     </resources>
 </document>

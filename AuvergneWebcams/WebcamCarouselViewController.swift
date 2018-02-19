@@ -40,8 +40,6 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var searchTextField: UITextField!
-    @IBOutlet var loadingAnimationView: UIView!
-    @IBOutlet var loadingAnimationImageView: UIImageView!
     
     lazy var provider: WebcamCarouselViewProvider = {
         let provider = WebcamCarouselViewProvider(tableView: self.tableView)
@@ -50,9 +48,7 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
     }()
     
     weak var delegate: WebcamCarouselViewControllerDelegate?
-    
     var shortcutItem: UIApplicationShortcutItem?
-    var isFirstAppear: Bool = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,17 +81,15 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
         }
         
         update()
+        
+        if let item = shortcutItem, let navigationController = navigationController {
+            QuickActionsService.shared.performActionFor(shortcutItem: item, for: navigationController)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if isFirstAppear {
-            isFirstAppear = false
-            
-            startShowAnimation()
-        }
-        
+
         if Defaults[.cameraDetailCount] >= 4 && Defaults[.appOpenCount] >= 2 {
             if #available(iOS 10.3, *){
                 Defaults[.cameraDetailCount] = 0
@@ -124,79 +118,6 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
     }
     
     // MARK: -
-    
-    func startShowAnimation() {
-        loadingAnimationView.alpha = 1
-        
-        view.layoutIfNeeded()
-        loadingAnimationView.layoutIfNeeded()
-        loadingAnimationImageView.layoutIfNeeded()
-        
-        navigationController?.view.layer.mask = CALayer()
-        navigationController?.view.layer.mask?.contents = loadingAnimationImageView.image!.cgImage
-        navigationController?.view.layer.mask?.bounds = loadingAnimationImageView.bounds
-        navigationController?.view.layer.mask?.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        navigationController?.view.layer.mask?.position = CGPoint(x: view.frame.width / 2,
-                                                                  y: view.frame.height / 2)
-        
-        let transformAnimation = CAKeyframeAnimation(keyPath: "bounds")
-        let initalBounds = NSValue(cgRect: loadingAnimationImageView.bounds)
-        let secondBounds = NSValue(cgRect: CGRect(x: 0, y: 0,
-                                                  width: loadingAnimationImageView.bounds.width * 0.9,
-                                                  height: loadingAnimationImageView.bounds.height * 0.9))
-        let finalBounds = NSValue(cgRect: CGRect(x: 0, y: 0,
-                                                 width: loadingAnimationImageView.bounds.width * 5,
-                                                 height: loadingAnimationImageView.bounds.height * 5))
-        let duration: TimeInterval = 1
-
-        transformAnimation.duration = duration
-        transformAnimation.delegate = self
-        transformAnimation.values = [initalBounds, secondBounds, finalBounds]
-        transformAnimation.keyTimes = [0, 0.5, 1]
-        transformAnimation.timingFunctions = [CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut), CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)]
-        transformAnimation.fillMode = kCAFillModeForwards
-        transformAnimation.isRemovedOnCompletion = false
-
-        navigationController?.view.layer.mask?.add(transformAnimation, forKey: transformAnimation.keyPath)
-        loadingAnimationImageView.layer.add(transformAnimation, forKey: transformAnimation.keyPath)
-        
-        UIView.animate(
-            withDuration: duration * 0.2,
-            delay: duration * 0.35,
-            options: .curveEaseIn,
-            animations: { [weak self] in
-                self?.loadingAnimationView.alpha = 0.0
-            },
-            completion: nil)
-        
-        UIView.animate(
-            withDuration: duration * 0.25,
-            delay: duration * 0.3,
-            options: [],
-            animations: { [weak self] in
-                self?.tableView.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
-            },
-            completion: { [weak self] _ in
-                UIView.animate(
-                    withDuration: 0.3,
-                    delay: 0.0,
-                    options: UIViewAnimationOptions.curveEaseInOut,
-                    animations: {
-                        self?.tableView.transform = .identity
-                },
-                    completion: { [weak self] _ in
-                        if let item = self?.shortcutItem, let navigationController = self?.navigationController {
-                            QuickActionsService.shared.performActionFor(shortcutItem: item, for: navigationController)
-                        }
-                })
-        })
-    }
-    
-    override func style() {
-        super.style()
-        
-        loadingAnimationImageView.image = UIImage(named: Configuration.mainThemeImageName)
-    }
     
     override func refresh(force: Bool = false) {
         if isReachable() {
@@ -289,14 +210,6 @@ extension WebcamCarouselViewController: WebcamCarouselTableViewCellDelegate {
     func webcamCarousel(tableViewCell: WebcamCarouselTableViewCell, didSelectSection section: WebcamSection) {
         let sectionDetail = WebcamSectionViewController(section: section)
         navigationController?.pushViewController(sectionDetail, animated: true)
-    }
-}
-
-// MARK: - CAAnimationDelegate
-
-extension WebcamCarouselViewController: CAAnimationDelegate {
-    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        navigationController?.view.layer.mask = nil
     }
 }
 
