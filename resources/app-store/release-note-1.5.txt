@@ -1,0 +1,27 @@
+Auvergne Webcams 1.5:
+Toutes les webcams sont désormais positionnées sur une carte dans l'app !
+Un tabbar permet de passer du mode liste au mode carte et vice versa.
+
+Auvergne Webcams 1.4:
+Nous avons totalement réorganisé les webcams disponibles et nous avons également ajouté plus de 30 nouvelles webcams !
+Vous pouvez désormais proposer vos webcams à partir de l'écran de paramètres si nous en avons oublié.
+
+Auvergne Webcams 1.3:
+• Ajout d'un Widget affichant les webcams favorites !
+• Ajout des racourcis 3D Touch (Force Touch)
+• Ajout des licences Open Sources dans les paramètres système, section Auvergne Webcams
+• Support de l'iPhone X
+
+NOUVEAUTÉS
+• Carte des webcams
+• Plus de 30 nouvelles webcams !
+    • Webcams d'Aurillac
+    • Webcams de l'Allier
+    • Nombreuses webcams de Super Besse et du Mont Dore
+    • Webcams du Puy en Velay
+    • Webcams de l'A75
+• Proposez-nous des webcams depuis l'écran des paramètres
+
+De nombreuses autres améliorations sont prévues et vous pourrez bientôt trouver des variantes de l'application pour d'autres villes, régions et pays, stay tuned !
+
+Nous sommes à l'écoute de vos commentaires, n'hésitez pas à nous envoyer un email à auvergnewebcams@openium.fr afin de nous donner votre avis !
