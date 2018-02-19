@@ -181,7 +181,7 @@ extension MapViewController: MGLMapViewDelegate {
     }
     
     func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
-        return true
+        return annotation is WebcamAnnotation
     }
     
     func mapView(_ mapView: MGLMapView, calloutViewFor annotation: MGLAnnotation) -> MGLCalloutView? {
