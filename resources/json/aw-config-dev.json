@@ -1399,12 +1399,13 @@
                     "uid": 9003,
                     "order": 3,
                     "title": "Gannat",
-                    "imageLD": "http://films.viewsurf.com/ap2r2/GANNAT/ap2r3.jpg",
+                    "backup": "http://films.viewsurf.com/ap2r2/GANNAT/ap2r3.jpg",
+                    "imageLD": null,
                     "imageHD": null,
                     "type": "image",
                     "latitude": 46.100499,
                     "longitude": 3.199131,
-                    "hidden": false,
+                    "hidden": true,
                     "tags": [
                         "allier",
                         "gannat"
