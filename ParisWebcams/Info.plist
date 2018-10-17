@@ -43,6 +43,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Nous utilisons votre position afin de vous localiser sur la carte</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>La bibliothèque d'image est utilisée afin de sauvegarder l'image de la webcam sur votre périphérique</string>
 	<key>NSPhotoLibraryUsageDescription</key>

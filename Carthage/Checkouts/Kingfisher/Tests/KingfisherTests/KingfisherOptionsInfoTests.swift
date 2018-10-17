@@ -4,7 +4,7 @@
 //
 //  Created by Wei Wang on 16/1/4.
 //
-//  Copyright (c) 2017 Wei Wang <onevcat@gmail.com>
+//  Copyright (c) 2018 Wei Wang <onevcat@gmail.com>
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -42,8 +42,8 @@ class KingfisherOptionsInfoTests: XCTestCase {
     
     func testEmptyOptionsShouldParseCorrectly() {
         let options = KingfisherEmptyOptionsInfo
-        XCTAssertTrue(options.targetCache === ImageCache.default)
-        XCTAssertTrue(options.downloader === ImageDownloader.default)
+        XCTAssertTrue(options.targetCache === nil)
+        XCTAssertTrue(options.downloader === nil)
 
 #if !os(macOS)
         switch options.transition {

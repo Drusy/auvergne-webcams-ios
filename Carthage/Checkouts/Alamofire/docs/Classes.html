@@ -14,6 +14,7 @@
   </head>
   <body>
 
+    <a name="//apple_ref/swift/Section/Classes" class="dashAnchor"></a>
 
     <a title="Classes  Reference"></a>
 
@@ -22,7 +23,7 @@
         <a class="header-link" href="index.html">
           Alamofire Docs
         </a>
-         (87% documented)
+         (86% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -278,6 +279,12 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Structs/URLEncoding/Destination.html">– Destination</a>
               </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/URLEncoding/ArrayEncoding.html">– ArrayEncoding</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/URLEncoding/BoolEncoding.html">– BoolEncoding</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -308,230 +315,6 @@
 
         <section class="section">
           <div class="section-content">
-            <div class="task-group">
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@Alamofire@objc(cs)SessionDelegate"></a>
-                    <a name="//apple_ref/swift/Class/SessionDelegate" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@Alamofire@objc(cs)SessionDelegate">SessionDelegate</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Responsible for handling all delegate callbacks for the underlying session.</p>
-
-                        <a href="Classes/SessionDelegate.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">SessionDelegate</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9Alamofire7RequestC"></a>
-                    <a name="//apple_ref/swift/Class/Request" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Alamofire7RequestC">Request</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Responsible for sending a request and receiving the response and associated data from the server, as well as
-managing its underlying <code>URLSessionTask</code>.</p>
-
-                        <a href="Classes/Request.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">Request</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9Alamofire11DataRequestC"></a>
-                    <a name="//apple_ref/swift/Class/DataRequest" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Alamofire11DataRequestC">DataRequest</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Specific type of <code><a href="Classes/Request.html">Request</a></code> that manages an underlying <code>URLSessionDataTask</code>.</p>
-
-                        <a href="Classes/DataRequest.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">DataRequest</span><span class="p">:</span> <span class="kt"><a href="Classes/Request.html">Request</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9Alamofire15DownloadRequestC"></a>
-                    <a name="//apple_ref/swift/Class/DownloadRequest" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Alamofire15DownloadRequestC">DownloadRequest</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Specific type of <code><a href="Classes/Request.html">Request</a></code> that manages an underlying <code>URLSessionDownloadTask</code>.</p>
-
-                        <a href="Classes/DownloadRequest.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">DownloadRequest</span><span class="p">:</span> <span class="kt"><a href="Classes/Request.html">Request</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9Alamofire13UploadRequestC"></a>
-                    <a name="//apple_ref/swift/Class/UploadRequest" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Alamofire13UploadRequestC">UploadRequest</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Specific type of <code><a href="Classes/Request.html">Request</a></code> that manages an underlying <code>URLSessionUploadTask</code>.</p>
-
-                        <a href="Classes/UploadRequest.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">UploadRequest</span><span class="p">:</span> <span class="kt"><a href="Classes/DataRequest.html">DataRequest</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9Alamofire13StreamRequestC"></a>
-                    <a name="//apple_ref/swift/Class/StreamRequest" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Alamofire13StreamRequestC">StreamRequest</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Specific type of <code><a href="Classes/Request.html">Request</a></code> that manages an underlying <code>URLSessionStreamTask</code>.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">StreamRequest</span><span class="p">:</span> <span class="kt"><a href="Classes/Request.html">Request</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9Alamofire14SessionManagerC"></a>
-                    <a name="//apple_ref/swift/Class/SessionManager" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Alamofire14SessionManagerC">SessionManager</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Responsible for creating and managing <code><a href="Classes/Request.html">Request</a></code> objects, as well as their underlying <code>NSURLSession</code>.</p>
-
-                        <a href="Classes/SessionManager.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">SessionManager</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
             <div class="task-group">
               <ul class="item-container">
                 <li class="item">
@@ -568,39 +351,7 @@ and the w3 form documentation.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">MultipartFormData</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9Alamofire24ServerTrustPolicyManagerC"></a>
-                    <a name="//apple_ref/swift/Class/ServerTrustPolicyManager" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Alamofire24ServerTrustPolicyManagerC">ServerTrustPolicyManager</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Responsible for managing the mapping of <code><a href="Enums/ServerTrustPolicy.html">ServerTrustPolicy</a></code> objects to a given host.</p>
-
-                        <a href="Classes/ServerTrustPolicyManager.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">ServerTrustPolicyManager</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">MultipartFormData</span></code></pre>
 
                         </div>
                       </div>
@@ -637,7 +388,264 @@ request, as it&rsquo;s possible that an initial request may be required to estab
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">NetworkReachabilityManager</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">NetworkReachabilityManager</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9Alamofire7RequestC"></a>
+                    <a name="//apple_ref/swift/Class/Request" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Alamofire7RequestC">Request</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Responsible for sending a request and receiving the response and associated data from the server, as well as
+managing its underlying <code>URLSessionTask</code>.</p>
+
+                        <a href="Classes/Request.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">Request</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9Alamofire11DataRequestC"></a>
+                    <a name="//apple_ref/swift/Class/DataRequest" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Alamofire11DataRequestC">DataRequest</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Specific type of <code><a href="Classes/Request.html">Request</a></code> that manages an underlying <code>URLSessionDataTask</code>.</p>
+
+                        <a href="Classes/DataRequest.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">DataRequest</span> <span class="p">:</span> <span class="kt"><a href="Classes/Request.html">Request</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9Alamofire15DownloadRequestC"></a>
+                    <a name="//apple_ref/swift/Class/DownloadRequest" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Alamofire15DownloadRequestC">DownloadRequest</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Specific type of <code><a href="Classes/Request.html">Request</a></code> that manages an underlying <code>URLSessionDownloadTask</code>.</p>
+
+                        <a href="Classes/DownloadRequest.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">DownloadRequest</span> <span class="p">:</span> <span class="kt"><a href="Classes/Request.html">Request</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9Alamofire13UploadRequestC"></a>
+                    <a name="//apple_ref/swift/Class/UploadRequest" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Alamofire13UploadRequestC">UploadRequest</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Specific type of <code><a href="Classes/Request.html">Request</a></code> that manages an underlying <code>URLSessionUploadTask</code>.</p>
+
+                        <a href="Classes/UploadRequest.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">UploadRequest</span> <span class="p">:</span> <span class="kt"><a href="Classes/DataRequest.html">DataRequest</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9Alamofire13StreamRequestC"></a>
+                    <a name="//apple_ref/swift/Class/StreamRequest" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Alamofire13StreamRequestC">StreamRequest</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Specific type of <code><a href="Classes/Request.html">Request</a></code> that manages an underlying <code>URLSessionStreamTask</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@available(iOS 9.0, OSX 10.11, tvOS 9.0, *)</span>
+<span class="kd">open</span> <span class="kd">class</span> <span class="kt">StreamRequest</span> <span class="p">:</span> <span class="kt"><a href="Classes/Request.html">Request</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9Alamofire24ServerTrustPolicyManagerC"></a>
+                    <a name="//apple_ref/swift/Class/ServerTrustPolicyManager" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Alamofire24ServerTrustPolicyManagerC">ServerTrustPolicyManager</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Responsible for managing the mapping of <code><a href="Enums/ServerTrustPolicy.html">ServerTrustPolicy</a></code> objects to a given host.</p>
+
+                        <a href="Classes/ServerTrustPolicyManager.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">ServerTrustPolicyManager</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@Alamofire@objc(cs)SessionDelegate"></a>
+                    <a name="//apple_ref/swift/Class/SessionDelegate" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@Alamofire@objc(cs)SessionDelegate">SessionDelegate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Responsible for handling all delegate callbacks for the underlying session.</p>
+
+                        <a href="Classes/SessionDelegate.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">SessionDelegate</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9Alamofire14SessionManagerC"></a>
+                    <a name="//apple_ref/swift/Class/SessionManager" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Alamofire14SessionManagerC">SessionManager</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Responsible for creating and managing <code><a href="Classes/Request.html">Request</a></code> objects, as well as their underlying <code>NSURLSession</code>.</p>
+
+                        <a href="Classes/SessionManager.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">SessionManager</span></code></pre>
 
                         </div>
                       </div>
@@ -670,7 +678,7 @@ executing all operations attached to the serial operation queue upon task comple
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">TaskDelegate</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">TaskDelegate</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
 
                         </div>
                       </div>
@@ -685,8 +693,8 @@ executing all operations attached to the serial operation queue upon task comple
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="http://alamofire.org/" target="_blank" rel="external">Alamofire Software Foundation</a>. All rights reserved. (Last updated: 2017-12-03)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2018 <a class="link" href="http://alamofire.org/" target="_blank" rel="external">Alamofire Software Foundation</a>. All rights reserved. (Last updated: 2018-07-08)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

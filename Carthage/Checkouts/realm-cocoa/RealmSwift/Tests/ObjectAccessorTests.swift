@@ -354,4 +354,98 @@ class ObjectAccessorTests: TestCase {
         }
         XCTAssertEqual(firstOwner.name, "JP")
     }
+
+    func testRenamedProperties() {
+        let obj = RenamedProperties1()
+        obj.propA = 5
+        obj.propB = "a"
+
+        let link = LinkToRenamedProperties1()
+        link.linkA = obj
+        link.array1.append(obj)
+
+        let realm = try! Realm()
+        try! realm.write {
+            realm.add(link)
+        }
+
+        XCTAssertEqual(obj.propA, 5)
+        XCTAssertEqual(obj.propB, "a")
+        XCTAssertTrue(link.linkA!.isSameObject(as: obj))
+        XCTAssertTrue(link.array1[0].isSameObject(as: obj))
+        XCTAssertTrue(obj.linking1[0].isSameObject(as: link))
+
+        XCTAssertEqual(obj["propA"]! as! Int, 5)
+        XCTAssertEqual(obj["propB"]! as! String, "a")
+        XCTAssertTrue((link["linkA"]! as! RenamedProperties1).isSameObject(as: obj))
+        XCTAssertTrue((link["array1"]! as! List<RenamedProperties1>)[0].isSameObject(as: obj))
+        XCTAssertTrue((obj["linking1"]! as! LinkingObjects<LinkToRenamedProperties1>)[0].isSameObject(as: link))
+
+        XCTAssertTrue(link.dynamicList("array1")[0].isSameObject(as: obj))
+
+        let obj2 = realm.objects(RenamedProperties2.self).first!
+        let link2 = realm.objects(LinkToRenamedProperties2.self).first!
+
+        XCTAssertEqual(obj2.propC, 5)
+        XCTAssertEqual(obj2.propD, "a")
+        XCTAssertTrue(link2.linkC!.isSameObject(as: obj))
+        XCTAssertTrue(link2.array2[0].isSameObject(as: obj))
+        XCTAssertTrue(obj2.linking1[0].isSameObject(as: link))
+
+        XCTAssertEqual(obj2["propC"]! as! Int, 5)
+        XCTAssertEqual(obj2["propD"]! as! String, "a")
+        XCTAssertTrue((link2["linkC"]! as! RenamedProperties1).isSameObject(as: obj))
+        XCTAssertTrue((link2["array2"]! as! List<RenamedProperties2>)[0].isSameObject(as: obj))
+        XCTAssertTrue((obj2["linking1"]! as! LinkingObjects<LinkToRenamedProperties1>)[0].isSameObject(as: link))
+
+        XCTAssertTrue(link2.dynamicList("array2")[0].isSameObject(as: obj))
+    }
+
+    func testPropertiesOutlivingParentObject() {
+        var optional: RealmOptional<Int>!
+        var list: List<Int>!
+
+        let realm = try! Realm()
+        try! realm.write {
+            autoreleasepool {
+                optional = realm.create(SwiftOptionalObject.self, value: ["optIntCol": 1]).optIntCol
+                list = realm.create(SwiftListObject.self, value: ["int": [1]]).int
+            }
+        }
+
+        // Verify that we can still read the correct value
+        XCTAssertEqual(optional.value, 1)
+        XCTAssertEqual(list.count, 1)
+        XCTAssertEqual(list[0], 1)
+
+        // Verify that we can modify the values via the standalone property objects and
+        // have it properly update the parent
+        try! realm.write {
+            optional.value = 2
+            list.append(2)
+        }
+
+        XCTAssertEqual(optional.value, 2)
+        XCTAssertEqual(list.count, 2)
+        XCTAssertEqual(list[0], 1)
+        XCTAssertEqual(list[1], 2)
+
+        autoreleasepool {
+            XCTAssertEqual(realm.objects(SwiftOptionalObject.self).first!.optIntCol.value, 2)
+            XCTAssertEqual(Array(realm.objects(SwiftListObject.self).first!.int), [1, 2])
+        }
+
+        try! realm.write {
+            optional.value = nil
+            list.removeAll()
+        }
+
+        XCTAssertEqual(optional.value, nil)
+        XCTAssertEqual(list.count, 0)
+
+        autoreleasepool {
+            XCTAssertEqual(realm.objects(SwiftOptionalObject.self).first!.optIntCol.value, nil)
+            XCTAssertEqual(Array(realm.objects(SwiftListObject.self).first!.int), [])
+        }
+    }
 }

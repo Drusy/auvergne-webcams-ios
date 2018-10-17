@@ -60,7 +60,7 @@ class WebcamCalloutView: UIView, MGLCalloutView {
     
     // MARK: - MGLCalloutView
     
-    func presentCallout(from rect: CGRect, in view: UIView, constrainedTo constrainedView: UIView, animated: Bool) {
+    func presentCallout(from rect: CGRect, in view: UIView, constrainedTo constrainedRect: CGRect, animated: Bool) {
         view.addSubview(self)
         
         if isCalloutTappable() {

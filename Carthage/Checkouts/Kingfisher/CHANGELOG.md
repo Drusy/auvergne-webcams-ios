@@ -2,6 +2,112 @@
 
 -----
 
+## [4.10.0 - Swift 4.2](https://github.com/onevcat/Kingfisher/releases/tag/4.10.0) (2018-09-20)
+
+#### Add
+* Support for building with Xcode 10 and Swift 4.2. This version requires Xcode 10 or later with Swift 4.2 compiler.
+
+#### Fix
+* Improve performance when an invalide HTTP status code received. [#985](https://github.com/onevcat/Kingfisher/pull/985)
+
+---
+
+## [4.9.0 - Patience is a Virtue](https://github.com/onevcat/Kingfisher/releases/tag/4.9.0) (2018-09-04)
+
+#### Add
+* Add a `waitForCache` option to allowing cache callback called after cache operation finishes. [#963](https://github.com/onevcat/Kingfisher/pull/963)
+
+#### Fix
+* Animated image now will recognize `.once` and `.finite(1)` the same thing. [#982](https://github.com/onevcat/Kingfisher/pull/982)
+* Replace class-only protocol keyword with AnyObject as Swift convention. [#983](https://github.com/onevcat/Kingfisher/pull/983)
+* A wrong cache callback parameter when storing cache with background decoding. [#986](https://github.com/onevcat/Kingfisher/pull/986)
+* Access `downloadHolder` in a serial queue to avoid racing. [#984](https://github.com/onevcat/Kingfisher/pull/984)
+
+---
+
+## [4.8.1 - Prefetch Improvement](https://github.com/onevcat/Kingfisher/releases/tag/4.8.1) (2018-07-26)
+
+#### Fix
+* Fix a performance issue when prefetching images by moving related operation away from main queue. [#957](https://github.com/onevcat/Kingfisher/pull/957)
+* Improvement on stability of some test cases.
+
+---
+
+## [4.8.0 - Watch & Watching](https://github.com/onevcat/Kingfisher/releases/tag/4.8.0) (2018-05-15)
+
+#### Add
+* WKInterfaceImage setting image interface for watchOS. [#913](https://github.com/onevcat/Kingfisher/pull/913)
+* A new delegate method for watching `ImageDownloader` object completes a downloading request with success or failure. [#901](https://github.com/onevcat/Kingfisher/pull/901)
+
+#### Fix
+
+* Use newly created operation queue for downloader. 
+* Filter.init(tranform:) is renamed to Filter.init(transform:) 
+* Some internal minor fix on constant and typo, etc.
+
+---
+
+## [4.7.0 - Cancel All](https://github.com/onevcat/Kingfisher/releases/tag/4.7.0) (2018-04-06)
+
+#### Add
+* ImageDownloader now contains a method `cancelAll` to cancel all downloading tasks. [#894](https://github.com/onevcat/Kingfisher/pull/894)
+* Supports Swift 4.1 and Xcode 9.3. [#889](https://github.com/onevcat/Kingfisher/pull/889)
+
+---
+
+## [4.6.4 - Customize Activity Indicator](https://github.com/onevcat/Kingfisher/releases/tag/4.6.4) (2018-03-20)
+
+#### Fix
+* An issue caused customize activity indicator not working for Swift 4. [#872](https://github.com/onevcat/Kingfisher/issues/872)
+* Specify Swift compiler version explicity in pod spec file for CocoaPods 1.4. [#875](https://github.com/onevcat/Kingfisher/pull/875)
+
+---
+
+## [4.6.3 - Clean Demo](https://github.com/onevcat/Kingfisher/releases/tag/4.6.3) (2018-03-01)
+
+#### Fix
+* Move demo project out from Kingfisher framework project. [#867](https://github.com/onevcat/Kingfisher/pull/867)
+* An issue that caused stack overflow when prefetching too many images, while they are already cached. [#866](https://github.com/onevcat/Kingfisher/pull/866)
+
+---
+
+## [4.6.2 - GIF frames](https://github.com/onevcat/Kingfisher/releases/tag/4.6.2) (2018-02-14)
+
+#### Fix
+* Animated image view now will call finished delegate method in correct timing. [#860](https://github.com/onevcat/Kingfisher/issues/860)
+
+---
+
+## [4.6.1 - MD5](https://github.com/onevcat/Kingfisher/releases/tag/4.6.1) (2017-12-28)
+
+#### Fix
+* Revert to use non-dependency way to handle MD5, to solve issues which redefination of dependency library. [#834](https://github.com/onevcat/Kingfisher/pull/834)
+
+---
+
+## [4.6.0 - AniBird](https://github.com/onevcat/Kingfisher/releases/tag/4.6.0) (2017-12-27)
+
+#### Add
+* Delegate methods for `AnimatedImageView` to inspect finishing event and/or end of an animation loop. [#829](https://github.com/onevcat/Kingfisher/pull/829)
+
+#### Fix
+* Minor performance improvement by `final` some classes.
+* Remove unnecessary `Box` type since Objective-C world takes `Any`. [#832](https://github.com/onevcat/Kingfisher/pull/832).
+* Some internal failing tests on earlier macOS, in which color space giving different result.
+
+---
+
+## [4.5.0 - Blending](https://github.com/onevcat/Kingfisher/releases/tag/4.5.0) (2017-12-05)
+
+#### Add
+* New image processors to blend an image. See `BlendImageProcessor` on iOS/tvOS and `CompositingImageProcessor` on macOS. [#818](https://github.com/onevcat/Kingfisher/pull/818)
+
+#### Fix
+* A crash when prefetching too many images in a single batch. [#692](https://github.com/onevcat/Kingfisher/issues/692)
+* A possible invalid redeclaration on `Array` from `AnimatedImageView`. [#819](https://github.com/onevcat/Kingfisher/pull/819)
+
+---
+
 ## [4.4.0 - Image Modifier](https://github.com/onevcat/Kingfisher/releases/tag/4.4.0) (2017-12-01)
 
 #### Add

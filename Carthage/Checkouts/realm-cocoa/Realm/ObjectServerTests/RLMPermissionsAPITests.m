@@ -18,6 +18,8 @@
 
 #import <XCTest/XCTest.h>
 
+// FIXME: Many permission tests appears to fail with the ROS 3.0.0 alpha releases.
+
 #import "RLMSyncTestCase.h"
 
 #import "RLMTestUtils.h"
@@ -36,11 +38,11 @@
 
 static NSURL *makeTestURL(NSString *name, RLMSyncUser *owner) {
     NSString *userID = [owner identity] ?: @"~";
-    return [[NSURL alloc] initWithString:[NSString stringWithFormat:@"realm://localhost:9080/%@/%@", userID, name]];
+    return [[NSURL alloc] initWithString:[NSString stringWithFormat:@"realm://127.0.0.1:9080/%@/%@", userID, name]];
 }
 
 static NSURL *makeTestGlobalURL(NSString *name) {
-    return [[NSURL alloc] initWithString:[NSString stringWithFormat:@"realm://localhost:9080/%@", name]];
+    return [[NSURL alloc] initWithString:[NSString stringWithFormat:@"realm://127.0.0.1:9080/%@", name]];
 }
 
 static NSURL *makeTildeSubstitutedURL(NSURL *url, RLMSyncUser *user) {

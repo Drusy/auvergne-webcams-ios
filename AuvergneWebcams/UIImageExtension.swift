@@ -45,7 +45,7 @@ extension UIImage {
         
         // Create gradient
         let colorSpace = CGColorSpaceCreateDeviceRGB()
-        let colors = gradientColors.map { (color: UIColor) -> Any! in return color.cgColor as Any! } as NSArray
+        let colors = gradientColors.map { (color: UIColor) -> Any in return color.cgColor as Any } as NSArray
         let locs: [CGFloat] = [0.0, 1.0]
         let gradient = CGGradient(colorsSpace: colorSpace, colors: colors, locations: locs)
         

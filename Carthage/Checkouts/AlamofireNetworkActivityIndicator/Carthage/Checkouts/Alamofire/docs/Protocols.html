@@ -14,6 +14,7 @@
   </head>
   <body>
 
+    <a name="//apple_ref/swift/Section/Protocols" class="dashAnchor"></a>
 
     <a title="Protocols  Reference"></a>
 
@@ -22,7 +23,7 @@
         <a class="header-link" href="index.html">
           Alamofire Docs
         </a>
-         (87% documented)
+         (86% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -278,6 +279,12 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Structs/URLEncoding/Destination.html">– Destination</a>
               </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/URLEncoding/ArrayEncoding.html">– ArrayEncoding</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/URLEncoding/BoolEncoding.html">– BoolEncoding</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -313,6 +320,71 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:9Alamofire14URLConvertibleP"></a>
+                    <a name="//apple_ref/swift/Protocol/URLConvertible" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Alamofire14URLConvertibleP">URLConvertible</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Types adopting the <code>URLConvertible</code> protocol can be used to construct URLs, which are then used to construct
+URL requests.</p>
+
+                        <a href="Protocols/URLConvertible.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">URLConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9Alamofire21URLRequestConvertibleP"></a>
+                    <a name="//apple_ref/swift/Protocol/URLRequestConvertible" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Alamofire21URLRequestConvertibleP">URLRequestConvertible</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Types adopting the <code>URLRequestConvertible</code> protocol can be used to construct URL requests.</p>
+
+                        <a href="Protocols/URLRequestConvertible.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">URLRequestConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:9Alamofire17ParameterEncodingP"></a>
                     <a name="//apple_ref/swift/Protocol/ParameterEncoding" class="dashAnchor"></a>
                     <a class="token" href="#/s:9Alamofire17ParameterEncodingP">ParameterEncoding</a>
@@ -331,7 +403,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ParameterEncoding</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ParameterEncoding</span></code></pre>
 
                         </div>
                       </div>
@@ -363,7 +435,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">RequestAdapter</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">RequestAdapter</span></code></pre>
 
                         </div>
                       </div>
@@ -396,7 +468,7 @@ and encountering an error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">RequestRetrier</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">RequestRetrier</span></code></pre>
 
                         </div>
                       </div>
@@ -428,7 +500,7 @@ and encountering an error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">DataResponseSerializerProtocol</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">DataResponseSerializerProtocol</span></code></pre>
 
                         </div>
                       </div>
@@ -460,72 +532,7 @@ and encountering an error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">DownloadResponseSerializerProtocol</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9Alamofire14URLConvertibleP"></a>
-                    <a name="//apple_ref/swift/Protocol/URLConvertible" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Alamofire14URLConvertibleP">URLConvertible</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Types adopting the <code>URLConvertible</code> protocol can be used to construct URLs, which are then used to construct
-URL requests.</p>
-
-                        <a href="Protocols/URLConvertible.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">URLConvertible</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9Alamofire21URLRequestConvertibleP"></a>
-                    <a name="//apple_ref/swift/Protocol/URLRequestConvertible" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Alamofire21URLRequestConvertibleP">URLRequestConvertible</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Types adopting the <code>URLRequestConvertible</code> protocol can be used to construct URL requests.</p>
-
-                        <a href="Protocols/URLRequestConvertible.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">URLRequestConvertible</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">DownloadResponseSerializerProtocol</span></code></pre>
 
                         </div>
                       </div>
@@ -540,8 +547,8 @@ URL requests.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="http://alamofire.org/" target="_blank" rel="external">Alamofire Software Foundation</a>. All rights reserved. (Last updated: 2017-12-03)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2018 <a class="link" href="http://alamofire.org/" target="_blank" rel="external">Alamofire Software Foundation</a>. All rights reserved. (Last updated: 2018-07-08)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

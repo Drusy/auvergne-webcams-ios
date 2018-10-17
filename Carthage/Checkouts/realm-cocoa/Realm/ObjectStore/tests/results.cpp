@@ -2318,6 +2318,21 @@ TEST_CASE("results: distinct") {
         REQUIRE(unique.get(2).get_int(2) == 8);
     }
 
+    SECTION("Single integer via apply_ordering") {
+        DescriptorOrdering ordering;
+        ordering.append_sort(SortDescriptor(results.get_tableview().get_parent(), {{0}}));
+        ordering.append_distinct(DistinctDescriptor(results.get_tableview().get_parent(), {{0}}));
+        Results unique = results.apply_ordering(std::move(ordering));
+        // unique:
+        //  0, Foo_0, 10
+        //  1, Foo_1,  9
+        //  2, Foo_2,  8
+        REQUIRE(unique.size() == 3);
+        REQUIRE(unique.get(0).get_int(2) == 10);
+        REQUIRE(unique.get(1).get_int(2) == 9);
+        REQUIRE(unique.get(2).get_int(2) == 8);
+    }
+
     SECTION("Single string property") {
         Results unique = results.distinct(SortDescriptor(results.get_tableview().get_parent(), {{1}}));
         // unique:
@@ -2545,7 +2560,8 @@ TEST_CASE("results: sort") {
     #define REQUIRE_ORDER(sort, ...) do { \
         std::vector<size_t> expected = {__VA_ARGS__}; \
         auto results = sort; \
-        for (size_t i = 0; i < 4; ++i) \
+        REQUIRE(results.size() == expected.size()); \
+        for (size_t i = 0; i < expected.size(); ++i) \
             REQUIRE(results.get(i).get_index() == expected[i]); \
     } while (0)
 
@@ -2748,5 +2764,130 @@ TEMPLATE_TEST_CASE("results: aggregate", ResultsFromTable, ResultsFromQuery, Res
             REQUIRE(results.sum(2)->get_double() == 0.0);
             REQUIRE_THROWS_AS(results.sum(3), Results::UnsupportedColumnTypeException);
         }
+    }
+}
+
+TEST_CASE("results: limit", "[limit]") {
+    InMemoryTestFile config;
+    config.cache = false;
+    config.automatic_change_notifications = false;
+    config.schema = Schema{
+        {"object", {
+            {"value", PropertyType::Int},
+        }},
+    };
+
+    auto realm = Realm::get_shared_realm(config);
+    auto table = realm->read_group().get_table("class_object");
+
+    realm->begin_transaction();
+    table->add_empty_row(8);
+    for (int i = 0; i < 8; ++i) {
+        table->set_int(0, i, (i + 2) % 4);
+    }
+    realm->commit_transaction();
+    Results r(realm, *table);
+
+    SECTION("unsorted") {
+        REQUIRE(r.limit(0).size() == 0);
+        REQUIRE_ORDER(r.limit(1), 0);
+        REQUIRE_ORDER(r.limit(2), 0, 1);
+        REQUIRE_ORDER(r.limit(8), 0, 1, 2, 3, 4, 5, 6, 7);
+        REQUIRE_ORDER(r.limit(100), 0, 1, 2, 3, 4, 5, 6, 7);
+    }
+
+    SECTION("sorted") {
+        auto sorted = r.sort({{"value", true}});
+        REQUIRE(sorted.limit(0).size() == 0);
+        REQUIRE_ORDER(sorted.limit(1), 2);
+        REQUIRE_ORDER(sorted.limit(2), 2, 6);
+        REQUIRE_ORDER(sorted.limit(8), 2, 6, 3, 7, 0, 4, 1, 5);
+        REQUIRE_ORDER(sorted.limit(100), 2, 6, 3, 7, 0, 4, 1, 5);
+    }
+
+    SECTION("sort after limit") {
+        REQUIRE(r.limit(0).sort({{"value", true}}).size() == 0);
+        REQUIRE_ORDER(r.limit(1).sort({{"value", true}}), 0);
+        REQUIRE_ORDER(r.limit(3).sort({{"value", true}}), 2, 0, 1);
+        REQUIRE_ORDER(r.limit(8).sort({{"value", true}}), 2, 6, 3, 7, 0, 4, 1, 5);
+        REQUIRE_ORDER(r.limit(100).sort({{"value", true}}), 2, 6, 3, 7, 0, 4, 1, 5);
+    }
+
+    SECTION("distinct") {
+        auto sorted = r.distinct({"value"});
+        REQUIRE(sorted.limit(0).size() == 0);
+        REQUIRE_ORDER(sorted.limit(1), 0);
+        REQUIRE_ORDER(sorted.limit(2), 0, 1);
+        REQUIRE_ORDER(sorted.limit(8), 0, 1, 2, 3);
+
+        sorted = r.sort({{"value", true}}).distinct({"value"});
+        REQUIRE(sorted.limit(0).size() == 0);
+        REQUIRE_ORDER(sorted.limit(1), 2);
+        REQUIRE_ORDER(sorted.limit(2), 2, 3);
+        REQUIRE_ORDER(sorted.limit(8), 2, 3, 0, 1);
+    }
+
+    SECTION("notifications on results using all descriptor types") {
+        r = r.distinct({"value"}).sort({{"value", false}}).limit(2);
+        int notification_calls = 0;
+        auto token = r.add_notification_callback([&](CollectionChangeSet c, std::exception_ptr err) {
+            REQUIRE_FALSE(err);
+            if (notification_calls == 0) {
+                REQUIRE(c.empty());
+                REQUIRE(r.size() == 2);
+                REQUIRE(r.get(0).get_int(0) == 3);
+                REQUIRE(r.get(1).get_int(0) == 2);
+            } else if (notification_calls == 1) {
+                REQUIRE(!c.empty());
+                REQUIRE_INDICES(c.insertions, 0);
+                REQUIRE_INDICES(c.deletions, 1);
+                REQUIRE(c.moves.size() == 0);
+                REQUIRE(c.modifications.count() == 0);
+                REQUIRE(r.size() == 2);
+                REQUIRE(r.get(0).get_int(0) == 5);
+                REQUIRE(r.get(1).get_int(0) == 3);
+            }
+            ++notification_calls;
+        });
+        advance_and_notify(*realm);
+        REQUIRE(notification_calls == 1);
+        realm->begin_transaction();
+        table->add_empty_row(1);
+        table->set_int(0, 8, 5);
+        realm->commit_transaction();
+        advance_and_notify(*realm);
+        REQUIRE(notification_calls == 2);
+    }
+
+    SECTION("notifications on only limited results") {
+        r = r.limit(2);
+        int notification_calls = 0;
+        auto token = r.add_notification_callback([&](CollectionChangeSet c, std::exception_ptr err) {
+            REQUIRE_FALSE(err);
+            if (notification_calls == 0) {
+                REQUIRE(c.empty());
+                REQUIRE(r.size() == 2);
+            } else if (notification_calls == 1) {
+                REQUIRE(!c.empty());
+                REQUIRE(c.insertions.count() == 0);
+                REQUIRE(c.deletions.count() == 0);
+                REQUIRE(c.modifications.count() == 1);
+                REQUIRE_INDICES(c.modifications, 1);
+                REQUIRE(r.size() == 2);
+            }
+            ++notification_calls;
+        });
+        advance_and_notify(*realm);
+        REQUIRE(notification_calls == 1);
+        realm->begin_transaction();
+        table->set_int(0, 1, 5);
+        realm->commit_transaction();
+        advance_and_notify(*realm);
+        REQUIRE(notification_calls == 2);
+    }
+
+    SECTION("does not support further filtering") {
+        auto limited = r.limit(0);
+        REQUIRE_THROWS_AS(limited.filter(table->where()), Results::UnimplementedOperationException);
     }
 }

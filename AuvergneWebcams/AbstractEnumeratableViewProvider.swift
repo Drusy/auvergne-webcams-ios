@@ -9,7 +9,7 @@
 import Foundation
 
 class AbstractCollectionViewProvider<Item: Any, Cell: ConfigurableCell, Enumerator: Collection>: AbstractViewProvider<Item, Cell>
-where Cell.Item == Item, Enumerator.Iterator.Element == Item, Enumerator.Index == Int, Enumerator.IndexDistance == Int {
+where Cell.Item == Item, Enumerator.Iterator.Element == Item, Enumerator.Index == Int {
     
     var shouldAnimateCellDisplay = true
     

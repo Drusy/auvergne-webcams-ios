@@ -1,6 +1,8 @@
-swiftVersions = ['3.1', '3.2', '3.2.2', '3.2.3', '4.0', '4.0.2', '4.0.3']
+swiftVersions = ['3.2.3', '3.3', '4.0.3', '4.1', '4.1.2', '4.2']
 platforms = ['osx', 'ios', 'watchos', 'tvos']
 platformNames = ['osx': 'macOS', 'ios': 'iOS', 'watchos': 'watchOS', 'tvos': 'tvOS']
+carthageXcodeVersion = '9.4'
+carthageSwiftVersion = '3.3.2'
 
 def installationTest(platform, test, language) {
   return {
@@ -22,6 +24,9 @@ def installationTest(platform, test, language) {
         find . -name 'realm-${language}-*' -print0 | xargs -J% mv % realm-${language}-latest
       fi
 
+      sed -i '' 's/swift-3.[0-9.]*/swift-${carthageSwiftVersion}/g' osx/swift/DynamicExample/DynamicExample.xcodeproj/project.pbxproj
+      sed -i '' 's/swift-3.[0-9.]*/swift-${carthageSwiftVersion}/g' ios/swift/DynamicExample/DynamicExample.xcodeproj/project.pbxproj
+      export REALM_XCODE_VERSION=${carthageXcodeVersion}
       ./build.sh test-${platform}-${language}-${test}
       """
     }
@@ -68,13 +73,14 @@ def doBuild() {
         node('osx') {
           deleteDir()
           unstash 'source'
-          sh '''
+          sh """
+          export REALM_SWIFT_VERSION=${swiftVersions.last()}
           ./scripts/reset-simulators.sh
           ./build.sh docs
           cd docs
           zip -r objc-docs.zip objc_output
           zip -r swift-docs.zip swift_output
-          '''
+          """
           dir('docs') {
             archiveArtifacts artifacts: '*-docs.zip'
           }
@@ -96,6 +102,27 @@ def doBuild() {
       'tvOS Obj-C': buildObjC('tvos'),
       'iOS Obj-C static': buildObjC('ios-static'),
     ]
+
+    for (def p in platforms) {
+      def platform = p
+      def platformName = platformNames[platform]
+      parallelBuilds["${platformName} Carthage"] = {
+        node('osx') {
+          deleteDir()
+          unstash 'source'
+          sh """
+          export REALM_XCODE_VERSION=${carthageXcodeVersion}
+          . ./scripts/swift-version.sh
+          set_xcode_and_swift_versions
+
+          carthage build --no-skip-current --platform ${platform}
+          carthage archive --output Carthage-${platform}.framework.zip
+          """
+          stash includes: "Carthage-${platform}.framework.zip",
+                name: "${platform}-carthage"
+        }
+      }
+    }
 
     for (def p in platforms) {
       def platform = p
@@ -155,6 +182,25 @@ def doBuild() {
           sh 'rm realm-swift-framework-*.zip'
           stash include: 'realm-swift-*.zip', name: 'swift-packaged'
           archiveArtifacts artifacts: 'realm-swift-*.zip'
+        }
+      },
+      "Carthage": {
+        node('osx') {
+          deleteDir()
+
+          for (def platform in platforms) {
+            unstash "${platform}-carthage"
+          }
+
+          sh '''
+          for zip in Carthage-*.framework.zip; do
+            ditto -xk $zip merged/
+          done
+
+          ditto -ck merged/ Carthage.framework.zip
+          '''
+
+          archiveArtifacts artifacts: 'Carthage.framework.zip'
         }
       }
     )
@@ -230,34 +276,5 @@ try {
   // If there was an exception thrown, the build failed
   currentBuild.result = "FAILED"
   throw e
-} finally {
-  // Success or failure, always send notifications
-  notifyBuild(currentBuild.result, '#cocoa-team')
 }
 
-def notifyBuild(String buildStatus = 'STARTED', String channel) {
-  // build status of null means successful
-  buildStatus =  buildStatus ?: 'SUCCESSFUL'
-
-  // Default values
-  def colorName = 'RED'
-  def colorCode = '#FF0000'
-  def subject = "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
-  def summary = "${subject} (${env.BUILD_URL})"
-  def details = """<p>STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
-    <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>"""
-
-  // Override default values based on build status
-  if (buildStatus == 'STARTED') {
-    color = 'YELLOW'
-    colorCode = '#FFFF00'
-  } else if (buildStatus == 'SUCCESSFUL') {
-    color = 'GREEN'
-    colorCode = '#00FF00'
-  } else {
-    color = 'RED'
-    colorCode = '#FF0000'
-  }
-
-  slackSend(channel: channel, color: colorCode, message: summary)
-}

@@ -1,5 +1,28 @@
 # Change log
 
+## [4.4.0](https://github.com/ninjaprox/NVActivityIndicatorView/releases/tag/4.4.0)
+* Fix #211
+* Swift 4.2 migration
+
+## [4.3.0](https://github.com/ninjaprox/NVActivityIndicatorView/releases/tag/4.3.0)
+* Handle starting while waiting to stop (#218)
+* UI blocker fade in/out animation (#219)
+
+## [4.2.1](https://github.com/ninjaprox/NVActivityIndicatorView/releases/tag/4.2.1)
+* Fix #213
+
+## [4.2.0](https://github.com/ninjaprox/NVActivityIndicatorView/releases/tag/4.2.0)
+* Refactor `NVActivityIndicatorPresenter` with state pattern
+* Expose `isAnimating` from `NVActivityIndicatorPresenter` and `NVActivityIndicatorViewable` (#204)
+* Fix tests
+
+## [4.1.1](https://github.com/ninjaprox/NVActivityIndicatorView/releases/tag/4.1.1)
+* Fix #186, #189
+
+## [4.1.0](https://github.com/ninjaprox/NVActivityIndicatorView/releases/tag/4.1.0)
+* Introduce message spacing
+* New circle stroke spin animation
+
 ## [4.0.1](https://github.com/ninjaprox/NVActivityIndicatorView/releases/tag/4.0.1)
 * Fix view in auto layout
 * Fix #173, #180

@@ -13,7 +13,7 @@ import SwiftyUserDefaults
 import Fabric
 import Crashlytics
 import AlamofireNetworkActivityIndicator
-import Firebase
+import FirebaseCore
 import RealmSwift
 import SVProgressHUD
 

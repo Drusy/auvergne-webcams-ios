@@ -989,6 +989,9 @@
     [realm beginWriteTransaction];
     [StringObject createInRealm:realm withValue:@[@"string"]];
     [realm commitWriteTransaction];
+
+    XCTAssertFalse(first);
+    [token invalidate];
 }
 
 - (void)testBeginWriteTransactionFromWithinCollectionChangedNotification {
@@ -1377,9 +1380,10 @@
     RLMRealm *realm = RLMRealm.defaultRealm;
 
     XCTestExpectation *notificationFired = [self expectationWithDescription:@"notification fired"];
-    RLMNotificationToken *token = [realm addNotificationBlock:^(NSString *note, RLMRealm *) {
+    __block RLMNotificationToken *token = [realm addNotificationBlock:^(NSString *note, RLMRealm *) {
         if (note == RLMRealmDidChangeNotification) {
             [notificationFired fulfill];
+            [token invalidate];
         }
     }];
 
@@ -1388,7 +1392,6 @@
         [RLMRealm.defaultRealm transactionWithBlock:^{ }];
     }];
     [self waitForExpectationsWithTimeout:2.0 handler:nil];
-    [token invalidate];
 }
 
 - (void)testNotificationBlockMustNotBeNil {

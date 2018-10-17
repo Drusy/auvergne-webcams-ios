@@ -61,7 +61,7 @@ class MapViewController: AbstractRealmViewController {
         if let style = Defaults[.mapboxStyle], let url = URL(string: style) {
             mapView?.styleURL = url
         } else {
-            mapView?.styleURL = MGLStyle.streetsStyleURL()
+            mapView?.styleURL = MGLStyle.streetsStyleURL
         }
     }
     
@@ -91,19 +91,19 @@ class MapViewController: AbstractRealmViewController {
         
         let cancel = UIAlertAction(title: "Annuler", style: .cancel, handler: nil)
         let outdoor = UIAlertAction(title: "Extérieur", style: .default) { [weak self] _ in
-            self?.setStyle(MGLStyle.outdoorsStyleURL())
+            self?.setStyle(MGLStyle.outdoorsStyleURL)
         }
         let dark = UIAlertAction(title: "Vecteurs sombre", style: .default) { [weak self] _ in
-            self?.setStyle(MGLStyle.darkStyleURL())
+            self?.setStyle(MGLStyle.darkStyleURL)
         }
         let light = UIAlertAction(title: "Vecteurs clair", style: .default) { [weak self] action in
-            self?.setStyle(MGLStyle.lightStyleURL())
+            self?.setStyle(MGLStyle.lightStyleURL)
         }
         let satellite = UIAlertAction(title: "Satellite", style: .default) { [weak self] _ in
-            self?.setStyle(MGLStyle.satelliteStreetsStyleURL())
+            self?.setStyle(MGLStyle.satelliteStreetsStyleURL)
         }
         let streets = UIAlertAction(title: "Routes", style: .default) { [weak self] _ in
-            self?.setStyle(MGLStyle.streetsStyleURL())
+            self?.setStyle(MGLStyle.streetsStyleURL)
         }
         
         actionSheet.addAction(outdoor)
@@ -139,14 +139,12 @@ extension MapViewController: MGLMapViewDelegate {
     }
     
     func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
-        var mapImageName: String? = nil
-        var mapColor: String? = nil
-
-        if let webcamAnnotation = annotation as? WebcamAnnotation {
-            mapImageName = webcamAnnotation.webcam.mapImageName ?? webcamAnnotation.webcam.section?.mapImageName
-            mapColor = webcamAnnotation.webcam.section?.mapColor
+        guard let webcamAnnotation = annotation as? WebcamAnnotation else {
+            return nil
         }
-
+        
+        let mapImageName: String? = webcamAnnotation.webcam.mapImageName ?? webcamAnnotation.webcam.section?.mapImageName
+        let mapColor: String? = webcamAnnotation.webcam.section?.mapColor
         let reuseIdentifier = mapImageName ?? "default-reusable-identifier"
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
         

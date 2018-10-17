@@ -83,9 +83,10 @@ static BOOL encryptTests() {
     // re-enabled and we need it enabled for performance tests
     RLMDisableSyncToDisk();
 #endif
-    [self preintializeSchema];
 
     if (!getenv("RLMProcessIsChild")) {
+        [self preinitializeSchema];
+
         // Clean up any potentially lingering Realm files from previous runs
         [NSFileManager.defaultManager removeItemAtPath:RLMRealmPathForFile(@"") error:nil];
     }
@@ -100,7 +101,7 @@ static BOOL encryptTests() {
 // so if an exception is thrown, it will kill the test process rather than
 // allowing hundreds of test cases to fail in strange ways
 // This is overridden by RLMMultiProcessTestCase to support testing the schema init
-+ (void)preintializeSchema {
++ (void)preinitializeSchema {
     [RLMSchema sharedSchema];
 }
 
@@ -175,11 +176,12 @@ static BOOL encryptTests() {
 
 - (void)waitForNotification:(NSString *)expectedNote realm:(RLMRealm *)realm block:(dispatch_block_t)block {
     XCTestExpectation *notificationFired = [self expectationWithDescription:@"notification fired"];
-    RLMNotificationToken *token = [realm addNotificationBlock:^(NSString *note, RLMRealm *realm) {
+    __block RLMNotificationToken *token = [realm addNotificationBlock:^(NSString *note, RLMRealm *realm) {
         XCTAssertNotNil(note, @"Note should not be nil");
         XCTAssertNotNil(realm, @"Realm should not be nil");
         if (note == expectedNote) { // Check pointer equality to ensure we're using the interned string constant
             [notificationFired fulfill];
+            [token invalidate];
         }
     }];
 
@@ -194,8 +196,6 @@ static BOOL encryptTests() {
 
     // wait for queue to finish
     dispatch_sync(queue, ^{});
-
-    [token invalidate];
 }
 
 - (void)dispatchAsync:(dispatch_block_t)block {
