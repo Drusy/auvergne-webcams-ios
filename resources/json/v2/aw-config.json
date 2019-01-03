@@ -854,10 +854,9 @@
                     "uid": 5001,
                     "order": 1,
                     "title": "Sommet de la station",
-                    "imageLD": "http://srv02.trinum.com/ibox/ftpcam/1280_lioran_sommet-domaine.jpg",
-                    "imageHD": "http://srv02.trinum.com/ibox/ftpcam/mega_lioran_sommet-domaine.jpg",
+                    "imageLD": "https://srv15.trinum.com/ibox/ftpcam/small_lioran_combe.jpg",
+                    "imageHD": "https://srv15.trinum.com/ibox/ftpcam/mega_lioran_combe.jpg",
                     "type": "image",
-                    "hidden": true,
                     "tags": [
                         "lioran",
                         "auvergne",
