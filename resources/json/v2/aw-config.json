@@ -118,6 +118,24 @@
                         "loisir",
                         "les cheires"
                     ]
+                },
+                {
+                    "uid": 2005,
+                    "order": 5,
+                    "title": "Anzat-le-Luguet\nParrot",
+                    "imageLD": "http://srv15.trinum.com/ibox/ftpcam/small_anzat-le-luguet_parrot.jpg",
+                    "imageHD": "http://srv15.trinum.com/ibox/ftpcam/mega_anzat-le-luguet_parrot.jpg",
+                    "type": "image",
+                    "latitude": 45.3547731,
+                    "longitude": 2.9904582,
+                    "tags": [
+                        "parrot",
+                        "auvergne",
+                        "loisir",
+                        "ski",
+                        "anzat",
+                        "luguet"
+                    ]
                 }
             ]
         },
