@@ -837,6 +837,23 @@
                         "station",
                         "ski"
                     ]
+                },
+                {
+                    "uid": 4017,
+                    "order": 17,
+                    "title": "Lac de Guery\nCentre Montagnard Meteo",
+                    "imageLD": "http://www.lac-guery.meteoamikuze.com/Webcam/webcam.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "latitude": 45.6191524,
+                    "longitude": 2.7895298,
+                    "tags": [
+                        "sancy",
+                        "mont dore",
+                        "auvergne",
+                        "lac",
+                        "guery"
+                    ]
                 }
             ]
         },
