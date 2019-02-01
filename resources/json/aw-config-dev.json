@@ -936,8 +936,52 @@
             ]
         },
         {
-            "uid": 7,
+            "uid": 12,
             "order": 6,
+            "title": "Chalmazel",
+            "imageName": "mountain-landscape-2",
+            "mapImageName": "map-annotation-mountain",
+            "mapColor": "#7f0000",
+            "latitude": 45.676877,
+            "longitude": 3.8251726,
+            "webcams": [
+                {
+                    "uid": 12001,
+                    "order": 1,
+                    "title": "Espace apprentissage",
+                    "imageLD": "http://srv12.trinum.com/ibox/ftpcam/small_chalmazel_espace-apprentissage.jpg",
+                    "imageHD": "http://srv12.trinum.com/ibox/ftpcam/mega_chalmazel_espace-apprentissage.jpg",
+                    "type": "image",
+                    "latitude": 45.677279,
+                    "longitude": 3.826307,
+                    "tags": [
+                        "chalmazel",
+                        "auvergne",
+                        "station",
+                        "ski"
+                    ]
+                },
+                {
+                    "uid": 12002,
+                    "order": 2,
+                    "title": "Jasseries",
+                    "imageLD": "http://srv13.trinum.com/ibox/ftpcam/small_chalmazel_jasseries.jpg",
+                    "imageHD": "http://srv13.trinum.com/ibox/ftpcam/mega_chalmazel_jasseries.jpg",
+                    "type": "image",
+                    "latitude": 45.661938, 
+                    "longitude": 3.813092,
+                    "tags": [
+                        "chalmazel",
+                        "auvergne",
+                        "station",
+                        "ski"
+                    ]
+                }
+            ]
+        },
+        {
+            "uid": 7,
+            "order": 7,
             "title": "Clermont-Ferrand",
             "imageName": "cf-landscape",
             "mapImageName": "map-annotation-city",
@@ -1044,7 +1088,7 @@
         },
         {
             "uid": 6,
-            "order": 7,
+            "order": 8,
             "title": "Traffic / Puy De Dôme",
             "imageName": "road-landscape",
             "mapImageName": "map-annotation-road",
@@ -1224,7 +1268,7 @@
         },
         {
             "uid": 11,
-            "order": 8,
+            "order": 9,
             "title": "Traffic / A75",
             "imageName": "car-landscape",
             "mapImageName": "map-annotation-highway",
@@ -1320,7 +1364,7 @@
         },
         {
             "uid": 8,
-            "order": 9,
+            "order": 10,
             "title": "Aurillac",
             "imageName": "aurillac-landscape",
             "mapImageName": "map-annotation-city",
@@ -1361,7 +1405,7 @@
         },
         {
             "uid": 9,
-            "order": 10,
+            "order": 11,
             "title": "Allier",
             "imageName": "allier-landscape",
             "mapImageName": "map-annotation-road",
@@ -1445,7 +1489,7 @@
         },
         {
             "uid": 10,
-            "order": 11,
+            "order": 12,
             "title": "Haute-Loire",
             "imageName": "hl-landscape",
             "mapImageName": "map-annotation-city",
