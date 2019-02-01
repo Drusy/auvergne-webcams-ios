@@ -993,6 +993,39 @@
                         "station",
                         "ski"
                     ]
+                },
+                {
+                    "uid": 12003,
+                    "order": 3,
+                    "title": "Piste des granges",
+                    "imageLD": "http://www.trinum.com/ibox/ftpcam/small_chalmazel_piste-des-granges.jpg",
+                    "imageHD": "http://www.trinum.com/ibox/ftpcam/mega_chalmazel_piste-des-granges.jpg",
+                    "type": "image",
+                    "latitude": 45.661938, 
+                    "longitude": 3.813092,
+                    "hidden": true,
+                    "tags": [
+                        "chalmazel",
+                        "auvergne",
+                        "station",
+                        "ski"
+                    ]
+                },
+                {
+                    "uid": 12004,
+                    "order": 4,
+                    "title": "Front de neige",
+                    "imageLD": "http://www.trinum.com/ibox/ftpcam/small_chalmazel_front-de-neige.jpg",
+                    "imageHD": "http://www.trinum.com/ibox/ftpcam/mega_chalmazel_front-de-neige.jpg",
+                    "type": "image",
+                    "latitude": 45.676886,
+                    "longitude": 3.824372,
+                    "tags": [
+                        "chalmazel",
+                        "auvergne",
+                        "station",
+                        "ski"
+                    ]
                 }
             ]
         },
