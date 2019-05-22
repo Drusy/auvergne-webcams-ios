@@ -27,8 +27,8 @@ iOS application displaying the content of the Webcams available in Auvergne - Fr
 
 ### Font d'Alagnon
 
-- **1280w:** http://.trinum.com/ibox/ftpcam/1280_lioran_font-d-alagnon.jpg
-- **Full size:** http://.trinum.com/ibox/ftpcam/mega_lioran_font-d-alagnon.jpg
+- **1280w:** http://trinum.com/ibox/ftpcam/1280_lioran_font-d-alagnon.jpg
+- **Full size:** http://trinum.com/ibox/ftpcam/mega_lioran_font-d-alagnon.jpg
 
 ## Sancy
 
@@ -55,14 +55,14 @@ iOS application displaying the content of the Webcams available in Auvergne - Fr
 ### Super Besse - Tyrolienne (Haut)
 
 - **XML list:** http://m.webcam-hd.com/xml/histo/superbesse_superbesse-haut.xml
-- **1280w:** http://.trinum.com/ibox/ftpcam/1280_superbesse_superbesse-haut.jpg
-- **Full size:** http://.trinum.com/ibox/ftpcam/mega_superbesse_superbesse-haut.jpg
+- **1280w:** http://trinum.com/ibox/ftpcam/1280_superbesse_superbesse-haut.jpg
+- **Full size:** http://trinum.com/ibox/ftpcam/mega_superbesse_superbesse-haut.jpg
 
 ### Super Besse - Front de neige
 
 - **XML list:** http://m.webcam-hd.com/xml/histo/superbesseM.xml
-- **1280w:** http://.trinum.com/ibox/ftpcam/1280_superbesseM.jpg
-- **Full size:** http://.trinum.com/ibox/ftpcam/mega_superbesseM.jpg
+- **1280w:** http://trinum.com/ibox/ftpcam/1280_superbesseM.jpg
+- **Full size:** http://trinum.com/ibox/ftpcam/mega_superbesseM.jpg
 
 ### Sancy - Station Chastreix
 
