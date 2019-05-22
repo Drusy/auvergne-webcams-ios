@@ -41,8 +41,8 @@ class WebcamTests: AbstractTests {
         // Expect
         XCTAssertEqual(webcam.uid, 10)
         XCTAssertEqual(webcam.title, "Sommet de la station")
-        XCTAssertEqual(webcam.imageLD, "http://srv02.trinum.com/ibox/ftpcam/1280_lioran_sommet-domaine.jpg")
-        XCTAssertEqual(webcam.imageHD, "http://srv02.trinum.com/ibox/ftpcam/mega_lioran_sommet-domaine.jpg")
+        XCTAssertEqual(webcam.imageLD, "http://trinum.com/ibox/ftpcam/1280_lioran_sommet-domaine.jpg")
+        XCTAssertEqual(webcam.imageHD, "http://trinum.com/ibox/ftpcam/mega_lioran_sommet-domaine.jpg")
         XCTAssertEqual(webcam.tags.count, 5)
     }
     

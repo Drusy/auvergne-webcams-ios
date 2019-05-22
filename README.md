@@ -17,18 +17,18 @@ iOS application displaying the content of the Webcams available in Auvergne - Fr
 
 ### Centre station
 
-- **1280w:** http://srv02.trinum.com/ibox/ftpcam/1280_lioran_station.jpg
+- **1280w:** http://trinum.com/ibox/ftpcam/1280_lioran_station.jpg
 - **Full size:** http://www.trinum.com/ibox/ftpcam/mega_lioran_station.jpg
 
 ### Sommet de la station
 
-- **1280w:** http://srv02.trinum.com/ibox/ftpcam/1280_lioran_sommet-domaine.jpg
-- **Full size:** http://srv02.trinum.com/ibox/ftpcam/mega_lioran_sommet-domaine.jpg
+- **1280w:** http://trinum.com/ibox/ftpcam/1280_lioran_sommet-domaine.jpg
+- **Full size:** http://trinum.com/ibox/ftpcam/mega_lioran_sommet-domaine.jpg
 
 ### Font d'Alagnon
 
-- **1280w:** http://srv04.trinum.com/ibox/ftpcam/1280_lioran_font-d-alagnon.jpg
-- **Full size:** http://srv04.trinum.com/ibox/ftpcam/mega_lioran_font-d-alagnon.jpg
+- **1280w:** http://.trinum.com/ibox/ftpcam/1280_lioran_font-d-alagnon.jpg
+- **Full size:** http://.trinum.com/ibox/ftpcam/mega_lioran_font-d-alagnon.jpg
 
 ## Sancy
 
@@ -37,8 +37,8 @@ iOS application displaying the content of the Webcams available in Auvergne - Fr
 ### Mont Dore - Bas de la station
 
 - **XML list:** http://m.webcam-hd.com/xml/histo/mont-dore_bas-station.xml
-- **1280w:** http://srv02.trinum.com/ibox/ftpcam/1280_mont-dore_bas-station.jpg
-- **Full size:** http://srv02.trinum.com/ibox/ftpcam/mega_mont-dore_bas-station.jpg
+- **1280w:** http://trinum.com/ibox/ftpcam/1280_mont-dore_bas-station.jpg
+- **Full size:** http://trinum.com/ibox/ftpcam/mega_mont-dore_bas-station.jpg
 
 ### Mont Dore - Sommet
 
@@ -49,32 +49,32 @@ iOS application displaying the content of the Webcams available in Auvergne - Fr
 ### Super Besse - Ecole (Bas)
 
 - **XML list:** http://m.webcam-hd.com/xml/histo/superbesse_ecole.xml
-- **1280w:** http://srv14.trinum.com/ibox/ftpcam/1280_superbesse_ecole.jpg
-- **Full size:** http://srv14.trinum.com/ibox/ftpcam/mega_superbesse_ecole.jpg
+- **1280w:** http://trinum.com/ibox/ftpcam/1280_superbesse_ecole.jpg
+- **Full size:** http://trinum.com/ibox/ftpcam/mega_superbesse_ecole.jpg
 
 ### Super Besse - Tyrolienne (Haut)
 
 - **XML list:** http://m.webcam-hd.com/xml/histo/superbesse_superbesse-haut.xml
-- **1280w:** http://srv06.trinum.com/ibox/ftpcam/1280_superbesse_superbesse-haut.jpg
-- **Full size:** http://srv06.trinum.com/ibox/ftpcam/mega_superbesse_superbesse-haut.jpg
+- **1280w:** http://.trinum.com/ibox/ftpcam/1280_superbesse_superbesse-haut.jpg
+- **Full size:** http://.trinum.com/ibox/ftpcam/mega_superbesse_superbesse-haut.jpg
 
 ### Super Besse - Front de neige
 
 - **XML list:** http://m.webcam-hd.com/xml/histo/superbesseM.xml
-- **1280w:** http://srv05.trinum.com/ibox/ftpcam/1280_superbesseM.jpg
-- **Full size:** http://srv05.trinum.com/ibox/ftpcam/mega_superbesseM.jpg
+- **1280w:** http://.trinum.com/ibox/ftpcam/1280_superbesseM.jpg
+- **Full size:** http://.trinum.com/ibox/ftpcam/mega_superbesseM.jpg
 
 ### Sancy - Station Chastreix
 
 - **XML list:** http://m.webcam-hd.com/xml/histo/chastreix-sancy_station.xml
-- **1280w:** http://srv02.trinum.com/ibox/ftpcam/1280_chastreix-sancy_station.jpg
-- **Full size:** http://srv02.trinum.com/ibox/ftpcam/mega_chastreix-sancy_station.jpg
+- **1280w:** http://trinum.com/ibox/ftpcam/1280_chastreix-sancy_station.jpg
+- **Full size:** http://trinum.com/ibox/ftpcam/mega_chastreix-sancy_station.jpg
 
 ### Sancy - Lac Chambon
 
 - **XML list:** http://m.webcam-hd.com/xml/histo/chastreix-sancy_lac-chambon.xml
-- **1280w:** http://srv14.trinum.com/ibox/ftpcam/1280_chastreix-sancy_lac-chambon.jpg
-- **Full size:** http://srv14.trinum.com/ibox/ftpcam/mega_chastreix-sancy_lac-chambon.jpg
+- **1280w:** http://trinum.com/ibox/ftpcam/1280_chastreix-sancy_lac-chambon.jpg
+- **Full size:** http://trinum.com/ibox/ftpcam/mega_chastreix-sancy_lac-chambon.jpg
 
 ## Clermont-Ferrand
 

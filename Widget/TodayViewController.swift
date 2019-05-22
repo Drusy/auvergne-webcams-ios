@@ -109,7 +109,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         } else {
             onNoFavorite()
         }
-
     }
     
     // MARK: -

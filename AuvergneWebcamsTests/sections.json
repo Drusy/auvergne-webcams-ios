@@ -38,8 +38,8 @@
             {
                 "uid": 3,
                 "title": "Mont Dore - Bas de la station",
-                "imageLD": "http://srv02.trinum.com/ibox/ftpcam/1280_mont-dore_bas-station.jpg",
-                "imageHD": "http://srv02.trinum.com/ibox/ftpcam/mega_mont-dore_bas-station.jpg",
+                "imageLD": "http://trinum.com/ibox/ftpcam/1280_mont-dore_bas-station.jpg",
+                "imageHD": "http://trinum.com/ibox/ftpcam/mega_mont-dore_bas-station.jpg",
                 "tags": [
                     "sancy",
                     "mot dore",
@@ -64,8 +64,8 @@
             {
                 "uid": 5,
                 "title": "Super Besse - Ecole (Bas)",
-                "imageLD": "http://srv14.trinum.com/ibox/ftpcam/1280_superbesse_ecole.jpg",
-                "imageHD": "http://srv14.trinum.com/ibox/ftpcam/mega_superbesse_ecole.jpg",
+                "imageLD": "http://trinum.com/ibox/ftpcam/1280_superbesse_ecole.jpg",
+                "imageHD": "http://trinum.com/ibox/ftpcam/mega_superbesse_ecole.jpg",
                 "tags": [
                     "sancy",
                     "super besse",
@@ -77,8 +77,8 @@
             {
                 "uid": 6,
                 "title": "Super Besse - Tyrolienne (Haut)",
-                "imageLD": "http://srv06.trinum.com/ibox/ftpcam/1280_superbesse_superbesse-haut.jpg",
-                "imageHD": "http://srv06.trinum.com/ibox/ftpcam/mega_superbesse_superbesse-haut.jpg",
+                "imageLD": "http://.trinum.com/ibox/ftpcam/1280_superbesse_superbesse-haut.jpg",
+                "imageHD": "http://.trinum.com/ibox/ftpcam/mega_superbesse_superbesse-haut.jpg",
                 "tags": [
                     "sancy",
                     "super besse",
@@ -90,8 +90,8 @@
             {
                 "uid": 7,
                 "title": "Super Besse - Front de neige",
-                "imageLD": "http://srv05.trinum.com/ibox/ftpcam/1280_superbesseM.jpg",
-                "imageHD": "http://srv05.trinum.com/ibox/ftpcam/mega_superbesseM.jpg",
+                "imageLD": "http://.trinum.com/ibox/ftpcam/1280_superbesseM.jpg",
+                "imageHD": "http://.trinum.com/ibox/ftpcam/mega_superbesseM.jpg",
                 "tags": [
                     "sancy",
                     "super besse",
@@ -103,8 +103,8 @@
             {
                 "uid": 8,
                 "title": "Sancy - Station Chastreix",
-                "imageLD": "http://srv02.trinum.com/ibox/ftpcam/1280_chastreix-sancy_station.jpg",
-                "imageHD": "http://srv02.trinum.com/ibox/ftpcam/mega_chastreix-sancy_station.jpg",
+                "imageLD": "http://trinum.com/ibox/ftpcam/1280_chastreix-sancy_station.jpg",
+                "imageHD": "http://trinum.com/ibox/ftpcam/mega_chastreix-sancy_station.jpg",
                 "tags": [
                     "sancy",
                     "charstreix",
@@ -116,8 +116,8 @@
             {
                 "uid": 9,
                 "title": "Sancy - Lac Chambon",
-                "imageLD": "http://srv14.trinum.com/ibox/ftpcam/1280_chastreix-sancy_lac-chambon.jpg",
-                "imageHD": "http://srv14.trinum.com/ibox/ftpcam/mega_chastreix-sancy_lac-chambon.jpg",
+                "imageLD": "http://trinum.com/ibox/ftpcam/1280_chastreix-sancy_lac-chambon.jpg",
+                "imageHD": "http://trinum.com/ibox/ftpcam/mega_chastreix-sancy_lac-chambon.jpg",
                 "tags": [
                     "sancy",
                     "lac chambon",
@@ -137,8 +137,8 @@
             {
                 "uid": 10,
                 "title": "Sommet de la station",
-                "imageLD": "http://srv02.trinum.com/ibox/ftpcam/1280_lioran_sommet-domaine.jpg",
-                "imageHD": "http://srv02.trinum.com/ibox/ftpcam/mega_lioran_sommet-domaine.jpg",
+                "imageLD": "http://trinum.com/ibox/ftpcam/1280_lioran_sommet-domaine.jpg",
+                "imageHD": "http://trinum.com/ibox/ftpcam/mega_lioran_sommet-domaine.jpg",
                 "tags": [
                     "lioran",
                     "auvergne",
@@ -150,8 +150,8 @@
             {
                 "uid": 11,
                 "title": "Font d'Alagnon",
-                "imageLD": "http://srv04.trinum.com/ibox/ftpcam/1280_lioran_font-d-alagnon.jpg",
-                "imageHD": "http://srv04.trinum.com/ibox/ftpcam/mega_lioran_font-d-alagnon.jpg",
+                "imageLD": "http://.trinum.com/ibox/ftpcam/1280_lioran_font-d-alagnon.jpg",
+                "imageHD": "http://.trinum.com/ibox/ftpcam/mega_lioran_font-d-alagnon.jpg",
                 "tags": [
                     "lioran",
                     "auvergne",
@@ -162,7 +162,7 @@
             {
                 "uid": 12,
                 "title": "Centre station",
-                "imageLD": "http://srv02.trinum.com/ibox/ftpcam/1280_lioran_station.jpg",
+                "imageLD": "http://trinum.com/ibox/ftpcam/1280_lioran_station.jpg",
                 "imageHD": "http://www.trinum.com/ibox/ftpcam/mega_lioran_station.jpg",
                 "tags": [
                     "lioran",
