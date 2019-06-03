@@ -1677,7 +1677,7 @@
                     "uid": 10010,
                     "order": 10,
                     "title": "Domaine nordic de Mézenc",
-                    "imageLD": "https://www.mezencloiresauvage.com/webcam/MOBOTIX/camera1.jpg",
+                    "imageLD": "https://www.mezencloiresauvage.com/webcam/camera1.jpg",
                     "imageHD": null,
                     "type": "image",
                     "mapImageName": "map-annotation-mountain",
