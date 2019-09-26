@@ -100,8 +100,10 @@ class SearchViewController: AbstractRealmViewController {
             let attributedSearchText = searchText
                 .withFont(UIFont.proximaNovaSemiBoldItalic(withSize: 16))
                 .withTextColor(UIColor.awBlue)
+
+            attributedResultText.append(attributedSearchText)
             
-            searchLabel.attributedText = attributedResultText + attributedSearchText
+            searchLabel.attributedText = attributedResultText
         } else {
             provider.objects = []
             searchLabel.text = nil

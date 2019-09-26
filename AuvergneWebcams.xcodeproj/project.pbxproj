@@ -14,6 +14,18 @@
 		F911BBEB1DDC6066000C022B /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F911BBEA1DDC6066000C022B /* Fabric.framework */; };
 		F911BBEE1DDC6097000C022B /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F911BBED1DDC6097000C022B /* Crashlytics.framework */; };
 		F9147FBC1E66137C000C78CA /* RequestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9147FBB1E66137C000C78CA /* RequestExtension.swift */; };
+		F923C0A3233D34F500C84F7F /* SwiftyAttributes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F923C0A2233D344E00C84F7F /* SwiftyAttributes.framework */; };
+		F923C0A4233D34F500C84F7F /* SwiftyAttributes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F923C0A2233D344E00C84F7F /* SwiftyAttributes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F923C0A5233D34F600C84F7F /* DOFavoriteButtonNew.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F967AAA3233D32E700C4D58D /* DOFavoriteButtonNew.framework */; };
+		F923C0A6233D34F600C84F7F /* DOFavoriteButtonNew.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F967AAA3233D32E700C4D58D /* DOFavoriteButtonNew.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F923C0A7233D34F900C84F7F /* SwiftyAttributes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F923C0A2233D344E00C84F7F /* SwiftyAttributes.framework */; };
+		F923C0A8233D34F900C84F7F /* SwiftyAttributes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F923C0A2233D344E00C84F7F /* SwiftyAttributes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F923C0A9233D34F900C84F7F /* DOFavoriteButtonNew.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F967AAA3233D32E700C4D58D /* DOFavoriteButtonNew.framework */; };
+		F923C0AA233D34F900C84F7F /* DOFavoriteButtonNew.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F967AAA3233D32E700C4D58D /* DOFavoriteButtonNew.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F923C0AB233D34FB00C84F7F /* SwiftyAttributes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F923C0A2233D344E00C84F7F /* SwiftyAttributes.framework */; };
+		F923C0AC233D34FB00C84F7F /* SwiftyAttributes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F923C0A2233D344E00C84F7F /* SwiftyAttributes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F923C0AD233D34FB00C84F7F /* DOFavoriteButtonNew.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F967AAA3233D32E700C4D58D /* DOFavoriteButtonNew.framework */; };
+		F923C0AE233D34FC00C84F7F /* DOFavoriteButtonNew.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F967AAA3233D32E700C4D58D /* DOFavoriteButtonNew.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F92800A61E8427B30056E5CE /* ConfigurationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92800A51E8427B30056E5CE /* ConfigurationExtension.swift */; };
 		F92800A91E8428870056E5CE /* ConfigurationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92800A81E8428870056E5CE /* ConfigurationExtension.swift */; };
 		F92800B01E84343B0056E5CE /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92800AF1E84343B0056E5CE /* Configuration.swift */; };
@@ -85,7 +97,6 @@
 		F94432A41E8A4C45006D7308 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE030D1DD8AC1B0063275B /* SettingsViewController.swift */; };
 		F94432A51E8A4C45006D7308 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = F963AB171E59C05100ED5A8B /* iCarousel.m */; };
 		F94432A71E8A4C45006D7308 /* AbstractSectionedEnumeratableViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F963AB301E59D07800ED5A8B /* AbstractSectionedEnumeratableViewProvider.swift */; };
-		F94432A81E8A4C45006D7308 /* SwiftyAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F963AB5C1E5A2F7D00ED5A8B /* SwiftyAttributes.swift */; };
 		F94432A91E8A4C45006D7308 /* AbstractRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE03081DD7817C0063275B /* AbstractRefreshViewController.swift */; };
 		F94432AA1E8A4C45006D7308 /* AbstractRealmViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C747FB1E5F92480018B5CC /* AbstractRealmViewProvider.swift */; };
 		F94432AB1E8A4C45006D7308 /* AbstractEnumeratableViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F963AB2E1E59D07800ED5A8B /* AbstractEnumeratableViewProvider.swift */; };
@@ -93,7 +104,6 @@
 		F94432AE1E8A4C45006D7308 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ACD1F71E5C9DD8004E5BFF /* libsqlite3.tbd */; };
 		F94432AF1E8A4C45006D7308 /* NVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B1E5FB1E65652A00829FE8 /* NVActivityIndicatorView.framework */; };
 		F94432B11E8A4C45006D7308 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F963AB3C1E59E7FC00ED5A8B /* RealmSwift.framework */; };
-		F94432B21E8A4C45006D7308 /* DOFavoriteButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F99F37621E72969E0058AFB3 /* DOFavoriteButton.framework */; };
 		F94432B31E8A4C45006D7308 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F963AB3B1E59E7FC00ED5A8B /* Realm.framework */; };
 		F94432B41E8A4C45006D7308 /* AlamofireNetworkActivityIndicator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ACD1DD1E5C3A27004E5BFF /* AlamofireNetworkActivityIndicator.framework */; };
 		F94432B61E8A4C45006D7308 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F911BBEA1DDC6066000C022B /* Fabric.framework */; };
@@ -147,7 +157,6 @@
 		F94432F11E8A4C45006D7308 /* SwiftyUserDefaults.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F93C763C1DD11ACE005DEE66 /* SwiftyUserDefaults.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F94432F21E8A4C45006D7308 /* ActiveLabel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F94D7CE71DFAE4FC00460CCD /* ActiveLabel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F94432F41E8A4C45006D7308 /* AlamofireNetworkActivityIndicator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9ACD1DD1E5C3A27004E5BFF /* AlamofireNetworkActivityIndicator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F94432F51E8A4C45006D7308 /* DOFavoriteButton.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F99F37621E72969E0058AFB3 /* DOFavoriteButton.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F94432F61E8A4C45006D7308 /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F93C76391DD11ACE005DEE66 /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F94432F71E8A4C45006D7308 /* SVProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B01F311E80AA2000A1F174 /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F94432F81E8A4C45006D7308 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F963AB3B1E59E7FC00ED5A8B /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -260,7 +269,6 @@
 		F963AB581E5A172500ED5A8B /* ProximaNova-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = F963AB4F1E5A172500ED5A8B /* ProximaNova-RegularItalic.otf */; };
 		F963AB591E5A172500ED5A8B /* ProximaNova-Sbold.otf in Resources */ = {isa = PBXBuildFile; fileRef = F963AB501E5A172500ED5A8B /* ProximaNova-Sbold.otf */; };
 		F963AB5A1E5A172500ED5A8B /* ProximaNova-SboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = F963AB511E5A172500ED5A8B /* ProximaNova-SboldItalic.otf */; };
-		F963AB5D1E5A2F7D00ED5A8B /* SwiftyAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F963AB5C1E5A2F7D00ED5A8B /* SwiftyAttributes.swift */; };
 		F963AB5F1E5A3C8400ED5A8B /* WebcamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F963AB5E1E5A3C8400ED5A8B /* WebcamView.swift */; };
 		F963AB611E5A3C8C00ED5A8B /* WebcamView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F963AB601E5A3C8C00ED5A8B /* WebcamView.xib */; };
 		F963AB651E5A5DA800ED5A8B /* WebcamSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F963AB631E5A5DA800ED5A8B /* WebcamSectionViewController.swift */; };
@@ -287,8 +295,6 @@
 		F99984241E62DDC4007D95AC /* webcam.json in Resources */ = {isa = PBXBuildFile; fileRef = F99984231E62DDC4007D95AC /* webcam.json */; };
 		F99984261E62DDFA007D95AC /* sections.json in Resources */ = {isa = PBXBuildFile; fileRef = F99984251E62DDFA007D95AC /* sections.json */; };
 		F99F37611E71C0810058AFB3 /* aw-config-dev.json in Resources */ = {isa = PBXBuildFile; fileRef = F99F37601E71C0810058AFB3 /* aw-config-dev.json */; };
-		F99F37641E7296AB0058AFB3 /* DOFavoriteButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F99F37621E72969E0058AFB3 /* DOFavoriteButton.framework */; };
-		F99F37651E7296AB0058AFB3 /* DOFavoriteButton.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F99F37621E72969E0058AFB3 /* DOFavoriteButton.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F99F37721E72B2960058AFB3 /* NotificationNameExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99F37711E72B2960058AFB3 /* NotificationNameExtensions.swift */; };
 		F99F37741E72C7A90058AFB3 /* CollectionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99F37731E72C7A90058AFB3 /* CollectionExtensions.swift */; };
 		F9A7A8F81E6ECA0C00CFFF94 /* OpenWeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7A8F71E6ECA0C00CFFF94 /* OpenWeatherResponse.swift */; };
@@ -399,7 +405,6 @@
 		F9D6105A1E82EDBF00BFC18D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE030D1DD8AC1B0063275B /* SettingsViewController.swift */; };
 		F9D6105B1E82EDBF00BFC18D /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = F963AB171E59C05100ED5A8B /* iCarousel.m */; };
 		F9D6105C1E82EDBF00BFC18D /* AbstractSectionedEnumeratableViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F963AB301E59D07800ED5A8B /* AbstractSectionedEnumeratableViewProvider.swift */; };
-		F9D6105D1E82EDBF00BFC18D /* SwiftyAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F963AB5C1E5A2F7D00ED5A8B /* SwiftyAttributes.swift */; };
 		F9D6105E1E82EDBF00BFC18D /* AbstractRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE03081DD7817C0063275B /* AbstractRefreshViewController.swift */; };
 		F9D6105F1E82EDBF00BFC18D /* AbstractRealmViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C747FB1E5F92480018B5CC /* AbstractRealmViewProvider.swift */; };
 		F9D610601E82EDBF00BFC18D /* AbstractEnumeratableViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F963AB2E1E59D07800ED5A8B /* AbstractEnumeratableViewProvider.swift */; };
@@ -407,7 +412,6 @@
 		F9D610631E82EDBF00BFC18D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ACD1F71E5C9DD8004E5BFF /* libsqlite3.tbd */; };
 		F9D610641E82EDBF00BFC18D /* NVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B1E5FB1E65652A00829FE8 /* NVActivityIndicatorView.framework */; };
 		F9D610661E82EDBF00BFC18D /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F963AB3C1E59E7FC00ED5A8B /* RealmSwift.framework */; };
-		F9D610671E82EDBF00BFC18D /* DOFavoriteButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F99F37621E72969E0058AFB3 /* DOFavoriteButton.framework */; };
 		F9D610681E82EDBF00BFC18D /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F963AB3B1E59E7FC00ED5A8B /* Realm.framework */; };
 		F9D610691E82EDBF00BFC18D /* AlamofireNetworkActivityIndicator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ACD1DD1E5C3A27004E5BFF /* AlamofireNetworkActivityIndicator.framework */; };
 		F9D6106B1E82EDBF00BFC18D /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F911BBEA1DDC6066000C022B /* Fabric.framework */; };
@@ -461,7 +465,6 @@
 		F9D610A61E82EDBF00BFC18D /* SwiftyUserDefaults.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F93C763C1DD11ACE005DEE66 /* SwiftyUserDefaults.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F9D610A71E82EDBF00BFC18D /* ActiveLabel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F94D7CE71DFAE4FC00460CCD /* ActiveLabel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F9D610A91E82EDBF00BFC18D /* AlamofireNetworkActivityIndicator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9ACD1DD1E5C3A27004E5BFF /* AlamofireNetworkActivityIndicator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F9D610AA1E82EDBF00BFC18D /* DOFavoriteButton.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F99F37621E72969E0058AFB3 /* DOFavoriteButton.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F9D610AB1E82EDBF00BFC18D /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F93C76391DD11ACE005DEE66 /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F9D610AC1E82EDBF00BFC18D /* SVProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B01F311E80AA2000A1F174 /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F9D610AD1E82EDBF00BFC18D /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F963AB3B1E59E7FC00ED5A8B /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -529,7 +532,6 @@
 				F93C76481DD11AF0005DEE66 /* SwiftyUserDefaults.framework in Embed Frameworks */,
 				F94D7CEA1DFAE50200460CCD /* ActiveLabel.framework in Embed Frameworks */,
 				F9ACD1DF1E5C3A2E004E5BFF /* AlamofireNetworkActivityIndicator.framework in Embed Frameworks */,
-				F99F37651E7296AB0058AFB3 /* DOFavoriteButton.framework in Embed Frameworks */,
 				F93C76421DD11AF0005DEE66 /* Kingfisher.framework in Embed Frameworks */,
 				F9B01F341E80AAB000A1F174 /* SVProgressHUD.framework in Embed Frameworks */,
 				F963AB421E59E80900ED5A8B /* Realm.framework in Embed Frameworks */,
@@ -538,7 +540,9 @@
 				F963AB441E59E80900ED5A8B /* RealmSwift.framework in Embed Frameworks */,
 				F93C76441DD11AF0005DEE66 /* Reachability.framework in Embed Frameworks */,
 				F9BE03131DD8AF960063275B /* Eureka.framework in Embed Frameworks */,
+				F923C0A6233D34F600C84F7F /* DOFavoriteButtonNew.framework in Embed Frameworks */,
 				F9022D9F1DD90032006AF146 /* SwiftiumKit.framework in Embed Frameworks */,
+				F923C0A4233D34F500C84F7F /* SwiftyAttributes.framework in Embed Frameworks */,
 				F963AB3E1E59E80900ED5A8B /* Alamofire.framework in Embed Frameworks */,
 				F9B1E5FD1E65656100829FE8 /* NVActivityIndicatorView.framework in Embed Frameworks */,
 				F9F67DF52032EB64005FDE42 /* Mapbox.framework in Embed Frameworks */,
@@ -556,7 +560,6 @@
 				F94432F11E8A4C45006D7308 /* SwiftyUserDefaults.framework in Embed Frameworks */,
 				F94432F21E8A4C45006D7308 /* ActiveLabel.framework in Embed Frameworks */,
 				F94432F41E8A4C45006D7308 /* AlamofireNetworkActivityIndicator.framework in Embed Frameworks */,
-				F94432F51E8A4C45006D7308 /* DOFavoriteButton.framework in Embed Frameworks */,
 				F94432F61E8A4C45006D7308 /* Kingfisher.framework in Embed Frameworks */,
 				F94432F71E8A4C45006D7308 /* SVProgressHUD.framework in Embed Frameworks */,
 				F94432F81E8A4C45006D7308 /* Realm.framework in Embed Frameworks */,
@@ -565,7 +568,9 @@
 				F94432FB1E8A4C45006D7308 /* RealmSwift.framework in Embed Frameworks */,
 				F94432FC1E8A4C45006D7308 /* Reachability.framework in Embed Frameworks */,
 				F94432FD1E8A4C45006D7308 /* Eureka.framework in Embed Frameworks */,
+				F923C0AE233D34FC00C84F7F /* DOFavoriteButtonNew.framework in Embed Frameworks */,
 				F94432FE1E8A4C45006D7308 /* SwiftiumKit.framework in Embed Frameworks */,
+				F923C0AC233D34FB00C84F7F /* SwiftyAttributes.framework in Embed Frameworks */,
 				F94432FF1E8A4C45006D7308 /* Alamofire.framework in Embed Frameworks */,
 				F94433001E8A4C45006D7308 /* NVActivityIndicatorView.framework in Embed Frameworks */,
 				F9F67DF92032EB6F005FDE42 /* Mapbox.framework in Embed Frameworks */,
@@ -594,7 +599,6 @@
 				F9D610A61E82EDBF00BFC18D /* SwiftyUserDefaults.framework in Embed Frameworks */,
 				F9D610A71E82EDBF00BFC18D /* ActiveLabel.framework in Embed Frameworks */,
 				F9D610A91E82EDBF00BFC18D /* AlamofireNetworkActivityIndicator.framework in Embed Frameworks */,
-				F9D610AA1E82EDBF00BFC18D /* DOFavoriteButton.framework in Embed Frameworks */,
 				F9D610AB1E82EDBF00BFC18D /* Kingfisher.framework in Embed Frameworks */,
 				F9D610AC1E82EDBF00BFC18D /* SVProgressHUD.framework in Embed Frameworks */,
 				F9D610AD1E82EDBF00BFC18D /* Realm.framework in Embed Frameworks */,
@@ -603,7 +607,9 @@
 				F9D610B01E82EDBF00BFC18D /* RealmSwift.framework in Embed Frameworks */,
 				F9D610B11E82EDBF00BFC18D /* Reachability.framework in Embed Frameworks */,
 				F9D610B21E82EDBF00BFC18D /* Eureka.framework in Embed Frameworks */,
+				F923C0AA233D34F900C84F7F /* DOFavoriteButtonNew.framework in Embed Frameworks */,
 				F9D610B31E82EDBF00BFC18D /* SwiftiumKit.framework in Embed Frameworks */,
+				F923C0A8233D34F900C84F7F /* SwiftyAttributes.framework in Embed Frameworks */,
 				F9D610B41E82EDBF00BFC18D /* Alamofire.framework in Embed Frameworks */,
 				F9D610B51E82EDBF00BFC18D /* NVActivityIndicatorView.framework in Embed Frameworks */,
 				F9F67DF72032EB6A005FDE42 /* Mapbox.framework in Embed Frameworks */,
@@ -620,6 +626,7 @@
 		F911BBEA1DDC6066000C022B /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		F911BBED1DDC6097000C022B /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		F9147FBB1E66137C000C78CA /* RequestExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestExtension.swift; sourceTree = "<group>"; };
+		F923C0A2233D344E00C84F7F /* SwiftyAttributes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyAttributes.framework; path = Carthage/Build/iOS/SwiftyAttributes.framework; sourceTree = "<group>"; };
 		F92800A51E8427B30056E5CE /* ConfigurationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationExtension.swift; sourceTree = "<group>"; };
 		F92800A81E8428870056E5CE /* ConfigurationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationExtension.swift; sourceTree = "<group>"; };
 		F92800AF1E84343B0056E5CE /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
@@ -707,7 +714,6 @@
 		F963AB4F1E5A172500ED5A8B /* ProximaNova-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-RegularItalic.otf"; sourceTree = "<group>"; };
 		F963AB501E5A172500ED5A8B /* ProximaNova-Sbold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Sbold.otf"; sourceTree = "<group>"; };
 		F963AB511E5A172500ED5A8B /* ProximaNova-SboldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-SboldItalic.otf"; sourceTree = "<group>"; };
-		F963AB5C1E5A2F7D00ED5A8B /* SwiftyAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyAttributes.swift; sourceTree = "<group>"; };
 		F963AB5E1E5A3C8400ED5A8B /* WebcamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebcamView.swift; sourceTree = "<group>"; };
 		F963AB601E5A3C8C00ED5A8B /* WebcamView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebcamView.xib; sourceTree = "<group>"; };
 		F963AB631E5A5DA800ED5A8B /* WebcamSectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebcamSectionViewController.swift; sourceTree = "<group>"; };
@@ -721,6 +727,7 @@
 		F963AB751E5A695300ED5A8B /* WebcamSectionedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebcamSectionedView.xib; sourceTree = "<group>"; };
 		F963AB771E5A696500ED5A8B /* AbstractWebcamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractWebcamView.swift; sourceTree = "<group>"; };
 		F963AB7A1E5A6E8300ED5A8B /* DateFormatterCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatterCache.swift; sourceTree = "<group>"; };
+		F967AAA3233D32E700C4D58D /* DOFavoriteButtonNew.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DOFavoriteButtonNew.framework; path = Carthage/Build/iOS/DOFavoriteButtonNew.framework; sourceTree = "<group>"; };
 		F990992A1FD183F10001754D /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		F99099311FD1A9990001754D /* assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = assets.xcassets; sourceTree = "<group>"; };
 		F990993B1FD1ADAD0001754D /* WidgetDefaultsKeyExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidgetDefaultsKeyExtension.swift; sourceTree = "<group>"; };
@@ -731,7 +738,6 @@
 		F99984231E62DDC4007D95AC /* webcam.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = webcam.json; sourceTree = "<group>"; };
 		F99984251E62DDFA007D95AC /* sections.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sections.json; sourceTree = "<group>"; };
 		F99F37601E71C0810058AFB3 /* aw-config-dev.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "aw-config-dev.json"; path = "resources/json/aw-config-dev.json"; sourceTree = SOURCE_ROOT; };
-		F99F37621E72969E0058AFB3 /* DOFavoriteButton.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DOFavoriteButton.framework; path = Carthage/Build/iOS/DOFavoriteButton.framework; sourceTree = "<group>"; };
 		F99F37711E72B2960058AFB3 /* NotificationNameExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNameExtensions.swift; sourceTree = "<group>"; };
 		F99F37731E72C7A90058AFB3 /* CollectionExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionExtensions.swift; sourceTree = "<group>"; };
 		F9A7A8F71E6ECA0C00CFFF94 /* OpenWeatherResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenWeatherResponse.swift; sourceTree = "<group>"; };
@@ -810,8 +816,8 @@
 				F9B1E5FC1E65656100829FE8 /* NVActivityIndicatorView.framework in Frameworks */,
 				F95E0826216B656B009A206A /* FIRAnalyticsConnector.framework in Frameworks */,
 				F95E0823216B656B009A206A /* nanopb.framework in Frameworks */,
+				F923C0A5233D34F600C84F7F /* DOFavoriteButtonNew.framework in Frameworks */,
 				F963AB431E59E80900ED5A8B /* RealmSwift.framework in Frameworks */,
-				F99F37641E7296AB0058AFB3 /* DOFavoriteButton.framework in Frameworks */,
 				F963AB411E59E80900ED5A8B /* Realm.framework in Frameworks */,
 				F9ACD1DE1E5C3A2E004E5BFF /* AlamofireNetworkActivityIndicator.framework in Frameworks */,
 				F95E0820216B656A009A206A /* GoogleUtilities.framework in Frameworks */,
@@ -826,6 +832,7 @@
 				F9F67DF42032EB64005FDE42 /* Mapbox.framework in Frameworks */,
 				F963AB3D1E59E80900ED5A8B /* Alamofire.framework in Frameworks */,
 				F93C76471DD11AF0005DEE66 /* SwiftyUserDefaults.framework in Frameworks */,
+				F923C0A3233D34F500C84F7F /* SwiftyAttributes.framework in Frameworks */,
 				F93C76411DD11AF0005DEE66 /* Kingfisher.framework in Frameworks */,
 				F93C76431DD11AF0005DEE66 /* Reachability.framework in Frameworks */,
 				F9BE03121DD8AF960063275B /* Eureka.framework in Frameworks */,
@@ -855,8 +862,8 @@
 				F94432AF1E8A4C45006D7308 /* NVActivityIndicatorView.framework in Frameworks */,
 				F95E0828216B656B009A206A /* FIRAnalyticsConnector.framework in Frameworks */,
 				F95E0825216B656B009A206A /* nanopb.framework in Frameworks */,
+				F923C0AD233D34FB00C84F7F /* DOFavoriteButtonNew.framework in Frameworks */,
 				F94432B11E8A4C45006D7308 /* RealmSwift.framework in Frameworks */,
-				F94432B21E8A4C45006D7308 /* DOFavoriteButton.framework in Frameworks */,
 				F94432B31E8A4C45006D7308 /* Realm.framework in Frameworks */,
 				F94432B41E8A4C45006D7308 /* AlamofireNetworkActivityIndicator.framework in Frameworks */,
 				F95E0822216B656B009A206A /* GoogleUtilities.framework in Frameworks */,
@@ -871,6 +878,7 @@
 				F94432BC1E8A4C45006D7308 /* SVProgressHUD.framework in Frameworks */,
 				F94432BE1E8A4C45006D7308 /* Alamofire.framework in Frameworks */,
 				F94432BF1E8A4C45006D7308 /* SwiftyUserDefaults.framework in Frameworks */,
+				F923C0AB233D34FB00C84F7F /* SwiftyAttributes.framework in Frameworks */,
 				F94432C01E8A4C45006D7308 /* Kingfisher.framework in Frameworks */,
 				F94432C21E8A4C45006D7308 /* Reachability.framework in Frameworks */,
 				F94432C31E8A4C45006D7308 /* Eureka.framework in Frameworks */,
@@ -907,8 +915,8 @@
 				F9D610641E82EDBF00BFC18D /* NVActivityIndicatorView.framework in Frameworks */,
 				F95E0827216B656B009A206A /* FIRAnalyticsConnector.framework in Frameworks */,
 				F95E0824216B656B009A206A /* nanopb.framework in Frameworks */,
+				F923C0A9233D34F900C84F7F /* DOFavoriteButtonNew.framework in Frameworks */,
 				F9D610661E82EDBF00BFC18D /* RealmSwift.framework in Frameworks */,
-				F9D610671E82EDBF00BFC18D /* DOFavoriteButton.framework in Frameworks */,
 				F9D610681E82EDBF00BFC18D /* Realm.framework in Frameworks */,
 				F9D610691E82EDBF00BFC18D /* AlamofireNetworkActivityIndicator.framework in Frameworks */,
 				F95E0821216B656B009A206A /* GoogleUtilities.framework in Frameworks */,
@@ -923,6 +931,7 @@
 				F9D610711E82EDBF00BFC18D /* SVProgressHUD.framework in Frameworks */,
 				F9D610731E82EDBF00BFC18D /* Alamofire.framework in Frameworks */,
 				F9D610741E82EDBF00BFC18D /* SwiftyUserDefaults.framework in Frameworks */,
+				F923C0A7233D34F900C84F7F /* SwiftyAttributes.framework in Frameworks */,
 				F9D610751E82EDBF00BFC18D /* Kingfisher.framework in Frameworks */,
 				F9D610771E82EDBF00BFC18D /* Reachability.framework in Frameworks */,
 				F9D610781E82EDBF00BFC18D /* Eureka.framework in Frameworks */,
@@ -941,7 +950,6 @@
 			children = (
 				F95E080D216B656A009A206A /* Firebase */,
 				F9ACD1CD1E5B3FBF004E5BFF /* OpeniumTestingKit */,
-				F963AB5B1E5A2F7D00ED5A8B /* SwiftyAttributes */,
 				F963AB151E59C05100ED5A8B /* iCarousel */,
 				F911BBE91DDC6066000C022B /* Fabric */,
 			);
@@ -1074,6 +1082,7 @@
 			children = (
 				F93C76321DD1175E005DEE66 /* Cartfile */,
 				F93C76381DD11915005DEE66 /* Cartfile.resolved */,
+				F923C0A2233D344E00C84F7F /* SwiftyAttributes.framework */,
 				F9B01F311E80AA2000A1F174 /* SVProgressHUD.framework */,
 				F9ACD1DD1E5C3A27004E5BFF /* AlamofireNetworkActivityIndicator.framework */,
 				F9B1E5FB1E65652A00829FE8 /* NVActivityIndicatorView.framework */,
@@ -1088,7 +1097,7 @@
 				F93C76391DD11ACE005DEE66 /* Kingfisher.framework */,
 				F93C763A1DD11ACE005DEE66 /* Reachability.framework */,
 				F93C763B1DD11ACE005DEE66 /* Siren.framework */,
-				F99F37621E72969E0058AFB3 /* DOFavoriteButton.framework */,
+				F967AAA3233D32E700C4D58D /* DOFavoriteButtonNew.framework */,
 				F9F67DF32032EB58005FDE42 /* Mapbox.framework */,
 				F93C763C1DD11ACE005DEE66 /* SwiftyUserDefaults.framework */,
 			);
@@ -1302,14 +1311,6 @@
 				F963AB511E5A172500ED5A8B /* ProximaNova-SboldItalic.otf */,
 			);
 			path = "Proxima Nova";
-			sourceTree = "<group>";
-		};
-		F963AB5B1E5A2F7D00ED5A8B /* SwiftyAttributes */ = {
-			isa = PBXGroup;
-			children = (
-				F963AB5C1E5A2F7D00ED5A8B /* SwiftyAttributes.swift */,
-			);
-			path = SwiftyAttributes;
 			sourceTree = "<group>";
 		};
 		F963AB721E5A684100ED5A8B /* Webcam Section */ = {
@@ -1847,6 +1848,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -2070,9 +2072,10 @@
 				"$(SRCROOT)/Carthage/Build/iOS/AlamofireNetworkActivityIndicator.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Firebase.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/NVActivityIndicatorView.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/DOFavoriteButton.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/DOFavoriteButtonNew.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Mapbox.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyAttributes.framework",
 			);
 			name = Carthage;
 			outputPaths = (
@@ -2118,9 +2121,10 @@
 				"$(SRCROOT)/Carthage/Build/iOS/AlamofireNetworkActivityIndicator.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Firebase.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/NVActivityIndicatorView.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/DOFavoriteButton.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/DOFavoriteButtonNew.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Mapbox.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyAttributes.framework",
 			);
 			name = Carthage;
 			outputPaths = (
@@ -2268,9 +2272,10 @@
 				"$(SRCROOT)/Carthage/Build/iOS/AlamofireNetworkActivityIndicator.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Firebase.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/NVActivityIndicatorView.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/DOFavoriteButton.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/DOFavoriteButtonNew.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Mapbox.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyAttributes.framework",
 			);
 			name = Carthage;
 			outputPaths = (
@@ -2361,7 +2366,6 @@
 				F92800A61E8427B30056E5CE /* ConfigurationExtension.swift in Sources */,
 				F94576DB2035E641002466DA /* WebcamCalloutView.swift in Sources */,
 				F963AB351E59D07800ED5A8B /* AbstractSectionedEnumeratableViewProvider.swift in Sources */,
-				F963AB5D1E5A2F7D00ED5A8B /* SwiftyAttributes.swift in Sources */,
 				F9BE03091DD7817C0063275B /* AbstractRefreshViewController.swift in Sources */,
 				F9C747FC1E5F92480018B5CC /* AbstractRealmViewProvider.swift in Sources */,
 				F963AB331E59D07800ED5A8B /* AbstractEnumeratableViewProvider.swift in Sources */,
@@ -2443,7 +2447,6 @@
 				F94432A51E8A4C45006D7308 /* iCarousel.m in Sources */,
 				F94576DD2035E641002466DA /* WebcamCalloutView.swift in Sources */,
 				F94432A71E8A4C45006D7308 /* AbstractSectionedEnumeratableViewProvider.swift in Sources */,
-				F94432A81E8A4C45006D7308 /* SwiftyAttributes.swift in Sources */,
 				F94432A91E8A4C45006D7308 /* AbstractRefreshViewController.swift in Sources */,
 				F94432AA1E8A4C45006D7308 /* AbstractRealmViewProvider.swift in Sources */,
 				F94432AB1E8A4C45006D7308 /* AbstractEnumeratableViewProvider.swift in Sources */,
@@ -2537,7 +2540,6 @@
 				F92800A91E8428870056E5CE /* ConfigurationExtension.swift in Sources */,
 				F94576DC2035E641002466DA /* WebcamCalloutView.swift in Sources */,
 				F9D6105C1E82EDBF00BFC18D /* AbstractSectionedEnumeratableViewProvider.swift in Sources */,
-				F9D6105D1E82EDBF00BFC18D /* SwiftyAttributes.swift in Sources */,
 				F9D6105E1E82EDBF00BFC18D /* AbstractRefreshViewController.swift in Sources */,
 				F9D6105F1E82EDBF00BFC18D /* AbstractRealmViewProvider.swift in Sources */,
 				F9D610601E82EDBF00BFC18D /* AbstractEnumeratableViewProvider.swift in Sources */,

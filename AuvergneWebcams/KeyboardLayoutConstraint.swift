@@ -25,8 +25,9 @@ import UIKit
 public class KeyboardLayoutConstraint: NSLayoutConstraint {
     
     private var offset: CGFloat = 0
-    private var keyboardVisibleHeight: CGFloat = 0
-    
+    var keyboardVisibleHeight: CGFloat = 0
+    var additionalHeight: CGFloat = 0
+
     override public func awakeFromNib() {
         super.awakeFromNib()
         
@@ -49,7 +50,7 @@ public class KeyboardLayoutConstraint: NSLayoutConstraint {
                 keyboardVisibleHeight = frame.size.height
             }
             
-            self.updateConstant()
+            self.updateConstant(isShowing: true)
             switch (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber, userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber) {
             case let (.some(duration), .some(curve)):
                 
@@ -62,8 +63,8 @@ public class KeyboardLayoutConstraint: NSLayoutConstraint {
                     animations: {
                         UIApplication.shared.keyWindow?.layoutIfNeeded()
                         return
-                    }, completion: { finished in
-                })
+                    },
+                    completion: nil)
             default:
                 
                 break
@@ -75,14 +76,14 @@ public class KeyboardLayoutConstraint: NSLayoutConstraint {
     
     @objc func keyboardWillHideNotification(_ notification: NSNotification) {
         keyboardVisibleHeight = 0
-        self.updateConstant()
-        
+        self.updateConstant(isShowing: false)
+
         if let userInfo = notification.userInfo {
             
             switch (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber, userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber) {
             case let (.some(duration), .some(curve)):
                 
-                let options = UIViewAnimationOptions(rawValue: curve.uintValue)
+                let options = UIView.AnimationOptions(rawValue: curve.uintValue)
                 
                 UIView.animate(
                     withDuration: TimeInterval(duration.doubleValue),
@@ -91,16 +92,34 @@ public class KeyboardLayoutConstraint: NSLayoutConstraint {
                     animations: {
                         UIApplication.shared.keyWindow?.layoutIfNeeded()
                         return
-                    }, completion: { finished in
-                })
+                    },
+                    completion: nil)
             default:
                 break
             }
         }
     }
     
-    func updateConstant() {
+    func updateConstant(isShowing: Bool) {
+        // Keyboard
         self.constant = offset + keyboardVisibleHeight
+        
+        if isShowing {
+            self.additionalHeight = 0
+            
+            // Tabbar
+            if let rootViewController = UIApplication.shared.keyWindow?.rootViewController {
+                if let tabbar = rootViewController.viewIfLoaded?.get(all: UITabBar.self).first {
+                    additionalHeight += tabbar.bounds.height
+                }
+            }
+            
+            // Safe area
+            if #available(iOS 11.0, *) {
+                additionalHeight += UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
+            }
+            
+            self.constant -= additionalHeight
+        }
     }
-    
 }

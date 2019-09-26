@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <strings.h>
+#include <sys/param.h>
 
 #import <CommonCrypto/CommonDigest.h>
 #import <CommonCrypto/CommonHMAC.h>

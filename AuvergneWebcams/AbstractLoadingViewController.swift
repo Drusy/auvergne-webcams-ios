@@ -83,7 +83,7 @@ class AbstractLoadingViewController: AbstractRealmViewController {
                     strongSelf.realm.delete(sections)
                     strongSelf.realm.delete(webcams)
                     
-                    strongSelf.realm.add(webcamSectionResponse.sections, update: true)
+                    strongSelf.realm.add(webcamSectionResponse.sections, update: .all)
                     QuickActionsService.shared.registerQuickActions()
                 }
             }

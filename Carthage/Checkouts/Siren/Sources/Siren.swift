@@ -21,16 +21,8 @@ public final class Siren: NSObject {
     /// The error domain for all errors created by Siren.
     public let SirenErrorDomain = "Siren Error Domain"
 
-    /// The SirenDelegate variable, which should be set if you'd like to be notified:
-    ///
-    /// When a user views or interacts with the alert
-    /// - sirenDidShowUpdateDialog(alertType: AlertType)
-    /// - sirenUserDidLaunchAppStore()
-    /// - sirenUserDidSkipVersion()
-    /// - sirenUserDidCancel()
-    ///
-    /// When a new version has been detected, and you would like to present a localized message in a custom UI. use this delegate method:
-    /// - sirenDidDetectNewVersionWithoutAlert(title: String, message: String)
+    /// The `SirenDelegate` variable, which should be set if you'd like to be notified of any of specific user interactions or API success/failures.
+    /// Also set this variable if you'd like to use custom UI for presesnting the update notification.
     public weak var delegate: SirenDelegate?
 
     /// The debug flag, which is disabled by default.
@@ -98,6 +90,7 @@ public final class Siren: NSObject {
     /// The `UIWindow` instance that presents the `SirenAlertViewController`.
     var updaterWindow: UIWindow?
 
+    /// The last Date that a version check was performed.
     var lastVersionCheckPerformedOnDate: Date?
 
     fileprivate var appID: Int?
@@ -172,7 +165,8 @@ private extension Siren {
     func performVersionCheck() {
         do {
             let url = try iTunesURLFromString()
-            let request = URLRequest(url: url, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 30)
+            let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 30)
+            URLCache.shared.removeCachedResponse(for: request)
             URLSession.shared.dataTask(with: request, completionHandler: { [weak self] (data, response, error) in
                 self?.processResults(withData: data, response: response, error: error)
             }).resume()
@@ -186,8 +180,7 @@ private extension Siren {
             postError(.appStoreDataRetrievalFailure(underlyingError: error))
         } else {
             guard let data = data else {
-                postError(.appStoreDataRetrievalFailure(underlyingError: nil))
-                return
+                return postError(.appStoreDataRetrievalFailure(underlyingError: nil))
             }
             do {
                 let decodedData = try JSONDecoder().decode(SirenLookupModel.self, from: data)
@@ -210,20 +203,16 @@ private extension Siren {
     }
 
     func processVersionCheck(with model: SirenLookupModel) {
-        guard isUpdateCompatibleWithDeviceOS(for: model) else {
-            return
-        }
+        guard isUpdateCompatibleWithDeviceOS(for: model) else { return }
 
         guard let appID = model.results.first?.appID else {
-            postError(.appStoreAppIDFailure)
-            return
+            return postError(.appStoreAppIDFailure)
         }
 
         self.appID = appID
 
         guard let currentAppStoreVersion = model.results.first?.version else {
-            postError(.appStoreVersionArrayFailure)
-            return
+            return postError(.appStoreVersionArrayFailure)
         }
 
         self.currentAppStoreVersion = currentAppStoreVersion

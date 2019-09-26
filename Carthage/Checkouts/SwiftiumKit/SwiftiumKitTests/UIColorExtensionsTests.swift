@@ -27,10 +27,10 @@ class UIColor_OSKAdditionsTests: XCTestCase {
     
         // Expect
         let f = c.cgColor.components
-        XCTAssertEqualWithAccuracy(f![0], r18, accuracy: precision)
-        XCTAssertEqualWithAccuracy(f![1], g18, accuracy: precision)
-        XCTAssertEqualWithAccuracy(f![2], b18, accuracy: precision)
-        XCTAssertEqualWithAccuracy(f![3], 1.0, accuracy: precision)
+        XCTAssertEqual(f![0], r18, accuracy: precision)
+        XCTAssertEqual(f![1], g18, accuracy: precision)
+        XCTAssertEqual(f![2], b18, accuracy: precision)
+        XCTAssertEqual(f![3], 1.0, accuracy: precision)
     }
 
     func testColorFromRGBA_alpha0() {
@@ -42,10 +42,10 @@ class UIColor_OSKAdditionsTests: XCTestCase {
     
         // Expect
         let f = c.cgColor.components
-        XCTAssertEqualWithAccuracy(f![0], r18, accuracy: precision)
-        XCTAssertEqualWithAccuracy(f![1], g18, accuracy: precision)
-        XCTAssertEqualWithAccuracy(f![2], b18, accuracy: precision)
-        XCTAssertEqualWithAccuracy(f![3], 0.0, accuracy: precision)
+        XCTAssertEqual(f![0], r18, accuracy: precision)
+        XCTAssertEqual(f![1], g18, accuracy: precision)
+        XCTAssertEqual(f![2], b18, accuracy: precision)
+        XCTAssertEqual(f![3], 0.0, accuracy: precision)
     }
     
     func testColorFromRGBA() {
@@ -57,10 +57,10 @@ class UIColor_OSKAdditionsTests: XCTestCase {
     
         // Expect
         let f = c.cgColor.components
-        XCTAssertEqualWithAccuracy(f![0], r18, accuracy: precision)
-        XCTAssertEqualWithAccuracy(f![1], g18, accuracy: precision)
-        XCTAssertEqualWithAccuracy(f![2], b18, accuracy: precision)
-        XCTAssertEqualWithAccuracy(f![3], a22, accuracy: precision)
+        XCTAssertEqual(f![0], r18, accuracy: precision)
+        XCTAssertEqual(f![1], g18, accuracy: precision)
+        XCTAssertEqual(f![2], b18, accuracy: precision)
+        XCTAssertEqual(f![3], a22, accuracy: precision)
     }
     
     func testColorFromARGB() {
@@ -72,10 +72,10 @@ class UIColor_OSKAdditionsTests: XCTestCase {
         
         // Expect
         let f = c.cgColor.components
-        XCTAssertEqualWithAccuracy(f![0], r18, accuracy: precision)
-        XCTAssertEqualWithAccuracy(f![1], g18, accuracy: precision)
-        XCTAssertEqualWithAccuracy(f![2], b18, accuracy: precision)
-        XCTAssertEqualWithAccuracy(f![3], a22, accuracy: precision)
+        XCTAssertEqual(f![0], r18, accuracy: precision)
+        XCTAssertEqual(f![1], g18, accuracy: precision)
+        XCTAssertEqual(f![2], b18, accuracy: precision)
+        XCTAssertEqual(f![3], a22, accuracy: precision)
     }
     
     func testImageWithSize_shouldReturnImageWithCorrectSize() {

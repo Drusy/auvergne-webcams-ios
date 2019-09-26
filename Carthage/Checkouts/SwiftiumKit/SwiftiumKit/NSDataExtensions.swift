@@ -39,10 +39,10 @@ private enum EncryptionAlgorithm {
 extension Data {
     
     public init?(base16EncodedString: String) {
-        let dataLen = base16EncodedString.characters.count / 2
+        let dataLen = base16EncodedString.count / 2
         let bytes = UnsafeMutablePointer<UInt8>.allocate(capacity: dataLen)
         
-        let charactersAsUInt8 = base16EncodedString.characters.map {
+        let charactersAsUInt8 = base16EncodedString.map {
             UInt8( strtoul((String($0)), nil, 16))
         }
         
@@ -81,7 +81,7 @@ extension Data {
     
     fileprivate func aesOperation(_ key: String, operation: SKCryptOperationFunction) -> Data? {
         let lengthPtr = UnsafeMutablePointer<UInt>.allocate(capacity: 1)
-        defer { lengthPtr.deallocate(capacity: 1) }
+        defer { lengthPtr.deallocate() }
         
         if let buffer = operation((self as NSData).bytes, UInt32(self.count), Array<UInt8>(key.utf8), UInt32(key.utf8.count), lengthPtr) {
             let length: Int = Int(lengthPtr[0])

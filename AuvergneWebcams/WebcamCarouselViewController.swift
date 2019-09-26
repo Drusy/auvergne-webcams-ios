@@ -11,6 +11,7 @@ import Kingfisher
 import RealmSwift
 import StoreKit
 import SwiftyUserDefaults
+import SwiftyAttributes
 
 protocol WebcamCarouselViewProviderDelegate: class {
     func webcamCarousel(viewProvider: WebcamCarouselViewProvider, scrollViewDidScroll scrollView: UIScrollView)

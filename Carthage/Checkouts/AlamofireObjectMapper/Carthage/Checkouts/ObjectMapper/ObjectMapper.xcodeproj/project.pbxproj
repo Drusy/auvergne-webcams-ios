@@ -23,6 +23,13 @@
 		3BAD2C0E1BDDB10D00E6B203 /* Mappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD2C0B1BDDB10D00E6B203 /* Mappable.swift */; };
 		3BAD2C101BDDC0B000E6B203 /* MappableExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD2C0F1BDDC0B000E6B203 /* MappableExtensionsTests.swift */; };
 		3BAD2C111BDDC0B000E6B203 /* MappableExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD2C0F1BDDC0B000E6B203 /* MappableExtensionsTests.swift */; };
+		491D7995216FB8B2006DB931 /* CodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491D7994216FB8B2006DB931 /* CodableTests.swift */; };
+		491D7996216FB8B2006DB931 /* CodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491D7994216FB8B2006DB931 /* CodableTests.swift */; };
+		491D7997216FB8B2006DB931 /* CodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491D7994216FB8B2006DB931 /* CodableTests.swift */; };
+		491D799C216FBA9A006DB931 /* CodableTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491D7998216FBA93006DB931 /* CodableTransform.swift */; };
+		491D799D216FBA9A006DB931 /* CodableTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491D7998216FBA93006DB931 /* CodableTransform.swift */; };
+		491D799E216FBA9B006DB931 /* CodableTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491D7998216FBA93006DB931 /* CodableTransform.swift */; };
+		491D799F216FBA9B006DB931 /* CodableTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491D7998216FBA93006DB931 /* CodableTransform.swift */; };
 		6100B1C01BD76A030011114A /* NestedArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6100B1BF1BD76A020011114A /* NestedArrayTests.swift */; };
 		6A05B7B01BE274BE00F19B53 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A05B7A61BE274BE00F19B53 /* ObjectMapper.framework */; };
 		6A05B7BD1BE274E800F19B53 /* ObjectMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 6AAC8F7B19F03C2900E7A677 /* ObjectMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -166,6 +173,29 @@
 		CD50B6FD1A82518300744312 /* TransformType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD50B6FC1A82518300744312 /* TransformType.swift */; };
 		CD71C8C11A7218AD009D4161 /* TransformOf.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD71C8C01A7218AD009D4161 /* TransformOf.swift */; };
 		D86BDEA41A51E5AD00120819 /* ISO8601DateTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BDEA31A51E5AC00120819 /* ISO8601DateTransform.swift */; };
+		DBB9B4232142A2D800078E5A /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACB15D11BC7F1D0006C029C /* Map.swift */; };
+		DBB9B4242142A2E100078E5A /* MapError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF148871D99A25B002BEA2C /* MapError.swift */; };
+		DBB9B4252142A2E100078E5A /* Mappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD2C0B1BDDB10D00E6B203 /* Mappable.swift */; };
+		DBB9B4262142A2E100078E5A /* ImmutableMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030114A81D95187600FBFD4F /* ImmutableMappable.swift */; };
+		DBB9B4272142A2E100078E5A /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAC8FC419F048FE00E7A677 /* Mapper.swift */; };
+		DBB9B4282142A2E600078E5A /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAC8FC519F048FE00E7A677 /* Operators.swift */; };
+		DBB9B4292142A2E600078E5A /* EnumOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF148911D99A7CA002BEA2C /* EnumOperators.swift */; };
+		DBB9B42A2142A2E600078E5A /* TransformOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF1488C1D99A7A6002BEA2C /* TransformOperators.swift */; };
+		DBB9B42B2142A2E600078E5A /* IntegerOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038F0A021E55FE2400613148 /* IntegerOperators.swift */; };
+		DBB9B42C2142A2E600078E5A /* FromJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAC8FC319F048FE00E7A677 /* FromJSON.swift */; };
+		DBB9B42D2142A2E600078E5A /* ToJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAC8FC719F048FE00E7A677 /* ToJSON.swift */; };
+		DBB9B42E2142A2ED00078E5A /* TransformOf.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD71C8C01A7218AD009D4161 /* TransformOf.swift */; };
+		DBB9B42F2142A2ED00078E5A /* TransformType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD50B6FC1A82518300744312 /* TransformType.swift */; };
+		DBB9B4302142A2ED00078E5A /* URLTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6C54CF19FE8DB600239454 /* URLTransform.swift */; };
+		DBB9B4312142A2ED00078E5A /* EnumTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1E7F361ABC44C000F9B1CF /* EnumTransform.swift */; };
+		DBB9B4322142A2ED00078E5A /* NSDecimalNumberTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D4F8511CC3B643008B0FB6 /* NSDecimalNumberTransform.swift */; };
+		DBB9B4332142A2ED00078E5A /* DictionaryTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997B4A461D3FA20D005E3F31 /* DictionaryTransform.swift */; };
+		DBB9B4342142A2ED00078E5A /* DataTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = C135CAB31D762F6900BA9338 /* DataTransform.swift */; };
+		DBB9B4352142A2ED00078E5A /* HexColorTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E591C61DAB7FED008E2EEF /* HexColorTransform.swift */; };
+		DBB9B4362142A2F200078E5A /* DateTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAC8FCB19F048FE00E7A677 /* DateTransform.swift */; };
+		DBB9B4372142A2F200078E5A /* DateFormatterTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A51372B1AADDE2700B82516 /* DateFormatterTransform.swift */; };
+		DBB9B4382142A2F200078E5A /* ISO8601DateTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BDEA31A51E5AC00120819 /* ISO8601DateTransform.swift */; };
+		DBB9B4392142A2F200078E5A /* CustomDateFormatTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AFD9B81AAD191C00AB59B5 /* CustomDateFormatTransform.swift */; };
 		DC99C8CC1CA261A8005C788C /* NullableKeysFromJSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC99C8CB1CA261A8005C788C /* NullableKeysFromJSONTests.swift */; };
 		DC99C8CD1CA261AD005C788C /* NullableKeysFromJSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC99C8CB1CA261A8005C788C /* NullableKeysFromJSONTests.swift */; };
 		DC99C8CE1CA261AE005C788C /* NullableKeysFromJSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC99C8CB1CA261A8005C788C /* NullableKeysFromJSONTests.swift */; };
@@ -227,6 +257,8 @@
 		37AFD9B81AAD191C00AB59B5 /* CustomDateFormatTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDateFormatTransform.swift; sourceTree = "<group>"; };
 		3BAD2C0B1BDDB10D00E6B203 /* Mappable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Mappable.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3BAD2C0F1BDDC0B000E6B203 /* MappableExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MappableExtensionsTests.swift; path = ObjectMapperTests/MappableExtensionsTests.swift; sourceTree = "<group>"; };
+		491D7994216FB8B2006DB931 /* CodableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CodableTests.swift; path = ObjectMapperTests/CodableTests.swift; sourceTree = "<group>"; };
+		491D7998216FBA93006DB931 /* CodableTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableTransform.swift; sourceTree = "<group>"; };
 		6100B1BF1BD76A020011114A /* NestedArrayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = NestedArrayTests.swift; path = ObjectMapperTests/NestedArrayTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6A05B7A61BE274BE00F19B53 /* ObjectMapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ObjectMapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A05B7AF1BE274BE00F19B53 /* ObjectMapper-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ObjectMapper-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -269,11 +301,12 @@
 		C135CAB31D762F6900BA9338 /* DataTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTransform.swift; sourceTree = "<group>"; };
 		C135CAB61D76303E00BA9338 /* DataTransformTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataTransformTests.swift; path = ObjectMapperTests/DataTransformTests.swift; sourceTree = "<group>"; };
 		CD1602FF1AC023D5000CD69A /* ObjectMapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ObjectMapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD1603091AC023D6000CD69A /* ObjectMapper-MacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ObjectMapper-MacTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD1603091AC023D6000CD69A /* ObjectMapper-macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ObjectMapper-macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD44374C1AAE9C1100A271BA /* NestedKeysTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = NestedKeysTests.swift; path = ObjectMapperTests/NestedKeysTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CD50B6FC1A82518300744312 /* TransformType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformType.swift; sourceTree = "<group>"; };
 		CD71C8C01A7218AD009D4161 /* TransformOf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TransformOf.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		D86BDEA31A51E5AC00120819 /* ISO8601DateTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISO8601DateTransform.swift; sourceTree = "<group>"; };
+		DBB9B41F2142A25100078E5A /* libObjectMapper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libObjectMapper.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC99C8CB1CA261A8005C788C /* NullableKeysFromJSONTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NullableKeysFromJSONTests.swift; path = ObjectMapperTests/NullableKeysFromJSONTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -330,6 +363,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DBB9B41C2142A25100078E5A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -360,10 +400,11 @@
 				6AAC8F7619F03C2900E7A677 /* ObjectMapper.framework */,
 				6AAC8F8119F03C2900E7A677 /* ObjectMapper-iOSTests.xctest */,
 				CD1602FF1AC023D5000CD69A /* ObjectMapper.framework */,
-				CD1603091AC023D6000CD69A /* ObjectMapper-MacTests.xctest */,
+				CD1603091AC023D6000CD69A /* ObjectMapper-macOSTests.xctest */,
 				6A2AD03D1B2C78540097E150 /* ObjectMapper.framework */,
 				6A05B7A61BE274BE00F19B53 /* ObjectMapper.framework */,
 				6A05B7AF1BE274BE00F19B53 /* ObjectMapper-tvOSTests.xctest */,
+				DBB9B41F2142A25100078E5A /* libObjectMapper.a */,
 			);
 			name = Products;
 			path = ..;
@@ -392,6 +433,7 @@
 		6AAC8F8219F03C2900E7A677 /* ObjectMapperTests */ = {
 			isa = PBXGroup;
 			children = (
+				491D7994216FB8B2006DB931 /* CodableTests.swift */,
 				6A6AEB971A9387D0002573D3 /* BasicTypes.swift */,
 				6A3774331A31427F00CC0AB5 /* BasicTypesTestsToJSON.swift */,
 				6A6AEB951A93874F002573D3 /* BasicTypesTestsFromJSON.swift */,
@@ -455,6 +497,7 @@
 				997B4A461D3FA20D005E3F31 /* DictionaryTransform.swift */,
 				C135CAB31D762F6900BA9338 /* DataTransform.swift */,
 				79E591C61DAB7FED008E2EEF /* HexColorTransform.swift */,
+				491D7998216FBA93006DB931 /* CodableTransform.swift */,
 			);
 			name = Transforms;
 			sourceTree = "<group>";
@@ -502,6 +545,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD1603181AC02437000CD69A /* ObjectMapper.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBB9B41D2142A25100078E5A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -599,9 +649,9 @@
 			productReference = 6AAC8F8119F03C2900E7A677 /* ObjectMapper-iOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		CD1602FE1AC023D5000CD69A /* ObjectMapper-Mac */ = {
+		CD1602FE1AC023D5000CD69A /* ObjectMapper-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CD1603161AC023D6000CD69A /* Build configuration list for PBXNativeTarget "ObjectMapper-Mac" */;
+			buildConfigurationList = CD1603161AC023D6000CD69A /* Build configuration list for PBXNativeTarget "ObjectMapper-macOS" */;
 			buildPhases = (
 				CD1602FA1AC023D5000CD69A /* Sources */,
 				CD1602FB1AC023D5000CD69A /* Frameworks */,
@@ -612,14 +662,14 @@
 			);
 			dependencies = (
 			);
-			name = "ObjectMapper-Mac";
+			name = "ObjectMapper-macOS";
 			productName = "ObjectMapper-Mac";
 			productReference = CD1602FF1AC023D5000CD69A /* ObjectMapper.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		CD1603081AC023D6000CD69A /* ObjectMapper-MacTests */ = {
+		CD1603081AC023D6000CD69A /* ObjectMapper-macOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CD1603171AC023D6000CD69A /* Build configuration list for PBXNativeTarget "ObjectMapper-MacTests" */;
+			buildConfigurationList = CD1603171AC023D6000CD69A /* Build configuration list for PBXNativeTarget "ObjectMapper-macOSTests" */;
 			buildPhases = (
 				CD1603051AC023D6000CD69A /* Sources */,
 				CD1603061AC023D6000CD69A /* Frameworks */,
@@ -631,10 +681,27 @@
 			dependencies = (
 				CD16030C1AC023D6000CD69A /* PBXTargetDependency */,
 			);
-			name = "ObjectMapper-MacTests";
+			name = "ObjectMapper-macOSTests";
 			productName = "ObjectMapper-MacTests";
-			productReference = CD1603091AC023D6000CD69A /* ObjectMapper-MacTests.xctest */;
+			productReference = CD1603091AC023D6000CD69A /* ObjectMapper-macOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DBB9B41E2142A25100078E5A /* ObjectMapper-Mac-Static */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DBB9B4222142A25100078E5A /* Build configuration list for PBXNativeTarget "ObjectMapper-Mac-Static" */;
+			buildPhases = (
+				DBB9B41B2142A25100078E5A /* Sources */,
+				DBB9B41C2142A25100078E5A /* Frameworks */,
+				DBB9B41D2142A25100078E5A /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ObjectMapper-Mac-Static";
+			productName = ObjectMapper;
+			productReference = DBB9B41F2142A25100078E5A /* libObjectMapper.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -643,20 +710,21 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = hearst;
 				TargetAttributes = {
 					6A05B7A51BE274BE00F19B53 = {
 						CreatedOnToolsVersion = 7.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 1010;
 					};
 					6A05B7AE1BE274BE00F19B53 = {
 						CreatedOnToolsVersion = 7.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Manual;
 					};
 					6A2AD03C1B2C78540097E150 = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 1010;
 					};
 					6AAC8F7519F03C2900E7A677 = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -668,10 +736,16 @@
 					};
 					CD1602FE1AC023D5000CD69A = {
 						CreatedOnToolsVersion = 6.2;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1010;
 					};
 					CD1603081AC023D6000CD69A = {
 						CreatedOnToolsVersion = 6.2;
+						LastSwiftMigration = 1010;
+					};
+					DBB9B41E2142A25100078E5A = {
+						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1010;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -688,12 +762,13 @@
 			projectRoot = "";
 			targets = (
 				6AAC8F7519F03C2900E7A677 /* ObjectMapper-iOS */,
-				CD1602FE1AC023D5000CD69A /* ObjectMapper-Mac */,
+				CD1602FE1AC023D5000CD69A /* ObjectMapper-macOS */,
 				6A2AD03C1B2C78540097E150 /* ObjectMapper-watchOS */,
 				6A05B7A51BE274BE00F19B53 /* ObjectMapper-tvOS */,
 				6AAC8F8019F03C2900E7A677 /* ObjectMapper-iOSTests */,
-				CD1603081AC023D6000CD69A /* ObjectMapper-MacTests */,
+				CD1603081AC023D6000CD69A /* ObjectMapper-macOSTests */,
 				6A05B7AE1BE274BE00F19B53 /* ObjectMapper-tvOSTests */,
+				DBB9B41E2142A25100078E5A /* ObjectMapper-Mac-Static */,
 			);
 		};
 /* End PBXProject section */
@@ -770,6 +845,7 @@
 				6AC6923A1BE3FD3A004C119A /* DateFormatterTransform.swift in Sources */,
 				6AC6923B1BE3FD3A004C119A /* ISO8601DateTransform.swift in Sources */,
 				6AC6923C1BE3FD3A004C119A /* CustomDateFormatTransform.swift in Sources */,
+				491D799F216FBA9B006DB931 /* CodableTransform.swift in Sources */,
 				6AC6923D1BE3FD3A004C119A /* TransformOf.swift in Sources */,
 				6AC6923E1BE3FD3A004C119A /* TransformType.swift in Sources */,
 				6AC6923F1BE3FD3A004C119A /* URLTransform.swift in Sources */,
@@ -793,6 +869,7 @@
 				6AA1F66B1BE94687006EF513 /* ClassClusterTests.swift in Sources */,
 				6AECC9E81D79E29100222E7A /* DictionaryTransformTests.swift in Sources */,
 				6AA1F66C1BE94687006EF513 /* PerformanceTests.swift in Sources */,
+				491D7997216FB8B2006DB931 /* CodableTests.swift in Sources */,
 				6AC692411BE3FD45004C119A /* BasicTypes.swift in Sources */,
 				6A0BF2011C0B53470083D1AF /* ToObjectTests.swift in Sources */,
 				84D4F8591CC3B71B008B0FB6 /* NSDecimalNumberTransformTests.swift in Sources */,
@@ -827,6 +904,7 @@
 				6A2AD04A1B2C786C0097E150 /* DateFormatterTransform.swift in Sources */,
 				6A2AD04B1B2C786C0097E150 /* ISO8601DateTransform.swift in Sources */,
 				6A2AD04C1B2C786C0097E150 /* CustomDateFormatTransform.swift in Sources */,
+				491D799E216FBA9B006DB931 /* CodableTransform.swift in Sources */,
 				6A2AD04D1B2C786C0097E150 /* TransformOf.swift in Sources */,
 				6A2AD04E1B2C786C0097E150 /* TransformType.swift in Sources */,
 				6A2AD04F1B2C786C0097E150 /* URLTransform.swift in Sources */,
@@ -857,6 +935,7 @@
 				CD71C8C11A7218AD009D4161 /* TransformOf.swift in Sources */,
 				6A6C54D019FE8DB600239454 /* URLTransform.swift in Sources */,
 				038F0A031E55FE2400613148 /* IntegerOperators.swift in Sources */,
+				491D799C216FBA9A006DB931 /* CodableTransform.swift in Sources */,
 				6A51372C1AADDE2700B82516 /* DateFormatterTransform.swift in Sources */,
 				6AAC8FCE19F048FE00E7A677 /* Mapper.swift in Sources */,
 				6AAC8FCD19F048FE00E7A677 /* FromJSON.swift in Sources */,
@@ -882,6 +961,7 @@
 				6AECC9E61D79E29100222E7A /* DictionaryTransformTests.swift in Sources */,
 				6A0BF1FF1C0B53470083D1AF /* ToObjectTests.swift in Sources */,
 				CD44374D1AAE9C1100A271BA /* NestedKeysTests.swift in Sources */,
+				491D7995216FB8B2006DB931 /* CodableTests.swift in Sources */,
 				6A3774341A31427F00CC0AB5 /* BasicTypesTestsToJSON.swift in Sources */,
 				84D4F8571CC3B71B008B0FB6 /* NSDecimalNumberTransformTests.swift in Sources */,
 				6A412A171BAC770C001C3F67 /* ClassClusterTests.swift in Sources */,
@@ -915,6 +995,7 @@
 				CD16031F1AC02461000CD69A /* ISO8601DateTransform.swift in Sources */,
 				CD1603211AC02472000CD69A /* TransformOf.swift in Sources */,
 				CD1603231AC02472000CD69A /* URLTransform.swift in Sources */,
+				491D799D216FBA9A006DB931 /* CodableTransform.swift in Sources */,
 				CD16031C1AC02451000CD69A /* ToJSON.swift in Sources */,
 				CD16031D1AC02461000CD69A /* DateTransform.swift in Sources */,
 				CD1603191AC02451000CD69A /* Mapper.swift in Sources */,
@@ -938,6 +1019,7 @@
 				6AA1F66D1BE9468D006EF513 /* NestedArrayTests.swift in Sources */,
 				6AECC9E71D79E29100222E7A /* DictionaryTransformTests.swift in Sources */,
 				6A412A181BAC830B001C3F67 /* ClassClusterTests.swift in Sources */,
+				491D7996216FB8B2006DB931 /* CodableTests.swift in Sources */,
 				CD1603261AC02480000CD69A /* BasicTypesTestsFromJSON.swift in Sources */,
 				6A0BF2001C0B53470083D1AF /* ToObjectTests.swift in Sources */,
 				84D4F8581CC3B71B008B0FB6 /* NSDecimalNumberTransformTests.swift in Sources */,
@@ -950,6 +1032,36 @@
 				DC99C8CD1CA261AD005C788C /* NullableKeysFromJSONTests.swift in Sources */,
 				CD1603281AC02480000CD69A /* CustomTransformTests.swift in Sources */,
 				030114AD1D951A5300FBFD4F /* ImmutableTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBB9B41B2142A25100078E5A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBB9B4332142A2ED00078E5A /* DictionaryTransform.swift in Sources */,
+				DBB9B4312142A2ED00078E5A /* EnumTransform.swift in Sources */,
+				DBB9B4292142A2E600078E5A /* EnumOperators.swift in Sources */,
+				DBB9B42B2142A2E600078E5A /* IntegerOperators.swift in Sources */,
+				DBB9B4302142A2ED00078E5A /* URLTransform.swift in Sources */,
+				DBB9B4262142A2E100078E5A /* ImmutableMappable.swift in Sources */,
+				DBB9B42F2142A2ED00078E5A /* TransformType.swift in Sources */,
+				DBB9B42D2142A2E600078E5A /* ToJSON.swift in Sources */,
+				DBB9B4232142A2D800078E5A /* Map.swift in Sources */,
+				DBB9B4252142A2E100078E5A /* Mappable.swift in Sources */,
+				DBB9B42C2142A2E600078E5A /* FromJSON.swift in Sources */,
+				DBB9B4372142A2F200078E5A /* DateFormatterTransform.swift in Sources */,
+				DBB9B4242142A2E100078E5A /* MapError.swift in Sources */,
+				DBB9B4392142A2F200078E5A /* CustomDateFormatTransform.swift in Sources */,
+				DBB9B4272142A2E100078E5A /* Mapper.swift in Sources */,
+				DBB9B42E2142A2ED00078E5A /* TransformOf.swift in Sources */,
+				DBB9B4352142A2ED00078E5A /* HexColorTransform.swift in Sources */,
+				DBB9B42A2142A2E600078E5A /* TransformOperators.swift in Sources */,
+				DBB9B4382142A2F200078E5A /* ISO8601DateTransform.swift in Sources */,
+				DBB9B4362142A2F200078E5A /* DateTransform.swift in Sources */,
+				DBB9B4322142A2ED00078E5A /* NSDecimalNumberTransform.swift in Sources */,
+				DBB9B4342142A2ED00078E5A /* DataTransform.swift in Sources */,
+				DBB9B4282142A2E600078E5A /* Operators.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -968,7 +1080,7 @@
 		};
 		CD16030C1AC023D6000CD69A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CD1602FE1AC023D5000CD69A /* ObjectMapper-Mac */;
+			target = CD1602FE1AC023D5000CD69A /* ObjectMapper-macOS */;
 			targetProxy = CD16030B1AC023D6000CD69A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -991,11 +1103,11 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hearst.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tristanhimmelman.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
@@ -1020,11 +1132,11 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hearst.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tristanhimmelman.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
@@ -1040,10 +1152,10 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hearst.ObjectMapper-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tristanhimmelman.ObjectMapper-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
@@ -1058,10 +1170,10 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hearst.ObjectMapper-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tristanhimmelman.ObjectMapper-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
@@ -1083,11 +1195,11 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hearst.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tristanhimmelman.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
@@ -1111,11 +1223,11 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hearst.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tristanhimmelman.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
@@ -1134,12 +1246,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1191,12 +1305,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1241,11 +1357,11 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hearst.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tristanhimmelman.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
@@ -1263,11 +1379,11 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hearst.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tristanhimmelman.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
@@ -1322,11 +1438,12 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hearst.$(PRODUCT_NAME:rfc1034identifier)";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tristanhimmelman.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
@@ -1349,11 +1466,12 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hearst.$(PRODUCT_NAME:rfc1034identifier)";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tristanhimmelman.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
@@ -1374,7 +1492,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.heart.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -1391,7 +1509,56 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.heart.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+		DBB9B4202142A25100078E5A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_NAME = ObjectMapper;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		DBB9B4212142A25100078E5A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_NAME = ObjectMapper;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -1452,7 +1619,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CD1603161AC023D6000CD69A /* Build configuration list for PBXNativeTarget "ObjectMapper-Mac" */ = {
+		CD1603161AC023D6000CD69A /* Build configuration list for PBXNativeTarget "ObjectMapper-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CD1603121AC023D6000CD69A /* Debug */,
@@ -1461,11 +1628,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CD1603171AC023D6000CD69A /* Build configuration list for PBXNativeTarget "ObjectMapper-MacTests" */ = {
+		CD1603171AC023D6000CD69A /* Build configuration list for PBXNativeTarget "ObjectMapper-macOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CD1603141AC023D6000CD69A /* Debug */,
 				CD1603151AC023D6000CD69A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DBB9B4222142A25100078E5A /* Build configuration list for PBXNativeTarget "ObjectMapper-Mac-Static" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DBB9B4202142A25100078E5A /* Debug */,
+				DBB9B4212142A25100078E5A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

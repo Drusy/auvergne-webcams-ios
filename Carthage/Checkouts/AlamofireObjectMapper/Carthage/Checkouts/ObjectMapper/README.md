@@ -1,9 +1,9 @@
 ObjectMapper
 ============
-[![CocoaPods](https://img.shields.io/cocoapods/v/ObjectMapper.svg)](https://github.com/Hearst-DD/ObjectMapper)
+[![CocoaPods](https://img.shields.io/cocoapods/v/ObjectMapper.svg)](https://github.com/tristanhimmelman/ObjectMapper)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Swift Package Manager](https://rawgit.com/jlyonsmith/artwork/master/SwiftPackageManager/swiftpackagemanager-compatible.svg)](https://swift.org/package-manager/)
-[![Build Status](https://travis-ci.org/Hearst-DD/ObjectMapper.svg?branch=master)](https://travis-ci.org/Hearst-DD/ObjectMapper)
+[![Build Status](https://travis-ci.org/tristanhimmelman/ObjectMapper.svg?branch=master)](https://travis-ci.org/tristanhimmelman/ObjectMapper)
 
 ObjectMapper is a framework written in Swift that makes it easy for you to convert your model objects (classes and structs) to and from JSON. 
 
@@ -143,10 +143,9 @@ Note: `StaticMappable`, like `Mappable`, is a sub protocol of `BaseMappable` whi
 ObjectMapper uses this function to get objects to use for mapping. Developers should return an instance of an object that conforms to `BaseMappable` in this function. This function can also be used to:
 - validate JSON prior to object serialization
 - provide an existing cached object to be used for mapping
-- return an object of another type (which also conforms to BaseMappable) to be used for mapping. For instance, you may inspect the JSON to infer the type of object that should be used for mapping ([see examples in ClassClusterTests.swift](https://github.com/Hearst-DD/ObjectMapper/blob/master/Tests/ObjectMapperTests/ClassClusterTests.swift#L67))
+- return an object of another type (which also conforms to `BaseMappable`) to be used for mapping. For instance, you may inspect the JSON to infer the type of object that should be used for mapping ([see examples in ClassClusterTests.swift](https://github.com/Hearst-DD/ObjectMapper/blob/master/Tests/ObjectMapperTests/ClassClusterTests.swift#L67))
 
-
-If you need to implemented ObjectMapper in an extension, you will need to select this protocol instead of `Mappable`. 
+If you need to implement ObjectMapper in an extension, you will need to adopt this protocol instead of `Mappable`. 
 
 ## `ImmutableMappable` Protocol
 
@@ -254,7 +253,7 @@ init(map: Map) throws {
 
 #### `mutating func mapping(map: Map)`
 
-This method is where the reverse transform is performed (Model to JSON). Since immutable properties can not be mapped with the `<-` operator, developers have to define the reverse transform using the `>>>` operator.
+This method is where the reverse transform is performed (model to JSON). Since immutable properties cannot be mapped with the `<-` operator, developers have to define the reverse transform using the `>>>` operator.
 
 ```swift
 mutating func mapping(map: Map) {
@@ -264,7 +263,6 @@ mutating func mapping(map: Map) {
     posts     >>> map["posts"]
 }
 ```
-
 
 # Easy Mapping of Nested Objects
 ObjectMapper supports dot notation within keys for easy mapping of nested objects. Given the following JSON String:
@@ -281,7 +279,7 @@ func mapping(map: Map) {
 }
 ```
 Nested keys also support accessing values from an array. Given a JSON response with an array of distances, the value could be accessed as follows:
-```
+```swift
 distance <- map["distances.0.value"]
 ```
 If you have a key that contains `.`, you can individually disable the above feature as follows:
@@ -290,7 +288,7 @@ func mapping(map: Map) {
     identifier <- map["app.identifier", nested: false]
 }
 ```
-When you have nested keys which contain `.`, you can pass the custom nested key delimiter as follows ([#629](https://github.com/Hearst-DD/ObjectMapper/pull/629)):
+When you have nested keys which contain `.`, you can pass the custom nested key delimiter as follows ([#629](https://github.com/tristanhimmelman/ObjectMapper/pull/629)):
 ```swift
 func mapping(map: Map) {
     appName <- map["com.myapp.info->com.myapp.name", delimiter: "->"]
@@ -298,13 +296,13 @@ func mapping(map: Map) {
 ```
 
 # Custom Transforms
-ObjectMapper also supports custom transforms that convert values during the mapping process. To use a transform, simply create a tuple with ```map["field_name"]``` and the transform of your choice on the right side of the ```<-``` operator:
+ObjectMapper also supports custom transforms that convert values during the mapping process. To use a transform, simply create a tuple with `map["field_name"]` and the transform of your choice on the right side of the `<-` operator:
 ```swift
 birthday <- (map["birthday"], DateTransform())
 ```
 The above transform will convert the JSON Int value to an Date when reading JSON and will convert the Date to an Int when converting objects to JSON.
 
-You can easily create your own custom transforms by adopting and implementing the methods in the ```TransformType``` protocol:
+You can easily create your own custom transforms by adopting and implementing the methods in the `TransformType` protocol:
 ```swift
 public protocol TransformType {
     associatedtype Object
@@ -316,9 +314,9 @@ public protocol TransformType {
 ```
 
 ### TransformOf
-In a lot of situations you can use the built-in transform class ```TransformOf``` to quickly perform a desired transformation. ```TransformOf``` is initialized with two types and two closures. The types define what the transform is converting to and from and the closures perform the actual transformation. 
+In a lot of situations you can use the built-in transform class `TransformOf` to quickly perform a desired transformation. `TransformOf` is initialized with two types and two closures. The types define what the transform is converting to and from and the closures perform the actual transformation. 
 
-For example, if you want to transform a JSON String value to an Int you could use ```TransformOf``` as follows:
+For example, if you want to transform a JSON `String` value to an `Int` you could use `TransformOf` as follows:
 ```swift
 let transform = TransformOf<Int, String>(fromJSON: { (value: String?) -> Int? in 
     // transform value from String? to Int?
@@ -340,7 +338,7 @@ id <- (map["id"], TransformOf<Int, String>(fromJSON: { Int($0!) }, toJSON: { $0.
 
 # Subclasses
 
-Classes that implement the ```Mappable``` protocol can easily be subclassed. When subclassing mappable classes, follow the structure below:
+Classes that implement the `Mappable` protocol can easily be subclassed. When subclassing mappable classes, follow the structure below:
 
 ```swift
 class Base: Mappable {
@@ -442,14 +440,16 @@ class Model: Object, Mappable {
 }
 ```
 
-If you want to serialize associated RealmObjects, you can use [ObjectMapper+Realm](https://github.com/jakenberg/ObjectMapper-Realm). It is a simple Realm extension that serializes arbitrary JSON into Realm's List class.
+If you want to serialize associated RealmObjects, you can use [ObjectMapper+Realm](https://github.com/jakenberg/ObjectMapper-Realm). It is a simple Realm extension that serializes arbitrary JSON into Realm's `List` class.
 
-To serialize Swift String, Int, Double and Bool arrays you can use [ObjectMapperAdditions/Realm](https://github.com/APUtils/ObjectMapperAdditions#realm-features). It'll wrap Swift types into RealmValues that can be stored in Realm's List class.
+To serialize Swift `String`, `Int`, `Double` and `Bool` arrays you can use [ObjectMapperAdditions/Realm](https://github.com/APUtils/ObjectMapperAdditions#realm-features). It'll wrap Swift types into RealmValues that can be stored in Realm's `List` class.
 
-Note: Generating a JSON string of a Realm Object using ObjectMappers' `toJSON` function only works within a Realm write transaction. This is caused because ObjectMapper uses the `inout` flag in its mapping functions (`<-`) which are used both for serializing and deserializing. Realm detects the flag and forces the `toJSON` function to be called within a write block even though the objects are not being modified.
+Note: Generating a JSON string of a Realm Object using ObjectMappers' `toJSON` function only works within a Realm write transaction. This is because ObjectMapper uses the `inout` flag in its mapping functions (`<-`) which are used both for serializing and deserializing. Realm detects the flag and forces the `toJSON` function to be called within a write block even though the objects are not being modified.
 
 # Projects Using ObjectMapper
 - [Xcode Plugin for generating `Mappable` and `ImmutableMappable` code](https://github.com/liyanhuadev/ObjectMapper-Plugin)
+
+- [Json4Swift - Supports generating `ImmutableMappable` structs online (no plugins needed)](http://www.json4swift.com)
 
 If you have a project that utilizes, extends or provides tooling for ObjectMapper, please submit a PR with a link to your project in this section of the README.
 
@@ -468,28 +468,28 @@ Before submitting any pull request, please ensure you have run the included test
 ObjectMapper can be added to your project using [CocoaPods 0.36 or later](http://blog.cocoapods.org/Pod-Authors-Guide-to-CocoaPods-Frameworks/) by adding the following line to your `Podfile`:
 
 ```ruby
-pod 'ObjectMapper', '~> 3.2'
+pod 'ObjectMapper', '~> 3.4'
 ```
 
 ### Carthage
 If you're using [Carthage](https://github.com/Carthage/Carthage) you can add a dependency on ObjectMapper by adding it to your `Cartfile`:
 
 ```
-github "Hearst-DD/ObjectMapper" ~> 3.2
+github "tristanhimmelman/ObjectMapper" ~> 3.4
 ```
 
 ### Swift Package Manager
 To add ObjectMapper to a [Swift Package Manager](https://swift.org/package-manager/) based project, add:
 
 ```swift
-.Package(url: "https://github.com/Hearst-DD/ObjectMapper.git", majorVersion: 3, minor: 2),
+.Package(url: "https://github.com/tristanhimmelman/ObjectMapper.git", majorVersion: 3, minor: 4),
 ```
 to your `Package.swift` files `dependencies` array.
 
 ### Submodule
 Otherwise, ObjectMapper can be added as a submodule:
 
-1. Add ObjectMapper as a [submodule](http://git-scm.com/docs/git-submodule) by opening the terminal, `cd`-ing into your top-level project directory, and entering the command `git submodule add https://github.com/Hearst-DD/ObjectMapper.git`
+1. Add ObjectMapper as a [submodule](http://git-scm.com/docs/git-submodule) by opening the terminal, `cd`-ing into your top-level project directory, and entering the command `git submodule add https://github.com/tristanhimmelman/ObjectMapper.git`
 2. Open the `ObjectMapper` folder, and drag `ObjectMapper.xcodeproj` into the file navigator of your app project.
 3. In Xcode, navigate to the target configuration window by clicking on the blue project icon, and selecting the application target under the "Targets" heading in the sidebar.
 4. Ensure that the deployment target of `ObjectMapper.framework` matches that of the application target.

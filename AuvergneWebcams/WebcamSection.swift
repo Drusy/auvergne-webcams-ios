@@ -76,7 +76,7 @@ class WebcamSection: Object, Mappable {
             weatherID = section.weatherID
         }
         
-        webcams.append(contentsOf: webcamsArray)
+        webcams.append(objectsIn: webcamsArray)
     }
     
     override static func primaryKey() -> String? {

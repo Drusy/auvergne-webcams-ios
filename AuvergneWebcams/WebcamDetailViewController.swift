@@ -12,7 +12,7 @@ import Reachability
 import SwiftyUserDefaults
 import MessageUI
 import NVActivityIndicatorView
-import DOFavoriteButton
+import DOFavoriteButtonNew
 import Alamofire
 import AVFoundation
 import AVKit
@@ -39,7 +39,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     @IBOutlet weak var nvActivityIndicatorView: NVActivityIndicatorView!
     @IBOutlet weak var lastUpdateLabel: UILabel!
     @IBOutlet weak var lowQualityView: UIVisualEffectView!
-    @IBOutlet weak var favoriteButton: DOFavoriteButton!
+    @IBOutlet weak var favoriteButton: DOFavoriteButtonNew!
     @IBOutlet weak var videoContainer: UIView!
     @IBOutlet weak var informationLabel: UILabel!
     
@@ -176,7 +176,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     
     // MARK: - IBActions
     
-    @IBAction func onFavoriteTouched(_ sender: DOFavoriteButton) {
+    @IBAction func onFavoriteTouched(_ sender: DOFavoriteButtonNew) {
         if sender.isSelected {
             sender.deselect()
             QuickActionsService.shared.quickActionEdit(webcam: webcam, value: .delete)

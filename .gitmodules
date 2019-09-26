@@ -1,0 +1,33 @@
+[submodule "Carthage/Checkouts/ObjectMapper"]
+	url = https://github.com/Hearst-DD/ObjectMapper.git
+[submodule "Carthage/Checkouts/Siren"]
+	url = https://github.com/ArtSabintsev/Siren.git
+[submodule "Carthage/Checkouts/ActiveLabel.swift"]
+	url = https://github.com/optonaut/ActiveLabel.swift.git
+[submodule "Carthage/Checkouts/Reachability.swift"]
+	url = https://github.com/ashleymills/Reachability.swift.git
+[submodule "Carthage/Checkouts/realm-cocoa"]
+	url = https://github.com/realm/realm-cocoa.git
+[submodule "Carthage/Checkouts/SwiftiumKit"]
+	url = https://github.com/Openium/SwiftiumKit.git
+[submodule "Carthage/Checkouts/SwiftyUserDefaults"]
+	url = https://github.com/radex/SwiftyUserDefaults.git
+[submodule "Carthage/Checkouts/AlamofireObjectMapper"]
+	url = https://github.com/tristanhimmelman/AlamofireObjectMapper.git
+[submodule "Carthage/Checkouts/Alamofire"]
+	url = https://github.com/Alamofire/Alamofire.git
+[submodule "Carthage/Checkouts/NVActivityIndicatorView"]
+	url = https://github.com/ninjaprox/NVActivityIndicatorView.git
+[submodule "Carthage/Checkouts/Kingfisher"]
+	url = https://github.com/onevcat/Kingfisher.git
+[submodule "Carthage/Checkouts/Eureka"]
+	url = https://github.com/xmartlabs/Eureka.git
+[submodule "Carthage/Checkouts/SVProgressHUD"]
+	url = https://github.com/SVProgressHUD/SVProgressHUD.git
+[submodule "Carthage/Checkouts/DOFavoriteButton"]
+	url = https://github.com/ghostlordstar/DOFavoriteButton.git
+[submodule "Carthage/Checkouts/AlamofireNetworkActivityIndicator"]
+	url = https://github.com/Alamofire/AlamofireNetworkActivityIndicator.git
+[submodule "Carthage/Checkouts/SwiftyAttributes"]
+	path = Carthage/Checkouts/SwiftyAttributes
+	url = https://github.com/eddiekaiger/SwiftyAttributes.git

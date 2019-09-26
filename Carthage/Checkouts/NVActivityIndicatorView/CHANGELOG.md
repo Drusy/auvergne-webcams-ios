@@ -1,5 +1,29 @@
 # Change log
 
+## [4.8.0](https://github.com/ninjaprox/NVActivityIndicatorView/releases/tag/4.8.0)
+* Add Swift Package Manager support (#290)
+
+## [4.7.0](https://github.com/ninjaprox/NVActivityIndicatorView/releases/tag/4.7.0)
+* Default nil fadeInAnimation and fadeOutAnimation (#264)
+* Swift 5 migration (#274)
+
+## [4.6.1](https://github.com/ninjaprox/NVActivityIndicatorView/releases/tag/4.6.1)
+* Fix #261
+
+## [4.6.0](https://github.com/ninjaprox/NVActivityIndicatorView/releases/tag/4.6.0)
+* New NVActivityIndicatorAnimationBallDoubleBounce animation (#258)
+* Unify product name (#260)
+
+## [4.5.1](https://github.com/ninjaprox/NVActivityIndicatorView/releases/tag/4.5.1)
+* Fix #251
+
+## [4.5.0](https://github.com/ninjaprox/NVActivityIndicatorView/releases/tag/4.5.0)
+* Add tvOS target (#248)
+
+## [4.4.1](https://github.com/ninjaprox/NVActivityIndicatorView/releases/tag/4.4.1)
+* Don’t start/stop animating if unnecessary (#239)
+* Specify Swift version in Podspec (#245)
+
 ## [4.4.0](https://github.com/ninjaprox/NVActivityIndicatorView/releases/tag/4.4.0)
 * Fix #211
 * Swift 4.2 migration

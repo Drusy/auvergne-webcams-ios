@@ -38,7 +38,7 @@ class DownloadManager {
                     realm.delete(sections)
                     realm.delete(webcams)
                     
-                    realm.add(webcamSectionsResponse.sections, update: true)
+                    realm.add(webcamSectionsResponse.sections, update: .all)
                 }
                 QuickActionsService.shared.registerQuickActions()
             }
@@ -52,7 +52,7 @@ class DownloadManager {
         if let json = try? String(contentsOfFile: path, encoding: String.Encoding.utf8) {
             if let webcamSectionsResponse = Mapper<WebcamSectionResponse>().map(JSONString: json) {
                 try! realm.write {
-                    realm.add(webcamSectionsResponse.sections, update: true)
+                    realm.add(webcamSectionsResponse.sections, update: .all)
                 }
                 QuickActionsService.shared.registerQuickActions()
             }

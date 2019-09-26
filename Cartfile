@@ -1,4 +1,4 @@
-github "radex/SwiftyUserDefaults" ~> 3.0
+github "radex/SwiftyUserDefaults" ~> 4.0
 github "ArtSabintsev/Siren" ~> 3.7
 github "ashleymills/Reachability.swift" ~> 4.3
 github "onevcat/Kingfisher" ~> 4.10
@@ -12,6 +12,6 @@ github "realm/realm-cocoa" ~> 3.11
 binary "https://www.mapbox.com/ios-sdk/Mapbox-iOS-SDK.json" ~> 4.4
 github "Alamofire/AlamofireNetworkActivityIndicator" ~> 2.3
 github "ninjaprox/NVActivityIndicatorView" ~> 4.4
-github "okmr-d/DOFavoriteButton" "master"
+github "ghostlordstar/DOFavoriteButton" "master"
 github "SVProgressHUD/SVProgressHUD" ~> 2.2
-
+github "eddiekaiger/SwiftyAttributes" ~> 5.1

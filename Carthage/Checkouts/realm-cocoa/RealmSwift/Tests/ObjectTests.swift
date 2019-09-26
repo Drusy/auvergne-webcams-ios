@@ -25,7 +25,7 @@ private func nextDynamicDefaultSeed() -> Int {
     dynamicDefaultSeed += 1
     return dynamicDefaultSeed
 }
-class DynamicDefaultObject: Object {
+class SwiftDynamicDefaultObject: Object {
     @objc dynamic var intCol = nextDynamicDefaultSeed()
     @objc dynamic var floatCol = Float(nextDynamicDefaultSeed())
     @objc dynamic var doubleCol = Double(nextDynamicDefaultSeed())
@@ -115,21 +115,21 @@ class ObjectTests: TestCase {
     func testDescription() {
         let object = SwiftObject()
         // swiftlint:disable line_length
-        assertMatches(object.description, "SwiftObject \\{\n\tboolCol = 0;\n\tintCol = 123;\n\tfloatCol = 1\\.23;\n\tdoubleCol = 12\\.3;\n\tstringCol = a;\n\tbinaryCol = <61 — 1 total bytes>;\n\tdateCol = 1970-01-01 00:00:01 \\+0000;\n\tobjectCol = SwiftBoolObject \\{\n\t\tboolCol = 0;\n\t\\};\n\tarrayCol = List<SwiftBoolObject> <0x[0-9a-f]+> \\(\n\t\n\t\\);\n\\}")
+        assertMatches(object.description, "SwiftObject \\{\n\tboolCol = 0;\n\tintCol = 123;\n\tfloatCol = 1\\.23;\n\tdoubleCol = 12\\.3;\n\tstringCol = a;\n\tbinaryCol = <.*61.*>;\n\tdateCol = 1970-01-01 00:00:01 \\+0000;\n\tobjectCol = SwiftBoolObject \\{\n\t\tboolCol = 0;\n\t\\};\n\tarrayCol = List<SwiftBoolObject> <0x[0-9a-f]+> \\(\n\t\n\t\\);\n\\}")
 
         let recursiveObject = SwiftRecursiveObject()
         recursiveObject.objects.append(recursiveObject)
         assertMatches(recursiveObject.description, "SwiftRecursiveObject \\{\n\tobjects = List<SwiftRecursiveObject> <0x[0-9a-f]+> \\(\n\t\t\\[0\\] SwiftRecursiveObject \\{\n\t\t\tobjects = List<SwiftRecursiveObject> <0x[0-9a-f]+> \\(\n\t\t\t\t\\[0\\] SwiftRecursiveObject \\{\n\t\t\t\t\tobjects = <Maximum depth exceeded>;\n\t\t\t\t\\}\n\t\t\t\\);\n\t\t\\}\n\t\\);\n\\}")
 
-        let renamedObject = LinkToRenamedProperties1()
-        renamedObject.linkA = RenamedProperties1()
-        assertMatches(renamedObject.description, "LinkToRenamedProperties1 \\{\n\tlinkA = RenamedProperties1 \\{\n\t\tpropA = 0;\n\t\tpropB = ;\n\t\\};\n\tlinkB = \\(null\\);\n\tarray1 = List<RenamedProperties1> <0x[0-9a-f]+> \\(\n\t\n\t\\);\n\\}")
-        assertMatches(renamedObject.linkA!.linking1.description, "LinkingObjects<LinkToRenamedProperties1> <0x[0-9a-f]+> \\(\n\n\\)")
+        let renamedObject = LinkToSwiftRenamedProperties1()
+        renamedObject.linkA = SwiftRenamedProperties1()
+        assertMatches(renamedObject.description, "LinkToSwiftRenamedProperties1 \\{\n\tlinkA = SwiftRenamedProperties1 \\{\n\t\tpropA = 0;\n\t\tpropB = ;\n\t\\};\n\tlinkB = \\(null\\);\n\tarray1 = List<SwiftRenamedProperties1> <0x[0-9a-f]+> \\(\n\t\n\t\\);\n\\}")
+        assertMatches(renamedObject.linkA!.linking1.description, "LinkingObjects<LinkToSwiftRenamedProperties1> <0x[0-9a-f]+> \\(\n\n\\)")
 
         let realm = try! Realm()
         try! realm.write { realm.add(renamedObject) }
-        assertMatches(renamedObject.description, "LinkToRenamedProperties1 \\{\n\tlinkA = RenamedProperties1 \\{\n\t\tpropA = 0;\n\t\tpropB = ;\n\t\\};\n\tlinkB = \\(null\\);\n\tarray1 = List<RenamedProperties1> <0x[0-9a-f]+> \\(\n\t\n\t\\);\n\\}")
-        assertMatches(renamedObject.linkA!.linking1.description, "LinkingObjects<LinkToRenamedProperties1> <0x[0-9a-f]+> \\(\n\t\\[0\\] LinkToRenamedProperties1 \\{\n\t\tlinkA = RenamedProperties1 \\{\n\t\t\tpropA = 0;\n\t\t\tpropB = ;\n\t\t\\};\n\t\tlinkB = \\(null\\);\n\t\tarray1 = List<RenamedProperties1> <0x[0-9a-f]+> \\(\n\t\t\n\t\t\\);\n\t\\}\n\\)")
+        assertMatches(renamedObject.description, "LinkToSwiftRenamedProperties1 \\{\n\tlinkA = SwiftRenamedProperties1 \\{\n\t\tpropA = 0;\n\t\tpropB = ;\n\t\\};\n\tlinkB = \\(null\\);\n\tarray1 = List<SwiftRenamedProperties1> <0x[0-9a-f]+> \\(\n\t\n\t\\);\n\\}")
+        assertMatches(renamedObject.linkA!.linking1.description, "LinkingObjects<LinkToSwiftRenamedProperties1> <0x[0-9a-f]+> \\(\n\t\\[0\\] LinkToSwiftRenamedProperties1 \\{\n\t\tlinkA = SwiftRenamedProperties1 \\{\n\t\t\tpropA = 0;\n\t\t\tpropB = ;\n\t\t\\};\n\t\tlinkB = \\(null\\);\n\t\tarray1 = List<SwiftRenamedProperties1> <0x[0-9a-f]+> \\(\n\t\t\n\t\t\\);\n\t\\}\n\\)")
         // swiftlint:enable line_length
     }
 
@@ -221,7 +221,7 @@ class ObjectTests: TestCase {
     }
 
     func testDynamicDefaultPropertyValues() {
-        func assertDifferentPropertyValues(_ obj1: DynamicDefaultObject, _ obj2: DynamicDefaultObject) {
+        func assertDifferentPropertyValues(_ obj1: SwiftDynamicDefaultObject, _ obj2: SwiftDynamicDefaultObject) {
             XCTAssertNotEqual(obj1.intCol, obj2.intCol)
             XCTAssertNotEqual(obj1.floatCol, obj2.floatCol)
             XCTAssertNotEqual(obj1.doubleCol, obj2.doubleCol)
@@ -230,11 +230,11 @@ class ObjectTests: TestCase {
             XCTAssertNotEqual(obj1.stringCol, obj2.stringCol)
             XCTAssertNotEqual(obj1.binaryCol, obj2.binaryCol)
         }
-        assertDifferentPropertyValues(DynamicDefaultObject(), DynamicDefaultObject())
+        assertDifferentPropertyValues(SwiftDynamicDefaultObject(), SwiftDynamicDefaultObject())
         let realm = try! Realm()
         try! realm.write {
-            assertDifferentPropertyValues(realm.create(DynamicDefaultObject.self),
-                                          realm.create(DynamicDefaultObject.self))
+            assertDifferentPropertyValues(realm.create(SwiftDynamicDefaultObject.self),
+                                          realm.create(SwiftDynamicDefaultObject.self))
         }
     }
 

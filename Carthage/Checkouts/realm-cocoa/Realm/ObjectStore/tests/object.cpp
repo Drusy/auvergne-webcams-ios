@@ -53,12 +53,12 @@ struct TestContext : CppContext {
     { }
 
     util::Optional<util::Any>
-    default_value_for_property(ObjectSchema const& object, std::string const& prop)
+    default_value_for_property(ObjectSchema const& object, Property const& prop)
     {
         auto obj_it = defaults.find(object.name);
         if (obj_it == defaults.end())
             return util::none;
-        auto prop_it = obj_it->second.find(prop);
+        auto prop_it = obj_it->second.find(prop.name);
         if (prop_it == obj_it->second.end())
             return util::none;
         return prop_it->second;
@@ -140,6 +140,13 @@ TEST_CASE("object") {
         }},
         {"nullable string pk", {
             {"pk", PropertyType::String|PropertyType::Nullable, Property::IsPrimary{true}},
+        }},
+        {"person", {
+            {"name", PropertyType::String, Property::IsPrimary{true}},
+            {"age", PropertyType::Int},
+            {"scores", PropertyType::Array|PropertyType::Int},
+            {"assistant", PropertyType::Object|PropertyType::Nullable, "person"},
+            {"team", PropertyType::Array|PropertyType::Object, "person"},
         }},
     };
     config.schema_version = 0;
@@ -290,9 +297,21 @@ TEST_CASE("object") {
     }
 
     TestContext d(r);
-    auto create = [&](util::Any&& value, bool update) {
+    auto create = [&](util::Any&& value, bool update, bool update_only_diff = false) {
         r->begin_transaction();
-        auto obj = Object::create(d, r, *r->schema().find("all types"), value, update);
+        auto obj = Object::create(d, r, *r->schema().find("all types"), value, update, update_only_diff);
+        r->commit_transaction();
+        return obj;
+    };
+    auto create_sub = [&](util::Any&& value, bool update, bool update_only_diff = false) {
+        r->begin_transaction();
+        auto obj = Object::create(d, r, *r->schema().find("link target"), value, update, update_only_diff);
+        r->commit_transaction();
+        return obj;
+    };
+    auto create_company = [&](util::Any&& value, bool update, bool update_only_diff = false) {
+        r->begin_transaction();
+        auto obj = Object::create(d, r, *r->schema().find("person"), value, update, update_only_diff);
         r->commit_transaction();
         return obj;
     };
@@ -466,7 +485,9 @@ TEST_CASE("object") {
     }
 
     SECTION("create with update") {
-        auto obj = create(AnyDict{
+        CollectionChangeSet change;
+        bool callback_called;
+        Object obj = create(AnyDict{
             {"pk", INT64_C(1)},
             {"bool", true},
             {"int", INT64_C(5)},
@@ -486,11 +507,23 @@ TEST_CASE("object") {
             {"date array", AnyVec{}},
             {"object array", AnyVec{AnyDict{{"value", INT64_C(20)}}}},
         }, false);
+
+        auto token = obj.add_notification_callback([&](CollectionChangeSet c, std::exception_ptr) {
+            change = c;
+            callback_called = true;
+        });
+        advance_and_notify(*r);
+
         create(AnyDict{
             {"pk", INT64_C(1)},
             {"int", INT64_C(6)},
             {"string", "a"s},
         }, true);
+
+        callback_called = false;
+        advance_and_notify(*r);
+        REQUIRE(callback_called);
+        REQUIRE_INDICES(change.modifications, 0);
 
         auto row = obj.row();
         REQUIRE(row.get_int(0) == 1);
@@ -503,8 +536,89 @@ TEST_CASE("object") {
         REQUIRE(row.get_timestamp(7) == Timestamp(10, 20));
     }
 
-    SECTION("set existing fields to null with update") {
-        AnyDict initial_values{
+    SECTION("create with update - only with diffs") {
+        CollectionChangeSet change;
+        bool callback_called;
+        AnyDict adam {
+            {"name", "Adam"s},
+            {"age", INT64_C(32)},
+            {"scores", AnyVec{INT64_C(1), INT64_C(2)}},
+        };
+        AnyDict brian {
+            {"name", "Brian"s},
+            {"age", INT64_C(33)},
+        };
+        AnyDict charley {
+            {"name", "Charley"s},
+            {"age", INT64_C(34)},
+            {"team", AnyVec{adam, brian}}
+        };
+        AnyDict donald {
+            {"name", "Donald"s},
+            {"age", INT64_C(35)},
+        };
+        AnyDict eddie {
+            {"name", "Eddie"s},
+            {"age", INT64_C(36)},
+            {"assistant", donald},
+            {"team", AnyVec{donald, charley}}
+        };
+        Object obj = create_company(eddie, true);
+
+        auto table = r->read_group().get_table("class_person");
+        REQUIRE(table->size() == 5);
+        Results result(r, *table);
+        auto token = result.add_notification_callback([&](CollectionChangeSet c, std::exception_ptr) {
+            change = c;
+            callback_called = true;
+        });
+        advance_and_notify(*r);
+
+        // First update unconditionally
+        create_company(eddie, true, false);
+
+        callback_called = false;
+        advance_and_notify(*r);
+        REQUIRE(callback_called);
+        REQUIRE_INDICES(change.modifications, 0, 1, 2, 3, 4);
+
+        // Now, only update where differences (there should not be any diffs - so no update)
+        create_company(eddie, true, true);
+
+        REQUIRE(table->size() == 5);
+        callback_called = false;
+        advance_and_notify(*r);
+        REQUIRE(!callback_called);
+
+        // Now, only update sub-object)
+        donald["scores"] = AnyVec{INT64_C(3), INT64_C(4), INT64_C(5)};
+        // Insert the new donald
+        eddie["assistant"] = donald;
+        create_company(eddie, true, true);
+
+        REQUIRE(table->size() == 5);
+        callback_called = false;
+        advance_and_notify(*r);
+        REQUIRE(callback_called);
+        REQUIRE_INDICES(change.modifications, 1);
+
+        // Shorten list
+        donald["scores"] = AnyVec{INT64_C(3), INT64_C(4)};
+        eddie["assistant"] = donald;
+        create_company(eddie, true, true);
+
+        REQUIRE(table->size() == 5);
+        callback_called = false;
+        advance_and_notify(*r);
+        REQUIRE(callback_called);
+        REQUIRE_INDICES(change.modifications, 1);
+    }
+
+    SECTION("create with update - identical sub-object") {
+        bool callback_called;
+        bool sub_callback_called;
+        Object sub_obj = create_sub(AnyDict{{"value", INT64_C(10)}}, false);
+        Object obj = create(AnyDict{
             {"pk", INT64_C(1)},
             {"bool", true},
             {"int", INT64_C(5)},
@@ -513,71 +627,189 @@ TEST_CASE("object") {
             {"string", "hello"s},
             {"data", "olleh"s},
             {"date", Timestamp(10, 20)},
+            {"object", sub_obj},
+        }, false);
 
-            {"bool array", AnyVec{true, false}},
-            {"int array", AnyVec{INT64_C(5), INT64_C(6)}},
-            {"float array", AnyVec{1.1f, 2.2f}},
-            {"double array", AnyVec{3.3, 4.4}},
-            {"string array", AnyVec{"a"s, "b"s, "c"s}},
-            {"data array", AnyVec{"d"s, "e"s, "f"s}},
-            {"date array", AnyVec{}},
-            {"object array", AnyVec{AnyDict{{"value", INT64_C(20)}}}},
-        };
-        r->begin_transaction();
-        auto obj = Object::create(d, r, *r->schema().find("all optional types"), util::Any(initial_values));
+        auto token1 = obj.add_notification_callback([&](CollectionChangeSet, std::exception_ptr) {
+            callback_called = true;
+        });
+        auto token2 = sub_obj.add_notification_callback([&](CollectionChangeSet, std::exception_ptr) {
+            sub_callback_called = true;
+        });
+        advance_and_notify(*r);
 
-        // Missing fields in dictionary do not update anything
-        Object::create(d, r, *r->schema().find("all optional types"), util::Any(AnyDict{{"pk", INT64_C(1)}}), true);
+        auto table = r->read_group().get_table("class_link target");
+        REQUIRE(table->size() == 1);
 
-        REQUIRE(any_cast<bool>(obj.get_property_value<util::Any>(d, "bool")) == true);
-        REQUIRE(any_cast<int64_t>(obj.get_property_value<util::Any>(d, "int")) == 5);
-        REQUIRE(any_cast<float>(obj.get_property_value<util::Any>(d, "float")) == 2.2f);
-        REQUIRE(any_cast<double>(obj.get_property_value<util::Any>(d, "double")) == 3.3);
-        REQUIRE(any_cast<std::string>(obj.get_property_value<util::Any>(d, "string")) == "hello");
-        REQUIRE(any_cast<Timestamp>(obj.get_property_value<util::Any>(d, "date")) == Timestamp(10, 20));
-
-        REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "bool array")).get<util::Optional<bool>>(0) == true);
-        REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "int array")).get<util::Optional<int64_t>>(0) == 5);
-        REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "float array")).get<util::Optional<float>>(0) == 1.1f);
-        REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "double array")).get<util::Optional<double>>(0) == 3.3);
-        REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "string array")).get<StringData>(0) == "a");
-        REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "date array")).size() == 0);
-
-        AnyDict null_values{
+        create(AnyDict{
             {"pk", INT64_C(1)},
-            {"bool", util::Any()},
-            {"int", util::Any()},
-            {"float", util::Any()},
-            {"double", util::Any()},
-            {"string", util::Any()},
-            {"data", util::Any()},
-            {"date", util::Any()},
+            {"bool", true},
+            {"int", INT64_C(5)},
+            {"float", 2.2f},
+            {"double", 3.3},
+            {"string", "hello"s},
+            {"data", "olleh"s},
+            {"date", Timestamp(10, 20)},
+            {"object", AnyDict{{"value", INT64_C(10)}}},
+        }, true, true);
 
-            {"bool array", AnyVec{util::Any()}},
-            {"int array", AnyVec{util::Any()}},
-            {"float array", AnyVec{util::Any()}},
-            {"double array", AnyVec{util::Any()}},
-            {"string array", AnyVec{util::Any()}},
-            {"data array", AnyVec{util::Any()}},
-            {"date array", AnyVec{Timestamp()}},
+        REQUIRE(table->size() == 1);
+        callback_called = false;
+        sub_callback_called = false;
+        advance_and_notify(*r);
+        REQUIRE(!callback_called);
+        REQUIRE(!sub_callback_called);
+
+        // Now change sub object
+        create(AnyDict{
+            {"pk", INT64_C(1)},
+            {"bool", true},
+            {"int", INT64_C(5)},
+            {"float", 2.2f},
+            {"double", 3.3},
+            {"string", "hello"s},
+            {"data", "olleh"s},
+            {"date", Timestamp(10, 20)},
+            {"object", AnyDict{{"value", INT64_C(11)}}},
+        }, true, true);
+
+        callback_called = false;
+        sub_callback_called = false;
+        advance_and_notify(*r);
+        REQUIRE(!callback_called);
+        REQUIRE(sub_callback_called);
+    }
+
+    SECTION("create with update - identical array of sub-objects") {
+        bool callback_called;
+        auto dict = AnyDict{
+            {"pk", INT64_C(1)},
+            {"bool", true},
+            {"int", INT64_C(5)},
+            {"float", 2.2f},
+            {"double", 3.3},
+            {"string", "hello"s},
+            {"data", "olleh"s},
+            {"date", Timestamp(10, 20)},
+            {"object array", AnyVec{ AnyDict{{"value", INT64_C(20)}}, AnyDict{{"value", INT64_C(21)}} } },
         };
-        Object::create(d, r, *r->schema().find("all optional types"), util::Any(null_values), true);
+        Object obj = create(dict, false);
 
-        REQUIRE_FALSE(obj.get_property_value<util::Any>(d, "bool").has_value());
-        REQUIRE_FALSE(obj.get_property_value<util::Any>(d, "int").has_value());
-        REQUIRE_FALSE(obj.get_property_value<util::Any>(d, "float").has_value());
-        REQUIRE_FALSE(obj.get_property_value<util::Any>(d, "double").has_value());
-        REQUIRE_FALSE(obj.get_property_value<util::Any>(d, "string").has_value());
-        REQUIRE_FALSE(obj.get_property_value<util::Any>(d, "data").has_value());
-        REQUIRE_FALSE(obj.get_property_value<util::Any>(d, "date").has_value());
+        auto token1 = obj.add_notification_callback([&](CollectionChangeSet, std::exception_ptr) {
+            callback_called = true;
+        });
+        advance_and_notify(*r);
 
-        REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "bool array")).get<util::Optional<bool>>(0) == util::none);
-        REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "int array")).get<util::Optional<int64_t>>(0) == util::none);
-        REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "float array")).get<util::Optional<float>>(0) == util::none);
-        REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "double array")).get<util::Optional<double>>(0) == util::none);
-        REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "string array")).get<StringData>(0) == StringData());
-        REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "data array")).get<BinaryData>(0) == BinaryData());
-        REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "date array")).get<Timestamp>(0) == Timestamp());
+        create(dict, true, true);
+
+        callback_called = false;
+        advance_and_notify(*r);
+        REQUIRE(!callback_called);
+
+        // Now change list
+        dict["object array"] = AnyVec{AnyDict{{"value", INT64_C(23)}}};
+        create(dict, true, true);
+
+        callback_called = false;
+        advance_and_notify(*r);
+        REQUIRE(callback_called);
+    }
+
+    for (auto diffed_update : {false, true}) {
+        SECTION("set existing fields to null with update "s + (diffed_update ? "(diffed)" : "(all)")) {
+            AnyDict initial_values{
+                {"pk", INT64_C(1)},
+                {"bool", true},
+                {"int", INT64_C(5)},
+                {"float", 2.2f},
+                {"double", 3.3},
+                {"string", "hello"s},
+                {"data", "olleh"s},
+                {"date", Timestamp(10, 20)},
+
+                {"bool array", AnyVec{true, false}},
+                {"int array", AnyVec{INT64_C(5), INT64_C(6)}},
+                {"float array", AnyVec{1.1f, 2.2f}},
+                {"double array", AnyVec{3.3, 4.4}},
+                {"string array", AnyVec{"a"s, "b"s, "c"s}},
+                {"data array", AnyVec{"d"s, "e"s, "f"s}},
+                {"date array", AnyVec{}},
+                {"object array", AnyVec{AnyDict{{"value", INT64_C(20)}}}},
+            };
+            r->begin_transaction();
+            auto obj = Object::create(d, r, *r->schema().find("all optional types"), util::Any(initial_values));
+
+            // Missing fields in dictionary do not update anything
+            Object::create(d, r, *r->schema().find("all optional types"),
+                           util::Any(AnyDict{{"pk", INT64_C(1)}}), true, diffed_update);
+
+            REQUIRE(any_cast<bool>(obj.get_property_value<util::Any>(d, "bool")) == true);
+            REQUIRE(any_cast<int64_t>(obj.get_property_value<util::Any>(d, "int")) == 5);
+            REQUIRE(any_cast<float>(obj.get_property_value<util::Any>(d, "float")) == 2.2f);
+            REQUIRE(any_cast<double>(obj.get_property_value<util::Any>(d, "double")) == 3.3);
+            REQUIRE(any_cast<std::string>(obj.get_property_value<util::Any>(d, "string")) == "hello");
+            REQUIRE(any_cast<Timestamp>(obj.get_property_value<util::Any>(d, "date")) == Timestamp(10, 20));
+
+            REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "bool array")).get<util::Optional<bool>>(0) == true);
+            REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "int array")).get<util::Optional<int64_t>>(0) == 5);
+            REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "float array")).get<util::Optional<float>>(0) == 1.1f);
+            REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "double array")).get<util::Optional<double>>(0) == 3.3);
+            REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "string array")).get<StringData>(0) == "a");
+            REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "date array")).size() == 0);
+
+            // Set all properties to null
+            AnyDict null_values{
+                {"pk", INT64_C(1)},
+                {"bool", util::Any()},
+                {"int", util::Any()},
+                {"float", util::Any()},
+                {"double", util::Any()},
+                {"string", util::Any()},
+                {"data", util::Any()},
+                {"date", util::Any()},
+
+                {"bool array", AnyVec{util::Any()}},
+                {"int array", AnyVec{util::Any()}},
+                {"float array", AnyVec{util::Any()}},
+                {"double array", AnyVec{util::Any()}},
+                {"string array", AnyVec{util::Any()}},
+                {"data array", AnyVec{util::Any()}},
+                {"date array", AnyVec{Timestamp()}},
+            };
+            Object::create(d, r, *r->schema().find("all optional types"), util::Any(null_values), true, diffed_update);
+
+            REQUIRE_FALSE(obj.get_property_value<util::Any>(d, "bool").has_value());
+            REQUIRE_FALSE(obj.get_property_value<util::Any>(d, "int").has_value());
+            REQUIRE_FALSE(obj.get_property_value<util::Any>(d, "float").has_value());
+            REQUIRE_FALSE(obj.get_property_value<util::Any>(d, "double").has_value());
+            REQUIRE_FALSE(obj.get_property_value<util::Any>(d, "string").has_value());
+            REQUIRE_FALSE(obj.get_property_value<util::Any>(d, "data").has_value());
+            REQUIRE_FALSE(obj.get_property_value<util::Any>(d, "date").has_value());
+
+            REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "bool array")).get<util::Optional<bool>>(0) == util::none);
+            REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "int array")).get<util::Optional<int64_t>>(0) == util::none);
+            REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "float array")).get<util::Optional<float>>(0) == util::none);
+            REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "double array")).get<util::Optional<double>>(0) == util::none);
+            REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "string array")).get<StringData>(0) == StringData());
+            REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "data array")).get<BinaryData>(0) == BinaryData());
+            REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "date array")).get<Timestamp>(0) == Timestamp());
+
+            // Set all properties back to non-null
+            Object::create(d, r, *r->schema().find("all optional types"), util::Any(initial_values), true, diffed_update);
+            REQUIRE(any_cast<bool>(obj.get_property_value<util::Any>(d, "bool")) == true);
+            REQUIRE(any_cast<int64_t>(obj.get_property_value<util::Any>(d, "int")) == 5);
+            REQUIRE(any_cast<float>(obj.get_property_value<util::Any>(d, "float")) == 2.2f);
+            REQUIRE(any_cast<double>(obj.get_property_value<util::Any>(d, "double")) == 3.3);
+            REQUIRE(any_cast<std::string>(obj.get_property_value<util::Any>(d, "string")) == "hello");
+            REQUIRE(any_cast<Timestamp>(obj.get_property_value<util::Any>(d, "date")) == Timestamp(10, 20));
+
+            REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "bool array")).get<util::Optional<bool>>(0) == true);
+            REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "int array")).get<util::Optional<int64_t>>(0) == 5);
+            REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "float array")).get<util::Optional<float>>(0) == 1.1f);
+            REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "double array")).get<util::Optional<double>>(0) == 3.3);
+            REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "string array")).get<StringData>(0) == "a");
+            REQUIRE(any_cast<List&&>(obj.get_property_value<util::Any>(d, "date array")).size() == 0);
+        }
     }
 
     SECTION("create throws for duplicate pk if update is not specified") {

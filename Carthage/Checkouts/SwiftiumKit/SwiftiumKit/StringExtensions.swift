@@ -176,22 +176,22 @@ extension String {
      */
     public subscript(i: Int) -> String? {
         get {
-            guard i >= -characters.count && i < characters.count else { return nil }
+            guard i >= -count && i < count else { return nil }
             
             let charIndex: Index
             
             if i >= 0 {
                 charIndex = index(startIndex, offsetBy: i)
             } else {
-                charIndex = index(startIndex, offsetBy: characters.count + i)
+                charIndex = index(startIndex, offsetBy: count + i)
             }
             
             return String(self[charIndex])
         }
         
         set(newValue) {
-            guard i >= 0 && i < characters.count else {
-                preconditionFailure("String subscript can only be used if the condition (index >= 0 && index < characters.count) is fulfilled")
+            guard i >= 0 && i < count else {
+                preconditionFailure("String subscript can only be used if the condition (index >= 0 && index < count) is fulfilled")
             }
             guard newValue != nil else {
                 preconditionFailure("String replacement should not be nil")
@@ -226,7 +226,7 @@ extension String {
         let lowerIndex = index(startIndex, offsetBy: maxSupportedLowerOffset, limitedBy: endIndex) ?? endIndex
         let upperIndex = index(lowerIndex, offsetBy: maxSupportedUpperOffset, limitedBy: endIndex) ?? endIndex
         
-        return substring(with: lowerIndex..<upperIndex)
+        return String(self[lowerIndex..<upperIndex])
     }
     
     /**
@@ -248,11 +248,16 @@ extension String {
         let lowerIndex = index(startIndex, offsetBy: maxSupportedLowerOffset, limitedBy: endIndex) ?? endIndex
         let upperIndex = index(lowerIndex, offsetBy: maxSupportedUpperOffset, limitedBy: endIndex) ?? endIndex
         
-        return substring(with: lowerIndex..<upperIndex)
+        return String(self[lowerIndex..<upperIndex])
     }
 }
 
 extension String {
+    public var isEmail: Bool {
+        let emailRegex = "[_A-Za-z0-9-+]+(?:\\.[_A-Za-z0-9-+]+)*@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: self)
+    }
+    
     public func firstLowercased() -> String {
         var firstLowercased = self
         if let firstCharLowercased = self[0]?.lowercased() {

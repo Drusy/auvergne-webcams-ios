@@ -1,0 +1,9 @@
+# .slather.yml
+
+coverage_service: coveralls
+xcodeproj: SwiftiumKit.xcodeproj
+scheme: SwiftiumKit
+input_format: profdata
+ignore:
+  - ../**/*/Xcode*
+  - SwiftiumKitTests/*
