@@ -121,6 +121,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
         startLoading()
         webcamTitleLabel.text = webcam.title
+        // https://forums.developer.apple.com/thread/121809
+        webcamTitleLabel.textColor = .white
         Defaults[.currentWidgetWebcamUid] = webcam.uid
         
         switch webcam.contentType {
