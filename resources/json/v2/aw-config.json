@@ -1133,6 +1133,40 @@
                         "ferrand",
                         "forez"
                     ]
+                },
+                {
+                    "uid": 7007,
+                    "order": 7,
+                    "title": "A71 PRÈS DE CLERMONT-FERRAND, PÉAGE CLERMONT-GERZAT, DIRECTION PARIS",
+                    "viewsurfLD": "https://filmssite.viewsurf.com/aprr56",
+                    "viewsurfHD": "https://filmssite.viewsurf.com/aprr56",
+                    "type": "viewsurf",
+                    "latitude": 45.8410315,
+                    "longitude": 3.1562917,
+                    "tags": [
+                        "clermont-ferrand",
+                        "clermont",
+                        "ferrand",
+                        "autoroute",
+                        "A71"
+                    ]
+                },
+                {
+                    "uid": 7008,
+                    "order": 8,
+                    "title": "A75, LA PARDIEU, DIRECTION PARIS",
+                    "viewsurfLD": "https://filmssite.viewsurf.com/aprr28",
+                    "viewsurfHD": "https://filmssite.viewsurf.com/aprr28",
+                    "type": "viewsurf",
+                    "latitude": 45.759999,
+                    "longitude": 3.139769,
+                    "tags": [
+                        "clermont-ferrand",
+                        "clermont",
+                        "ferrand",
+                        "autoroute",
+                        "A75"
+                    ]
                 }
             ]
         },
