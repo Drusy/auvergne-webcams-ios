@@ -847,6 +847,7 @@
                     "type": "image",
                     "latitude": 45.6191524,
                     "longitude": 2.7895298,
+                    "hidden": true,
                     "tags": [
                         "sancy",
                         "mont dore",
