@@ -1056,24 +1056,6 @@
                     ]
                 },
                 {
-                    "uid": 7003,
-                    "order": 3,
-                    "title": "Place de la Victoire",
-                    "viewsurfLD": "https://filmssite.viewsurf.com/clermontferrandvictoire/640_h264",
-                    "viewsurfHD": null,
-                    "type": "viewsurf",
-                    "latitude": 45.777769,
-                    "longitude": 3.0852768,
-                    "hidden": true,
-                    "tags": [
-                        "clermont-ferrand",
-                        "clermont",
-                        "ferrand",
-                        "place",
-                        "victoire"
-                    ]
-                },
-                {
                     "uid": 7004,
                     "order": 4,
                     "title": "Puy de Dôme",
