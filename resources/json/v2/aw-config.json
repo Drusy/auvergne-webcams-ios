@@ -1533,6 +1533,7 @@
                     "type": "image",
                     "latitude": 46.498424,
                     "longitude": 3.3763925,
+                    "hidden": true,
                     "tags": [
                         "allier",
                         "toulon sur allier"
@@ -1580,7 +1581,7 @@
                 },
                 {
                     "uid": 10002,
-                    "order": 2,
+                    "order": 4,
                     "title": "Saint-Maurice-de-Lignon / Les Barrys\nDirection Le Puy en Velay",
                     "imageLD": "http://www.webcam-autoroute.eu/images/massif_central_cam9.JPG",
                     "imageHD": null,
@@ -1598,7 +1599,7 @@
                 },
                 {
                     "uid": 10004,
-                    "order": 4,
+                    "order": 5,
                     "title": "Le Pertuis - N88\nDirection Le Puy en Velay",
                     "imageLD": "http://www.webcam-autoroute.eu/images/massif_central_cam7.JPG",
                     "imageHD": null,
@@ -1615,7 +1616,7 @@
                 },
                 {
                     "uid": 10005,
-                    "order": 5,
+                    "order": 6,
                     "title": "Blavozy / Montferrat - N88\nDirection Le Puy en Velay",
                     "imageLD": "http://www.webcam-autoroute.eu/images/massif_central_cam8.JPG",
                     "imageHD": null,
@@ -1632,7 +1633,7 @@
                 },
                 {
                     "uid": 10006,
-                    "order": 6,
+                    "order": 7,
                     "title": "Saint-Paul-de-Tartas\nN88",
                     "imageLD": "http://www.webcam-autoroute.eu/images/massif_central_cam20.JPG",
                     "imageHD": null,
@@ -1646,7 +1647,7 @@
                 },
                 {
                     "uid": 10007,
-                    "order": 7,
+                    "order": 8,
                     "title": "Col de Fix\nDirection Le Puy en Velay",
                     "imageLD": "https://auvergne-webcams.openium.fr/proxy/massif-central-magsys-services.php?id=10",
                     "imageHD": null,
@@ -1663,7 +1664,7 @@
                 },
                 {
                     "uid": 10008,
-                    "order": 8,
+                    "order": 9,
                     "title": "Saint Haon",
                     "imageLD": "http://213.111.54.196:8080/cam_1.jpg",
                     "imageHD": null,
@@ -1677,7 +1678,7 @@
                 },
                 {
                     "uid": 10009,
-                    "order": 9,
+                    "order": 10,
                     "title": "Domaine alpin des Estables",
                     "imageLD": "https://www.mezencloiresauvage.com/webcam/camera2.jpg",
                     "imageHD": null,
@@ -1692,7 +1693,7 @@
                 },
                 {
                     "uid": 10010,
-                    "order": 10,
+                    "order": 11,
                     "title": "Domaine nordic de Mézenc",
                     "imageLD": "https://www.mezencloiresauvage.com/webcam/camera1.jpg",
                     "imageHD": null,
@@ -1703,6 +1704,36 @@
                     "tags": [
                         "haute loire",
                         "mezenc"
+                    ]
+                },
+                {
+                    "uid": 10011,
+                    "order": 2,
+                    "title": "Puy-en-Velay\nDepuis Aiguilhe",
+                    "imageLD": "https://www.lepuyenvelay-tourisme.fr/nocache/webcam/FRAISSE/webcam.jpg",
+                    "imageHD": "https://www.lepuyenvelay-tourisme.fr/nocache/webcam/FRAISSE/webcam.jpg",
+                    "type": "image",
+                    "latitude": 45.049361,
+                    "longitude": 3.888293,
+                    "tags": [
+                        "haute loire",
+                        "mezenc",
+                        "puy en velay",
+                        "aiguilhe"
+                    ]
+                },
+                {
+                    "uid": 10012,
+                    "order": 3,
+                    "title": "Puy-en-Velay\nVue Ouest",
+                    "imageLD": "https://www.lepuyenvelay-tourisme.fr/nocache/webcam/BELAIR/image.jpg",
+                    "imageHD": "https://www.lepuyenvelay-tourisme.fr/nocache/webcam/BELAIR/image.jpg",
+                    "type": "image",
+                    "latitude": 45.046059,
+                    "longitude": 3.879962,
+                    "tags": [
+                        "haute loire",
+                        "puy en velay"
                     ]
                 }
             ]
