@@ -24,9 +24,10 @@ class ImageDownloaderUtils {
         if webcam == nil {
             var viewsurfURLAbsoluteString = url.deletingLastPathComponent().absoluteString
             viewsurfURLAbsoluteString.removeLast()
-            webcam = realm?.objects(Webcam.self).filter("%K == %@ OR %K == %@",
-                                                        #keyPath(Webcam.viewsurfHD), viewsurfURLAbsoluteString,
-                                                        #keyPath(Webcam.viewsurfLD), viewsurfURLAbsoluteString).first
+            webcam = realm?
+                .objects(Webcam.self)
+                .filter("%K == %@", #keyPath(Webcam.viewsurf), viewsurfURLAbsoluteString)
+                .first
         }
         
         if let webcam = webcam {

@@ -320,7 +320,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         fetchLastViewsurfMedia { [weak self] mediaPath in
             guard let strongSelf = self else { return }
             
-            if let previewURL = URL(string: "\(viewsurf)/\(mediaPath).jpg") {
+            if let previewURL = URL(string: "\(viewsurf)/\(mediaPath)_tn.jpg") {
                 self?.loadImage(for: previewURL, force: force)
             } else {
                 strongSelf.mediaLoadingDidFailed()

@@ -150,4 +150,22 @@ class NSDataExtensionsTests: XCTestCase {
         // Expect
         XCTAssertEqual(decrypted, data)
     }
+    
+    /**
+     Crypt "http" with openssl :
+VALUE="http"
+SECURE_KEY_STRING="Some.String"
+HEX_KEY=$(echo -n "$SECURE_KEY_STRING" | /usr/bin/openssl dgst -sha512 | xxd -p -l 32 | tr -d '\n')
+CIPHERED_VALUE=$(echo -ne "${VALUE}" | /usr/bin/openssl enc -aes-256-cbc -nosalt -K $HEX_KEY -iv 0 -base64 -A)
+echo $CIPHERED_VALUE
+     */
+    func testAes256Decrypt_withShellCryptedValue() {
+        let data = Data(base64Encoded: "epNVTbZLPAUnAuiz1lDjyw==", options: NSData.Base64DecodingOptions.ignoreUnknownCharacters)!
+        let key = "Some.String".sha512
+        let decryptedData = data.aes256Decrypt(key)!
+        let decrypted = String(data: decryptedData, encoding: String.Encoding.ascii)!
+        
+        XCTAssertEqual(decrypted, "http")
+    }
+    
 }

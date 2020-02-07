@@ -8,9 +8,11 @@
 
 import Foundation
 
+import CommonCrypto
+
 // MARK: Hashes
 
-private typealias SKCryptoFunctionPointer = (UnsafeRawPointer, UInt32, UnsafeRawPointer) -> Void
+private typealias SKCryptoFunctionPointer = (UnsafeRawPointer?, CC_LONG, UnsafeMutablePointer<UInt8>?) -> UnsafeMutablePointer<UInt8>?
 
 private enum CryptoAlgorithm {
     case md5, sha1, sha224, sha256, sha384, sha512
@@ -18,27 +20,27 @@ private enum CryptoAlgorithm {
     var cryptoFunction: SKCryptoFunctionPointer {
         var result: SKCryptoFunctionPointer
         switch self {
-        case .md5: result = sk_crypto_md5
-        case .sha1: result = sk_crypto_sha1
-        case .sha224: result = sk_crypto_sha224
-        case .sha256: result = sk_crypto_sha256
-        case .sha384: result = sk_crypto_sha384
-        case .sha512: result = sk_crypto_sha512
+        case .md5: result = CC_MD5
+        case .sha1: result = CC_SHA1
+        case .sha224: result = CC_SHA224
+        case .sha256: result = CC_SHA256
+        case .sha384: result = CC_SHA384
+        case .sha512: result = CC_SHA512
         }
         return result
     }
     
     var digestLength: Int {
-        var length: Int
+        var length: Int32
         switch self {
-        case .md5: length = Int(SK_MD5_DIGEST_LENGTH)
-        case .sha1: length = Int(SK_SHA1_DIGEST_LENGTH)
-        case .sha224: length = Int(SK_SHA224_DIGEST_LENGTH)
-        case .sha256: length = Int(SK_SHA256_DIGEST_LENGTH)
-        case .sha384: length = Int(SK_SHA384_DIGEST_LENGTH)
-        case .sha512: length = Int(SK_SHA512_DIGEST_LENGTH)
+        case .md5: length = CC_MD5_DIGEST_LENGTH
+        case .sha1: length = CC_SHA1_DIGEST_LENGTH
+        case .sha224: length = CC_SHA224_DIGEST_LENGTH
+        case .sha256: length = CC_SHA256_DIGEST_LENGTH
+        case .sha384: length = CC_SHA384_DIGEST_LENGTH
+        case .sha512: length = CC_SHA512_DIGEST_LENGTH
         }
-        return length
+        return Int(length)
     }
 }
 
@@ -78,7 +80,7 @@ extension String.UTF8View {
         let hashBytes = UnsafeMutablePointer<UInt8>.allocate(capacity: length)
         //defer { hashBytes.dealloc(length) }
 
-        cryptoFunction(Array<UInt8>(self), UInt32(self.count), hashBytes)
+        _ = cryptoFunction(Array<UInt8>(self), UInt32(self.count), hashBytes)
 
         return Data(bytesNoCopy: UnsafeMutablePointer<UInt8>(hashBytes), count: length, deallocator: .free)
     }
@@ -154,7 +156,8 @@ extension String {
         let hashBytes = UnsafeMutablePointer<UInt8>.allocate(capacity: length)
         //defer { hashBytes.dealloc(length) }
         
-        sk_crypto_hmac_sha1(Array<UInt8>(self.utf8), UInt32(self.utf8.count), keyData, UInt32(key.utf8.count), hashBytes)
+        CCHmac(CCHmacAlgorithm(kCCHmacAlgSHA1), keyData, key.utf8.count, Array<UInt8>(self.utf8), self.utf8.count, hashBytes)
+        //sk_crypto_hmac_sha1(Array<UInt8>(self.utf8), UInt32(self.utf8.count), keyData, UInt32(key.utf8.count), hashBytes)
         let data = Data(bytesNoCopy: UnsafeMutablePointer<UInt8>(hashBytes), count: length, deallocator: .free)
         
         return data.base16EncodedString()

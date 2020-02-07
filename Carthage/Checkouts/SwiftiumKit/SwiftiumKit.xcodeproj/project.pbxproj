@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		BA4D06691C91C2B5000DD654 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4D06681C91C2B5000DD654 /* StringExtensions.swift */; };
 		BA4D066B1C91C2DD000DD654 /* StringExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4D066A1C91C2DD000DD654 /* StringExtensionsTests.swift */; };
-		BA4D06811C91E602000DD654 /* Crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = BA4D067F1C91E602000DD654 /* Crypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BA4D06821C91E602000DD654 /* Crypto.m in Sources */ = {isa = PBXBuildFile; fileRef = BA4D06801C91E602000DD654 /* Crypto.m */; };
 		BA8961DB1C8EDBB100305CB0 /* SwiftiumKit.h in Headers */ = {isa = PBXBuildFile; fileRef = BA8961DA1C8EDBB100305CB0 /* SwiftiumKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BA8961E21C8EDBB100305CB0 /* SwiftiumKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA8961D71C8EDBB100305CB0 /* SwiftiumKit.framework */; };
 		BA8961F21C8EDBFC00305CB0 /* UIColorExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8961F11C8EDBFC00305CB0 /* UIColorExtensionsTests.swift */; };
@@ -40,8 +38,6 @@
 /* Begin PBXFileReference section */
 		BA4D06681C91C2B5000DD654 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		BA4D066A1C91C2DD000DD654 /* StringExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensionsTests.swift; sourceTree = "<group>"; };
-		BA4D067F1C91E602000DD654 /* Crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Crypto.h; sourceTree = "<group>"; };
-		BA4D06801C91E602000DD654 /* Crypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Crypto.m; sourceTree = "<group>"; };
 		BA4D088D1C94123C000DD654 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BA4D088E1C941243000DD654 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		BA4D088F1C94124F000DD654 /* tag-release.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "tag-release.sh"; sourceTree = "<group>"; };
@@ -142,15 +138,6 @@
 			name = Foundation;
 			sourceTree = "<group>";
 		};
-		BA4D06731C91E023000DD654 /* C */ = {
-			isa = PBXGroup;
-			children = (
-				BA4D067F1C91E602000DD654 /* Crypto.h */,
-				BA4D06801C91E602000DD654 /* Crypto.m */,
-			);
-			name = C;
-			sourceTree = "<group>";
-		};
 		BA8961CD1C8EDBB100305CB0 = {
 			isa = PBXGroup;
 			children = (
@@ -174,7 +161,6 @@
 		BA8961D91C8EDBB100305CB0 /* SwiftiumKit */ = {
 			isa = PBXGroup;
 			children = (
-				BA4D06731C91E023000DD654 /* C */,
 				BA4D066D1C91C2F2000DD654 /* Additions */,
 				F9E838D11DCCE14300F3C5FB /* Operators */,
 				BA8961DC1C8EDBB100305CB0 /* Info.plist */,
@@ -227,7 +213,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA8961DB1C8EDBB100305CB0 /* SwiftiumKit.h in Headers */,
-				BA4D06811C91E602000DD654 /* Crypto.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +281,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = BA8961CD1C8EDBB100305CB0;
@@ -337,7 +323,6 @@
 				BAF01A7F1DB7F59A006F81D3 /* UIImageExtensions.swift in Sources */,
 				BAFA99E11DB7817600582104 /* UIFontExtensions.swift in Sources */,
 				BA8A2D4E1C9713AD00125DC3 /* UInt8Extensions.swift in Sources */,
-				BA4D06821C91E602000DD654 /* Crypto.m in Sources */,
 				BA8961F41C8EDC0A00305CB0 /* UIColorExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -464,8 +449,10 @@
 		BA8961EC1C8EDBB100305CB0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CURRENT_PROJECT_VERSION = 10;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = QH6KR5PAQ7;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -486,8 +473,10 @@
 		BA8961ED1C8EDBB100305CB0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CURRENT_PROJECT_VERSION = 10;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = QH6KR5PAQ7;
 				DYLIB_COMPATIBILITY_VERSION = 1;

@@ -32,8 +32,7 @@ class Webcam: Object, Mappable {
     @objc dynamic var title: String?
     @objc dynamic var imageHD: String?
     @objc dynamic var imageLD: String?
-    @objc dynamic var viewsurfLD: String?
-    @objc dynamic var viewsurfHD: String?
+    @objc dynamic var viewsurf: String?
     @objc dynamic var mapImageName: String?
     @objc dynamic var isHidden: Bool = false
     @objc dynamic var latitude: Double = -1
@@ -73,8 +72,7 @@ class Webcam: Object, Mappable {
         title <- map["title"]
         imageHD <- map["imageHD"]
         imageLD <- map["imageLD"]
-        viewsurfLD <- map["viewsurfLD"]
-        viewsurfHD <- map["viewsurfHD"]
+        viewsurf <- map["viewsurf"]
         mapImageName <- map["mapImageName"]
         type <- map["type"]
         latitude <- map["latitude"]
@@ -111,8 +109,8 @@ class Webcam: Object, Mappable {
         switch contentType {
         case .image:
             lowQuality = (imageHD == nil)
-        default:
-            lowQuality = (viewsurfHD == nil)
+        case .viewsurf:
+            return false
         }
         
         return lowQuality
@@ -134,10 +132,6 @@ class Webcam: Object, Mappable {
     }
     
     func preferredViewsurf() -> String? {
-        if Defaults[.prefersHighQuality] {
-            return viewsurfHD ?? viewsurfLD
-        } else {
-            return viewsurfLD ?? viewsurfHD
-        }
+        return viewsurf
     }
 }

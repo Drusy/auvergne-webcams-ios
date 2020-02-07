@@ -203,7 +203,7 @@ class AbstractWebcamView: UIView {
                 print("ERROR: \(statusCode) - \(error.localizedDescription)")
                 strongSelf.handleError(for: webcam, statusCode: statusCode)
             } else if let mediaPath = response.result.value?.replacingOccurrences(of: "\n", with: "") {
-                if let previewURL = URL(string: "\(viewsurf)/\(mediaPath).jpg") {
+                if let previewURL = URL(string: "\(viewsurf)/\(mediaPath)_tn.jpg") {
                     strongSelf.loadImage(for: webcam, for: previewURL)
                 } else {
                     strongSelf.activityIndicator.stopAnimating()

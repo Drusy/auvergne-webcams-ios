@@ -331,7 +331,6 @@
 		F9AEF4652035C3CF00BEA6B2 /* MGLMapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEF4642035C3CD00BEA6B2 /* MGLMapViewExtension.swift */; };
 		F9AEF4662035C3CF00BEA6B2 /* MGLMapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEF4642035C3CD00BEA6B2 /* MGLMapViewExtension.swift */; };
 		F9AEF4672035C3CF00BEA6B2 /* MGLMapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEF4642035C3CD00BEA6B2 /* MGLMapViewExtension.swift */; };
-		F9B01F301E8020DE00A1F174 /* aw-config.json in Resources */ = {isa = PBXBuildFile; fileRef = F9B01F2F1E8020DE00A1F174 /* aw-config.json */; };
 		F9B01F331E80AAB000A1F174 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B01F311E80AA2000A1F174 /* SVProgressHUD.framework */; };
 		F9B01F341E80AAB000A1F174 /* SVProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B01F311E80AA2000A1F174 /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F9B1E5FC1E65656100829FE8 /* NVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B1E5FB1E65652A00829FE8 /* NVActivityIndicatorView.framework */; };
@@ -478,6 +477,7 @@
 		F9D610B51E82EDBF00BFC18D /* NVActivityIndicatorView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B1E5FB1E65652A00829FE8 /* NVActivityIndicatorView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F9D610C61E82F18100BFC18D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9D610C51E82F18100BFC18D /* Assets.xcassets */; };
 		F9E858341E5D90D700F7C40D /* MailComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E858331E5D90D700F7C40D /* MailComposeViewController.swift */; };
+		F9EE27A323EDB15E00A75E0B /* aw-config.json in Resources */ = {isa = PBXBuildFile; fileRef = F9EE27A223EDB15E00A75E0B /* aw-config.json */; };
 		F9F5AC5E1DD31C9100D9FF83 /* AbstractViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5AC5C1DD31C9100D9FF83 /* AbstractViewController.swift */; };
 		F9F5AC731DD33B6800D9FF83 /* Webcam.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5AC721DD33B6800D9FF83 /* Webcam.swift */; };
 		F9F5AC8A1DD344CC00D9FF83 /* Open Sans 300.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9F5AC7C1DD344CC00D9FF83 /* Open Sans 300.ttf */; };
@@ -763,7 +763,6 @@
 		F9AEF45320349BE600BEA6B2 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		F9AEF45A2035B99E00BEA6B2 /* WebcamManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebcamManager.swift; sourceTree = "<group>"; };
 		F9AEF4642035C3CD00BEA6B2 /* MGLMapViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGLMapViewExtension.swift; sourceTree = "<group>"; };
-		F9B01F2F1E8020DE00A1F174 /* aw-config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "aw-config.json"; path = "resources/json/v2/aw-config.json"; sourceTree = SOURCE_ROOT; };
 		F9B01F311E80AA2000A1F174 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
 		F9B1E5FB1E65652A00829FE8 /* NVActivityIndicatorView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NVActivityIndicatorView.framework; path = Carthage/Build/iOS/NVActivityIndicatorView.framework; sourceTree = "<group>"; };
 		F9B1E61A1E66128C00829FE8 /* ApiRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiRequest.swift; sourceTree = "<group>"; };
@@ -784,6 +783,7 @@
 		F9D610C51E82F18100BFC18D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9E858331E5D90D700F7C40D /* MailComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailComposeViewController.swift; sourceTree = "<group>"; };
 		F9E858351E5DA85F00F7C40D /* AuvergneWebcams.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AuvergneWebcams.entitlements; sourceTree = "<group>"; };
+		F9EE27A223EDB15E00A75E0B /* aw-config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "aw-config.json"; path = "resources/json/v3/aw-config.json"; sourceTree = SOURCE_ROOT; };
 		F9F5AC5C1DD31C9100D9FF83 /* AbstractViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractViewController.swift; sourceTree = "<group>"; };
 		F9F5AC721DD33B6800D9FF83 /* Webcam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Webcam.swift; sourceTree = "<group>"; };
 		F9F5AC7C1DD344CC00D9FF83 /* Open Sans 300.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Open Sans 300.ttf"; sourceTree = "<group>"; };
@@ -1364,7 +1364,7 @@
 		F99984171E60C76B007D95AC /* json */ = {
 			isa = PBXGroup;
 			children = (
-				F9B01F2F1E8020DE00A1F174 /* aw-config.json */,
+				F9EE27A223EDB15E00A75E0B /* aw-config.json */,
 				F99F37601E71C0810058AFB3 /* aw-config-dev.json */,
 			);
 			name = json;
@@ -1871,6 +1871,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9EE27A323EDB15E00A75E0B /* aw-config.json in Resources */,
 				F9F5ACA31DD35DDD00D9FF83 /* WebcamDetailViewController.xib in Resources */,
 				F94D7CE61DFABF6000460CCD /* AboutViewController.xib in Resources */,
 				F9F5AC921DD344CC00D9FF83 /* Open Sans Condensed 300.ttf in Resources */,
@@ -1908,7 +1909,6 @@
 				F9F5AC8F1DD344CC00D9FF83 /* Open Sans 700italic.ttf in Resources */,
 				F9F5AC961DD344CC00D9FF83 /* Open Sans Condensed 700.ttf in Resources */,
 				F9F5AC941DD344CC00D9FF83 /* Open Sans italic.ttf in Resources */,
-				F9B01F301E8020DE00A1F174 /* aw-config.json in Resources */,
 				F963AB531E5A172500ED5A8B /* ProximaNova-Bold.otf in Resources */,
 				F9F5AC8D1DD344CC00D9FF83 /* Open Sans 600italic.ttf in Resources */,
 				F963AB591E5A172500ED5A8B /* ProximaNova-Sbold.otf in Resources */,

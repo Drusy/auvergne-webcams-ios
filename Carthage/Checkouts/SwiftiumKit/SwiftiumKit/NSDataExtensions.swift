@@ -8,9 +8,73 @@
 
 import Foundation
 
+import CommonCrypto
+
 // MARK: AES encrypt/decrypt
 
-private typealias SKCryptOperationFunction = @convention(c) (UnsafeRawPointer, UInt32, UnsafeRawPointer, UInt32, UnsafeMutablePointer<UInt>) -> UnsafeMutablePointer<UInt8>?
+private typealias SKCryptOperationFunction = (Data, String) -> Data?
+
+func sk_crypto_operate(operation: CCOperation, keySize: Int, data: Data, keyData: Data) -> Data? {
+    let keyBytes = UnsafeMutablePointer<UInt8>.allocate(capacity: keySize)
+    keyBytes.initialize(to: 0)
+    keyData.withUnsafeBytes { (bytes) in
+        for index in 0..<min(keySize, keyData.count) {
+            keyBytes[index] = bytes[index]
+        }
+    }
+
+    //See the doc: For block ciphers, the output size will always be less than or
+    //equal to the input size plus the size of one block.
+    //That's why we need to add the size of one block here
+    let cryptLength = data.count + kCCBlockSizeAES128
+    var cryptData = Data(count: cryptLength)
+
+    var numBytesEncrypted = 0
+
+    let cryptStatus = cryptData.withUnsafeMutableBytes { (cryptBytes) -> CCCryptorStatus in
+        data.withUnsafeBytes { (dataBytes) -> CCCryptorStatus in
+            CCCrypt(operation,
+                    CCAlgorithm(kCCAlgorithmAES),
+                    CCOptions(kCCOptionPKCS7Padding),
+                    keyBytes, keySize,
+                    nil,
+                    dataBytes.baseAddress, data.count,
+                    cryptBytes.baseAddress, cryptLength,
+                    &numBytesEncrypted)
+        }
+    }
+
+    if cryptStatus == kCCSuccess {
+        cryptData.count = numBytesEncrypted
+        return cryptData
+    }
+
+    return nil
+}
+
+func sk_crypto_encrypt_aes128(data: Data, key: String) -> Data? {
+    return sk_crypto_operate(operation: CCOperation(kCCEncrypt), keySize: kCCKeySizeAES128, data: data, keyData: Data(Array<UInt8>(key.utf8)))
+}
+
+func sk_crypto_encrypt_aes192(data: Data, key: String) -> Data? {
+    return sk_crypto_operate(operation: CCOperation(kCCEncrypt), keySize: kCCKeySizeAES192, data: data, keyData: Data(Array<UInt8>(key.utf8)))
+}
+
+func sk_crypto_encrypt_aes256(data: Data, key: String) -> Data? {
+    return sk_crypto_operate(operation: CCOperation(kCCEncrypt), keySize: kCCKeySizeAES256, data: data, keyData: Data(Array<UInt8>(key.utf8)))
+}
+
+func sk_crypto_decrypt_aes128(data: Data, key: String) -> Data? {
+    return sk_crypto_operate(operation: CCOperation(kCCDecrypt), keySize: kCCKeySizeAES128, data: data, keyData: Data(Array<UInt8>(key.utf8)))
+}
+
+func sk_crypto_decrypt_aes192(data: Data, key: String) -> Data? {
+    return sk_crypto_operate(operation: CCOperation(kCCDecrypt), keySize: kCCKeySizeAES192, data: data, keyData: Data(Array<UInt8>(key.utf8)))
+}
+
+func sk_crypto_decrypt_aes256(data: Data, key: String) -> Data? {
+    return sk_crypto_operate(operation: CCOperation(kCCDecrypt), keySize: kCCKeySizeAES256, data: data, keyData: Data(Array<UInt8>(key.utf8)))
+}
 
 private enum EncryptionAlgorithm {
     case aes128, aes192, aes256
@@ -80,15 +144,7 @@ extension Data {
     }
     
     fileprivate func aesOperation(_ key: String, operation: SKCryptOperationFunction) -> Data? {
-        let lengthPtr = UnsafeMutablePointer<UInt>.allocate(capacity: 1)
-        defer { lengthPtr.deallocate() }
-        
-        if let buffer = operation((self as NSData).bytes, UInt32(self.count), Array<UInt8>(key.utf8), UInt32(key.utf8.count), lengthPtr) {
-            let length: Int = Int(lengthPtr[0])
-            return Data(bytesNoCopy: UnsafeMutablePointer<UInt8>(buffer), count: length, deallocator: .free)
-        }
-
-        return nil
+        return operation(self, key)
     }
     
     /// Encrypts an Array\<AESEncryptable> using provided `key` (utf8 data) with AES256

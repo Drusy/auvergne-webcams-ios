@@ -242,7 +242,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 print("ERROR: \(statusCode) - \(error.localizedDescription)")
                 strongSelf.onError()
             } else if let mediaPath = response.result.value?.replacingOccurrences(of: "\n", with: "") {
-                if let previewURL = URL(string: "\(viewsurf)/\(mediaPath).jpg") {
+                if let previewURL = URL(string: "\(viewsurf)/\(mediaPath)_tn.jpg") {
                     strongSelf.loadImage(for: previewURL, webcam: webcam)
                 } else {
                     self?.onError()

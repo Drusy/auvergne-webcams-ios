@@ -15,5 +15,3 @@ FOUNDATION_EXPORT double SwiftiumKitVersionNumber;
 FOUNDATION_EXPORT const unsigned char SwiftiumKitVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <SwiftiumKit/PublicHeader.h>
-
-#import <SwiftiumKit/Crypto.h>

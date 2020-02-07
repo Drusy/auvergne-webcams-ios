@@ -3,15 +3,33 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased](https://github.com/openium/SwiftiumKit/compare/latest...HEAD)
+## [Unreleased](https://github.com/openium/SwiftiumKit/compare/v1.7.0...HEAD)
 ### Added
-String extension to validate an email address
 
 ### Changed
 
 ### Removed
 
-## [1.5.0](https://github.com/openium/SwiftiumKit/compare/v1.4.0...v1.5.0)
+
+## [Unreleased](https://github.com/openium/SwiftiumKit/compare/v1.7.0...HEAD) - 2020-01-07
+### Added
+
+### Changed
+Remove objc code to prepare SPM support (2.0)
+
+### Removed
+force push of tag latest
+
+## [1.6.0](https://github.com/openium/SwiftiumKit/compare/v1.5.0...v1.6.0) - 2019-11-06
+### Added
+String extension to validate an email address
+Setted BUILD_LIBRARY_FOR_DISTRIBUTION to YES to get module stability
+
+### Changed
+
+### Removed
+
+## [1.5.0](https://github.com/openium/SwiftiumKit/compare/v1.4.0...v1.5.0) - 2019-03-27
 ### Added
 - Swift 5 compatibility
 

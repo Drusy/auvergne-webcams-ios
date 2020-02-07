@@ -16,7 +16,7 @@ function checkViewsurf {
 
     for IMAGE in $IMAGES; do
         LAST=$(curl --fail -s -o - "$IMAGE/last")
-        downloadURL "$IMAGE/$LAST.jpg"
+        downloadURL "$IMAGE/${LAST}_tn.jpg"
         downloadURL "$IMAGE/$LAST.mp4"
     done
 }
@@ -46,5 +46,4 @@ fi
 checkImage "imageLD"
 checkImage "imageHD"
 
-checkViewsurf "viewsurfLD"
-checkViewsurf "viewsurfHD"
+checkViewsurf "viewsurf"
