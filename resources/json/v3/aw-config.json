@@ -72,8 +72,8 @@
                     "uid": 2002,
                     "order": 2,
                     "title": "Puy de Sancy\nLac Chambon",
-                    "imageLD": "http://trinum.com/ibox/ftpcam/1280_chastreix-sancy_lac-chambon.jpg",
-                    "imageHD": "http://trinum.com/ibox/ftpcam/mega_chastreix-sancy_lac-chambon.jpg",
+                    "imageLD": "https://www.trinum.com/ibox/ftpcam/small_chambon-sur-lac_le-lac.jpg",
+                    "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_chambon-sur-lac_le-lac.jpg",
                     "type": "image",
                     "mapImageName": "map-annotation-lake",
                     "latitude": 45.573901,
@@ -837,6 +837,24 @@
                         "station",
                         "ski"
                     ]
+                },
+                {
+                    "uid": 4017,
+                    "order": 17,
+                    "title": "Lac de Guery\nCentre Montagnard Meteo",
+                    "imageLD": "http://www.lac-guery.meteoamikuze.com/Webcam/webcam.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "latitude": 45.6191524,
+                    "longitude": 2.7895298,
+                    "hidden": true,
+                    "tags": [
+                        "sancy",
+                        "mont dore",
+                        "auvergne",
+                        "lac",
+                        "guery"
+                    ]
                 }
             ]
         },
@@ -1092,6 +1110,38 @@
                         "clermont",
                         "ferrand",
                         "forez"
+                    ]
+                },
+                {
+                    "uid": 7007,
+                    "order": 7,
+                    "title": "A71, Péage Clermont-Gerzat, direction Paris",
+                    "viewsurf": "https://filmssite.viewsurf.com/aprr56",
+                    "type": "viewsurf",
+                    "latitude": 45.8410315,
+                    "longitude": 3.1562917,
+                    "tags": [
+                        "clermont-ferrand",
+                        "clermont",
+                        "ferrand",
+                        "autoroute",
+                        "A71"
+                    ]
+                },
+                {
+                    "uid": 7008,
+                    "order": 8,
+                    "title": "A75, La Pardieu, direction Paris",
+                    "viewsurf": "https://filmssite.viewsurf.com/aprr28",
+                    "type": "viewsurf",
+                    "latitude": 45.759999,
+                    "longitude": 3.139769,
+                    "tags": [
+                        "clermont-ferrand",
+                        "clermont",
+                        "ferrand",
+                        "autoroute",
+                        "A75"
                     ]
                 }
             ]
