@@ -12,12 +12,12 @@ function downloadURL {
 function checkViewsurf {
     echo ""
     echo "Checking images of type '$1'" ...
-    IMAGES=$(grep "$1" "$CONFIGURATION_FILE" | tr -s " " | cut -d '"' -f 4)
+    IMAGES=$(grep "$1" "$CONFIGURATION_FILE" | grep -v -e "type" | tr -s " " | cut -d '"' -f 4)
 
     for IMAGE in $IMAGES; do
         LAST=$(curl --fail -s -o - "$IMAGE/last")
         downloadURL "$IMAGE/${LAST}_tn.jpg"
-        downloadURL "$IMAGE/$LAST.mp4"
+        downloadURL "$IMAGE/${LAST}.mp4"
     done
 }
 
@@ -43,7 +43,7 @@ if [ ! -f "$CONFIGURATION_FILE" ]; then
     exit -1
 fi
 
-checkImage "imageLD"
-checkImage "imageHD"
+#checkImage "imageLD"
+#checkImage "imageHD"
 
 checkViewsurf "viewsurf"
