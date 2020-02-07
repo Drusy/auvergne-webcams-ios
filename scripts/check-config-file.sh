@@ -12,7 +12,7 @@ function downloadURL {
 function checkViewsurf {
     echo ""
     echo "Checking images of type '$1'" ...
-    IMAGES=$(grep "$1" "$CONFIGURATION_FILE" | grep -v -e "type" | tr -s " " | cut -d '"' -f 4)
+    IMAGES=$(grep "$1" "$CONFIGURATION_FILE" | grep -v -e "type" -e "backup" | tr -s " " | cut -d '"' -f 4)
 
     for IMAGE in $IMAGES; do
         LAST=$(curl --fail -s -o - "$IMAGE/last")
