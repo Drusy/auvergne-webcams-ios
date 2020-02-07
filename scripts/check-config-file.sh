@@ -43,7 +43,7 @@ if [ ! -f "$CONFIGURATION_FILE" ]; then
     exit -1
 fi
 
-#checkImage "imageLD"
-#checkImage "imageHD"
+checkImage "imageLD"
+checkImage "imageHD"
 
 checkViewsurf "viewsurf"
