@@ -6,16 +6,16 @@ function downloadURL {
     URL="$1"
 
     echo "Checking '$URL'..."
-    curl --fail "$URL" -o '/tmp/image'
+    curl "$URL" -o '/tmp/image'
 }
 
 function checkViewsurf {
     echo ""
-    echo "Checking images of type '$1'" ...
+    echo "Checking images of type '$1'..." 
     IMAGES=$(grep "$1" "$CONFIGURATION_FILE" | grep -v -e "type" -e "backup" | tr -s " " | cut -d '"' -f 4)
 
     for IMAGE in $IMAGES; do
-        LAST=$(curl --fail -s -o - "$IMAGE/last")
+        LAST=$(curl -s -o - "$IMAGE/last")
         downloadURL "$IMAGE/${LAST}_tn.jpg"
         downloadURL "$IMAGE/${LAST}.mp4"
     done
@@ -23,7 +23,7 @@ function checkViewsurf {
 
 function checkImage {
     echo ""
-    echo "Checking images of type '$1'" ...
+    echo "Checking images of type '$1'..."
     IMAGES=$(grep "$1" "$CONFIGURATION_FILE" | tr -s " " | cut -d '"' -f 4)
 
     for IMAGE in $IMAGES; do
