@@ -1606,20 +1606,6 @@
                     ]
                 },
                 {
-                    "uid": 10008,
-                    "order": 9,
-                    "title": "Saint Haon",
-                    "imageLD": "http://213.111.54.196:8080/cam_1.jpg",
-                    "imageHD": null,
-                    "type": "image",
-                    "latitude": 44.8548085,
-                    "longitude": 3.7203437,
-                    "tags": [
-                        "haute loire",
-                        "saint haon"
-                    ]
-                },
-                {
                     "uid": 10009,
                     "order": 10,
                     "title": "Domaine alpin des Estables",

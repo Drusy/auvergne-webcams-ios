@@ -6,7 +6,7 @@ function downloadURL {
     URL="$1"
 
     echo "Checking '$URL'..."
-    curl "$URL" -o '/tmp/image'
+    curl -k "$URL" -o '/tmp/image'
 }
 
 function checkViewsurf {
