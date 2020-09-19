@@ -220,18 +220,21 @@ class AbstractWebcamView: UIView {
                                 height: imageView.bounds.height * scale)
         let processor = ResizingContentModeImageProcessor(targetSize: targetSize, contentMode: .aspectFill)
         
-        imageView.kf.setImage(with: url, options: [.processor(processor)]) { [weak self] (image, error, cacheType, imageUrl) in
-            guard let strongSelf = self else { return }
-            
-            if let error = error {
-                print("ERROR: \(error.code) - \(error.localizedDescription)")
-                strongSelf.handleError(for: webcam, statusCode: error.code)
-            } else {
-                strongSelf.activityIndicator.stopAnimating()
-                strongSelf.activityIndicator.isHidden = true
-                strongSelf.outdatedView.isHidden = webcam.isUpToDate()
-            }
-        }
+        imageView.kf.setImage(
+            with: url,
+            options: [.processor(processor)],
+            completionHandler: { [weak self] (image, error, cacheType, imageUrl) in
+                guard let strongSelf = self else { return }
+                
+                if let error = error {
+                    print("ERROR: \(error.code) - \(error.localizedDescription)")
+                    strongSelf.handleError(for: webcam, statusCode: error.code)
+                } else {
+                    strongSelf.activityIndicator.stopAnimating()
+                    strongSelf.activityIndicator.isHidden = true
+                    strongSelf.outdatedView.isHidden = webcam.isUpToDate()
+                }
+        })
     }
     
     fileprivate func handleError(for webcam: Webcam, statusCode: Int) {

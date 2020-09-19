@@ -2,9 +2,9 @@ github "radex/SwiftyUserDefaults" ~> 4.0
 github "ArtSabintsev/Siren" ~> 3.7
 github "ashleymills/Reachability.swift" ~> 4.3
 github "onevcat/Kingfisher" ~> 4.10
-github "xmartlabs/Eureka" ~> 4.3
+github "xmartlabs/Eureka" ~> 5.3
 github "Openium/SwiftiumKit" ~> 1.4
-github "optonaut/ActiveLabel.swift" ~> 0.9
+github "optonaut/ActiveLabel.swift" ~> 1.1
 github "Alamofire/Alamofire" ~> 4.7
 github "tristanhimmelman/AlamofireObjectMapper" ~> 5.1
 github "Hearst-DD/ObjectMapper" ~> 3.3

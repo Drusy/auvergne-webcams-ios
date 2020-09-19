@@ -141,7 +141,7 @@ class SettingsViewController: FormViewController {
     
     func rateApp() {
         guard let url = URL(string : "itms-apps://itunes.apple.com/app/id1183930829") else { return }
-        UIApplication.shared.openURL(url)
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
         AnalyticsManager.logEvent(button: "rate_app")
     }
     

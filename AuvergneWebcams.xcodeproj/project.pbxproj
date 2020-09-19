@@ -315,7 +315,6 @@
 		F9ACD1DF1E5C3A2E004E5BFF /* AlamofireNetworkActivityIndicator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9ACD1DD1E5C3A27004E5BFF /* AlamofireNetworkActivityIndicator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F9ACD1E11E5C951C004E5BFF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F9ACD1E01E5C951C004E5BFF /* GoogleService-Info.plist */; };
 		F9ACD1F81E5C9DD8004E5BFF /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ACD1F71E5C9DD8004E5BFF /* libsqlite3.tbd */; };
-		F9ACD1FA1E5C9DF5004E5BFF /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ACD1F91E5C9DF5004E5BFF /* AddressBook.framework */; };
 		F9ACD2011E5CA8D8004E5BFF /* FIRAnalyticsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ACD2001E5CA8D8004E5BFF /* FIRAnalyticsExtension.swift */; };
 		F9ACD2031E5CAAD5004E5BFF /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ACD2021E5CAAD5004E5BFF /* AnalyticsManager.swift */; };
 		F9AEF45420349BE600BEA6B2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEF45220349BE600BEA6B2 /* MapViewController.swift */; };
@@ -810,7 +809,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9ACD1FA1E5C9DF5004E5BFF /* AddressBook.framework in Frameworks */,
 				F9ACD1F81E5C9DD8004E5BFF /* libsqlite3.tbd in Frameworks */,
 				F95E0817216B656A009A206A /* GoogleAppMeasurement.framework in Frameworks */,
 				F9B1E5FC1E65656100829FE8 /* NVActivityIndicatorView.framework in Frameworks */,
@@ -2612,7 +2610,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -2659,7 +2657,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
