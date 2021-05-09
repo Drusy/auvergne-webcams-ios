@@ -136,6 +136,23 @@
                         "anzat",
                         "luguet"
                     ]
+                },
+                {
+                    "uid": 2006,
+                    "order": 6,
+                    "title": "Puy Mary\nCantal",
+                    "imageLD": "https://s64.ipcamlive.com/streams/40a9armbmciwo5kqe/snapshot.jpg",
+                    "imageHD": "https://s64.ipcamlive.com/streams/40a9armbmciwo5kqe/snapshot.jpg",
+                    "type": "image",
+                    "latitude": 45.109283,
+                    "longitude": 2.676236,
+                    "tags": [
+                        "puy",
+                        "le claux",
+                        "auvergne",
+                        "mary",
+                        "cantal"
+                    ]
                 }
             ]
         },
