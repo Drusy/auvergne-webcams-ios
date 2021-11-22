@@ -1444,7 +1444,7 @@
         {
             "uid": 8,
             "order": 10,
-            "title": "Aurillac",
+            "title": "Cantal",
             "imageName": "aurillac-landscape",
             "mapImageName": "map-annotation-city",
             "mapColor": "#FF8F00",
@@ -1454,13 +1454,14 @@
                 {
                     "uid": 8001,
                     "order": 1,
-                    "title": "Place des Carmes",
+                    "title": "Aurillac\nPlace des Carmes",
                     "imageLD": "https://webcam.caba.fr/caba2/webcam.jpg",
                     "imageHD": "https://webcam.caba.fr/caba2/webcam.jpg",
                     "type": "image",
                     "latitude": 44.924797,
                     "longitude": 2.4413928,
                     "tags": [
+                        "cantal",
                         "aurillac",
                         "place"
                     ]
@@ -1468,16 +1469,33 @@
                 {
                     "uid": 8002,
                     "order": 2,
-                    "title": "Vue toits",
+                    "title": "Aurillac\nVue toits",
                     "imageLD": "https://webcam.caba.fr/caba1/webcam.jpg",
                     "imageHD": "https://webcam.caba.fr/caba1/webcam.jpg",
                     "type": "image",
                     "latitude": 44.929384,
                     "longitude": 2.4440031,
                     "tags": [
+                        "cantal",
                         "aurillac",
                         "toit",
                         "ciel"
+                    ]
+                },
+                {
+                    "uid": 8003,
+                    "order": 3,
+                    "title": "Puy Mary",
+                    "imageLD": "https://s24.ipcamlive.com/streams/18zjnokitxongce5b/snapshot.jpg",
+                    "imageHD": "https://s24.ipcamlive.com/streams/18zjnokitxongce5b/snapshot.jpg",
+                    "type": "image",
+                    "latitude": 45.1090418,
+                    "longitude": 2.6730292,
+                    "tags": [
+                        "cantal",
+                        "aurillac",
+                        "puy",
+                        "mary"
                     ]
                 }
             ]
