@@ -1342,6 +1342,20 @@
                         "cg63",
                         "route"
                     ]
+                },
+                {
+                    "uid": 6014,
+                    "order": 13,
+                    "title": "D2089 - Aydat\nCol de la Ventouse",
+                    "imageLD": "https://app.puy-de-dome.fr/webcams/CAM13.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "latitude": 45.682177,
+                    "longitude": 2.966673,
+                    "tags": [
+                        "cg63",
+                        "route"
+                    ]
                 }
             ]
         },
@@ -1750,6 +1764,35 @@
                     "tags": [
                         "haute loire",
                         "puy en velay"
+                    ]
+                }
+            ]
+        },
+        {
+            "uid": 13,
+            "order": 13,
+            "title": "Loire",
+            "imageName": "mountain-landscape-2",
+            "mapImageName": "map-annotation-mountain",
+            "mapColor": "#7f0000",
+            "latitude": 45.772549,
+            "longitude": 4.108924,
+            "webcams": [
+                {
+                    "uid": 13001,
+                    "order": 1,
+                    "title": "Col de la Loge",
+                    "imageLD": "https://srv02.trinum.com/ibox/ftpcam/small_loire-forez_col-de-la-loge.jpg",
+                    "imageHD": "https://srv02.trinum.com/ibox/ftpcam/mega_loire-forez_col-de-la-loge.jpg",
+                    "type": "image",
+                    "latitude": 45.742023,
+                    "longitude": 3.779792,
+                    "tags": [
+                        "loge",
+                        "loire",
+                        "auvergne",
+                        "rhone",
+                        "ski"
                     ]
                 }
             ]
