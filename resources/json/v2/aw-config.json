@@ -140,18 +140,16 @@
                 {
                     "uid": 2006,
                     "order": 6,
-                    "title": "Puy Mary\nCantal",
-                    "imageLD": "https://s64.ipcamlive.com/streams/40a9armbmciwo5kqe/snapshot.jpg",
-                    "imageHD": "https://s64.ipcamlive.com/streams/40a9armbmciwo5kqe/snapshot.jpg",
+                    "title": "Prabouré\nParc d'activité",
+                    "imageLD": "https://srv07.trinum.com/ibox/ftpcam/small_praboure_front-de-neige.jpg",
+                    "imageHD": "https://srv07.trinum.com/ibox/ftpcam/mega_praboure_front-de-neige.jpg",
                     "type": "image",
-                    "latitude": 45.109283,
-                    "longitude": 2.676236,
+                    "latitude": 45.565948,
+                    "longitude": 3.868751,
                     "tags": [
-                        "puy",
-                        "le claux",
-                        "auvergne",
-                        "mary",
-                        "cantal"
+                        "ski",
+                        "prabouré",
+                        "auvergne"
                     ]
                 }
             ]
@@ -1347,6 +1345,20 @@
                         "cg63",
                         "route"
                     ]
+                },
+                {
+                    "uid": 6014,
+                    "order": 13,
+                    "title": "D2089 - Aydat\nCol de la Ventouse",
+                    "imageLD": "https://app.puy-de-dome.fr/webcams/CAM13.jpg",
+                    "imageHD": null,
+                    "type": "image",
+                    "latitude": 45.682177,
+                    "longitude": 2.966673,
+                    "tags": [
+                        "cg63",
+                        "route"
+                    ]
                 }
             ]
         },
@@ -1449,7 +1461,7 @@
         {
             "uid": 8,
             "order": 10,
-            "title": "Aurillac",
+            "title": "Cantal",
             "imageName": "aurillac-landscape",
             "mapImageName": "map-annotation-city",
             "mapColor": "#FF8F00",
@@ -1459,13 +1471,14 @@
                 {
                     "uid": 8001,
                     "order": 1,
-                    "title": "Place des Carmes",
+                    "title": "Aurillac\nPlace des Carmes",
                     "imageLD": "https://webcam.caba.fr/caba2/webcam.jpg",
                     "imageHD": "https://webcam.caba.fr/caba2/webcam.jpg",
                     "type": "image",
                     "latitude": 44.924797,
                     "longitude": 2.4413928,
                     "tags": [
+                        "cantal",
                         "aurillac",
                         "place"
                     ]
@@ -1473,16 +1486,33 @@
                 {
                     "uid": 8002,
                     "order": 2,
-                    "title": "Vue toits",
+                    "title": "Aurillac\nVue toits",
                     "imageLD": "https://webcam.caba.fr/caba1/webcam.jpg",
                     "imageHD": "https://webcam.caba.fr/caba1/webcam.jpg",
                     "type": "image",
                     "latitude": 44.929384,
                     "longitude": 2.4440031,
                     "tags": [
+                        "cantal",
                         "aurillac",
                         "toit",
                         "ciel"
+                    ]
+                },
+                {
+                    "uid": 8003,
+                    "order": 3,
+                    "title": "Puy Mary",
+                    "imageLD": "https://s24.ipcamlive.com/streams/18zjnokitxongce5b/snapshot.jpg",
+                    "imageHD": "https://s24.ipcamlive.com/streams/18zjnokitxongce5b/snapshot.jpg",
+                    "type": "image",
+                    "latitude": 45.1090418,
+                    "longitude": 2.6730292,
+                    "tags": [
+                        "cantal",
+                        "aurillac",
+                        "puy",
+                        "mary"
                     ]
                 }
             ]
@@ -1737,6 +1767,35 @@
                     "tags": [
                         "haute loire",
                         "puy en velay"
+                    ]
+                }
+            ]
+        },
+        {
+            "uid": 13,
+            "order": 13,
+            "title": "Loire",
+            "imageName": "mountain-landscape-2",
+            "mapImageName": "map-annotation-mountain",
+            "mapColor": "#7f0000",
+            "latitude": 45.772549,
+            "longitude": 4.108924,
+            "webcams": [
+                {
+                    "uid": 13001,
+                    "order": 1,
+                    "title": "Col de la Loge",
+                    "imageLD": "https://srv02.trinum.com/ibox/ftpcam/small_loire-forez_col-de-la-loge.jpg",
+                    "imageHD": "https://srv02.trinum.com/ibox/ftpcam/mega_loire-forez_col-de-la-loge.jpg",
+                    "type": "image",
+                    "latitude": 45.742023,
+                    "longitude": 3.779792,
+                    "tags": [
+                        "loge",
+                        "loire",
+                        "auvergne",
+                        "rhone",
+                        "ski"
                     ]
                 }
             ]
