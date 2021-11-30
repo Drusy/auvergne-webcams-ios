@@ -140,18 +140,16 @@
                 {
                     "uid": 2006,
                     "order": 6,
-                    "title": "Puy Mary\nCantal",
-                    "imageLD": "https://s64.ipcamlive.com/streams/40a9armbmciwo5kqe/snapshot.jpg",
-                    "imageHD": "https://s64.ipcamlive.com/streams/40a9armbmciwo5kqe/snapshot.jpg",
+                    "title": "Prabouré\nParc d'activité",
+                    "imageLD": "https://srv07.trinum.com/ibox/ftpcam/small_praboure_front-de-neige.jpg",
+                    "imageHD": "https://srv07.trinum.com/ibox/ftpcam/mega_praboure_front-de-neige.jpg",
                     "type": "image",
-                    "latitude": 45.109283,
-                    "longitude": 2.676236,
+                    "latitude": 45.565948,
+                    "longitude": 3.868751,
                     "tags": [
-                        "puy",
-                        "le claux",
-                        "auvergne",
-                        "mary",
-                        "cantal"
+                        "ski",
+                        "prabouré",
+                        "auvergne"
                     ]
                 }
             ]
