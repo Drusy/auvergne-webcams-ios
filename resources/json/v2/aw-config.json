@@ -151,6 +151,32 @@
                         "prabouré",
                         "auvergne"
                     ]
+                },
+                {
+                    "uid": 2007,
+                    "order": 7,
+                    "title": "Valcivières\nSud: Le chalet des gentianes - Col des Supeyres",
+                    "imageLD": "https://www.previmeteo.com/meteo/image_webcam.php?image=aHR0cHM6Ly9pbWFnZXMtd2ViY2Ftcy53aW5keS5jb20vMzEvMTQ2OTk1ODMzMS9jdXJyZW50L3ByZXZpZXcvMTQ2OTk1ODMzMS5qcGc=",
+                    "imageHD": null,
+                    "type": "image",
+                    "latitude": 45.604914,
+                    "longitude": 3.818813,
+                    "tags": [
+                        "Valcivières"
+                    ]
+                },
+                {
+                    "uid": 2008,
+                    "order": 8,
+                    "title": "Valcivières\nNord: Le chalet des gentianes - Col des Supeyres",
+                    "imageLD": "https://www.previmeteo.com/meteo/image_webcam.php?image=aHR0cHM6Ly9pbWFnZXMtd2ViY2Ftcy53aW5keS5jb20vNDkvMTQ2OTk1ODE0OS9jdXJyZW50L3ByZXZpZXcvMTQ2OTk1ODE0OS5qcGc=",
+                    "imageHD": null,
+                    "type": "image",
+                    "latitude": 45.604914,
+                    "longitude": 3.818813,
+                    "tags": [
+                        "Valcivières"
+                    ]
                 }
             ]
         },
