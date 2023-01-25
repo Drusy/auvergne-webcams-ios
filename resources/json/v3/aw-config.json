@@ -341,12 +341,12 @@
           "uid": 3007,
           "order": 7,
           "title": "Bas de la station\nEspace débutant",
-          "imageLD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole11.jpg",
-          "imageHD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole11.jpg",
+          "imageLD": "https://www.trinum.com/ibox/sancy/Images/superbesseecole/superbesse_ecole1.jpg",
+          "imageHD": null,
           "type": "image",
           "latitude": 45.5118471,
           "longitude": 2.8514863,
-          "hidden": true,
+          "hidden": false,
           "tags": [
             "sancy",
             "super besse",
@@ -359,10 +359,10 @@
           "uid": 3008,
           "order": 8,
           "title": "Bas de la station\nVue Super Besse",
-          "imageLD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole12.jpg",
-          "imageHD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole12.jpg",
+          "imageLD": "http://www.trinum.com/ibox/superbesse/images/superbesse-haut/superbesse_superbesse-haut12.jpg",
+          "imageHD": null,
           "type": "image",
-          "hidden": true,
+          "hidden": false,
           "tags": [
             "sancy",
             "super besse",
@@ -539,8 +539,8 @@
           "uid": 3020,
           "order": 20,
           "title": "Sommet\nEspace Ludo sportif Les Hermines",
-          "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut17.jpg",
-          "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut17.jpg",
+          "imageLD": "http://www.trinum.com/ibox/superbesse/images/superbesse-haut/superbesse_superbesse-haut12.jpg",
+          "imageHD": null,
           "type": "image",
           "hidden": true,
           "tags": [
@@ -865,12 +865,12 @@
           "uid": 4011,
           "order": 11,
           "title": "Sommet\nLa Dore / Le Ferrand Nord",
-          "imageLD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet6.jpg",
-          "imageHD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet6.jpg",
+          "imageLD": "https://app.webcam-hd.com/whd/images/sancy_sommet-station/zooms/sancy_sommet-station6.jpg",
+          "imageHD":  null,
           "type": "image",
           "latitude": 45.5283467,
           "longitude": 2.816384,
-          "hidden": true,
+          "hidden": false,
           "tags": [
             "sancy",
             "mont dore",
@@ -883,10 +883,10 @@
           "uid": 4012,
           "order": 12,
           "title": "Sommet\nVue Générale",
-          "imageLD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet7.jpg",
-          "imageHD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet7.jpg",
+          "imageLD": "https://app.webcam-hd.com/whd/images/sancy_sommet-station/zooms/sancy_sommet-station7.jpg",
+          "imageHD": null,
           "type": "image",
-          "hidden": true,
+          "hidden": false,
           "tags": [
             "sancy",
             "mont dore",
@@ -899,10 +899,10 @@
           "uid": 4013,
           "order": 13,
           "title": "Sommet\nAccès au Sancy",
-          "imageLD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet8.jpg",
-          "imageHD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet8.jpg",
+          "imageLD": "https://app.webcam-hd.com/whd/images/sancy_sommet-station/zooms/sancy_sommet-station8.jpg",
+          "imageHD": null,
           "type": "image",
-          "hidden": true,
+          "hidden": false,
           "tags": [
             "sancy",
             "mont dore",
@@ -982,6 +982,24 @@
             "lac",
             "guery"
           ]
+        },
+        {
+            "uid": 4018,
+            "order": 18,
+            "title": "Roc du Cruzeau",
+            "imageLD": "https://app.webcam-hd.com/whd/images/sancy_sommet-station/zooms/sancy_sommet-station3.jpg",
+            "imageHD": null,
+            "type": "image",
+            "latitude": 45.794418,
+            "longitude": 0.652187,
+            "hidden": false,
+            "tags": [
+                "sancy",
+                "mont dore",
+                "auvergne",
+                "roc",
+                "cruzeau"
+            ]
         }
       ]
     },
@@ -1082,6 +1100,21 @@
             "ski",
             "route"
           ]
+        },
+        {
+            "uid": 5006,
+            "order": 6,
+            "title": "Versant Plomb",
+            "imageLD": "https://www.trinum.com/ibox/ftpcam/small_lioran_tk-refuge-versant-plomb.jpg",
+            "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_lioran_tk-refuge-versant-plomb.jpg",
+            "type": "image",
+            "tags": [
+                "lioran",
+                "auvergne",
+                "station",
+                "ski",
+                "route"
+            ]
         }
       ]
     },
@@ -1253,7 +1286,23 @@
           ]
         },
         {
-          "uid": 7007,
+            "uid": 7007,
+            "order": 3,
+            "title": "Place de la victoire",
+            "imageLD": "https://platforms5.joada.net/embeded/embeded.html?uuid=5d752a63-b0e1-4c8b-3638-3530-6d61-63-8b8a-6beef9f389e5d",
+            "imageHD": null,
+            "type": "image",
+            "latitude": 45.778015,
+            "longitude": 3.085836,
+            "tags": [
+                "clermont-ferrand",
+                "clermont",
+                "ferrand",
+                "victoire"
+            ]
+        },
+        {
+          "uid": 7008,
           "order": 7,
           "title": "A71, Péage Clermont-Gerzat, direction Paris",
           "imageLD": "http://filmssite.viewsurf.com/aprr56/media_tn.jpg",
@@ -1271,7 +1320,7 @@
           ]
         },
         {
-          "uid": 7008,
+          "uid": 7009,
           "order": 8,
           "title": "A75, La Pardieu, direction Paris",
           "imageLD": "http://filmssite.viewsurf.com/aprr28/media_tn.jpg",
