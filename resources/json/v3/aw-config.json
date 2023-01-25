@@ -812,6 +812,166 @@
         {
           "uid": 4008,
           "order": 8,
+          "title": "Bas de la station\nAccueil du Sancy Park",
+          "imageLD": "https://app.webcam-hd.com/whd/images/sancy_bas-station/zooms/sancy_bas-station6.jpg",
+          "imageHD": "https://app.webcam-hd.com/whd/images/sancy_bas-station/zooms/sancy_bas-station6.jpg",
+          "type": "image",
+          "hidden": false,
+          "tags": [
+            "sancy",
+            "mont dore",
+            "auvergne",
+            "station",
+            "ski"
+          ]
+        },
+        {
+          "uid": 4009,
+          "order": 9,
+          "title": "Bas de la station\nRue vers le val de Courre",
+          "imageLD": "https://app.webcam-hd.com/whd/images/sancy_bas-station/zooms/sancy_bas-station9.jpg",
+          "imageHD": "https://app.webcam-hd.com/whd/images/sancy_bas-station/zooms/sancy_bas-station9.jpg",
+          "type": "image",
+          "hidden": false,
+          "tags": [
+            "sancy",
+            "mont dore",
+            "auvergne",
+            "station",
+            "ski"
+          ]
+        },
+        {
+          "uid": 4010,
+          "order": 10,
+          "title": "Bas de la station\nTubby Jump",
+          "imageLD": "https://app.webcam-hd.com/whd/images/sancy_bas-station/zooms/sancy_bas-station3.jpg",
+          "imageHD": "https://app.webcam-hd.com/whd/images/sancy_bas-station/zooms/sancy_bas-station3.jpg",
+          "type": "image",
+          "hidden": false,
+          "tags": [
+            "sancy",
+            "mont dore",
+            "auvergne",
+            "station",
+            "ski"
+          ]
+        },
+        {
+          "uid": 4011,
+          "order": 11,
+          "title": "Bas de la station\nParcours quad électrique",
+          "imageLD": "https://app.webcam-hd.com/whd/images/sancy_bas-station/zooms/sancy_bas-station4.jpg",
+          "imageHD": "https://app.webcam-hd.com/whd/images/sancy_bas-station/zooms/sancy_bas-station4.jpg",
+          "type": "image",
+          "hidden": false,
+          "tags": [
+            "sancy",
+            "mont dore",
+            "auvergne",
+            "station",
+            "ski"
+          ]
+        },
+        {
+          "uid": 4012,
+          "order": 12,
+          "title": "Bas de la station\nLa tour infernale",
+          "imageLD": "https://app.webcam-hd.com/whd/images/sancy_bas-station/zooms/sancy_bas-station2.jpg",
+          "imageHD": "https://app.webcam-hd.com/whd/images/sancy_bas-station/zooms/sancy_bas-station2.jpg",
+          "type": "image",
+          "hidden": false,
+          "tags": [
+            "sancy",
+            "mont dore",
+            "auvergne",
+            "station",
+            "ski"
+          ]
+        },
+        {
+          "uid": 4013,
+          "order": 13,
+          "title": "Bas de la station\nVue sur le Roc de Cuzeau",
+          "imageLD": "https://app.webcam-hd.com/whd/images/sancy_bas-station/zooms/sancy_bas-station8.jpg",
+          "imageHD": "https://app.webcam-hd.com/whd/images/sancy_bas-station/zooms/sancy_bas-station8.jpg",
+          "type": "image",
+          "hidden": false,
+          "tags": [
+            "sancy",
+            "mont dore",
+            "auvergne",
+            "station",
+            "ski"
+          ]
+        },
+        {
+          "uid": 4014,
+          "order": 14,
+          "title": "Bas de la station\nMassif du Sancy",
+          "imageLD": "https://app.webcam-hd.com/whd/images/sancy_bas-station/zooms/sancy_bas-station7.jpg",
+          "imageHD": "https://app.webcam-hd.com/whd/images/sancy_bas-station/zooms/sancy_bas-station7.jpg",
+          "type": "image",
+          "hidden": false,
+          "tags": [
+            "sancy",
+            "mont dore",
+            "auvergne",
+            "station",
+            "ski"
+          ]
+        },
+        {
+          "uid": 4015,
+          "order": 15,
+          "title": "Bas de la station\nCascade de la Dore",
+          "imageLD": "https://app.webcam-hd.com/whd/images/sancy_bas-station/zooms/sancy_bas-station1.jpg",
+          "imageHD": "https://app.webcam-hd.com/whd/images/sancy_bas-station/zooms/sancy_bas-station1.jpg",
+          "type": "image",
+          "hidden": false,
+          "tags": [
+            "sancy",
+            "mont dore",
+            "auvergne",
+            "station",
+            "ski"
+          ]
+        },
+        {
+          "uid": 4016,
+          "order": 16,
+          "title": "Bas de la station\nLe Val d'enfer",
+          "imageLD": "https://app.webcam-hd.com/whd/images/sancy_bas-station/zooms/sancy_bas-station10.jpg",
+          "imageHD": "https://app.webcam-hd.com/whd/images/sancy_bas-station/zooms/sancy_bas-station10.jpg",
+          "type": "image",
+          "hidden": false,
+          "tags": [
+            "sancy",
+            "mont dore",
+            "auvergne",
+            "station",
+            "ski"
+          ]
+        },
+        {
+          "uid": 4017,
+          "order": 17,
+          "title": "Bas de la station\nArrivée du téléphérique",
+          "imageLD": "https://app.webcam-hd.com/whd/images/sancy_bas-station/zooms/sancy_bas-station11.jpg",
+          "imageHD": "https://app.webcam-hd.com/whd/images/sancy_bas-station/zooms/sancy_bas-station11.jpg",
+          "type": "image",
+          "hidden": false,
+          "tags": [
+            "sancy",
+            "mont dore",
+            "auvergne",
+            "station",
+            "ski"
+          ]
+        },
+        {
+          "uid": 4018,
+          "order": 18,
           "title": "Sommet\nPanoramique",
           "imageLD": "https://www.trinum.com/ibox/ftpcam/small_mont-dore_sommet.jpg",
           "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_mont-dore_sommet.jpg",
@@ -828,8 +988,8 @@
           ]
         },
         {
-          "uid": 4009,
-          "order": 9,
+          "uid": 4019,
+          "order": 19,
           "title": "Sommet\nRoc de Cuzeau (La Cabane)",
           "imageLD": "https://app.webcam-hd.com/whd/images/sancy_sommet-station/zooms/sancy_sommet-station3.jpg",
           "imageHD": "https://app.webcam-hd.com/whd/images/sancy_sommet-station/zooms/sancy_sommet-station3.jpg",
@@ -846,8 +1006,8 @@
           ]
         },
         {
-          "uid": 4010,
-          "order": 10,
+          "uid": 4020,
+          "order": 20,
           "title": "Sommet\nPuy de Sancy",
           "imageLD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet4.jpg",
           "imageHD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet4.jpg",
@@ -862,8 +1022,8 @@
           ]
         },
         {
-          "uid": 4011,
-          "order": 11,
+          "uid": 4021,
+          "order": 21,
           "title": "Sommet\nLa Dore / Le Ferrand Nord",
           "imageLD": "https://app.webcam-hd.com/whd/images/sancy_sommet-station/zooms/sancy_sommet-station6.jpg",
           "imageHD": null,
@@ -880,8 +1040,8 @@
           ]
         },
         {
-          "uid": 4012,
-          "order": 12,
+          "uid": 4022,
+          "order": 22,
           "title": "Sommet\nVue Générale",
           "imageLD": "https://app.webcam-hd.com/whd/images/sancy_sommet-station/zooms/sancy_sommet-station7.jpg",
           "imageHD": null,
@@ -896,8 +1056,8 @@
           ]
         },
         {
-          "uid": 4013,
-          "order": 13,
+          "uid": 4023,
+          "order": 23,
           "title": "Sommet\nAccès au Sancy",
           "imageLD": "https://app.webcam-hd.com/whd/images/sancy_sommet-station/zooms/sancy_sommet-station8.jpg",
           "imageHD": null,
@@ -912,8 +1072,8 @@
           ]
         },
         {
-          "uid": 4014,
-          "order": 14,
+          "uid": 4024,
+          "order": 24,
           "title": "Sommet\nPan Grange",
           "imageLD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet9.jpg",
           "imageHD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet9.jpg",
@@ -930,8 +1090,8 @@
           ]
         },
         {
-          "uid": 4015,
-          "order": 15,
+          "uid": 4025,
+          "order": 25,
           "title": "Sommet\nTerrasse",
           "imageLD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet1.jpg",
           "imageHD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet1.jpg",
@@ -948,8 +1108,8 @@
           ]
         },
         {
-          "uid": 4016,
-          "order": 16,
+          "uid": 4026,
+          "order": 26,
           "title": "Sommet\nLe Pas de l'Ane",
           "imageLD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet2.jpg",
           "imageHD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet2.jpg",
@@ -966,8 +1126,8 @@
           ]
         },
         {
-          "uid": 4017,
-          "order": 17,
+          "uid": 4027,
+          "order": 27,
           "title": "Lac de Guery\nCentre Montagnard Meteo",
           "imageLD": "http://www.lac-guery.meteoamikuze.com/Webcam/webcam.jpg",
           "imageHD": null,
