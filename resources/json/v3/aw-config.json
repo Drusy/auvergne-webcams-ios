@@ -116,7 +116,7 @@
           "type": "image",
           "latitude": 45.666121,
           "longitude": 2.8861663,
-          "hidden": false,
+          "hidden": true,
           "tags": [
             "pessade",
             "auvergne",
@@ -196,7 +196,7 @@
           "type": "image",
           "latitude": 45.500280,
           "longitude": 2.906307,
-          "hidden": false,
+          "hidden": true,
           "tags": [
             "sancy",
             "pertuyzat",
@@ -213,7 +213,7 @@
           "type": "image",
           "latitude": 45.553587,
           "longitude": 2.744752,
-          "hidden": false,
+          "hidden": true,
           "tags": [
             "sancy",
             "stele",
@@ -700,7 +700,7 @@
           "type": "image",
           "latitude": 45.541022,
           "longitude": 2.816414,
-          "hidden": false,
+          "hidden": true,
           "tags": [
             "sancy",
             "mont dore",
@@ -818,7 +818,7 @@
           "type": "image",
           "latitude": 45.532377,
           "longitude": 2.813312,
-          "hidden": false,
+          "hidden": true,
           "tags": [
             "sancy",
             "mont dore",
@@ -1037,7 +1037,7 @@
           "type": "image",
           "latitude": 45.082645,
           "longitude": 2.7497478,
-          "hidden": false,
+          "hidden": true,
           "tags": [
             "lioran",
             "auvergne",
@@ -1444,7 +1444,7 @@
           "type": "image",
           "latitude": 45.877239,
           "longitude": 3.680862,
-          "hidden": false,
+          "hidden": true,
           "tags": [
             "cg63",
             "route"
@@ -1814,7 +1814,7 @@
           "uid": 10005,
           "order": 6,
           "title": "Blavozy / Montferrat - N88\nDirection Le Puy en Velay",
-          "imageLD": "http://www.webcam-autoroute.eu/images/massif_central_cam8.JPG",
+          "imageLD": "https://www.webcam-autoroute.eu/images/massif_central_cam8.JPG",
           "imageHD": null,
           "type": "image",
           "mapImageName": "map-annotation-road",
