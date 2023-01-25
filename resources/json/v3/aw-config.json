@@ -18,7 +18,7 @@
           "imageHD": null,
           "type": "image",
           "latitude": 45.761259,
-          "longitude": 3.110320,
+          "longitude": 3.11032,
           "hidden": false,
           "tags": [
             "puy de dome",
@@ -33,7 +33,7 @@
           "imageLD": "http://wwwobs.univ-bpclermont.fr/opgc/webcampdd.jpg",
           "imageHD": null,
           "type": "image",
-          "latitude": 45.770360,
+          "latitude": 45.77036,
           "longitude": 2.963061,
           "hidden": false,
           "tags": [
@@ -194,7 +194,7 @@
           "imageLD": "https://www.trinum.com/ibox/ftpcam/small_sancy-nordique_pertuyzat.jpg",
           "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_sancy-nordique_pertuyzat.jpg",
           "type": "image",
-          "latitude": 45.500280,
+          "latitude": 45.50028,
           "longitude": 2.906307,
           "hidden": true,
           "tags": [
@@ -443,7 +443,7 @@
           "imageHD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole1.jpg",
           "type": "image",
           "latitude": 45.512126,
-          "longitude": 2.852710,
+          "longitude": 2.85271,
           "hidden": false,
           "tags": [
             "sancy",
@@ -751,7 +751,7 @@
           "imageHD": "https://www.webcam-hd.com/images/mont-dore_bas-station/zooms/mont-dore_bas-station13.jpg",
           "type": "image",
           "latitude": 45.545699,
-          "longitude": 2.815510,
+          "longitude": 2.81551,
           "hidden": true,
           "tags": [
             "sancy",
@@ -835,7 +835,7 @@
           "imageHD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet3.jpg",
           "type": "image",
           "latitude": 45.545797,
-          "longitude": 2.832640,
+          "longitude": 2.83264,
           "hidden": true,
           "tags": [
             "sancy",
@@ -866,7 +866,7 @@
           "order": 11,
           "title": "Sommet\nLa Dore / Le Ferrand Nord",
           "imageLD": "https://app.webcam-hd.com/whd/images/sancy_sommet-station/zooms/sancy_sommet-station6.jpg",
-          "imageHD":  null,
+          "imageHD": null,
           "type": "image",
           "latitude": 45.5283467,
           "longitude": 2.816384,
@@ -984,22 +984,22 @@
           ]
         },
         {
-            "uid": 4018,
-            "order": 18,
-            "title": "Roc du Cruzeau",
-            "imageLD": "https://app.webcam-hd.com/whd/images/sancy_sommet-station/zooms/sancy_sommet-station3.jpg",
-            "imageHD": null,
-            "type": "image",
-            "latitude": 45.794418,
-            "longitude": 0.652187,
-            "hidden": false,
-            "tags": [
-                "sancy",
-                "mont dore",
-                "auvergne",
-                "roc",
-                "cruzeau"
-            ]
+          "uid": 4018,
+          "order": 18,
+          "title": "Roc du Cruzeau",
+          "imageLD": "https://app.webcam-hd.com/whd/images/sancy_sommet-station/zooms/sancy_sommet-station3.jpg",
+          "imageHD": null,
+          "type": "image",
+          "latitude": 45.794418,
+          "longitude": 0.652187,
+          "hidden": false,
+          "tags": [
+            "sancy",
+            "mont dore",
+            "auvergne",
+            "roc",
+            "cruzeau"
+          ]
         }
       ]
     },
@@ -1102,19 +1102,19 @@
           ]
         },
         {
-            "uid": 5006,
-            "order": 6,
-            "title": "Versant Plomb",
-            "imageLD": "https://www.trinum.com/ibox/ftpcam/small_lioran_tk-refuge-versant-plomb.jpg",
-            "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_lioran_tk-refuge-versant-plomb.jpg",
-            "type": "image",
-            "tags": [
-                "lioran",
-                "auvergne",
-                "station",
-                "ski",
-                "route"
-            ]
+          "uid": 5006,
+          "order": 6,
+          "title": "Versant Plomb",
+          "imageLD": "https://www.trinum.com/ibox/ftpcam/small_lioran_tk-refuge-versant-plomb.jpg",
+          "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_lioran_tk-refuge-versant-plomb.jpg",
+          "type": "image",
+          "tags": [
+            "lioran",
+            "auvergne",
+            "station",
+            "ski",
+            "route"
+          ]
         }
       ]
     },
@@ -1284,22 +1284,6 @@
             "ferrand",
             "forez"
           ]
-        },
-        {
-            "uid": 7007,
-            "order": 3,
-            "title": "Place de la victoire",
-            "imageLD": "https://platforms5.joada.net/embeded/embeded.html?uuid=5d752a63-b0e1-4c8b-3638-3530-6d61-63-8b8a-6beef9f389e5d",
-            "imageHD": null,
-            "type": "image",
-            "latitude": 45.778015,
-            "longitude": 3.085836,
-            "tags": [
-                "clermont-ferrand",
-                "clermont",
-                "ferrand",
-                "victoire"
-            ]
         },
         {
           "uid": 7008,
