@@ -35,6 +35,7 @@
           "type": "image",
           "latitude": 45.770360,
           "longitude": 2.963061,
+          "hidden": false,
           "tags": [
             "puy de dome",
             "auvergne",
@@ -55,11 +56,12 @@
           "uid": 2001,
           "order": 1,
           "title": "Puy de Sancy\nStation Chastreix",
-          "imageLD": "http://trinum.com/ibox/ftpcam/1280_chastreix-sancy_station.jpg",
-          "imageHD": "http://trinum.com/ibox/ftpcam/mega_chastreix-sancy_station.jpg",
+          "imageLD": "https://www.trinum.com/ibox/ftpcam/small_chastreix-sancy_station.jpg",
+          "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_chastreix-sancy_station.jpg",
           "type": "image",
           "latitude": 45.5349846,
           "longitude": 2.7683755,
+          "hidden": false,
           "tags": [
             "sancy",
             "charstreix",
@@ -78,6 +80,7 @@
           "mapImageName": "map-annotation-lake",
           "latitude": 45.573901,
           "longitude": 2.918886,
+          "hidden": false,
           "tags": [
             "sancy",
             "lac chambon",
@@ -89,12 +92,13 @@
           "uid": 2003,
           "order": 3,
           "title": "Les Cheires\nLac d'Aydat",
-          "imageLD": "http://www.trinum.com/ibox/ftpcam/les-cheires_lac-d-aydat.jpg",
-          "imageHD": "http://www.trinum.com/ibox/ftpcam/mega_les-cheires_lac-d-aydat.jpg",
+          "imageLD": "https://www.trinum.com/ibox/ftpcam/small_les-cheires_lac-d-aydat.jpg",
+          "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_les-cheires_lac-d-aydat.jpg",
           "type": "image",
           "mapImageName": "map-annotation-lake",
           "latitude": 45.666121,
           "longitude": 2.983421,
+          "hidden": false,
           "tags": [
             "aydat",
             "lac",
@@ -107,11 +111,12 @@
           "uid": 2004,
           "order": 4,
           "title": "Les Cheires\nCentre Nature Pessade",
-          "imageLD": "http://trinum.com/ibox/ftpcam/les-cheires_pessade.jpg",
-          "imageHD": "http://trinum.com/ibox/ftpcam/mega_les-cheires_pessade.jpg",
+          "imageLD": "https://www.trinum.com/ibox/ftpcam/small_les-cheires_pessade.jpg",
+          "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_les-cheires_pessade.jpg",
           "type": "image",
           "latitude": 45.666121,
           "longitude": 2.8861663,
+          "hidden": false,
           "tags": [
             "pessade",
             "auvergne",
@@ -123,11 +128,12 @@
           "uid": 2005,
           "order": 5,
           "title": "Anzat-le-Luguet\nParrot",
-          "imageLD": "http://trinum.com/ibox/ftpcam/small_anzat-le-luguet_parrot.jpg",
-          "imageHD": "http://trinum.com/ibox/ftpcam/mega_anzat-le-luguet_parrot.jpg",
+          "imageLD": "https://www.trinum.com/ibox/ftpcam/small_anzat-le-luguet_parrot.jpg",
+          "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_anzat-le-luguet_parrot.jpg",
           "type": "image",
           "latitude": 45.3547731,
           "longitude": 2.9904582,
+          "hidden": false,
           "tags": [
             "parrot",
             "auvergne",
@@ -141,11 +147,12 @@
           "uid": 2006,
           "order": 6,
           "title": "Prabouré\nParc d'activité",
-          "imageLD": "https://srv07.trinum.com/ibox/ftpcam/small_praboure_front-de-neige.jpg",
-          "imageHD": "https://srv07.trinum.com/ibox/ftpcam/mega_praboure_front-de-neige.jpg",
+          "imageLD": "https://www.trinum.com/ibox/ftpcam/small_praboure_front-de-neige.jpg",
+          "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_praboure_front-de-neige.jpg",
           "type": "image",
           "latitude": 45.565948,
           "longitude": 3.868751,
+          "hidden": false,
           "tags": [
             "ski",
             "prabouré",
@@ -161,6 +168,7 @@
           "type": "image",
           "latitude": 45.604914,
           "longitude": 3.818813,
+          "hidden": true,
           "tags": [
             "Valcivières"
           ]
@@ -174,6 +182,7 @@
           "type": "image",
           "latitude": 45.604914,
           "longitude": 3.818813,
+          "hidden": true,
           "tags": [
             "Valcivières"
           ]
@@ -187,6 +196,7 @@
           "type": "image",
           "latitude": 45.500280,
           "longitude": 2.906307,
+          "hidden": false,
           "tags": [
             "sancy",
             "pertuyzat",
@@ -198,11 +208,12 @@
           "uid": 2010,
           "order": 10,
           "title": "Puy de Sancy\nLa Stele",
-          "imageLD": "https://srv07.trinum.com/ibox/ftpcam/small_sancy-nordique_la-stele.jpg",
-          "imageHD": "https://srv07.trinum.com/ibox/ftpcam/mega_sancy-nordique_la-stele.jpg",
+          "imageLD": "https://www.trinum.com/ibox/ftpcam/small_sancy-nordique_la-stele.jpg",
+          "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_sancy-nordique_la-stele.jpg",
           "type": "image",
           "latitude": 45.553587,
           "longitude": 2.744752,
+          "hidden": false,
           "tags": [
             "sancy",
             "stele",
@@ -226,11 +237,12 @@
           "uid": 3001,
           "order": 1,
           "title": "Bas de la station\nPanoramique",
-          "imageLD": "http://trinum.com/ibox/ftpcam/1280_superbesse_ecole.jpg",
-          "imageHD": "http://trinum.com/ibox/ftpcam/mega_superbesse_ecole.jpg",
+          "imageLD": "https://www.trinum.com/ibox/ftpcam/small_superbesse_ecole.jpg",
+          "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_superbesse_ecole.jpg",
           "type": "image",
           "latitude": 45.541023,
           "longitude": 2.816419,
+          "hidden": false,
           "tags": [
             "sancy",
             "super besse",
@@ -248,6 +260,7 @@
           "type": "image",
           "latitude": 45.5050592,
           "longitude": 2.8532958,
+          "hidden": false,
           "tags": [
             "sancy",
             "super besse",
@@ -265,6 +278,7 @@
           "type": "image",
           "latitude": 45.5126938,
           "longitude": 2.8531671,
+          "hidden": false,
           "tags": [
             "sancy",
             "super besse",
@@ -280,6 +294,7 @@
           "imageLD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole8.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole8.jpg",
           "type": "image",
+          "hidden": false,
           "tags": [
             "sancy",
             "super besse",
@@ -295,6 +310,7 @@
           "imageLD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole9.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole9.jpg",
           "type": "image",
+          "hidden": false,
           "tags": [
             "sancy",
             "super besse",
@@ -312,6 +328,7 @@
           "type": "image",
           "latitude": 45.518607,
           "longitude": 2.841061,
+          "hidden": false,
           "tags": [
             "sancy",
             "super besse",
@@ -329,6 +346,7 @@
           "type": "image",
           "latitude": 45.5118471,
           "longitude": 2.8514863,
+          "hidden": true,
           "tags": [
             "sancy",
             "super besse",
@@ -344,6 +362,7 @@
           "imageLD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole12.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole12.jpg",
           "type": "image",
+          "hidden": true,
           "tags": [
             "sancy",
             "super besse",
@@ -359,6 +378,7 @@
           "imageLD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole13.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole13.jpg",
           "type": "image",
+          "hidden": true,
           "tags": [
             "sancy",
             "super besse",
@@ -374,6 +394,7 @@
           "imageLD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole14.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole14.jpg",
           "type": "image",
+          "hidden": true,
           "tags": [
             "sancy",
             "super besse",
@@ -389,6 +410,7 @@
           "imageLD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole15.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole15.jpg",
           "type": "image",
+          "hidden": true,
           "tags": [
             "sancy",
             "super besse",
@@ -404,6 +426,7 @@
           "imageLD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole16.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole16.jpg",
           "type": "image",
+          "hidden": true,
           "tags": [
             "sancy",
             "super besse",
@@ -421,6 +444,7 @@
           "type": "image",
           "latitude": 45.512126,
           "longitude": 2.852710,
+          "hidden": false,
           "tags": [
             "sancy",
             "super besse",
@@ -433,11 +457,12 @@
           "uid": 3014,
           "order": 14,
           "title": "Sommet\nPanoramique",
-          "imageLD": "http://trinum.com/ibox/ftpcam/1280_superbesse_superbesse-haut.jpg",
-          "imageHD": "http://trinum.com/ibox/ftpcam/mega_superbesse_superbesse-haut.jpg",
+          "imageLD": "https://www.trinum.com/ibox/ftpcam/small_superbesse_superbesse-haut.jpg",
+          "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_superbesse_superbesse-haut.jpg",
           "type": "image",
           "latitude": 45.520772,
           "longitude": 2.831802,
+          "hidden": false,
           "tags": [
             "sancy",
             "super besse",
@@ -453,6 +478,7 @@
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut10.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut10.jpg",
           "type": "image",
+          "hidden": false,
           "tags": [
             "sancy",
             "super besse",
@@ -468,6 +494,7 @@
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut13.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut13.jpg",
           "type": "image",
+          "hidden": false,
           "tags": [
             "sancy",
             "super besse",
@@ -483,6 +510,7 @@
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut14.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut14.jpg",
           "type": "image",
+          "hidden": false,
           "tags": [
             "sancy",
             "super besse",
@@ -498,6 +526,7 @@
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut15.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut15.jpg",
           "type": "image",
+          "hidden": true,
           "tags": [
             "sancy",
             "super besse",
@@ -513,6 +542,7 @@
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut17.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut17.jpg",
           "type": "image",
+          "hidden": true,
           "tags": [
             "sancy",
             "super besse",
@@ -528,6 +558,7 @@
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut21.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut21.jpg",
           "type": "image",
+          "hidden": true,
           "tags": [
             "sancy",
             "super besse",
@@ -543,6 +574,7 @@
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut1.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut1.jpg",
           "type": "image",
+          "hidden": false,
           "tags": [
             "sancy",
             "super besse",
@@ -558,6 +590,7 @@
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut2.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut2.jpg",
           "type": "image",
+          "hidden": false,
           "tags": [
             "sancy",
             "super besse",
@@ -573,6 +606,7 @@
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut3.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut3.jpg",
           "type": "image",
+          "hidden": false,
           "tags": [
             "sancy",
             "super besse",
@@ -588,6 +622,7 @@
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut4.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut4.jpg",
           "type": "image",
+          "hidden": false,
           "tags": [
             "sancy",
             "super besse",
@@ -603,6 +638,7 @@
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut7.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut7.jpg",
           "type": "image",
+          "hidden": false,
           "tags": [
             "sancy",
             "super besse",
@@ -618,6 +654,7 @@
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut9.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut9.jpg",
           "type": "image",
+          "hidden": false,
           "tags": [
             "sancy",
             "super besse",
@@ -633,6 +670,7 @@
           "imageLD": "https://www.trinum.com/ibox/ftpcam/small_superbesse_front-de-neige.jpg",
           "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_superbesse_front-de-neige.jpg",
           "type": "image",
+          "hidden": false,
           "tags": [
             "sancy",
             "super besse",
@@ -657,11 +695,12 @@
           "uid": 4001,
           "order": 1,
           "title": "Bas de la station\nPanoramique",
-          "imageLD": "http://trinum.com/ibox/ftpcam/1280_mont-dore_bas-station.jpg",
-          "imageHD": "http://trinum.com/ibox/ftpcam/mega_mont-dore_bas-station.jpg",
+          "imageLD": "https://www.trinum.com/ibox/ftpcam/small_mont-dore_bas-station.jpg",
+          "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_mont-dore_bas-station.jpg",
           "type": "image",
           "latitude": 45.541022,
           "longitude": 2.816414,
+          "hidden": false,
           "tags": [
             "sancy",
             "mont dore",
@@ -679,6 +718,7 @@
           "type": "image",
           "latitude": 45.551211,
           "longitude": 2.813127,
+          "hidden": true,
           "tags": [
             "sancy",
             "mont dore",
@@ -694,6 +734,7 @@
           "imageLD": "https://www.webcam-hd.com/images/mont-dore_bas-station/zooms/mont-dore_bas-station12.jpg",
           "imageHD": "https://www.webcam-hd.com/images/mont-dore_bas-station/zooms/mont-dore_bas-station12.jpg",
           "type": "image",
+          "hidden": true,
           "tags": [
             "sancy",
             "mont dore",
@@ -711,6 +752,7 @@
           "type": "image",
           "latitude": 45.545699,
           "longitude": 2.815510,
+          "hidden": true,
           "tags": [
             "sancy",
             "mont dore",
@@ -726,6 +768,7 @@
           "imageLD": "https://www.webcam-hd.com/images/mont-dore_bas-station/zooms/mont-dore_bas-station3.jpg",
           "imageHD": "https://www.webcam-hd.com/images/mont-dore_bas-station/zooms/mont-dore_bas-station3.jpg",
           "type": "image",
+          "hidden": true,
           "tags": [
             "sancy",
             "mont dore",
@@ -741,6 +784,7 @@
           "imageLD": "https://www.webcam-hd.com/images/mont-dore_bas-station/zooms/mont-dore_bas-station4.jpg",
           "imageHD": "https://www.webcam-hd.com/images/mont-dore_bas-station/zooms/mont-dore_bas-station4.jpg",
           "type": "image",
+          "hidden": true,
           "tags": [
             "sancy",
             "mont dore",
@@ -756,6 +800,7 @@
           "imageLD": "https://www.webcam-hd.com/images/mont-dore_bas-station/zooms/mont-dore_bas-station5.jpg",
           "imageHD": "https://www.webcam-hd.com/images/mont-dore_bas-station/zooms/mont-dore_bas-station5.jpg",
           "type": "image",
+          "hidden": true,
           "tags": [
             "sancy",
             "mont dore",
@@ -768,11 +813,12 @@
           "uid": 4008,
           "order": 8,
           "title": "Sommet\nPanoramique",
-          "imageLD": "http://www.trinum.com/ibox/ftpcam/1280_mont-dore_sommet.jpg",
-          "imageHD": "http://www.trinum.com/ibox/ftpcam/mega_mont-dore_sommet.jpg",
+          "imageLD": "https://www.trinum.com/ibox/ftpcam/small_mont-dore_sommet.jpg",
+          "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_mont-dore_sommet.jpg",
           "type": "image",
           "latitude": 45.532377,
           "longitude": 2.813312,
+          "hidden": false,
           "tags": [
             "sancy",
             "mont dore",
@@ -790,6 +836,7 @@
           "type": "image",
           "latitude": 45.545797,
           "longitude": 2.832640,
+          "hidden": true,
           "tags": [
             "sancy",
             "mont dore",
@@ -805,6 +852,7 @@
           "imageLD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet4.jpg",
           "imageHD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet4.jpg",
           "type": "image",
+          "hidden": true,
           "tags": [
             "sancy",
             "mont dore",
@@ -822,6 +870,7 @@
           "type": "image",
           "latitude": 45.5283467,
           "longitude": 2.816384,
+          "hidden": true,
           "tags": [
             "sancy",
             "mont dore",
@@ -837,6 +886,7 @@
           "imageLD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet7.jpg",
           "imageHD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet7.jpg",
           "type": "image",
+          "hidden": true,
           "tags": [
             "sancy",
             "mont dore",
@@ -852,6 +902,7 @@
           "imageLD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet8.jpg",
           "imageHD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet8.jpg",
           "type": "image",
+          "hidden": true,
           "tags": [
             "sancy",
             "mont dore",
@@ -869,6 +920,7 @@
           "type": "image",
           "latitude": 45.5361506,
           "longitude": 2.8158508,
+          "hidden": true,
           "tags": [
             "sancy",
             "mont dore",
@@ -886,6 +938,7 @@
           "type": "image",
           "latitude": 45.532337,
           "longitude": 2.813355,
+          "hidden": true,
           "tags": [
             "sancy",
             "mont dore",
@@ -903,6 +956,7 @@
           "type": "image",
           "latitude": 45.5306798,
           "longitude": 2.80971,
+          "hidden": true,
           "tags": [
             "sancy",
             "mont dore",
@@ -948,6 +1002,7 @@
           "imageLD": "https://www.trinum.com/ibox/ftpcam/small_lioran_combe.jpg",
           "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_lioran_combe.jpg",
           "type": "image",
+          "hidden": false,
           "tags": [
             "lioran",
             "auvergne",
@@ -960,11 +1015,12 @@
           "uid": 5002,
           "order": 2,
           "title": "Font d'Alagnon",
-          "imageLD": "http://trinum.com/ibox/ftpcam/1280_lioran_font-d-alagnon.jpg",
-          "imageHD": "http://trinum.com/ibox/ftpcam/mega_lioran_font-d-alagnon.jpg",
+          "imageLD": "https://www.trinum.com/ibox/ftpcam/small_lioran_font-d-alagnon.jpg",
+          "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_lioran_font-d-alagnon.jpg",
           "type": "image",
           "latitude": 45.087687,
           "longitude": 2.7430172,
+          "hidden": false,
           "tags": [
             "lioran",
             "auvergne",
@@ -976,11 +1032,12 @@
           "uid": 5003,
           "order": 3,
           "title": "Centre station",
-          "imageLD": "http://trinum.com/ibox/ftpcam/1280_lioran_station.jpg",
-          "imageHD": "http://www.trinum.com/ibox/ftpcam/mega_lioran_station.jpg",
+          "imageLD": "https://www.trinum.com/ibox/ftpcam/small_lioran_station.jpg",
+          "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_lioran_station.jpg",
           "type": "image",
           "latitude": 45.082645,
           "longitude": 2.7497478,
+          "hidden": false,
           "tags": [
             "lioran",
             "auvergne",
@@ -998,6 +1055,7 @@
           "mapImageName": "map-annotation-road",
           "latitude": 45.095255,
           "longitude": 2.7583585,
+          "hidden": true,
           "tags": [
             "lioran",
             "auvergne",
@@ -1016,6 +1074,7 @@
           "mapImageName": "map-annotation-road",
           "latitude": 45.071929,
           "longitude": 2.7211209,
+          "hidden": false,
           "tags": [
             "lioran",
             "auvergne",
@@ -1040,11 +1099,12 @@
           "uid": 12001,
           "order": 1,
           "title": "Espace apprentissage",
-          "imageLD": "http://trinum.com/ibox/ftpcam/small_chalmazel_espace-apprentissage.jpg",
-          "imageHD": "http://trinum.com/ibox/ftpcam/mega_chalmazel_espace-apprentissage.jpg",
+          "imageLD": "https://www.trinum.com/ibox/ftpcam/small_chalmazel_espace-apprentissage.jpg",
+          "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_chalmazel_espace-apprentissage.jpg",
           "type": "image",
           "latitude": 45.677279,
           "longitude": 3.826307,
+          "hidden": false,
           "tags": [
             "chalmazel",
             "auvergne",
@@ -1056,11 +1116,12 @@
           "uid": 12002,
           "order": 2,
           "title": "Jasseries",
-          "imageLD": "http://trinum.com/ibox/ftpcam/small_chalmazel_jasseries.jpg",
-          "imageHD": "http://trinum.com/ibox/ftpcam/mega_chalmazel_jasseries.jpg",
+          "imageLD": "https://www.trinum.com/ibox/ftpcam/small_chalmazel_jasseries.jpg",
+          "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_chalmazel_jasseries.jpg",
           "type": "image",
           "latitude": 45.661938,
           "longitude": 3.813092,
+          "hidden": false,
           "tags": [
             "chalmazel",
             "auvergne",
@@ -1072,8 +1133,8 @@
           "uid": 12003,
           "order": 3,
           "title": "Piste des granges",
-          "imageLD": "http://www.trinum.com/ibox/ftpcam/small_chalmazel_piste-des-granges.jpg",
-          "imageHD": "http://www.trinum.com/ibox/ftpcam/mega_chalmazel_piste-des-granges.jpg",
+          "imageLD": "https://www.trinum.com/ibox/ftpcam/small_chalmazel_piste-des-granges.jpg",
+          "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_chalmazel_piste-des-granges.jpg",
           "type": "image",
           "latitude": 45.661938,
           "longitude": 3.813092,
@@ -1089,11 +1150,12 @@
           "uid": 12004,
           "order": 4,
           "title": "Front de neige",
-          "imageLD": "http://www.trinum.com/ibox/ftpcam/small_chalmazel_front-de-neige.jpg",
-          "imageHD": "http://www.trinum.com/ibox/ftpcam/mega_chalmazel_front-de-neige.jpg",
+          "imageLD": "https://www.trinum.com/ibox/ftpcam/small_chalmazel_front-de-neige.jpg",
+          "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_chalmazel_front-de-neige.jpg",
           "type": "image",
           "latitude": 45.676886,
           "longitude": 3.824372,
+          "hidden": false,
           "tags": [
             "chalmazel",
             "auvergne",
@@ -1121,6 +1183,7 @@
           "type": "viewsurf",
           "latitude": 45.775002,
           "longitude": 3.0818862,
+          "hidden": false,
           "tags": [
             "clermont-ferrand",
             "clermont",
@@ -1137,6 +1200,7 @@
           "type": "viewsurf",
           "latitude": 45.788281,
           "longitude": 3.0715507,
+          "hidden": false,
           "tags": [
             "clermont-ferrand",
             "clermont",
@@ -1150,6 +1214,7 @@
           "title": "Puy de Dôme",
           "viewsurf": "https://filmssite.viewsurf.com/clermontferrand4/3/4",
           "type": "viewsurf",
+          "hidden": false,
           "tags": [
             "clermont-ferrand",
             "clermont",
@@ -1163,6 +1228,7 @@
           "title": "Forez",
           "viewsurf": "https://filmssite.viewsurf.com/clermontferrand4/10/8",
           "type": "viewsurf",
+          "hidden": false,
           "tags": [
             "clermont-ferrand",
             "clermont",
@@ -1178,6 +1244,7 @@
           "type": "viewsurf",
           "latitude": 45.779329,
           "longitude": 3.0852337,
+          "hidden": false,
           "tags": [
             "clermont-ferrand",
             "clermont",
@@ -1194,6 +1261,7 @@
           "type": "image",
           "latitude": 45.8410315,
           "longitude": 3.1562917,
+          "hidden": true,
           "tags": [
             "clermont-ferrand",
             "clermont",
@@ -1211,6 +1279,7 @@
           "type": "image",
           "latitude": 45.759999,
           "longitude": 3.139769,
+          "hidden": true,
           "tags": [
             "clermont-ferrand",
             "clermont",
@@ -1240,6 +1309,7 @@
           "type": "image",
           "latitude": 45.502187,
           "longitude": 2.875248,
+          "hidden": false,
           "tags": [
             "cg63",
             "route"
@@ -1254,6 +1324,7 @@
           "type": "image",
           "latitude": 45.741712,
           "longitude": 2.950086,
+          "hidden": false,
           "tags": [
             "cg63",
             "route"
@@ -1268,6 +1339,7 @@
           "type": "image",
           "latitude": 45.834893,
           "longitude": 2.864526,
+          "hidden": false,
           "tags": [
             "cg63",
             "route"
@@ -1282,6 +1354,7 @@
           "type": "image",
           "latitude": 45.597853,
           "longitude": 3.581357,
+          "hidden": false,
           "tags": [
             "cg63",
             "route"
@@ -1296,6 +1369,7 @@
           "type": "image",
           "latitude": 45.670767,
           "longitude": 2.787408,
+          "hidden": false,
           "tags": [
             "cg63",
             "route"
@@ -1310,6 +1384,7 @@
           "type": "image",
           "latitude": 45.527148,
           "longitude": 3.842443,
+          "hidden": true,
           "tags": [
             "cg63",
             "route"
@@ -1324,6 +1399,7 @@
           "type": "image",
           "latitude": 46.130454,
           "longitude": 2.866307,
+          "hidden": false,
           "tags": [
             "cg63",
             "route"
@@ -1338,6 +1414,7 @@
           "type": "image",
           "latitude": 45.84322,
           "longitude": 3.113809,
+          "hidden": false,
           "tags": [
             "cg63",
             "route"
@@ -1352,6 +1429,7 @@
           "type": "image",
           "latitude": 45.46247,
           "longitude": 3.53651,
+          "hidden": false,
           "tags": [
             "cg63",
             "route"
@@ -1366,6 +1444,7 @@
           "type": "image",
           "latitude": 45.877239,
           "longitude": 3.680862,
+          "hidden": false,
           "tags": [
             "cg63",
             "route"
@@ -1380,6 +1459,7 @@
           "type": "image",
           "latitude": 45.858827,
           "longitude": 2.92719,
+          "hidden": true,
           "tags": [
             "cg63",
             "route"
@@ -1394,6 +1474,7 @@
           "type": "image",
           "latitude": 45.592077,
           "longitude": 2.654658,
+          "hidden": false,
           "tags": [
             "cg63",
             "route"
@@ -1408,6 +1489,7 @@
           "type": "image",
           "latitude": 45.682177,
           "longitude": 2.966673,
+          "hidden": false,
           "tags": [
             "cg63",
             "route"
@@ -1434,6 +1516,7 @@
           "type": "image",
           "latitude": 45.673202,
           "longitude": 3.1401313,
+          "hidden": false,
           "tags": [
             "a75",
             "route"
@@ -1448,6 +1531,7 @@
           "type": "image",
           "latitude": 45.612263,
           "longitude": 3.2066363,
+          "hidden": false,
           "tags": [
             "a75",
             "route"
@@ -1462,6 +1546,7 @@
           "type": "image",
           "latitude": 45.102635,
           "longitude": 3.1285819,
+          "hidden": true,
           "tags": [
             "a75",
             "route"
@@ -1476,6 +1561,7 @@
           "type": "image",
           "latitude": 45.075135,
           "longitude": 3.1147477,
+          "hidden": false,
           "tags": [
             "a75",
             "route"
@@ -1490,6 +1576,7 @@
           "type": "image",
           "latitude": 44.859906,
           "longitude": 3.2542313,
+          "hidden": false,
           "tags": [
             "a75",
             "route"
@@ -1504,6 +1591,7 @@
           "type": "image",
           "latitude": 44.652647,
           "longitude": 3.2483697,
+          "hidden": false,
           "tags": [
             "a75",
             "route"
@@ -1530,6 +1618,7 @@
           "type": "image",
           "latitude": 44.924797,
           "longitude": 2.4413928,
+          "hidden": false,
           "tags": [
             "cantal",
             "aurillac",
@@ -1561,6 +1650,7 @@
           "type": "image",
           "latitude": 45.1090418,
           "longitude": 2.6730292,
+          "hidden": true,
           "tags": [
             "cantal",
             "aurillac",
@@ -1589,6 +1679,7 @@
           "type": "image",
           "latitude": 46.2806896,
           "longitude": 2.5670267,
+          "hidden": false,
           "tags": [
             "allier",
             "lignerolles"
@@ -1603,6 +1694,7 @@
           "type": "image",
           "latitude": 46.34433,
           "longitude": 2.9706493,
+          "hidden": true,
           "tags": [
             "allier",
             "sazeret"
@@ -1648,6 +1740,7 @@
           "type": "image",
           "latitude": 46.495062,
           "longitude": 3.7940833,
+          "hidden": true,
           "tags": [
             "allier",
             "pierrefitte sur loire"
@@ -1674,6 +1767,7 @@
           "type": "image",
           "latitude": 45.047153,
           "longitude": 3.8846798,
+          "hidden": true,
           "tags": [
             "haute loire",
             "puy en velay"
@@ -1689,6 +1783,7 @@
           "mapImageName": "map-annotation-road",
           "latitude": 45.18446,
           "longitude": 4.1302165,
+          "hidden": false,
           "tags": [
             "haute loire",
             "puy en velay",
@@ -1707,6 +1802,7 @@
           "mapImageName": "map-annotation-road",
           "latitude": 45.105021,
           "longitude": 4.0693958,
+          "hidden": false,
           "tags": [
             "haute loire",
             "puy en velay",
@@ -1724,6 +1820,7 @@
           "mapImageName": "map-annotation-road",
           "latitude": 45.064412,
           "longitude": 3.9817703,
+          "hidden": false,
           "tags": [
             "haute loire",
             "puy en velay",
@@ -1738,6 +1835,7 @@
           "imageLD": "http://www.webcam-autoroute.eu/images/massif_central_cam20.JPG",
           "imageHD": null,
           "type": "image",
+          "hidden": false,
           "tags": [
             "haute loire",
             "puy en velay",
@@ -1755,6 +1853,7 @@
           "mapImageName": "map-annotation-road",
           "latitude": 45.135965,
           "longitude": 3.6375593,
+          "hidden": true,
           "tags": [
             "haute loire",
             "col de fix",
@@ -1772,6 +1871,7 @@
           "mapImageName": "map-annotation-mountain",
           "latitude": 44.917059,
           "longitude": 4.176493,
+          "hidden": true,
           "tags": [
             "haute loire",
             "estables"
@@ -1787,6 +1887,7 @@
           "mapImageName": "map-annotation-mountain",
           "latitude": 44.9156155,
           "longitude": 4.1755458,
+          "hidden": true,
           "tags": [
             "haute loire",
             "mezenc"
@@ -1801,6 +1902,7 @@
           "type": "image",
           "latitude": 45.049361,
           "longitude": 3.888293,
+          "hidden": true,
           "tags": [
             "haute loire",
             "mezenc",
@@ -1817,6 +1919,7 @@
           "type": "image",
           "latitude": 45.046059,
           "longitude": 3.879962,
+          "hidden": true,
           "tags": [
             "haute loire",
             "puy en velay"
@@ -1838,11 +1941,12 @@
           "uid": 13001,
           "order": 1,
           "title": "Col de la Loge",
-          "imageLD": "https://srv02.trinum.com/ibox/ftpcam/small_loire-forez_col-de-la-loge.jpg",
-          "imageHD": "https://srv02.trinum.com/ibox/ftpcam/mega_loire-forez_col-de-la-loge.jpg",
+          "imageLD": "https://www.trinum.com/ibox/ftpcam/small_loire-forez_col-de-la-loge.jpg",
+          "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_loire-forez_col-de-la-loge.jpg",
           "type": "image",
           "latitude": 45.742023,
           "longitude": 3.779792,
+          "hidden": false,
           "tags": [
             "loge",
             "loire",
