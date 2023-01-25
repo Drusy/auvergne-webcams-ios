@@ -1833,6 +1833,20 @@
             "puy",
             "mary"
           ]
+        },
+        {
+          "uid": 8004,
+          "order": 4,
+          "title": "Salers",
+          "viewsurf": "http://filmssite.viewsurf.com/salers01/1/1/",
+          "type": "viewsurf",
+          "latitude": 45.1377552,
+          "longitude": 2.4939936,
+          "hidden": false,
+          "tags": [
+            "cantal",
+            "salers"
+          ]
         }
       ]
     },
