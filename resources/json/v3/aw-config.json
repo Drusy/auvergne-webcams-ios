@@ -1008,22 +1008,6 @@
         {
           "uid": 4020,
           "order": 20,
-          "title": "Sommet\nPuy de Sancy",
-          "imageLD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet4.jpg",
-          "imageHD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet4.jpg",
-          "type": "image",
-          "hidden": true,
-          "tags": [
-            "sancy",
-            "mont dore",
-            "auvergne",
-            "station",
-            "ski"
-          ]
-        },
-        {
-          "uid": 4021,
-          "order": 21,
           "title": "Sommet\nLa Dore / Le Ferrand Nord",
           "imageLD": "https://app.webcam-hd.com/whd/images/sancy_sommet-station/zooms/sancy_sommet-station6.jpg",
           "imageHD": null,
@@ -1040,8 +1024,8 @@
           ]
         },
         {
-          "uid": 4022,
-          "order": 22,
+          "uid": 4021,
+          "order": 21,
           "title": "Sommet\nVue Générale",
           "imageLD": "https://app.webcam-hd.com/whd/images/sancy_sommet-station/zooms/sancy_sommet-station7.jpg",
           "imageHD": null,
@@ -1056,8 +1040,8 @@
           ]
         },
         {
-          "uid": 4023,
-          "order": 23,
+          "uid": 4022,
+          "order": 22,
           "title": "Sommet\nAccès au Sancy",
           "imageLD": "https://app.webcam-hd.com/whd/images/sancy_sommet-station/zooms/sancy_sommet-station8.jpg",
           "imageHD": null,
@@ -1072,8 +1056,8 @@
           ]
         },
         {
-          "uid": 4024,
-          "order": 24,
+          "uid": 4023,
+          "order": 23,
           "title": "Sommet\nPan Grange",
           "imageLD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet9.jpg",
           "imageHD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet9.jpg",
@@ -1090,8 +1074,8 @@
           ]
         },
         {
-          "uid": 4025,
-          "order": 25,
+          "uid": 4024,
+          "order": 24,
           "title": "Sommet\nTerrasse",
           "imageLD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet1.jpg",
           "imageHD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet1.jpg",
@@ -1108,8 +1092,8 @@
           ]
         },
         {
-          "uid": 4026,
-          "order": 26,
+          "uid": 4025,
+          "order": 25,
           "title": "Sommet\nLe Pas de l'Ane",
           "imageLD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet2.jpg",
           "imageHD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet2.jpg",
@@ -1126,8 +1110,8 @@
           ]
         },
         {
-          "uid": 4027,
-          "order": 27,
+          "uid": 4026,
+          "order": 26,
           "title": "Lac de Guery\nCentre Montagnard Meteo",
           "imageLD": "http://www.lac-guery.meteoamikuze.com/Webcam/webcam.jpg",
           "imageHD": null,
