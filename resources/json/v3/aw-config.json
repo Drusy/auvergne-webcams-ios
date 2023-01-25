@@ -1338,7 +1338,7 @@
           "uid": 7001,
           "order": 1,
           "title": "Place de Jaude",
-          "viewsurf": "https://filmssite.viewsurf.com/clermontferrand4/1/1",
+          "viewsurf": "https://filmssite.viewsurf.com/clermontferrand4/1/1", 
           "type": "viewsurf",
           "latitude": 45.775002,
           "longitude": 3.0818862,
@@ -1410,6 +1410,23 @@
             "ferrand",
             "forez"
           ]
+        },
+        {
+          "uid": 7007,
+            "uid": 7007,
+            "order": 3,
+            "title": "Place de la victoire",
+            "viewsurf": "https://filmssite.viewsurf.com/clermontferrand4/16/14",
+            "type": "viewsurf",
+            "latitude": 45.778015,
+            "longitude": 3.085836,
+            "hidden": false,
+            "tags": [
+                "clermont-ferrand",
+                "clermont",
+                "ferrand",
+                "victoire"
+            ]
         },
         {
           "uid": 7008,
@@ -1848,7 +1865,7 @@
           "uid": 9001,
           "order": 1,
           "title": "Lignerolles",
-          "imageLD": "http://lignerolles.monespace.net/cam_1.jpg",
+          "imageLD": "https://meteo-lignerolles.fr/webcam/camera.jpg",
           "imageHD": null,
           "type": "image",
           "latitude": 46.2806896,
@@ -1918,6 +1935,61 @@
           "tags": [
             "allier",
             "pierrefitte sur loire"
+          ]
+        },
+        {
+          "uid": 9006,
+          "order": 6,
+          "title": "Ferrières-sur-Sichon 1",
+          "imageLD": "https://www.charman.eu/weather/webcams/skycam.jpg",
+          "imageHD": null,
+          "type": "image",
+          "hidden": false,
+          "tags": [
+            "allier",
+            "Ferrières sur Sichon"
+          ]
+        },
+        {
+          "uid": 9007,
+          "order": 7,
+          "title": "Ferrières-sur-Sichon 2",
+          "imageLD": "https://www.charman.eu/weather/webcams/groundcam.jpg",
+          "imageHD": null,
+          "type": "image",
+          "hidden": false,
+          "tags": [
+            "allier",
+            "Ferrières sur Sichon"
+          ]
+        },
+        {
+          "uid": 9008,
+          "order": 8,
+          "title": "Aérodrome Domérat Montluçon",
+          "imageLD": "http://90.63.169.232:4999/",
+          "imageHD": null,
+          "type": "image",
+          "hidden": false,
+          "tags": [
+            "allier",
+            "Domérat",
+            "Aérodrome"
+          ]
+        },
+        {
+          "uid": 9010,
+          "order": 10,
+          "title": "Aérodrome Périgny Lapalisse",
+          "imageLD": "http://cam-aero.eu/raspicamaero/LFHX_03_AeroService",
+          "imageHD": null,
+          "type": "image",
+          "hidden": false,
+          "tags": [
+            "allier",
+            "Aérodrome",
+            "Périgny",
+            "Lapalisse"
           ]
         }
       ]
