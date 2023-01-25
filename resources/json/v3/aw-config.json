@@ -1257,21 +1257,6 @@
             "station",
             "ski"
           ]
-        },
-        {
-          "uid": 5007,
-          "order": 7,
-          "title": "Laveissière",
-          "imageLD": "https://www.trinum.com/ibox/ftpcam/small_lioran_combe.jpg",
-          "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_lioran_combe.jpg",
-          "type": "image",
-          "hidden": false,
-          "tags": [
-            "lioran",
-            "auvergne",
-            "station",
-            "ski"
-          ]
         }
       ]
     },
