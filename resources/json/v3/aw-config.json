@@ -542,7 +542,7 @@
           "imageLD": "http://www.trinum.com/ibox/superbesse/images/superbesse-haut/superbesse_superbesse-haut12.jpg",
           "imageHD": null,
           "type": "image",
-          "hidden": true,
+          "hidden": false,
           "tags": [
             "sancy",
             "super besse",
@@ -831,12 +831,12 @@
           "uid": 4009,
           "order": 9,
           "title": "Sommet\nRoc de Cuzeau (La Cabane)",
-          "imageLD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet3.jpg",
-          "imageHD": "https://www.trinum.com/ibox/mont-dore/images/sommet/mont-dore_sommet3.jpg",
+          "imageLD": "https://app.webcam-hd.com/whd/images/sancy_sommet-station/zooms/sancy_sommet-station3.jpg",
+          "imageHD": "https://app.webcam-hd.com/whd/images/sancy_sommet-station/zooms/sancy_sommet-station3.jpg",
           "type": "image",
           "latitude": 45.545797,
           "longitude": 2.83264,
-          "hidden": true,
+          "hidden": false,
           "tags": [
             "sancy",
             "mont dore",
@@ -981,24 +981,6 @@
             "auvergne",
             "lac",
             "guery"
-          ]
-        },
-        {
-          "uid": 4018,
-          "order": 18,
-          "title": "Roc du Cruzeau",
-          "imageLD": "https://app.webcam-hd.com/whd/images/sancy_sommet-station/zooms/sancy_sommet-station3.jpg",
-          "imageHD": null,
-          "type": "image",
-          "latitude": 45.794418,
-          "longitude": 0.652187,
-          "hidden": false,
-          "tags": [
-            "sancy",
-            "mont dore",
-            "auvergne",
-            "roc",
-            "cruzeau"
           ]
         }
       ]
