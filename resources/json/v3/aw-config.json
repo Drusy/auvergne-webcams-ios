@@ -1176,8 +1176,8 @@
           "uid": 5003,
           "order": 3,
           "title": "Centre station",
-          "imageLD": "https://www.trinum.com/ibox/ftpcam/small_lioran_station.jpg",
-          "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_lioran_station.jpg",
+          "imageLD": "https://s1.vision-environnement.com/live/modules/timelapse/capture/lelioran.jpg",
+          "imageHD": null,
           "type": "image",
           "latitude": 45.082645,
           "longitude": 2.7497478,
@@ -1233,21 +1233,6 @@
           "title": "Versant Plomb",
           "imageLD": "https://www.trinum.com/ibox/ftpcam/small_lioran_tk-refuge-versant-plomb.jpg",
           "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_lioran_tk-refuge-versant-plomb.jpg",
-          "type": "image",
-          "hidden": false,
-          "tags": [
-            "lioran",
-            "auvergne",
-            "station",
-            "ski"
-          ]
-        },
-        {
-          "uid": 5007,
-          "order": 7,
-          "title": "Laveissière",
-          "imageLD": "https://www.trinum.com/ibox/ftpcam/small_lioran_combe.jpg",
-          "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_lioran_combe.jpg",
           "type": "image",
           "hidden": false,
           "tags": [
@@ -1831,6 +1816,20 @@
             "aurillac",
             "puy",
             "mary"
+          ]
+        },
+        {
+          "uid": 8004,
+          "order": 4,
+          "title": "Salers",
+          "viewsurf": "http://filmssite.viewsurf.com/salers01/1/1/",
+          "type": "viewsurf",
+          "latitude": 45.1377552,
+          "longitude": 2.4939936,
+          "hidden": false,
+          "tags": [
+            "cantal",
+            "salers"
           ]
         }
       ]
