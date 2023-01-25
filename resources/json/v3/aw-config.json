@@ -1113,14 +1113,13 @@
             "lioran",
             "auvergne",
             "station",
-            "ski",
-            "route"
+            "ski"
           ]
         },
         {
           "uid": 5007,
           "order": 7,
-          "title": "La Vessière",
+          "title": "Laveissière",
           "imageLD": "https://www.trinum.com/ibox/ftpcam/small_lioran_combe.jpg",
           "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_lioran_combe.jpg",
           "type": "image",
@@ -1129,8 +1128,7 @@
             "lioran",
             "auvergne",
             "station",
-            "ski",
-            "route"
+            "ski"
           ]
         }
       ]
@@ -1494,7 +1492,7 @@
           "type": "image",
           "latitude": 45.877239,
           "longitude": 3.680862,
-          "hidden": true,
+          "hidden": false,
           "tags": [
             "cg63",
             "route"
@@ -1509,7 +1507,7 @@
           "type": "image",
           "latitude": 45.858827,
           "longitude": 2.92719,
-          "hidden": true,
+          "hidden": false,
           "tags": [
             "cg63",
             "route"
@@ -1684,6 +1682,7 @@
           "type": "image",
           "latitude": 44.929384,
           "longitude": 2.4440031,
+          "hidden": false,
           "tags": [
             "cantal",
             "aurillac",
@@ -1947,12 +1946,12 @@
           "uid": 10011,
           "order": 2,
           "title": "Puy-en-Velay\nDepuis Aiguilhe",
-          "imageLD": "https://www.lepuyenvelay-tourisme.fr/nocache/webcam/FRAISSE/webcam.jpg",
-          "imageHD": "https://www.lepuyenvelay-tourisme.fr/nocache/webcam/FRAISSE/webcam.jpg",
+          "imageLD": "https://webcams.lepuyenvelay-tourisme.fr/FRAISSE/webcam.jpg",
+          "imageHD": "https://webcams.lepuyenvelay-tourisme.fr/FRAISSE/webcam.jpg",
           "type": "image",
           "latitude": 45.049361,
           "longitude": 3.888293,
-          "hidden": true,
+          "hidden": false,
           "tags": [
             "haute loire",
             "mezenc",
@@ -1964,12 +1963,12 @@
           "uid": 10012,
           "order": 3,
           "title": "Puy-en-Velay\nVue Ouest",
-          "imageLD": "https://www.lepuyenvelay-tourisme.fr/nocache/webcam/BELAIR/image.jpg",
-          "imageHD": "https://www.lepuyenvelay-tourisme.fr/nocache/webcam/BELAIR/image.jpg",
+          "imageLD": "https://webcams.lepuyenvelay-tourisme.fr/BELAIR/image.jpg",
+          "imageHD": "https://webcams.lepuyenvelay-tourisme.fr/BELAIR/image.jpg",
           "type": "image",
           "latitude": 45.046059,
           "longitude": 3.879962,
-          "hidden": true,
+          "hidden": false,
           "tags": [
             "haute loire",
             "puy en velay"
