@@ -14,7 +14,7 @@
           "uid": 1001,
           "order": 1,
           "title": "Campus des Cézeaux",
-          "imageLD": "http://wwwobs.univ-bpclermont.fr/opgc/webcamcez.jpg",
+          "imageLD": "https://wwwobs.univ-bpclermont.fr/opgc/webcamcez.jpg",
           "imageHD": null,
           "type": "image",
           "latitude": 45.761259,
@@ -30,7 +30,7 @@
           "uid": 1002,
           "order": 2,
           "title": "Sommet du Puy de Dôme\nVue Clermont-Ferrand",
-          "imageLD": "http://wwwobs.univ-bpclermont.fr/opgc/webcampdd.jpg",
+          "imageLD": "https://wwwobs.univ-bpclermont.fr/opgc/webcampdd.jpg",
           "imageHD": null,
           "type": "image",
           "latitude": 45.77036,
@@ -162,34 +162,6 @@
         {
           "uid": 2007,
           "order": 7,
-          "title": "Valcivières\nSud: Le chalet des gentianes - Col des Supeyres",
-          "imageLD": "https://www.previmeteo.com/meteo/image_webcam.php?image=aHR0cHM6Ly9pbWFnZXMtd2ViY2Ftcy53aW5keS5jb20vMzEvMTQ2OTk1ODMzMS9jdXJyZW50L3ByZXZpZXcvMTQ2OTk1ODMzMS5qcGc=",
-          "imageHD": null,
-          "type": "image",
-          "latitude": 45.604914,
-          "longitude": 3.818813,
-          "hidden": true,
-          "tags": [
-            "Valcivières"
-          ]
-        },
-        {
-          "uid": 2008,
-          "order": 8,
-          "title": "Valcivières\nNord: Le chalet des gentianes - Col des Supeyres",
-          "imageLD": "https://www.previmeteo.com/meteo/image_webcam.php?image=aHR0cHM6Ly9pbWFnZXMtd2ViY2Ftcy53aW5keS5jb20vNDkvMTQ2OTk1ODE0OS9jdXJyZW50L3ByZXZpZXcvMTQ2OTk1ODE0OS5qcGc=",
-          "imageHD": null,
-          "type": "image",
-          "latitude": 45.604914,
-          "longitude": 3.818813,
-          "hidden": true,
-          "tags": [
-            "Valcivières"
-          ]
-        },
-        {
-          "uid": 2009,
-          "order": 9,
           "title": "Puy de Sancy\nPuy de Pertuyzat",
           "imageLD": "https://www.trinum.com/ibox/ftpcam/small_sancy-nordique_pertuyzat.jpg",
           "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_sancy-nordique_pertuyzat.jpg",
@@ -205,8 +177,8 @@
           ]
         },
         {
-          "uid": 2010,
-          "order": 10,
+          "uid": 2008,
+          "order": 8,
           "title": "Puy de Sancy\nLa Stele",
           "imageLD": "https://www.trinum.com/ibox/ftpcam/small_sancy_domaine-nordique-la-stele.jpg",
           "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_sancy_domaine-nordique-la-stele.jpg",
@@ -218,6 +190,25 @@
             "sancy",
             "stele",
             "auvergne",
+            "loisir"
+          ]
+        },
+        {
+          "uid": 2009,
+          "order": 9,
+          "title": "Col de la Loge",
+          "imageLD": "https://www.trinum.com/ibox/ftpcam/small_loire-forez_col-de-la-loge.jpg",
+          "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_loire-forez_col-de-la-loge.jpg",
+          "type": "image",
+          "latitude": 45.742023,
+          "longitude": 3.779792,
+          "hidden": false,
+          "tags": [
+            "loge",
+            "loire",
+            "auvergne",
+            "rhone",
+            "ski",
             "loisir"
           ]
         }
@@ -359,7 +350,7 @@
           "uid": 3008,
           "order": 8,
           "title": "Bas de la station\nVue Super Besse",
-          "imageLD": "http://www.trinum.com/ibox/superbesse/images/superbesse-haut/superbesse_superbesse-haut12.jpg",
+          "imageLD": "https://www.trinum.com/ibox/superbesse/images/superbesse-haut/superbesse_superbesse-haut12.jpg",
           "imageHD": null,
           "type": "image",
           "hidden": false,
@@ -488,8 +479,8 @@
           ]
         },
         {
-          "uid": 3017,
-          "order": 17,
+          "uid": 3016,
+          "order": 16,
           "title": "Sommet\nLac Chauvet",
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut13.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut13.jpg",
@@ -504,8 +495,8 @@
           ]
         },
         {
-          "uid": 3018,
-          "order": 18,
+          "uid": 3017,
+          "order": 17,
           "title": "Sommet\nPaillaret",
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut14.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut14.jpg",
@@ -520,8 +511,8 @@
           ]
         },
         {
-          "uid": 3019,
-          "order": 19,
+          "uid": 3018,
+          "order": 18,
           "title": "Sommet\nPuys de Montchan et de Moncineyre",
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut15.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut15.jpg",
@@ -536,10 +527,10 @@
           ]
         },
         {
-          "uid": 3020,
-          "order": 20,
+          "uid": 3019,
+          "order": 19,
           "title": "Sommet\nEspace Ludo sportif Les Hermines",
-          "imageLD": "http://www.trinum.com/ibox/superbesse/images/superbesse-haut/superbesse_superbesse-haut12.jpg",
+          "imageLD": "https://www.trinum.com/ibox/superbesse/images/superbesse-haut/superbesse_superbesse-haut12.jpg",
           "imageHD": null,
           "type": "image",
           "hidden": false,
@@ -552,8 +543,8 @@
           ]
         },
         {
-          "uid": 3021,
-          "order": 21,
+          "uid": 3020,
+          "order": 20,
           "title": "Sommet\nTélésiège de La Falaise",
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut21.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut21.jpg",
@@ -568,8 +559,8 @@
           ]
         },
         {
-          "uid": 3022,
-          "order": 22,
+          "uid": 3021,
+          "order": 21,
           "title": "Sommet\nBas de la station",
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut1.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut1.jpg",
@@ -584,8 +575,8 @@
           ]
         },
         {
-          "uid": 3023,
-          "order": 23,
+          "uid": 3022,
+          "order": 22,
           "title": "Sommet\nHaut de station",
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut2.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut2.jpg",
@@ -600,8 +591,8 @@
           ]
         },
         {
-          "uid": 3025,
-          "order": 25,
+          "uid": 3023,
+          "order": 23,
           "title": "Sommet\nDépart Tyrolienne",
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut3.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut3.jpg",
@@ -616,8 +607,8 @@
           ]
         },
         {
-          "uid": 3026,
-          "order": 26,
+          "uid": 3024,
+          "order": 24,
           "title": "Sommet\nArrivée Tyrolienne",
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut4.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut4.jpg",
@@ -632,8 +623,8 @@
           ]
         },
         {
-          "uid": 3027,
-          "order": 27,
+          "uid": 3025,
+          "order": 25,
           "title": "Sommet\nArrivée du téléphérique de la Perdrix",
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut7.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut7.jpg",
@@ -648,8 +639,8 @@
           ]
         },
         {
-          "uid": 3028,
-          "order": 28,
+          "uid": 3026,
+          "order": 26,
           "title": "Sommet\nLac de Bourdouze",
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut9.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut9.jpg",
@@ -664,8 +655,8 @@
           ]
         },
         {
-          "uid": 3029,
-          "order": 29,
+          "uid": 3027,
+          "order": 27,
           "title": "Front de neige",
           "imageLD": "https://www.trinum.com/ibox/ftpcam/small_superbesse_front-de-neige.jpg",
           "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_superbesse_front-de-neige.jpg",
@@ -677,6 +668,25 @@
             "auvergne",
             "station",
             "ski"
+          ]
+        },
+        {
+          "uid": 3028,
+          "order": 28,
+          "title": "Bas de la station\nPanoramique 2",
+          "imageLD": "https://www.trinum.com/ibox/sancy/Images/superbesseecole/superbesse_ecole7.jpg",
+          "imageHD": "https://www.trinum.com/ibox/sancy/Images/superbesseecole/superbesse_ecole7.jpg",
+          "type": "image",
+          "latitude": 45.541023,
+          "longitude": 2.816419,
+          "hidden": false,
+          "tags": [
+            "sancy",
+            "super besse",
+            "auvergne",
+            "station",
+            "ski",
+            "panoramique"
           ]
         }
       ]
@@ -1113,7 +1123,7 @@
           "uid": 4026,
           "order": 26,
           "title": "Lac de Guery\nCentre Montagnard Meteo",
-          "imageLD": "http://www.lac-guery.meteoamikuze.com/Webcam/webcam.jpg",
+          "imageLD": "https://www.lac-guery.meteoamikuze.com/Webcam/webcam.jpg",
           "imageHD": null,
           "type": "image",
           "latitude": 45.6191524,
@@ -1192,25 +1202,6 @@
         {
           "uid": 5004,
           "order": 4,
-          "title": "Route du Lioran\nDirection Murat / Massiac",
-          "imageLD": "https://auvergne-webcams.openium.fr/proxy/massif-central-magsys-services.php?id=6",
-          "imageHD": null,
-          "type": "image",
-          "mapImageName": "map-annotation-road",
-          "latitude": 45.095255,
-          "longitude": 2.7583585,
-          "hidden": true,
-          "tags": [
-            "lioran",
-            "auvergne",
-            "station",
-            "ski",
-            "route"
-          ]
-        },
-        {
-          "uid": 5005,
-          "order": 5,
           "title": "Les chazes\nDirection Murat / Massiac",
           "imageLD": "https://auvergne-webcams.openium.fr/proxy/massif-central-magsys-services.php?id=36",
           "imageHD": null,
@@ -1228,8 +1219,8 @@
           ]
         },
         {
-          "uid": 5006,
-          "order": 6,
+          "uid": 5005,
+          "order": 5,
           "title": "Versant Plomb",
           "imageLD": "https://www.trinum.com/ibox/ftpcam/small_lioran_tk-refuge-versant-plomb.jpg",
           "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_lioran_tk-refuge-versant-plomb.jpg",
@@ -1291,23 +1282,6 @@
         {
           "uid": 12003,
           "order": 3,
-          "title": "Piste des granges",
-          "imageLD": "https://www.trinum.com/ibox/ftpcam/small_chalmazel_piste-des-granges.jpg",
-          "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_chalmazel_piste-des-granges.jpg",
-          "type": "image",
-          "latitude": 45.661938,
-          "longitude": 3.813092,
-          "hidden": true,
-          "tags": [
-            "chalmazel",
-            "auvergne",
-            "station",
-            "ski"
-          ]
-        },
-        {
-          "uid": 12004,
-          "order": 4,
           "title": "Front de neige",
           "imageLD": "https://www.trinum.com/ibox/ftpcam/small_chalmazel_front-de-neige.jpg",
           "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_chalmazel_front-de-neige.jpg",
@@ -1338,7 +1312,7 @@
           "uid": 7001,
           "order": 1,
           "title": "Place de Jaude",
-          "viewsurf": "https://filmssite.viewsurf.com/clermontferrand4/1/1", 
+          "viewsurf": "https://filmssite.viewsurf.com/clermontferrand4/1/1",
           "type": "viewsurf",
           "latitude": 45.775002,
           "longitude": 3.0818862,
@@ -1368,8 +1342,8 @@
           ]
         },
         {
-          "uid": 7004,
-          "order": 4,
+          "uid": 7003,
+          "order": 3,
           "title": "Puy de Dôme",
           "viewsurf": "https://filmssite.viewsurf.com/clermontferrand4/3/4",
           "type": "viewsurf",
@@ -1382,8 +1356,8 @@
           ]
         },
         {
-          "uid": 7005,
-          "order": 5,
+          "uid": 7004,
+          "order": 4,
           "title": "Forez",
           "viewsurf": "https://filmssite.viewsurf.com/clermontferrand4/10/8",
           "type": "viewsurf",
@@ -1396,8 +1370,8 @@
           ]
         },
         {
-          "uid": 7006,
-          "order": 6,
+          "uid": 7005,
+          "order": 5,
           "title": "Cathédrale",
           "viewsurf": "https://filmssite.viewsurf.com/clermontferrand4/14/10",
           "type": "viewsurf",
@@ -1412,32 +1386,30 @@
           ]
         },
         {
-          "uid": 7007,
-            "uid": 7007,
-            "order": 3,
-            "title": "Place de la victoire",
-            "viewsurf": "https://filmssite.viewsurf.com/clermontferrand4/16/14",
-            "type": "viewsurf",
-            "latitude": 45.778015,
-            "longitude": 3.085836,
-            "hidden": false,
-            "tags": [
-                "clermont-ferrand",
-                "clermont",
-                "ferrand",
-                "victoire"
-            ]
+          "uid": 7006,
+          "order": 6,
+          "title": "Place de la victoire",
+          "viewsurf": "https://filmssite.viewsurf.com/clermontferrand4/16/14",
+          "type": "viewsurf",
+          "latitude": 45.778015,
+          "longitude": 3.085836,
+          "hidden": false,
+          "tags": [
+            "clermont-ferrand",
+            "clermont",
+            "ferrand",
+            "victoire"
+          ]
         },
         {
-          "uid": 7008,
+          "uid": 7007,
           "order": 7,
           "title": "A71, Péage Clermont-Gerzat, direction Paris",
-          "imageLD": "http://filmssite.viewsurf.com/aprr56/media_tn.jpg",
-          "imageHD": "http://filmssite.viewsurf.com/aprr56/media.jpg",
-          "type": "image",
+          "viewsurf": "https://filmssite.viewsurf.com/aprr56/",
+          "type": "viewsurf",
           "latitude": 45.8410315,
           "longitude": 3.1562917,
-          "hidden": true,
+          "hidden": false,
           "tags": [
             "clermont-ferrand",
             "clermont",
@@ -1447,15 +1419,14 @@
           ]
         },
         {
-          "uid": 7009,
+          "uid": 7008,
           "order": 8,
           "title": "A75, La Pardieu, direction Paris",
-          "imageLD": "http://filmssite.viewsurf.com/aprr28/media_tn.jpg",
-          "imageHD": "http://filmssite.viewsurf.com/aprr28/media.jpg",
-          "type": "image",
+          "viewsurf": "https://filmssite.viewsurf.com/aprr28/",
+          "type": "viewsurf",
           "latitude": 45.759999,
           "longitude": 3.139769,
-          "hidden": true,
+          "hidden": false,
           "tags": [
             "clermont-ferrand",
             "clermont",
@@ -1627,7 +1598,7 @@
           ]
         },
         {
-          "uid": 6012,
+          "uid": 6011,
           "order": 11,
           "title": "D943 - Saint-Ours Les Roches\nLe Vauriat",
           "imageLD": "https://app.puy-de-dome.fr/webcams/CAM11.jpg",
@@ -1642,7 +1613,7 @@
           ]
         },
         {
-          "uid": 6013,
+          "uid": 6012,
           "order": 12,
           "title": "D922 - Saint-Sauves d'Auvergne\nMéjanesse",
           "imageLD": "https://app.puy-de-dome.fr/webcams/CAM12.jpg",
@@ -1657,7 +1628,7 @@
           ]
         },
         {
-          "uid": 6014,
+          "uid": 6013,
           "order": 13,
           "title": "D2089 - Aydat\nCol de la Ventouse",
           "imageLD": "https://app.puy-de-dome.fr/webcams/CAM13.jpg",
@@ -1716,21 +1687,6 @@
         {
           "uid": 11003,
           "order": 3,
-          "title": "Fageole PR86+400\nDirection Clermont-Ferrand",
-          "imageLD": "https://auvergne-webcams.openium.fr/proxy/massif-central-magsys-services.php?id=23",
-          "imageHD": null,
-          "type": "image",
-          "latitude": 45.102635,
-          "longitude": 3.1285819,
-          "hidden": true,
-          "tags": [
-            "a75",
-            "route"
-          ]
-        },
-        {
-          "uid": 11004,
-          "order": 4,
           "title": "Coren PR89+840\nDirection Clermont-Ferrand",
           "imageLD": "https://auvergne-webcams.openium.fr/proxy/massif-central-magsys-services.php?id=33",
           "imageHD": null,
@@ -1744,8 +1700,8 @@
           ]
         },
         {
-          "uid": 11005,
-          "order": 5,
+          "uid": 11004,
+          "order": 4,
           "title": "Col du Rocher Blanc PR118+150\nDirection Montpellier",
           "imageLD": "https://auvergne-webcams.openium.fr/proxy/massif-central-magsys-services.php?id=3",
           "imageHD": null,
@@ -1759,8 +1715,8 @@
           ]
         },
         {
-          "uid": 11006,
-          "order": 6,
+          "uid": 11005,
+          "order": 5,
           "title": "Col des Issartets PR144+662\nDirection Montpellier",
           "imageLD": "https://auvergne-webcams.openium.fr/proxy/massif-central-magsys-services.php?id=4",
           "imageHD": null,
@@ -1821,25 +1777,8 @@
         {
           "uid": 8003,
           "order": 3,
-          "title": "Puy Mary",
-          "imageLD": "https://s24.ipcamlive.com/streams/18zjnokitxongce5b/snapshot.jpg",
-          "imageHD": "https://s24.ipcamlive.com/streams/18zjnokitxongce5b/snapshot.jpg",
-          "type": "image",
-          "latitude": 45.1090418,
-          "longitude": 2.6730292,
-          "hidden": true,
-          "tags": [
-            "cantal",
-            "aurillac",
-            "puy",
-            "mary"
-          ]
-        },
-        {
-          "uid": 8004,
-          "order": 4,
           "title": "Salers",
-          "viewsurf": "http://filmssite.viewsurf.com/salers01/1/1/",
+          "viewsurf": "https://filmssite.viewsurf.com/salers01/1/1/",
           "type": "viewsurf",
           "latitude": 45.1377552,
           "longitude": 2.4939936,
@@ -1847,6 +1786,21 @@
           "tags": [
             "cantal",
             "salers"
+          ]
+        },
+        {
+          "uid": 8004,
+          "order": 4,
+          "title": "Polminhac",
+          "imageLD": "https://auvergne-webcams.openium.fr/proxy/massif-central-magsys-services.php?id=27",
+          "imageHD": null,
+          "type": "image",
+          "latitude": 44.952183,
+          "longitude": 2.576412,
+          "hidden": false,
+          "tags": [
+            "cantal",
+            "polminhac"
           ]
         }
       ]
@@ -1895,10 +1849,8 @@
           "uid": 9003,
           "order": 3,
           "title": "Gannat",
-          "backup": "http://films.viewsurf.com/ap2r2/GANNAT/ap2r3.jpg",
-          "imageLD": null,
-          "imageHD": null,
-          "type": "image",
+          "viewsurf": "https://filmssite.viewsurf.com/ap2r2/",
+          "type": "viewsurf",
           "latitude": 46.100499,
           "longitude": 3.199131,
           "hidden": true,
@@ -1911,12 +1863,11 @@
           "uid": 9004,
           "order": 4,
           "title": "Toulon-sur-Allier",
-          "imageLD": "https://images-webcams.windy.com/32/1456251232/current/preview/1456251232.jpg",
-          "imageHD": "https://images-webcams.windy.com/32/1456251232/current/full/1456251232.jpg",
-          "type": "image",
+          "viewsurf": "https://filmssite.viewsurf.com/aprr61/",
+          "type": "viewsurf",
           "latitude": 46.498424,
           "longitude": 3.3763925,
-          "hidden": true,
+          "hidden": false,
           "tags": [
             "allier",
             "toulon sur allier"
@@ -1967,7 +1918,7 @@
           "uid": 9008,
           "order": 8,
           "title": "Aérodrome Domérat Montluçon",
-          "imageLD": "http://90.63.169.232:4999/",
+          "imageLD": "https://90.63.169.232:4999/",
           "imageHD": null,
           "type": "image",
           "hidden": false,
@@ -1978,10 +1929,10 @@
           ]
         },
         {
-          "uid": 9010,
-          "order": 10,
+          "uid": 9009,
+          "order": 9,
           "title": "Aérodrome Périgny Lapalisse",
-          "imageLD": "http://cam-aero.eu/raspicamaero/LFHX_03_AeroService",
+          "imageLD": "https://cam-aero.eu/raspicamaero/LFHX_03_AeroService",
           "imageHD": null,
           "type": "image",
           "hidden": false,
@@ -2008,8 +1959,8 @@
           "uid": 10001,
           "order": 1,
           "title": "Puy-en-Velay",
-          "imageLD": "http://www.lepuyenvelay.fr/webcam_corneille/NDF/ndf.jpg",
-          "imageHD": "http://www.lepuyenvelay.fr/webcam_corneille/NDF/ndf.jpg",
+          "imageLD": "https://www.lepuyenvelay.fr/webcam_corneille/NDF/ndf.jpg",
+          "imageHD": "https://www.lepuyenvelay.fr/webcam_corneille/NDF/ndf.jpg",
           "type": "image",
           "latitude": 45.047153,
           "longitude": 3.8846798,
@@ -2021,9 +1972,9 @@
         },
         {
           "uid": 10002,
-          "order": 4,
+          "order": 2,
           "title": "Saint-Maurice-de-Lignon / Les Barrys\nDirection Le Puy en Velay",
-          "imageLD": "http://www.webcam-autoroute.eu/images/massif_central_cam9.JPG",
+          "imageLD": "https://www.webcam-autoroute.eu/images/massif_central_cam9.JPG",
           "imageHD": null,
           "type": "image",
           "mapImageName": "map-annotation-road",
@@ -2039,10 +1990,10 @@
           ]
         },
         {
-          "uid": 10004,
-          "order": 5,
+          "uid": 10003,
+          "order": 3,
           "title": "Le Pertuis - N88\nDirection Le Puy en Velay",
-          "imageLD": "http://www.webcam-autoroute.eu/images/massif_central_cam7.JPG",
+          "imageLD": "https://www.webcam-autoroute.eu/images/massif_central_cam7.JPG",
           "imageHD": null,
           "type": "image",
           "mapImageName": "map-annotation-road",
@@ -2057,8 +2008,8 @@
           ]
         },
         {
-          "uid": 10005,
-          "order": 6,
+          "uid": 10004,
+          "order": 4,
           "title": "Blavozy / Montferrat - N88\nDirection Le Puy en Velay",
           "imageLD": "https://www.webcam-autoroute.eu/images/massif_central_cam8.JPG",
           "imageHD": null,
@@ -2075,10 +2026,10 @@
           ]
         },
         {
-          "uid": 10006,
-          "order": 7,
+          "uid": 10005,
+          "order": 5,
           "title": "Saint-Paul-de-Tartas\nN88",
-          "imageLD": "http://www.webcam-autoroute.eu/images/massif_central_cam20.JPG",
+          "imageLD": "https://www.webcam-autoroute.eu/images/massif_central_cam20.JPG",
           "imageHD": null,
           "type": "image",
           "hidden": false,
@@ -2090,8 +2041,8 @@
           ]
         },
         {
-          "uid": 10007,
-          "order": 8,
+          "uid": 10006,
+          "order": 6,
           "title": "Col de Fix\nDirection Le Puy en Velay",
           "imageLD": "https://auvergne-webcams.openium.fr/proxy/massif-central-magsys-services.php?id=10",
           "imageHD": null,
@@ -2099,7 +2050,7 @@
           "mapImageName": "map-annotation-road",
           "latitude": 45.135965,
           "longitude": 3.6375593,
-          "hidden": true,
+          "hidden": false,
           "tags": [
             "haute loire",
             "col de fix",
@@ -2108,8 +2059,8 @@
           ]
         },
         {
-          "uid": 10009,
-          "order": 10,
+          "uid": 10007,
+          "order": 7,
           "title": "Domaine alpin des Estables",
           "imageLD": "https://www.mezencloiresauvage.com/webcam/camera2.jpg",
           "imageHD": null,
@@ -2124,24 +2075,8 @@
           ]
         },
         {
-          "uid": 10010,
-          "order": 11,
-          "title": "Domaine nordic de Mézenc",
-          "imageLD": "https://www.mezencloiresauvage.com/webcam/camera1.jpg",
-          "imageHD": null,
-          "type": "image",
-          "mapImageName": "map-annotation-mountain",
-          "latitude": 44.9156155,
-          "longitude": 4.1755458,
-          "hidden": true,
-          "tags": [
-            "haute loire",
-            "mezenc"
-          ]
-        },
-        {
-          "uid": 10011,
-          "order": 2,
+          "uid": 10008,
+          "order": 8,
           "title": "Puy-en-Velay\nDepuis Aiguilhe",
           "imageLD": "https://webcams.lepuyenvelay-tourisme.fr/FRAISSE/webcam.jpg",
           "imageHD": "https://webcams.lepuyenvelay-tourisme.fr/FRAISSE/webcam.jpg",
@@ -2157,8 +2092,8 @@
           ]
         },
         {
-          "uid": 10012,
-          "order": 3,
+          "uid": 10009,
+          "order": 9,
           "title": "Puy-en-Velay\nVue Ouest",
           "imageLD": "https://webcams.lepuyenvelay-tourisme.fr/BELAIR/image.jpg",
           "imageHD": "https://webcams.lepuyenvelay-tourisme.fr/BELAIR/image.jpg",
@@ -2176,29 +2111,39 @@
     {
       "uid": 13,
       "order": 13,
-      "title": "Loire",
+      "title": "Valcivières",
       "imageName": "mountain-landscape-2",
       "mapImageName": "map-annotation-mountain",
       "mapColor": "#7f0000",
-      "latitude": 45.772549,
-      "longitude": 4.108924,
+      "latitude": 45.593250,
+      "longitude": 3.796117,
       "webcams": [
         {
           "uid": 13001,
           "order": 1,
-          "title": "Col de la Loge",
-          "imageLD": "https://www.trinum.com/ibox/ftpcam/small_loire-forez_col-de-la-loge.jpg",
-          "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_loire-forez_col-de-la-loge.jpg",
+          "title": "Valcivières\nLe chalet des gentianes - Snowkite",
+          "imageLD": "https://gentianes.yj.fr/webcam.php?webcam=1",
+          "imageHD": null,
           "type": "image",
-          "latitude": 45.742023,
-          "longitude": 3.779792,
+          "latitude": 45.604914,
+          "longitude": 3.818813,
           "hidden": false,
           "tags": [
-            "loge",
-            "loire",
-            "auvergne",
-            "rhone",
-            "ski"
+            "Valcivières"
+          ]
+        },
+        {
+          "uid": 13002,
+          "order": 2,
+          "title": "Valcivières\nLe chalet des gentianes - Crête du Forez",
+          "imageLD": "https://gentianes.yj.fr/webcam.php?webcam=2",
+          "imageHD": null,
+          "type": "image",
+          "latitude": 45.604914,
+          "longitude": 3.818813,
+          "hidden": false,
+          "tags": [
+            "Valcivières"
           ]
         }
       ]
