@@ -365,22 +365,6 @@
         {
           "uid": 3009,
           "order": 9,
-          "title": "Bas de la station\nEspace Nordic Madalet",
-          "imageLD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole13.jpg",
-          "imageHD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole13.jpg",
-          "type": "image",
-          "hidden": true,
-          "tags": [
-            "sancy",
-            "super besse",
-            "auvergne",
-            "station",
-            "ski"
-          ]
-        },
-        {
-          "uid": 3010,
-          "order": 10,
           "title": "Bas de la station\nSnow Park",
           "imageLD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole14.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole14.jpg",
@@ -395,8 +379,8 @@
           ]
         },
         {
-          "uid": 3011,
-          "order": 11,
+          "uid": 3010,
+          "order": 10,
           "title": "Bas de la station\nDépart Fantasticable",
           "imageLD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole15.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole15.jpg",
@@ -411,8 +395,8 @@
           ]
         },
         {
-          "uid": 3012,
-          "order": 12,
+          "uid": 3011,
+          "order": 11,
           "title": "Bas de la station\nArrivée Fantasticable",
           "imageLD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole16.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole16.jpg",
@@ -427,8 +411,8 @@
           ]
         },
         {
-          "uid": 3013,
-          "order": 13,
+          "uid": 3012,
+          "order": 12,
           "title": "Bas de la station\nArrivée Téléphérique de la Perdrix",
           "imageLD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole1.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_ecole/zooms/superbesse_ecole1.jpg",
@@ -445,8 +429,8 @@
           ]
         },
         {
-          "uid": 3014,
-          "order": 14,
+          "uid": 3013,
+          "order": 13,
           "title": "Sommet\nPanoramique",
           "imageLD": "https://www.trinum.com/ibox/ftpcam/small_superbesse_superbesse-haut.jpg",
           "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_superbesse_superbesse-haut.jpg",
@@ -463,8 +447,8 @@
           ]
         },
         {
-          "uid": 3015,
-          "order": 15,
+          "uid": 3014,
+          "order": 14,
           "title": "Sommet\nPuy de Chambourget",
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut10.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut10.jpg",
@@ -479,8 +463,8 @@
           ]
         },
         {
-          "uid": 3016,
-          "order": 16,
+          "uid": 3015,
+          "order": 15,
           "title": "Sommet\nLac Chauvet",
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut13.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut13.jpg",
@@ -495,8 +479,8 @@
           ]
         },
         {
-          "uid": 3017,
-          "order": 17,
+          "uid": 3016,
+          "order": 16,
           "title": "Sommet\nPaillaret",
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut14.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut14.jpg",
@@ -511,8 +495,8 @@
           ]
         },
         {
-          "uid": 3018,
-          "order": 18,
+          "uid": 3017,
+          "order": 17,
           "title": "Sommet\nPuys de Montchan et de Moncineyre",
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut15.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut15.jpg",
@@ -527,8 +511,8 @@
           ]
         },
         {
-          "uid": 3019,
-          "order": 19,
+          "uid": 3018,
+          "order": 18,
           "title": "Sommet\nEspace Ludo sportif Les Hermines",
           "imageLD": "https://www.trinum.com/ibox/superbesse/images/superbesse-haut/superbesse_superbesse-haut12.jpg",
           "imageHD": null,
@@ -543,8 +527,8 @@
           ]
         },
         {
-          "uid": 3020,
-          "order": 20,
+          "uid": 3019,
+          "order": 19,
           "title": "Sommet\nTélésiège de La Falaise",
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut21.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut21.jpg",
@@ -559,8 +543,8 @@
           ]
         },
         {
-          "uid": 3021,
-          "order": 21,
+          "uid": 3020,
+          "order": 20,
           "title": "Sommet\nBas de la station",
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut1.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut1.jpg",
@@ -575,8 +559,8 @@
           ]
         },
         {
-          "uid": 3022,
-          "order": 22,
+          "uid": 3021,
+          "order": 21,
           "title": "Sommet\nHaut de station",
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut2.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut2.jpg",
@@ -591,8 +575,8 @@
           ]
         },
         {
-          "uid": 3023,
-          "order": 23,
+          "uid": 3022,
+          "order": 22,
           "title": "Sommet\nDépart Tyrolienne",
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut3.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut3.jpg",
@@ -607,8 +591,8 @@
           ]
         },
         {
-          "uid": 3024,
-          "order": 24,
+          "uid": 3023,
+          "order": 23,
           "title": "Sommet\nArrivée Tyrolienne",
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut4.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut4.jpg",
@@ -623,8 +607,8 @@
           ]
         },
         {
-          "uid": 3025,
-          "order": 25,
+          "uid": 3024,
+          "order": 24,
           "title": "Sommet\nArrivée du téléphérique de la Perdrix",
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut7.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut7.jpg",
@@ -639,8 +623,8 @@
           ]
         },
         {
-          "uid": 3026,
-          "order": 26,
+          "uid": 3025,
+          "order": 25,
           "title": "Sommet\nLac de Bourdouze",
           "imageLD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut9.jpg",
           "imageHD": "https://www.webcam-hd.com/images/superbesse_superbesse-haut/zooms/superbesse_superbesse-haut9.jpg",
@@ -655,8 +639,8 @@
           ]
         },
         {
-          "uid": 3027,
-          "order": 27,
+          "uid": 3026,
+          "order": 26,
           "title": "Front de neige",
           "imageLD": "https://www.trinum.com/ibox/ftpcam/small_superbesse_front-de-neige.jpg",
           "imageHD": "https://www.trinum.com/ibox/ftpcam/mega_superbesse_front-de-neige.jpg",
@@ -671,8 +655,8 @@
           ]
         },
         {
-          "uid": 3028,
-          "order": 28,
+          "uid": 3027,
+          "order": 27,
           "title": "Bas de la station\nPanoramique 2",
           "imageLD": "https://www.trinum.com/ibox/sancy/Images/superbesseecole/superbesse_ecole7.jpg",
           "imageHD": "https://www.trinum.com/ibox/sancy/Images/superbesseecole/superbesse_ecole7.jpg",
@@ -1203,8 +1187,9 @@
           "uid": 5004,
           "order": 4,
           "title": "Route du Lioran\nDirection Murat / Massiac",
-          "video": "https://auvergne-webcams.openium.fr/proxy/massif-central-magsys-services.php?id=6",
-          "type": "video",
+          "imageLD": "https://auvergne-webcams.openium.fr/proxy/massif-central-magsys-services.php?id=6",
+          "imageHD": null,
+          "type": "image",
           "mapImageName": "map-annotation-road",
           "latitude": 45.095255,
           "longitude": 2.7583585,
@@ -1423,7 +1408,7 @@
           "uid": 7007,
           "order": 7,
           "title": "A71, Péage Clermont-Gerzat, direction Paris",
-          "viewsurf": "https://filmssite.viewsurf.com/aprr56/",
+          "viewsurf": "https://filmssite.viewsurf.com/aprr56",
           "type": "viewsurf",
           "latitude": 45.8410315,
           "longitude": 3.1562917,
@@ -1440,8 +1425,8 @@
           "uid": 7008,
           "order": 8,
           "title": "A75, La Pardieu, direction Paris",
-          "video": "https://filmssite.viewsurf.com/aprr28/",
-          "type": "video",
+          "viewsurf": "https://filmssite.viewsurf.com/aprr28",
+          "type": "viewsurf",
           "latitude": 45.759999,
           "longitude": 3.139769,
           "hidden": false,
@@ -1810,7 +1795,7 @@
           "uid": 8003,
           "order": 3,
           "title": "Salers",
-          "viewsurf": "https://filmssite.viewsurf.com/salers01/1/1/",
+          "viewsurf": "https://filmssite.viewsurf.com/salers01/1/1",
           "type": "viewsurf",
           "latitude": 45.1377552,
           "longitude": 2.4939936,
@@ -1880,22 +1865,8 @@
         {
           "uid": 9003,
           "order": 3,
-          "title": "Gannat",
-          "viewsurf": "https://filmssite.viewsurf.com/ap2r2/",
-          "type": "viewsurf",
-          "latitude": 46.100499,
-          "longitude": 3.199131,
-          "hidden": true,
-          "tags": [
-            "allier",
-            "gannat"
-          ]
-        },
-        {
-          "uid": 9004,
-          "order": 4,
           "title": "Toulon-sur-Allier",
-          "viewsurf": "https://filmssite.viewsurf.com/aprr61/",
+          "viewsurf": "https://filmssite.viewsurf.com/aprr61",
           "type": "viewsurf",
           "latitude": 46.498424,
           "longitude": 3.3763925,
@@ -1906,8 +1877,8 @@
           ]
         },
         {
-          "uid": 9005,
-          "order": 5,
+          "uid": 9004,
+          "order": 4,
           "title": "Pierrefitte-sur-Loire",
           "imageLD": "https://images-webcams.windy.com/90/1456310990/current/preview/1456310990.jpg",
           "imageHD": "https://images-webcams.windy.com/90/1456310990/current/full/1456310990.jpg",
@@ -1921,8 +1892,8 @@
           ]
         },
         {
-          "uid": 9006,
-          "order": 6,
+          "uid": 9005,
+          "order": 5,
           "title": "Ferrières-sur-Sichon 1",
           "imageLD": "https://www.charman.eu/weather/webcams/skycam.jpg",
           "imageHD": null,
@@ -1934,8 +1905,8 @@
           ]
         },
         {
-          "uid": 9007,
-          "order": 7,
+          "uid": 9006,
+          "order": 6,
           "title": "Ferrières-sur-Sichon 2",
           "imageLD": "https://www.charman.eu/weather/webcams/groundcam.jpg",
           "imageHD": null,
@@ -1947,8 +1918,8 @@
           ]
         },
         {
-          "uid": 9008,
-          "order": 8,
+          "uid": 9007,
+          "order": 7,
           "title": "Aérodrome Domérat Montluçon",
           "imageLD": "https://90.63.169.232:4999/",
           "imageHD": null,
@@ -1961,8 +1932,8 @@
           ]
         },
         {
-          "uid": 9010,
-          "order": 10,
+          "uid": 9008,
+          "order": 8,
           "title": "Aérodrome Périgny Lapalisse",
           "imageLD": "https://cam-aero.eu/raspicamaero/LFHX_03_AeroService",
           "imageHD": null,
