@@ -8,7 +8,7 @@ github "optonaut/ActiveLabel.swift" ~> 1.1
 github "Alamofire/Alamofire" ~> 4.7
 github "tristanhimmelman/AlamofireObjectMapper" ~> 5.1
 github "Hearst-DD/ObjectMapper" ~> 3.3
-github "realm/realm-cocoa" ~> 3.11
+github "realm/realm-swift" ~> 10.34.1
 binary "https://www.mapbox.com/ios-sdk/Mapbox-iOS-SDK.json" ~> 4.4
 github "Alamofire/AlamofireNetworkActivityIndicator" ~> 2.3
 github "ninjaprox/NVActivityIndicatorView" ~> 4.4

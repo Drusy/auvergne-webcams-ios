@@ -2,14 +2,63 @@
 All notable changes to this project will be documented in this file.
 
 
+### [5.4.0](https://github.com/xmartlabs/Eureka/releases/tag/5.4.0)
+
+* Renamed several methods that clashed with private Obj-C methods and triggered warnings when uploading to App Store (#2231)
+* Other minor fixes (#2220, #2222)
+
+### [5.3.6](https://github.com/xmartlabs/Eureka/releases/tag/5.3.6)
+
+* Fixed done button issue in keyboard (#2213)
+
+### [5.3.5](https://github.com/xmartlabs/Eureka/releases/tag/5.3.5)
+
+* Fix a compiler error in Xcode 13 (#2162)
+* Change CI to GitHub Actions and remove Travis (#2185)
+* Fix crash when user taps tab key on external keyboard (#2205)
+* Other minor fixes (#2191, #2206, #2183)
+
+### [5.3.4](https://github.com/xmartlabs/Eureka/releases/tag/5.3.4)
+
+* Resolve class protocol inheritance warnings (#2151)
+* Fix Chinese input issue (#2150) …
+* Specific special characters are allowed in the username of an email address (#2160)
+* Fix SliderRow not rendering properly (#2166)
+
+### [5.3.3](https://github.com/xmartlabs/Eureka/releases/tag/5.3.3)
+
+* Add option for different ScrollPosition behavior on keyboard appearance (#2112)
+* Prefix Eureka to certain class names to avoid clashes with other pods (#2113)
+* Remove the default header title of section (#2128)
+* Modify hugging priority for PasswordRow (#2129)
+* Add replace method for all sections (#2105)
+* Fix: Non-public API usage (valueChanged, datePickerValueChanged) (#2130)
+* Fix: remove EXCLUDED_ARCHS build setting to support M1 mac iphone simulator (#2137)
+* Fix: removeAll method in sections (#2141)
+
+
+### [5.3.2](https://github.com/xmartlabs/Eureka/releases/tag/5.3.2)
+
+* Make tableViewStyle public (#2092)
+* Fix CountDown rows crash (#2095)
+* Make ValidationRuleHelper's rule property public. (#2101)
+* Fix for building with Carthage and Xcode 12 (#2104)
+
+### [5.3.1](https://github.com/xmartlabs/Eureka/releases/tag/5.3.1)
+
+* Fix building for Mac Catalyst on Xcode 12 (#2078)
+* Fix datePickerStyle for DateFieldRow and DatePickerCell (#2077)
+* Adjust font size of PasswordRow to avoid dots (#2080)
+
 ### [5.3.0](https://github.com/xmartlabs/Eureka/releases/tag/5.3.0)
+
 * Reload rows on viewWillAppear for iOS 12 and below. (#2029)
 * Change validation functions access level to open (#2049)
 * Start editing field rows at the end when tapping blank space in row (#2046)
 * Update SelectorViewController.swift (#2062)
 * Fix subtitle field row constraints (#2069)
 * Create a workaround for Swift crash (#2057, #2061)
-* Fix date row style/rendering issues for iOS14 (#2067)
+* Fix date row style/rendering issues for iOS 14 (#2067)
 
 ### [5.2.1](https://github.com/xmartlabs/Eureka/releases/tag/5.2.1)
 
