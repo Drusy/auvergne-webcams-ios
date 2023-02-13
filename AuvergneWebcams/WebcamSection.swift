@@ -9,7 +9,7 @@
 import UIKit
 import ObjectMapper
 import RealmSwift
-import Crashlytics
+import FirebaseCrashlytics
 
 class FavoriteWebcamSection: WebcamSection {
     var favoriteWebcams: Results<Webcam>?
@@ -108,7 +108,7 @@ class WebcamSection: Object, Mappable {
                 
                 if let error = response.result.error {
                     print(error.localizedDescription)
-                    Crashlytics.sharedInstance().recordError(error)
+                    Crashlytics.crashlytics().record(error: error)
                     handler(strongSelf, error)
                 } else if let openWeatherResponse = response.result.value {
                     let realm = try? Realm()

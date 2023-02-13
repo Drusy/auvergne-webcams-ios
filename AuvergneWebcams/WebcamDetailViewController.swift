@@ -78,7 +78,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        automaticallyAdjustsScrollViewInsets = false
+        scrollView.contentInsetAdjustmentBehavior = .never
         view.bounds = UIScreen.main.bounds
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "refresh-icon"),
@@ -123,7 +123,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         updateLastUpdateLabel()
         refresh()
         
-        Defaults[.cameraDetailCount] += 1
+        Defaults[\.cameraDetailCount] += 1
         AnalyticsManager.logEvent(showWebcam: webcam)
         QuickActionsService.shared.quickActionEdit(webcam: webcam, value: .add)
     }
@@ -339,14 +339,15 @@ class WebcamDetailViewController: AbstractRefreshViewController {
             with: url,
             placeholder: nil,
             options: options,
-            progressBlock: nil) { [weak self] image, error, cacheType, url in
-                guard let strongSelf = self else { return }
-                
-                if let error = error {
-                    print("ERROR: \(error.code) - \(error.localizedDescription)")
-                    strongSelf.handleError(statusCode: error.code, force: force)
-                } else {
-                    strongSelf.mediaLoadingDidFinish()
+            progressBlock: nil) { [weak self] result in
+                guard let self = self else { return }
+
+                switch result {
+                case .failure(let error):
+                    print("ERROR: \(error.errorCode) - \(error.localizedDescription)")
+                    self.handleError(statusCode: error.errorCode, force: force)
+                case .success:
+                    self.mediaLoadingDidFinish()
                 }
         }
     }

@@ -74,7 +74,7 @@ struct ResizingContentModeImageProcessor: ImageProcessor {
         self.identifier = "com.onevcat.Kingfisher.ResizingImageProcessor(\(targetSize), \(targetContentMode))"
     }
     
-    public func process(item: ImageProcessItem, options: KingfisherOptionsInfo) -> Image? {
+    public func process(item: ImageProcessItem, options: KingfisherParsedOptionsInfo) -> KFCrossPlatformImage? {
         switch item {
         case .image(let image):
             var size: CGSize
@@ -90,7 +90,7 @@ struct ResizingContentModeImageProcessor: ImageProcessor {
             
             return image.kf.resize(to: size)
         case .data(_):
-            return (DefaultImageProcessor.default >> self).process(item: item, options: options)
+            return DefaultImageProcessor.default.append(another: self).process(item: item, options: options)
         }
     }
 }
@@ -223,23 +223,24 @@ class AbstractWebcamView: UIView {
         imageView.kf.setImage(
             with: url,
             options: [.processor(processor)],
-            completionHandler: { [weak self] (image, error, cacheType, imageUrl) in
-                guard let strongSelf = self else { return }
-                
-                if let error = error {
-                    print("ERROR: \(error.code) - \(error.localizedDescription)")
-                    strongSelf.handleError(for: webcam, statusCode: error.code)
-                } else {
-                    strongSelf.activityIndicator.stopAnimating()
-                    strongSelf.activityIndicator.isHidden = true
-                    strongSelf.outdatedView.isHidden = webcam.isUpToDate()
+            completionHandler: { [weak self] result in
+                guard let self = self else { return }
+
+                switch result {
+                case .failure(let error):
+                    print("ERROR: \(error.errorCode) - \(error.localizedDescription)")
+                    self.handleError(for: webcam, statusCode: error.errorCode)
+                case .success:
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.isHidden = true
+                    self.outdatedView.isHidden = webcam.isUpToDate()
                 }
         })
     }
     
     fileprivate func handleError(for webcam: Webcam, statusCode: Int) {
-        let reachability = Reachability()
-        let isReachable = (reachability == nil || (reachability != nil && reachability!.connection != .none))
+        let reachability: Reachability? = try? Reachability()
+        let isReachable = (reachability == nil || (reachability != nil && reachability?.connection != .unavailable))
         
         if  statusCode != -999 && statusCode != 30000 {
             if isReachable {

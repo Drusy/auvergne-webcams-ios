@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Crashlytics
+import FirebaseCrashlytics
 import SwiftyUserDefaults
 
 protocol LoadingViewControllerDelegate: class {
@@ -28,7 +28,7 @@ class AbstractLoadingViewController: AbstractRealmViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Defaults[.appOpenCount] += 1
+        Defaults[\.appOpenCount] += 1
         showClouds()
         
         #if DEBUG && true
@@ -72,7 +72,7 @@ class AbstractLoadingViewController: AbstractRealmViewController {
             guard let strongSelf = self else { return }
             
             if let error = response.error {
-                Crashlytics.sharedInstance().recordError(error)
+                Crashlytics.crashlytics().record(error: error)
                 print(error.localizedDescription)
             } else if let webcamSectionResponse = response.result.value {
                 // Delete all sections & webcams

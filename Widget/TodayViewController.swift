@@ -97,7 +97,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
         let favoriteWebcams = WebcamManager.shared.favoriteWebcams()
         if !favoriteWebcams.isEmpty {
-            if let currentWebcamUid = Defaults[.currentWidgetWebcamUid], let webcam = realm.object(ofType: Webcam.self, forPrimaryKey: currentWebcamUid) {
+            if let currentWebcamUid = Defaults[\.currentWidgetWebcamUid], let webcam = realm.object(ofType: Webcam.self, forPrimaryKey: currentWebcamUid) {
                 if favoriteWebcams.contains(webcam) {
                     onShow(webcam)
                 } else {
@@ -123,7 +123,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         webcamTitleLabel.text = webcam.title
         // https://forums.developer.apple.com/thread/121809
         webcamTitleLabel.textColor = .white
-        Defaults[.currentWidgetWebcamUid] = webcam.uid
+        Defaults[\.currentWidgetWebcamUid] = webcam.uid
         
         switch webcam.contentType {
         case .image:
@@ -191,7 +191,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         nextButton.isHidden = true
         
         let favorites = WebcamManager.shared.favoriteWebcams()
-        if let uid = Defaults[.currentWidgetWebcamUid] {
+        if let uid = Defaults[\.currentWidgetWebcamUid] {
             if let index = favorites.index(where: { $0.uid == uid }) {
                 if index > 0 {
                     previousButton.isHidden = false
@@ -258,14 +258,15 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             with: url,
             placeholder: nil,
             options: options,
-            progressBlock: nil) { [weak self] image, error, cacheType, url in
-                guard let strongSelf = self else { return }
-                
-                if let error = error {
-                    print("ERROR: \(error.code) - \(error.localizedDescription)")
-                    strongSelf.onError()
-                } else {
-                    strongSelf.onSuccess(webcam: webcam)
+            progressBlock: nil) { [weak self] result in
+                guard let self = self else { return }
+
+                switch result {
+                case .failure(let error):
+                    print("ERROR: \(error.errorCode) - \(error.localizedDescription)")
+                    self.onError()
+                case .success:
+                    self.onSuccess(webcam: webcam)
                 }
         }
     }
@@ -275,7 +276,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     @IBAction func onPreviousTouched(_ sender: Any) {
         let favorites = WebcamManager.shared.favoriteWebcams()
         
-        guard let uid = Defaults[.currentWidgetWebcamUid] else { return }
+        guard let uid = Defaults[\.currentWidgetWebcamUid] else { return }
         guard let index = favorites.index(where: { $0.uid == uid }) else { return }
         guard index > 0 else { return }
         
@@ -285,7 +286,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     @IBAction func onNextTouched(_ sender: Any) {
         let favorites = WebcamManager.shared.favoriteWebcams()
 
-        guard let uid = Defaults[.currentWidgetWebcamUid] else { return }
+        guard let uid = Defaults[\.currentWidgetWebcamUid] else { return }
         guard let index = favorites.index(where: { $0.uid == uid }) else { return }
         guard index < favorites.count - 1 else { return }
         
@@ -308,7 +309,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 // MARK: - ImageDownloaderDelegate
 
 extension TodayViewController: ImageDownloaderDelegate {
-    func imageDownloader(_ downloader: ImageDownloader, didDownload image: Image, for url: URL, with response: URLResponse?) {
+    func imageDownloader(_ downloader: ImageDownloader, didDownload image: KFCrossPlatformImage, for url: URL, with response: URLResponse?) {
         DispatchQueue.main.async {
             ImageDownloaderUtils.updateDate(for: url, with: response)
         }

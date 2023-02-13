@@ -63,7 +63,7 @@ class DownloadManager {
 // MARK: - ImageDownloaderDelegate
 
 extension DownloadManager: ImageDownloaderDelegate {
-    func imageDownloader(_ downloader: ImageDownloader, didDownload image: Image, for url: URL, with response: URLResponse?) {
+    func imageDownloader(_ downloader: ImageDownloader, didDownload image: KFCrossPlatformImage, for url: URL, with response: URLResponse?) {
         DispatchQueue.main.async {
             ImageDownloaderUtils.updateDate(for: url, with: response)
         }

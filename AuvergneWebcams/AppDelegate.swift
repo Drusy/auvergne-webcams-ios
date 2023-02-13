@@ -10,10 +10,9 @@ import UIKit
 import Kingfisher
 import Siren
 import SwiftyUserDefaults
-import Fabric
-import Crashlytics
 import AlamofireNetworkActivityIndicator
 import FirebaseCore
+import FirebaseCrashlytics
 import RealmSwift
 import SVProgressHUD
 
@@ -34,8 +33,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        Fabric.with([Crashlytics.self])
-        
         #if DEBUG
             UIFont.printFonts()
         #endif
@@ -51,13 +48,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Defaults
         let version = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
-        if !Defaults[.firstConfigurationDone] {
-            Defaults[.firstConfigurationDone] = true
+        if !Defaults[\.firstConfigurationDone] {
+            Defaults[\.firstConfigurationDone] = true
             
             // Defaults settings
-            Defaults[.shouldAutorefresh] = true
-            Defaults[.prefersHighQuality] = true
-            Defaults[.autorefreshInterval] = Webcam.refreshInterval
+            Defaults[\.shouldAutorefresh] = true
+            Defaults[\.prefersHighQuality] = true
+            Defaults[\.autorefreshInterval] = Webcam.refreshInterval
         }
         
         // Realm
@@ -74,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
         
         // Database init
-        if Defaults[.currentVersion] != version {
+        if Defaults[\.currentVersion] != version {
             DownloadManager.shared.bootstrapRealmData()
         } else {
             // Let's init the download manager proxy
@@ -82,8 +79,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // Current version
-        if Defaults[.currentVersion] != version {
-            Defaults[.currentVersion] = version
+        if Defaults[\.currentVersion] != version {
+            Defaults[\.currentVersion] = version
         }
         
         // Firebase
@@ -91,8 +88,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AnalyticsManager.logUserProperties()
 
         // Cache
-        let autorefreshInterval = Defaults[.autorefreshInterval]
-        ImageCache.default.maxCachePeriodInSecond = autorefreshInterval as TimeInterval
+        let autorefreshInterval = Defaults[\.autorefreshInterval]
+        ImageCache.default.memoryStorage.config.expiration = .seconds(autorefreshInterval as TimeInterval)
         ImageCache.default.cleanExpiredDiskCache()
         
         // Shortcut items

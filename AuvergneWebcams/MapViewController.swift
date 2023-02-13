@@ -58,7 +58,7 @@ class MapViewController: AbstractRealmViewController {
                            zoomLevel: 6,
                            animated: false)
         
-        if let style = Defaults[.mapboxStyle], let url = URL(string: style) {
+        if let style = Defaults[\.mapboxStyle], let url = URL(string: style) {
             mapView?.styleURL = url
         } else {
             mapView?.styleURL = MGLStyle.streetsStyleURL
@@ -79,7 +79,7 @@ class MapViewController: AbstractRealmViewController {
     
     func setStyle(_ url: URL) {
         mapView?.styleURL = url
-        Defaults[.mapboxStyle] = url.absoluteString
+        Defaults[\.mapboxStyle] = url.absoluteString
     }
     
     @objc func configure() {
