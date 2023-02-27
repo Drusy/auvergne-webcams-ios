@@ -60,11 +60,11 @@ class Webcam: Object, Mappable {
     
     // MARK: -
     
-    required convenience init?(map: Map) {
+    required convenience init?(map: ObjectMapper.Map) {
         self.init()
     }
     
-    func mapping(map: Map) {
+    func mapping(map: ObjectMapper.Map) {
         var tagsArray = [String]()
         
         uid <- map["uid"]

@@ -1,5 +1,5 @@
 [submodule "Carthage/Checkouts/ObjectMapper"]
-	url = https://github.com/Hearst-DD/ObjectMapper.git
+	url = https://github.com/tristanhimmelman/ObjectMapper.git
 [submodule "Carthage/Checkouts/Siren"]
 	url = https://github.com/ArtSabintsev/Siren.git
 [submodule "Carthage/Checkouts/ActiveLabel.swift"]
@@ -31,3 +31,6 @@
 [submodule "Carthage/Checkouts/SwiftyAttributes"]
 	path = Carthage/Checkouts/SwiftyAttributes
 	url = https://github.com/eddiekaiger/SwiftyAttributes.git
+[submodule "Carthage/Checkouts/realm-swift"]
+	path = Carthage/Checkouts/realm-swift
+	url = https://github.com/realm/realm-swift.git

@@ -14,7 +14,7 @@ import Crashlytics
 class FavoriteWebcamSection: WebcamSection {
     var favoriteWebcams: Results<Webcam>?
     
-    required convenience init?(map: Map) {
+    required convenience init?(map: ObjectMapper.Map) {
         self.init()
     }
 
@@ -52,11 +52,11 @@ class WebcamSection: Object, Mappable {
     
     // MARK: - 
     
-    required convenience init?(map: Map) {
+    required convenience init?(map: ObjectMapper.Map) {
         self.init()
     }
     
-    func mapping(map: Map) {
+    func mapping(map: ObjectMapper.Map) {
         var webcamsArray = [Webcam]()
         
         uid <- map["uid"]
