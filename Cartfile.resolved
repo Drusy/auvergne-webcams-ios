@@ -1,6 +1,7 @@
 binary "https://www.mapbox.com/ios-sdk/Mapbox-iOS-SDK.json" "4.11.2"
 github "Alamofire/Alamofire" "4.9.1"
 github "Alamofire/AlamofireNetworkActivityIndicator" "2.4.0"
+github "ArtSabintsev/Siren" "3.9.2"
 github "Hearst-DD/ObjectMapper" "3.5.3"
 github "SVProgressHUD/SVProgressHUD" "2.2.5"
 github "ghostlordstar/DOFavoriteButton" "27cf2d929b0890e1ee24c9dfccabe47c5c169949"
