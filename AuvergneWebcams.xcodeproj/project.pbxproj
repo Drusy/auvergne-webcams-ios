@@ -7,32 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C3E0F672987CD2100389B76 /* Alamofire.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F662987CD2100389B76 /* Alamofire.xcframework */; };
-		0C3E0F682987CD2200389B76 /* Alamofire.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F662987CD2100389B76 /* Alamofire.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0C3E0F6A2987CD2500389B76 /* AlamofireNetworkActivityIndicator.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F692987CD2500389B76 /* AlamofireNetworkActivityIndicator.xcframework */; };
-		0C3E0F6B2987CD2500389B76 /* AlamofireNetworkActivityIndicator.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F692987CD2500389B76 /* AlamofireNetworkActivityIndicator.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0C3E0F6D2987CD2900389B76 /* AlamofireObjectMapper.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F6C2987CD2800389B76 /* AlamofireObjectMapper.xcframework */; };
-		0C3E0F6E2987CD2900389B76 /* AlamofireObjectMapper.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F6C2987CD2800389B76 /* AlamofireObjectMapper.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0C3E0F702987CD2C00389B76 /* DOFavoriteButtonNew.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F6F2987CD2C00389B76 /* DOFavoriteButtonNew.xcframework */; };
 		0C3E0F712987CD2D00389B76 /* DOFavoriteButtonNew.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F6F2987CD2C00389B76 /* DOFavoriteButtonNew.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0C3E0F8E2987CD7700389B76 /* SVProgressHUD.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F8D2987CD7700389B76 /* SVProgressHUD.xcframework */; };
 		0C3E0F8F2987CD7800389B76 /* SVProgressHUD.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F8D2987CD7700389B76 /* SVProgressHUD.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0C7731742990FBEB004509A1 /* Alamofire.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F662987CD2100389B76 /* Alamofire.xcframework */; };
-		0C7731752990FBEB004509A1 /* Alamofire.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F662987CD2100389B76 /* Alamofire.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0C7731762990FBEB004509A1 /* AlamofireNetworkActivityIndicator.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F692987CD2500389B76 /* AlamofireNetworkActivityIndicator.xcframework */; };
-		0C7731772990FBEB004509A1 /* AlamofireNetworkActivityIndicator.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F692987CD2500389B76 /* AlamofireNetworkActivityIndicator.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0C7731782990FBEB004509A1 /* AlamofireObjectMapper.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F6C2987CD2800389B76 /* AlamofireObjectMapper.xcframework */; };
-		0C7731792990FBEB004509A1 /* AlamofireObjectMapper.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F6C2987CD2800389B76 /* AlamofireObjectMapper.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0C77317A2990FBEB004509A1 /* DOFavoriteButtonNew.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F6F2987CD2C00389B76 /* DOFavoriteButtonNew.xcframework */; };
 		0C77317B2990FBEB004509A1 /* DOFavoriteButtonNew.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F6F2987CD2C00389B76 /* DOFavoriteButtonNew.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0C77318C2990FBEB004509A1 /* SVProgressHUD.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F8D2987CD7700389B76 /* SVProgressHUD.xcframework */; };
 		0C77318D2990FBEB004509A1 /* SVProgressHUD.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F8D2987CD7700389B76 /* SVProgressHUD.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0C7731942990FC21004509A1 /* Alamofire.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F662987CD2100389B76 /* Alamofire.xcframework */; };
-		0C7731952990FC21004509A1 /* Alamofire.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F662987CD2100389B76 /* Alamofire.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0C7731962990FC21004509A1 /* AlamofireNetworkActivityIndicator.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F692987CD2500389B76 /* AlamofireNetworkActivityIndicator.xcframework */; };
-		0C7731972990FC21004509A1 /* AlamofireNetworkActivityIndicator.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F692987CD2500389B76 /* AlamofireNetworkActivityIndicator.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0C7731982990FC21004509A1 /* AlamofireObjectMapper.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F6C2987CD2800389B76 /* AlamofireObjectMapper.xcframework */; };
-		0C7731992990FC21004509A1 /* AlamofireObjectMapper.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F6C2987CD2800389B76 /* AlamofireObjectMapper.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0C77319A2990FC21004509A1 /* DOFavoriteButtonNew.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F6F2987CD2C00389B76 /* DOFavoriteButtonNew.xcframework */; };
 		0C77319B2990FC21004509A1 /* DOFavoriteButtonNew.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F6F2987CD2C00389B76 /* DOFavoriteButtonNew.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0C7731A02990FC21004509A1 /* NorthernLightsWebcams.app in Resources */ = {isa = PBXBuildFile; fileRef = F94433061E8A4C45006D7308 /* NorthernLightsWebcams.app */; };
@@ -47,12 +29,6 @@
 		0CBCDDA629ACB56200B18A39 /* Siren.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBCDDA229ACB4EC00B18A39 /* Siren.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0CBCDDA729ACB56600B18A39 /* Siren.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBCDDA229ACB4EC00B18A39 /* Siren.xcframework */; };
 		0CBCDDA829ACB56600B18A39 /* Siren.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBCDDA229ACB4EC00B18A39 /* Siren.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0CC32A4F29ACB0A600ADAD99 /* ObjectMapper.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC32A4E29ACB03B00ADAD99 /* ObjectMapper.xcframework */; };
-		0CC32A5029ACB0A600ADAD99 /* ObjectMapper.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC32A4E29ACB03B00ADAD99 /* ObjectMapper.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0CC32A5129ACB0AB00ADAD99 /* ObjectMapper.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC32A4E29ACB03B00ADAD99 /* ObjectMapper.xcframework */; };
-		0CC32A5229ACB0AB00ADAD99 /* ObjectMapper.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC32A4E29ACB03B00ADAD99 /* ObjectMapper.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0CC32A5329ACB0B000ADAD99 /* ObjectMapper.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC32A4E29ACB03B00ADAD99 /* ObjectMapper.xcframework */; };
-		0CC32A5429ACB0B000ADAD99 /* ObjectMapper.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC32A4E29ACB03B00ADAD99 /* ObjectMapper.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0CFCCA7E299A3FA300084CB7 /* AppDependencies in Frameworks */ = {isa = PBXBuildFile; productRef = 0CFCCA7D299A3FA300084CB7 /* AppDependencies */; };
 		0CFCCA80299A3FAB00084CB7 /* WidgetDependencies in Frameworks */ = {isa = PBXBuildFile; productRef = 0CFCCA7F299A3FAB00084CB7 /* WidgetDependencies */; };
 		F900E4CD1DE5DBA300B017BB /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F900E4CC1DE5DBA300B017BB /* NotificationNameExtension.swift */; };
@@ -435,13 +411,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0C3E0F682987CD2200389B76 /* Alamofire.xcframework in Embed Frameworks */,
 				0CBCDDA429ACB55D00B18A39 /* Siren.xcframework in Embed Frameworks */,
 				0C3E0F8F2987CD7800389B76 /* SVProgressHUD.xcframework in Embed Frameworks */,
-				0C3E0F6B2987CD2500389B76 /* AlamofireNetworkActivityIndicator.xcframework in Embed Frameworks */,
-				0CC32A5029ACB0A600ADAD99 /* ObjectMapper.xcframework in Embed Frameworks */,
 				0C3E0F712987CD2D00389B76 /* DOFavoriteButtonNew.xcframework in Embed Frameworks */,
-				0C3E0F6E2987CD2900389B76 /* AlamofireObjectMapper.xcframework in Embed Frameworks */,
 				F9F67DF52032EB64005FDE42 /* Mapbox.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -453,12 +425,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0C7731752990FBEB004509A1 /* Alamofire.xcframework in Embed Frameworks */,
 				0CBCDDA829ACB56600B18A39 /* Siren.xcframework in Embed Frameworks */,
-				0C7731772990FBEB004509A1 /* AlamofireNetworkActivityIndicator.xcframework in Embed Frameworks */,
 				0C77317B2990FBEB004509A1 /* DOFavoriteButtonNew.xcframework in Embed Frameworks */,
-				0CC32A5429ACB0B000ADAD99 /* ObjectMapper.xcframework in Embed Frameworks */,
-				0C7731792990FBEB004509A1 /* AlamofireObjectMapper.xcframework in Embed Frameworks */,
 				F9F67DF92032EB6F005FDE42 /* Mapbox.framework in Embed Frameworks */,
 				0C77318D2990FBEB004509A1 /* SVProgressHUD.xcframework in Embed Frameworks */,
 			);
@@ -482,12 +450,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0C7731952990FC21004509A1 /* Alamofire.xcframework in Embed Frameworks */,
 				0CBCDDA629ACB56200B18A39 /* Siren.xcframework in Embed Frameworks */,
-				0C7731972990FC21004509A1 /* AlamofireNetworkActivityIndicator.xcframework in Embed Frameworks */,
 				0C77319B2990FC21004509A1 /* DOFavoriteButtonNew.xcframework in Embed Frameworks */,
-				0CC32A5229ACB0AB00ADAD99 /* ObjectMapper.xcframework in Embed Frameworks */,
-				0C7731992990FC21004509A1 /* AlamofireObjectMapper.xcframework in Embed Frameworks */,
 				F9F67DF72032EB6A005FDE42 /* Mapbox.framework in Embed Frameworks */,
 				0C7731B02990FC21004509A1 /* SVProgressHUD.xcframework in Embed Frameworks */,
 			);
@@ -678,12 +642,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CBCDDA329ACB55D00B18A39 /* Siren.xcframework in Frameworks */,
-				0C3E0F6D2987CD2900389B76 /* AlamofireObjectMapper.xcframework in Frameworks */,
 				0C3E0F702987CD2C00389B76 /* DOFavoriteButtonNew.xcframework in Frameworks */,
-				0C3E0F672987CD2100389B76 /* Alamofire.xcframework in Frameworks */,
-				0CC32A4F29ACB0A600ADAD99 /* ObjectMapper.xcframework in Frameworks */,
 				0CFCCA7E299A3FA300084CB7 /* AppDependencies in Frameworks */,
-				0C3E0F6A2987CD2500389B76 /* AlamofireNetworkActivityIndicator.xcframework in Frameworks */,
 				F9F67DF42032EB64005FDE42 /* Mapbox.framework in Frameworks */,
 				0C3E0F8E2987CD7700389B76 /* SVProgressHUD.xcframework in Frameworks */,
 			);
@@ -703,11 +663,7 @@
 			files = (
 				0CBCDDA729ACB56600B18A39 /* Siren.xcframework in Frameworks */,
 				0C7E82B1299A35EB004874BC /* AppDependencies in Frameworks */,
-				0C7731782990FBEB004509A1 /* AlamofireObjectMapper.xcframework in Frameworks */,
-				0C7731762990FBEB004509A1 /* AlamofireNetworkActivityIndicator.xcframework in Frameworks */,
-				0CC32A5329ACB0B000ADAD99 /* ObjectMapper.xcframework in Frameworks */,
 				F9F67DF82032EB6F005FDE42 /* Mapbox.framework in Frameworks */,
-				0C7731742990FBEB004509A1 /* Alamofire.xcframework in Frameworks */,
 				0C77317A2990FBEB004509A1 /* DOFavoriteButtonNew.xcframework in Frameworks */,
 				0C77318C2990FBEB004509A1 /* SVProgressHUD.xcframework in Frameworks */,
 			);
@@ -728,11 +684,7 @@
 			files = (
 				0CBCDDA529ACB56200B18A39 /* Siren.xcframework in Frameworks */,
 				0C7E82AF299A35DF004874BC /* AppDependencies in Frameworks */,
-				0C7731982990FC21004509A1 /* AlamofireObjectMapper.xcframework in Frameworks */,
-				0C7731962990FC21004509A1 /* AlamofireNetworkActivityIndicator.xcframework in Frameworks */,
-				0CC32A5129ACB0AB00ADAD99 /* ObjectMapper.xcframework in Frameworks */,
 				F9F67DF62032EB6A005FDE42 /* Mapbox.framework in Frameworks */,
-				0C7731942990FC21004509A1 /* Alamofire.xcframework in Frameworks */,
 				0C77319A2990FC21004509A1 /* DOFavoriteButtonNew.xcframework in Frameworks */,
 				0C7731AF2990FC21004509A1 /* SVProgressHUD.xcframework in Frameworks */,
 			);

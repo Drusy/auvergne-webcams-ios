@@ -1,15 +1,7 @@
-[submodule "Carthage/Checkouts/ObjectMapper"]
-	url = https://github.com/tristanhimmelman/ObjectMapper.git
-[submodule "Carthage/Checkouts/AlamofireObjectMapper"]
-	url = https://github.com/tristanhimmelman/AlamofireObjectMapper.git
-[submodule "Carthage/Checkouts/Alamofire"]
-	url = https://github.com/Alamofire/Alamofire.git
 [submodule "Carthage/Checkouts/SVProgressHUD"]
 	url = https://github.com/SVProgressHUD/SVProgressHUD.git
 [submodule "Carthage/Checkouts/DOFavoriteButton"]
 	url = https://github.com/ghostlordstar/DOFavoriteButton.git
-[submodule "Carthage/Checkouts/AlamofireNetworkActivityIndicator"]
-	url = https://github.com/Alamofire/AlamofireNetworkActivityIndicator.git
 [submodule "Carthage/Checkouts/Siren"]
 	path = Carthage/Checkouts/Siren
 	url = https://github.com/ArtSabintsev/Siren.git

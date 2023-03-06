@@ -188,27 +188,34 @@ class AbstractWebcamView: UIView {
             return
         }
         
-        let request = Alamofire.request(lastURL,
-                                        method: .get,
-                                        parameters: nil,
-                                        encoding: URLEncoding.default,
-                                        headers: ApiRequest.headers)
+        let request = Alamofire.Session.default
+            .request(
+                lastURL,
+                method: .get,
+                parameters: nil,
+                encoding: URLEncoding.default,
+                headers: .init(ApiRequest.headers)
+            )
         request.validate()
         request.debugLog()
         
         request.responseString { [weak self] response in
-            guard let strongSelf = self else { return }
-            
-            if let error = response.error, let statusCode = response.response?.statusCode {
-                print("ERROR: \(statusCode) - \(error.localizedDescription)")
-                strongSelf.handleError(for: webcam, statusCode: statusCode)
-            } else if let mediaPath = response.result.value?.replacingOccurrences(of: "\n", with: "") {
+            guard let self = self else { return }
+
+            switch response.result {
+            case .failure(let error):
+                if let statusCode = response.response?.statusCode {
+                    print("ERROR: \(statusCode) - \(error.localizedDescription)")
+                    self.handleError(for: webcam, statusCode: statusCode)
+                }
+            case .success(let value):
+                let mediaPath = value.replacingOccurrences(of: "\n", with: "")
                 if let previewURL = URL(string: "\(viewsurf)/\(mediaPath)_tn.jpg") {
-                    strongSelf.loadImage(for: webcam, for: previewURL)
+                    self.loadImage(for: webcam, for: previewURL)
                 } else {
-                    strongSelf.activityIndicator.stopAnimating()
-                    strongSelf.activityIndicator.isHidden = true
-                    strongSelf.brokenCameraView.isHidden = false
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.isHidden = true
+                    self.brokenCameraView.isHidden = false
                 }
             }
         }

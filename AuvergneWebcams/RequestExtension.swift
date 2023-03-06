@@ -12,7 +12,9 @@ extension Request {
     @discardableResult
     public func debugLog() -> Self {
         #if DEBUG
-            debugPrint(self)
+        self.cURLDescription { curl in
+            print(curl)
+        }
         #endif
         return self
     }

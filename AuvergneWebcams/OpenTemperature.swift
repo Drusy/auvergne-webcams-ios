@@ -7,25 +7,19 @@
 //
 
 import Foundation
-import ObjectMapper
 
-class OpenTemperature: Mappable {
-    
+class OpenTemperature: Decodable {
     var temperature: Double?
     var minTemperature: Double?
     var maxTemperature: Double?
     var pressure: Double?
     var humidity: Double?
-    
-    required convenience init?(map: Map) {
-        self.init()
-    }
-    
-    func mapping(map: Map) {
-        temperature <- map["temp"]
-        minTemperature <- map["temp_min"]
-        maxTemperature <- map["temp_max"]
-        pressure <- map["pressure"]
-        humidity <- map["humidity"]
+
+    enum CodingKeys: String, CodingKey {
+        case temperature = "temp"
+        case minTemperature = "temp_min"
+        case maxTemperature = "temp_max"
+        case pressure
+        case humidity
     }
 }

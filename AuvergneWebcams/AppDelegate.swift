@@ -10,7 +10,6 @@ import UIKit
 import Kingfisher
 import Siren
 import SwiftyUserDefaults
-import AlamofireNetworkActivityIndicator
 import FirebaseCore
 import FirebaseCrashlytics
 import RealmSwift
@@ -42,9 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SVProgressHUD.setForegroundColor(UIColor.white)
         SVProgressHUD.setFont(UIFont.proximaNovaRegular(withSize: 15))
         SVProgressHUD.setDefaultMaskType(.black)
-        
-        // Alamofire
-        NetworkActivityIndicatorManager.shared.isEnabled = true
 
         // Defaults
         let version = Bundle.main.infoDictionary!["CFBundleVersion"] as! String

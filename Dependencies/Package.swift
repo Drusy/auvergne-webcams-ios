@@ -19,6 +19,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/optonaut/ActiveLabel.swift.git", .upToNextMajor(from: "1.1.5")),
+        .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.6.4")),
         .package(url: "https://github.com/xmartlabs/Eureka.git", .upToNextMajor(from: "5.4.0")),
         .package(url: "https://github.com/firebase/firebase-ios-sdk.git", .upToNextMajor(from: "10.5.0")),
         .package(url: "https://github.com/onevcat/Kingfisher.git", .upToNextMajor(from: "7.6.0")),
@@ -34,6 +35,7 @@ let package = Package(
             name: "AppDependencies",
             dependencies: [
                 .product(name: "ActiveLabel", package: "ActiveLabel.swift"),
+                "Alamofire",
                 "Eureka",
                 .product(name: "FirebaseAnalytics", package: "firebase-ios-sdk"),
                 .product(name: "FirebaseCrashlytics", package: "firebase-ios-sdk"),
@@ -49,6 +51,7 @@ let package = Package(
         .target(
             name: "WidgetDependencies",
             dependencies: [
+                "Alamofire",
                 .product(name: "FirebaseAnalytics", package: "firebase-ios-sdk"),
                 .product(name: "FirebaseCrashlytics", package: "firebase-ios-sdk"),
                 "Kingfisher",

@@ -1,8 +1,4 @@
 github "ArtSabintsev/Siren" ~> 3.7
-github "Alamofire/Alamofire" ~> 4.7
-github "tristanhimmelman/AlamofireObjectMapper" ~> 5.1
-github "Hearst-DD/ObjectMapper" ~> 3.3
 binary "https://www.mapbox.com/ios-sdk/Mapbox-iOS-SDK.json" ~> 4.4
-github "Alamofire/AlamofireNetworkActivityIndicator" ~> 2.3
 github "ghostlordstar/DOFavoriteButton" "master"
 github "SVProgressHUD/SVProgressHUD" ~> 2.2
