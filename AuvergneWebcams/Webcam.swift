@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 import SwiftyUserDefaults
 import RealmSwift
 
@@ -51,6 +52,10 @@ class Webcam: Object, Decodable {
     @objc dynamic var isHidden: Bool = false
     @objc dynamic var latitude: Double = -1
     @objc dynamic var longitude: Double = -1
+
+    var coordinate: CLLocationCoordinate2D {
+        CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
     
     private let sections: LinkingObjects<WebcamSection> = LinkingObjects(fromType: WebcamSection.self, property: "webcams")
     var section: WebcamSection? {

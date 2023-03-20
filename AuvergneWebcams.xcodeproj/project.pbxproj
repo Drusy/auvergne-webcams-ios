@@ -372,12 +372,6 @@
 		F9F5AC981DD34C8B00D9FF83 /* WebcamSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5AC971DD34C8B00D9FF83 /* WebcamSection.swift */; };
 		F9F5ACA21DD35DDD00D9FF83 /* WebcamDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5ACA01DD35DDD00D9FF83 /* WebcamDetailViewController.swift */; };
 		F9F5ACA31DD35DDD00D9FF83 /* WebcamDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9F5ACA11DD35DDD00D9FF83 /* WebcamDetailViewController.xib */; };
-		F9F67DF42032EB64005FDE42 /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9F67DF32032EB58005FDE42 /* Mapbox.framework */; };
-		F9F67DF52032EB64005FDE42 /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9F67DF32032EB58005FDE42 /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F9F67DF62032EB6A005FDE42 /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9F67DF32032EB58005FDE42 /* Mapbox.framework */; };
-		F9F67DF72032EB6A005FDE42 /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9F67DF32032EB58005FDE42 /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F9F67DF82032EB6F005FDE42 /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9F67DF32032EB58005FDE42 /* Mapbox.framework */; };
-		F9F67DF92032EB6F005FDE42 /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9F67DF32032EB58005FDE42 /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -414,7 +408,6 @@
 				0CBCDDA429ACB55D00B18A39 /* Siren.xcframework in Embed Frameworks */,
 				0C3E0F8F2987CD7800389B76 /* SVProgressHUD.xcframework in Embed Frameworks */,
 				0C3E0F712987CD2D00389B76 /* DOFavoriteButtonNew.xcframework in Embed Frameworks */,
-				F9F67DF52032EB64005FDE42 /* Mapbox.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -427,7 +420,6 @@
 			files = (
 				0CBCDDA829ACB56600B18A39 /* Siren.xcframework in Embed Frameworks */,
 				0C77317B2990FBEB004509A1 /* DOFavoriteButtonNew.xcframework in Embed Frameworks */,
-				F9F67DF92032EB6F005FDE42 /* Mapbox.framework in Embed Frameworks */,
 				0C77318D2990FBEB004509A1 /* SVProgressHUD.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -452,7 +444,6 @@
 			files = (
 				0CBCDDA629ACB56200B18A39 /* Siren.xcframework in Embed Frameworks */,
 				0C77319B2990FC21004509A1 /* DOFavoriteButtonNew.xcframework in Embed Frameworks */,
-				F9F67DF72032EB6A005FDE42 /* Mapbox.framework in Embed Frameworks */,
 				0C7731B02990FC21004509A1 /* SVProgressHUD.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -644,7 +635,6 @@
 				0CBCDDA329ACB55D00B18A39 /* Siren.xcframework in Frameworks */,
 				0C3E0F702987CD2C00389B76 /* DOFavoriteButtonNew.xcframework in Frameworks */,
 				0CFCCA7E299A3FA300084CB7 /* AppDependencies in Frameworks */,
-				F9F67DF42032EB64005FDE42 /* Mapbox.framework in Frameworks */,
 				0C3E0F8E2987CD7700389B76 /* SVProgressHUD.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -663,7 +653,6 @@
 			files = (
 				0CBCDDA729ACB56600B18A39 /* Siren.xcframework in Frameworks */,
 				0C7E82B1299A35EB004874BC /* AppDependencies in Frameworks */,
-				F9F67DF82032EB6F005FDE42 /* Mapbox.framework in Frameworks */,
 				0C77317A2990FBEB004509A1 /* DOFavoriteButtonNew.xcframework in Frameworks */,
 				0C77318C2990FBEB004509A1 /* SVProgressHUD.xcframework in Frameworks */,
 			);
@@ -684,7 +673,6 @@
 			files = (
 				0CBCDDA529ACB56200B18A39 /* Siren.xcframework in Frameworks */,
 				0C7E82AF299A35DF004874BC /* AppDependencies in Frameworks */,
-				F9F67DF62032EB6A005FDE42 /* Mapbox.framework in Frameworks */,
 				0C77319A2990FC21004509A1 /* DOFavoriteButtonNew.xcframework in Frameworks */,
 				0C7731AF2990FC21004509A1 /* SVProgressHUD.xcframework in Frameworks */,
 			);
