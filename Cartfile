@@ -1,4 +1,3 @@
 github "ArtSabintsev/Siren" ~> 3.7
 binary "https://www.mapbox.com/ios-sdk/Mapbox-iOS-SDK.json" ~> 4.4
 github "ghostlordstar/DOFavoriteButton" "master"
-github "SVProgressHUD/SVProgressHUD" ~> 2.2

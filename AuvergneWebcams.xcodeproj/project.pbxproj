@@ -9,17 +9,11 @@
 /* Begin PBXBuildFile section */
 		0C3E0F702987CD2C00389B76 /* DOFavoriteButtonNew.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F6F2987CD2C00389B76 /* DOFavoriteButtonNew.xcframework */; };
 		0C3E0F712987CD2D00389B76 /* DOFavoriteButtonNew.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F6F2987CD2C00389B76 /* DOFavoriteButtonNew.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0C3E0F8E2987CD7700389B76 /* SVProgressHUD.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F8D2987CD7700389B76 /* SVProgressHUD.xcframework */; };
-		0C3E0F8F2987CD7800389B76 /* SVProgressHUD.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F8D2987CD7700389B76 /* SVProgressHUD.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0C77317A2990FBEB004509A1 /* DOFavoriteButtonNew.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F6F2987CD2C00389B76 /* DOFavoriteButtonNew.xcframework */; };
 		0C77317B2990FBEB004509A1 /* DOFavoriteButtonNew.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F6F2987CD2C00389B76 /* DOFavoriteButtonNew.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0C77318C2990FBEB004509A1 /* SVProgressHUD.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F8D2987CD7700389B76 /* SVProgressHUD.xcframework */; };
-		0C77318D2990FBEB004509A1 /* SVProgressHUD.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F8D2987CD7700389B76 /* SVProgressHUD.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0C77319A2990FC21004509A1 /* DOFavoriteButtonNew.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F6F2987CD2C00389B76 /* DOFavoriteButtonNew.xcframework */; };
 		0C77319B2990FC21004509A1 /* DOFavoriteButtonNew.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F6F2987CD2C00389B76 /* DOFavoriteButtonNew.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0C7731A02990FC21004509A1 /* NorthernLightsWebcams.app in Resources */ = {isa = PBXBuildFile; fileRef = F94433061E8A4C45006D7308 /* NorthernLightsWebcams.app */; };
-		0C7731AF2990FC21004509A1 /* SVProgressHUD.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F8D2987CD7700389B76 /* SVProgressHUD.xcframework */; };
-		0C7731B02990FC21004509A1 /* SVProgressHUD.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F8D2987CD7700389B76 /* SVProgressHUD.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0C7E82AF299A35DF004874BC /* AppDependencies in Frameworks */ = {isa = PBXBuildFile; productRef = 0C7E82AE299A35DF004874BC /* AppDependencies */; };
 		0C7E82B1299A35EB004874BC /* AppDependencies in Frameworks */ = {isa = PBXBuildFile; productRef = 0C7E82B0299A35EB004874BC /* AppDependencies */; };
 		0CBC951A2987D72900E842B1 /* WidgetAW.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F95DEB761EE1BB6300101CC4 /* WidgetAW.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -406,7 +400,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				0CBCDDA429ACB55D00B18A39 /* Siren.xcframework in Embed Frameworks */,
-				0C3E0F8F2987CD7800389B76 /* SVProgressHUD.xcframework in Embed Frameworks */,
 				0C3E0F712987CD2D00389B76 /* DOFavoriteButtonNew.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -420,7 +413,6 @@
 			files = (
 				0CBCDDA829ACB56600B18A39 /* Siren.xcframework in Embed Frameworks */,
 				0C77317B2990FBEB004509A1 /* DOFavoriteButtonNew.xcframework in Embed Frameworks */,
-				0C77318D2990FBEB004509A1 /* SVProgressHUD.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,7 +436,6 @@
 			files = (
 				0CBCDDA629ACB56200B18A39 /* Siren.xcframework in Embed Frameworks */,
 				0C77319B2990FC21004509A1 /* DOFavoriteButtonNew.xcframework in Embed Frameworks */,
-				0C7731B02990FC21004509A1 /* SVProgressHUD.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -635,7 +626,6 @@
 				0CBCDDA329ACB55D00B18A39 /* Siren.xcframework in Frameworks */,
 				0C3E0F702987CD2C00389B76 /* DOFavoriteButtonNew.xcframework in Frameworks */,
 				0CFCCA7E299A3FA300084CB7 /* AppDependencies in Frameworks */,
-				0C3E0F8E2987CD7700389B76 /* SVProgressHUD.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,7 +644,6 @@
 				0CBCDDA729ACB56600B18A39 /* Siren.xcframework in Frameworks */,
 				0C7E82B1299A35EB004874BC /* AppDependencies in Frameworks */,
 				0C77317A2990FBEB004509A1 /* DOFavoriteButtonNew.xcframework in Frameworks */,
-				0C77318C2990FBEB004509A1 /* SVProgressHUD.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -674,7 +663,6 @@
 				0CBCDDA529ACB56200B18A39 /* Siren.xcframework in Frameworks */,
 				0C7E82AF299A35DF004874BC /* AppDependencies in Frameworks */,
 				0C77319A2990FC21004509A1 /* DOFavoriteButtonNew.xcframework in Frameworks */,
-				0C7731AF2990FC21004509A1 /* SVProgressHUD.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

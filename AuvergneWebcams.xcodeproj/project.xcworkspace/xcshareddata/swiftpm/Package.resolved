@@ -199,6 +199,15 @@
       }
     },
     {
+      "identity" : "svprogresshud",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sereivoanyong/SVProgressHUD.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "0f7199378eb5566ea6c1ccf16879eea2a21f667b"
+      }
+    },
+    {
       "identity" : "swift-protobuf",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-protobuf.git",

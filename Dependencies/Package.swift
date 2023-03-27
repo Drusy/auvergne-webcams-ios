@@ -27,6 +27,7 @@ let package = Package(
         .package(url: "https://github.com/ninjaprox/NVActivityIndicatorView.git", .upToNextMajor(from: "5.1.1")),
         .package(url: "https://github.com/ashleymills/Reachability.swift.git", .upToNextMajor(from: "5.1.0")),
         .package(url: "https://github.com/realm/realm-swift.git", .upToNextMajor(from: "10.36.0")),
+        .package(url: "https://github.com/sereivoanyong/SVProgressHUD.git", branch: "master"),
         .package(url: "https://github.com/openium/SwiftiumKit.git", .upToNextMajor(from: "2.1.1")),
         .package(url: "https://github.com/eddiekaiger/SwiftyAttributes.git", .upToNextMajor(from: "5.2.0")),
         .package(url: "https://github.com/sunshinejr/SwiftyUserDefaults.git", .upToNextMajor(from: "5.3.0"))
