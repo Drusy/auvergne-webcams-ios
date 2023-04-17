@@ -104,8 +104,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/onevcat/Kingfisher.git",
       "state" : {
-        "revision" : "2db469112fbcfd83ff0a96c4546772d283f317f5",
-        "version" : "7.6.0"
+        "revision" : "af4be924ad984cf4d16f4ae4df424e79a443d435",
+        "version" : "7.6.2"
       }
     },
     {
@@ -196,6 +196,15 @@
       "state" : {
         "revision" : "4d55ba88e78ed427eae439e7c15fac2372f95c64",
         "version" : "10.36.0"
+      }
+    },
+    {
+      "identity" : "siren",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ArtSabintsev/Siren.git",
+      "state" : {
+        "revision" : "9b675a8f92b85c11814d0899e36cc4b2d4ba7503",
+        "version" : "6.1.0"
       }
     },
     {

@@ -7,12 +7,12 @@
 //
 
 import UIKit
+import Combine
 import Kingfisher
 import Reachability
 import SwiftyUserDefaults
 import MessageUI
 import NVActivityIndicatorView
-import DOFavoriteButtonNew
 import Alamofire
 import AVFoundation
 import AVKit
@@ -39,7 +39,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     @IBOutlet weak var nvActivityIndicatorView: NVActivityIndicatorView!
     @IBOutlet weak var lastUpdateLabel: UILabel!
     @IBOutlet weak var lowQualityView: UIVisualEffectView!
-    @IBOutlet weak var favoriteButton: DOFavoriteButtonNew!
+    @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var videoContainer: UIView!
     @IBOutlet weak var informationLabel: UILabel!
     
@@ -54,6 +54,8 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     var avPlayerURL: URL?
     var avExportTimer: Timer?
     var avExporter: AVAssetExportSession?
+
+    private var cancellables = Set<AnyCancellable>()
     
     // MARK: - Initializers
 
@@ -92,12 +94,11 @@ class WebcamDetailViewController: AbstractRefreshViewController {
                                                object: nil)
         
         // Favorite button
-        favoriteButton.image = UIImage(named: "star-icon")
-        favoriteButton.imageColorOn = UIColor.awBlue
-        favoriteButton.imageColorOff = UIColor.awLightGray
-        favoriteButton.duration = 1
-        favoriteButton.lineColor = UIColor.awBlue
-        favoriteButton.circleColor = UIColor.awBlue
+        favoriteButton.setImage(UIImage(named: "star-icon"), for: .normal)
+        favoriteButton.publisher(for: \.isSelected).sink { [weak self] isSelected in
+            guard let self = self else { return }
+            self.favoriteButton.tintColor = !isSelected ? UIColor.awLightGray : UIColor.awBlue
+        }.store(in: &cancellables)
         favoriteButton.isSelected = webcam.favorite
         
         // Prepare indicator
@@ -176,12 +177,12 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     
     // MARK: - IBActions
     
-    @IBAction func onFavoriteTouched(_ sender: DOFavoriteButtonNew) {
+    @IBAction func onFavoriteTouched(_ sender: UIButton) {
         if sender.isSelected {
-            sender.deselect()
+            sender.isSelected = false
             QuickActionsService.shared.quickActionEdit(webcam: webcam, value: .delete)
         } else {
-            sender.select()
+            sender.isSelected = true
         }
         
         try? realm.write {

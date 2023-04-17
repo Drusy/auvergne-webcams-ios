@@ -19,6 +19,9 @@ class MapViewController: AbstractRealmViewController {
     private var subtitle: String?
     private var configureButton: UIBarButtonItem?
     private var isMapInitialized: Bool = false
+
+    private var selectedWebcam: UIView?
+    private var currentWebcamCallout: WebcamCalloutView?
     
     init(webcams: Results<Webcam>, subtitle: String? = nil) {
         self.webcams = webcams
@@ -102,10 +105,15 @@ class MapViewController: AbstractRealmViewController {
                 }
 
                 let id = UUID().uuidString
-                let tapGesture = AnnotationTapGestureRecognizer(id: id, target: self, action: #selector(annotationViewDidSelect))
+                let tapGesture = AnnotationTapGestureRecognizer(
+                    id: id,
+                    webcam: webcam,
+                    target: self,
+                    action: #selector(annotationViewDidSelect)
+                )
                 annotationView.addGestureRecognizer(tapGesture)
 
-                try? mapView.viewAnnotations.add(annotationView, id: id, options: ViewAnnotationOptions(geometry: Geometry.point(Point(webcam.coordinate)), allowOverlap: true))
+                try? mapView.viewAnnotations.add(annotationView, id: id, options: ViewAnnotationOptions(geometry: Geometry.point(Point(webcam.coordinate)), allowOverlap: true, selected: false))
                 annotationsIds.append(id)
             }
 
@@ -119,9 +127,46 @@ class MapViewController: AbstractRealmViewController {
 
     @objc
     private func annotationViewDidSelect(sender: AnnotationTapGestureRecognizer) {
-        if let view = mapView.viewAnnotations.view(forId: sender.id) {
-            try? mapView.viewAnnotations.update(view, options: ViewAnnotationOptions(selected: true))
+        if let view = mapView.viewAnnotations.view(forId: sender.id),
+           let options = mapView.viewAnnotations.options(for: view) {
+            let isSelected = !(options.selected ?? false)
+            try? mapView.viewAnnotations.update(view, options: ViewAnnotationOptions(selected: isSelected))
+
+            if let selectedWebcam,
+               view != selectedWebcam {
+                try? mapView.viewAnnotations.update(selectedWebcam, options: ViewAnnotationOptions(selected: false))
+            }
+            currentWebcamCallout?.dismissCallout(animated: true)
+            currentWebcamCallout = nil
+
+            if isSelected {
+                let callout = WebcamCalloutView(webcam: sender.webcam)
+                callout.translatesAutoresizingMaskIntoConstraints = false
+                callout.calloutDidTapped = { [weak self] in
+                    if let currentWebcamCallout = self?.currentWebcamCallout {
+                        self?.mapView.viewAnnotations.remove(currentWebcamCallout)
+                    }
+                    self?.annotationViewDidSelect(sender: sender)
+                    self?.showWebcamDetail(webcam: sender.webcam)
+                }
+
+                try? mapView.viewAnnotations.add(callout, options: ViewAnnotationOptions(
+                    geometry: Geometry.point(Point(sender.webcam.coordinate)),
+                    allowOverlap: true,
+                    anchor: .bottom,
+                    offsetY: 14
+                ))
+                callout.setNeedsDisplay()
+
+                selectedWebcam = view
+                currentWebcamCallout = callout
+            }
         }
+    }
+
+    private func showWebcamDetail(webcam: Webcam) {
+        let webcamDetailViewController = WebcamDetailViewController(webcam: webcam)
+        self.navigationController?.pushViewController(webcamDetailViewController, animated: true)
     }
 
     override func translate() {
@@ -178,93 +223,13 @@ class MapViewController: AbstractRealmViewController {
     }
 }
 
-// MARK: - MGLMapViewDelegate
-
-extension MapViewController: AnnotationInteractionDelegate {
-    func annotationManager(_ manager: AnnotationManager, didDetectTappedAnnotations annotations: [Annotation]) {
-
-    }
-
-//    func mapViewDidFinishLoadingMap(_ mapView: MGLMapView) {
-//        guard isMapInitialized == false else { return }
-//        
-//        isMapInitialized = true
-//        webcams
-//            .filter { $0.latitude != -1 && $0.longitude != -1 }
-//            .forEach { webcam in
-//                mapView.draw(webcam)
-//        }
-//        mapView.fitToAnnotationBounds(animated: true)
-//    }
-//    
-//    func mapView(_ mapView: MGLMapView, imageFor annotation: MGLAnnotation) -> MGLAnnotationImage? {
-//        return nil
-//    }
-//    
-//    func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
-//        guard let webcamAnnotation = annotation as? WebcamAnnotation else {
-//            return nil
-//        }
-//        
-//        let mapImageName: String? = webcamAnnotation.webcam.mapImageName ?? webcamAnnotation.webcam.section?.mapImageName
-//        let mapColor: String? = webcamAnnotation.webcam.section?.mapColor
-//        let reuseIdentifier = mapImageName ?? "default-reusable-identifier"
-//        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
-//        
-//        if annotationView == nil {
-//            annotationView = MGLAnnotationView(reuseIdentifier: reuseIdentifier)
-//            annotationView?.frame = CGRect(x: 0, y: 0, width: 27, height: 27)
-//            annotationView?.layer.cornerRadius = (annotationView?.frame.size.width)! / 2
-//            annotationView?.layer.borderWidth = 2
-//            annotationView?.layer.borderColor = UIColor.white.cgColor
-//            
-//            if let mapImageName = mapImageName, let image = UIImage(named: mapImageName) {
-//                let imageView = UIImageView(image: image)
-//                let offset: CGFloat = 7
-//                
-//                imageView.contentMode = .scaleAspectFit
-//                
-//                annotationView?.addSubview(imageView)
-//                annotationView?.fit(toSubview: imageView,
-//                                    left: offset, right: offset,
-//                                    top: offset, bottom: offset)
-//                
-//            }
-//        }
-//        
-//        if let mapColor = mapColor, let color = UIColor(hex: mapColor) {
-//            annotationView?.backgroundColor = color
-//        } else {
-//            annotationView?.backgroundColor = UIColor.black
-//        }
-//        
-//        return annotationView
-//    }
-//    
-//    func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
-//        return annotation is WebcamAnnotation
-//    }
-//    
-//    func mapView(_ mapView: MGLMapView, calloutViewFor annotation: MGLAnnotation) -> MGLCalloutView? {
-//        return WebcamCalloutView(representedObject: annotation)
-//    }
-//    
-//    func mapView(_ mapView: MGLMapView, tapOnCalloutFor annotation: MGLAnnotation) {
-//        
-//        mapView.deselectAnnotation(annotation, animated: true)
-//        
-//        if let webcamAnnotation = annotation as? WebcamAnnotation {
-//            let webcamDetail = WebcamDetailViewController(webcam: webcamAnnotation.webcam)
-//            navigationController?.pushViewController(webcamDetail, animated: true)
-//        }
-//    }
-}
-
 class AnnotationTapGestureRecognizer: UITapGestureRecognizer {
     let id: String
+    let webcam: Webcam
 
-    init(id: String, target: Any?, action: Selector?) {
+    init(id: String, webcam: Webcam, target: Any?, action: Selector?) {
         self.id = id
+        self.webcam = webcam
         super.init(target: target, action: action)
     }
 }

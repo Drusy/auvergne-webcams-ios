@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C3E0F702987CD2C00389B76 /* DOFavoriteButtonNew.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F6F2987CD2C00389B76 /* DOFavoriteButtonNew.xcframework */; };
-		0C3E0F712987CD2D00389B76 /* DOFavoriteButtonNew.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F6F2987CD2C00389B76 /* DOFavoriteButtonNew.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0C77317A2990FBEB004509A1 /* DOFavoriteButtonNew.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F6F2987CD2C00389B76 /* DOFavoriteButtonNew.xcframework */; };
 		0C77317B2990FBEB004509A1 /* DOFavoriteButtonNew.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F6F2987CD2C00389B76 /* DOFavoriteButtonNew.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0C77319A2990FC21004509A1 /* DOFavoriteButtonNew.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E0F6F2987CD2C00389B76 /* DOFavoriteButtonNew.xcframework */; };
@@ -400,7 +398,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				0CBCDDA429ACB55D00B18A39 /* Siren.xcframework in Embed Frameworks */,
-				0C3E0F712987CD2D00389B76 /* DOFavoriteButtonNew.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -468,11 +465,9 @@
 		F93C76231DD11577005DEE66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F93C762F1DD115EB005DEE66 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		F93C76301DD115EB005DEE66 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
-		F93C76321DD1175E005DEE66 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		F93C76341DD117DD005DEE66 /* scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = scripts; sourceTree = "<group>"; };
 		F93C76361DD1189A005DEE66 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F93C76371DD118A2005DEE66 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		F93C76381DD11915005DEE66 /* Cartfile.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
 		F943501C1E8AB45100D3736D /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		F94350201E8AB59A00D3736D /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		F94350211E8AB59A00D3736D /* LoadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingViewController.xib; sourceTree = "<group>"; };
@@ -615,7 +610,6 @@
 		F9F5AC971DD34C8B00D9FF83 /* WebcamSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebcamSection.swift; sourceTree = "<group>"; };
 		F9F5ACA01DD35DDD00D9FF83 /* WebcamDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebcamDetailViewController.swift; sourceTree = "<group>"; };
 		F9F5ACA11DD35DDD00D9FF83 /* WebcamDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebcamDetailViewController.xib; sourceTree = "<group>"; };
-		F9F67DF32032EB58005FDE42 /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapbox.framework; path = Carthage/Build/iOS/Mapbox.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -624,7 +618,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CBCDDA329ACB55D00B18A39 /* Siren.xcframework in Frameworks */,
-				0C3E0F702987CD2C00389B76 /* DOFavoriteButtonNew.xcframework in Frameworks */,
 				0CFCCA7E299A3FA300084CB7 /* AppDependencies in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -721,7 +714,6 @@
 				F93C76341DD117DD005DEE66 /* scripts */,
 				F911BBE81DDC6066000C022B /* Vendor */,
 				F9ACD1F61E5C9DD8004E5BFF /* Frameworks */,
-				F93C76311DD1169C005DEE66 /* Carthage */,
 				F93C760B1DD11577005DEE66 /* AuvergneWebcams */,
 				F9D610BD1E82EE0600BFC18D /* ParisWebcams */,
 				F94433081E8A4CC4006D7308 /* NorthernLightsWebcams */,
@@ -800,16 +792,6 @@
 				F963AB1A1E59C6EA00ED5A8B /* Bridging-Header.h */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		F93C76311DD1169C005DEE66 /* Carthage */ = {
-			isa = PBXGroup;
-			children = (
-				F93C76321DD1175E005DEE66 /* Cartfile */,
-				F93C76381DD11915005DEE66 /* Cartfile.resolved */,
-				F9F67DF32032EB58005FDE42 /* Mapbox.framework */,
-			);
-			name = Carthage;
 			sourceTree = "<group>";
 		};
 		F93C76351DD11892005DEE66 /* doc */ = {
@@ -1414,7 +1396,6 @@
 				F93C76071DD11577005DEE66 /* Resources */,
 				F990992E1FD185C70001754D /* Settings Bundle Version */,
 				F93C76491DD11AF1005DEE66 /* Embed Frameworks */,
-				F93C764A1DD11AF5005DEE66 /* Carthage */,
 				F911BBEC1DDC6074000C022B /* Crashlytics */,
 				F95DEB861EE1BB6400101CC4 /* Embed App Extensions */,
 			);
@@ -1459,7 +1440,6 @@
 				F94432C71E8A4C45006D7308 /* Resources */,
 				F99099301FD193960001754D /* Settings Bundle Version */,
 				F94432EF1E8A4C45006D7308 /* Embed Frameworks */,
-				F94433011E8A4C45006D7308 /* Carthage */,
 				F94433021E8A4C45006D7308 /* Crashlytics */,
 			);
 			buildRules = (
@@ -1478,7 +1458,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F95DEB831EE1BB6400101CC4 /* Build configuration list for PBXNativeTarget "WidgetAW" */;
 			buildPhases = (
-				F99099431FD54B7D0001754D /* Carthage update if needed */,
 				F95DEB721EE1BB6300101CC4 /* Sources */,
 				F95DEB731EE1BB6300101CC4 /* Frameworks */,
 				F95DEB741EE1BB6300101CC4 /* Resources */,
@@ -1505,7 +1484,6 @@
 				F9D6107C1E82EDBF00BFC18D /* Resources */,
 				F990992F1FD193880001754D /* Settings Bundle Version */,
 				F9D610A41E82EDBF00BFC18D /* Embed Frameworks */,
-				F9D610B61E82EDBF00BFC18D /* Carthage */,
 				F9D610B71E82EDBF00BFC18D /* Crashlytics */,
 			);
 			buildRules = (
@@ -1779,22 +1757,6 @@
 			shellScript = "./Vendor/Fabric/Fabric.framework/run 7cc7cb6974a476c88eaefd8f8f18727ed0ba945a 45a74e44b233b172c82468f5cdb077f34a90c4f4bc9b4e87161041a9347f1375";
 			showEnvVarsInLog = 0;
 		};
-		F93C764A1DD11AF5005DEE66 /* Carthage */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/SwiftiumKit.framework",
-			);
-			name = Carthage;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "# Embedded binaries only when archiving\nif [ \"$ACTION\" == \"install\" ]; then\n    /usr/local/bin/carthage copy-frameworks\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		F94432731E8A4C45006D7308 /* Warning TODO / FIXME / WARNING */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1808,22 +1770,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "${PROJECT_DIR}/scripts/todo.sh";
-			showEnvVarsInLog = 0;
-		};
-		F94433011E8A4C45006D7308 /* Carthage */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/SwiftiumKit.framework",
-			);
-			name = Carthage;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "# Embedded binaries only when archiving\nif [ \"$ACTION\" == \"install\" ] ; then\n    /usr/local/bin/carthage copy-frameworks\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		F94433021E8A4C45006D7308 /* Crashlytics */ = {
@@ -1913,21 +1859,6 @@
 			shellScript = "EMPTY=$(ls -A \"${PROJECT_DIR}/Carthage/Build\")\n\nif [ \"EMPTY\" ]; then\n    echo \"Carthage dependencies up to date\"\nelse\n    carthage update --platform iOS --no-use-binaries\nfi";
 			showEnvVarsInLog = 0;
 		};
-		F99099431FD54B7D0001754D /* Carthage update if needed */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Carthage update if needed";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "EMPTY=$(ls -A \"${PROJECT_DIR}/Carthage/Build\")\n\nif [ \"$EMPTY\" ]; then\n    echo \"Carthage dependencies up to date\"\nelse\n    carthage update --platform iOS --no-use-binaries\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		F9D6102A1E82EDBF00BFC18D /* Warning TODO / FIXME / WARNING */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1941,22 +1872,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "${PROJECT_DIR}/scripts/todo.sh";
-			showEnvVarsInLog = 0;
-		};
-		F9D610B61E82EDBF00BFC18D /* Carthage */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/SwiftiumKit.framework",
-			);
-			name = Carthage;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "# Embedded binaries only when archiving\nif [ \"$ACTION\" == \"install\" ] ; then\n    /usr/local/bin/carthage copy-frameworks\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		F9D610B71E82EDBF00BFC18D /* Crashlytics */ = {
@@ -2368,7 +2283,7 @@
 					"$(PROJECT_DIR)/Vendor/Firebase/Analytics",
 				);
 				INFOPLIST_FILE = AuvergneWebcams/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2396,7 +2311,7 @@
 					"$(PROJECT_DIR)/Vendor/Firebase/Analytics",
 				);
 				INFOPLIST_FILE = AuvergneWebcams/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2485,7 +2400,7 @@
 					"$(PROJECT_DIR)/Vendor/Firebase/Analytics",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/NorthernLightsWebcams/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2512,7 +2427,7 @@
 					"$(PROJECT_DIR)/Vendor/Firebase/Analytics",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/NorthernLightsWebcams/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2592,7 +2507,7 @@
 					"$(PROJECT_DIR)/Vendor/Firebase/Analytics",
 				);
 				INFOPLIST_FILE = ParisWebcams/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2619,7 +2534,7 @@
 					"$(PROJECT_DIR)/Vendor/Firebase/Analytics",
 				);
 				INFOPLIST_FILE = ParisWebcams/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
