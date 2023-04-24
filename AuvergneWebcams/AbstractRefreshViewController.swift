@@ -14,7 +14,7 @@ class AbstractRefreshViewController: AbstractRealmViewController {
 
     var refreshTimer: Timer?
     var lastUpdate: TimeInterval?
-    var lastReachabilityStatus: Reachability.Connection = .none
+    var lastReachabilityStatus: Reachability.Connection = .unavailable
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +50,7 @@ class AbstractRefreshViewController: AbstractRealmViewController {
             try? reachability.startNotifier()
         }
         
-        if Defaults[.shouldAutorefresh] {
+        if Defaults[\.shouldAutorefresh] {
             startRefreshing()
         }
     }
@@ -83,7 +83,7 @@ class AbstractRefreshViewController: AbstractRealmViewController {
     @objc func reachabilityChanged(notification: NSNotification) {
         guard let reachability = notification.object as? Reachability else { return }
 
-        if lastReachabilityStatus == .none && reachability.connection != .none {
+        if lastReachabilityStatus == .unavailable && reachability.connection != .unavailable {
             refresh()
         }
         lastReachabilityStatus = reachability.connection
@@ -94,7 +94,7 @@ class AbstractRefreshViewController: AbstractRealmViewController {
             let now = NSDate().timeIntervalSinceReferenceDate
             if let lastUpdate = lastUpdate {
                 let interval = now - lastUpdate
-                if interval > Defaults[.autorefreshInterval] as TimeInterval {
+                if interval > Defaults[\.autorefreshInterval] as TimeInterval {
                     refresh(force: true)
                 }
             } else {
@@ -110,7 +110,7 @@ class AbstractRefreshViewController: AbstractRealmViewController {
     @objc private func startRefreshing() {
         refreshIfNeeded()
         
-        refreshTimer = Timer.scheduledTimer(timeInterval: Defaults[.autorefreshInterval],
+        refreshTimer = Timer.scheduledTimer(timeInterval: Defaults[\.autorefreshInterval],
                                             target: self,
                                             selector: #selector(timerRefresh),
                                             userInfo: nil,
@@ -118,7 +118,7 @@ class AbstractRefreshViewController: AbstractRealmViewController {
     }
     
     @objc func autorefreshSettingsUpdated() {
-        if Defaults[.shouldAutorefresh] {
+        if Defaults[\.shouldAutorefresh] {
             startRefreshing()
         } else {
             stopRefreshing()

@@ -1,9 +1,0 @@
-language: objective-c
-osx_image: xcode12.2
-before_install:
-- gem install bundler
-- gem update bundler
-- gem install fastlane
-install: true
-script:
-- fastlane scan -p "ActiveLabel.xcodeproj" -s "ActiveLabel"

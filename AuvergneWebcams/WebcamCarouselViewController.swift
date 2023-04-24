@@ -91,10 +91,10 @@ class WebcamCarouselViewController: AbstractRefreshViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        if Defaults[.cameraDetailCount] >= 4 && Defaults[.appOpenCount] >= 2 {
+        if Defaults[\.cameraDetailCount] >= 4 && Defaults[\.appOpenCount] >= 2 {
             if #available(iOS 10.3, *){
-                Defaults[.cameraDetailCount] = 0
-                Defaults[.appOpenCount] = 0
+                Defaults[\.cameraDetailCount] = 0
+                Defaults[\.appOpenCount] = 0
                 
                 SKStoreReviewController.requestReview()
             }

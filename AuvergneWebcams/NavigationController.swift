@@ -25,7 +25,7 @@ class NavigationController: UINavigationController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         if shadowImageView == nil {
             shadowImageView = findShadowImage(under: navigationBar)
         }
@@ -34,7 +34,7 @@ class NavigationController: UINavigationController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+
         shadowImageView?.isHidden = false
     }
     
@@ -50,20 +50,20 @@ class NavigationController: UINavigationController {
     
     func style() {
         let color = UIColor.white
-        
+
         let attributes: [NSAttributedStringKey: Any] = [
             NSAttributedStringKey.foregroundColor: color,
             NSAttributedStringKey.font: UIFont.proximaNovaSemiBold(withSize: 17)
         ]
-        
+
         navigationBar.titleTextAttributes = attributes
         navigationBar.tintColor = color
         navigationBar.isTranslucent = true
         navigationBar.barStyle = .black
-        
+
         UINavigationBar.appearance().titleTextAttributes = attributes
         UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: .normal)
-        
+
         setNeedsStatusBarAppearanceUpdate()
     }
     
@@ -79,12 +79,13 @@ class NavigationController: UINavigationController {
         if view is UIImageView && view.bounds.size.height <= 1 {
             return (view as! UIImageView)
         }
-        
+
         for subview in view.subviews {
             if let imageView = findShadowImage(under: subview) {
                 return imageView
             }
         }
+
         return nil
     }
 }

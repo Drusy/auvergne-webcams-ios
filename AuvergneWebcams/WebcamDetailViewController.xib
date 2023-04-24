@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -73,7 +73,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OoY-ZV-P4A" customClass="DOFavoriteButtonNew" customModule="DOFavoriteButtonNew">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OoY-ZV-P4A" customClass="DOFavoriteButtonNew" customModule="DOFavoriteButtonNew">
                                         <rect key="frame" x="12" y="5" width="40" height="40"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -164,6 +164,7 @@
                     <blurEffect style="dark"/>
                 </visualEffectView>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="X7r-9K-YAb"/>
             <color key="backgroundColor" red="0.18823529411764706" green="0.18823529411764706" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="w8W-mG-JP9" firstAttribute="centerX" secondItem="bzQ-8u-T1z" secondAttribute="centerX" id="3O1-8s-RVR"/>
@@ -184,7 +185,6 @@
                 <constraint firstItem="Ysf-o3-p7o" firstAttribute="top" secondItem="23i-9c-sEh" secondAttribute="bottom" id="ycn-Ds-FnU"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
-            <viewLayoutGuide key="safeArea" id="X7r-9K-YAb"/>
             <point key="canvasLocation" x="-326.5" y="-101.5"/>
         </view>
         <view hidden="YES" contentMode="scaleToFill" id="noP-jA-NZQ">
@@ -195,7 +195,7 @@
                     <rect key="frame" x="137.5" y="183.5" width="100" height="100"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qVI-tw-7Cv">
-                    <rect key="frame" x="40" y="323.5" width="295" height="102"/>
+                    <rect key="frame" x="40" y="323.5" width="295" height="122"/>
                     <attributedString key="attributedText">
                         <fragment>
                             <string key="content">La webcam ne semble
@@ -205,7 +205,7 @@ pas fonctionnelle
 </string>
                             <attributes>
                                 <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <font key="NSFont" size="17" name="ProximaNova-Regular"/>
+                                <font key="NSFont" metaFont="system" size="17"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
@@ -214,14 +214,14 @@ pas fonctionnelle
 pour signaler la caméra</string>
                             <attributes>
                                 <color key="NSColor" red="0.32156862745098036" green="0.64313725490196072" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <font key="NSFont" size="17" name="ProximaNova-Bold"/>
+                                <font key="NSFont" metaFont="system" size="17"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
                     </attributedString>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PaS-PF-01Q">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PaS-PF-01Q">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <connections>
@@ -229,6 +229,7 @@ pour signaler la caméra</string>
                     </connections>
                 </button>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="YjN-gw-4j7"/>
             <color key="backgroundColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="PaS-PF-01Q" secondAttribute="trailing" id="6cR-43-LBC"/>
@@ -241,7 +242,6 @@ pour signaler la caméra</string>
                 <constraint firstItem="xXS-JL-M3G" firstAttribute="centerY" secondItem="noP-jA-NZQ" secondAttribute="centerY" multiplier="70%" id="rrd-jX-qhU"/>
                 <constraint firstItem="PaS-PF-01Q" firstAttribute="leading" secondItem="noP-jA-NZQ" secondAttribute="leading" id="x3d-Oy-SAY"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="YjN-gw-4j7"/>
             <point key="canvasLocation" x="-764" y="-103"/>
         </view>
         <view hidden="YES" contentMode="scaleToFill" id="45a-Ea-bzN">
@@ -258,6 +258,7 @@ pour signaler la caméra</string>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="USg-q3-Ra6"/>
             <color key="backgroundColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="ony-jr-bNx" firstAttribute="top" secondItem="gy6-29-jrA" secondAttribute="bottom" constant="32" id="5VE-uh-aE6"/>
@@ -266,7 +267,6 @@ pour signaler la caméra</string>
                 <constraint firstItem="gy6-29-jrA" firstAttribute="centerX" secondItem="45a-Ea-bzN" secondAttribute="centerX" id="VDs-Fl-RTA"/>
                 <constraint firstItem="ony-jr-bNx" firstAttribute="leading" secondItem="45a-Ea-bzN" secondAttribute="leading" constant="8" id="xSP-44-D71"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="USg-q3-Ra6"/>
             <point key="canvasLocation" x="109" y="-102"/>
         </view>
     </objects>

@@ -7,23 +7,18 @@
 //
 
 import UIKit
-import ObjectMapper
 import RealmSwift
-import Crashlytics
+import FirebaseCrashlytics
 
 class FavoriteWebcamSection: WebcamSection {
     var favoriteWebcams: Results<Webcam>?
-    
-    required convenience init?(map: ObjectMapper.Map) {
-        self.init()
-    }
 
     override func sortedWebcams() -> Results<Webcam> {
         return favoriteWebcams ?? super.sortedWebcams()
     }
 }
 
-class WebcamSection: Object, Mappable {
+class WebcamSection: Object, Decodable {
     
     static let weatherRefreshInterval: TimeInterval = 60 * 30 // 30mn
     static let weatherAcceptanceInterval: TimeInterval = 60 * 60 * 2 // 2h
@@ -49,40 +44,40 @@ class WebcamSection: Object, Mappable {
         
         return UIImage(named: name)
     }
-    
-    // MARK: - 
-    
-    required convenience init?(map: ObjectMapper.Map) {
-        self.init()
-    }
-    
-    func mapping(map: ObjectMapper.Map) {
-        var webcamsArray = [Webcam]()
-        
-        uid <- map["uid"]
-        order <- map["order"]
-        title <- map["title"]
-        imageName <- map["imageName"]
-        mapImageName <- map["mapImageName"]
-        mapColor <- map["mapColor"]
-        latitude <- map["latitude"]
-        longitude <- map["longitude"]
-        webcamsArray <- map["webcams"]
-        
-        let realm = try? Realm()
-        if let section = realm?.object(ofType: WebcamSection.self, forPrimaryKey: uid) {
-            lastWeatherUpdate = section.lastWeatherUpdate
-            temperature = section.temperature
-            weatherID = section.weatherID
-        }
-        
-        webcams.append(objectsIn: webcamsArray)
+
+    enum CodingKeys: String, CodingKey {
+        case uid
+        case order
+        case title
+        case imageName
+        case mapImageName
+        case mapColor
+        case latitude
+        case longitude
+        case webcams
     }
     
     override static func primaryKey() -> String? {
         return #keyPath(WebcamSection.uid)
     }
-    
+
+    override init() {
+        super.init()
+    }
+
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.uid = try container.decode(Int.self, forKey: .uid)
+        self.order = try container.decode(Int.self, forKey: .order)
+        self.title = try container.decodeIfPresent(String.self, forKey: .title)
+        self.imageName = try container.decodeIfPresent(String.self, forKey: .imageName)
+        self.mapImageName = try container.decodeIfPresent(String.self, forKey: .mapImageName)
+        self.mapColor = try container.decodeIfPresent(String.self, forKey: .mapColor)
+        self.latitude = try container.decodeIfPresent(Double.self, forKey: .latitude) ?? -1
+        self.longitude = try container.decodeIfPresent(Double.self, forKey: .longitude) ?? -1
+        self.webcams = try container.decode(List<Webcam>.self, forKey: .webcams)
+    }
+
     // MARK: - 
     
     func sortedWebcams() -> Results<Webcam> {
@@ -104,28 +99,29 @@ class WebcamSection: Object, Mappable {
             ]
             
             ApiRequest.startQuery(forType: OpenWeatherResponse.self, parameters: parameters) { [weak self] response in
-                guard let strongSelf = self else { return }
-                
-                if let error = response.result.error {
+                guard let self = self else { return }
+
+                switch response.result {
+                case .failure(let error):
+                    Crashlytics.crashlytics().record(error: error)
                     print(error.localizedDescription)
-                    Crashlytics.sharedInstance().recordError(error)
-                    handler(strongSelf, error)
-                } else if let openWeatherResponse = response.result.value {
+                    handler(self, error)
+                case .success(let value):
                     let realm = try? Realm()
-                    
+
                     try? realm?.write {
-                        strongSelf.lastWeatherUpdate = Date()
-                        
-                        if let openWeatherTemperature = openWeatherResponse.temperature?.temperature {
-                            strongSelf.temperature = openWeatherTemperature - 273.15
+                        self.lastWeatherUpdate = Date()
+
+                        if let openWeatherTemperature = value.temperature?.temperature {
+                            self.temperature = openWeatherTemperature - 273.15
                         }
-                        
-                        if let openWeatherIconId = openWeatherResponse.weathers.first?.id {
-                            strongSelf.weatherID = openWeatherIconId
+
+                        if let openWeatherIconId = value.weathers.first?.id {
+                            self.weatherID = openWeatherIconId
                         }
                     }
-                    
-                    handler(strongSelf, nil)
+
+                    handler(self, nil)
                 }
             }
         }

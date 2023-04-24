@@ -59,15 +59,15 @@ class SettingsViewController: FormViewController {
             Section("Général")
             <<< SwitchRow(SettingTag.autoRefresh.rawValue) {
                 $0.title = "Rafraîchissement automatique"
-                $0.value = Defaults[.shouldAutorefresh]
+                $0.value = Defaults[\.shouldAutorefresh]
             }.onChange { row in
-                Defaults[.shouldAutorefresh] = row.value ?? false
+                Defaults[\.shouldAutorefresh] = row.value ?? false
                 NotificationCenter.default.post(name: NSNotification.Name.SettingsDidUpdateAutorefresh,
                                                 object: self)
             }
             <<< IntRow(SettingTag.autoRefreshDelay.rawValue) {
                 $0.title = "Délai de rafraîchissement (minutes)"
-                $0.value = Int(Defaults[.autorefreshInterval] / 60)
+                $0.value = Int(Defaults[\.autorefreshInterval] / 60)
                 $0.hidden = Condition.function([SettingTag.autoRefresh.rawValue], { form in
                     return !((form.rowBy(tag: SettingTag.autoRefresh.rawValue) as? SwitchRow)?.value ?? false)
                 })
@@ -84,7 +84,7 @@ class SettingsViewController: FormViewController {
                 row.validate()
                 
                 if row.isValid {
-                    Defaults[.autorefreshInterval] = Double(row.value ?? 0) * 60
+                    Defaults[\.autorefreshInterval] = Double(row.value ?? 0) * 60
                 } else {
                     let message = "Le délai de rafraîchissement doit être suppérieur à 0 et inférieur à 120"
                     let alertController = UIAlertController(title: "Erreur",
@@ -96,15 +96,15 @@ class SettingsViewController: FormViewController {
                     
                     alertController.addAction(okAction)
                     self.present(alertController, animated: true, completion: nil)
-                    row.value = Int(Defaults[.autorefreshInterval] / 60)
+                    row.value = Int(Defaults[\.autorefreshInterval] / 60)
                     row.updateCell()
                 }
             }
             <<< SwitchRow(SettingTag.quality.rawValue) {
                 $0.title = "Haute qualité"
-                $0.value = Defaults[.prefersHighQuality]
+                $0.value = Defaults[\.prefersHighQuality]
                 }.onChange { row in
-                    Defaults[.prefersHighQuality] = row.value ?? false
+                    Defaults[\.prefersHighQuality] = row.value ?? false
                     NotificationCenter.default.post(name: NSNotification.Name.SettingsDidUpdateQuality,
                                                     object: self)
             }

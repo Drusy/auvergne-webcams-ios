@@ -7,22 +7,14 @@
 //
 
 import UIKit
-import ObjectMapper
 
-class OpenWeatherResponse: Queryable {
-    
+class OpenWeatherResponse: Queryable, Decodable {
     var weathers = [OpenWeather]()
     var temperature: OpenTemperature?
-    
-    // MARK: -
-    
-    required convenience init?(map: Map) {
-        self.init()
-    }
-    
-    func mapping(map: Map) {
-        weathers <- map["weather"]
-        temperature <- map["main"]
+
+    enum CodingKeys: String, CodingKey {
+        case weathers = "weather"
+        case temperature
     }
     
     // MARK: - Queryable

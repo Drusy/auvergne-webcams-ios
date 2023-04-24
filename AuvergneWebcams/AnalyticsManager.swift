@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAnalytics
 import SwiftyUserDefaults
-import Crashlytics
+import FirebaseCrashlytics
 
 class AnalyticsManager {
     
@@ -126,9 +126,9 @@ class AnalyticsManager {
     
     static func logUserProperties() {
         #if !DEBUG
-            let refresh = Defaults[.shouldAutorefresh] ? "true" : "false"
-            let refreshInterval = String(format: "%d", Defaults[.autorefreshInterval])
-            let quality = Defaults[.prefersHighQuality] ? "high" : "low"
+            let refresh = Defaults[\.shouldAutorefresh] ? "true" : "false"
+            let refreshInterval = String(format: "%d", Defaults[\.autorefreshInterval])
+            let quality = Defaults[\.prefersHighQuality] ? "high" : "low"
             
             Analytics.setUserProperty(refresh, forName: Analytics.refreshUserProperty)
             Analytics.setUserProperty(refreshInterval, forName: Analytics.refreshIntervalUserProperty)
