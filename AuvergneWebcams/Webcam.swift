@@ -20,6 +20,7 @@ class Webcam: Object, Decodable {
         case imageHD
         case imageLD
         case viewsurf
+        case video
         case mapImageName
         case isHidden = "hidden"
         case latitude
@@ -29,8 +30,9 @@ class Webcam: Object, Decodable {
     }
     
     enum ContentType: String {
-        case image = "image"
-        case viewsurf = "viewsurf"
+        case image
+        case viewsurf
+        case video
     }
     
     #if DEBUG
@@ -48,6 +50,7 @@ class Webcam: Object, Decodable {
     @objc dynamic var imageHD: String?
     @objc dynamic var imageLD: String?
     @objc dynamic var viewsurf: String?
+    @objc dynamic var video: String?
     @objc dynamic var mapImageName: String?
     @objc dynamic var isHidden: Bool = false
     @objc dynamic var latitude: Double = -1
@@ -93,6 +96,7 @@ class Webcam: Object, Decodable {
         self.imageHD = try container.decodeIfPresent(String.self, forKey: .imageHD)
         self.imageLD = try container.decodeIfPresent(String.self, forKey: .imageLD)
         self.viewsurf = try container.decodeIfPresent(String.self, forKey: .viewsurf)
+        self.video = try container.decodeIfPresent(String.self, forKey: .video)
         self.mapImageName = try container.decodeIfPresent(String.self, forKey: .mapImageName)
         self.isHidden = try container.decodeIfPresent(Bool.self, forKey: .isHidden) ?? false
         self.latitude = try container.decodeIfPresent(Double.self, forKey: .latitude) ?? -1
@@ -123,7 +127,7 @@ class Webcam: Object, Decodable {
         switch contentType {
         case .image:
             lowQuality = (imageHD == nil)
-        case .viewsurf:
+        case .viewsurf, .video:
             return false
         }
         

@@ -56,13 +56,18 @@ class NavigationController: UINavigationController {
             NSAttributedStringKey.font: UIFont.proximaNovaSemiBold(withSize: 17)
         ]
 
-        navigationBar.titleTextAttributes = attributes
-        navigationBar.tintColor = color
-        navigationBar.isTranslucent = true
-        navigationBar.barStyle = .black
-
         UINavigationBar.appearance().titleTextAttributes = attributes
         UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: .normal)
+
+        navigationBar.tintColor = color
+
+        let appearance = UINavigationBarAppearance()
+        appearance.titleTextAttributes = attributes
+        appearance.configureWithTransparentBackground()
+        appearance.backgroundColor = UIColor.awDarkGray
+
+        navigationBar.standardAppearance = appearance
+        navigationBar.scrollEdgeAppearance = appearance
 
         setNeedsStatusBarAppearanceUpdate()
     }

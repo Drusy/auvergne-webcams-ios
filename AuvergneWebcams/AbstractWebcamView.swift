@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 import Reachability
 import Kingfisher
 import Alamofire
@@ -167,6 +168,8 @@ class AbstractWebcamView: UIView {
             
         case .viewsurf:
             loadViewsurfPreview(for: webcam)
+        case .video:
+            loadVideoThumbnail(for: webcam)
         }
     }
     
@@ -243,6 +246,23 @@ class AbstractWebcamView: UIView {
                     self.outdatedView.isHidden = webcam.isUpToDate()
                 }
         })
+    }
+
+    fileprivate func loadVideoThumbnail(for webcam: Webcam) {
+        guard let urlString = webcam.video,
+            let url = URL(string: urlString) else { return }
+
+        let asset: AVAsset = AVAsset(url: url)
+        let imageGenerator = AVAssetImageGenerator(asset: asset)
+
+        do {
+            let cgImage = try imageGenerator.copyCGImage(at: CMTime(value: 1, timescale: 60), actualTime: nil)
+            imageView.image = UIImage(cgImage: cgImage)
+            activityIndicator.stopAnimating()
+            activityIndicator.isHidden = true
+        } catch let error {
+            print(error)
+        }
     }
     
     fileprivate func handleError(for webcam: Webcam, statusCode: Int) {

@@ -11,7 +11,7 @@ import Foundation
 extension Configuration {
     static let localJSONConfigurationFile = "aw-config"
     static let localJSONConfigurationFileDev = "aw-config-dev"
-    static let distantJSONConfigurationFile = "/v3/aw-config.json"
+    static let distantJSONConfigurationFile = "/v4/aw-config.json"
     
     static let openWeatherAPIKey = "54a35820a2f57153fa94eeef69fc094e"
     static let mainThemeImageName = "pdd-landscape-cloudless"

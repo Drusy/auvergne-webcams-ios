@@ -296,30 +296,33 @@ class WebcamDetailViewController: AbstractRefreshViewController {
             }
         }
     }
+
+    fileprivate func loadVideo(url: String) {
+        if let videoURL = URL(string: url) {
+            videoContainer.isHidden = false
+            clearAVPlayerObservers()
+            avPlayerURL = videoURL
+
+            let player = AVPlayer(url: videoURL)
+            player.addObserver(self,
+                               forKeyPath: #keyPath(AVPlayer.status),
+                               options: [.initial, .new],
+                               context: nil)
+
+            avPlayerController.delegate = self
+            avPlayerController.player = player
+            avPlayerController.player?.play()
+        } else {
+            mediaLoadingDidFailed()
+        }
+    }
     
     fileprivate func loadViewsurfVideo() {
         guard let viewsurf = webcam.preferredViewsurf() else { return }
         
         fetchLastViewsurfMedia { [weak self] mediaPath in
-            guard let strongSelf = self else { return }
-            
-            if let videoURL = URL(string: "\(viewsurf)/\(mediaPath).mp4") {
-                strongSelf.videoContainer.isHidden = false
-                strongSelf.clearAVPlayerObservers()
-                strongSelf.avPlayerURL = videoURL
-
-                let player = AVPlayer(url: videoURL)
-                player.addObserver(strongSelf,
-                                   forKeyPath: #keyPath(AVPlayer.status),
-                                   options: [.initial, .new],
-                                   context: nil)
-                
-                strongSelf.avPlayerController.delegate = self
-                strongSelf.avPlayerController.player = player
-                strongSelf.avPlayerController.player?.play()
-            } else {
-                strongSelf.mediaLoadingDidFailed()
-            }
+            guard let self = self else { return }
+            self.loadVideo(url: "\(viewsurf)/\(mediaPath).mp4")
         }
     }
     
@@ -482,7 +485,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         switch webcam.contentType {
         case .image:
             exportImage()
-        case .viewsurf:
+        case .viewsurf, .video:
             exportAVPlayerVideo()
         }
         
@@ -527,6 +530,9 @@ class WebcamDetailViewController: AbstractRefreshViewController {
             } else {
                 loadViewsurfPreview(force: force)
             }
+        case .video:
+            guard let url = webcam.video else { return }
+            loadVideo(url: url)
         }
     }
     

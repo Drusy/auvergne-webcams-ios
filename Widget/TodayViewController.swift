@@ -9,6 +9,7 @@
 import UIKit
 import NotificationCenter
 import Kingfisher
+import AVFoundation
 import RealmSwift
 import Alamofire
 import SwiftyUserDefaults
@@ -135,6 +136,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             
         case .viewsurf:
             loadViewsurfPreview(for: webcam)
+        case .video:
+            loadVideoThumbnail(for: webcam)
         }
     }
     
@@ -222,6 +225,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         })
     }
     
+    
     fileprivate func loadViewsurfPreview(for webcam: Webcam) {
         guard let viewsurf = webcam.preferredViewsurf(), let lastURL = URL(string: "\(viewsurf)/last") else {
             return
@@ -255,6 +259,21 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                     self.onError()
                 }
             }
+        }
+    }
+
+    fileprivate func loadVideoThumbnail(for webcam: Webcam) {
+        guard let urlString = webcam.video,
+            let url = URL(string: urlString) else { return }
+
+        let asset: AVAsset = AVAsset(url: url)
+        let imageGenerator = AVAssetImageGenerator(asset: asset)
+
+        do {
+            let cgImage = try imageGenerator.copyCGImage(at: CMTime(value: 1, timescale: 60), actualTime: nil)
+            imageView.image = UIImage(cgImage: cgImage)
+        } catch let error {
+            print(error)
         }
     }
     
