@@ -269,11 +269,19 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         let asset: AVAsset = AVAsset(url: url)
         let imageGenerator = AVAssetImageGenerator(asset: asset)
 
-        do {
-            let cgImage = try imageGenerator.copyCGImage(at: CMTime(value: 1, timescale: 60), actualTime: nil)
-            imageView.image = UIImage(cgImage: cgImage)
-        } catch let error {
-            print(error)
+
+        DispatchQueue.global(qos: .userInitiated).async {
+            do {
+                let cgImage = try imageGenerator.copyCGImage(at: CMTime(value: 1, timescale: 60), actualTime: nil)
+
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+
+                    imageView.image = UIImage(cgImage: cgImage)
+                }
+            } catch let error {
+                print(error)
+            }
         }
     }
     
