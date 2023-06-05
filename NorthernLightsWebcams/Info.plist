@@ -46,9 +46,9 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Nous utilisons votre position afin de vous localiser sur la carte</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>La bibliothèque d'image est utilisée afin de sauvegarder l'image de la webcam sur votre périphérique</string>
+	<string>La bibliothèque d&apos;image est utilisée afin de sauvegarder l&apos;image de la webcam sur votre périphérique</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>La bibliothèque d'image est utilisée afin de sauvegarder l'image de la webcam sur votre périphérique</string>
+	<string>La bibliothèque d&apos;image est utilisée afin de sauvegarder l&apos;image de la webcam sur votre périphérique</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>ProximaNova-SboldItalic.otf</string>
@@ -98,5 +98,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Nous utilisons votre position afin de vous localiser sur la carte</string>
 </dict>
 </plist>
