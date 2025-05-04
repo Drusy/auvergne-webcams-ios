@@ -9,5 +9,5 @@
 import SwiftyUserDefaults
 
 extension DefaultsKeys {
-    static let currentWidgetWebcamUid = DefaultsKey<Int?>("currentWidgetWebcamUid")
+    var currentWidgetWebcamUid: DefaultsKey<Int?> { .init("currentWidgetWebcamUid") }
 }

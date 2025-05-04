@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class WebcamTag: Object {
+class WebcamTag: Object, Decodable {
     @objc dynamic var tag: String = ""
     
     override static func primaryKey() -> String? {

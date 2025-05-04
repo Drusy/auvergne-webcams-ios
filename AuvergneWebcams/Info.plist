@@ -51,7 +51,7 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>MGLMapboxAccessToken</key>
+	<key>MBXAccessToken</key>
 	<string>pk.eyJ1IjoiYXV2ZXJnbmV3ZWJjYW1zIiwiYSI6ImNqZG44enZ4dzByY20ycGpnaXIxM3lyOW0ifQ.C_Woj-VTFsTr1eYXH5qvzA</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
@@ -61,9 +61,9 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Nous utilisons votre position afin de vous localiser sur la carte</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>La bibliothèque d'image est utilisée afin de sauvegarder l'image de la webcam sur votre périphérique</string>
+	<string>La bibliothèque d&apos;image est utilisée afin de sauvegarder l&apos;image de la webcam sur votre périphérique</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>La bibliothèque d'image est utilisée afin de sauvegarder l'image de la webcam sur votre périphérique</string>
+	<string>La bibliothèque d&apos;image est utilisée afin de sauvegarder l&apos;image de la webcam sur votre périphérique</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>ProximaNova-SboldItalic.otf</string>

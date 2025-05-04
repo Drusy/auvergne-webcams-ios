@@ -55,7 +55,7 @@ class WebcamTests: AbstractTests {
         webcam.imageLD = "LD"
         
         // When
-        Defaults[.prefersHighQuality] = false
+        Defaults[\.prefersHighQuality] = false
         let preferredImage = webcam.preferredImage()
         
         // Expect
@@ -68,7 +68,7 @@ class WebcamTests: AbstractTests {
         webcam.imageHD = "HD"
         
         // When
-        Defaults[.prefersHighQuality] = false
+        Defaults[\.prefersHighQuality] = false
         let preferredImage = webcam.preferredImage()
         
         // Expect
@@ -81,7 +81,7 @@ class WebcamTests: AbstractTests {
         webcam.imageLD = "LD"
         
         // When
-        Defaults[.prefersHighQuality] = true
+        Defaults[\.prefersHighQuality] = true
         let preferredImage = webcam.preferredImage()
         
         // Expect
@@ -95,7 +95,7 @@ class WebcamTests: AbstractTests {
         webcam.imageLD = "LD"
         
         // When
-        Defaults[.prefersHighQuality] = true
+        Defaults[\.prefersHighQuality] = true
         let preferredImage = webcam.preferredImage()
         
         // Expect

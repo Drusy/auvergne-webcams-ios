@@ -9,11 +9,11 @@
 
 import UIKit
 import Reachability
-import Crashlytics
+import FirebaseCrashlytics
 
 class AbstractViewController: UIViewController {
 
-    let reachability = Reachability()
+    let reachability: Reachability? = try? Reachability()
     var didLayoutSubviews = false
 
     override func viewDidLoad() {
@@ -73,7 +73,7 @@ class AbstractViewController: UIViewController {
         ac.addAction(okAction)
         present(ac, animated: true)
         
-        Crashlytics.sharedInstance().recordError(error)
+        Crashlytics.crashlytics().record(error: error)
     }
     
     func showAlertView(with message: String) {
@@ -87,7 +87,7 @@ class AbstractViewController: UIViewController {
     }
     
     func isReachable() -> Bool {
-        return (reachability == nil || (reachability != nil && reachability!.connection != .none))
+        return (reachability == nil || (reachability != nil && reachability?.connection != .unavailable))
     }
     
     func share(_ title: String? = nil, url: URL? = nil, image: UIImage? = nil, fromView view: UIView? = nil) {

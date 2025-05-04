@@ -7,20 +7,12 @@
 //
 
 import Foundation
-import ObjectMapper
 
-class WebcamSectionResponse: Queryable {
+class WebcamSectionResponse: Decodable, Queryable {
+    var sections: [WebcamSection]
 
-    var sections = [WebcamSection]()
-    
-    // MARK: - 
-    
-    required convenience init?(map: Map) {
-        self.init()
-    }
-    
-    func mapping(map: Map) {
-        sections <- map["sections"]
+    enum CodingKeys: CodingKey {
+        case sections
     }
     
     // MARK: - Queryable
