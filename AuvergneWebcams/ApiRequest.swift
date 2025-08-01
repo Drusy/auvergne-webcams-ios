@@ -8,8 +8,8 @@
 
 import Foundation
 
-import AlamofireObjectMapper
-import ObjectMapper
+//import AlamofireObjectMapper
+//import ObjectMapper
 import Alamofire
 import SwiftyUserDefaults
 import SwiftiumKit
@@ -17,24 +17,36 @@ import SwiftiumKit
 class ApiRequest {
     
     @discardableResult
-    static func startStringQuery<T: Queryable>(forType type: T.Type, parameters: [String: Any]? = nil, handler: ((DataResponse<String>) -> Void)? = nil) -> Request {
+    static func startStringQuery<T: Queryable>(forType type: T.Type, parameters: [String: Any]? = nil, handler: ((AFDataResponse<String>) -> Void)? = nil) -> Request {
         let request = startRequest(forType: type, parameters: parameters)
-        
-        request.responseString { response in
+
+        request.responseString { (response: AFDataResponse<String>) in
             if let request = response.request {
                 print("Request: \(request)")
             }
-            
+
             if let statusCode = response.response?.statusCode {
                 print("Status code: \(statusCode)")
             }
-            if let value = response.result.value {
+
+            switch response.result {
+            case .failure(let error):
+                print("Error: \(error)")
+            case .success(let value):
                 print("Value: \(value)")
             }
-            if let error = response.result.error {
-                print("Error: \(error)")
-            }
-            
+
+            handler?(response)
+        }
+
+        return request
+    }
+    
+    @discardableResult
+    static func startDataQuery<T: Queryable>(forType type: T.Type, parameters: [String: Any]? = nil, handler: ((AFDataResponse<Data>) -> Void)? = nil) -> Request {
+        let request = startRequest(forType: type, parameters: parameters)
+        
+        request.responseData { (response: AFDataResponse<Data>) in
             handler?(response)
         }
         
@@ -42,21 +54,10 @@ class ApiRequest {
     }
     
     @discardableResult
-    static func startDataQuery<T: Queryable>(forType type: T.Type, parameters: [String: Any]? = nil, handler: ((DataResponse<Data>) -> Void)? = nil) -> Request {
+    static func startQuery<T: Queryable & Decodable>(forType type: T.Type, parameters: [String: Any]? = nil, handler: ((DataResponse<T, AFError>) -> Void)? = nil) -> Request {
         let request = startRequest(forType: type, parameters: parameters)
-        
-        request.responseData { (response: DataResponse<Data>) in
-            handler?(response)
-        }
-        
-        return request
-    }
-    
-    @discardableResult
-    static func startQuery<T: Queryable>(forType type: T.Type, parameters: [String: Any]? = nil, handler: ((DataResponse<T>) -> Void)? = nil) -> Request {
-        let request = startRequest(forType: type, parameters: parameters)
-        
-        request.responseObject { (response: DataResponse<T>) in
+
+        request.responseDecodable { (response: DataResponse<T, AFError>) in
             handler?(response)
         }
         
@@ -90,11 +91,13 @@ class ApiRequest {
         let requestParameters = parameters ?? [:]
         let computedParameters = queryableParameters + requestParameters
         
-        return Alamofire.request(urlConvertible,
-                                 method: queryableType.webServiceMethod,
-                                 parameters: computedParameters,
-                                 encoding: queryableType.encoding,
-                                 headers: allHeaders)
+        return Alamofire.Session.default.request(
+                urlConvertible,
+                method: queryableType.webServiceMethod,
+                parameters: computedParameters,
+                encoding: queryableType.encoding,
+                headers: .init(allHeaders)
+            )
             .validate()
             .debugLog()
     }

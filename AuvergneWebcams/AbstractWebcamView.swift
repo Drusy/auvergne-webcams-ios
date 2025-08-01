@@ -74,7 +74,7 @@ struct ResizingContentModeImageProcessor: ImageProcessor {
         self.identifier = "com.onevcat.Kingfisher.ResizingImageProcessor(\(targetSize), \(targetContentMode))"
     }
     
-    public func process(item: ImageProcessItem, options: KingfisherOptionsInfo) -> Image? {
+    public func process(item: ImageProcessItem, options: KingfisherParsedOptionsInfo) -> KFCrossPlatformImage? {
         switch item {
         case .image(let image):
             var size: CGSize
@@ -90,7 +90,7 @@ struct ResizingContentModeImageProcessor: ImageProcessor {
             
             return image.kf.resize(to: size)
         case .data(_):
-            return (DefaultImageProcessor.default >> self).process(item: item, options: options)
+            return DefaultImageProcessor.default.append(another: self).process(item: item, options: options)
         }
     }
 }
@@ -188,27 +188,34 @@ class AbstractWebcamView: UIView {
             return
         }
         
-        let request = Alamofire.request(lastURL,
-                                        method: .get,
-                                        parameters: nil,
-                                        encoding: URLEncoding.default,
-                                        headers: ApiRequest.headers)
+        let request = Alamofire.Session.default
+            .request(
+                lastURL,
+                method: .get,
+                parameters: nil,
+                encoding: URLEncoding.default,
+                headers: .init(ApiRequest.headers)
+            )
         request.validate()
         request.debugLog()
         
         request.responseString { [weak self] response in
-            guard let strongSelf = self else { return }
-            
-            if let error = response.error, let statusCode = response.response?.statusCode {
-                print("ERROR: \(statusCode) - \(error.localizedDescription)")
-                strongSelf.handleError(for: webcam, statusCode: statusCode)
-            } else if let mediaPath = response.result.value?.replacingOccurrences(of: "\n", with: "") {
+            guard let self = self else { return }
+
+            switch response.result {
+            case .failure(let error):
+                if let statusCode = response.response?.statusCode {
+                    print("ERROR: \(statusCode) - \(error.localizedDescription)")
+                    self.handleError(for: webcam, statusCode: statusCode)
+                }
+            case .success(let value):
+                let mediaPath = value.replacingOccurrences(of: "\n", with: "")
                 if let previewURL = URL(string: "\(viewsurf)/\(mediaPath)_tn.jpg") {
-                    strongSelf.loadImage(for: webcam, for: previewURL)
+                    self.loadImage(for: webcam, for: previewURL)
                 } else {
-                    strongSelf.activityIndicator.stopAnimating()
-                    strongSelf.activityIndicator.isHidden = true
-                    strongSelf.brokenCameraView.isHidden = false
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.isHidden = true
+                    self.brokenCameraView.isHidden = false
                 }
             }
         }
@@ -223,23 +230,24 @@ class AbstractWebcamView: UIView {
         imageView.kf.setImage(
             with: url,
             options: [.processor(processor)],
-            completionHandler: { [weak self] (image, error, cacheType, imageUrl) in
-                guard let strongSelf = self else { return }
-                
-                if let error = error {
-                    print("ERROR: \(error.code) - \(error.localizedDescription)")
-                    strongSelf.handleError(for: webcam, statusCode: error.code)
-                } else {
-                    strongSelf.activityIndicator.stopAnimating()
-                    strongSelf.activityIndicator.isHidden = true
-                    strongSelf.outdatedView.isHidden = webcam.isUpToDate()
+            completionHandler: { [weak self] result in
+                guard let self = self else { return }
+
+                switch result {
+                case .failure(let error):
+                    print("ERROR: \(error.errorCode) - \(error.localizedDescription)")
+                    self.handleError(for: webcam, statusCode: error.errorCode)
+                case .success:
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.isHidden = true
+                    self.outdatedView.isHidden = webcam.isUpToDate()
                 }
         })
     }
     
     fileprivate func handleError(for webcam: Webcam, statusCode: Int) {
-        let reachability = Reachability()
-        let isReachable = (reachability == nil || (reachability != nil && reachability!.connection != .none))
+        let reachability: Reachability? = try? Reachability()
+        let isReachable = (reachability == nil || (reachability != nil && reachability?.connection != .unavailable))
         
         if  statusCode != -999 && statusCode != 30000 {
             if isReachable {

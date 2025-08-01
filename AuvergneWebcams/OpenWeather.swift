@@ -7,23 +7,17 @@
 //
 
 import Foundation
-import ObjectMapper
 
-class OpenWeather: Mappable {
-    
+class OpenWeather: Decodable {
     var id: Int = 800
     var main: String?
     var desc: String?
     var icon: String?
-    
-    required convenience init?(map: Map) {
-        self.init()
-    }
-    
-    func mapping(map: Map) {
-        id <- map["id"]
-        main <- map["main"]
-        desc <- map["description"]
-        icon <- map["icon"]
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case main
+        case desc = "description"
+        case icon
     }
 }

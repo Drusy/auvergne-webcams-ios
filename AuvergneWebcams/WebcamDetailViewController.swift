@@ -7,12 +7,12 @@
 //
 
 import UIKit
+import Combine
 import Kingfisher
 import Reachability
 import SwiftyUserDefaults
 import MessageUI
 import NVActivityIndicatorView
-import DOFavoriteButtonNew
 import Alamofire
 import AVFoundation
 import AVKit
@@ -39,7 +39,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     @IBOutlet weak var nvActivityIndicatorView: NVActivityIndicatorView!
     @IBOutlet weak var lastUpdateLabel: UILabel!
     @IBOutlet weak var lowQualityView: UIVisualEffectView!
-    @IBOutlet weak var favoriteButton: DOFavoriteButtonNew!
+    @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var videoContainer: UIView!
     @IBOutlet weak var informationLabel: UILabel!
     
@@ -54,6 +54,8 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     var avPlayerURL: URL?
     var avExportTimer: Timer?
     var avExporter: AVAssetExportSession?
+
+    private var cancellables = Set<AnyCancellable>()
     
     // MARK: - Initializers
 
@@ -78,7 +80,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        automaticallyAdjustsScrollViewInsets = false
+        scrollView.contentInsetAdjustmentBehavior = .never
         view.bounds = UIScreen.main.bounds
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "refresh-icon"),
@@ -92,12 +94,11 @@ class WebcamDetailViewController: AbstractRefreshViewController {
                                                object: nil)
         
         // Favorite button
-        favoriteButton.image = UIImage(named: "star-icon")
-        favoriteButton.imageColorOn = UIColor.awBlue
-        favoriteButton.imageColorOff = UIColor.awLightGray
-        favoriteButton.duration = 1
-        favoriteButton.lineColor = UIColor.awBlue
-        favoriteButton.circleColor = UIColor.awBlue
+        favoriteButton.setImage(UIImage(named: "star-icon"), for: .normal)
+        favoriteButton.publisher(for: \.isSelected).sink { [weak self] isSelected in
+            guard let self = self else { return }
+            self.favoriteButton.tintColor = !isSelected ? UIColor.awLightGray : UIColor.awBlue
+        }.store(in: &cancellables)
         favoriteButton.isSelected = webcam.favorite
         
         // Prepare indicator
@@ -123,7 +124,7 @@ class WebcamDetailViewController: AbstractRefreshViewController {
         updateLastUpdateLabel()
         refresh()
         
-        Defaults[.cameraDetailCount] += 1
+        Defaults[\.cameraDetailCount] += 1
         AnalyticsManager.logEvent(showWebcam: webcam)
         QuickActionsService.shared.quickActionEdit(webcam: webcam, value: .add)
     }
@@ -176,12 +177,12 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     
     // MARK: - IBActions
     
-    @IBAction func onFavoriteTouched(_ sender: DOFavoriteButtonNew) {
+    @IBAction func onFavoriteTouched(_ sender: UIButton) {
         if sender.isSelected {
-            sender.deselect()
+            sender.isSelected = false
             QuickActionsService.shared.quickActionEdit(webcam: webcam, value: .delete)
         } else {
-            sender.select()
+            sender.isSelected = true
         }
         
         try? realm.write {
@@ -268,21 +269,29 @@ class WebcamDetailViewController: AbstractRefreshViewController {
     fileprivate func fetchLastViewsurfMedia(handler: @escaping (String) -> (Void)) {
         guard let viewsurf = webcam.preferredViewsurf(), let lastURL = URL(string: "\(viewsurf)/last") else { return }
         
-        let request = Alamofire.request(lastURL,
-                                        method: .get,
-                                        parameters: nil,
-                                        encoding: URLEncoding.default,
-                                        headers: ApiRequest.headers)
+        let request = Alamofire.Session
+            .default
+            .request(
+                lastURL,
+                method: .get,
+                parameters: nil,
+                encoding: URLEncoding.default,
+                headers: .init(ApiRequest.headers)
+            )
         request.validate()
         request.debugLog()
         
         request.responseString { [weak self] response in
-            guard let strongSelf = self else { return }
-            
-            if let error = response.error, let statusCode = response.response?.statusCode {
-                print("ERROR: \(statusCode) - \(error.localizedDescription)")
-                strongSelf.handleError(statusCode: statusCode)
-            } else if let mediaPath = response.result.value?.replacingOccurrences(of: "\n", with: "") {
+            guard let self = self else { return }
+
+            switch response.result {
+            case .failure(let error):
+                if let statusCode = response.response?.statusCode {
+                    print("ERROR: \(statusCode) - \(error.localizedDescription)")
+                    self.handleError(statusCode: statusCode)
+                }
+            case .success(let value):
+                let mediaPath = value.replacingOccurrences(of: "\n", with: "")
                 handler(mediaPath)
             }
         }
@@ -339,14 +348,15 @@ class WebcamDetailViewController: AbstractRefreshViewController {
             with: url,
             placeholder: nil,
             options: options,
-            progressBlock: nil) { [weak self] image, error, cacheType, url in
-                guard let strongSelf = self else { return }
-                
-                if let error = error {
-                    print("ERROR: \(error.code) - \(error.localizedDescription)")
-                    strongSelf.handleError(statusCode: error.code, force: force)
-                } else {
-                    strongSelf.mediaLoadingDidFinish()
+            progressBlock: nil) { [weak self] result in
+                guard let self = self else { return }
+
+                switch result {
+                case .failure(let error):
+                    print("ERROR: \(error.errorCode) - \(error.localizedDescription)")
+                    self.handleError(statusCode: error.errorCode, force: force)
+                case .success:
+                    self.mediaLoadingDidFinish()
                 }
         }
     }

@@ -10,10 +10,8 @@ import UIKit
 import Kingfisher
 import Siren
 import SwiftyUserDefaults
-import Fabric
-import Crashlytics
-import AlamofireNetworkActivityIndicator
 import FirebaseCore
+import FirebaseCrashlytics
 import RealmSwift
 import SVProgressHUD
 
@@ -34,8 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        Fabric.with([Crashlytics.self])
-        
         #if DEBUG
             UIFont.printFonts()
         #endif
@@ -45,19 +41,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SVProgressHUD.setForegroundColor(UIColor.white)
         SVProgressHUD.setFont(UIFont.proximaNovaRegular(withSize: 15))
         SVProgressHUD.setDefaultMaskType(.black)
-        
-        // Alamofire
-        NetworkActivityIndicatorManager.shared.isEnabled = true
 
         // Defaults
         let version = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
-        if !Defaults[.firstConfigurationDone] {
-            Defaults[.firstConfigurationDone] = true
+        if !Defaults[\.firstConfigurationDone] {
+            Defaults[\.firstConfigurationDone] = true
             
             // Defaults settings
-            Defaults[.shouldAutorefresh] = true
-            Defaults[.prefersHighQuality] = true
-            Defaults[.autorefreshInterval] = Webcam.refreshInterval
+            Defaults[\.shouldAutorefresh] = true
+            Defaults[\.prefersHighQuality] = true
+            Defaults[\.autorefreshInterval] = Webcam.refreshInterval
         }
         
         // Realm
@@ -74,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
         
         // Database init
-        if Defaults[.currentVersion] != version {
+        if Defaults[\.currentVersion] != version {
             DownloadManager.shared.bootstrapRealmData()
         } else {
             // Let's init the download manager proxy
@@ -82,8 +75,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // Current version
-        if Defaults[.currentVersion] != version {
-            Defaults[.currentVersion] = version
+        if Defaults[\.currentVersion] != version {
+            Defaults[\.currentVersion] = version
         }
         
         // Firebase
@@ -91,17 +84,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AnalyticsManager.logUserProperties()
 
         // Cache
-        let autorefreshInterval = Defaults[.autorefreshInterval]
-        ImageCache.default.maxCachePeriodInSecond = autorefreshInterval as TimeInterval
+        let autorefreshInterval = Defaults[\.autorefreshInterval]
+        ImageCache.default.memoryStorage.config.expiration = .seconds(autorefreshInterval as TimeInterval)
         ImageCache.default.cleanExpiredDiskCache()
         
         // Shortcut items
         shortcutItem = launchOptions?[UIApplicationLaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem
         
         // Update
-        Siren.shared.delegate = self
-        Siren.shared.alertType = .skip
-        Siren.shared.checkVersion(checkType: .immediately)
+        Siren.shared.wail()
         
         // Setup Window
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -118,31 +109,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
-    func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
-    }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        Siren.shared.checkVersion(checkType: .daily)
-        
+    func applicationWillEnterForeground(_ application: UIApplication) {        
         #if !DEBUG
             AnalyticsManager.logEventAppOpen()
             AnalyticsManager.logUserProperties()
         #endif
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        Siren.shared.checkVersion(checkType: .daily)
-    }
-
-    func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
@@ -171,29 +142,3 @@ extension AppDelegate: LoadingViewControllerDelegate {
         }
     }
 }
-
-// MARK: - SirenDelegate
-
-extension AppDelegate: SirenDelegate {
-    
-    func sirenLatestVersionInstalled() {
-        
-    }
-    
-    func sirenDidFailVersionCheck(error: Error) {
-        print("Failed to check app version : \(error.localizedDescription)")
-    }
-
-    func sirenUserDidLaunchAppStore() {
-        
-    }
-    
-    func sirenUserDidSkipVersion() {
-        
-    }
-    
-    func sirenUserDidCancel() {
-        
-    }
-}
-

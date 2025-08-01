@@ -9,10 +9,9 @@
 import Foundation
 import Alamofire
 import SwiftiumKit
-import ObjectMapper
 import RealmSwift
 
-protocol Queryable: Mappable {
+protocol Queryable {
     static var complementaryHeaders: [String: String] { get }
     static var encoding: ParameterEncoding { get }
     static var webServiceMethod: HTTPMethod { get }

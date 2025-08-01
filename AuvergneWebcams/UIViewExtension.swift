@@ -6,7 +6,7 @@
 //  Copyright © 2017 AuvergneWebcams. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension UIView {
     class func getAllSubviews<T: UIView>(from parenView: UIView) -> [T] {

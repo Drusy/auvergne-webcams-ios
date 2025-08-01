@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Crashlytics
+import FirebaseCrashlytics
 import SwiftyUserDefaults
 
 protocol LoadingViewControllerDelegate: class {
@@ -28,10 +28,10 @@ class AbstractLoadingViewController: AbstractRealmViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Defaults[.appOpenCount] += 1
+        Defaults[\.appOpenCount] += 1
         showClouds()
         
-        #if DEBUG && true
+        #if DEBUG && false
             DownloadManager.shared.bootstrapRealmDevelopmentData()
             webcamQueryEnded = true
         #else
@@ -69,27 +69,43 @@ class AbstractLoadingViewController: AbstractRealmViewController {
     
     func refresh() {
         ApiRequest.startQuery(forType: WebcamSectionResponse.self, parameters: nil) { [weak self] response in
-            guard let strongSelf = self else { return }
-            
-            if let error = response.error {
-                Crashlytics.sharedInstance().recordError(error)
+            guard let self = self else { return }
+
+            switch response.result {
+            case .failure(let error):
+                Crashlytics.crashlytics().record(error: error)
                 print(error.localizedDescription)
-            } else if let webcamSectionResponse = response.result.value {
+            case .success(let value):
                 // Delete all sections & webcams
-                let sections = strongSelf.realm.objects(WebcamSection.self)
-                let webcams = strongSelf.realm.objects(Webcam.self)
-                
-                try! strongSelf.realm.write {
-                    strongSelf.realm.delete(sections)
-                    strongSelf.realm.delete(webcams)
-                    
-                    strongSelf.realm.add(webcamSectionResponse.sections, update: .all)
+                let realmSections = self.realm.objects(WebcamSection.self)
+                let realmWebcams = self.realm.objects(Webcam.self)
+
+                try! self.realm.write {
+                    value.sections.forEach {
+                        if let section = self.realm.object(ofType: WebcamSection.self, forPrimaryKey: $0.uid) {
+                            $0.lastWeatherUpdate = section.lastWeatherUpdate
+                            $0.temperature = section.temperature
+                            $0.weatherID = section.weatherID
+                        }
+
+                        $0.webcams.forEach {
+                            if let webcam = self.realm.object(ofType: Webcam.self, forPrimaryKey: $0.uid) {
+                                $0.lastUpdate = webcam.lastUpdate
+                                $0.favorite = webcam.favorite
+                            }
+                        }
+                    }
+
+                    self.realm.delete(realmSections)
+                    self.realm.delete(realmWebcams)
+
+                    self.realm.add(value.sections, update: .all)
                     QuickActionsService.shared.registerQuickActions()
                 }
             }
             
-            strongSelf.webcamQueryEnded = true
-            strongSelf.endLoading()
+            self.webcamQueryEnded = true
+            self.endLoading()
         }
     }
     

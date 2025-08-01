@@ -7,11 +7,26 @@
 //
 
 import Foundation
-import ObjectMapper
+import CoreLocation
 import SwiftyUserDefaults
 import RealmSwift
 
-class Webcam: Object, Mappable {
+class Webcam: Object, Decodable {
+
+    enum CodingKeys: String, CodingKey {
+        case uid
+        case order
+        case title
+        case imageHD
+        case imageLD
+        case viewsurf
+        case mapImageName
+        case isHidden = "hidden"
+        case latitude
+        case longitude
+        case type
+        case tags
+    }
     
     enum ContentType: String {
         case image = "image"
@@ -37,6 +52,10 @@ class Webcam: Object, Mappable {
     @objc dynamic var isHidden: Bool = false
     @objc dynamic var latitude: Double = -1
     @objc dynamic var longitude: Double = -1
+
+    var coordinate: CLLocationCoordinate2D {
+        CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
     
     private let sections: LinkingObjects<WebcamSection> = LinkingObjects(fromType: WebcamSection.self, property: "webcams")
     var section: WebcamSection? {
@@ -59,34 +78,29 @@ class Webcam: Object, Mappable {
     var tags = List<WebcamTag>()
     
     // MARK: -
-    
-    required convenience init?(map: ObjectMapper.Map) {
-        self.init()
+
+    override init() {
+        super.init()
     }
-    
-    func mapping(map: ObjectMapper.Map) {
-        var tagsArray = [String]()
-        
-        uid <- map["uid"]
-        order <- map["order"]
-        title <- map["title"]
-        imageHD <- map["imageHD"]
-        imageLD <- map["imageLD"]
-        viewsurf <- map["viewsurf"]
-        mapImageName <- map["mapImageName"]
-        type <- map["type"]
-        latitude <- map["latitude"]
-        longitude <- map["longitude"]
-        isHidden <- map["hidden"]
-        
-        tagsArray <- map["tags"]
-        setTags(from: tagsArray)
-        
-        let realm = try? Realm()
-        if let webcam = realm?.object(ofType: Webcam.self, forPrimaryKey: uid) {
-            lastUpdate = webcam.lastUpdate
-            favorite = webcam.favorite
-        }
+
+    required init(from decoder: Decoder) throws {
+        super.init()
+
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.uid = try container.decode(Int.self, forKey: .uid)
+        self.order = try container.decode(Int.self, forKey: .order)
+        self.title = try container.decodeIfPresent(String.self, forKey: .title)
+        self.imageHD = try container.decodeIfPresent(String.self, forKey: .imageHD)
+        self.imageLD = try container.decodeIfPresent(String.self, forKey: .imageLD)
+        self.viewsurf = try container.decodeIfPresent(String.self, forKey: .viewsurf)
+        self.mapImageName = try container.decodeIfPresent(String.self, forKey: .mapImageName)
+        self.isHidden = try container.decodeIfPresent(Bool.self, forKey: .isHidden) ?? false
+        self.latitude = try container.decodeIfPresent(Double.self, forKey: .latitude) ?? -1
+        self.longitude = try container.decodeIfPresent(Double.self, forKey: .longitude) ?? -1
+        self.type = try container.decodeIfPresent(String.self, forKey: .type)
+
+        let tags = try container.decodeIfPresent([String].self, forKey: .tags) ?? []
+        self.setTags(from: tags)
     }
     
     override static func primaryKey() -> String? {
@@ -124,7 +138,7 @@ class Webcam: Object, Mappable {
     }
     
     func preferredImage() -> String? {
-        if Defaults[.prefersHighQuality] {
+        if Defaults[\.prefersHighQuality] {
             return imageHD ?? imageLD
         } else {
             return imageLD ?? imageHD
